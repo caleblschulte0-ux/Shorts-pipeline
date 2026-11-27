@@ -106,7 +106,7 @@
   ],
   "storyboard": [
     "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, the black ridge over the roofs; low on the pavement by his house, then far down the street): a towering black ash plume rises off the ridge over the roofs. The driver in his hard hat stands at his front door, his bag on a bench beside him, looking up at it. He grabs the bag. He throws it into his truck. The truck drives out of town.",
-    "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then low by the house): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
+    "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then from up the wall): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
     "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "camera": "close up the alley by the truck, then from up high, then a cut to the wide across the town, then low by the house",
+      "camera": "out past the low row, low, back at him at the lever; then from up high over the rising wall; then a cut to the wide across the town; then from up the wall's face down at him",
       "data": "both hands on his tipper truck's tip lever, he pulls it and tips its rock onto the wall, then walks to the wall's foot by the house door and looks up at it",
       "props": [
         "tip lever",
@@ -168,7 +168,7 @@
         },
         {
           "at": 0.98,
-          "what": "low by the house: he stands small at the wall's foot beside the door, looking up at it"
+          "what": "from up the wall's face: he stands at its foot beside the house door, looking up at it"
         }
       ]
     },

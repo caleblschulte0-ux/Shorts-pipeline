@@ -16,7 +16,7 @@ S2_HS = (0.5, 2.6, 5.6)                 # the wall's three heights: knee-high to
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 0.97 * 5.6 / (11.0 / 2 - S2_CREST / 2 - 0.1)     # beat 3's faces (S3_BASE 11)
 S2_XT, S2_YT = 0.0, 2.2                 # his truck: tail to the wall at y 0.35, nose into town
-S2_HOUSE = (2.25, 2.2, 2.0, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1 m off the wall's foot
+S2_HOUSE = (-2.0, 2.2, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1 m off the wall's foot, by the truck
 
 
 def s2_base(h):
@@ -30,7 +30,7 @@ def s2_ground_z(x, y):
     if y < -8.0:
         k = min(1.0, (-8.0 - y) / 4.0)
         z += k * (0.5 * lw_fbm(x * 0.16, y * 0.16, 31) + 0.2 * lw_fbm(x * 0.6, y * 0.6, 37))
-    if y < -95.0: z += min(40.0, (-95.0 - y) * 0.4)         # the ridge the eruption is on
+    if y < -95.0: z += min(14.0, (-95.0 - y) * 0.2)         # the ridge the eruption is on (q2a: a steep one read as a flat-topped table)
     return z
 
 
@@ -42,7 +42,7 @@ def place_wall_works():
     lw_grid("town ground", -60, 60, 0.0, 40, 90, 50, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
     FX.ground("grass", area=(-12, 14, 4.2, 30), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
     lava_rock("town yard stones", 500, (-10, 12, 0.2, 14), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.12), moss=0.6,
-              avoid=lambda x, y: (-0.8 < x < 1.45 and y < 4.4) or (1.15 < x < 3.4 and 0.9 < y < 3.5))       # (clear of the truck, the alley and the house)
+              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-2.95 < x < -1.05 and 0.4 < y < 3.5))       # (clear of the truck, the alley and the house)
     walls = []
     path = [(float(x), 0.0) for x in range(-40, 41, 1)]
     for k, h in enumerate(S2_HS):
@@ -89,15 +89,15 @@ def shot2():
     R = math.radians
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.68; T_LET = 1.38; T_WALK = 1.45; T_ARR = 2.55
+    T_AB = 0.6; T_LET = 1.8; T_WALK = 1.86; T_ARR = 2.75
     T_CUT = 1.72; T_WB = 2.72
     P = place_wall_works()
     light = P["light"]; walls = P["walls"]
     # ---- the wall grows: each heap rises out of the ground inside the one before it
-    RISE = [None, (0.38, 0.8), (1.28, 0.78)]
+    RISE = [None, (0.55, 0.65), (1.3, 0.8)]
     def off(k, t):
         if k == 0: return 0.0
-        a, d = RISE[k]; return -(S2_HS[k] - S2_HS[k - 1] + 0.15) * (1.0 - W(t, a, d))
+        a, d = RISE[k]; return -(S2_HS[k] + 0.25) * (1.0 - W(t, a, d))       # (q2a: from below the ground, or the plan's box never sees it grow)
     for k, w in enumerate(walls):
         for f in range(1, NF + 1):
             w["root"].location = (0, 0, off(k, (f - 1) / FPS)); w["root"].keyframe_insert("location", frame=f)
@@ -135,11 +135,12 @@ def shot2():
         q = Vector((rk.uniform(-0.5, 0.5), rk.uniform(-0.55, 1.6), 0.0))
         r = rk.uniform(0.06, 0.12)
         lp = H0i @ (troot.matrix_world @ Vector((q.x, q.y, 0.72 + r * 0.6 + 0.25 * rk.random())))
-        ang = 10.0 + 42.0 * (1.0 - (q.y + 0.55) / 2.15) * rk.uniform(0.7, 1.1)       # the rock at the tail goes first
+        ang = 2.0 + 50.0 * (1.0 - (q.y + 0.55) / 2.15) * rk.uniform(0.7, 1.1)       # the rock at the tail goes first
         o = lw_block("tipped rock", (0, 0, 0), r, rock_m, rk); load.append((o, lp, ang, r))
     lands = []
     for o, lp, ang, r in load:
         tr_ = None; ex = None; land = None; sp = rk.uniform(-1, 1)
+        if ang < TH(0.0): tr_ = -(TH(0.0) - ang) / 22.0           # (q2a: the first rock landed at 0.63s: the pour is under way at frame 1)
         for f in range(1, NF + 1):
             t = (f - 1) / FPS
             if tr_ is None and TH(t) >= ang: tr_ = t
@@ -165,25 +166,27 @@ def shot2():
     lands.sort(key=lambda a: a[0])
     print("S2 rock lands", len(lands), "first", round(lands[0][0], 2) if lands else None, flush=True)
     for k, t0 in enumerate((0.05, 0.62, 1.05)):
-        FX.dust_puff(base=(S2_XT + 0.1 * (k - 1), 0.05, 0.2), w=0.9, h=1.2 + 0.5 * k, t0=t0, dur=1.6, col=(0.55, 0.52, 0.48), dens=6.0, seed=3.3 + k, name=f"dust off the tipped rock {k}")
-    # ---- him: at the tip lever on the truck's town side, in the alley, three-quarter to the lens up the alley
+        FX.dust_puff(base=(S2_XT - 0.15 + 0.1 * (k - 1), -0.35, 0.2), w=0.7, h=1.2 + 0.5 * k, t0=t0, dur=1.6, col=(0.55, 0.52, 0.48), dens=6.0, seed=3.3 + k, name=f"dust off the tipped rock {k}")
+    # ---- him: at the tip lever on the truck's side, between it and the house, facing out to the wall (q2a: from up
+    # the alley between them the wall, the rock and the house were all out of the picture: the lens is out past the row)
     data = load_data()
-    PL = Vector((S2_XT + 0.95, 1.3, 0.0))
-    YL = yaw_of(0.25, 1.0)                                    # (facing up the alley, toward the lens)
+    PL = Vector((S2_XT - 0.93, 1.3, 0.0))
+    YL = yaw_of(-0.12, -1.0)
     data.place(PL.x, PL.y, math.degrees(YL))
     kit = hard_hat(data)
     sc.frame_set(1); bpy.context.view_layer.update()
     fw = data.forward(); fw.z = 0; fw.normalize(); lf = Vector((-fw.y, fw.x, 0.0))
     # the lever: a steel rod off the chassis, its T-bar handle in front of his chest; it swings toward him as he pulls
     steel = lw_paint("tip lever steel", "#2A2C2E", rough=0.45); grip_m = lw_paint("tip lever grip", "#D23A22", rough=0.6)
-    PIV = Vector((S2_XT + 0.66, PL.y + 0.16, 0.12))
+    PIV = Vector((S2_XT - 0.66, PL.y - 0.16, 0.12))
     piv = K.empty("tip lever pivot", tuple(PIV))
     BAR = PL + fw * 0.15 + Vector((0, 0, 0.34))               # the T-bar's centre, pushed forward (the bed down)
-    ROD_TOP = Vector((PIV.x + 0.12, BAR.y, BAR.z))
+    ROD_TOP = Vector((PIV.x + 0.12 * (1 if PL.x > PIV.x else -1), BAR.y, BAR.z))
     K.capsule("tip lever rod", tuple(PIV), tuple(ROD_TOP), 0.012, steel, parent=piv)
     K.capsule("tip lever bar", tuple(ROD_TOP), tuple(BAR + lf * -0.1), 0.011, steel, parent=piv)
     K.capsule("tip lever grip", tuple(BAR + lf * 0.08), tuple(BAR + lf * -0.1), 0.016, grip_m, parent=piv)
-    PULL = lambda t: R(8.0) * W(t, 0.0, 0.55) + R(7.0) * W(t, T_AB + 0.02, 0.6)       # toward him about the pivot's x
+    PS_ = 1.0 if (PIV + Matrix.Rotation(0.2, 3, 'X') @ (BAR - PIV) - PL).length < (BAR - PL).length else -1.0       # the way that brings it to him
+    PULL = lambda t: PS_ * (R(8.0) * W(t, 0.0, 0.5) + R(7.0) * W(t, T_AB + 0.02, 0.55))       # toward him about the pivot's x
     for f in range(1, NF + 1):
         piv.rotation_euler = (PULL((f - 1) / FPS), 0, 0); piv.keyframe_insert("rotation_euler", frame=f)
     def on_bar(t, u):
@@ -194,50 +197,59 @@ def shot2():
         t = (f - 1) / FPS; data._kobj(t, loc=tuple(PL), rot=YW0)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.25)
-    lw_layer(data, "spine", lambda t: ((-8 * W(t, 0.0, 0.5) - 6 * W(t, T_AB, 0.5)) * (1 - W(t, T_LET, 0.3)), 0, 0), 0.0, DUR + 0.4)      # he leans back on it
-    lw_layer(data, "spine", lambda t: (0, 0, 14 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.3))), 0.0, DUR + 0.4)                # and twists to watch the rock go
-    # off down the alley to the wall's foot by the house's door; there he looks up at it
-    PE = Vector((S2_HOUSE[0] - 0.7, 0.45, 0.0))
-    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.15, lift=0.05, bob=0.016)
+        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.4, elbow_out=0.25)
+    # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
+    LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
+    lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.35)), 0, 0), 0.0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.35))), 0.0, DUR + 0.4)
+    # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
+    # turns to the wall and looks up at it
+    PE = Vector((S2_HOUSE[0] + 0.42, 0.5, 0.0))
+    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.14, lift=0.045, bob=0.014)
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(-0.15, -1.0)
+    YU = yaw_of(0.12, -1.0)
     while YU - YA > math.pi: YU -= 2 * math.pi
     while YU - YA < -math.pi: YU += 2 * math.pi
     for f in range(F(T_ARR) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.3))
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.25))
     TAILP = hinge_at(0.8) @ tail_l
-    CREST = Vector((PE.x - 0.3, -s2_base(S2_HS[2]) / 2, S2_HS[2]))
+    CREST = Vector((PE.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
-    data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.05, max_yaw=60, max_pitch=40, blend=0.4)       # the rock going onto the wall
-    data.look_at(PE + Vector((0, -1.0, 0.3)), T_WALK, max_yaw=40, max_pitch=30, blend=0.3)
-    data.look_at(CREST, T_ARR, max_yaw=40, max_pitch=45, blend=0.4)                           # up at it
+    data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
+    data.look_at(PE + Vector((0, -1.5, 0.3)), T_WALK, max_yaw=30, max_pitch=30, blend=0.4)
+    data.look_at(CREST, T_ARR - 0.15, max_yaw=30, max_pitch=50, blend=0.5)                         # up at it
     data.expression("determined", 0.0, T_ARR, blend=0.15)
     data.expression("surprised", T_ARR, DUR + 1.0, blend=0.3)
-    LG = 0.38
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
     HIP = lambda sg: ((-6, 0, -sg * 64), (-98, 0, sg * 30), (0, 0, 0))                           # a fist on his hip
-    HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
     def pose(t, P_, sides_="LR"):
         for sd in sides_:
             for bn, r_ in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r_)
-    pose(T_LET + 0.35, HANG, "LR"); pose(T_ARR - 0.05, HANG, "LR")
-    pose(T_ARR + 0.4, SHADE, sides[1]); pose(T_ARR + 0.4, HIP, sides[0]); pose(DUR + 0.5, SHADE, sides[1]); pose(DUR + 0.5, HIP, sides[0])
+    pose(T_ARR + 0.15, SHADE, sides[1]); pose(T_ARR + 0.15, HIP, sides[0]); pose(DUR + 0.5, SHADE, sides[1]); pose(DUR + 0.5, HIP, sides[0])
     data.finish()
-    # ---- the lens: up the alley, low; then from up high over the truck's cab; CUT WIDE across the town; then low by
-    # the house, him small at the foot of the wall
-    CA0 = PL + Vector((0.08, 2.4, 0.42)); LA0 = CA0 + Vector((-0.25, -6.0, 0.25))
-    CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.58, 0.6), height=0.36, t=0.25)
-    CB0 = PL + Vector((-0.2, 2.6, 2.7)); LB0 = CB0 + Vector((-0.15, -6.0, -3.2))
-    CB, LB = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.6, 0.62), height=0.34, t=1.2)
-    print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB), flush=True)
+    # ---- the lens: out past the low row, low, back at him, the truck's tail pouring rock at the right and the house at
+    # the left; then from up high over the rising wall; CUT WIDE across the town (he is behind his truck); then from up
+    # the wall's face, down at him at its foot by the house's door
+    him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
+    for o in set(him):
+        if o.type not in ('MESH', 'CURVE', 'ARMATURE'): continue
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT)); o.keyframe_insert("hide_render", frame=F(T_WB) - 1)
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_WB))
+    CA0 = PL + Vector((0.35, -3.2, 0.55)); LA0 = CA0 + Vector((-0.3, 6.0, 0.15))
+    CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.42, 0.6), height=0.36, t=0.25)
+    CB0 = PL + Vector((-1.2, -6.5, 6.0)); LB0 = CB0 + Vector((1.1, 6.0, -5.0))
+    CB, LB = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.55, 0.62), height=0.34, t=1.2)
+    CD0 = PE + Vector((0.2, -1.7, 1.9)); LD0 = CD0 + Vector((-0.25, 5.0, -3.2))
+    CD, LD = compose.frame_data(data, CD0, LD0, 35.0, face_at=(0.5, 0.62), height=0.34, t=DUR - 0.05)
+    print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
+          "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
-    WC = Vector((9.0, 24.0, 11.0)); WL = Vector((-0.5, -8.0, 2.4))                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
-    DC = Vector((S2_HOUSE[0] + 1.9, 0.62, 0.22)); DL = DC + Vector((-5.0, -0.9, 2.6))  # low by the house's front: up at the wall, him small at its foot
-    lw_cut(cam, lambda t: ((CA, LA) if t < T_AB else (CB, LB)) + (data.pos() + Vector((0, 0, 0.4)),),
-           lambda t: ((WC, WL, Vector((1.0, 0.0, 2.0))) if t < T_WB else (DC, DL, PE + Vector((0, 0, 0.3)))), T_CUT, DUR + 1.0, 35.0, 24.0)
+    WC = Vector((10.0, 14.0, 9.0)); WL = Vector((-2.0, -8.0, 2.0))                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
+    lw_cut(cam, lambda t: ((CA, LA) if t < T_AB else (CB, LB) if t < T_CUT else (CD, LD)) + (data.pos() + Vector((0, 0, 0.4)),),
+           lambda t: (WC, WL, Vector((1.0, 0.0, 2.0))), T_CUT, T_WB, 35.0, 20.0)
     wall_body = lambda: meshes([w["body"] for w in walls])
-    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("tip lever",), cutaway=(T_CUT, DUR + 1.0),
+    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("tip lever",), cutaway=(T_CUT, T_WB),
                 boxes=[],
                 conseq=[("he tips the load of rock off his truck onto the low row of rock in a puff of dust", lambda: [o for o, *_ in load], 0.0, T_AB, {"whole": False, "moves": True}),
                         ("the wall of rock grows roof-high beside the house", wall_body, 0.3, T_CUT, {"whole": False}),

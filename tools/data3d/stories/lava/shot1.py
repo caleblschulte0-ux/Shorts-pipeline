@@ -350,7 +350,7 @@ def shot1():
     def carry(t):
         if t <= T_GRAB + 0.12: return BAG0 + GRIP
         return (BAG0 + GRIP).lerp(carry_rel(t), W(t, T_GRAB + 0.12, 0.45))
-    data.reach(bag_sd, carry, T_GRAB, T_REL + 0.75, lead=0.4, back=None, elbow_out=0.3)      # (his arm stays up from the throw: a relax into the cut whipped it)
+    data.reach(bag_sd, carry, T_GRAB, DUR + 0.5, lead=0.4, back=None, elbow_out=0.3)      # (his arm stays up from the throw: a relax into the cut whipped it)
     lw_layer(data, "spine", lambda t: (22 * W(t, T_GRAB - 0.35, 0.3) * (1 - W(t, T_GRAB + 0.2, 0.35)) + 12 * W(t, T_WIND - 0.15, 0.2) * (1 - W(t, T_REL - 0.2, 0.2)), 0, 0), 0.4, DUR + 0.4)      # he bends to the bench for it; and into the wind-up
     data.finish()
     him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
