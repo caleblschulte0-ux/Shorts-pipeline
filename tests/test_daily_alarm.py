@@ -536,6 +536,31 @@ class TestADeadBrainSaysSo(AlarmCase):
                  if x["code"] == "credential_limited_claude_subscription")
         self.assertIn("nothing to rotate", a["fix"])
 
+    def test_a_throttled_groq_key_is_not_told_to_mint_a_new_one(self):
+        """2026-11-10..26: the heartbeat read Cloudflare's 403 on its bare
+        user agent as a dead Groq key and this alarm said "mint a new key"
+        every morning, while the runs were being answered 429 on the same key
+        — accepted, throttled, free tier. A spent window is a budget problem;
+        the fix text has to say so, or the operator rotates a key that was
+        never the problem (the exact afternoon credential_check exists to
+        prevent)."""
+        self._creds({"name": "groq", "status": "limited",
+                     "detail": "HTTP 429 — rate limited or out of quota"})
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("credential_limited_groq", self.codes(r))
+        self.assertNotIn("credential_limited_groq", self.criticals(r))
+        a = next(x for x in r["alarms"] if x["code"] == "credential_limited_groq")
+        self.assertNotIn("Mint a new key", a["fix"])
+        self.assertIn("Nothing to rotate", a["fix"])
+        self.assertIn("tier", a["fix"])
+        # a DEAD groq still says which secret to replace
+        self._creds({"name": "groq", "status": "dead",
+                     "detail": 'HTTP 401 — the credential was refused: '
+                               '{"error":{"message":"Invalid API Key"}}'})
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == "credential_dead_groq")
+        self.assertIn("GROQ_API_KEY", a["fix"])
+
     def test_a_dead_upload_token_is_cited_only_by_its_own_channel(self):
         self._dark()
         self._creds({"name": "youtube:explainer", "status": "dead",

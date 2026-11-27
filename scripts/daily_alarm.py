@@ -206,8 +206,27 @@ def _code(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
 
 
+#: A SPENT window asks for a different fix than a DEAD key, and for Groq the
+#: difference cost seventeen days: the heartbeat said DEAD (an edge 403, see
+#: scripts/credential_check.py), the fix said "mint a new key", and the real
+#: constraint the runs hit was the free tier's per-minute token cap (six 429s
+#: a run, then benched). Rotating a key does nothing about a quota.
+_CREDENTIAL_LIMITED_FIXES = {
+    "groq": ("Nothing to rotate — the key was ACCEPTED and throttled. Groq's "
+             "FREE tier caps tokens per minute; the runs hit it within six "
+             "calls and bench Groq, so every text call falls to Gemini's free "
+             "quota. The fix is budget, not a key: a paid Groq tier "
+             "(console.groq.com/settings/billing) or fewer brain calls a run."),
+    "gemini": ("Nothing to rotate — Gemini's free quota is spent for the "
+               "window. A paid tier (aistudio.google.com) or fewer calls; the "
+               "showrunner's fallback judge and the TTS voice wait for it."),
+}
+
+
 def _credential_fix(row: dict) -> str:
     name = row.get("name", "")
+    if row.get("status") == "limited" and name in _CREDENTIAL_LIMITED_FIXES:
+        return _CREDENTIAL_LIMITED_FIXES[name]
     if name in _CREDENTIAL_FIXES:
         return _CREDENTIAL_FIXES[name]
     env = row.get("env") or "<its secret>"
