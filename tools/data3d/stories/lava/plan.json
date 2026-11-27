@@ -372,13 +372,13 @@
     },
     {
      "event": "reaction",
-     "shows": "low by the house: the driver stands small at the foot of the towering wall by the house and looks up at it, a hand over his eyes",
+     "shows": "low by the house: the driver stands small at the foot of the towering wall by the house and looks up at it, a hand up by his face",
      "hands": "free",
      "new": [
       {
        "what": "data",
        "how": "pose",
-       "cause": "he looks up at the wall, a hand over his eyes"
+       "cause": "he looks up at the wall, a hand up by his face"
       }
      ],
      "visible": [

@@ -199,7 +199,7 @@ def shot2():
     while YWK - YW0 > math.pi: YWK -= 2 * math.pi
     while YWK - YW0 < -math.pi: YWK += 2 * math.pi
     for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) - 0.055 * W(t, 1.25, 0.3)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) + 0.03 * W(t, T_LET - 0.05, 0.4)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
         data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45) + (YWK - YW0) * W(t, T_LET - 0.05, T_WALK - T_LET + 0.05))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     def body_at(t):
@@ -208,15 +208,22 @@ def shot2():
         return m, f_, Vector((-f_.y, f_.x, 0.0))
     # (q2f/q2g: let go to a relaxed arm, the hands swept through his coat and whipped): off the bar the hands come to
     # rest in front of his belly, held to his body as he goes; the shading hand goes up from there (FK, below)
-    for sd, u, sg, t_end in ((sides[0], 0.05, 1.0, DUR + 0.5), (sides[1], -0.06, -1.0, T_ARR + 0.1)):
-        def job(t, u=u, sg=sg, sd=sd):
-            a = on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))
-            if t <= T_LET: return a
+    m0, f0, l0 = body_at(T_LET)
+    for sd, u, up in ((sides[0], 0.05, 0.0), (sides[1], -0.06, 1.0)):
+        a = on_bar(T_LET, u) + Vector((0, 0, 0.012)) - m0
+        a = (a.dot(f0), a.dot(l0), a.z)                     # (q2h: a world point he turned away from) the bar's last place, in his frame
+        side_ = 1.0 if (acts._shoulder(data, sd) - m0).dot(l0) > 0 else -1.0
+        def job(t, u=u, a=a, side_=side_, up=up):
+            if t <= T_LET: return on_bar(t, u) + Vector((0, 0, 0.012))
             m, f_, l_ = body_at(t)
-            side_ = 1.0 if (acts._shoulder(data, sd) - m).dot(l_) > 0 else -1.0
-            rest = m + f_ * 0.155 + l_ * (side_ * 0.07) + Vector((0, 0, -0.11))
-            return a.lerp(rest, ease(min(1.0, (t - T_LET) / 0.55)))
-        data.reach(sd, job, 0.0, t_end, lead=0.05, back=None, elbow_out=0.3)
+            here = lambda c: m + f_ * c[0] + l_ * c[1] + Vector((0, 0, c[2]))
+            rest = (0.155, side_ * 0.07, -0.11)                                       # in front of his belly
+            face = (0.15, -side_ * 0.04, 0.1)                                         # (q2h: an FK hand over his eyes swung behind his back) a hand up by his face
+            k = ease(min(1.0, (t - T_LET) / 0.8))
+            p = tuple(a[i] + (rest[i] - a[i]) * k for i in range(3))
+            if up: k2 = ease(min(1.0, max(0.0, (t - T_ARR - 0.1) / 0.45))); p = tuple(p[i] + (face[i] - p[i]) * k2 for i in range(3))
+            return here(p)
+        data.reach(sd, job, 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
@@ -243,7 +250,6 @@ def shot2():
     def pose(t, P_, sides_="LR"):
         for sd in sides_:
             for bn, r_ in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r_)
-    pose(T_ARR + 0.45, SHADE, sides[1]); pose(DUR + 0.5, SHADE, sides[1])
     data.finish()
     # ---- the lens: out past the low row, low, back at him, the truck's tail pouring rock at the right and the house at
     # the left; then from up high over the rising wall; CUT WIDE across the town (he is behind his truck); then from up
