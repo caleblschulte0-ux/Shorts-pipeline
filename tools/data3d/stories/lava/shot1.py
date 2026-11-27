@@ -10,7 +10,7 @@ looks at us, turns his head at the glow, flinches at the fountain, and on still 
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_P0 = (0.15, -2.5)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
+S1_P0 = (0.15, -2.6)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
 S1_CAM = (0.35, -4.2, 0.42)            # the one lens, low in the street
 
 
@@ -99,7 +99,7 @@ def shot1():
     T_BURST = TS[2] - 0.55                                       # the fountain bursts up out of it (still 3: he flinches from it)
     T_PLUME = TS[2] - 0.3                                        # the ash plume climbs over it
     T_RUN = TS[2] + 0.15                                         # he runs, out of the flinch (coordinator: the run starts in still 3's flinch)
-    T_CAR = TS[1] + 0.25                                         # the parked car pulls out at the glow and races away from it, past us
+    T_CAR = TS[1] + 0.05                                         # the parked car pulls out at the glow and races away from it, past us
     P = place_grindavik_street()
     light = P["light"]
     FZ = P["fz"]
@@ -133,7 +133,7 @@ def shot1():
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
     # ---- everyone had to run (coordinator, r1za): the one car, parked up the street in stills 1-2, pulls out as the
     # fountain bursts and races down the street away from it, past us, a tail of dust behind it; still 4 nearly out of frame
-    CAR_X, CAR_Y0, CAR_Y4 = 0.62, 5.0, -1.2
+    CAR_X, CAR_Y0, CAR_Y4 = 0.75, 5.0, -1.9
     car = FX.car(name="getaway car", loc=(CAR_X, CAR_Y0, 0.0), yaw=0.0, kind="hatch", col="#2F5E8C", lights=False, seed=4, dirt=0.4)
     acc = 2 * (CAR_Y0 - CAR_Y4) / (TS[3] - T_CAR) ** 2
     car_y = lambda t: CAR_Y0 - 0.5 * acc * max(0.0, t - T_CAR) ** 2
@@ -142,7 +142,7 @@ def shot1():
         if f in (1, F(T_CAR)) or t > T_CAR:
             car["root"].location = (CAR_X, car_y(t), 0.0); car["root"].keyframe_insert("location", frame=f)
     dust = []
-    for k, yd in enumerate((4.2, 2.6, 0.8)):                     # its dust: a puff off the street wherever its tail has passed
+    for k, yd in enumerate((5.9, 3.4, 1.0)):                     # its dust: a puff off the street wherever its tail has passed
         tk = T_CAR + math.sqrt(2 * max(0.0, CAR_Y0 - (yd - 1.2)) / acc)
         dust.append(lw_steam(f"car dust {k}", (CAR_X, yd, 0.0), w=0.9, h=1.1, keys=[(tk - 0.05, 0.0), (tk + 0.25, 0.8), (tk + 1.5, 0.5)],
                              t_end=DUR + 1.0, seed=7.1 + k, col=(0.58, 0.54, 0.47), dens=2.5, lean=(0.0, 0.05)))
@@ -160,16 +160,16 @@ def shot1():
     YAW_RUN = LENS                                             # the run: at the lens (walk_to faces his travel: turned before it starts)
     for f in range(1, F(T_RUN) + 1):
         t = (f - 1) / FPS
-        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.06 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.1, 0.25))
-        p.z = Z0 - 0.05 * (W(t, T_BURST + 0.1, 0.25) - W(t, T_RUN - 0.18, 0.18))     # (the flinch: he ducks, knees bent, and comes up into the run)
+        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.12 * W(t, 0.75, 0.45))     # (r1zb READ: a step toward the glow at 0.75 s) + TO * (Y_BACK * W(t, T_BURST + 0.1, 0.25))
+        p.z = Z0                                                 # (r1zc CLIPPING: a ducked root sank his contact shadow into the street: the flinch is in his spine and arms)
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(10) * W(t, T_GLOW, 0.5) - math.radians(12) * W(t, T_BURST + 0.1, 0.3)
                    + (YAW_RUN - YAW) * W(t, T_BURST + 0.2, 0.4))     # (r1x STEADY: he turns into the run during the flinch, never a whip at its start)
         data._plant_feet_here(t, lift=(Z0, Z0))
     # the run: straight down the street at the lens (still 4 is mid-stride, centred, both feet in a run)
     sc.frame_set(F(T_RUN)); bpy.context.view_layer.update(); PR = data.pos()
-    END = PR + TO * 0.95
-    data.walk_to((END.x, END.y), T_RUN, DUR + 0.85, step=0.24, lift=0.09, bob=0.012, lean=12.0)
-    lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.25, 0.4) - 16 * W(t, T_BURST + 0.1, 0.25)
+    END = PR + TO * 0.85
+    data.walk_to((END.x, END.y), T_RUN, DUR + 0.85, step=0.15, lift=0.07, bob=0.0, lean=8.0)     # (r1zb CLIPPING: his soles sank on the bob)
+    lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.25, 0.4) - 20 * W(t, T_BURST + 0.1, 0.25)
                                        + 26 * W(t, T_RUN - 0.05, 0.35), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # at us, as it starts
@@ -183,11 +183,11 @@ def shot1():
     LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
     POINT = lambda sg: ((-62, 0, -sg * 8), (-12, 0, -sg * 6), (-6, 0, 0))         # one arm out at the glow
     HALF = lambda sg: ((-20, 0, -sg * 16), (-75, 0, -sg * 15), (-10, sg * -20, -sg * 12))      # forearms up, chest-high
-    SHIELD = lambda sg: ((-48, 0, -sg * 12), (-98, 0, -sg * 22), (-14, sg * -12, -sg * 10))    # the flinch: both forearms up before his face
+    SHIELD = lambda sg: ((-50, 0, -sg * 12), (-86, 0, -sg * 15), (-12, sg * -12, -sg * 10))     # (r1zb ANATOMY: -98 bent an elbow backward)    # the flinch: both forearms up before his face
     RUNA = lambda sg: ((14, 0, -sg * 20), (-80, 0, -sg * 10), (-5, sg * -10, -sg * 5))
     RUNB = lambda sg: ((-26, 0, -sg * 20), (-80, 0, -sg * 10), (-5, sg * -10, -sg * 5))
-    keys = [0.0, 0.35, T_GLOW + 0.25, 1.4, 1.95, T_BURST + 0.1, T_RUN - 0.05, T_RUN + 0.25]
-    run_t = [T_RUN + 0.5 + 0.24 * k for k in range(int((DUR + 0.6 - T_RUN - 0.5) / 0.24) + 1)]     # (r1z POP: the pump never snaps)
+    keys = [0.0, 0.35, T_GLOW + 0.25, 1.4, 1.95, T_BURST + 0.1, T_RUN - 0.05, T_RUN + 0.45]     # (r1zb FLUID: the shield into the pump over 0.5 s)
+    run_t = [T_RUN + 0.7 + 0.24 * k for k in range(int((DUR + 0.6 - T_RUN - 0.7) / 0.24) + 1)]     # (r1z POP: the pump never snaps)
     for sd in sides:
         sg = -1 if sd == "L" else 1
         near = sd == sides[0]
