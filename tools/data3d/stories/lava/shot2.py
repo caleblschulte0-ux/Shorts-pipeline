@@ -38,7 +38,7 @@ def place_wall_works():
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=0.0, w=hw, d=hd, storeys=1, base=0.3, pitch=38, roof="#B8352B", wall="#E9D9A2", seed=5)
     def light():
-        k = iceland_light(sun_elev=32, sun_az=156, sun=3.2, sky=0.45, haze=1.2)       # the sun behind the lens: on the wall's town face, on him
+        k = iceland_light(sun_elev=18, sun_az=156, sun=3.2, sky=0.45, haze=1.2)       # the sun behind the lens: on the wall's town face, on him
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(200))      # a REAL sky with cloud in it (Poly Haven)
         return k
     return dict(light=light, wall=wall, house=house)
@@ -48,7 +48,7 @@ def shot2():
     """THE WALL RISES. See the module's head."""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [-0.1, 0.55, 6.2, S2_H]                               # the wall's top at each: under the ground, the house's knee, over its ridge (seen from the lens), towering
+    TOPS = [-0.1, 1.05, 6.2, S2_H]                               # the wall's top at each: under the ground, window-high (r2c: knee-high read as nothing), over its ridge (seen from the lens), towering
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -86,7 +86,7 @@ def shot2():
         FX.dust_puff(base=(-1.0 + 1.4 * (k - 1), -0.6 - 0.8 * k, max(0.2, TOPS[k + 1] * 0.6)), w=1.4, h=1.4 + 0.6 * k, t0=t0 - 0.4, dur=1.6,
                      col=(0.78, 0.74, 0.68), dens=4.0, seed=3.3 + k, name=f"dust off the falling rock {k}")
     # the lava's glow held behind it: lamps out past the crest, coming up as it rises, catching its top edge
-    glows = [lw_point(f"lava glow behind the wall {k}", (-5.0 + 3.0 * k, -b - 2.0, S2_H + 0.5), 0.0, col=(1.0, 0.42, 0.1), r=1.5) for k in range(4)]
+    glows = [lw_point(f"lava glow behind the wall {k}", (-5.0 + 3.0 * k, yc - 1.2, S2_H + 0.9), 0.0, col=(1.0, 0.42, 0.1), r=1.5) for k in range(4)]     # (r2c: from further back it lit nothing; just over the crest it catches its top edge
     for f in range(1, NF + 8, 2):
         t = (f - 1) / FPS
         for l_ in glows:
@@ -102,27 +102,32 @@ def shot2():
     kit = hard_hat(data)
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
-        y_ = 0.12 * W(t, TS[2] - 0.3, 0.5) + 0.05 * W(t, TS[3] - 0.5, 0.4)            # a step back as it passes the eaves, another as it towers
+        # (r2c HOLD/READ: 1.4 s standing still at the start) a new move inside every 0.8 s: a shuffle aside as the rock
+        # starts, a step back as it reaches the windows, another as it passes the eaves, a last one as it towers
+        y_ = 0.08 * W(t, 1.15, 0.4) + 0.12 * W(t, 1.85, 0.45) + 0.07 * W(t, 2.6, 0.4)
         z_ = 0.03 * lw_kick(t - TS[2] + 0.1, 0.25)
-        x_ = 0.03 * math.sin(2 * math.pi * t / 1.3)
+        x_ = -0.07 * W(t, 0.2, 0.4) + 0.03 * math.sin(2 * math.pi * t / 1.3)
         data._kobj(t, loc=(X0 + x_, Y0 + y_, Z0 + z_), rot=YAW + math.radians(10) * W(t, TS[1] - 0.3, 0.6) - math.radians(8) * W(t, TS[3] - 0.6, 0.5))
         data._plant_feet_here(t, lift=(Z0, Z0))
     lw_layer(data, "spine", lambda t: (-6 * W(t, TS[1], 0.6) - 10 * W(t, TS[2] - 0.2, 0.6) - 8 * W(t, TS[3] - 0.5, 0.5) + 10 * lw_kick(t - TS[2] + 0.1, 0.3), 0, 0), 0, DUR + 0.4)
     HEAD = Vector((X0, Y0, Z0 + 0.5))
     UPAT = lambda up: HEAD + Vector((0.2, 0.5, up))                    # (w2a/w2b FACE 89-105: turned to the wall behind him he showed us the back of his head) up at it towering over him, further up each still
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)          # at us, as it starts
-    data.look_at(UPAT(0.3), TS[0] + 0.25, max_yaw=35, max_pitch=50, blend=0.35)                # round at the rock coming down
-    data.look_at(UPAT(0.7), TS[1] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)
-    data.look_at(UPAT(1.6), TS[2] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)                   # right up at it
+    data.look_at(UPAT(0.3), 0.5, max_yaw=35, max_pitch=50, blend=0.35)                # round at the rock coming down
+    data.look_at(UPAT(0.7), 1.15, max_yaw=35, max_pitch=50, blend=0.4)
+    data.look_at(UPAT(1.6), 1.9, max_yaw=35, max_pitch=50, blend=0.45)                   # right up at it
+    data.look_at(UPAT(1.2) + Vector((-0.3, 0, 0)), 2.65, max_yaw=35, max_pitch=50, blend=0.4)
     data.expression("surprised", 0.0, TS[2], blend=0.15)
     data.expression("alarmed", TS[2], DUR + 1.0, blend=0.25)
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
     LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
+    HALF = lambda sg: ((-14, 0, -sg * 24), (-58, 0, -sg * 22), (-10, sg * -20, -sg * 12))
+    UP = lambda sg: ((-42, 0, -sg * 12), (-40, 0, -sg * 50), (-12, sg * -10, -sg * 15))
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = (LOW, WHOA, WHOA, WHOA, WHOA) if sd == sides[0] else (LOW, WHOA, WHOA, WHOA, WHOA)      # (w2a/w2c: his pose turned 1-7 deg from still 1 to 2)
-        for tk, pose in zip((0.0, TS[1], TS[2] - 0.2, TS[3] - 0.4, DUR + 0.5), seq):
+        seq = (LOW, LOW, HALF, WHOA, UP, WHOA, UP, UP) if sd == sides[0] else (LOW, LOW, HALF, HALF, WHOA, UP, WHOA, WHOA)      # (w2a/w2c: his pose turned 1-7 deg from still 1 to 2; r2c/r2d HOLD: a new move inside every 0.8 s)
+        for tk, pose in zip((0.0, 0.3, 0.6, 1.15, 1.7, 2.25, 2.75, DUR + 0.5), seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
     CAM, LOOK = CAM0, LOOK0

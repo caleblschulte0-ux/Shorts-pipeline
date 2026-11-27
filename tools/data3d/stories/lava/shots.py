@@ -1402,21 +1402,18 @@ def lw_cut(cam, main, wide, t0, t1, lens_main, lens_wide):
 # ====================================================================================================
 """BEAT 1, THE HOOK: "A volcano keeps erupting right beside one Icelandic town, and everyone had to run."
 
-Grindavik's main street by day, low painted houses with coloured tin roofs down both sides, the black ridge over the
-roofs and the eruption's black ash plume over it. The driver shuts his front door on it, throws his bag into his
-tipper truck and drives out of town."""
+THE TOWN, AND IT ERUPTS (coordinator, 2026-11-27, after the audit of every recorded verdict: the shots that passed have
+the WORLD doing the event while Data reacts, one camera, two or three props). One lens, low in Grindavik's main street,
+looking up it past him to the roofs and the ridge over them. Behind the roofs the eruption comes and grows still by
+still: nothing (still 1), an orange glow along the ridge (still 2), a lava fountain bursting up over the roofs (still
+3), the fountain under a towering black ash plume (still 4). Data, in the foreground at the left, three-quarter to us,
+looks at us, turns his head at the glow, flinches at the fountain, and on still 4 runs at the lens, out of the street."""
 
-S1_PIV = Vector((0.85, 0.0, 0.5))      # the siren pole's foot, at the kerb
-S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hub
-S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
-S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
-S1_CARX = 0.3                          # the leaving car's line up the street (pre-flight r1s: in the left lane the bomb hid it on still 3)
-S1_HIT = (-0.62, 1.5, 0.0)              # (r1n: at -0.4 he hid it; at -0.95 the frame edge cut it; q1d: in the right lane it fell behind him: the left lane, its smash low so the car up the street stays in sight)
-S1_HOME = (-1, 2)                      # his house: the left row's third, its door at street level
+S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
-S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
+S1_P0 = (-0.1, -2.65)                  # where he stands: in the street, in the foreground at the left of the lens
+S1_CAM = (0.35, -4.2, 0.42)            # the one lens, low in the street
 
 
 def s1_ground_z(x, y):
@@ -1429,426 +1426,164 @@ def s1_ground_z(x, y):
     return z
 
 
-def s1_car(name, col):
-    """a small hatchback at the world's scale (2.4 long, 1.0 wide), facing -Y, headlights on"""
-    root = K.empty(name, (0, 0, 0))
-    paint = bpy.data.materials.get(f"car paint {col}")
-    if not paint:
-        paint = bpy.data.materials.new(f"car paint {col}"); paint.use_nodes = True; b = paint.node_tree.nodes["Principled BSDF"]
-        b.inputs["Base Color"].default_value = (*K.lin(col), 1); b.inputs["Roughness"].default_value = 0.25
-        b.inputs["Coat Weight"].default_value = 0.6; b.inputs["Coat Roughness"].default_value = 0.05; b.inputs["Metallic"].default_value = 0.3
-    glass = K.mat("car glass", "#1E262C", rough=0.05, metal=0.3)
-    tyre = lw_rubber("car tyre", "#141414", rough=0.8)
-    K.box(name + " body", (0, 0, 0.36), (1.0, 2.4, 0.42), paint, bev=0.09, parent=root)
-    K.box(name + " cabin", (0, 0.2, 0.7), (0.9, 1.35, 0.4), paint, bev=0.12, parent=root)
-    K.box(name + " windscreen", (0, -0.47, 0.7), (0.84, 0.04, 0.32), glass, bev=0.02, parent=root).rotation_euler = (math.radians(-30), 0, 0)
-    for sx in (-1, 1):
-        K.box(name + " side glass", (sx * 0.452, 0.22, 0.72), (0.01, 1.1, 0.26), glass, bev=0.0, parent=root)
-        for y in (-0.78, 0.8):
-            K.cyl(name + " tyre", (sx * 0.43, y, 0.2), 0.2, 0.16, tyre, rot=(0, math.pi / 2, 0), v=24, parent=root)
-        K.box(name + " headlight", (sx * 0.33, -1.2, 0.42), (0.2, 0.02, 0.09), lw_emit("headlight", "#FFF6E0", 22.0), bev=0.01, parent=root)
-        K.box(name + " taillight", (sx * 0.34, 1.2, 0.44), (0.24, 0.02, 0.13), lw_emit("taillight", "#FF1408", 12.0), bev=0.01, parent=root)
-    K.box(name + " bumper", (0, -1.21, 0.22), (1.0, 0.06, 0.12), K.mat("car bumper", "#2A2A2C", rough=0.5), bev=0.02, parent=root)
-    # ROUND 7 (seen close): built from its parts, not a painted block: door shut-lines, handles, mirrors, rims, a grille,
-    # the plates, wipers, a rear bumper, mud on the sills
-    seam = K.mat("car shut line", "#0C0C0D", rough=0.6); chrome = lw_metal("car trim", "#9EA2A6", rough=0.3)
-    rim = lw_metal("car rim", "#B4B8BC", rough=0.35); plate = lw_paint("number plate", "#E8E6DE", rough=0.5)
-    for sx in (-1, 1):
-        for y in (-0.35, 0.42, 1.0):
-            K.box(name + " door seam", (sx * 0.503, y, 0.48), (0.006, 0.008, 0.36), seam, bev=0.0, parent=root)
-        K.box(name + " door seam", (sx * 0.503, 0.32, 0.27), (0.006, 1.3, 0.006), seam, bev=0.0, parent=root)
-        for y in (0.3, 0.9):
-            K.box(name + " door handle", (sx * 0.508, y, 0.52), (0.012, 0.1, 0.025), chrome, bev=0.004, parent=root)
-        K.box(name + " mirror", (sx * 0.54, -0.38, 0.62), (0.09, 0.07, 0.07), paint, bev=0.02, parent=root)
-        K.box(name + " mirror glass", (sx * 0.54, -0.34, 0.62), (0.07, 0.005, 0.05), glass, bev=0.0, parent=root)
-        K.box(name + " sill mud", (sx * 0.5, 0.0, 0.2), (0.01, 1.3, 0.06), K.mat("car mud", "#3A332C", rough=0.95), bev=0.0, parent=root)
-        for y in (-0.78, 0.8):
-            K.cyl(name + " rim", (sx * 0.515, y, 0.2), 0.12, 0.012, rim, rot=(0, math.pi / 2, 0), v=24, parent=root)
-            K.cyl(name + " hub", (sx * 0.522, y, 0.2), 0.035, 0.012, seam, rot=(0, math.pi / 2, 0), v=12, parent=root)
-    K.box(name + " grille", (0, -1.205, 0.37), (0.4, 0.02, 0.08), seam, bev=0.005, parent=root)
-    K.box(name + " plate", (0, -1.245, 0.22), (0.3, 0.01, 0.07), plate, bev=0.003, parent=root)
-    K.box(name + " plate", (0, 1.225, 0.33), (0.3, 0.01, 0.07), plate, bev=0.003, parent=root)
-    K.box(name + " rear bumper", (0, 1.21, 0.22), (1.0, 0.06, 0.12), K.mat("car bumper", "#2A2A2C", rough=0.5), bev=0.02, parent=root)
-    for sx in (-0.2, 0.2):
-        K.box(name + " wiper", (sx, -0.58, 0.58), (0.3, 0.01, 0.012), seam, bev=0.0, parent=root).rotation_euler = (math.radians(-30), 0, 0.15)
-    lw_local(root)
-    return root
-
-
-S1_SIREN_Z = 1.42                      # the siren's rotor (z), on top of its pole
-
-
-def s1_siren():
-    """the town's hand-cranked air-raid siren: a galvanised pole at the kerb with a foot plate and bolts, a red siren on
-    top - a drum of louvred stator slots round a rotor that spins inside it, a domed cap, a flared horn mouth on each
-    side - and the gearbox on the pole at his shoulder that the crank turns (built by s1_crank). Returns the rotor."""
-    post_m = lw_metal("gate steel", "#8C9196"); red = lw_paint("siren red", "#B3201A", rough=0.38); dark = lw_metal("siren slots", "#1A1A1C", rough=0.5)
-    K.cyl("gate post", (S1_PIV.x, S1_PIV.y + 0.12, S1_SIREN_Z / 2), 0.05, S1_SIREN_Z, post_m, v=16)
-    K.box("gate foot", (S1_PIV.x, S1_PIV.y + 0.12, 0.02), (0.3, 0.3, 0.04), post_m, bev=0.005)
-    for dx, dy in ((-1, -1), (-1, 1), (1, -1), (1, 1)):
-        K.cyl("gate foot bolt", (S1_PIV.x + 0.11 * dx, S1_PIV.y + 0.12 + 0.11 * dy, 0.05), 0.014, 0.03, dark, v=8)
-    c = Vector((S1_PIV.x, S1_PIV.y + 0.12, S1_SIREN_Z + 0.12))
-    K.cyl("siren drum", tuple(c), 0.16, 0.2, red, v=32)
-    K.cyl("siren band", tuple(c + Vector((0, 0, -0.11))), 0.17, 0.03, post_m, v=32)
-    K.cyl("siren band", tuple(c + Vector((0, 0, 0.11))), 0.17, 0.03, post_m, v=32)
-    for k in range(10):                                   # the stator's slots, all round the drum
-        a = 2 * math.pi * k / 10
-        o = K.box("siren slot", tuple(c + Vector((0.162 * math.cos(a), 0.162 * math.sin(a), 0))), (0.012, 0.06, 0.13), dark, bev=0.0)
-        o.rotation_euler = (0, 0, a)
-    K.sph("siren cap", tuple(c + Vector((0, 0, 0.12))), 0.165, red, scale=(1, 1, 0.45), seg=32, ring=12)
-    for sx in (-1, 1):                                    # the two flared horn mouths
-        K.cyl("siren horn", tuple(c + Vector((sx * 0.22, 0, 0))), 0.09, 0.14, red, rot=(0, math.pi / 2, 0), v=24)
-        K.cyl("siren horn mouth", tuple(c + Vector((sx * 0.3, 0, 0))), 0.12, 0.03, dark, rot=(0, math.pi / 2, 0), v=24)
-    rotor = K.empty("gate pivot", tuple(c))
-    for k in range(6):                                    # the rotor's vanes, seen spinning through the slots
-        a = 2 * math.pi * k / 6
-        o = K.box("siren rotor vane", (c.x + 0.075 * math.cos(a), c.y + 0.075 * math.sin(a), c.z), (0.15, 0.02, 0.15), lw_metal("rotor steel", "#B8BCC0", rough=0.3), bev=0.003, parent=rotor)
-        o.rotation_euler = (0, 0, a)
-    # (round 5: the yellow sign plate is cut: the board read it as a flat toy plate, and EDGES caught it at the frame's edge)
-    return rotor
-
-
-def s1_crank(ctr, x_other):
-    """the gate's winch crank: a wheel on the winch box's back face (axis along Y) with a knob on its rim. The box runs
-    from the post top back to the wheel and across to where his other hand braces on it. Returns (wheel, box top z)."""
-    post_m = lw_metal("gate steel", "#8C9196")
-    x0, x1 = min(ctr.x, S1_PIV.x) - 0.07, max(ctr.x, S1_PIV.x) + 0.07
-    y0, y1 = S1_PIV.y + 0.195, ctr.y - 0.012
-    z0, z1 = ctr.z - 0.09, ctr.z + 0.07
-    K.box("gate winch housing", ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), (x1 - x0, y1 - y0, z1 - z0), lw_paint("winch yellow", "#E0A21C"), bev=0.015)
-    wh = K.empty("gate crank", tuple(ctr))
-    K.cyl("gate crank wheel", (0, 0.0, 0), S1_CRANK_R + 0.012, 0.02, post_m, rot=(math.pi / 2, 0, 0), v=28, parent=wh)
-    K.box("gate crank spoke", (S1_CRANK_R / 2, 0.0, 0), (S1_CRANK_R, 0.024, 0.02), post_m, bev=0.004, parent=wh)
-    K.cyl("gate crank knob", (S1_CRANK_R, 0.04, 0), 0.016, 0.07, lw_rubber("gate handle", "#22201E"), rot=(math.pi / 2, 0, 0), v=14, parent=wh)
-    lw_local(wh)
-    return wh, z1
-
-
-def s1_fountain_mat():
-    """a lava fountain: pure glowing orange torn by streaks of black spatter crust (a lit surface over it washed it to
-    salmon under the plume), the noise stretched up the jet so it reads as a rising spray"""
-    m = bpy.data.materials.get("fountain lava")
-    if m: return m
-    m = bpy.data.materials.new("fountain lava"); m.use_nodes = True; nt = m.node_tree
-    for nd in list(nt.nodes): nt.nodes.remove(nd)
-    out = nt.nodes.new("ShaderNodeOutputMaterial"); em = nt.nodes.new("ShaderNodeEmission")
-    tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (3, 3, 0.8)
-    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
-    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 3.0; nz.inputs["Detail"].default_value = 8; nz.inputs["Roughness"].default_value = 0.6
-    nt.links.new(mp.outputs["Vector"], nz.inputs["Vector"])
-    rp = nt.nodes.new("ShaderNodeValToRGB"); el = rp.color_ramp.elements
-    el[0].position = 0.35; el[0].color = (*K.lin("#B01000"), 1); el[1].position = 0.7; el[1].color = (*K.lin("#FF9A10"), 1)
-    e = el.new(0.52); e.color = (*K.lin("#FF4000"), 1)
-    nt.links.new(nz.outputs["Fac"], rp.inputs["Fac"]); nt.links.new(rp.outputs["Color"], em.inputs["Color"])
-    ms = nt.nodes.new("ShaderNodeMath"); ms.operation = 'MULTIPLY_ADD'; ms.inputs[1].default_value = 1.2; ms.inputs[2].default_value = 0.6
-    nt.links.new(nz.outputs["Fac"], ms.inputs[0]); nt.links.new(ms.outputs[0], em.inputs["Strength"])
-    crust = nt.nodes.new("ShaderNodeBsdfPrincipled"); crust.inputs["Base Color"].default_value = (0.02, 0.015, 0.012, 1); crust.inputs["Roughness"].default_value = 0.9
-    mr = nt.nodes.new("ShaderNodeMapRange"); mr.inputs["From Min"].default_value = 0.36; mr.inputs["From Max"].default_value = 0.44
-    nt.links.new(nz.outputs["Fac"], mr.inputs["Value"])
-    mx = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(mr.outputs[0], mx.inputs[0])
-    nt.links.new(crust.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], out.inputs["Surface"])
-    return m
-
-
 def place_grindavik_street():
     """GRINDAVIK'S MAIN STREET: the asphalt street with its kerbs running away from the lens up to the ridge, the low
-    coloured-roof houses down both sides, the old lava field and moss round the town, the ridge above it where the
-    fissure opens under its plume, the road gate at the town's edge, far blue mountains."""
+    coloured-roof houses down both sides and one across its end, the old lava field and moss round the town, the ridge
+    above it where the fissure opens (its glowing slot built here, hidden until the eruption comes), far blue
+    mountains. Nothing else in the street: no cars, flags, poles or trucks (coordinator: two or three props)."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#343A2A", "#56603F", scale=0.35, rough=1.0, bump=0.35, detail=10))   # (coordinator, r1t: the black boulder bank behind the town read as the WALL, which shot 2 builds: the ridge is a smooth mossy hill in haze)   # REAL rock (Poly Haven), at a real size: BLACK lava rock (board B8: "a brown dirt bank")
-    FX.road(a=(0, -7.5), b=(0, 12.5), width=2.3, line=True, shoulders=0, seed=5, z=-0.045, name="street road")      # the kit's real road: scanned asphalt, a worn centre line
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#343A2A", "#56603F", scale=0.35, rough=1.0, bump=0.35, detail=10))
+    FX.road(a=(0, -7.5), b=(0, 12.5), width=2.3, line=True, shoulders=0, seed=5, z=-0.045, name="street road")
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         K.box("kerb", (sx * 1.15, 2.5, 0.04), (0.12, 20, 0.08), kerb, bev=0.01)
         K.box("pavement", (sx * 1.45, 2.5, 0.035), (0.5, 20, 0.07), ph_mat("concrete_wall_008", scale=1.6, tint="#A8A49C", name="pavement"), bev=0.005)
     houses = []
     for sx in (-1, 1):
-        y = -7.2 if sx < 0 else -6.6             # the street starts well in front of the ridge: two rows of houses down it
+        y = -7.2 if sx < 0 else -6.6
         k = 0
         while y < 9.5:
-            w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
-            hs = town_house(f"town house {sx}_{k}", (sx * (1.65 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d, storeys=1,   # LOW painted tin houses (board B8: "grey clapboard terraces")
-                            roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=(S1_HOME_BASE if (sx, k) == S1_HOME else 0.3), seed=k)
+            w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)
+            hs = town_house(f"town house {sx}_{k}", (sx * (1.65 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d, storeys=1,
+                            roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=0.3, seed=k)
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
-    lava_rock("street ash", 260, (-1.05, 1.05, -5.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,   # cinders and ash fallen on the street
-              avoid=lambda x, y: -1.6 < y < 1.7 and abs(x + 0.5) < 0.34)   # (none where he runs)
+    px, py = S1_P0
+    lava_rock("street ash", 260, (-1.05, 1.05, -5.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,     # cinders and ash fallen on the street
+              avoid=lambda x, y: abs(x - px - 0.1) < 0.45 and -4.3 < y < -2.2)                                        # (none where he stands and runs)
     lava_rock("lava field rock", 60, (-14, 14, -6, 8), s1_ground_z, seed=3, r=(0.04, 0.12), moss=0.6, avoid=lambda x, y: abs(x) < 5.2)
-    # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
-    # measured the bare slope as 30% of the set), with the town's power line and a gravel track climbing it
     lava_rock("ridge slope stone", 160, (-7, 10, 8.5, 15.0), s1_ground_z, seed=12, r=(0.02, 0.05), moss=0.7)
-    pole = lw_noise("power pole wood", "#4A3626", "#6E5238", scale=20, rough=0.9, stretch=(1, 1, 6))
-    wire = K.mat("power line", "#151515", rough=0.5)
-    tops = []
-    for k in range(7):
-        y = 9.0 + 1.1 * k; x = -3.2 + 0.25 * k
-        z = s1_ground_z(x, y); h = 1.5
-        K.cyl("power pole", (x, y, z + h / 2), 0.035, h, pole, v=10)
-        K.box("power pole arm", (x, y, z + h - 0.1), (0.6, 0.04, 0.04), pole, bev=0.005)
-        tops.append(Vector((x, y, z + h - 0.08)))
-    for a, b in zip(tops, tops[1:]):
-        for dx in (-0.25, 0.25):
-            p, q = a + Vector((dx, 0, 0)), b + Vector((dx, 0, 0)); d = q - p
-            o = K.cyl("power line wire", ((p + q) / 2), 0.006, d.length, wire, v=6, bev=0)
-            o.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
     for k in range(6):                                     # the far blue mountains over the ridge
         x = -40 + 16 * k
         K.sph("far mountain", (x, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.7 + 0.15 * (k % 3)), seg=24, ring=12)
-    # the fissure: a glowing line along the ridge and NINE vents on it, one for each eruption, close enough that the
-    # whole row is in the frame and far enough apart to count; each vent a fountain of fire (a volume, white-hot in
-    # its core) throwing glowing spatter that arcs and falls; the plume over it is smoke (volumes), lit from below
-    fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
-    # board round 3: "thin pale-pink glowing spikes like neon tubes ... no molten body, no spatter, no fall-back",
-    # "rising from a visible glowing crack": the fissure is a torn, glowing slot along the ridge, each fountain a
-    # thick ORANGE body (a dim core, the volume cooler), throwing glowing clots AND dark cooled spatter that falls back
+    # the fissure: a torn glowing slot along the ridge top (lava, never neon), hidden until the eruption comes
     fl = lava_mat("fissure lava", heat=2.0, scale=3.0, fresh=1.0)
+    slot = []
     for k in range(14):
         x = S1_FX - 6.0 + 12.0 * k / 13; w_ = 0.45 + 0.25 * math.sin(1.7 * k)
-        o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) - 0.05), (0.95, w_, 0.2), fl, bev=0.05)
-        o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k))
-    # the lava is ON the ridge, not only in the air (board B18: "a bonfire cone on a dirt bank, no glow, no lava"):
-    # glowing tongues run down the black slope from the fissure toward the town, each a lobe that widens as it comes
-    for k, (x0_, y_end) in enumerate(((S1_FX - 3.6, 10.6), (S1_FX - 0.4, 11.6), (S1_FX + 2.9, 10.9), (S1_FX + 5.4, 12.2))):
-        xc = lambda y, x0_=x0_, k=k: x0_ + 0.45 * math.sin(0.9 * y + 1.7 * k) + 0.12 * (S1_RIDGE_Y - y)
-        hw = lambda y: 0.3 + 0.1 * (S1_RIDGE_Y - y)
-        def tz(x, y, xc=xc, hw=hw, y_end=y_end):
-            d = abs(x - xc(y)) / hw(y); e = max(0.0, (y_end + 0.5 - y) / 0.5)
-            return s1_ground_z(x, y) + 0.14 - 0.34 * d * d - 0.34 * e * e
-        pass                                               # (pre-flight: "the ridge's glowing streaks look like painted stripes": the tongues are cut)
-    founts, spat, cores = [], [], []
-    core = lw_emit("fountain core", "#FF9A20", 7.0)
-    spm = lw_emit("lava spatter", "#FF7A10", 5.0); spd = lw_noise("cooled spatter", "#140E0B", "#3A2A20", scale=20, rough=0.9)
-    for k in range(S1_NV):
-        x = S1_FX + (k - (S1_NV - 1) / 2) * S1_FGAP
-        z0 = s1_ground_z(x, S1_RIDGE_Y) - 0.2
-        o = K.empty(f"fissure vent {k}", (x, S1_RIDGE_Y, z0))      # the vent: its fountain is a gas built in shot1, on its own clock
-        o["base_z"] = z0; founts.append(o)
-        for j in range(14):
-            spat.append(K.sph(f"fissure spatter {k}_{j}", (x, S1_RIDGE_Y, z0), rnd.uniform(0.04, 0.09), spm if j % 3 else spd, seg=8, ring=6))
-    puffs = []                                           # the plume is a gas, built in shot1 on the eruption's clock
-    gate = None                                          # (the siren on its pole is cut: the board read its top as a broken disc at the frame's edge)
+        o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) + 0.12), (0.95, w_ * 1.6, 0.3), fl, bev=0.05)     # (p1a: sunk in the ridge, the glow never showed)
+        o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k)); slot.append(o)
+    fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
     glow = [lw_point(f"fissure light {k}", (S1_FX + x, S1_RIDGE_Y - 1.5, fz + 2.5), 0.0, col=(1.0, 0.4, 0.1), r=2.0) for k, x in enumerate((-3.5, 0, 3.5))]
-    plume_lit = [lw_point(f"plume underlight {k}", (S1_FX + x, S1_RIDGE_Y + 2.0, fz + 5.0), 0.0, col=(1.0, 0.35, 0.08), r=3.0) for k, x in enumerate((-4, 4))]
     town_glow = lw_area("eruption glow on the town", (0, 12, 7), (0, 0, 0.5), 0.0, 14, col=(1.0, 0.5, 0.2))
-
-    # ICELAND, unmissable (board B8: "nothing says Iceland"): the flag on a pole off a house front on each side of the
-    # street, and the doors of the nearest houses left standing open behind the people who ran
-    blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
-    for k, (sx, y) in enumerate(((1, 7.4), (-1, 6.4), (1, 5.2), (-1, 4.0), (1, 2.8))):
-        c = Vector((sx * 1.18, y, 1.52))
-        for nm, off, size, m in (("field", (0, 0, 0), (0.54, 0.012, 0.38), blue), ("white bar", (-0.08, 0, 0), (0.11, 0.016, 0.38), white), ("white band", (0, 0, 0), (0.54, 0.016, 0.11), white),
-                                 ("red bar", (-0.08, 0, 0), (0.055, 0.02, 0.38), red), ("red band", (0, 0, 0), (0.54, 0.02, 0.055), red)):
-            K.box(f"icelandic flag {k} {nm}", tuple(c + Vector(off)), size, m, bev=0.0)
-        o = K.cyl(f"flag pole {k}", (sx * 1.3, y, 1.74), 0.014, 0.82, lw_metal("flag pole", "#D8D8D4", rough=0.4), v=10)
-        o.rotation_euler = (0, math.radians(90), 0)
-    # EVERYONE HAD TO RUN: one car pulling away far up the street, whole in the frame, its tail lights to us (the
-    # open front doors are cut: the board read their slabs as white boxes at the frame's edge)
-    # (coordinator, after the bomb blocked twice: no car leaving up the street and no bomb: HE is the one who runs,
-    # in his own truck, and the street he leaves is empty)
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
     town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
     bpy.context.view_layer.update()
-    for o in bpy.data.objects:                             # (the near left houses' door steps stood in the frame's corner as bare pale blocks: cut)
+    for o in bpy.data.objects:                             # (the near houses' door steps stood in the frame's corner as bare pale blocks: cut)
         if o.name.endswith(" step") or " step." in o.name:
             c = o.matrix_world.translation
-            if c.x < 0 and -4.0 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
+            if -4.5 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
         k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=1.4)           # the world's one bright day (the reset, 2026-11-25: no dusk)
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # the same REAL sky as the wall's beats (Poly Haven)
         return k
-    return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
-
-
-def s1_duffel(name="duffel bag"):
-    """HIS DUFFEL BAG (coordinator, r1t: "a red cylinder stuck to his side"): a soft holdall, its body sagging between
-    two dark end panels, two carry straps looped over its top, a zip along it; built along x about its centre."""
-    canvas = lw_canvas("duffel canvas", "#B0382A"); dark = K.mat("duffel trim", "#24221F", rough=0.8)
-    root = K.empty(name, (0, 0, 0))
-    body = K.capsule(name + " body", (-0.12, 0, 0), (0.12, 0, 0), 0.075, canvas, parent=root)
-    body.scale = (1.0, 1.0, 0.82)
-    for sx in (-1, 1):
-        K.cyl(name + " end", (sx * 0.15, 0, -0.004), 0.066, 0.022, dark, rot=(0, math.pi / 2, 0), v=24, parent=root)
-    K.box(name + " zip", (0, 0, 0.061), (0.22, 0.012, 0.006), dark, bev=0.002, parent=root)
-    for sy in (-1, 1):                                    # the two carry straps, looped over the top
-        a = Vector((-0.06, sy * 0.045, 0.05)); b = Vector((0.06, sy * 0.045, 0.05)); top = Vector((0, sy * 0.03, 0.12))
-        K.capsule(name + " strap", tuple(a), tuple(top + Vector((-0.03, 0, 0))), 0.008, dark, parent=root)
-        K.capsule(name + " strap", tuple(top + Vector((-0.03, 0, 0))), tuple(top + Vector((0.03, 0, 0))), 0.008, dark, parent=root)
-        K.capsule(name + " strap", tuple(top + Vector((0.03, 0, 0))), tuple(b), 0.008, dark, parent=root)
-    return root
+    return dict(light=light, slot=slot, glow=glow, town_glow=town_glow, houses=houses, fz=fz)
 
 
 def shot1():
-    """EVERYONE HAD TO RUN, and so does he (coordinator, after r1t: "a different camera for every still").
-    1 ESTABLISH (the cutaway, him far off): down the main street, the town's roofs low in the frame, the hill behind
-    it soft in the haze, and a huge black ash plume rising off it with an orange-lit foot, the biggest thing there is.
-    2 Close on the pavement: he runs toward us with his duffel bag in both hands, the plume over the roofs behind him.
-    3 At his parked truck: he heaves the bag up over the tipper's side, arms up, the bag in the air at the rail.
-    4 From the roadside ahead: one hand on the cab door, the other on the grab handle, a foot up on the step, while the
-    other cars roll out of town past his truck in their own dust."""
-    R = math.radians
+    """THE TOWN, AND IT ERUPTS. See the module's head."""
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_E = 1.0                                           # the establishing wide ends
-    T_B = 2.15; T_C = 3.4                               # the cuts: to the truck, to the roadside
+    TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
+    T_GLOW = TS[0] + 0.3                                         # the ridge starts to glow
+    T_BURST = TS[1] + 0.35                                       # the fountain bursts up out of it
+    T_PLUME = TS[2] - 0.3                                        # the ash plume climbs over it
+    T_RUN = TS[2] + 0.4                                          # he runs
     P = place_grindavik_street()
     light = P["light"]
+    # ---- the eruption, growing still by still: the slot glows, the fountain bursts, the plume towers
+    for o in P["slot"]:
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
+    for f in range(1, NF + 8, 2):
+        t = (f - 1) / FPS
+        for l_ in P["glow"]:
+            l_.data.energy = 2.5e3 * W(t, T_GLOW, 0.8) + 3.5e3 * W(t, T_BURST, 0.6)       # (p1b: brighter washed the whole street beige); l_.data.keyframe_insert("energy", frame=f)
+        P["town_glow"].data.energy = 8.0 * W(t, T_GLOW, 0.8) + 20.0 * W(t, T_BURST, 0.8); P["town_glow"].data.keyframe_insert("energy", frame=f)
+    FZ = P["fz"]
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=2.4, h_fire=9.0, h_smoke=5.0, lean=(0.05, 0.1), t_end=DUR + 1.0,
+                              seed=2.3, fire=7.0, smoke_d=3.0, rise=4.0, spread=0.3,
+                              keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.5, 0.7), (TS[2], 1.0)], grow=True)
+    PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
+    plumes, base0 = [], []
+    for k, (dx, w_, h_, dy) in enumerate(((0.0, 9.0, 44.0, 0.0), (-4.0, 6.0, 30.0, 1.5), (4.0, 6.5, 34.0, 1.0))):
+        o = ash_plume((PX + dx, PY + dy, PZ - 0.5), w=w_, h=h_, S=7.0, dens=16.0, lean=(-0.02 + 0.02 * k, 0.03), col=(0.05, 0.047, 0.045),
+                      seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}")
+        plumes.append(o); base0.append((Vector((PX + dx, PY + dy, PZ - 0.5)), o.location.copy(), o.scale.x))
+    for o, (b, l0, s0) in zip(plumes, base0):
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_PLUME))
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_PLUME) + 1)
+        for f in range(F(T_PLUME), NF + 8, 2):
+            t = (f - 1) / FPS
+            g = max(0.08, 0.08 + 0.92 * W(t, T_PLUME, TS[3] - T_PLUME))          # (a volume scaled near zero crashes Cycles: never under 0.08)
+            o.scale = (s0 * g,) * 3; o.location = b + (l0 - b) * g
+            o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+    plume_lit = [lw_point(f"plume fire light {k}", (PX + dx, PY - 1.0, PZ + 1.5), 0.0, col=(1.0, 0.42, 0.1), r=2.5) for k, dx in enumerate((-4.0, 0.0, 4.0))]
+    for f in range(1, NF + 8, 2):
+        t = (f - 1) / FPS
+        for l_ in plume_lit:
+            l_.data.energy = 3.0e4 * W(t, T_BURST, 0.6); l_.data.keyframe_insert("energy", frame=f)
+    # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
     data = load_data()
-    # ---- the eruption: ONE huge black ash column off the hill, orange-lit at its foot (r1t: "no plume, a thin fire
-    # fringe"); the fountains, the glowing slot and its spatter are cut
-    for v in P["founts"]: v.hide_render = True; v.hide_viewport = True
-    for o in P["spat"]: o.hide_render = True; o.hide_viewport = True
-    for o in bpy.data.objects:
-        if o.name.startswith("fissure glow"): o.hide_render = True; o.hide_viewport = True
-        if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):
-            o.data.energy = 0.0; o.hide_render = True
-    PX = S1_FX - 4.0; PY = S1_RIDGE_Y + 3.0; PZ = s1_ground_z(PX, PY)
-    plumes = []
-    for k, (dx, w_, h_, dy) in enumerate(((0.0, 9.0, 44.0, 0.0), (-4.5, 6.0, 30.0, 1.5), (4.0, 6.5, 34.0, 1.0))):
-        plumes.append(ash_plume((PX + dx, PY + dy, PZ - 0.5), w=w_, h=h_, S=7.0, dens=16.0, lean=(-0.02 + 0.02 * k, 0.03), col=(0.05, 0.047, 0.045),
-                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))
-    for k, dx in enumerate((-4.0, 0.0, 4.0)):
-        lw_point(f"plume fire light {k}", (PX + dx, PY - 1.0, PZ + 1.5), 60000.0, col=(1.0, 0.42, 0.1), r=2.5)      # the orange foot
-    P["town_glow"].data.energy = 900.0
-    # ---- HIS truck, parked at the kerb further down the street, its nose out of town (q1v: on the kerb side the
-    # houses' downpipes leave him no pavement, so he runs DOWN THE STREET and climbs in at the driver's door, on the
-    # street side); a foot rung and a grab handle at that door (at his size the kit's step is at his hip)
-    bpy.context.view_layer.update()
-    DC = bpy.data.objects[f"town house {S1_HOME[0]}_{S1_HOME[1]} door"].matrix_world.translation.copy()
-    XF = DC.x; YD = DC.y
-    XT = -0.55; YT = YD - 2.4
-    tr = FX.truck(name="his tipper truck", loc=(XT, YT, 0.0), yaw=0.0, lights=True, power=90.0, seed=2)
-    troot = tr["root"]
-    SIDE = XT + 0.65                                    # its street side: the driver's door
-    steel = lw_metal("cab grab handle", "#B9BCBE", rough=0.3)
-    DOOR_Y = YT - 1.85 + 0.62
-    K.box("cab foot rung", (SIDE + 0.05, DOOR_Y + 0.02, 0.15), (0.1, 0.22, 0.025), steel, bev=0.004)
-    for z_ in (0.3, 0.62):                              # (q1w: at his size the handle and the door are within 0.19 m of his shoulders, or his arm locks)
-        K.box("cab grab handle mount", (SIDE + 0.02, DOOR_Y + 0.08, z_), (0.04, 0.03, 0.03), steel, bev=0.004)
-    K.cyl("cab grab handle", (SIDE + 0.045, DOOR_Y + 0.08, 0.46), 0.014, 0.36, steel, v=12)
-    GRAB = Vector((SIDE + 0.06, DOOR_Y + 0.08, 0.45)); DOORP = Vector((SIDE + 0.02, DOOR_Y - 0.09, 0.44))
-    FC = Vector((-0.8, -0.6, 0.0))                      # he faces in to the door, three-quarter to the lens ahead of the truck
-    PD = (GRAB + DOORP) / 2 - FC * 0.19; PD.z = 0.0
-    # ---- the other cars, far up the street in the far lane, rolling out of town toward us in their dust
-    cars = []
-    for k, (col, y0, v) in enumerate((("#2F5E8C", YD + 12.0, 2.6), ("#C9C6BE", YD + 17.0, 2.4))):
-        c = s1_car(f"car leaving {k}", col); cars.append(c)
-        for f in range(1, NF + 1):
-            t = (f - 1) / FPS; c.location = (0.95, y0 - v * t, 0.0); c.keyframe_insert("location", frame=f)
-        for j in range(5):
-            tj = 2.9 + 0.3 * j
-            FX.dust_puff(base=(0.95, y0 - v * tj + 0.9, 0.05), w=0.7, h=0.6, t0=tj, dur=1.4, col=(0.5, 0.46, 0.4), dens=4.0, seed=7.0 + 3 * k + j, lean=(0.0, 0.3), name=f"dust off the cars {k} {j}")
-    # ---- him: off his doorstep into the street, running down it and round his truck's tail to its street side
-    T_AT = 2.45; T_WIND = 2.5; T_REL = 2.98; T_FLY = 0.9
-    T_GO = 3.2; T_STEP = 3.85
-    PS = Vector((-0.6, YD + 0.3, 0.0)); PM = Vector((SIDE + 0.3, YT + 1.85 + 0.47, 0.0))
-    PT = PD.copy()            # (coordinator 11-27: no free hands: he throws from the cab door, then his hands go straight to the truck) (old: (q1w: 0.3 off the side, or the bag he throws goes through the rail)
-    BED = Vector((XT + 0.05, YT - 0.3, 0.82))          # where the bag lands, on the tipper's floor
-    data.place(PS.x, PS.y, math.degrees(yaw_of(0.5, -1.0)))
+    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.16)).normalized(); LOOK0 = CAM0 + D * 5.0
+    X0, Y0 = S1_P0; Z0 = 0.0
+    LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
+    YAW = LENS + math.radians(35)                              # three-quarter: his chest 35 degrees round toward the ridge
+    data.place(X0, Y0, math.degrees(YAW))
     kit = hard_hat(data)
-    sc.frame_set(1); bpy.context.view_layer.update()
-    data.walk_to((PM.x, PM.y), 0.0, 0.85, step=0.17, lift=0.08, bob=0.024)          # (q1w POP: running from his door, not a sprint at the end)
-    data.walk_to((PT.x, PT.y), 0.85, T_AT, step=0.21, lift=0.09, bob=0.026)
-    sc.frame_set(F(T_AT)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YB = yaw_of(0.1, -1.0)                             # (the throw: three-quarter to the high lens, the truck at his right)
-    while YB - YA > math.pi: YB -= 2 * math.pi
-    while YB - YA < -math.pi: YB += 2 * math.pi
-    YC = yaw_of(FC.x, FC.y)                             # to the door and the handle, three-quarter to the lens ahead of the truck
-    while YC - YB > math.pi: YC -= 2 * math.pi
-    while YC - YB < -math.pi: YC += 2 * math.pi
-    for f in range(F(T_AT) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.4) + (YC - YB) * W(t, T_REL + 0.1, 0.45))
-    # ---- the bag in both hands, at his belly as he runs (hitched up once on the way); swung down, then heaved up over
-    # his right shoulder and thrown up over the tipper's side
-    sc.frame_set(1); bpy.context.view_layer.update()
-    def frame_at(t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update()
-        m = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2; f_ = data.forward(); f_.z = 0; f_.normalize()
-        return m, f_, Vector((-f_.y, f_.x, 0.0))
-    HITCH = lambda t: 0.06 * W(t, 1.2, 0.15) * (1 - W(t, 1.37, 0.2)) + 0.06 * W(t, 1.85, 0.15) * (1 - W(t, 2.02, 0.2))                 # (q1v HOLD: a hitch of the bag mid-run)
-    def carried(t):
-        m, f_, l_ = frame_at(t)
-        return m + f_ * 0.145 + Vector((0, 0, -0.17 + HITCH(t)))
-    lw_layer(data, "spine", lambda t: (14 * W(t, 0.95, 0.3) * (1 - W(t, T_AT - 0.2, 0.3)) + 16 * W(t, T_WIND, 0.15) * (1 - W(t, T_WIND + 0.15, 0.15)) - 12 * W(t, T_WIND + 0.2, 0.2) * (1 - W(t, T_REL + 0.25, 0.3)), 0, 0), 0.0, DUR + 0.4)    # leaning into the run; down into the heave; back as it goes up
-    sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
-    mR, fR, lR = frame_at(T_REL)
-    REL = mR + fR * 0.18 - lR * 0.04 + Vector((0, 0, 0.0))       # (q1w: over his shoulder it was in his head, and out of his reach) up in front of his face
-    def bag_at(t):
-        if t < T_WIND: return carried(t)
-        if t < T_REL:
-            a = carried(T_WIND); u = (t - T_WIND) / (T_REL - T_WIND)
-            m, f_, l_ = frame_at(t)
-            low = m + f_ * 0.12 - l_ * 0.04 + Vector((0, 0, -0.22))
-            if u < 0.35: return a.lerp(low, ease(u / 0.35))
-            return low.lerp(REL, ease((u - 0.35) / 0.65))
-        return None
-    G = Vector((0, 0, -9.8)); V0 = (BED - REL - 0.5 * G * T_FLY * T_FLY) / T_FLY
-    def flying(t):
-        s_ = min(T_FLY, t - T_REL); return REL + V0 * s_ + 0.5 * G * s_ * s_
-    duffel = s1_duffel("his duffel bag"); duffel.scale = (1.12, 1.12, 1.12)       # (q1v: under 12% of the frame, a purse; q1w: at 1.25 it was in his chest)
-    sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - data.pos()).dot(frame_at(0.0)[2]), reverse=True)    # sides[0]: his left
-    for k_, sd in enumerate(sides):
-        sg = 1.0 if k_ == 0 else -1.0
-        def grip(t, sg=sg):
-            if t < T_REL:
-                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.04) + Vector((0, 0, 0.1))       # (q1x: round its ends his arms were in it) on its straps
-            m, f_, l_ = frame_at(t); return m + f_ * 0.17 + l_ * (sg * 0.06) + Vector((0, 0, 0.08 - 0.2 * W(t, T_REL + 0.1, 0.45)))     # (q1w: a world point behind him as he walked off: arms behind his back) his arms follow it up, open
-        data.reach(sd, grip, 0.0, T_REL, lead=0.05, back=None, elbow_out=0.3)       # (coordinator 11-27) off the bag the hands go straight to the truck       # (q1x FLUID: no drop to a relaxed arm; the cab takes the hands from here)
-    # ---- at the cab: a foot up on the rung, a hand on the door, a hand on the grab handle
-    sc.frame_set(F(T_REL + 0.6)); bpy.context.view_layer.update()
-    hs = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - GRAB).length)     # the hand nearer the grab handle takes it
-    data.reach(hs[0], lambda t: GRAB.copy(), T_REL + 0.5, DUR + 0.5, lead=0.45, back=None, elbow_out=0.2)
-    data.reach(hs[1], lambda t: DOORP.copy(), T_REL + 0.6, DUR + 0.5, lead=0.5, back=None, elbow_out=0.2)
-    near_leg = min("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"leg.{s_}"].head - GRAB).length)
-    lw_layer(data, f"leg.{near_leg}", lambda t: (-50 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
-    lw_layer(data, f"shin.{near_leg}", lambda t: (62 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
-    # ---- face and head
-    PLUME = Vector((PX, PY, PZ + 12.0))
-    data.look_at(Vector((PM.x, PM.y - 2.0, 0.4)), 0.0, max_yaw=30, max_pitch=30, blend=0.0)
-    data.look_at(PLUME, 1.15, max_yaw=35, max_pitch=30, blend=0.3)                     # a look back up at it as he runs
-    data.look_at(Vector((PT.x, PT.y - 2.0, 0.4)), 1.75, max_yaw=30, max_pitch=30, blend=0.3)
-    data.look_at(REL + Vector((0, 0, 0.1)), T_AT - 0.1, max_yaw=40, max_pitch=40, blend=0.45)      # (q1w: at the bed his face turned 79 off the lens) at the bag going up
-    data.look_at(GRAB + Vector((0, -0.2, 0.3)), T_REL + 0.15, max_yaw=35, max_pitch=35, blend=0.5)
-    data.expression("alarmed", 0.0, T_AT, blend=0.15)
-    data.expression("determined", T_AT, DUR + 1.0, blend=0.25)
+    TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
+    SIDE = Vector((-TO.y, TO.x, 0))                             # (his left as he faces the lens is the frame's... either way: a small shuffle)
+    Y_BACK = 0.12                                               # the flinch: a step toward us, away from it
+    for f in range(1, F(T_RUN) + 1):
+        t = (f - 1) / FPS
+        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.05 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35))
+        p.z = Z0 + 0.03 * lw_kick(t - T_BURST - 0.15, 0.25)
+        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4))
+        data._plant_feet_here(t, lift=(Z0, Z0))
+    # the run: at the lens, a little to its left, past it and out of the street (still 4 is mid-stride, in the frame)
+    sc.frame_set(F(T_RUN)); bpy.context.view_layer.update(); PR = data.pos()
+    AWAY = (TO + SIDE * 0.12).normalized()
+    END = PR + TO * 0.28                                      # (p1a: 0.9 m ran him out of the frame by still 4)
+    data.walk_to((END.x, END.y), T_RUN, DUR + 0.1, step=0.2, lift=0.08, bob=0.024, lean=10.0)
+    lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.85, 0.4) - 12 * W(t, T_BURST + 0.1, 0.3) + 10 * lw_kick(t - T_BURST - 0.15, 0.3)
+                                       + 14 * W(t, T_RUN - 0.1, 0.3), 0, 0), 0, DUR + 0.4)
+    HEAD = Vector((X0, Y0, Z0 + 0.5))
+    RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # at us, as it starts
+    data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=24, max_pitch=25, blend=0.35)                             # round at the glow (FACE: his face stays within 70 of us)
+    data.look_at(RIDGE + Vector((0, 0, 6.0)), 1.85, max_yaw=24, max_pitch=32, blend=0.4)
+    data.look_at(RIDGE + Vector((0, 0, 9.0)), T_BURST + 0.1, max_yaw=20, max_pitch=40, blend=0.2)       # up at the fountain as it bursts
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), T_RUN - 0.05, max_yaw=50, max_pitch=20, blend=0.25)        # and at us as he runs
+    data.expression("surprised", 0.0, T_BURST, blend=0.15)
+    data.expression("alarmed", T_BURST, DUR + 1.0, blend=0.2)
+    sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
+    LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
+    HALF = lambda sg: ((-8, 0, -sg * 22), (-30, 0, -sg * 28), (-10, sg * -20, -sg * 12))
+    WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
+    UP = lambda sg: ((-30, 0, -sg * 14), (-34, 0, -sg * 46), (-12, sg * -10, -sg * 15))
+    RUNA = lambda sg: ((22, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    RUNB = lambda sg: ((-30, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    keys = [0.0, 0.35, T_GLOW + 0.15, 1.3, 1.95, T_BURST + 0.1, T_BURST + 0.6, T_RUN]
+    run_t = [T_RUN + 0.2 + 0.22 * k for k in range(int((DUR + 0.5 - T_RUN - 0.2) / 0.22) + 1)]
+    for sd in sides:
+        sg = -1 if sd == "L" else 1
+        seq = [LOW, LOW, HALF, HALF, WHOA, UP, WHOA, RUNA if sd == sides[0] else RUNB] if sd == sides[0] else [LOW, LOW, LOW, HALF, HALF, UP, UP, RUNB]
+        sw = [(RUNB, RUNA) if sd == sides[0] else (RUNA, RUNB)][0]
+        for tk, pose in list(zip(keys, seq)) + [(tk, sw[k % 2]) for k, tk in enumerate(run_t)]:
+            for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    for f in range(1, NF + 1):
-        t = (f - 1) / FPS
-        if t < T_REL:
-            p = bag_at(t); _m, f_, l_ = frame_at(t); yaw = math.atan2(l_.y, l_.x)
-            duffel.location = p; duffel.rotation_euler = (0, 0, yaw)
-        else:
-            duffel.location = flying(t); duffel.rotation_euler = (1.8 * min(T_FLY, t - T_REL), 0, yaw)
-            if t - T_REL >= T_FLY: duffel.location = BED
-        duffel.keyframe_insert("location", frame=f); duffel.keyframe_insert("rotation_euler", frame=f)
-    TS = 0.68 * DUR
-    print("S1 door", tuple(round(v, 2) for v in DC), "release", tuple(round(v, 2) for v in REL), "v0", tuple(round(v, 2) for v in V0), "still 3 at", round(TS, 2), "T_REL", T_REL, flush=True)
-    # ---- the lens: 1 the establishing wide from far down the street; 2 low in the street ahead of him as he runs at
-    # us, the plume over the roofs behind him; 3 from up over the far lane, down at him heaving the bag up at his
-    # truck's side; 4 low in the street ahead of the truck's nose, back at him climbing in, the cars far up the street
-    WCAM = Vector((0.3, YD - 15.0, 2.2)); WLOOK = Vector((-0.6, PY, 10.0))
-    sc.frame_set(F(1.63)); bpy.context.view_layer.update(); PR = data.pos()
-    CA0 = Vector((SIDE + 0.35, YT - 3.3, 0.5)); LA0 = PR + Vector((0, 0, 0.4))         # (q1w POP: close, he ran into the lens) long, from ahead of the truck's nose
-    CA, LA = compose.frame_data(data, CA0, LA0, 70.0, face_at=(0.45, 0.6), height=0.36, t=1.63)
-    CB0 = Vector((SIDE + 1.2, PT.y - 1.3, 1.5)); LB0 = PT + Vector((0, 0, 0.45))
-    CB, LB = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.55, 0.55), height=0.36, t=TS)
-    CC0 = Vector((SIDE + 0.0, YT - 4.2, 0.6)); LC0 = PD + Vector((0, 0, 0.4))
-    CC, LC = compose.frame_data(data, CC0, LC0, 45.0, face_at=(0.4, 0.6), height=0.36, t=DUR - 0.05)
-    print("S1 CAM A", tuple(round(v, 2) for v in CA), "B", tuple(round(v, 2) for v in CB), "C", tuple(round(v, 2) for v in CC), "truck street side x", round(SIDE, 2), flush=True)
-    cam = K.camera(tuple(CA), tuple(LA), lens=70.0, fstop=11.0)
-    lw_cut(cam, lambda t: ((CA, LA) if t < T_B else (CB, LB) if t < T_C else (CC, LC)) + (data.pos() + Vector((0, 0, 0.4)),),
-           lambda t: (WCAM, WLOOK, Vector((0.0, YD, 2.0))), 0.0, T_E, 35.0, 35.0)
-    for f in range(1, NF + 8):                     # the lens per set-up: long in the street, normal up high, a little long ahead of the truck
-        t = (f - 1) / FPS
-        cam.data.lens = 35.0 if t < T_E else 70.0 if t < T_B else 35.0 if t < T_C else 45.0
-        cam.data.keyframe_insert("lens", frame=f)
-    from character import _fcurves
-    for fc in _fcurves(cam.data.animation_data.action):
-        for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("his duffel bag", "cab grab handle"), cutaway=(0.0, T_E),
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=28.0, fstop=11.0)
+    print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
+          "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "run", round(T_RUN, 2), flush=True)
+    def cam_at(t):
+        drift = Vector((0.0, 0.03, 0.02)) * (t / DUR)                 # a slow drift up the street
+        tilt = Vector((0, 0, 0.25)) * W(t, T_BURST, TS[3] - T_BURST)   # (p1b: more cut his feet off as he ran at us)    # tipping up with the plume
+        return CAM0 + drift, LOOK0 + drift + tilt, data.pos() + Vector((0, 0, 0.5))
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
+    erupt = P["slot"] + [fountain] + plumes
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("a huge black ash plume rises off the hill over the town's roofs", lambda: plumes, 0.0, T_E, {"whole": False}),
-                        ("he runs down the street with his bag in both hands", lambda: meshes([duffel]), 1.25, T_B, {"whole": False, "moves": True}),
-                        ("he heaves his bag up over his head and throws it into his truck", lambda: meshes([duffel]), T_REL - 0.3, T_REL + 0.5, {"whole": False, "moves": True}),
-                        ("the other cars roll out of town toward his truck", lambda: meshes(cars), T_C, DUR, {"whole": False})])
+                conseq=[("the ridge over the town's roofs glows orange and a lava fountain bursts up out of it", lambda: P["slot"] + [fountain], T_GLOW, TS[2] + 0.3, {"whole": False}),
+                        ("a huge black ash plume towers over the town", lambda: plumes, T_PLUME, DUR, {"whole": False})])
 
 
 # ====================================================================================================
@@ -1856,23 +1591,18 @@ def shot1():
 # ====================================================================================================
 """BEAT 2: "So Iceland built a wall of rock taller than a house to keep the lava out."
 
-THE WALL GROWS, AND HE IS ITS CAUSE (coordinator, 2026-11-27, after the boulder on the crest blocked: "the event is
-the wall GROWING and Data is the cause"). By one painted tin house at the wall's foot, his tipper truck (shot 1's) is
-backed up to a low row of black rock; at the truck's tip lever, both hands on it, he tips its load of rock onto the
-row in a puff of dust (still 1). From up high on the other side of the alley: the wall now roof-high, more rock
-sliding off the tipped bed onto it (still 2). Far off across the town: the finished wall plainly taller than the house
-beside it, the black plume and a glowing flow out on the plain beyond it, held away from the town (still 3). Low by
-the house: he stands small at the wall's foot beside the door, looking up at it (still 4).
+THE WALL RISES (coordinator, 2026-11-27, after the audit of every recorded verdict: the shots that passed have the
+WORLD doing the action while Data reacts, one camera, two or three props). One lens, low on the town side: one painted
+tin house at the left of the frame, its front to the wall; Data in the foreground at the right, three-quarter to us.
+Behind the house a wall of black rock rises by itself, rock pouring down onto it from above the frame: level with the
+ground (still 1), up to the house's knee (still 2), at its eaves (still 3), far over its roof ridge with an orange glow
+held behind it (still 4). He watches it climb, his head tilting further up each still, and ends looking up at it."""
 
-The wall is three heaps of the beat-3 berm (same rock, same crest, same slope), each taller and wider than the last,
-sharing the town-side foot: the next one rises out of the ground inside the one before, so the wall grows up and out
-toward the lava side, and its foot by the house never moves."""
-
-S2_HS = (0.5, 2.6, 5.6)                 # the wall's three heights: knee-high to the house, roof-high, beat 3's wall (S3_H)
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
-S2_SLOPE = 0.97 * 5.6 / (11.0 / 2 - S2_CREST / 2 - 0.1)     # beat 3's faces (S3_BASE 11)
-S2_XT, S2_YT = 0.0, 2.2                 # his truck: tail to the wall at y 0.35, nose into town
-S2_HOUSE = (-2.45, 2.6, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1.4 m off the wall's foot, left of the truck's tail
+S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
+S2_H = 7.0                              # the finished wall: from this low lens its top stands well over the house's ridge
+S2_HOUSE = (-2.45, 2.6, 1.6, 2.4)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
+S2_P0 = (-0.25, 5.55)                   # where he stands: in the foreground, right of the house
 
 
 def s2_base(h):
@@ -1880,252 +1610,129 @@ def s2_base(h):
 
 
 def s2_ground_z(x, y):
-    """the town's ground (y > 0); the black lava field beyond the wall, hummocky, and far off the volcano's ridge"""
+    """the town's ground (y > 0); the black field beyond the wall"""
     if y > 0.0: return 0.04 + 0.05 * lw_fbm(x * 0.3, y * 0.3, 19)
-    z = 0.06 + 0.06 * lw_fbm(x * 0.3, y * 0.3, 19)
-    if y < -8.0:
-        k = min(1.0, (-8.0 - y) / 4.0)
-        z += k * (0.5 * lw_fbm(x * 0.16, y * 0.16, 31) + 0.2 * lw_fbm(x * 0.6, y * 0.6, 37))
-    if y < -40.0 and x > 50.0: z += min(14.0, (x - 50.0) * 0.25 * min(1.0, (-40.0 - y) / 10.0))         # the ridge the eruption is on (q2a: a steep one read as a flat-topped table)
-    return z
+    return 0.06 + 0.06 * lw_fbm(x * 0.3, y * 0.3, 19)
 
 
 def place_wall_works():
-    """THE WALL'S FOOT IN TOWN: green moss ground, one painted tin house with its front to the wall, more houses and a
-    flag behind it; the wall's three heaps; beyond the wall the black field, a glowing lava flow out on it, the ridge
-    with its fountains and their ash plumes."""
-    lw_grid("lava field ground", -120, 120, -170, 0.6, 140, 150, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#151413", name="lava field rock ground"))
-    lw_grid("town ground", -60, 60, 0.0, 40, 90, 50, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
-    FX.ground("grass", area=(-12, 14, 4.2, 30), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
-    lava_rock("town yard stones", 500, (-10, 12, 0.2, 14), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.12), moss=0.6,
-              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-3.4 < x < -1.5 and 1.2 < y < 3.9) or (-2.5 < x < -0.9 and 0.3 < y < 1.25))       # (clear of the truck, the house and his walk)
-    walls = []
-    path = [(float(x), 0.0) for x in range(-40, 41, 1)]
-    for k, h in enumerate(S2_HS):
-        b = s2_base(h)
-        w = earth_wall(f"earth wall {k}", [(x, y - b / 2) for x, y in path], h=h, crest=S2_CREST, base=b, seed=8 + k)
-        walls.append(w)
-    lava_rock("lava field block", 700, (-60, 60, -80, -9), s2_ground_z, seed=13, r=(0.25, 0.9), moss=0.0)
-    # the house at the wall's foot, its front and door to the wall; the town behind it
+    """THE WALL'S FOOT IN TOWN: moss ground and yard stones, one painted tin house with its front to the wall, the wall
+    (risen by the shot), the black field beyond it."""
+    lw_grid("lava field ground", -60, 60, -60, 0.6, 90, 70, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))
+    lw_grid("town ground", -40, 40, 0.0, 30, 80, 40, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
+    FX.ground("grass", area=(-10, 10, 1.6, 20), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
+    px, py = S2_P0
+    lava_rock("town yard stones", 420, (-8, 8, 0.2, 12), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.1), moss=0.6,
+              avoid=lambda x, y: (-3.4 < x < -1.5 and 1.2 < y < 3.9) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
+    b = s2_base(S2_H)
+    wall = earth_wall("earth wall", [(float(x), -b / 2) for x in range(-30, 31, 1)], h=S2_H, crest=S2_CREST, base=b, seed=8)
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=0.0, w=hw, d=hd, storeys=1, base=0.3, pitch=38, roof="#B8352B", wall="#E9D9A2", seed=5)
-    for k, (x, y, roof, wl) in enumerate(((-3.2, 7.2, "#2F5E8C", "#F1EEE6"), (5.4, 6.6, "#3F7A4A", "#BFD3DD"), (-7.0, 9.6, "#C9A23A", "#E9D9A2"),
-                                          (1.0, 10.4, "#B8352B", "#7E9A86"), (8.6, 10.8, "#2F5E8C", "#E9D9A2"), (-11.0, 7.0, "#9E3A2E", "#F1EEE6"))):
-        town_house(f"town house back {k}", (x, y, s2_ground_z(x, y)), yaw=0.0, w=3.0, d=2.6, storeys=1 + (k % 2), base=0.3, pitch=38, roof=roof, wall=wl, seed=21 + k)
-    blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
-    fx, fy = -4.4, 2.3; fzz = s2_ground_z(fx, fy)          # (q2c: in the yard by the house, where the wide sees it)
-    K.cyl("flag pole", (fx, fy, fzz + 1.6), 0.025, 3.2, lw_paint("flag pole white", "#EDEDE8", rough=0.5), v=10)
-    FS = 1.4; c = Vector((fx + 0.36 * FS, fy, fzz + 2.85))
-    for nm, off, size, m in (("field", 0.0, (0.66, 0.012, 0.46), blue), ("white bar", -0.1, (0.13, 0.016, 0.46), white), ("white band", 0.0, (0.66, 0.016, 0.13), white),
-                             ("red bar", -0.1, (0.065, 0.02, 0.46), red), ("red band", 0.0, (0.66, 0.02, 0.065), red)):
-        K.box(f"icelandic flag {nm}", tuple(c + Vector((off * FS, 0, 0))), (size[0] * FS, size[1], size[2] * FS), m, bev=0.0)
-    # WHAT IT KEEPS OUT: the fountains on the far ridge under their ash, and a lobe of lava out on the field, glowing at
-    # its front, stopped well short of the wall
-    founts = []
-    for k, (x, y, hf) in enumerate(((70.0, -62.0, 24.0), (86.0, -48.0, 28.0), (98.0, -74.0, 22.0))):      # (off down the wall, where the wide along it looks)
-        z0 = s2_ground_z(x, y)
-        founts.append(FX.lava_fountain(base=(x, y, z0), h=0.3 * hf, w=2.5, length=10.0, clots=120, clot_size=2.6, plume=2.0, lean=(0.3, 0.2), seed=23 + k, splats=0,
-                                       t_end=DUR + 1.0, name=f"far fountain {k}")["jet"])
-        founts.append(ash_plume((x, y, z0), w=0.5 * hf, h=2.6 * hf, S=8.0, dens=8.0, lean=(0.02, 0.02), col=(0.07, 0.066, 0.063), seed=1.7 + 2.3 * k, t_end=DUR + 1.0, name=f"far plume {k}"))
-        lw_point(f"far plume fire light {k}", (x, y + 2.0, z0 + 0.3 * hf), 90000.0, col=(1.0, 0.5, 0.14), r=3.0)
-    rl = lw_random.Random(5)
-    lobe = [(30.0 + 13.0 * math.cos(a) * (1 + 0.12 * rl.uniform(-1, 1)), -30.0 + 7.0 * math.sin(a) * (1 + 0.12 * rl.uniform(-1, 1))) for a in [2 * math.pi * k / 18 for k in range(18)]]
-    FX.lava_flow(lobe, z=s2_ground_z(30.0, -30.0) + 0.15, thick=0.5, fresh=0.85, drift=(0.0, 0.06), seed=6, name="lava flow beyond the wall")
     def light():
-        return FX.sky("day", sun_az=-30)["sun"]
-    return dict(light=light, walls=walls, house=house, founts=founts)
+        k = iceland_light(sun_elev=18, sun_az=156, sun=3.2, sky=0.45, haze=1.2)       # the sun behind the lens: on the wall's town face, on him
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(200))      # a REAL sky with cloud in it (Poly Haven)
+        return k
+    return dict(light=light, wall=wall, house=house)
 
 
 def shot2():
-    """HE TIPS THE ROCK AND THE WALL GROWS. At his truck's tip lever in the alley between the truck and the house, both
-    hands on it: the bed tips, its rock pours onto the low row in dust (still 1); from up high, the bed tipped right
-    up, more rock sliding off, the wall roof-high beside the house (still 2). CUT WIDE: far across the town, the
-    finished wall over the house, the lava out beyond it (still 3); low at the house, him small at the wall's foot by
-    the door, looking up at it (still 4)."""
-    R = math.radians
+    """THE WALL RISES. See the module's head."""
     W = lw_win
-    yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.6; T_LET = 1.4; T_WALK = 1.85; T_ARR = 2.75
-    T_CUT = 1.72; T_WB = 2.72
+    TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
+    TOPS = [-0.1, 1.05, 6.2, S2_H]                               # the wall's top at each: under the ground, window-high (r2c: knee-high read as nothing), over its ridge (seen from the lens), towering
+    def top(t):
+        if t <= TS[0]: return TOPS[0]
+        for k in range(3):
+            if t <= TS[k + 1]: return TOPS[k] + (TOPS[k + 1] - TOPS[k]) * W(t, TS[k], TS[k + 1] - TS[k])
+        return TOPS[3]
     P = place_wall_works()
-    light = P["light"]; walls = P["walls"]
-    # ---- the wall grows: each heap rises out of the ground inside the one before it
-    RISE = [None, (0.42, 0.75), (1.3, 0.8)]          # (q2c: the roof-high heap breaks the ground as the first rock lands on the row)
-    def off(k, t):
-        if k == 0: return 0.0
-        a, d = RISE[k]; return -(S2_HS[k] + 0.25) * (1.0 - W(t, a, d))       # (q2a: from below the ground, or the plan's box never sees it grow)
-    for k, w in enumerate(walls):
-        for f in range(1, NF + 1):
-            w["root"].location = (0, 0, off(k, (f - 1) / FPS)); w["root"].keyframe_insert("location", frame=f)
-    def surface(x, y, t):
-        z = s2_ground_z(x, y)
-        for k, h in enumerate(S2_HS):
-            b = s2_base(h); yc = -b / 2
-            z = max(z, off(k, t) + min(h, max(0.0, (b / 2 - abs(y - yc)) * S2_SLOPE)))
-        return z
-    # ---- HIS truck (shot 1's), backed up to the wall, its tailgate open; the tip lever on its town side
-    tr = FX.truck(name="his tipper truck", loc=(S2_XT, S2_YT, 0.0), yaw=math.pi, lights=True, power=90.0, seed=2)
-    troot = tr["root"]; hinge = tr["hinge"]
-    for o in bpy.data.objects:
-        if o.name.startswith(("his tipper truck tailgate",)): o.hide_render = True; o.hide_viewport = True
-    T_DOWN = 2.6                                      # (q2r PLAN: still 4 needs a change) he pushes the lever back and the empty bed comes down
-    TH = lambda t: 14.0 + (18.0 * W(t, 0.0, 0.55) + 20.0 * W(t, T_AB + 0.02, 0.6)) * (1.0 - W(t, T_DOWN, 0.5))      # the bed's tip, degrees: two pulls of the lever
-    sc.frame_set(1); bpy.context.view_layer.update()
-    H0 = hinge.matrix_world.copy(); H0i = H0.inverted()
-    def hinge_at(t):
-        return troot.matrix_world @ Matrix.Translation(hinge.location) @ Matrix.Rotation(R(TH(t)), 4, 'X')
-    tail_l = H0i @ (troot.matrix_world @ Vector((0, 1.83, 0.7)))
-    front_l = H0i @ (troot.matrix_world @ Vector((0, -0.6, 0.7)))
-    up_t = hinge_at(1.0) @ tail_l; up_f = hinge_at(1.0) @ front_l
-    SG = 1.0 if up_f.z > up_t.z else -1.0                     # (the kit's tip sign: the front goes UP)
-    if SG < 0:
-        hinge_at = lambda t: troot.matrix_world @ Matrix.Translation(hinge.location) @ Matrix.Rotation(-R(TH(t)), 4, 'X')
-    for f in range(1, NF + 1):
-        hinge.rotation_euler = (SG * R(TH((f - 1) / FPS)), 0, 0); hinge.keyframe_insert("rotation_euler", frame=f)
-    print("S2 tail", tuple(round(v, 2) for v in hinge_at(0.0) @ tail_l), "front at 1s", tuple(round(v, 2) for v in hinge_at(1.0) @ front_l), "sign", SG, flush=True)
-    # the load: black rock heaped in the bed, sliding out over the open tail as the bed tips past each one's angle
+    light = P["light"]; wall = P["wall"]
+    b = s2_base(S2_H); yc = -b / 2
+    for f in range(1, NF + 8):
+        t = (f - 1) / FPS
+        wall["root"].location = (0, 0, top(t) - S2_H); wall["root"].keyframe_insert("location", frame=f)
+    def face_z(x, y, t):
+        return top(t) - S2_H + min(S2_H, max(0.0, (b / 2 - abs(y - yc)) * S2_SLOPE))
+    # ---- the rock pouring down onto it from above the frame: blocks drop onto its crest and town face, and once down
+    # they ride up with it
     rk = lw_random.Random(12)
     rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
-    dl = (tail_l - front_l).normalized()
-    load = []
-    for k in range(54):
-        q = Vector((rk.uniform(-0.5, 0.5), rk.uniform(-0.55, 1.6), 0.0))
-        r = rk.uniform(0.06, 0.12)
-        lp = H0i @ (troot.matrix_world @ Vector((q.x, q.y, 0.72 + r * 0.6 + 0.25 * rk.random())))
-        ang = 2.0 + 50.0 * (1.0 - (q.y + 0.55) / 2.15) * rk.uniform(0.7, 1.1)       # the rock at the tail goes first
-        o = lw_block("tipped rock", (0, 0, 0), r, rock_m, rk); load.append((o, lp, ang, r))
-    lands = []
-    for o, lp, ang, r in load:
-        tr_ = None; ex = None; land = None; sp = rk.uniform(-1, 1)
-        if ang < TH(0.0): tr_ = -(TH(0.0) - ang) / 22.0           # (q2a: the first rock landed at 0.63s: the pour is under way at frame 1)
-        for f in range(1, NF + 1):
+    rocks = []
+    for k in range(70):
+        ts = rk.uniform(-0.2, DUR - 0.2)
+        x = rk.uniform(-4.5, 3.0); yl = rk.uniform(-1.2, -0.1) - 0.85 * max(0.0, top(ts + 0.5)) / S2_SLOPE
+        r = rk.uniform(0.08, 0.2)
+        o = lw_block("falling rock", (x, yl, -9.0), r, rock_m, rk); rocks.append(o)
+        z0 = face_z(x, yl, ts) + 3.5 + rk.uniform(0, 1.5); spin = rk.uniform(-6, 6); land = None
+        for f in range(1, NF + 8):
             t = (f - 1) / FPS
-            if tr_ is None and TH(t) >= ang: tr_ = t
-            if tr_ is None or t < tr_:
-                p = hinge_at(t) @ lp
+            if t < ts: z = -9.0
             else:
-                s = t - tr_; d = 0.5 * 5.0 * s * s
-                lq = lp + dl * d
-                if ex is None and (lq - tail_l).dot(dl) < 0:
-                    p = hinge_at(t) @ lq
-                else:
-                    if ex is None:
-                        ex = (t, hinge_at(t) @ lq, (hinge_at(t).to_3x3() @ dl) * (5.0 * s) + Vector((0.25 * sp, 0, 0)))
-                    te, pe, ve = ex
-                    if land is None:
-                        u = t - te; p = pe + ve * u + Vector((0, 0, -4.9 * u * u))
-                        zs = surface(p.x, p.y, t) + r * 0.5
-                        if p.z <= zs: p.z = zs; land = (t, p.copy()); lands.append(land)
-                    else:
-                        p = land[1]
-            o.location = p; o.keyframe_insert("location", frame=f)
-            o.rotation_euler = (2.5 * max(0.0, t - (tr_ if tr_ is not None else 99.0)) if not land else o.rotation_euler.x, 0.4 * sp, sp); o.keyframe_insert("rotation_euler", frame=f)
-    lands.sort(key=lambda a: a[0])
-    print("S2 rock lands", len(lands), "first", round(lands[0][0], 2) if lands else None, flush=True)
-    for k, t0 in enumerate((0.05, 0.62, 1.05)):
-        FX.dust_puff(base=(S2_XT + 0.35 + 0.1 * (k - 1), -0.35, 0.2), w=0.5,       # (q2e: off the line from the lens to his face)
-                     h=1.2 + 0.5 * k, t0=t0, dur=1.6, col=(0.55, 0.52, 0.48), dens=6.0, seed=3.3 + k, name=f"dust off the tipped rock {k}")
-    # ---- him: at the tip lever on the truck's side, between it and the house, facing out to the wall (q2a: from up
-    # the alley between them the wall, the rock and the house were all out of the picture: the lens is out past the row)
+                s = t - ts; z = z0 - 4.9 * s * s; zs = face_z(x, yl, t) + r * 0.5
+                if land is None and z <= zs: land = t
+                if land is not None: z = zs
+            o.location = (x, yl, z); o.keyframe_insert("location", frame=f)
+            o.rotation_euler = (spin * min(t - ts, (land or t) - ts) if t >= ts else 0.0, 0.3 * spin, 0.2 * spin); o.keyframe_insert("rotation_euler", frame=f)
+    for k, t0 in enumerate(TS[1:3] + [TS[2] + 0.5]):
+        FX.dust_puff(base=(-1.0 + 1.4 * (k - 1), -0.6 - 0.8 * k, max(0.2, TOPS[k + 1] * 0.6)), w=1.4, h=1.4 + 0.6 * k, t0=t0 - 0.4, dur=1.6,
+                     col=(0.78, 0.74, 0.68), dens=4.0, seed=3.3 + k, name=f"dust off the falling rock {k}")
+    # the lava's glow held behind it: lamps out past the crest, coming up as it rises, catching its top edge
+    glows = [lw_point(f"lava glow behind the wall {k}", (-5.0 + 3.0 * k, yc - 1.2, S2_H + 0.9), 0.0, col=(1.0, 0.42, 0.1), r=1.5) for k in range(4)]     # (r2c: from further back it lit nothing; just over the crest it catches its top edge
+    for f in range(1, NF + 8, 2):
+        t = (f - 1) / FPS
+        for l_ in glows:
+            l_.data.energy = 2.0e5 * W(t, TS[2] - 0.2, TS[3] - TS[2]); l_.data.keyframe_insert("energy", frame=f)
+    # ---- him: in the foreground, three-quarter to the lens; he watches it climb, head going further up each still,
+    # a step back as it passes the eaves
     data = load_data()
-    PL = Vector((S2_XT - 1.12, 0.75, 0.0))        # (q2c: at the tail's corner, so the pour is beside him in a close frame)
-    YL = yaw_of(-0.12, -1.0)
-    data.place(PL.x, PL.y, math.degrees(YL))
+    CAM0 = Vector((0.05, 7.0, 0.4)); LOOK0 = CAM0 + Vector((-0.34, -0.94, 0.15)) * 5.0      # (w2a) set by hand: him at the left, the whole house at the right
+    X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
+    YAW = math.radians(-130)                                   # three-quarter to the lens, turned toward the house and the wall at its left
+    data.place(X0, Y0, math.degrees(YAW))
+    data.arm.location.z = Z0
     kit = hard_hat(data)
-    sc.frame_set(1); bpy.context.view_layer.update()
-    fw = data.forward(); fw.z = 0; fw.normalize(); lf = Vector((-fw.y, fw.x, 0.0))
-    # the lever: a steel rod off the chassis, its T-bar handle in front of his chest; it swings toward him as he pulls
-    steel = lw_paint("tip lever steel", "#2A2C2E", rough=0.45); grip_m = lw_paint("tip lever grip", "#D23A22", rough=0.6)
-    PIV = Vector((S2_XT - 0.66, PL.y - 0.16, 0.12))
-    piv = K.empty("tip lever pivot", tuple(PIV))
-    BAR = PL + fw * 0.15 + Vector((0, 0, 0.34))               # the T-bar's centre, pushed forward (the bed down)
-    ROD_TOP = Vector((PIV.x + 0.12 * (1 if PL.x > PIV.x else -1), BAR.y, BAR.z))
-    K.capsule("tip lever rod", tuple(PIV), tuple(ROD_TOP), 0.012, steel, parent=piv)
-    K.capsule("tip lever bar", tuple(ROD_TOP), tuple(BAR + lf * -0.1), 0.011, steel, parent=piv)
-    K.capsule("tip lever grip", tuple(BAR + lf * 0.08), tuple(BAR + lf * -0.1), 0.016, grip_m, parent=piv)
-    PS_ = 1.0 if (PIV + Matrix.Rotation(0.2, 3, 'X') @ (BAR - PIV) - PL).length < (BAR - PL).length else -1.0       # the way that brings it to him
-    PULL = lambda t: PS_ * (R(11.0) * W(t, 0.0, 0.5) + R(11.0) * W(t, T_AB + 0.02, 0.55)) * (1.0 - 0.7 * W(t, T_DOWN, 0.5))      # (q2s REACH: pushed right back it was 3 cm past his hand)      # (q2f READ: a bigger pull, his weight going with it)       # toward him about the pivot's x
-    for f in range(1, NF + 1):
-        piv.rotation_euler = (PULL((f - 1) / FPS), 0, 0); piv.keyframe_insert("rotation_euler", frame=f)
-    def on_bar(t, u):
-        a = PULL(t); rx = Matrix.Rotation(a, 3, 'X')
-        return PIV + rx @ (BAR + lf * u - PIV)
-    YW0 = data.arm.rotation_euler.z
-    PE = Vector((S2_HOUSE[0] + 0.25, 0.55, 0.0))       # (q2g) at the house's front by its door steps, the wall's foot beside him: he walks there FACING the low lens
-    YWK = yaw_of(PE.x - PL.x, PE.y - PL.y)
-    while YWK - YW0 > math.pi: YWK -= 2 * math.pi
-    while YWK - YW0 < -math.pi: YWK += 2 * math.pi
-    for f in range(1, NF + 8):          # (coordinator 11-27: he never lets go on screen: no walk, no release) (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5)      # (q2o REACH: no weight back off the bar now he stays at it) (q2c: READ, he stood 1.7s: his weight goes back on each pull)
-        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))      # (q2e: STEADY, he turns to go before he goes)
-    sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
-    def body_at(t):
-        sc.frame_set(F(t)); bpy.context.view_layer.update()
-        m = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2; f_ = data.forward(); f_.z = 0; f_.normalize()
-        return m, f_, Vector((-f_.y, f_.x, 0.0))
-    # (q2f/q2g: let go to a relaxed arm, the hands swept through his coat and whipped): off the bar the hands come to
-    # rest in front of his belly, held to his body as he goes; the shading hand goes up from there (FK, below)
-    # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
-    LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
-    lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
-    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5)), 0.0, DUR + 0.4)      # (q2p REACH: unwinding it took his hand off the bar)
-    # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
-    # turns to the wall and looks up at it
-    # (q2i-q2n: five rounds on the hands after a release; coordinator 11-27: remove the release) both hands stay on the
-    # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
-    for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    CD = PL + Vector((0.2, -1.5, 1.9)); LD = PL + Vector((0.1, 0.0, 0.25))     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
-    TAILP = hinge_at(0.8) @ tail_l
-    CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
-    data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
-    data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
-    data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
-    data.look_at(CD + Vector((0, -0.6, 2.2)), T_WB - 0.45, max_yaw=35, max_pitch=50, blend=0.6)      # (q2q PLAN: a new pose) right up at the wall's top                         # (q2g) up at it
-    data.expression("determined", 0.0, T_WB, blend=0.15)
-    data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
-    SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
-    HIP = lambda sg: ((-6, 0, -sg * 64), (-98, 0, sg * 30), (0, 0, 0))                           # a fist on his hip
-    def pose(t, P_, sides_="LR"):
-        for sd in sides_:
-            for bn, r_ in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r_)
+    for f in range(1, NF + 8):
+        t = (f - 1) / FPS
+        # (r2c HOLD/READ: 1.4 s standing still at the start) a new move inside every 0.8 s: a shuffle aside as the rock
+        # starts, a step back as it reaches the windows, another as it passes the eaves, a last one as it towers
+        y_ = 0.08 * W(t, 1.15, 0.4) + 0.12 * W(t, 1.85, 0.45) + 0.07 * W(t, 2.6, 0.4)
+        z_ = 0.03 * lw_kick(t - TS[2] + 0.1, 0.25)
+        x_ = -0.07 * W(t, 0.2, 0.4) + 0.03 * math.sin(2 * math.pi * t / 1.3)
+        data._kobj(t, loc=(X0 + x_, Y0 + y_, Z0 + z_), rot=YAW + math.radians(10) * W(t, TS[1] - 0.3, 0.6) - math.radians(8) * W(t, TS[3] - 0.6, 0.5))
+        data._plant_feet_here(t, lift=(Z0, Z0))
+    lw_layer(data, "spine", lambda t: (-6 * W(t, TS[1], 0.6) - 10 * W(t, TS[2] - 0.2, 0.6) - 8 * W(t, TS[3] - 0.5, 0.5) + 10 * lw_kick(t - TS[2] + 0.1, 0.3), 0, 0), 0, DUR + 0.4)
+    HEAD = Vector((X0, Y0, Z0 + 0.5))
+    UPAT = lambda up: HEAD + Vector((0.2, 0.5, up))                    # (w2a/w2b FACE 89-105: turned to the wall behind him he showed us the back of his head) up at it towering over him, further up each still
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)          # at us, as it starts
+    data.look_at(UPAT(0.3), 0.5, max_yaw=35, max_pitch=50, blend=0.35)                # round at the rock coming down
+    data.look_at(UPAT(0.7), 1.15, max_yaw=35, max_pitch=50, blend=0.4)
+    data.look_at(UPAT(1.6), 1.9, max_yaw=35, max_pitch=50, blend=0.45)                   # right up at it
+    data.look_at(UPAT(1.2) + Vector((-0.3, 0, 0)), 2.65, max_yaw=35, max_pitch=50, blend=0.4)
+    data.expression("surprised", 0.0, TS[2], blend=0.15)
+    data.expression("alarmed", TS[2], DUR + 1.0, blend=0.25)
+    sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
+    LOW = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
+    HALF = lambda sg: ((-14, 0, -sg * 24), (-58, 0, -sg * 22), (-10, sg * -20, -sg * 12))
+    UP = lambda sg: ((-42, 0, -sg * 12), (-40, 0, -sg * 50), (-12, sg * -10, -sg * 15))
+    WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
+    for sd in sides:
+        sg = -1 if sd == "L" else 1
+        seq = (LOW, LOW, HALF, WHOA, UP, WHOA, UP, UP) if sd == sides[0] else (LOW, LOW, HALF, HALF, WHOA, UP, WHOA, WHOA)      # (w2a/w2c: his pose turned 1-7 deg from still 1 to 2; r2c/r2d HOLD: a new move inside every 0.8 s)
+        for tk, pose in zip((0.0, 0.3, 0.6, 1.15, 1.7, 2.25, 2.75, DUR + 0.5), seq):
+            for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    # ---- the lens: out past the low row, low, back at him, the truck's tail pouring rock at the right and the house at
-    # the left; then from up high over the rising wall; CUT WIDE across the town (he is behind his truck); then from up
-    # the wall's face, down at him at its foot by the house's door
-    LENS_B = 85.0
-    him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
-    for o in set(him):
-        if o.type not in ('MESH', 'CURVE', 'ARMATURE'): continue
-        o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
-        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT)); o.keyframe_insert("hide_render", frame=F(T_WB) - 1)
-        o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_WB))
-    CA0 = PL + Vector((0.15, -2.6, 0.9)); LA0 = CA0 + Vector((0.2, 6.0, -1.0))     # (q2c: out over the low row, the pour beside him at the right, the house behind at the left)
-    CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.42, 0.6), height=0.36, t=0.25)
-    CB0 = PL + Vector((1.5, -4.4, 4.6)); LB0 = PL + Vector((0.0, 0.0, 0.3))      # (q2d: from the truck's side of him, so the pour is in frame at the right)      # from up over the rising wall, long: its face below us, him at its foot, the house beyond
-    CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.38, 0.6), height=0.34, t=1.2)
-    # (q2c: from up the wall the wall was behind the lens; q2e: the solver backed the lens behind the house's corner) set
-    # by hand: low and close along the house's front, wide, tipped up so the wall rises over him at the right
-    # (q2o) CD/LD: set at the lever above, up the wall's face
-    print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
-          "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
-    cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
-    WC = Vector((-17.0, 6.5, 10.5)); WL = Vector((2.0, -9.0, 1.5))      # (q2c: higher, so the flow shows over the crest)      # along the wall from the town's end: the wall over the house, the lava and the eruption beyond it                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
-    lw_cut(cam, lambda t: ((CA, LA) if t < T_AB else (CB, LB) if t < T_CUT else (CD, LD)) + (data.pos() + Vector((0, 0, 0.4)),),
-           lambda t: (WC, WL, Vector((1.0, 0.0, 2.0))), T_CUT, T_WB, 35.0, 20.0)
-    for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
-        cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
-    for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
-        cam.data.lens = 50.0; cam.data.keyframe_insert("lens", frame=f)
-    from character import _fcurves
-    for fc in _fcurves(cam.data.animation_data.action):
-        for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
-    wall_body = lambda: meshes([w["body"] for w in walls])
-    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("tip lever",), cutaway=(T_CUT, T_WB),
+    CAM, LOOK = CAM0, LOOK0
+    cam = K.camera(tuple(CAM), tuple(LOOK), lens=28.0, fstop=11.0)
+    print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), "data", tuple(round(v, 2) for v in data.pos()), flush=True)
+    def cam_at(t):
+        drift = Vector((0.0, 0.0, 0.03)) * (t / DUR)                  # (w2b: the push took him to 0.55) a slow rise
+        tilt = Vector((0, 0, 0.6)) * W(t, TS[1], TS[3] - TS[1])          # tipping up with it
+        return CAM + drift, LOOK + drift + tilt, data.pos() + Vector((0, 0, 0.5))
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
+    return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("he tips the load of rock off his truck onto the low row of rock in a puff of dust", lambda: [o for o, *_ in load], 0.0, T_AB, {"whole": False, "moves": True}),
-                        ("the wall of rock grows roof-high beside the house", lambda: meshes([walls[1]["body"]]), 0.95, T_CUT, {"whole": False}),
-                        ("the finished wall stands taller than the house, the lava out beyond it", wall_body, T_CUT, T_WB, {"whole": False})])
+                conseq=[("a wall of black rock rises behind the house, rock pouring down onto it", lambda: [wall["body"]], TS[0], TS[2], {"whole": False}),
+                        ("it stands far over the house's roof, an orange glow held behind it", lambda: [wall["body"]], TS[2], DUR, {"whole": False})])
 
 
 # ====================================================================================================

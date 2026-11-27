@@ -2,57 +2,25 @@
  "note": "Written 2026-11-26 from shots 3, 4 and 5 AS THEY PASSED the board (71, 72, 72): the plan they would have started from. Shots 1 and 2 were written 2026-11-26 by the session restaging them (not yet passed).",
  "shots": [
   {
-   "prop": "bag",
+   "prop": "eruption",
    "props": [
     {
-     "name": "ash plume",
+     "name": "eruption",
      "objects": [
+      "fissure glow",
+      "lava fountain",
       "eruption plume"
      ],
      "whole": false,
-     "built_as": "a huge column of black ash smoke rising off the hill over the town, lit orange at its foot"
+     "built_as": "the volcano on the ridge over the town: a glowing slot of lava along its top, a lava fountain bursting up out of it, a huge black ash plume over it"
     },
     {
-     "name": "bag",
+     "name": "houses",
      "objects": [
-      "his duffel bag"
-     ],
-     "whole": true,
-     "held": true,
-     "built_as": "a red canvas duffel bag with dark end panels, two carry straps and a zip"
-    },
-    {
-     "name": "truck",
-     "objects": [
-      "his tipper truck"
+      "town house"
      ],
      "whole": false,
-     "built_as": "his tipper truck: a glazed cab, six wheels, an orange steel tipper body"
-    },
-    {
-     "name": "handle",
-     "objects": [
-      "cab grab handle"
-     ],
-     "whole": true,
-     "held": true,
-     "built_as": "a steel grab handle by the cab door, and a foot rung under it"
-    },
-    {
-     "name": "cars",
-     "objects": [
-      "car leaving"
-     ],
-     "whole": false,
-     "built_as": "two small hatchbacks driving out of town, dust at their wheels"
-    },
-    {
-     "name": "flag",
-     "objects": [
-      "icelandic flag"
-     ],
-     "whole": false,
-     "built_as": "Iceland's flags, blue with a red cross edged in white, on poles off the house fronts"
+     "built_as": "Grindavik's low painted houses with coloured tin roofs down both sides of the main street"
     }
    ],
    "framing": "close",
@@ -61,124 +29,9 @@
     "side": "left",
     "frame_h": 0.36
    },
-   "action": "he runs down the street with his duffel bag in both hands",
-   "consequence": "he heaves his bag up over his head into his tipper truck",
-   "says_still": 1,
-   "stills": [
-    {
-     "event": "before",
-     "shows": "far down the main street of the Icelandic town: a volcano erupting right beside it, a huge black ash plume rising off the hill over the roofs, Iceland's flags on the houses",
-     "hands": "bag",
-     "new": [],
-     "visible": [
-      {
-       "prop": "ash plume",
-       "as": "a volcano erupting right beside the town: a huge black ash plume rises off the hill over the town's roofs"
-      },
-      {
-       "prop": "flag",
-       "as": "Icelandic flags on the houses of the town"
-      }
-     ]
-    },
-    {
-     "event": "action",
-     "shows": "low in the street: the driver in his hard hat runs down the street toward us with his duffel bag in both hands, the plume over the roofs behind him",
-     "hands": "bag",
-     "new": [
-      {
-       "what": "bag",
-       "how": "moves",
-       "cause": "he runs with it in both hands"
-      },
-      {
-       "what": "data",
-       "how": "pose",
-       "cause": "running, the bag in both hands"
-      }
-     ],
-     "visible": [
-      {
-       "prop": "data",
-       "as": "the driver in his hard hat runs down the street"
-      },
-      {
-       "prop": "bag",
-       "as": "his duffel bag in both hands"
-      },
-      {
-       "prop": "ash plume",
-       "as": "the plume over the roofs behind him"
-      }
-     ]
-    },
-    {
-     "event": "result",
-     "shows": "at his tipper truck: he heaves his bag up over his head to throw it into the truck, arms up, both hands on it",
-     "hands": "bag",
-     "new": [
-      {
-       "what": "bag",
-       "how": "moves",
-       "cause": "he heaves it up over his head"
-      },
-      {
-       "what": "data",
-       "how": "pose",
-       "cause": "arms up from the heave"
-      }
-     ],
-     "visible": [
-      {
-       "prop": "bag",
-       "as": "he heaves the bag up over his head"
-      },
-      {
-       "prop": "truck",
-       "as": "the side of his tipper truck"
-      },
-      {
-       "prop": "data",
-       "as": "arms up"
-      }
-     ]
-    },
-    {
-     "event": "reaction",
-     "shows": "ahead of the truck's nose: he climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle, as the other cars roll out of town down the street toward it in their dust",
-     "hands": "handle",
-     "new": [
-      {
-       "what": "cars",
-       "how": "goes",
-       "cause": "everyone else is driving out of town"
-      },
-      {
-       "what": "data",
-       "how": "pose",
-       "cause": "climbing into the cab, a foot up on the rung"
-      }
-     ],
-     "visible": [
-      {
-       "prop": "cars",
-       "as": "the other cars roll out of town: everyone had to run"
-      },
-      {
-       "prop": "handle",
-       "as": "his hand on the grab handle"
-      },
-      {
-       "prop": "truck",
-       "as": "he climbs into the cab of his truck"
-      },
-      {
-       "prop": "data",
-       "as": "a foot on the rung"
-      }
-     ]
-    }
-   ],
+   "action": "the ridge over the town's roofs glows orange",
+   "consequence": "a lava fountain bursts up over the town's roofs right beside it",
+   "says_still": 3,
    "unseen": [
     {
      "word": "keeps",
@@ -187,6 +40,113 @@
     {
      "word": "everyone",
      "why": "how"
+    }
+   ],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, the quiet ridge over them; he stands in the street, three-quarter to us, looking at us",
+     "hands": "free",
+     "new": [],
+     "visible": [
+      {
+       "prop": "houses",
+       "as": "the painted tin-roofed houses of one Icelandic town"
+      },
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat in the street"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "the ridge over the town's roofs glows orange, the volcano erupting; he turns his head up at it",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "lights",
+       "cause": "lava breaks out along the ridge"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns his head up at the glow, hands coming up"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "the volcano erupting: an orange glow along the ridge over the town's roofs"
+      },
+      {
+       "prop": "houses",
+       "as": "the town's roofs under it"
+      },
+      {
+       "prop": "data",
+       "as": "he looks up at it"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "a lava fountain bursts up over the town's roofs right beside it, black ash climbing off it; he flinches back, arms up",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "grows",
+       "cause": "the lava fountain bursts up out of the ridge"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he flinches back, arms up"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "a lava fountain bursts up right beside the town, over its roofs"
+      },
+      {
+       "prop": "houses",
+       "as": "the town's roofs"
+      },
+      {
+       "prop": "data",
+       "as": "he flinches back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "a huge black ash plume towers over the town; he runs at us, out of the street",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "grows",
+       "cause": "the ash plume climbs off the fountain"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he runs, arms pumping"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "a huge black ash plume towers over the town"
+      },
+      {
+       "prop": "data",
+       "as": "he had to run: he runs at us, out of the street"
+      }
+     ]
     }
    ]
   },
