@@ -303,7 +303,7 @@ def shot1():
     clot = lava_mat("bomb bits lava", heat=1.4, scale=18.0, glow="#FF8A10", fresh=0.3)      # (q1a: dim emissive bits read as pale beige popcorn on the road: crusted, glowing in their cracks)          # (the bomb's flung bits: yellow-orange and dim)
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
-    T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
+    T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.45      # (q1f: from a lens tipped down its 1.7 s arc ran out of the top of still 2)
     bomb = lw_block("lava bomb", tuple(B0), 0.38, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
@@ -340,7 +340,7 @@ def shot1():
     data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=20.0, bob=0.01)      # ...and he pulls up at the lens, still coming
     lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
-    CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
+    CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 1.5))      # (r1r: looking up 12 degrees the sky over the plumes was a quarter of the frame)
     data.look_at(Vector((PW.x - 6.0, PW.y + 0.6, 8.0)), 0.0, max_yaw=42, max_pitch=32, blend=0.0)                    # back up at the fountains over his shoulder
     data.look_at(CAM0 + RUNV * 0.6, T_RUN + 0.15, max_yaw=50, max_pitch=30, blend=0.6)
     data.look_at(CAM0 + RUNV * (T_SLOW - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=8, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
@@ -375,7 +375,7 @@ def shot1():
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.48, 0.36; X1, Y1, S1_ = 0.5, 0.5, 0.86; ZOOM = 0.19      # (r1o/r1p: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
+    X0, Y0, H0 = 0.58, 0.56, 0.36; X1, Y1, S1_ = 0.5, 0.54, 0.86; ZOOM = 0.19      # (r1o/r1p/r1r: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()

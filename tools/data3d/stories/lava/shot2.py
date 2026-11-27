@@ -60,7 +60,7 @@ def place_wall_works():
     path = [(x, 0.0) for x in range(-60, 5, 2)] + [(4.0 + 5.0 * math.sin(math.radians(a)), 5.0 - 5.0 * math.cos(math.radians(a))) for a in range(15, 91, 15)] + [(9.0, y) for y in range(7, 30, 2)]
     wall = earth_wall("earth wall", path, h=S2_H, crest=S2_CREST, base=S2_BASE, seed=8)
     px, py = S2_P0
-    clear = lambda x, y: (abs(x - px) < 0.75 and abs(y - py) < 0.75) or (abs(x - px - 0.3) < 1.3 and 0.4 < y < 1.05)     # (q2b: the town face's lumps at the crest's edge hid the row he builds; r2m: cleared further down, the face below read as one bare smooth region)
+    clear = lambda x, y: (abs(x - px) < 0.75 and abs(y - py) < 0.75) or (abs(x - px - 0.3) < 1.3 and 0.4 < y < 0.8)     # (q2b: the town face's lumps at the crest's edge hid the row he builds; r2m: cleared further down, the face below read as one bare smooth region)
     lava_rock("wall face rock", 1900, (-44, 2.5, -S2_BASE / 2 + 0.1, S2_BASE / 2 - 0.1), lambda x, y: max(s2_ground_z(x, y), s2_face_z(y)), seed=27, r=(0.08, 0.28), moss=0.0, avoid=clear)
     # from the town the wall is a BERM of piled basalt, not a slab (coordinator: "a wall of coal"): big and small blocks
     # heaped down its sloped town face, no two a size
@@ -153,7 +153,7 @@ def shot2():
     R_ = 0.098; RB = 0.16
     SPOT = P0 + fw * 0.25; SPOT.z = S2_H + RB * 0.8 * 0.9 + R_ * 0.8 * 0.45          # on top of the row, in the gap between two of its boulders
     def body(t):
-        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(14) * W(t, T_OFF, 0.5)       # round to the row, then to the town he is keeping
+        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(26) * W(t, T_OFF, 0.7)       # round to the row, then to the town he is keeping (q2l: a 14-degree turn read as a 1.07s still on the sheet)
     for f in range(F(T_ARR) + 1, NF + 8):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     def held(t):                                              # the boulder on his two hands, in front of his chest, wherever he is
@@ -170,7 +170,7 @@ def shot2():
         return held(t)[1] if t < T_GO else _lfB
     T_REL = T_GO + 0.42 * (T_SET - T_GO)      # (pre-flight r2n: hands hovering in front of his chest read as broken: he lets it go here and it DROPS onto the row in a puff of dust)                       # his hands go with it as far as they reach, then it drops the last of the way
     lw_layer(data, "spine", lambda t: (15 * W(t, T_GO - 0.15, 0.35) * (1 - W(t, T_OFF, 0.35)), 0, 0), T_GO - 0.15, DUR + 0.4)
-    CAM0 = P0 + Vector((0.6, 2.5, 0.75)); LOOK0 = P0 + Vector((0.0, 0.0, 0.45))       # (near level: the field runs to a horizon behind him and the fountains stand whole on it)
+    CAM0 = P0 + Vector((0.6, 2.5, 1.0)); LOOK0 = P0 + Vector((0.0, 0.0, 0.36))      # (from above him: the black field fills the frame behind him to a horizon high in it, the fountains on it; r2o: from near level the sky was one smooth third of the frame)
     FAR = P0 + Vector((3.0, 14.0, 0.0))
     data.look_at(CAM0, 0.0, max_yaw=40, max_pitch=25, blend=0.0)
     data.look_at(SPOT, T_GO + 0.1, max_yaw=40, max_pitch=35, blend=0.3)
@@ -209,13 +209,13 @@ def shot2():
         b_ = s2_boulder(f"wall crest top boulder {k}", rr, seed=120 + k); b_.location = (SPOT.x + 0.2 * k, SPOT.y + 0.03 * math.sin(k * 1.3), SPOT.z + 0.01 * math.sin(k * 3.1)); b_.rotation_euler = (0, 0, k * 2.1)
     FX.dust_puff(base=(SPOT.x + fw.x * 0.14, SPOT.y + fw.y * 0.14, SPOT.z - R_ * 0.5), w=0.08, h=0.22, t0=T_SET - 0.02, dur=1.3, col=(0.7, 0.66, 0.6), dens=14.0, seed=4.4, name="dust off the set stone")      # the kit's dust: it lands (on the far side of the stone: its gas box stays off him)
     # ---- the lens: close along the crest; then WIDE from the town: the wall over the house
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.56, 0.55), height=0.36, t=T_SET)      # (his feet and the row he builds in frame below him; r2n: from lower down the sky over the field measured as one smooth half of the frame)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.56, 0.63), height=0.36, t=T_SET)      # (his feet and the row he builds in frame below him; r2n: from lower down the sky over the field measured as one smooth half of the frame)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=16.0)
     WCAM = Vector((-1.0, 31.0, 3.6)); WLOOK = Vector((-1.0, 0.0, 1.45))
     print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), flush=True)
-    # back on the crest it is a NEW set-up (pre-flight r2n: stills 1, 2 and 4 were one picture): from down the finished
-    # row, its boulders leading in from the corner of the frame to him beside his pale one
-    CAM2, LOOK2 = compose.frame_data(data, P0 + Vector((1.3, 1.5, 0.85)), P0 + Vector((0.0, 0.0, 0.35)), 50.0, face_at=(0.42, 0.58), height=0.36, t=DUR - 0.1)
+    # back on the crest it is a NEW set-up (pre-flight r2n: stills 1, 2 and 4 were one picture): from his other side,
+    # the finished row running away beside him, the plumes still on the horizon (r2o: from down the row they left the frame)
+    CAM2, LOOK2 = compose.frame_data(data, P0 + Vector((-0.6, 1.9, 0.9)), P0 + Vector((0.0, 0.0, 0.35)), 50.0, face_at=(0.5, 0.63), height=0.36, t=DUR - 0.1)
     print("S2 CAM2", tuple(round(v, 2) for v in CAM2), flush=True)
     lw_cut(cam, lambda t: ((CAM, LOOK) if t < T_CUT else (CAM2, LOOK2)) + (data.pos() + Vector((0, 0, 0.5)),), lambda t: (WCAM, WLOOK, Vector((-1.0, 3.0, 3.0))), T_CUT, T_BACK, 50.0, 85.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("boulder",), cutaway=(T_CUT, T_BACK),

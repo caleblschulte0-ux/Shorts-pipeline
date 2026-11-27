@@ -1705,7 +1705,7 @@ def shot1():
     clot = lava_mat("bomb bits lava", heat=1.4, scale=18.0, glow="#FF8A10", fresh=0.3)      # (q1a: dim emissive bits read as pale beige popcorn on the road: crusted, glowing in their cracks)          # (the bomb's flung bits: yellow-orange and dim)
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
-    T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
+    T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.45      # (q1f: from a lens tipped down its 1.7 s arc ran out of the top of still 2)
     bomb = lw_block("lava bomb", tuple(B0), 0.38, lava_mat("bomb lava", heat=1.5, scale=9.0, glow="#FF8A10", fresh=0.15), rf, squash=0.9)
     vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
     for f in range(1, NF + 1):
@@ -1742,7 +1742,7 @@ def shot1():
     data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=20.0, bob=0.01)      # ...and he pulls up at the lens, still coming
     lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
-    CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 2.0))
+    CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 1.5))      # (r1r: looking up 12 degrees the sky over the plumes was a quarter of the frame)
     data.look_at(Vector((PW.x - 6.0, PW.y + 0.6, 8.0)), 0.0, max_yaw=42, max_pitch=32, blend=0.0)                    # back up at the fountains over his shoulder
     data.look_at(CAM0 + RUNV * 0.6, T_RUN + 0.15, max_yaw=50, max_pitch=30, blend=0.6)
     data.look_at(CAM0 + RUNV * (T_SLOW - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=8, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
@@ -1777,7 +1777,7 @@ def shot1():
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.48, 0.36; X1, Y1, S1_ = 0.5, 0.5, 0.86; ZOOM = 0.19      # (r1o/r1p: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
+    X0, Y0, H0 = 0.58, 0.56, 0.36; X1, Y1, S1_ = 0.5, 0.54, 0.86; ZOOM = 0.19      # (r1o/r1p/r1r: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1867,7 +1867,7 @@ def place_wall_works():
     path = [(x, 0.0) for x in range(-60, 5, 2)] + [(4.0 + 5.0 * math.sin(math.radians(a)), 5.0 - 5.0 * math.cos(math.radians(a))) for a in range(15, 91, 15)] + [(9.0, y) for y in range(7, 30, 2)]
     wall = earth_wall("earth wall", path, h=S2_H, crest=S2_CREST, base=S2_BASE, seed=8)
     px, py = S2_P0
-    clear = lambda x, y: (abs(x - px) < 0.75 and abs(y - py) < 0.75) or (abs(x - px - 0.3) < 1.3 and 0.4 < y < 1.05)     # (q2b: the town face's lumps at the crest's edge hid the row he builds; r2m: cleared further down, the face below read as one bare smooth region)
+    clear = lambda x, y: (abs(x - px) < 0.75 and abs(y - py) < 0.75) or (abs(x - px - 0.3) < 1.3 and 0.4 < y < 0.8)     # (q2b: the town face's lumps at the crest's edge hid the row he builds; r2m: cleared further down, the face below read as one bare smooth region)
     lava_rock("wall face rock", 1900, (-44, 2.5, -S2_BASE / 2 + 0.1, S2_BASE / 2 - 0.1), lambda x, y: max(s2_ground_z(x, y), s2_face_z(y)), seed=27, r=(0.08, 0.28), moss=0.0, avoid=clear)
     # from the town the wall is a BERM of piled basalt, not a slab (coordinator: "a wall of coal"): big and small blocks
     # heaped down its sloped town face, no two a size
@@ -1960,7 +1960,7 @@ def shot2():
     R_ = 0.098; RB = 0.16
     SPOT = P0 + fw * 0.25; SPOT.z = S2_H + RB * 0.8 * 0.9 + R_ * 0.8 * 0.45          # on top of the row, in the gap between two of its boulders
     def body(t):
-        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(14) * W(t, T_OFF, 0.5)       # round to the row, then to the town he is keeping
+        return P0.copy(), YW + (YAW0 - YW) * W(t, T_ARR, 0.3) + math.radians(26) * W(t, T_OFF, 0.7)       # round to the row, then to the town he is keeping (q2l: a 14-degree turn read as a 1.07s still on the sheet)
     for f in range(F(T_ARR) + 1, NF + 8):
         t = (f - 1) / FPS; p, yaw = body(t); data._kobj(t, loc=tuple(p), rot=yaw)
     def held(t):                                              # the boulder on his two hands, in front of his chest, wherever he is
@@ -1977,7 +1977,7 @@ def shot2():
         return held(t)[1] if t < T_GO else _lfB
     T_REL = T_GO + 0.42 * (T_SET - T_GO)      # (pre-flight r2n: hands hovering in front of his chest read as broken: he lets it go here and it DROPS onto the row in a puff of dust)                       # his hands go with it as far as they reach, then it drops the last of the way
     lw_layer(data, "spine", lambda t: (15 * W(t, T_GO - 0.15, 0.35) * (1 - W(t, T_OFF, 0.35)), 0, 0), T_GO - 0.15, DUR + 0.4)
-    CAM0 = P0 + Vector((0.6, 2.5, 0.75)); LOOK0 = P0 + Vector((0.0, 0.0, 0.45))       # (near level: the field runs to a horizon behind him and the fountains stand whole on it)
+    CAM0 = P0 + Vector((0.6, 2.5, 1.0)); LOOK0 = P0 + Vector((0.0, 0.0, 0.36))      # (from above him: the black field fills the frame behind him to a horizon high in it, the fountains on it; r2o: from near level the sky was one smooth third of the frame)
     FAR = P0 + Vector((3.0, 14.0, 0.0))
     data.look_at(CAM0, 0.0, max_yaw=40, max_pitch=25, blend=0.0)
     data.look_at(SPOT, T_GO + 0.1, max_yaw=40, max_pitch=35, blend=0.3)
@@ -2016,13 +2016,13 @@ def shot2():
         b_ = s2_boulder(f"wall crest top boulder {k}", rr, seed=120 + k); b_.location = (SPOT.x + 0.2 * k, SPOT.y + 0.03 * math.sin(k * 1.3), SPOT.z + 0.01 * math.sin(k * 3.1)); b_.rotation_euler = (0, 0, k * 2.1)
     FX.dust_puff(base=(SPOT.x + fw.x * 0.14, SPOT.y + fw.y * 0.14, SPOT.z - R_ * 0.5), w=0.08, h=0.22, t0=T_SET - 0.02, dur=1.3, col=(0.7, 0.66, 0.6), dens=14.0, seed=4.4, name="dust off the set stone")      # the kit's dust: it lands (on the far side of the stone: its gas box stays off him)
     # ---- the lens: close along the crest; then WIDE from the town: the wall over the house
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.56, 0.55), height=0.36, t=T_SET)      # (his feet and the row he builds in frame below him; r2n: from lower down the sky over the field measured as one smooth half of the frame)
+    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 50.0, face_at=(0.56, 0.63), height=0.36, t=T_SET)      # (his feet and the row he builds in frame below him; r2n: from lower down the sky over the field measured as one smooth half of the frame)
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=50.0, fstop=16.0)
     WCAM = Vector((-1.0, 31.0, 3.6)); WLOOK = Vector((-1.0, 0.0, 1.45))
     print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), flush=True)
-    # back on the crest it is a NEW set-up (pre-flight r2n: stills 1, 2 and 4 were one picture): from down the finished
-    # row, its boulders leading in from the corner of the frame to him beside his pale one
-    CAM2, LOOK2 = compose.frame_data(data, P0 + Vector((1.3, 1.5, 0.85)), P0 + Vector((0.0, 0.0, 0.35)), 50.0, face_at=(0.42, 0.58), height=0.36, t=DUR - 0.1)
+    # back on the crest it is a NEW set-up (pre-flight r2n: stills 1, 2 and 4 were one picture): from his other side,
+    # the finished row running away beside him, the plumes still on the horizon (r2o: from down the row they left the frame)
+    CAM2, LOOK2 = compose.frame_data(data, P0 + Vector((-0.6, 1.9, 0.9)), P0 + Vector((0.0, 0.0, 0.35)), 50.0, face_at=(0.5, 0.63), height=0.36, t=DUR - 0.1)
     print("S2 CAM2", tuple(round(v, 2) for v in CAM2), flush=True)
     lw_cut(cam, lambda t: ((CAM, LOOK) if t < T_CUT else (CAM2, LOOK2)) + (data.pos() + Vector((0, 0, 0.5)),), lambda t: (WCAM, WLOOK, Vector((-1.0, 3.0, 3.0))), T_CUT, T_BACK, 50.0, 85.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("boulder",), cutaway=(T_CUT, T_BACK),
