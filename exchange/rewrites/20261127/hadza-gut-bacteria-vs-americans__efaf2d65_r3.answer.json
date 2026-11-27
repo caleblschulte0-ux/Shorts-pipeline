@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__efaf2d65_r3",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Bacteria Species, Fiber Intake, And Antibiotic Prescriptions Split Hadza And Americans",
+  "hook": "Food and medicine expose why one gut community is far richer.",
+  "closing": "Fiber intake and antibiotic prescriptions both shape the bacteria people carry.",
+  "question": "How much fiber did you eat?",
+  "segments": [
+    {
+      "topic": "Bacteria Species",
+      "say": "The Hadza carry about 730 gut bacteria species. That is far richer than the average American gut."
+    },
+    {
+      "topic": "Fiber Intake",
+      "say": "Hadza fiber intake reaches 150 grams daily. Their gut bacteria receive far more fiber than the American average."
+    },
+    {
+      "topic": "Antibiotic Prescriptions",
+      "say": "Likely unnecessary prescriptions make up 34% of outpatient antibiotics. Antibiotic exposure adds another pressure beyond fiber intake."
+    }
+  ]
+}
