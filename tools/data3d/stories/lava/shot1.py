@@ -11,7 +11,7 @@ S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
 S1_P0 = (0.15, -2.6)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
-S1_CAM = (0.35, -4.2, 0.42)            # the one lens, low in the street
+S1_CAM = (0.3, -4.0, 1.65)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
 
 
 def s1_ground_z(x, y):
@@ -172,7 +172,7 @@ def shot1():
     # stands calm facing us, turns his head and shoulders to the glow, recoils from the fountain (leaning back, both arms
     # thrown up beside his head, mouth open), and holding the recoil half-turns to the lens side as if to follow the cars.
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.1)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
+    CAM0 = Vector(S1_CAM); D = Vector((-0.08, 1.0, -0.23)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(10)                              # 1 facing us
@@ -210,12 +210,12 @@ def shot1():
         for tk, pose in zip(keys, seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=28.0, fstop=11.0)
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=20.0, fstop=11.0)
     print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
           "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "turn", round(T_TURN, 2), flush=True)
     def cam_at(t):
         return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED: the drift moved the houses between stills)
-    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 20.0, 20.0)
     erupt = P["slot"] + [fountain] + flanks + plumes + smoke
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
