@@ -5,69 +5,18 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "baseball",
-   "who": "Luis Fiallo",
-   "why": "A 17-year-old Cuban pitcher breaks down in tears hearing he signed with the Athletics, a feeling anyone gets in the first seconds.",
-   "post_title": "17 year old Cuban pitcher Luis Fiallo breaks down in tears upon hearing that he'd been signed by the Athletics for a $110,000 bonus",
-   "upvotes": 6588,
-   "url": "https://www.reddit.com/r/baseball/comments/1y68ne1/17_year_old_cuban_pitcher_luis_fiallo_breaks_down/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1y68ne1/17_year_old_cuban_pitcher_luis_fiallo_breaks_down",
-   "title": "Luis Fiallo, 17, Breaks Down In Tears After Hearing The Athletics Signed Him",
-   "hook": "Luis Fiallo hears he signed with the A's \ud83d\ude2d",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/Oc1Xja-QxCQ",
-   "ok": true,
-   "publish_at": "2026-11-27T15:00:00Z",
-   "seconds": 131,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-luis-fiallo-17-breaks-down-in-tears-after-hearin-5658b809",
-    "tiktok": "queued for 2026-11-27T15:00:00Z"
-   }
-  },
-  {
-   "sub": "nba",
-   "who": "Gloria James",
-   "why": "LeBron's mother meets her grandson VJ Edgecombe, a family moment that needs no backstory.",
-   "post_title": "Gloria James meets her grandson VJ edgecombe",
-   "upvotes": 3619,
-   "url": "https://streamable.com/8z2ggc",
-   "topic": "https://www.reddit.com/r/nba/comments/1y63y06/gloria_james_meets_her_grandson_vj_edgecombe",
-   "skipped": "too short: the post runs 9.4s (< 15s)"
-  },
-  {
    "sub": "nfl",
    "who": "Joe Milton III",
-   "why": "An Eagles backup QB gets applause and carries the Turkey trophy to the locker room after the big Thanksgiving win.",
+   "why": "A backup QB walks to the locker room to applause with Big Dom, proudly holding the Turkey trophy.",
    "post_title": "[Highlight] Eagles QB Joe Milton III is greeted with applause as he heads to the locker room with Big Dom, proudly holding the Turkey trophy.",
    "upvotes": 1715,
    "url": "https://www.reddit.com/r/nfl/comments/1y6hptb/highlight_eagles_qb_joe_milton_iii_is_greeted/",
    "topic": "https://www.reddit.com/r/nfl/comments/1y6hptb/highlight_eagles_qb_joe_milton_iii_is_greeted",
-   "title": "Eagles QB Joe Milton III Gets Applause Carrying The Turkey Trophy \ud83e\udd83",
-   "hook": "Joe Milton III gets applause with the turkey trophy \ud83e\udd83",
+   "title": "Joe Milton III Gets Applause Holding The Turkey Trophy \ud83e\udd83",
+   "hook": "Joe Milton III proudly holds the Turkey trophy",
    "ledger": {
     "moves": [
-     "zoom@12.0"
+     "zoom@8.5"
     ],
     "mood": null,
     "shot_plan": {
@@ -86,99 +35,33 @@
    },
    "repairs": [
     {
-     "score": 66,
-     "reason": "showrunner BLOCK: The real moment (Milton grinning and lifting the Turkey trophy with Big Dom) shows up only at about 12-21s. A blurry, empty opening and a back-of-heads ending bury it, so a stranger swipes away before he appears."
+     "score": 62,
+     "reason": "showrunner BLOCK: The moment is real and correctly framed, but it is buried: the first 10 seconds are blurry crowd waiting, and the clip ends on the backs of camera crew."
     },
     {
      "score": 66,
-     "reason": "showrunner BLOCK: The moment is real and lands mid-clip, but the first ~5s is a blurry crowd shot from far away and the end fizzles on the backs of heads."
+     "reason": "showrunner BLOCK: The real moment (Milton grinning with the Turkey trophy) is good, but it arrives at about 7s after a hook of strangers milling behind glass, and the clip ends on backs of heads rather than on him."
     }
    ],
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: The moment is real and correctly identified, but the first 7 seconds are a distant hallway with no Milton and no trophy, and the clip ends on strangers' backs.",
-    "score": 66
+    "reason": "showrunner BLOCK: The trophy moment is real and charming but buried: the first ~10s show a distant lobby of strangers and the clip ends on the backs of heads.",
+    "score": 62
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The moment is real and correctly identified, but the first 7 seconds are a distant hallway with no Milton and no trophy, and the clip ends on strangers' backs."
+   "skipped": "showrunner_block: showrunner BLOCK: The trophy moment is real and charming but buried: the first ~10s show a distant lobby of strangers and the clip ends on the backs of heads."
   },
   {
-   "sub": "nfl",
-   "who": "Tom Brady",
-   "why": "Mic'd-up Brady reacts to the Eagles-Cowboys finish.",
-   "post_title": "[Highlight] The sounds of Thomas Edward Patrick Brady from Eagles vs. Cowboys",
-   "upvotes": 957,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6l07u/highlight_the_sounds_of_thomas_edward_patrick/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6l07u/highlight_the_sounds_of_thomas_edward_patrick",
-   "title": "Tom Brady's Calls In Eagles vs. Cowboys Are Something Else \ud83d\ude02",
-   "hook": "The sounds of Tom Brady \ud83d\ude02",
+   "sub": "nba",
+   "who": "Damian Lillard",
+   "why": "Dame picks which teammate he'd trust to bring Thanksgiving dishes, and the answer is funny and easy to get.",
+   "post_title": "Damian Lillard when asked which teammate he would trust to bring a dish (Thanksgiving): \"I'm gonna go with Ja. Just 'cause that Southern hospitality, I know he got some in him, so I'm gonna go with Ja",
+   "upvotes": 2581,
+   "url": "https://streamable.com/unx5ym",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5x2jb/damian_lillard_when_asked_which_teammate_he_would",
+   "title": "Damian Lillard Picks Who He'd Trust To Bring The Thanksgiving Dish",
+   "hook": "Dame picks who brings the dish \ud83e\udd83",
    "ledger": {
-    "moves": [
-     "zoom@4.8"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.092,
-      0.113,
-      0.032,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": true,
-    "talking": false
-   },
-   "repairs": [
-    {
-     "score": 70,
-     "reason": "showrunner BLOCK: The real clip lands its comic Brady calls, but our hook line sits on top of the broadcast score bug for most of the video."
-    },
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The footage is real and fits the 'Brady sounds' premise, but our line is printed straight over the broadcast scorebug in almost every frame, and the cut jumps between game times without context, so a stranger cannot follow which call goes with which play."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The footage is real and fits the 'Brady sounds' premise, but our line is printed straight over the broadcast scorebug in almost every frame, and the cut jumps between game times without context, so a stranger cannot follow which call goes with which play.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The footage is real and fits the 'Brady sounds' premise, but our line is printed straight over the broadcast scorebug in almost every frame, and the cut jumps between game times without context, so a stranger cannot follow which call goes with which play."
-  },
-  {
-   "sub": "sports",
-   "who": "Tom Brady",
-   "why": "Brady squeals like a fan as the Eagles kick the 60-yard game winner.",
-   "post_title": "Tom Brady squeals as Jake Elliot's 60 yard FG wins the game for the Eagles",
-   "upvotes": 9397,
-   "url": "https://www.reddit.com/r/sports/comments/1y6hots/tom_brady_squeals_as_jake_elliots_60_yard_fg_wins/",
-   "topic": "https://www.reddit.com/r/sports/comments/1y6hots/tom_brady_squeals_as_jake_elliots_60_yard_fg_wins",
-   "title": "Tom Brady Squeals As Jake Elliott Drills A 60-Yard Kick To Win It For The Eagles",
-   "hook": "Brady calls a 60 yard game winner \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@12.44"
-    ],
+    "moves": [],
     "mood": null,
     "shot_plan": {
      "layout": "cameras",
@@ -187,8 +70,8 @@
       {
        "mode": "camera",
        "t0": 0.0,
-       "t1": 15.0,
-       "reason": "the framer: Field goal formation: holder, kicker, and the line of players between the uprights, plus the scoreboard below",
+       "t1": 23.98,
+       "reason": "the framer: Damian Lillard's face and the ESPN mic fill columns 3-6. He is the speaker, so the crop keeps his whole face and leaves out the crowd and the interviewer at the edge.",
        "crop": [
         540,
         720,
@@ -198,283 +81,13 @@
       }
      ],
      "subtitle_spans": [
-      0.056,
-      0.0,
-      0.0,
-      0.0,
-      0.0
+      0.286,
+      0.375,
+      0.375,
+      0.375,
+      0.375
      ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The 60-yard game-winner itself lands, but our line sits on top of the TV scorebug for the whole video, Brady (who the line is about) is never seen, and the first 6 seconds are a static lineup."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The 60-yard game-winner itself lands, but our line sits on top of the TV scorebug for the whole video, Brady (who the line is about) is never seen, and the first 6 seconds are a static lineup.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The 60-yard game-winner itself lands, but our line sits on top of the TV scorebug for the whole video, Brady (who the line is about) is never seen, and the first 6 seconds are a static lineup."
-  },
-  {
-   "sub": "nfl",
-   "who": "Josh Allen",
-   "why": "Josh Allen's reaction to Tyler Bass's game-winning 57-yarder.",
-   "post_title": "[Highlight] Josh Allen reacts to Tyler Bass' game-winning 57-YD FG",
-   "upvotes": 798,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6kc08/highlight_josh_allen_reacts_to_tyler_bass/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6kc08/highlight_josh_allen_reacts_to_tyler_bass",
-   "title": "Josh Allen Can't Believe What Tyler Bass Just Pulled Off On Thanksgiving",
-   "hook": "Josh Allen reacts to the game-winning kick \ud83d\ude4c",
-   "ledger": {
-    "moves": [
-     "whoa@5.5",
-     "hype@4.5(silent)"
-    ],
-    "mood": "hype",
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [
-     "Tyler Bass@4.32"
-    ],
-    "cut_in_s": 6.5,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/8aCTL4iv5IA",
-   "ok": true,
-   "publish_at": "2026-11-27T18:00:00Z",
-   "seconds": 400,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-josh-allen-can-t-believe-what-tyler-bass-just-pu-5d93a4c4",
-    "tiktok": "queued for 2026-11-27T18:00:00Z"
-   }
-  },
-  {
-   "sub": "nfl",
-   "who": "George Pickens",
-   "why": "Pickens heads for the locker room with two seconds still on the clock.",
-   "post_title": "[Highlight] George Pickens was immediately heading back to the locker room after Jake Elliot\u2019s field goal without realizing there were still two seconds on the clock",
-   "upvotes": 822,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6kmt8/highlight_george_pickens_was_immediately_heading/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6kmt8/highlight_george_pickens_was_immediately_heading",
-   "title": "George Pickens Heads To The Locker Room With Two Seconds Still On The Clock",
-   "hook": "Pickens left with two seconds still on the clock \ud83d\ude2d",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": null
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 79
-   },
-   "video_url": "https://youtube.com/shorts/UXxa5PGkdrU",
-   "ok": true,
-   "publish_at": "2026-11-27T21:00:00Z",
-   "seconds": 97,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-george-pickens-heads-to-the-locker-room-with-two-3d71e548",
-    "tiktok": "queued for 2026-11-27T21:00:00Z"
-   }
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "Luka tells Austin Reaves to take his time coming back, and explains why from his own trade.",
-   "post_title": "Luka Doncic warned Austin Reaves to take his time returning because his bruised heel in 2024 led to him being traded and he doesn't want AR to be put in the same situation",
-   "upvotes": 3427,
-   "url": "https://streamable.com/orj05w",
-   "topic": "https://www.reddit.com/r/nba/comments/1y31il2/luka_doncic_warned_austin_reaves_to_take_his_time",
-   "title": "Luka Doncic Warns Austin Reaves Not To Rush Back After His Own Heel Nightmare",
-   "hook": "Luka warned Austin not to rush back",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "2 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 0.7,
-       "reason": "the framer: Headband player in the purple jersey is the main subject, and his face is whole in columns 5-6. The second player at the right edge is cut off, so I left him out. (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 0.7,
-       "t1": 22.44,
-       "reason": "the framer: The man talking is centred in columns 4-5, with his full face and shoulders. The shelves on either side are backdrop. (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [
-     "Austin Reaves@3.85",
-     "Luka Doncic@13.23"
-    ],
-    "cut_in_s": 10.5,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": true
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The promised Luka moment is never shown: a reporter in a sliver of a strip, swamped by a giant blurred copy of his own face, relays it second-hand.",
-    "score": 49
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The promised Luka moment is never shown: a reporter in a sliver of a strip, swamped by a giant blurred copy of his own face, relays it second-hand."
-  },
-  {
-   "sub": "hockey",
-   "who": "Dylan Larkin",
-   "why": "Montreal fans chant \"We Got Larkin\" on his first shift as a Hab.",
-   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
-   "upvotes": 3031,
-   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
-   "title": "Dylan Larkin Gets A Wild Welcome From Montreal Fans On His First Shift",
-   "hook": "Montreal fans chant for Larkin \ud83d\udd25",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "2 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 1.17,
-       "reason": "the framer: Montreal player in red helmet (#88), face whole in columns 2-5",
-       "crop": [
-        540,
-        720,
-        242,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 1.17,
-       "t1": 15.0,
-       "reason": "the framer: Play along the boards: players battling at columns 3-5, with #14 and #40 nearby",
-       "crop": [
-        540,
-        720,
-        242,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The line promises Montreal fans chanting for Larkin, but the footage is wide broadcast play that ends on a lone goalie. The crowd and Larkin are never shown, so the moment never lands.",
-    "score": 53
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The line promises Montreal fans chanting for Larkin, but the footage is wide broadcast play that ends on a lone goalie. The crowd and Larkin are never shown, so the moment never lands."
-  },
-  {
-   "sub": "hockey",
-   "who": "Paul Maurice",
-   "why": "The Panthers coach gives student reporters advice, and it's funny.",
-   "post_title": "[Cugno] For the aspiring sports reporters out there - here's some great advice from Panthers Head Coach Paul Maurice. The Panthers had a student media day at practice today",
-   "upvotes": 1010,
-   "url": "https://www.reddit.com/r/hockey/comments/1y4u1ez/cugno_for_the_aspiring_sports_reporters_out_there/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y4u1ez/cugno_for_the_aspiring_sports_reporters_out_there",
-   "title": "Paul Maurice Shows Reporters The Right Way To Ask Him A Hard Question",
-   "hook": "Maurice on how to ask a coach",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "1 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 44.73,
-       "reason": "the framer: The speaker's neck and hoodie torso are centred on columns 3-5. The frame cuts off above the chin, so no face is visible. The Panthers logos and the pineapple sign on either side are backdrop only. (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
+     "n_subjects": 2,
      "face_bands": []
     },
     "outro": null,
@@ -488,513 +101,66 @@
    "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
   },
   {
-   "sub": "hockey",
-   "who": "Panthers and Senators",
-   "why": "A hot mic catches \"your wife's a hooker\" in the middle of a game.",
-   "post_title": "Hot mic in the Panthers-Sens game catches \"your wife's a hooker\"",
-   "upvotes": 1791,
-   "url": "https://www.reddit.com/r/hockey/comments/1y5ppf8/hot_mic_in_the_pantherssens_game_catches_your/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y5ppf8/hot_mic_in_the_pantherssens_game_catches_your",
-   "title": "Panthers And Senators: Hot Mic In Panthers-Sens Game Catches \"Your Wife's A Hooker\" \ud83d\ude33",
-   "hook": "Hot mic catches it in Panthers-Sens \ud83d\ude33",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      370,
-      0
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "skipped": "author: the title names 'Senators', which the post never does"
+   "sub": "soccer",
+   "who": "Boca Juniors",
+   "why": "A little kid on camera says 'I'm Boca' and explains what his family is doing after the title win.",
+   "post_title": "After Boca Juniors' title win yesterday \u2014 Reporter: \"Are you a Boca fan?\" - Kid: \"I'm Boca\" - Reporter: \"Are you happy they won?\" - Kid: \"Yes, because they told me by tradition we're going over there ",
+   "upvotes": 4902,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2tcal/after_boca_juniors_title_win_yesterday_reporter/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2tcal/after_boca_juniors_title_win_yesterday_reporter",
+   "skipped": "not English (English p=0.02, 52% English words)"
   },
   {
    "sub": "nba",
    "who": "Kevin Durant",
-   "why": "Durant and Dillon Brooks get into a scuffle and Brooks is ejected.",
-   "post_title": "[Highlight] Kevin Durant and Dillion Brooks get in a Kerfuffle. Brooks is ejected with his second Technical",
-   "upvotes": 2973,
-   "url": "https://streamable.com/uq8feo",
-   "topic": "https://www.reddit.com/r/nba/comments/1y5rg78/highlight_kevin_durant_and_dillion_brooks_get_in",
-   "title": "Dillon Brooks Gets Thrown Out And Kevin Durant Has To Be Separated",
-   "hook": "Brooks gets tossed, KD gets held back",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "4 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 3.93,
-       "reason": "the framer: The play under the basket: the white-jerseyed players in a scrum with the Rockets player at columns 4-5, and the referee at column 6.",
-       "crop": [
-        608,
-        1080,
-        752,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 3.93,
-       "t1": 8.85,
-       "reason": "the framer: Close-up of the bearded Suns player talking. His face spans columns 4-6 and his shoulder sits beside it.",
-       "crop": [
-        608,
-        1080,
-        752,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 8.85,
-       "t1": 12.95,
-       "reason": "the framer: The bearded Suns player's face is at columns 5-6. A staffer's head at columns 2-3 and a hand at column 5 are in the shot. Columns 2-6 keep both faces. \u2014 overruled: every face in the shot fits a tall crop on them",
-       "crop": [
-        608,
-        1080,
-        668,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 12.95,
-       "t1": 15.68,
-       "reason": "the framer: The scuffle and the players being held back is at columns 6-9: Suns players in white and staff pulling people apart. The Rockets logo and empty court sit to the left.",
-       "crop": [
-        810,
-        1080,
-        1110,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": [
-      [
-       0.0,
-       0.825
-      ],
-      [
-       0.013,
-       0.691
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": true,
-    "talking": false
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The face-off and separation are really shown, but the first 2 seconds are a tiny wide shot of normal play and the ejection payoff never clearly lands."
-    },
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: The nose-to-nose the line promises shows up for under a second at the very end, with KD cropped half out of frame, and the ejection is never shown."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The hook is a routine layup, the ejection is never shown, Durant is never clearly seen being held back, and our line overlaps the TV score bug at the end.",
-    "score": 57
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The hook is a routine layup, the ejection is never shown, Durant is never clearly seen being held back, and our line overlaps the TV score bug at the end."
-  },
-  {
-   "sub": "CFB",
-   "who": "Lane Kiffin",
-   "why": "Kiffin tries to strip the ball from a player on the sideline and fails.",
-   "post_title": "[More_Issues] Lane Kiffin tried to strip the ball from Javin Gordon last night on the sideline. Much like the rest of the night, he was unsuccessful",
-   "upvotes": 1265,
-   "url": "https://x.com/More_Issues/status/2124513923659366866?a=qPBR-INCTOBSsAV6pmo&s=19",
-   "topic": "https://www.reddit.com/r/CFB/comments/1y2vy9n/more_issues_lane_kiffin_tried_to_strip_the_ball",
-   "skipped": "too short: the post runs 11.4s (< 15s)"
-  },
-  {
-   "sub": "CFB",
-   "who": "Army football",
-   "why": "Army rearranges the \"GO NAVY\" seats to read \"GO ARMY\".",
-   "post_title": "[Forman] Good morning from Annapolis where Army pulled a hell of a prank by rearranging the \u201cGO NAVY\u201d seats to say \u201cGO ARMY\u201d. They are changing it back now. That is top notch trolling right there.",
-   "upvotes": 1405,
-   "url": "https://x.com/TOM_III_Guy/status/2124127108561776944?a=Xg8BgclalOux5lfqg_k&s=19",
-   "topic": "https://www.reddit.com/r/CFB/comments/1y1zeia/forman_good_morning_from_annapolis_where_army",
-   "skipped": "download failed"
-  },
-  {
-   "sub": "CollegeBasketball",
-   "who": "Tom Izzo",
-   "why": "Izzo rants about the injury-disclosure rule and gambling.",
-   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
-   "upvotes": 2776,
-   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
-   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
-   "title": "Tom Izzo Rips The Injury Report Rule: \"Never Heard Of Such A Dumb Rule\"",
-   "hook": "Izzo says he'd rather get fined \ud83d\ude24",
-   "ledger": {
-    "moves": [
-     "whoa@1.61"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "1 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 28.17,
-       "reason": "the framer: Izzo's whole face and head, speaking, spans roughly columns 4-6",
-       "crop": [
-        404,
-        720,
-        502,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.169,
-      0.0,
-      0.241
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.0,
-       1.0
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": true
-   },
-   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
-  },
-  {
-   "sub": "MMA",
-   "who": "Jiri Prochazka",
-   "why": "Prochazka has to clarify he's straight after taking two guys from his village to his hotel room.",
-   "post_title": "Jiri Prochazka clarifies he is heterosexual after taking 2 crazy guys from his village to his hotel room to celebrate",
-   "upvotes": 1942,
-   "url": "https://streamable.com/c9jwt7",
-   "topic": "https://www.reddit.com/r/MMA/comments/1y17egk/jiri_prochazka_clarifies_he_is_heterosexual_after",
-   "title": "Jiri Prochazka Clears Up Rumors About Taking 2 Guys To His Hotel Room",
-   "hook": "Jiri clarifies the hotel room interview \ud83d\ude33",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "split",
-     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
-     "shots": [
-      {
-       "mode": "split",
-       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 2,
-     "face_bands": [
-      [
-       0.003,
-       0.234
-      ],
-      [
-       0.557,
-       0.79
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": true
-   },
-   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
-  },
-  {
-   "sub": "MMA",
-   "who": "Josh Hokit",
-   "why": "Hokit breaks character and says Gane was kind to him at the hospital after their fight.",
-   "post_title": "Josh Hokit breaks character and admits Ciryl Gane is a nice guy and they had an encounter later in the hospital: \"We are both at the hospital till like 6 AM. And he's all talking 'You're gonna be a ch",
-   "upvotes": 802,
-   "url": "https://x.com/Home_of_Fight/status/2125297204399399080?a=Zxf3oUBhkOcOJGeIgPQ&s=19",
-   "topic": "https://www.reddit.com/r/MMA/comments/1y4qtqc/josh_hokit_breaks_character_and_admits_ciryl_gane",
-   "title": "Josh Hokit Admits Ciryl Gane Is A Nice Guy, Then Says He Still Wants Revenge",
-   "hook": "Hokit ran into Gane at the hospital \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "zoom@5.01"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "split",
-     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
-     "shots": [
-      {
-       "mode": "split",
-       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.058,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 2,
-     "face_bands": [
-      [
-       0.022,
-       0.299
-      ],
-      [
-       0.55,
-       0.775
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [
-     "Josh Hokit, Ciryl Gane@6.75"
-    ],
-    "cut_in_s": 4.0,
-    "shown": [],
-    "music": [],
-    "own_captions": true,
-    "talking": true
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The admission is real, but the source's split-screen is re-cropped into collage debris, and on the fight cutaway our line sits over the UFC graphic."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: This is a restream: a podcast host's webcam stacked over another video with stray edge strips, and the hospital story the line promises is never clearly shown.",
-    "score": 49
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: This is a restream: a podcast host's webcam stacked over another video with stray edge strips, and the hospital story the line promises is never clearly shown."
-  },
-  {
-   "sub": "soccer",
-   "who": "Gavi",
-   "why": "Gavi says he's a team player, not a star, about his limited minutes.",
-   "post_title": "Gavi on his limited minutes: \u201cI'm not a star, and I know that. I'm a team player who plays for his teammates, and it's normal to have this kind of competition when you're at the best team in the world",
-   "upvotes": 4956,
-   "url": "https://www.reddit.com/r/soccer/comments/1y5ma4i/gavi_on_his_limited_minutes_im_not_a_star_and_i/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1y5ma4i/gavi_on_his_limited_minutes_im_not_a_star_and_i",
-   "skipped": "not English (English p=0.04, 58% English words)"
+   "why": "KD argues with the Suns players and says 'Y'all want to fight just say that.'",
+   "post_title": "KD argues with the Suns players: \u201cNot tryna fight nobody. Y\u2019all want to fight just say that.\u201d",
+   "upvotes": 1502,
+   "url": "https://streamable.com/cbd2ak",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5tz6w/kd_argues_with_the_suns_players_not_tryna_fight",
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
    "sub": "nba",
-   "who": "Tari Eason",
-   "why": "Eason blows a windmill dunk and the Rockets bench and commentators react.",
-   "post_title": "[Lowlight] Tari Eason gets the steal but blows the windmill dunk, with Rockets commentary and bench reactions",
-   "upvotes": 2776,
-   "url": "https://streamable.com/eq4zf8",
-   "topic": "https://www.reddit.com/r/nba/comments/1y4320k/lowlight_tari_eason_gets_the_steal_but_blows_the",
-   "title": "Tari Eason Steals It, Goes For The Windmill, And Instantly Regrets It",
-   "hook": "Tari Eason got way ahead of himself \ud83d\udc80",
+   "who": "Erik Spoelstra",
+   "why": "Spoelstra tells how LeBron made adjustments to his adjustments in the bubble, a story about a rival the viewer can see in the games.",
+   "post_title": "Spoelstra on LeBron: \u201cI loved the discussions on how we saw the game...the best way to explain it is when we competed against them in the bubble\u2026 he was making adjustments to my adjustments and to my ",
+   "upvotes": 2012,
+   "url": "https://streamable.com/i1e9ok",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5ua3k/spoelstra_on_lebron_i_loved_the_discussions_on",
+   "title": "Erik Spoelstra Explains How LeBron Out-Adjusted Him In The Bubble",
+   "hook": "Spoelstra on LeBron's adjustments \ud83e\udde0",
    "ledger": {
     "moves": [
-     "shake@5.0"
+     "zoom@9.93"
     ],
     "mood": null,
     "shot_plan": {
-     "layout": "cameras",
-     "reason": "8 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 1.35,
-       "reason": "the framer: Fast-break play: the white-jersey player falling at the middle of the court with the red defender, plus the figures near the top at cols 3-4",
-       "crop": [
-        356,
-        632,
-        244,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 1.35,
-       "t1": 5.38,
-       "reason": "the framer: Red #17 (Eason) running alone across the court",
-       "crop": [
-        356,
-        632,
-        364,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 5.38,
-       "t1": 6.78,
-       "reason": "the framer: Red player over the fallen white-jersey player at the center of the court, with the referee beside them",
-       "crop": [
-        474,
-        632,
-        366,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 6.78,
-       "t1": 10.97,
-       "reason": "the framer: The two players on the floor at cols 4-6, with the standing white #4 at col 7 reacting (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 10.97,
-       "t1": 14.25,
-       "reason": "the framer: Eason's face and head lying on the floor holding the ball",
-       "crop": [
-        474,
-        632,
-        366,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 14.25,
-       "t1": 16.3,
-       "reason": "the framer: Teammate on the bench in a red shirt, smiling at the rim",
-       "crop": [
-        474,
-        632,
-        124,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 16.3,
-       "t1": 20.12,
-       "reason": "the framer: Red #15 on the right, face whole, with #1 and #17 beside him; the referee is in the middle",
-       "crop": [
-        356,
-        632,
-        846,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 20.12,
-       "t1": 22.0,
-       "reason": "the framer: Eason (#17, headband) and Kevin Durant looking on behind him",
-       "crop": [
-        474,
-        632,
-        486,
-        0
-       ]
-      }
-     ],
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
      "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": []
+      0.852,
+      0.852,
+      0.852,
+      0.852,
+      0.852
+     ]
     },
     "outro": null,
     "cut_in": [],
     "cut_in_s": 0,
     "shown": [],
     "music": [],
-    "own_captions": false,
-    "talking": false
+    "own_captions": true,
+    "talking": true
    },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/Wy6R2OzB3Cs",
-   "ok": true,
-   "publish_at": "2026-11-28T00:00:00Z",
-   "seconds": 169,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-tari-eason-steals-it-goes-for-the-windmill-and-i-41289134",
-    "tiktok": "queued for 2026-11-28T00:00:00Z"
-   }
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
   }
  ],
- "already_today": 0,
- "pool": 135,
- "already_posted": 4,
- "refused_before": 10,
- "shipped": 4
+ "already_today": 4,
+ "pool": 125,
+ "already_posted": 8,
+ "refused_before": 12,
+ "shipped": 0
 }

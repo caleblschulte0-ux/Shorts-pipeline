@@ -171,6 +171,14 @@
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
  },
+ "https://www.reddit.com/r/nba/comments/1y5tz6w/kd_argues_with_the_suns_players_not_tryna_fight": {
+  "n": 2,
+  "why": "author: no setup or no payoff in the clip"
+ },
+ "https://www.reddit.com/r/nba/comments/1y5ua3k/spoelstra_on_lebron_i_loved_the_discussions_on": {
+  "n": 2,
+  "why": "someone else's edit: the footage already carries burned-in captions of what is said"
+ },
  "https://www.reddit.com/r/nba/comments/1y63y06/gloria_james_meets_her_grandson_vj_edgecombe": {
   "n": 2,
   "why": "too short: the post runs 9.4s (< 15s)"
@@ -274,6 +282,10 @@
  "https://www.reddit.com/r/soccer/comments/1y2gvdf/lionel_messi_takes_a_throwin_off_gonzalo_tapias": {
   "n": 2,
   "why": "too short: the post runs 6.7s (< 15s)"
+ },
+ "https://www.reddit.com/r/soccer/comments/1y2tcal/after_boca_juniors_title_win_yesterday_reporter": {
+  "n": 2,
+  "why": "not English (English p=0.02, 52% English words)"
  },
  "https://www.reddit.com/r/soccer/comments/1y2ym2b/sir_alex_ferguson_and_sir_kenny_dalglish_with": {
   "n": 2,
