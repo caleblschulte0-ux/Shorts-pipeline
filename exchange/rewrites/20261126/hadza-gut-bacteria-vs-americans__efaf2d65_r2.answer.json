@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hadza-gut-bacteria-vs-americans__efaf2d65_r2",
+  "slug": "hadza-gut-bacteria-vs-americans",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Gut Bacteria Richness Reflects Fiber And Antibiotic Pressure",
+  "hook": "Daily food and medicine expose why one gut community is richer.",
+  "closing": "Fiber intake and antibiotic use both shape the gut bacteria people carry.",
+  "question": "How much fiber did you eat?",
+  "segments": [
+    {
+      "topic": "Gut Bacteria Gap",
+      "say": "The Hadza carry about 730 gut bacteria species. That is far richer than the average American gut."
+    },
+    {
+      "topic": "Gut Fiber Intake",
+      "say": "Hadza fiber intake reaches 150 grams daily. That food supply helps explain their richer gut bacteria."
+    },
+    {
+      "topic": "Gut Antibiotic Pressure",
+      "say": "Likely unnecessary prescriptions make up 34% of outpatient antibiotics. That adds another pressure on gut bacteria richness."
+    }
+  ]
+}
