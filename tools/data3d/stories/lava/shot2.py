@@ -8,7 +8,7 @@ ground (still 1), up to the house's knee (still 2), at its eaves (still 3), far 
 held behind it (still 4). He watches it climb, his head tilting further up each still, and ends looking up at it."""
 
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
-S2_SLOPE = 1.18                         # its faces
+S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 7.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-2.45, 2.6, 1.6, 2.4)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
 S2_P0 = (-0.25, 5.55)                   # where he stands: in the foreground, right of the house
@@ -94,7 +94,7 @@ def shot2():
     # ---- him: in the foreground, three-quarter to the lens; he watches it climb, head going further up each still,
     # a step back as it passes the eaves
     data = load_data()
-    CAM0 = Vector((-0.6, 7.0, 0.45)); LOOK0 = Vector((-1.2, 0.0, 1.6))
+    CAM0 = Vector((0.05, 7.0, 0.4)); LOOK0 = CAM0 + Vector((-0.34, -0.94, 0.15)) * 5.0      # (w2a) set by hand: him at the left, the whole house at the right
     X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
     YAW = math.radians(-130)                                   # three-quarter to the lens, turned toward the house and the wall at its left
     data.place(X0, Y0, math.degrees(YAW))
@@ -109,11 +109,11 @@ def shot2():
         data._plant_feet_here(t, lift=(Z0, Z0))
     lw_layer(data, "spine", lambda t: (-6 * W(t, TS[1], 0.6) - 10 * W(t, TS[2] - 0.2, 0.6) - 8 * W(t, TS[3] - 0.5, 0.5) + 10 * lw_kick(t - TS[2] + 0.1, 0.3), 0, 0), 0, DUR + 0.4)
     HEAD = Vector((X0, Y0, Z0 + 0.5))
-    UPAT = lambda up: HEAD + Vector((-1.1, 0.35, up))                  # round toward the house and the wall over it, further up each still
+    UPAT = lambda up: HEAD + Vector((0.2, 0.5, up))                    # (w2a/w2b FACE 89-105: turned to the wall behind him he showed us the back of his head) up at it towering over him, further up each still
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)          # at us, as it starts
-    data.look_at(UPAT(0.15), TS[0] + 0.25, max_yaw=35, max_pitch=50, blend=0.35)                # round at the rock coming down
-    data.look_at(UPAT(0.55), TS[1] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)
-    data.look_at(UPAT(1.4), TS[2] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)                   # right up at it
+    data.look_at(UPAT(0.3), TS[0] + 0.25, max_yaw=35, max_pitch=50, blend=0.35)                # round at the rock coming down
+    data.look_at(UPAT(0.7), TS[1] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)
+    data.look_at(UPAT(1.6), TS[2] + 0.2, max_yaw=35, max_pitch=50, blend=0.5)                   # right up at it
     data.expression("surprised", 0.0, TS[2], blend=0.15)
     data.expression("alarmed", TS[2], DUR + 1.0, blend=0.25)
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
@@ -121,16 +121,16 @@ def shot2():
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = (LOW, LOW, WHOA, WHOA, WHOA) if sd == sides[0] else (LOW, LOW, LOW, WHOA, WHOA)
+        seq = (LOW, WHOA, WHOA, WHOA, WHOA) if sd == sides[0] else (LOW, WHOA, WHOA, WHOA, WHOA)      # (w2a/w2c: his pose turned 1-7 deg from still 1 to 2)
         for tk, pose in zip((0.0, TS[1], TS[2] - 0.2, TS[3] - 0.4, DUR + 0.5), seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    CAM, LOOK = compose.frame_data(data, CAM0, LOOK0, 28.0, face_at=(0.66, 0.66), height=0.36, t=TS[1])
+    CAM, LOOK = CAM0, LOOK0
     cam = K.camera(tuple(CAM), tuple(LOOK), lens=28.0, fstop=11.0)
     print("S2 CAM", tuple(round(v, 2) for v in CAM), "look", tuple(round(v, 2) for v in LOOK), "data", tuple(round(v, 2) for v in data.pos()), flush=True)
     def cam_at(t):
-        drift = Vector((0.0, -0.12, 0.05)) * (t / DUR)                # a slow push in as it rises
-        tilt = Vector((0, 0, 0.9)) * W(t, TS[1], TS[3] - TS[1])          # tipping up with it
+        drift = Vector((0.0, 0.0, 0.03)) * (t / DUR)                  # (w2b: the push took him to 0.55) a slow rise
+        tilt = Vector((0, 0, 0.6)) * W(t, TS[1], TS[3] - TS[1])          # tipping up with it
         return CAM + drift, LOOK + drift + tilt, data.pos() + Vector((0, 0, 0.5))
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=(), cutaway=None,
