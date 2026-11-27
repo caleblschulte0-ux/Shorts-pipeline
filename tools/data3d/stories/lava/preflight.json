@@ -2670,6 +2670,84 @@
     }
    ]
   },
+  "f85f21e47b0dc23e628d2a199e5cdc3f0bdffa2d1e051cc2c2ab5bd5cb4a2230": {
+   "at": "2026-11-27 20:17:25Z",
+   "claims": 8,
+   "claims_key": "3cc7006e1c1fa18d",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The digger is absent in stills 1 and 3 and appears in stills 2 and 4. In still 2 it is small, behind Data's head. In still 4 it is large and high on the wall. The house also changes position and size between stills. The wall's height jumps with no cause shown.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-4"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 the digger sits at the top edge and is cropped by the frame. Data's head is also tight against the top in stills 1 and 2.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    },
+    {
+     "id": "different",
+     "note": "All four stills show Data standing in place with roughly the same framing and the same house. Only his pose changes and the wall changes slightly. No new event or result is shown.",
+     "rule": "the stills are clearly different from each other: each shows a new state (before, action, result, reaction), not one picture repeated",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Data stands in the same place in every still and only changes pose. Nothing new happens in each still.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-4"
+    },
+    {
+     "id": "broken",
+     "note": "The digger is cut off by the top edge in still 4. Data's head in stills 3 and 4 is tilted so far that the glasses and hat look broken. The digger is tiny and floats on the wall top with no support seen.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3-4"
+    },
+    {
+     "id": "body",
+     "note": "Data's arms hang or bend oddly with fists clenched on nothing. In still 3 the head is thrown back at an unnatural angle.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "3-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The wall is not clearly bigger in still 4 than in still 1 or 2. Nothing visibly changes because of an action, and the digger is too small to read at phone size.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "f85f21e47b0dc23e628d2a199e5cdc3f0bdffa2d1e051cc2c2ab5bd5cb4a2230",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c1",
+     "kind": "ACTION",
+     "note": "A digger appears only in still 4, as a small excavator on top of a dark rock wall. Stills 1-3 show no digger. The wall is already built in still 1, so no still shows the digger piling it.",
+     "text": "A digger piles a rock wall behind a house"
+    },
+    {
+     "from": "FOR",
+     "id": "c2",
+     "kind": "ACTION",
+     "note": "The rock wall is taller in still 4 and fills the background. No still shows it rising past the windows or eaves. The wall behind the house is already about eave height in still 2.",
+     "text": "it rises past the windows, the eaves"
+    },
+    {
+     "from": "SAYS",
+     "id": "c5",
+     "kind": "SAYS",
+     "note": "A dark rock wall behind a house is visible, with a digger on top in still 4. A stranger could not tell that it was built, or how it compares with the house. The house is in front of the wall, not dwarfed by it.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house"
+    }
+   ]
+  },
   "fe2993eb3530faf734f41561043ceaccac230eaeba18e30a941cb872a7e4b1ef": {
    "at": "2026-11-27 08:04:28Z",
    "claims": 15,
