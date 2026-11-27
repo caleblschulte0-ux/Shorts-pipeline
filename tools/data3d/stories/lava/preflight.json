@@ -2664,6 +2664,73 @@
     }
    ]
   },
+  "f5b93f8b6edda6fb294387b396ba1b67228ced1ec945640568dded4c0f4b2fab": {
+   "at": "2026-11-27 22:03:23Z",
+   "claims": 8,
+   "claims_key": "4ba6d77c53072949",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The digger is cut by the top edge in still 4. The house is partly hidden behind Data in still 1. The wall is cut by the frame edge on the right in still 4.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The wall in still 3 is a flat band of rubble that ends sharply at the house. The digger floats above the horizon in still 4 with its bucket cut off by the top edge.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1-4"
+    },
+    {
+     "id": "look",
+     "note": "Data and the house look like toys. The house is a flat box with a plain wall and a red roof, and it does not read as realistic lava or rock wall.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The wall in still 4 is only about roof height and reads as a rubble pile. The house is not dwarfed or visibly affected, so the 'taller than a house' result is weak.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "f5b93f8b6edda6fb294387b396ba1b67228ced1ec945640568dded4c0f4b2fab",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c2",
+     "kind": "ACTION",
+     "note": "The wall's top is level with the roof ridge and chimney. It is not seen rising past the windows and eaves, because the house is a small shed with no clear windows. Only the rubble line is seen rising behind the roof.",
+     "text": "it rises past the windows, the eaves"
+    },
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "ACTION",
+     "note": "The wall top is only a little above the roof and the digger sits on it. It does not reach far over the roof.",
+     "text": "far over the roof"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "ACTION",
+     "note": "Data stays in the same spot and gestures, with the same stance in every still. He does not back away.",
+     "text": "Data backs away"
+    },
+    {
+     "from": "SAYS",
+     "id": "c5",
+     "kind": "SAYS",
+     "note": "Rock grows behind a house with a digger on top, but there is no clear sign of Iceland, and the wall is not clearly taller than the house. The house is tiny and cartoonish.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house"
+    }
+   ]
+  },
   "f8598e013b0707eb9e87088aff3bfce08e37c3a959450faeee8190119dd81993": {
    "at": "2026-11-27 04:22:00Z",
    "claims": 15,
