@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-reactors-under-construction__1efdf38f_r1",
+  "slug": "nuclear-reactors-under-construction",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Nuclear Construction Starts, Concentration, And Capacity Form One Buildout",
+  "hook": "The nuclear buildout is active, large, and concentrated in one country.",
+  "closing": "Today's nuclear construction map will shape where future generating capacity comes online.",
+  "question": "Will nuclear construction keep growing?",
+  "segments": [
+    {
+      "topic": "Nuclear Construction Starts",
+      "say": "Ten nuclear reactor projects started construction in 2025. The worldwide buildout is still adding new projects."
+    },
+    {
+      "topic": "Nuclear Construction China",
+      "say": "China holds 50% of nuclear capacity under construction. Half of the active buildout is concentrated there."
+    },
+    {
+      "topic": "Nuclear Construction Capacity",
+      "say": "Worldwide nuclear construction totals 78 gigawatts. That concentrated pipeline adds up to substantial generating capacity."
+    }
+  ]
+}
