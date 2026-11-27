@@ -1935,7 +1935,7 @@ def shot2():
     R = math.radians
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.6; T_LET = 1.4; T_WALK = 2.0; T_ARR = 2.68
+    T_AB = 0.6; T_LET = 1.4; T_WALK = 1.78; T_ARR = 2.95
     T_CUT = 1.72; T_WB = 2.72
     P = place_wall_works()
     light = P["light"]; walls = P["walls"]
@@ -2012,7 +2012,8 @@ def shot2():
     lands.sort(key=lambda a: a[0])
     print("S2 rock lands", len(lands), "first", round(lands[0][0], 2) if lands else None, flush=True)
     for k, t0 in enumerate((0.05, 0.62, 1.05)):
-        FX.dust_puff(base=(S2_XT - 0.15 + 0.1 * (k - 1), -0.35, 0.2), w=0.7, h=1.2 + 0.5 * k, t0=t0, dur=1.6, col=(0.55, 0.52, 0.48), dens=6.0, seed=3.3 + k, name=f"dust off the tipped rock {k}")
+        FX.dust_puff(base=(S2_XT + 0.35 + 0.1 * (k - 1), -0.35, 0.2), w=0.5,       # (q2e: off the line from the lens to his face)
+                     h=1.2 + 0.5 * k, t0=t0, dur=1.6, col=(0.55, 0.52, 0.48), dens=6.0, seed=3.3 + k, name=f"dust off the tipped rock {k}")
     # ---- him: at the tip lever on the truck's side, between it and the house, facing out to the wall (q2a: from up
     # the alley between them the wall, the rock and the house were all out of the picture: the lens is out past the row)
     data = load_data()
@@ -2039,9 +2040,13 @@ def shot2():
         a = PULL(t); rx = Matrix.Rotation(a, 3, 'X')
         return PIV + rx @ (BAR + lf * u - PIV)
     YW0 = data.arm.rotation_euler.z
+    PE = Vector((S2_HOUSE[0] - 0.3, 0.95, 0.0))        # (q2e) the house's door, in front of it
+    YWK = yaw_of(PE.x - PL.x, PE.y - PL.y)
+    while YWK - YW0 > math.pi: YWK -= 2 * math.pi
+    while YWK - YW0 < -math.pi: YWK += 2 * math.pi
     for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.025 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) - 0.05 * W(t, 1.2, 0.45)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
-        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))
+        t = (f - 1) / FPS; SW = 0.02 * W(t, 0.0, 0.5) - 0.015 * W(t, 0.5, 0.15) + 0.025 * W(t, T_AB, 0.5) - 0.03 * W(t, 1.2, 0.45)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45) + (YWK - YW0) * W(t, T_LET + 0.05, T_WALK - T_LET - 0.05))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
         data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.55, elbow_out=0.25)
@@ -2051,20 +2056,19 @@ def shot2():
     lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.35))), 0.0, DUR + 0.4)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
-    PE = Vector((S2_HOUSE[0] + 0.4, 0.85, 0.0))
-    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.14, lift=0.045, bob=0.014)
+    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.2, lift=0.045, bob=0.014)
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(-0.83, -0.55)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
+    YU = yaw_of(-0.6, -0.8)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
     while YU - YA > math.pi: YU -= 2 * math.pi
     while YU - YA < -math.pi: YU += 2 * math.pi
     for f in range(F(T_ARR) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.25))
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.35))
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PE.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
     data.look_at(PE + Vector((0, -1.5, 0.3)), T_WALK, max_yaw=30, max_pitch=30, blend=0.6)
-    data.look_at(CREST, T_ARR - 0.15, max_yaw=30, max_pitch=50, blend=0.7)                         # up at it
+    data.look_at(CREST, T_ARR - 0.15, max_yaw=15, max_pitch=35, blend=0.6)                         # up at it
     data.expression("determined", 0.0, T_ARR, blend=0.15)
     data.expression("surprised", T_ARR, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
@@ -2088,8 +2092,9 @@ def shot2():
     CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.42, 0.6), height=0.36, t=0.25)
     CB0 = PL + Vector((1.5, -4.4, 4.6)); LB0 = PL + Vector((0.0, 0.0, 0.3))      # (q2d: from the truck's side of him, so the pour is in frame at the right)      # from up over the rising wall, long: its face below us, him at its foot, the house beyond
     CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.38, 0.6), height=0.34, t=1.2)
-    CD0 = PE + Vector((-1.75, -0.25, 0.22)); LD0 = PE + Vector((0.4, -1.2, 1.3))      # (q2c: from up the wall the wall was behind the lens) low by the house's corner, up at the wall over him
-    CD, LD = compose.frame_data(data, CD0, LD0, 28.0, face_at=(0.5, 0.32), height=0.34, t=DUR - 0.05)
+    # (q2c: from up the wall the wall was behind the lens; q2e: the solver backed the lens behind the house's corner) set
+    # by hand: low and close along the house's front, wide, tipped up so the wall rises over him at the right
+    CD = PE + Vector((-0.85, -0.4, 0.22)); LD = CD + Vector((0.913, 0.161, 0.375))
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
@@ -2099,7 +2104,7 @@ def shot2():
     for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
         cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
     for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
-        cam.data.lens = 28.0; cam.data.keyframe_insert("lens", frame=f)
+        cam.data.lens = 22.0; cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
         for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
