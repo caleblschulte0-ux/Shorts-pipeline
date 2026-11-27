@@ -219,13 +219,13 @@ def shot2():
     # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
         data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    CD = PL + Vector((0.2, -1.5, 1.9)); LD = PL + Vector((0.1, 0.0, 0.25))     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
+    CD = PL + Vector((0.2, -1.1, 0.75)); LD = PL + Vector((0.1, 0.0, 0.35))      # (r2a EMPTY: from up high the set behind him was bare ground) low on the wall's foot, the town behind him     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
     data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
-    data.look_at(CD + Vector((0, -0.6, 2.2)), T_WB - 0.45, max_yaw=35, max_pitch=50, blend=0.6)      # (q2q PLAN: a new pose) right up at the wall's top                         # (q2g) up at it
+    data.look_at(CD + Vector((0, -0.9, 2.6)), T_WB - 0.45, max_yaw=35, max_pitch=50, blend=0.6)      # (q2q PLAN: a new pose) right up at the wall's top                         # (q2g) up at it
     data.expression("determined", 0.0, T_WB, blend=0.15)
     data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
@@ -260,7 +260,7 @@ def shot2():
     for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
         cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
     for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
-        cam.data.lens = 50.0; cam.data.keyframe_insert("lens", frame=f)
+        cam.data.lens = 32.0; cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
         for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
