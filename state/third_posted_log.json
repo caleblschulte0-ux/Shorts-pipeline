@@ -23071,6 +23071,34 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about 30% of the 9:16 canvas, not the roughly 75% expected. The framing failed a; vision: From about 13s to the end (~11s of a 24.5s clip) the sharp region is a static game map with no person or action. The pro; vision: In the first half, the character",
       "ts": "2026-11-27T13:16:21.827707+00:00"
+    },
+    "rejected-smoothhilariousadminelegiggle-evihxhymlqbhygfd": {
+      "source_url": "https://www.twitch.tv/moonmoon/clip/SmoothHilariousAdminEleGiggle-evIHxhyMLQBHyGFd",
+      "streamer": "moonmoon",
+      "title": "Moonmoon defeats his oponnent with finest fencing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark gory gameplay, no clear payoff)",
+      "ts": "2026-11-27T19:56:58.629645+00:00"
+    },
+    "rejected-mushyinterestingostrichkappa-zmoyvqv1oz4etuuo": {
+      "source_url": "https://www.twitch.tv/moonmoon/clip/MushyInterestingOstrichKappa-zmOyvQV1oZ4etUUO",
+      "streamer": "moonmoon",
+      "title": "Let me live",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark gameplay, bloody, unclear event)",
+      "ts": "2026-11-27T19:57:32.134977+00:00"
+    },
+    "clip-20261127-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/banksatkin/clip/LazyRoundKaleOMGScoots-S7r-zxD3lJawPNcQ",
+      "story_key": null,
+      "streamer": "banksatkin",
+      "title": "Banksatkin: Banks Atkin Reacts To Crazy GTA 6 Car Glitch Someone Clipped",
+      "kind": "twitch_clip",
+      "ts": "2026-11-27T19:59:20.459829+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
