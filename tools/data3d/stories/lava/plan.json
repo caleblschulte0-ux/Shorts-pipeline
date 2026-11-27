@@ -7,10 +7,11 @@
     {
      "name": "lava bomb",
      "objects": [
-      "lava bomb"
+      "lava bomb",
+      "lava bomb splash"
      ],
      "whole": true,
-     "built_as": "a lump of glowing lava under a cracked black crust, bursting into a molten splash, flying bits and dark smoke"
+     "built_as": "a lump of glowing lava under a cracked black crust that lands in a splash of molten lava on the road, glowing clots flung out on arcs and a low burst of road dust"
     },
     {
      "name": "ash plume",
@@ -37,7 +38,7 @@
     "frame_h": 0.36
    },
    "action": "he bolts down the street toward us",
-   "consequence": "a lava bomb smashes into the road behind him, glowing and smoking",
+   "consequence": "a lava bomb smashes into the road behind him, in a splash of glowing lava",
    "says_still": 2,
    "stills": [
     {
@@ -94,7 +95,7 @@
     },
     {
      "event": "result",
-     "shows": "a lava bomb smashes into the road behind him, glowing and smoking",
+     "shows": "a lava bomb smashes into the road behind him, in a splash of glowing lava",
      "hands": "free",
      "new": [
       {
@@ -116,7 +117,7 @@
      "visible": [
       {
        "prop": "lava bomb",
-       "as": "a lava bomb smashes into the road behind him, glowing and smoking"
+       "as": "a lava bomb smashes into the road behind him, in a splash of glowing lava"
       },
       {
        "prop": "data",
@@ -178,7 +179,7 @@
      ],
      "whole": true,
      "held": true,
-     "built_as": "a boulder of the wall's own black basalt, rough and broken-faced, dusty from the quarry"
+     "built_as": "a boulder of the wall's rock, rough and broken-faced, pale with quarry dust"
     },
     {
      "name": "earth wall",
@@ -202,10 +203,11 @@
      "name": "ash plumes",
      "objects": [
       "far plume",
-      "far fountain"
+      "far fountain",
+      "lava flow outside the wall"
      ],
      "whole": false,
-     "built_as": "dark ash plumes beyond the wall, lit orange from below, low lava spatter at their feet"
+     "built_as": "dark ash columns beyond the wall, lit orange from below, low lava spatter at their feet, and a lobe of glowing lava creeping across the field toward the wall"
     }
    ],
    "framing": "close",
@@ -214,19 +216,19 @@
     "side": "right",
     "frame_h": 0.36
    },
-   "action": "he bends and sets a dusty boulder down on the end of the row of boulders",
+   "action": "he drops a pale, dusty boulder onto the end of the row of black boulders",
    "consequence": "the black wall of rock stands clear over the tall tin house",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "the driver in his hard hat carries a dusty boulder along the crest of the wall in both hands, the eruption's black ash plumes on the horizon",
+     "shows": "the driver in his hard hat carries a pale, dusty boulder along the crest of the wall in both hands, a lava flow creeping toward the wall and the eruption's black ash plumes on the horizon",
      "hands": "boulder",
      "new": [],
      "visible": [
       {
        "prop": "boulder",
-       "as": "he carries a dusty boulder along the crest in both hands"
+       "as": "he carries a pale boulder along the crest in both hands"
       },
       {
        "prop": "data",
@@ -238,38 +240,38 @@
       },
       {
        "prop": "ash plumes",
-       "as": "the black ash plumes on the horizon"
+       "as": "the black ash plumes on the horizon, a glowing lava flow creeping across the field toward the wall"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "he bends and sets the dusty boulder down on the end of the row of boulders",
-     "hands": "boulder",
+     "shows": "he drops the pale boulder onto the end of the row of black boulders in a puff of dust, bent over it, his hands just letting it go",
+     "hands": "free",
      "new": [
       {
        "what": "boulder",
        "how": "moves",
-       "cause": "he lowers it onto the row"
+       "cause": "he lets it go and it drops onto the row"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he bends down to the row"
+       "cause": "he leans over the row as he lets it go"
       }
      ],
      "visible": [
       {
        "prop": "boulder",
-       "as": "he bends and sets it down on the end of the row of boulders"
+       "as": "he drops it onto the end of the row in a puff of dust"
       },
       {
        "prop": "data",
-       "as": "his hands set it down"
+       "as": "bent over the row, his hands just letting it go"
       },
       {
        "prop": "earth wall",
-       "as": "the row of boulders"
+       "as": "the row of black boulders"
       }
      ]
     },
@@ -305,7 +307,7 @@
     },
     {
      "event": "reaction",
-     "shows": "back on the crest he stands by his boulder, one arm out along the row, and grins at us",
+     "shows": "back on the crest, seen down the finished row, he stands by his pale boulder, one arm out along it, and grins at us",
      "hands": "free",
      "new": [
       {
@@ -321,7 +323,11 @@
       },
       {
        "prop": "boulder",
-       "as": "his boulder on the row"
+       "as": "his pale boulder on the end of the finished row of black boulders"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the finished row, seen down its length"
       }
      ]
     }

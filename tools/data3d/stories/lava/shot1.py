@@ -10,7 +10,7 @@ S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
 S1_CARX = -0.6                         # the leaving car's line up the street
-S1_HIT = (-0.62, 1.5, 0.0)              # (r1n: at -0.4 it landed right behind him and he hid it; at -0.95 the frame edge cut it: the left lane, a step deeper)              # where the lava bomb lands on the street, behind him
+S1_HIT = (-0.62, 1.5, 0.0)              # (r1n: at -0.4 he hid it; at -0.95 the frame edge cut it; q1d: in the right lane it fell behind him: the left lane, its smash low so the car up the street stays in sight)
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
 
@@ -286,12 +286,13 @@ def shot1():
     plumes = []
     # (sheet r1n: the four full-size columns merged into one hard-edged dark slab cut by the top of the frame. Three
     # BILLOWING columns rise from the fissure with sky between them, built at the kit's own size and scaled up so their
-    # billows scale with them, soft at the top where they thin away)
+    # billows scale with them, soft at the top where they thin away; r1o: near-black ash showed no billow at phone size and
+    # EMPTY measured the top of the frame as one smooth region: a dark grey ash the sun models, the billows smaller)
     for k, (x, w_, h_) in enumerate(((-2.8, 3.4, 24.0), (1.4, 4.4, 30.0), (5.4, 3.2, 21.0))):
-        plumes.append(ash_plume((S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=5.0, dens=5.0, lean=(-0.03 + 0.03 * k, 0.04),
+        plumes.append(ash_plume((S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=7.0, dens=6.0, lean=(-0.03 + 0.03 * k, 0.04), col=(0.14, 0.13, 0.125),
                                 seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))
         lw_point(f"plume fire light {k}", (S1_FX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)       # orange on the plume's underside and the ridge crest
-    FX.embers(origin=(S1_FX, S1_RIDGE_Y, P["fz"] + 0.2), n=9, speed=13.0, cone=0.55, size=(0.1, 0.2), period=2.4, seed=5, ground_z=P["fz"] - 1.0, splats=0, power=0.0, name="flung bomb")
+    FX.embers(origin=(S1_FX, S1_RIDGE_Y, P["fz"] + 0.2), n=26, speed=13.0, cone=0.55, size=(0.1, 0.2), period=2.4, seed=5, ground_z=P["fz"] - 1.0, splats=0, power=0.0, name="flung bomb")
     P["founts"] = plumes + [fo["jet"]]
     for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True      # (from the street below, the kit's spatter rampart stood as a dark band ACROSS the fountain's white-hot foot: the ridge's own rock is its rampart here)
     for o in P["spat"]: o.hide_render = True
@@ -309,22 +310,18 @@ def shot1():
         t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
         bomb.location = (B0.x + (HIT.x - B0.x) * u_, B0.y + (HIT.y - B0.y) * u_, B0.z + vz0 * s_ - 0.5 * 9.8 * s_ * s_); bomb.keyframe_insert("location", frame=f)
         bomb.rotation_euler = (3.0 * s_, 2.0 * s_, 0.0); bomb.keyframe_insert("rotation_euler", frame=f)
-        bomb.hide_render = t < T_HIT - TF; bomb.keyframe_insert("hide_render", frame=f)
-    splat = K.sph("lava bomb splat", (HIT.x, HIT.y, 0.012), 0.48, lava_mat("splat lava", heat=1.0, scale=6.0, glow="#FF8A10", fresh=0.45), scale=(1.0, 0.8, 0.07), seg=20, ring=8)
-    for t_, sc_ in ((T_HIT - 0.04, 0.0), (T_HIT + 0.1, 1.0), (DUR + 1.0, 1.08)):
-        fr = F(t_); splat.scale = (max(0.06, sc_), max(0.06, 0.8 * sc_), 0.07); splat.keyframe_insert("scale", frame=fr)
-        splat.hide_render = sc_ < 0.06; splat.keyframe_insert("hide_render", frame=fr)
-    for k in range(9):                                    # what it throws out as it bursts: glowing bits that skip across the road and lie there
-        a_ = 2 * math.pi * k / 9 + rf.uniform(-0.3, 0.3); d_ = rf.uniform(0.5, 1.0); hz = rf.uniform(0.3, 0.6)
-        o = lw_block(f"bit of the bomb {k}", (HIT.x, HIT.y, 0.03), rf.uniform(0.07, 0.13), clot, rf, squash=0.8)
-        for f in range(F(T_HIT) - 1, NF + 1):
-            u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
-            o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
+        bomb.hide_render = t < T_HIT - TF; bomb.keyframe_insert("hide_render", frame=f)      # it lands IN its own molten splash, smoking (pre-flight r1p: alone on the road the lump read as "a lava-textured block")
+    # THE SMASH, all of it the kit's (pre-flight r1p: "no smash, crater or smoke is visible"): a splash of molten lava
+    # spreading on the asphalt, glowing clots thrown out of it on real arcs that splat where they land, a burst of road
+    # dust, and a column of dark smoke rising off it, leaning away from the car up the street
+    pool = FX.lava_pool(centre=(HIT.x, HIT.y), r=0.42, z=0.012, seed=3, rim=False, heat=2.6, name="lava bomb splash")      # (r1q: at heat 1.3 the splash read as a pale pink disc in daylight)
+    for o in [pool["lava"]] + ([pool["bank"]] if pool.get("bank") else []):
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.5, h=1.6, seed=6.1, col=(0.13, 0.12, 0.11), dens=7.0, lean=(0.12, 0.3), rise=1.4,      # (low, leaning away: the car up the street stays in sight)
-                    keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.35, 0.05), w=0.7, h=0.8, seed=9.3, col=(0.34, 0.31, 0.29), dens=3.0, lean=(0.1, 0.1), rise=0.8,
-                    keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.15, 0.25), (T_HIT + 1.0, 0.12), (DUR + 1.0, 0.05)], t_end=DUR + 1.0, name="dust off the impact")     # the smash: a low burst of dust off the road
+    for L_ in pool["lights"]:                               # its glow comes with it
+        e_ = L_.data.energy; L_.data.energy = 0.0; L_.data.keyframe_insert("energy", frame=F(T_HIT) - 1); L_.data.energy = e_; L_.data.keyframe_insert("energy", frame=F(T_HIT))
+    FX.embers(origin=(HIT.x, HIT.y, 0.05), n=16, speed=2.6, cone=1.1, size=(0.025, 0.06), t0=T_HIT, t1=T_HIT + 0.05, period=9.0, seed=8, ground_z=0.0, splats=5, name="bomb burst")
+    FX.dust_puff(base=(HIT.x, HIT.y, 0.02), w=0.8, h=0.35, t0=T_HIT, dur=1.4, seed=9.3, name="dust off the impact")
+    # (q1c: a column of smoke off it rose straight across the car leaving up the street: the smash stays LOW, splash, clots and dust)
     bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.45, 0.3), 0.0, col=(1.0, 0.55, 0.15), r=0.3)
     for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 140.0), (T_HIT + 0.6, 60.0), (DUR + 1.0, 45.0)):      # (r1n: 420 W blew the street out white)
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
@@ -378,7 +375,7 @@ def shot1():
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.42, 0.36; X1, Y1, S1_ = 0.5, 0.44, 0.86; ZOOM = 0.19
+    X0, Y0, H0 = 0.58, 0.48, 0.36; X1, Y1, S1_ = 0.5, 0.5, 0.86; ZOOM = 0.19      # (r1o/r1p: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()

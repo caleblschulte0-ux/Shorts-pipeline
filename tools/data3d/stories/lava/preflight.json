@@ -1654,6 +1654,87 @@
     }
    ]
   },
+  "bf6786b30454479e1963e7cafbb4d73fbc3213c4c8714ab7f174e49caa7437c7": {
+   "at": "2026-11-27 03:41:41Z",
+   "claims": 15,
+   "claims_key": "f6b54da3c1ceaa83",
+   "continuity": [],
+   "defects": [
+    {
+     "id": "look",
+     "note": "The lava lump in the road reads as a lava-textured block with no real smoke or splash. Data's glossy cartoon body also sits oddly against the realistic set.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "bf6786b30454479e1963e7cafbb4d73fbc3213c4c8714ab7f174e49caa7437c7",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "A lava bomb is in the air in still 2. In stills 3-4 there is only a lava-textured lump in the road. No smash, crater or smoke is visible, and the lump reads more as a rock than a bomb impact.",
+     "text": "A lava bomb smashes into the road behind him, glowing and smoking"
+    }
+   ]
+  },
+  "c33cbeb56c77d22e896cb84a33aaaaea3846e2923fd1fa34f9732c7d8a9c8e58": {
+   "at": "2026-11-27 03:22:45Z",
+   "claims": 15,
+   "claims_key": "58d835e84f91c0fe",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The boulder Data carries in stills 1 and 2 is gone in still 4. No still shows it being set down.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 1 and 2 show nearly the same carrying pose, only slightly closer and more bent.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-2"
+    },
+    {
+     "id": "consequence",
+     "note": "The last still shows no result. No boulder is placed on the row, so it reads as Data posing.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "c33cbeb56c77d22e896cb84a33aaaaea3846e2923fd1fa34f9732c7d8a9c8e58",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "PLACE",
+     "note": "The ash plumes are clear. The ground beyond the crest is pale grey with thin lines of fire, not a black lava field.",
+     "text": "the black lava field beyond it and the eruption's black ash plumes on the horizon"
+    },
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "Still 2 shows him leaning with the boulder still in his hands. No still shows it set down on the end of the row.",
+     "text": "He bends and sets it down on the end of the row of boulders"
+    },
+    {
+     "from": "FOR",
+     "id": "c9",
+     "kind": "ACTION",
+     "note": "Data stands with one arm out sideways over boulders. No boulder of his own can be picked out, and the row is not clearly set up.",
+     "text": "Back on the crest he stands by his boulder, one arm out along the row"
+    }
+   ]
+  },
   "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1": {
    "at": "2026-11-26 03:17:44Z",
    "claims": 17,
@@ -2155,6 +2236,64 @@
      "id": "c11",
      "kind": "SAYS",
      "note": "A wall taller than a house is visible in still 3. No lava appears in any still, so 'to keep the lava out' is not shown. Nothing identifies Iceland either.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
+    }
+   ]
+  },
+  "f8598e013b0707eb9e87088aff3bfce08e37c3a959450faeee8190119dd81993": {
+   "at": "2026-11-27 04:22:00Z",
+   "claims": 15,
+   "claims_key": "2b4837fb4e955a55",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "In still 1 he carries the boulder in both hands. In still 2 the pale boulder is behind him with no placing shown. The boulder is also on a different part of the crest in still 4. Fine for 2 to 4, but the carry-to-set-down step is missing.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "edges",
+     "note": "Data's hat and right arm touch the right frame edge in still 1. The ash plumes are cut by the top edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 1, 2 and 4 are near-identical close shots of Data in the same spot with the same background. Only small pose changes separate them, with no distinct new event in each.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-2-4"
+    },
+    {
+     "id": "broken",
+     "note": "Data is cut by the right frame edge in still 1. Still 3 has a flat grey road strip and a very small figure.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1"
+    },
+    {
+     "id": "body",
+     "note": "In still 2 his arms hang awkwardly in front of his chest with empty hands, and his body twists. In still 4 one arm is stiffly straight out.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "2"
+    },
+    {
+     "id": "consequence",
+     "note": "The lava is never shown reaching or being stopped by the wall, so nothing visibly changes because of the boulder. The last still is much the same picture as the first.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "f8598e013b0707eb9e87088aff3bfce08e37c3a959450faeee8190119dd81993",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "SAYS",
+     "id": "c11",
+     "kind": "SAYS",
+     "note": "The black wall stands over the house, so a stranger sees a wall that is taller than a house. Nothing in any still shows lava being kept out, because the lava is only fire on the far plain and not against the wall.",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
