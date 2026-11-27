@@ -1,31 +1,29 @@
 {
- "retell": "An Icelandic town kept getting threatened by a volcano, so they built a giant rock wall, and the wall actually stopped the lava, but then the ground cracked open inside the wall, lava came up in the streets, and now the town still stands but is nearly empty.",
- "twist": "The wall holds, and then the ground splits open on the town's side of it, so the lava comes up inside the defenses.",
- "payoff": "Mostly yes. The title promises walls against a volcano. Line 3 says the walls work and line 4 makes the lava beat them from inside, which is an ironic payoff the title sets up. The closing 'Would you?' lands, but its 'almost nobody moved back' fact is weaker than the turn before it.",
- "chain": "Strong. 1→2 is 'so' (threat, so build a wall), 2→3 is 'so' (wall tested, holds), 3→4 is 'but' (holds, but the crack opens inside), 4→5 is consequence (lava in the streets, houses burn, town empties). No line is just another fact.",
+ "retell": "An Icelandic town kept getting threatened by a volcano, so they built a giant rock wall that actually stopped the lava, until the ground cracked open inside the wall and lava came up through the streets anyway, and now the town is nearly empty.",
+ "twist": "Line 4: the wall works, and then the eruption opens up inside the protected area, so the defense is beaten from the inside.",
+ "payoff": "Yes. The title promises walls against a volcano, and the story pays that off on both sides: the wall held (line 3), but the lava still got in from underneath and the town emptied out anyway (lines 4-5). The question at the end, 'Would you?', ties it back to everyone having to run in line 1.",
+ "chain": "Every line is linked. 1 leads to 2 (they had to run, so they built a wall). 2 leads to 3 (the wall was built, so it held). 3 turns into 4 (but the ground split inside it). 4 leads to 5 (houses burned and people stayed away). No line is just another fact.",
  "cut": [],
  "physical": [],
  "pictures": [
-  "A small town of colourful corrugated-roof houses at night, with a glowing orange fissure and a lava fountain on the ridge right behind it. Headlights streak down the only road out of town.",
-  "A long wall of dark crushed rock with a bulldozer on top and a two-storey house beside it for scale. The wall is clearly taller than the house, and the volcano glows behind it.",
-  "A river of lava runs up against the outside of the rock wall and piles up there, while the town on the inside is dark and untouched.",
-  "Inside the wall, a crack splits the asphalt of a residential street, lava pours out of it between the houses, and the intact wall stands in the background.",
-  "Three houses on fire, countable, in a row of standing houses that all have dark windows and empty driveways. One lone figure stands at a door."
+  "A huge orange lava fountain on a dark ridge right behind a small town of colorful Icelandic houses, with cars streaming away down the one road out.",
+  "A massive dark rock berm rising behind a two-story house, clearly taller than its roof, with a bulldozer at its base for scale.",
+  "A river of glowing lava pressing against the outer face of the berm and piling up there, with the houses safe and dark on the near side.",
+  "A glowing crack splitting a town street on the inside of the wall, with lava spilling out across the asphalt toward the houses.",
+  "Three houses burning in a row on one street while the rest of the street stands intact, empty and dark, with not one car in the driveways."
  ],
- "unshowable": [
-  5
- ],
+ "unshowable": [],
  "score": 80,
  "pass": true,
  "problems": [
-  "Line 5 'almost nobody moved back' is a share of a whole town that no frame shows. Dark windows read as night or an evacuation, not as people choosing not to return. Swap it for a fact the frame can show (for example: 'Three houses burned. The wall still stands around a town that's almost empty. Would you go back?') or let the closing image carry it with one lit house in a dark street.",
-  "Line 1 'keeps erupting' is a repetition that only the voice can say, because one frame shows one eruption. It is acceptable as setup but adds no picture of its own. 'Everyone had to run' is a vague crowd, and the headlights are carrying it.",
-  "Line 5 packs three facts (three burned, the rest stand, nobody returned) into six seconds. The question lands harder if it has only one of them to sit on."
+  "Line 1's 'keeps erupting' is a repeat-frequency claim that one frame can't show. The picture only shows one eruption, so the voice carries the 'keeps'. That's acceptable because the key fact (a volcano right beside the town) reads at a glance.",
+  "Line 5 packs three ideas (three burned, the rest stand, almost nobody returned) plus a question into about six seconds. 'Almost nobody moved back' depends on the frame looking clearly empty and abandoned, not just quiet.",
+  "Line 3's 'the wall held' has to read as a real win before line 4 takes it away. If the lava-on-the-wall shot is weak, the twist loses its punch."
  ],
  "scores": [
-  80,
+  79,
   80,
   82
  ],
- "key": "95fd42d7fd0fe1b1"
+ "key": "d91776be903471a5"
 }
