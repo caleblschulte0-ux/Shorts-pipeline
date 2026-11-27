@@ -250,6 +250,86 @@
       "answer": "{\"scores\":{\"premise\":13,\"hook\":17,\"arc\":10,\"factual\":13,\"visual_proof\":13,\"payoff\":8,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Build one argument from generational cooling to why the old standard misleads; the sex comparison currently interrupts that arc.\"}",
       "by": "chatgpt",
       "at": "2026-11-26T12:55:00.000Z"
+    },
+    "4bd611baf65706cd": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "33de7c6c396e1b45": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a vivid adoption shock: ChatGPT reached a mass-market milestone in two months instead of years.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "d31939a524d21a90": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title is a searchable category label and the hook only states a rarity fact without a concrete consequence or tension.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "f6e981debc4f7c5e": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":false,\"2\":false},\"why\":{\"1\":\"The overall Rh-negative share does not specifically explain why AB-negative is the rarest combination.\",\"2\":\"O-positive donor differences by ethnicity change subjects and do not follow from AB-negative rarity.\"}}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "1727029add7dc424": {
+      "answer": "{\"scores\":{\"premise\":10,\"hook\":15,\"arc\":7,\"factual\":13,\"visual_proof\":13,\"payoff\":7,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Give AB-negative rarity a personal consequence, then keep every beat focused on why that specific type is difficult to supply.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "b4cc1a920bda7754": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "8b5926864c3ecb58": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch turns a familiar grocery staple into a concrete global vulnerability: nearly all exported bananas are clones sharing one fungal weakness.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "5cd6b72589868d1d": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch makes spaceflight risk bodily and pictureable by promising that astronauts can lose nearly a third of hip bone on a Mars mission.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "5afd4bec60d11cc3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch gives Einstein an everyday payoff viewers can picture: without relativity, GPS would miss by ten kilometers in one day.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "9a0ae100776860c3": {
+      "answer": "{\"hook\":\"Why does every unknown number feel like a scam call now?\",\"closing\":\"Your phone still rings, but robocalls made trust disappear.\",\"question\":\"Do you answer unknown numbers?\",\"segments\":[{\"topic\":\"Landlines Disappear\",\"say\":\"By 2024, 76% of US adults had no landline, up from 25% in 2010. Phone numbers stopped meaning home addresses.\"},{\"topic\":\"Robocalls Fill In\",\"say\":\"Americans got 52.8 billion robocalls in 2024; 36% were telemarketing and 22% scams. Most unknown calls wanted something.\"},{\"topic\":\"Robocalls Nearly Double\",\"say\":\"Robocalls rose from 29.3 billion in 2016 to nearly 200 per adult. That scale taught people to ignore unknown numbers.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "703344bfbfb2e628": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "23b5342086d91ebe": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The pitch promises a clear taxpayer contradiction: America is ending its oldest coin while the nickel still loses even more money.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "fdc342cb8d555a3e": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true,\"2\":true},\"why\":{}}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "d822a2d6a5510602": {
+      "answer": "{\"scores\":{\"premise\":14,\"hook\":18,\"arc\":17,\"factual\":14,\"visual_proof\":14,\"payoff\":9,\"voice\":4},\"fatal\":[],\"weakest_note\":\"Make the closing include the nickel twist so the ending lands the full premise rather than only the penny decision.\"}",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "8697d9b0224d884d": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
+    },
+    "c58f0f12087c9e9d": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-11-27T12:28:00.000Z"
     }
   }
 }
