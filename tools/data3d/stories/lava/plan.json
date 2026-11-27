@@ -372,13 +372,18 @@
     },
     {
      "event": "reaction",
-     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, and looks up at it",
+     "shows": "from up the wall's face: the driver stands small at the towering wall's foot, both hands still on the lever, pushing it back as the empty bed comes down, and looks up at it",
      "hands": "lever",
      "new": [
       {
-       "what": "data",
-       "how": "pose",
-       "cause": "he looks up at the wall from the lever"
+       "what": "lever",
+       "how": "moves",
+       "cause": "he pushes the tip lever back, the bed empty"
+      },
+      {
+       "what": "truck",
+       "how": "moves",
+       "cause": "its empty bed comes back down as he pushes the lever"
       }
      ],
      "visible": [
@@ -392,7 +397,7 @@
       },
       {
        "prop": "lever",
-       "as": "his hands still on the lever"
+       "as": "he pushes the lever back"
       }
      ]
     }

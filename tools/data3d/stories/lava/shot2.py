@@ -112,7 +112,8 @@ def shot2():
     troot = tr["root"]; hinge = tr["hinge"]
     for o in bpy.data.objects:
         if o.name.startswith(("his tipper truck tailgate",)): o.hide_render = True; o.hide_viewport = True
-    TH = lambda t: 14.0 + 18.0 * W(t, 0.0, 0.55) + 20.0 * W(t, T_AB + 0.02, 0.6)      # the bed's tip, degrees: two pulls of the lever
+    T_DOWN = 2.6                                      # (q2r PLAN: still 4 needs a change) he pushes the lever back and the empty bed comes down
+    TH = lambda t: 14.0 + (18.0 * W(t, 0.0, 0.55) + 20.0 * W(t, T_AB + 0.02, 0.6)) * (1.0 - W(t, T_DOWN, 0.5))      # the bed's tip, degrees: two pulls of the lever
     sc.frame_set(1); bpy.context.view_layer.update()
     H0 = hinge.matrix_world.copy(); H0i = H0.inverted()
     def hinge_at(t):
@@ -187,7 +188,7 @@ def shot2():
     K.capsule("tip lever bar", tuple(ROD_TOP), tuple(BAR + lf * -0.1), 0.011, steel, parent=piv)
     K.capsule("tip lever grip", tuple(BAR + lf * 0.08), tuple(BAR + lf * -0.1), 0.016, grip_m, parent=piv)
     PS_ = 1.0 if (PIV + Matrix.Rotation(0.2, 3, 'X') @ (BAR - PIV) - PL).length < (BAR - PL).length else -1.0       # the way that brings it to him
-    PULL = lambda t: PS_ * (R(11.0) * W(t, 0.0, 0.5) + R(11.0) * W(t, T_AB + 0.02, 0.55))      # (q2f READ: a bigger pull, his weight going with it)       # toward him about the pivot's x
+    PULL = lambda t: PS_ * (R(11.0) * W(t, 0.0, 0.5) + R(11.0) * W(t, T_AB + 0.02, 0.55)) * (1.0 - W(t, T_DOWN, 0.5))      # (q2f READ: a bigger pull, his weight going with it)       # toward him about the pivot's x
     for f in range(1, NF + 1):
         piv.rotation_euler = (PULL((f - 1) / FPS), 0, 0); piv.keyframe_insert("rotation_euler", frame=f)
     def on_bar(t, u):
@@ -211,7 +212,7 @@ def shot2():
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
-    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.5))), 0.0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5)), 0.0, DUR + 0.4)      # (q2p REACH: unwinding it took his hand off the bar)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
     # (q2i-q2n: five rounds on the hands after a release; coordinator 11-27: remove the release) both hands stay on the
@@ -224,7 +225,7 @@ def shot2():
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
     data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
-    data.look_at(CD + Vector((0, -0.3, 0.6)), T_WB - 0.45, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
+    data.look_at(CD + Vector((0, -0.6, 2.2)), T_WB - 0.45, max_yaw=35, max_pitch=50, blend=0.6)      # (q2q PLAN: a new pose) right up at the wall's top                         # (q2g) up at it
     data.expression("determined", 0.0, T_WB, blend=0.15)
     data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
