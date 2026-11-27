@@ -1,0 +1,203 @@
+{
+ "date": "2026-11-27",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "CollegeBasketball",
+   "who": "Tom Izzo",
+   "why": "Izzo goes off on the injury-disclosure rule and says it only benefits gamblers, a coach saying what he really thinks.",
+   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
+   "upvotes": 2776,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
+   "title": "Tom Izzo Calls Gambling Injury Rule \"Dumb\" And Says He'll Happily Take The Fine",
+   "hook": "Izzo says he'll never reveal injuries \ud83d\ude24",
+   "ledger": {
+    "moves": [
+     "whoa@1.61"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 28.17,
+       "reason": "the framer: Izzo's face is whole in columns 4-6, running from his left ear at the edge of column 4 to his right ear in column 6.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.169,
+      0.0,
+      0.241
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.0,
+       1.0
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "Mourinho tells a funny joke his players told him about starting matches badly.",
+   "post_title": "Jos\u00e9 Mourinho sharing a joke players told him about starting matches badly: \"Mister, if we start well, you get bored on the bench doing nothing. If we start badly, we give you adrenaline, we give you ",
+   "upvotes": 1276,
+   "url": "https://www.reddit.com/r/soccer/comments/1y6pko6/jos\u00e9_mourinho_sharing_a_joke_players_told_him/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y6pko6/jos\u00e9_mourinho_sharing_a_joke_players_told_him",
+   "skipped": "not English (English p=0.15, 54% English words)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Aleksander Barkov",
+   "why": "Barkov deadpans that he spent his injury time playing Grand Theft Auto.",
+   "post_title": "\u201cLately way too much time to play Grand Theft Auto that\u2019s for sure\u201d - Barkov on how he spent his free time while injured",
+   "upvotes": 624,
+   "url": "https://www.reddit.com/r/hockey/comments/1y5rvvu/lately_way_too_much_time_to_play_grand_theft_auto/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y5rvvu/lately_way_too_much_time_to_play_grand_theft_auto",
+   "title": "Aleksander Barkov Admits He Spent Way Too Much Time On Grand Theft Auto While Injured",
+   "hook": "Barkov on what injury did to him",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "face_content",
+     "reason": "face on the right beside what it is showing \u2014 that on top, the face below",
+     "shots": [
+      {
+       "mode": "face_content",
+       "reason": "face on the right beside what it is showing \u2014 that on top, the face below"
+      }
+     ],
+     "subtitle_spans": [
+      0.181,
+      0.299,
+      0.242,
+      0.721,
+      0.299
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.5,
+       1.0
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Aleksander Barkov Florida Panthers@21.67"
+    ],
+    "cut_in_s": 8.43,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment (Barkov joking about playing GTA while injured) is buried: the hook line is vague, half of every interview frame is a TV schedule graphic, and our text runs over the shootout score bar.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment (Barkov joking about playing GTA while injured) is buried: the hook line is vague, half of every interview frame is a TV schedule graphic, and our text runs over the shootout score bar."
+  },
+  {
+   "sub": "hockey",
+   "who": "Jon Cooper",
+   "why": "Cooper hands Darren Pang a mini turkey in the middle of a game interview, a week after the step stool bit.",
+   "post_title": "Jon Cooper gifting Darren Pang a (mini) turkey during a mid-game interview, following last week's step stool",
+   "upvotes": 518,
+   "url": "https://www.reddit.com/r/hockey/comments/1y5p06m/jon_cooper_gifting_darren_pang_a_mini_turkey/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y5p06m/jon_cooper_gifting_darren_pang_a_mini_turkey",
+   "title": "Jon Cooper Gifts Darren Pang A Mini Turkey Mid-Game And Pang Can't Handle It",
+   "hook": "Cooper brings Pang a mini turkey \ud83e\udd83",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 7.83,
+       "reason": "the framer: Cooper (standing, speaking into mic) in cols 3-6 and Pang (bald, glasses) in cols 6-7 (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 7.83,
+       "t1": 21.47,
+       "reason": "the framer: Cooper holding the turkey plate and Pang with mic in the inset at cols 0-2; the rest is the unrelated live game",
+       "crop": [
+        404,
+        720,
+        0,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/hjFpgiErtZk",
+   "ok": true,
+   "publish_at": "2026-11-28T03:00:00Z",
+   "seconds": 185,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-jon-cooper-gifts-darren-pang-a-mini-turkey-mid-g-a685c4d9",
+    "tiktok": "queued for 2026-11-28T03:00:00Z"
+   }
+  }
+ ],
+ "already_today": 4,
+ "pool": 135,
+ "already_posted": 6,
+ "refused_before": 9,
+ "shipped": 1
+}
