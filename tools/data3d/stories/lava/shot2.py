@@ -15,7 +15,7 @@ S2_SLOPE = 4.0 # (r2zf pre-flight: "the wall only a little above the roof": a st
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-0.7, 1.0, 1.3, 1.8)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
 S2_P0 = (0.3, 4.6)                     # Data: the left foreground, his feet near the bottom edge
-S2_DIG = (0.6, -0.55)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
+S2_DIG = (0.6, -0.8)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
 def s2_base(h):
@@ -60,7 +60,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [1.2, 2.8, 4.5, 6.5]                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
+    TOPS = [1.2, 2.8, 4.3, 5.7]  # (coordinator, r2zg: still 4's crest and digger with clear sky above)                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -75,9 +75,11 @@ def shot2():
     # ---- its builder: one digger on the crest, riding up with it, placing a boulder on the town face, its arm somewhere
     # new each still. The kit's digger is posed when it is built, so each pose is its own digger, shown for its moment.
     rnd = lw_random.Random(12)
+    dig_x = lambda t: 0.33 + (S2_DIG[0] - 0.33) * W(t, TS[0] + 0.15, TS[1] - TS[0] - 0.4)
+    dig_z = lambda t: top(t)
     rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
     POSES = [(-10, 55, -75, -40, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, True),
-             (5, 10, -60, 20, True), (-15, 26, -90, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
+             (5, -2, -55, 20, True), (-15, 12, -85, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
     DX, DY = S2_DIG
     diggers = []
     for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
@@ -94,7 +96,7 @@ def shot2():
         objs = [o for o in bpy.data.objects if o not in before]
         for f in range(1, NF + 8):
             t = (f - 1) / FPS
-            d["root"].location = (0.33 + (DX - 0.33) * W(t, TS[0] + 0.15, TS[1] - TS[0] - 0.4), yc + DY, top(t)); d["root"].keyframe_insert("location", frame=f)
+            d["root"].location = (dig_x(t), yc + DY, dig_z(t)); d["root"].keyframe_insert("location", frame=f)
         diggers.append(objs)
     order = [0, 4, 1, 3, 2, 5]                                 # (r2x pre-flight: on still 4 its raised arm was cut by the top edge: the low swing lands there)
     STEP = DUR / 8.0                                             # a working swing: each still lands mid-pose, on a different one

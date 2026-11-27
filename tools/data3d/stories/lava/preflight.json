@@ -1954,6 +1954,32 @@
     }
    ]
   },
+  "bd3e09bd9bbfe6ed332e6489c066037aec03dbf927bf9ebc19692ef28bae4e99": {
+   "at": "2026-11-27 22:19:20Z",
+   "claims": 6,
+   "claims_key": "560ceadcdefa809f",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The digger's bucket and the top of the wall touch or cross the top frame edge in stills 3 and 4, and the digger is cut in still 4. In still 1 the digger's boom is mostly hidden behind the house roof. In still 1 the wall is cropped by the frame edge on the left.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "In still 1 the digger sits behind the house roof with no ground or wall visible beneath it, so it looks as though it floats behind the house. In still 2 the digger sits on the roof line with a thin sliver of rock under it. In stills 3-4 the digger's top is cut off by the frame edge.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "1-2"
+    }
+   ],
+   "sha256": "bd3e09bd9bbfe6ed332e6489c066037aec03dbf927bf9ebc19692ef28bae4e99",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "bf6786b30454479e1963e7cafbb4d73fbc3213c4c8714ab7f174e49caa7437c7": {
    "at": "2026-11-27 03:41:41Z",
    "claims": 15,
@@ -2570,6 +2596,58 @@
    "status": "blocked",
    "stills": 4,
    "unticked": []
+  },
+  "ed1ce2efe57ae7570d19978447a34932f1dc0d9c76d2aa4a5416498efb76c7c5": {
+   "at": "2026-11-27 22:40:31Z",
+   "claims": 6,
+   "claims_key": "560ceadcdefa809f",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The house is partly cut off by the frame edge in still 1. In still 4 the digger's bucket nearly touches the top and right edges. The wall is cropped at the sides.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    },
+    {
+     "id": "different",
+     "note": "Stills 1-3 show nearly the same picture: same wall height, Data standing and gesturing. Only the digger arm and Data's arm pose change slightly. Still 4 differs only in a taller wall.",
+     "rule": "the stills are clearly different from each other: each shows a new state (before, action, result, reaction), not one picture repeated",
+     "stills": "1-3"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Four near-identical frames: Data stands in front of the house and gestures, and the digger arm moves slightly. No distinct new event happens in each still.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-4"
+    },
+    {
+     "id": "look",
+     "note": "The rock wall reads as plain dirt or rock with no lava, glow, smoke or steam. Data and the house are stylised toy-like against the realistic rock. The ground is flat with small disc-like patches.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "consequence",
+     "note": "Only still 4 shows a taller wall, and the change is small. The wall is already tall in still 1, so the result barely differs from the first still. No consequence for the house, such as burial or damage, is shown.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "ed1ce2efe57ae7570d19978447a34932f1dc0d9c76d2aa4a5416498efb76c7c5",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "SAYS",
+     "id": "c3",
+     "kind": "SAYS",
+     "note": "A rock mass taller than a house is visible, but nothing says Iceland or lava. The wall looks like a dirt or rock bank, with no eruption or lava. A stranger could not tell a wall was built, because the wall barely changes between stills 1-3.",
+     "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house"
+    }
+   ]
   },
   "ef72d716f0107d0e230fe6f810fe6e8087352e64ff1479580680635cce1e3639": {
    "at": "2026-11-26 15:38:01Z",
