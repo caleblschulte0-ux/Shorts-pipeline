@@ -11961,5 +11961,502 @@
       "bottom_theme": "auto",
       "punched_up": true
     }
+  },
+  "20260828": {
+    "01_graph-spacex-launches.json": {
+      "format": "graph_race",
+      "slug": "graph-spacex-launches",
+      "title": "SpaceX Just Out-Launched The Entire World",
+      "hook": "More Launches Than Everyone Else",
+      "y_label": "Orbital launches per year",
+      "duration": 13,
+      "source": "SpaceX annual launch counts from company/industry launch trackers (SpaceNews, NASASpaceFlight.com). 'Rest of world' is total global orbital launch attempts for the year (widely reported annual tallies, e.g. SpaceNews/Payload/Wikipedia 'in spaceflight' roundups) minus SpaceX's own launches. Approximate for years without one single authoritative public tally; 2023-2024 totals are the most precisely reported. SpaceX alone out-launched the rest of the world combined in 2024 (134 vs. roughly 127).",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "SpaceX",
+          "color": "#4a90e2",
+          "icon": "SpaceX",
+          "values": [
+            18,
+            21,
+            13,
+            27,
+            33,
+            61,
+            98,
+            133
+          ]
+        },
+        {
+          "name": "Rest of world",
+          "color": "#e74c3c",
+          "values": [
+            73,
+            93,
+            89,
+            87,
+            113,
+            125,
+            125,
+            128
+          ]
+        }
+      ],
+      "hashtags": [
+        "spacex",
+        "rocketlaunch",
+        "elonmusk",
+        "space",
+        "falcon9",
+        "spacerace",
+        "nasa",
+        "rockets",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_graph-wind-solar-coal.json": {
+      "format": "graph_race",
+      "slug": "graph-wind-solar-coal",
+      "title": "Wind And Solar Just Passed Coal",
+      "hook": "Coal Just Lost Its 100-Year Grip",
+      "y_label": "US electricity generation (TWh)",
+      "duration": 13,
+      "source": "U.S. Energy Information Administration, Electric Power Annual and 'Today in Energy' reports, 2017-2024. Approximate annual terawatt-hours; combined wind + solar generation overtook coal-fired generation in the U.S. power sector for the first time in 2024, capping a decade-long decline in coal output.",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Coal",
+          "color": "#7f8c8d",
+          "values": [
+            1206,
+            1146,
+            966,
+            774,
+            899,
+            832,
+            665,
+            628
+          ]
+        },
+        {
+          "name": "Wind + Solar",
+          "color": "#2ecc71",
+          "values": [
+            307,
+            342,
+            389,
+            471,
+            544,
+            625,
+            660,
+            757
+          ]
+        }
+      ],
+      "hashtags": [
+        "renewableenergy",
+        "solarpower",
+        "windpower",
+        "coal",
+        "cleanenergy",
+        "climate",
+        "energy",
+        "electricity",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_graph-dominos-pizza-hut.json": {
+      "format": "graph_race",
+      "slug": "graph-dominos-pizza-hut",
+      "title": "Domino's Quietly Buried Pizza Hut",
+      "hook": "Pizza Hut Used To Win This",
+      "y_label": "US systemwide sales ($ billions)",
+      "duration": 13,
+      "source": "Company/franchise-disclosure system sales figures reported by trade press (Restaurant Business, QSR Magazine, Domino's/Yum! Brands filings), 2014-2023. Approximate annual U.S. systemwide sales; Domino's overtook Pizza Hut as the largest U.S. pizza chain by sales in 2017 and the gap has widened every year since.",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Domino's",
+          "color": "#0078ae",
+          "icon": "Domino's Pizza",
+          "values": [
+            4.55,
+            4.95,
+            5.4,
+            5.9,
+            6.4,
+            6.9,
+            7.8,
+            9.95
+          ]
+        },
+        {
+          "name": "Pizza Hut",
+          "color": "#ee3124",
+          "icon": "Pizza Hut",
+          "values": [
+            5.45,
+            5.5,
+            5.5,
+            5.45,
+            5.4,
+            5.4,
+            5.25,
+            5.09
+          ]
+        }
+      ],
+      "hashtags": [
+        "dominos",
+        "pizzahut",
+        "pizza",
+        "fastfood",
+        "restaurantindustry",
+        "business",
+        "franchise",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_graph-china-ev-sales.json": {
+      "format": "graph_race",
+      "slug": "graph-china-ev-sales",
+      "title": "China's EV Boom Just Passed The Rest Of The World",
+      "hook": "China Now Outsells Everyone Else",
+      "y_label": "New EVs sold (millions of units)",
+      "duration": 13,
+      "source": "International Energy Agency, Global EV Outlook reports (2020-2025), plus industry tallies (Canalys, CleanTechnica). Approximate annual battery-electric + plug-in-hybrid sales; China's share of global EV sales grew from roughly 40% in 2020 to about 60% in 2024, putting its own annual sales ahead of every other country combined since around 2022.",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#e74c3c",
+          "icon": "CN",
+          "values": [
+            1.1,
+            1.2,
+            1.3,
+            3.2,
+            6.9,
+            8.1,
+            11
+          ]
+        },
+        {
+          "name": "Rest of world",
+          "color": "#4a90e2",
+          "values": [
+            0.9,
+            1.1,
+            1.9,
+            3.5,
+            3.6,
+            5.9,
+            6.4
+          ]
+        }
+      ],
+      "hashtags": [
+        "electricvehicles",
+        "china",
+        "ev",
+        "electriccars",
+        "automotive",
+        "cleanenergy",
+        "manufacturing",
+        "dataviz",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "05_reddit-not-an-employee.json": {
+      "subreddit": "IDontWorkHereLady",
+      "slug": "reddit-not-an-employee",
+      "title": "She Reported Me To An Employee. I Wasn't One.",
+      "script": "She grabbed the wrong employee? A woman grabbed my arm in the paint aisle because I was wearing a red hoodie. The store uniform was red too, so apparently employment is color-coded. I told her twice I didn't work there. She called me a liar, then flagged down an actual employee in an orange vest. He looked at my hoodie, hers too, and asked which one of us needed a stepladder. She pointed at me. I said neither of us worked there. He laughed so hard he had to lean on a shelf, then paged security over the intercom for an aisle nine altercation, both parties in red. Store cameras caught the whole thing. Corporate posted the clip internally for de-escalation training: her face blurred and mine left in, on purpose. Which red hoodie became the training video?",
+      "shots": [
+        {
+          "phrase": "grabbed my arm in the paint aisle",
+          "query": "hardware store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+          "media_origin": "chatgpt",
+          "media_file_id": "11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+          "media_sha256": "378dfd7d86dff6b89f1a5d12acef9835a9e0bd0adfff7605d7cf8ebc90eef92e",
+          "media_bytes": 1912682
+        },
+        {
+          "phrase": "wearing a red hoodie",
+          "query": "red hoodie person",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+          "media_sha256": "18dce50f4864a7bd04fd911bd019e780763870df3f06ca3fae9c54a5459c899d",
+          "media_bytes": 1822890
+        },
+        {
+          "phrase": "flagged down an actual employee in an orange vest",
+          "query": "store employee vest",
+          "image_url": "https://drive.google.com/uc?export=download&id=1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+          "media_origin": "chatgpt",
+          "media_file_id": "1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+          "media_sha256": "6c5a4eb5350d1cc944454d421dd51f31583ad1e1136ac86a5a39c5037ebe19f7",
+          "media_bytes": 2302971
+        },
+        {
+          "phrase": "asked which one of us needed a stepladder",
+          "query": "stepladder hardware store",
+          "image_url": "https://drive.google.com/uc?export=download&id=1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+          "media_origin": "chatgpt",
+          "media_file_id": "1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+          "media_sha256": "e66c03786a2dc4019c3adadcd6bfad4a20dac5d41fb0c2ae10fa0eb1edee72cb",
+          "media_bytes": 1927962
+        },
+        {
+          "phrase": "laughed so hard he had to lean on a shelf",
+          "query": "man laughing store aisle",
+          "image_url": "https://drive.google.com/uc?export=download&id=1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+          "media_origin": "chatgpt",
+          "media_file_id": "1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+          "media_sha256": "12c0b7cc23e74de51b99615fa77e5e663410df291a1e58c8eaf0931f0544ac4c",
+          "media_bytes": 2049973
+        },
+        {
+          "phrase": "paged security over the intercom",
+          "query": "store intercom speaker",
+          "image_url": "https://drive.google.com/uc?export=download&id=1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+          "media_origin": "chatgpt",
+          "media_file_id": "1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+          "media_sha256": "1f038f3cdef4315ffbb79dd572b81a1b8dfa029aa2a5db980d514ec8b2301046",
+          "media_bytes": 2135383
+        },
+        {
+          "phrase": "Store cameras caught the whole thing",
+          "query": "security camera retail store",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+          "media_sha256": "6f24e5e15b786f51de28583226d02eb731eb899ceccc49bb737c8e3ee5e6ce1b",
+          "media_bytes": 2197481
+        },
+        {
+          "phrase": "her face blurred and mine left in",
+          "query": "blurred face security footage",
+          "image_url": "https://drive.google.com/uc?export=download&id=1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+          "media_origin": "chatgpt",
+          "media_file_id": "1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+          "media_sha256": "baca31eb875b4d74201658ebfc35db1121e2c0037600bc8f7339dd3a8e70271c",
+          "media_bytes": 1545406
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "wearing a red hoodie",
+          "text": "NOT STAFF",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "asked which one of us needed a stepladder",
+          "text": "BUSTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "laughed so hard he had to lean on a shelf",
+          "text": "DEAD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "posted the clip internally",
+          "text": "WENT VIRAL",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "idontworkherelady",
+        "reddit",
+        "storytime",
+        "retail",
+        "funny",
+        "viral",
+        "karma",
+        "mallstory",
+        "customerservice",
+        "shorts",
+        "fyp"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "06_reddit-thermostat-admin.json": {
+      "subreddit": "pettyrevenge",
+      "slug": "reddit-thermostat-admin",
+      "title": "She Blamed Everyone Else For The Freezing Office.",
+      "script": "She controlled the office thermostat from an app on her phone and kept it at sixty two degrees to, in her words, stay sharp. Everyone froze. Everyone complained. She smiled and said the app must be broken whenever anyone touched the wall panel, which was funny, because I had installed that thermostat during the renovation and still had admin access she never thought to ask about. So when it dropped to freezing again and a temp near the vent got blamed and written up for tampering, I stopped staying quiet and pulled the access log instead. Every override for four months straight, timestamped, tied to her phone, the same four months facilities quietly replaced two malfunctioning units at company expense. HR read the log twice. The temp got the write up removed and an apology. She got a very different meeting, and the thermostat, still on my admin account, has been locked at a very reasonable seventy one degrees ever since.",
+      "shots": [
+        {
+          "phrase": "controlled the office thermostat from an app on her phone",
+          "query": "smart thermostat app phone",
+          "image_url": "https://drive.google.com/uc?export=download&id=19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+          "media_origin": "chatgpt",
+          "media_file_id": "19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+          "media_sha256": "c72a13c7174c9ed51e7340959a2ec2333d5efb5ce77985a2ac41ef2eccd72374",
+          "media_bytes": 1476737
+        },
+        {
+          "phrase": "kept it at sixty two degrees",
+          "query": "cold office worker shivering",
+          "image_url": "https://drive.google.com/uc?export=download&id=1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+          "media_origin": "chatgpt",
+          "media_file_id": "1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+          "media_sha256": "48f6e80907de9ba340acf61325ea0fbc049cfc9570da73421bbd2ca9b8c677ce",
+          "media_bytes": 2051098
+        },
+        {
+          "phrase": "a temp near the vent got blamed and written up for tampering",
+          "query": "office worker written up",
+          "image_url": "https://drive.google.com/uc?export=download&id=1B20TkECw-06YZisfLXoschIJTFwI35xa",
+          "media_origin": "chatgpt",
+          "media_file_id": "1B20TkECw-06YZisfLXoschIJTFwI35xa",
+          "media_sha256": "80e48cdf42115a1c047cf34b47742993ae64f47f14eaf9155a717cd0c32bf1fc",
+          "media_bytes": 1718182
+        },
+        {
+          "phrase": "pulled the access log instead",
+          "query": "computer access log screen",
+          "image_url": "https://drive.google.com/uc?export=download&id=1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+          "media_origin": "chatgpt",
+          "media_file_id": "1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+          "media_sha256": "0b2cbe9d86572d1b53a48bf19aaceb2524864de2a63d9c433ef14d5dbff0c2d6",
+          "media_bytes": 1697241
+        },
+        {
+          "phrase": "facilities quietly replaced two malfunctioning units",
+          "query": "hvac technician repair",
+          "image_url": "https://drive.google.com/uc?export=download&id=1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+          "media_origin": "chatgpt",
+          "media_file_id": "1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+          "media_sha256": "30d5bbcdbb2b26df1999863145fc876b4f7f1268246ac68825757650e4b87809",
+          "media_bytes": 2111452
+        },
+        {
+          "phrase": "HR read the log twice",
+          "query": "hr office meeting",
+          "image_url": "https://drive.google.com/uc?export=download&id=10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+          "media_origin": "chatgpt",
+          "media_file_id": "10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+          "media_sha256": "28d2144bb1ab666f7bb9994e63b8a4800bbcd25cc760df29ac0e4217908a5927",
+          "media_bytes": 1642840
+        },
+        {
+          "phrase": "write up removed and an apology",
+          "query": "handshake office apology",
+          "image_url": "https://drive.google.com/uc?export=download&id=1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+          "media_origin": "chatgpt",
+          "media_file_id": "1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+          "media_sha256": "2a4b78f75de00c75fe34863726051943ec0c76df9c8cfa513b57c61109d7b8d2",
+          "media_bytes": 1846866
+        },
+        {
+          "phrase": "locked at a very reasonable seventy one degrees",
+          "query": "thermostat wall display",
+          "image_url": "https://drive.google.com/uc?export=download&id=1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+          "media_origin": "chatgpt",
+          "media_file_id": "1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+          "media_sha256": "00d0b9fe9054c15a20c48450644cb63265d5163b0b2e708bb83a3b9680beb060",
+          "media_bytes": 1792454
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "kept it at sixty two degrees",
+          "text": "FREEZING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "written up for tampering",
+          "text": "WRONGLY BLAMED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "facilities quietly replaced two malfunctioning units",
+          "text": "$$$ WASTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "write up removed and an apology",
+          "text": "CLEARED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "seventy one degrees ever since",
+          "text": "LOCKED IN",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "pettyrevenge",
+        "reddit",
+        "storytime",
+        "workplace",
+        "karma",
+        "officelife",
+        "hrstory",
+        "corporaterevenge",
+        "shorts",
+        "viral",
+        "fyp"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    }
   }
 }
