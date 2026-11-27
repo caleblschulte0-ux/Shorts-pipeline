@@ -5,63 +5,114 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "nfl",
-   "who": "Jerry Jones",
-   "why": "The Cowboys' owner and his family walk off after the biggest Thanksgiving collapse in NFL history, a reaction anyone gets at a glance.",
-   "post_title": "[Highlight] Jerry Jones and his family head to the locker room after the Cowboys blew the largest lead in NFL Thanksgiving history",
-   "upvotes": 11867,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the",
-   "skipped": "download failed"
-  },
-  {
-   "sub": "nfl",
-   "who": "Tom Brady",
-   "why": "Brady answers Rodgers' comments about McCarthy and defends the sacred locker room, a rare direct response from him.",
-   "post_title": "[Highlight] Tom Brady Responds To Aaron Rodgers Comments About Mike McCarthy: \u201cThe sanctity of the NFL locker room is, is a very sacred place and we shouldn\u2019t ever lose track of that as players. It\u2019s ",
-   "upvotes": 9009,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers",
-   "title": "Tom Brady Fires Back At Aaron Rodgers Over Mike McCarthy Comments",
-   "hook": "Brady responds to Rodgers on McCarthy",
+   "sub": "CollegeBasketball",
+   "who": "Tom Izzo",
+   "why": "Izzo goes off on the injury-disclosure rule and says it only benefits gamblers, a coach saying what he really thinks.",
+   "post_title": "Tom Izzo on the rule requiring coaches to disclose injury information 2 hours prior to each game: \"It benefits nobody. Not the parents, players, coaches, fans. Unless you're a gambler, then it benefit",
+   "upvotes": 2776,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1y1f1pb/tom_izzo_on_the_rule_requiring_coaches_to",
+   "title": "Tom Izzo Calls Gambling Injury Rule \"Dumb\" And Says He'll Happily Take The Fine",
+   "hook": "Izzo says he'll never reveal injuries \ud83d\ude24",
    "ledger": {
     "moves": [
-     "whoa@4.0"
+     "whoa@1.61"
     ],
     "mood": null,
     "shot_plan": {
-     "layout": "split",
-     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
      "shots": [
       {
-       "mode": "split",
-       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 28.17,
+       "reason": "the framer: Izzo's face is whole in columns 4-6, running from his left ear at the edge of column 4 to his right ear in column 6.",
+       "crop": [
+        404,
+        720,
+        502,
+        0
+       ]
       }
      ],
      "subtitle_spans": [
       0.0,
       0.0,
+      0.169,
       0.0,
-      0.0,
-      0.494
+      0.241
      ],
-     "n_subjects": 2,
+     "n_subjects": 1,
      "face_bands": [
       [
-       0.03,
-       0.231
-      ],
+       0.0,
+       1.0
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "Mourinho tells a funny joke his players told him about starting matches badly.",
+   "post_title": "Jos\u00e9 Mourinho sharing a joke players told him about starting matches badly: \"Mister, if we start well, you get bored on the bench doing nothing. If we start badly, we give you adrenaline, we give you ",
+   "upvotes": 1276,
+   "url": "https://www.reddit.com/r/soccer/comments/1y6pko6/jos\u00e9_mourinho_sharing_a_joke_players_told_him/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y6pko6/jos\u00e9_mourinho_sharing_a_joke_players_told_him",
+   "skipped": "not English (English p=0.15, 54% English words)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Aleksander Barkov",
+   "why": "Barkov deadpans that he spent his injury time playing Grand Theft Auto.",
+   "post_title": "\u201cLately way too much time to play Grand Theft Auto that\u2019s for sure\u201d - Barkov on how he spent his free time while injured",
+   "upvotes": 624,
+   "url": "https://www.reddit.com/r/hockey/comments/1y5rvvu/lately_way_too_much_time_to_play_grand_theft_auto/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y5rvvu/lately_way_too_much_time_to_play_grand_theft_auto",
+   "title": "Aleksander Barkov Admits He Spent Way Too Much Time On Grand Theft Auto While Injured",
+   "hook": "Barkov on what injury did to him",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "face_content",
+     "reason": "face on the right beside what it is showing \u2014 that on top, the face below",
+     "shots": [
+      {
+       "mode": "face_content",
+       "reason": "face on the right beside what it is showing \u2014 that on top, the face below"
+      }
+     ],
+     "subtitle_spans": [
+      0.181,
+      0.299,
+      0.242,
+      0.721,
+      0.299
+     ],
+     "n_subjects": 1,
+     "face_bands": [
       [
-       0.533,
-       0.741
+       0.5,
+       1.0
       ]
      ]
     },
     "outro": null,
     "cut_in": [
-     "Tom Brady@13.74"
+     "Aleksander Barkov Florida Panthers@21.67"
     ],
-    "cut_in_s": 3.78,
+    "cut_in_s": 8.43,
     "shown": [],
     "music": [],
     "own_captions": false,
@@ -69,21 +120,21 @@
    },
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: This is a repost of someone else's split-screen edit: Brady is half cut off, their captions sit right on top of ours, and the second half is unrelated game footage, so the response never lands.",
-    "score": 45
+    "reason": "showrunner BLOCK: The moment (Barkov joking about playing GTA while injured) is buried: the hook line is vague, half of every interview frame is a TV schedule graphic, and our text runs over the shootout score bar.",
+    "score": 57
    },
-   "skipped": "showrunner_block: showrunner BLOCK: This is a repost of someone else's split-screen edit: Brady is half cut off, their captions sit right on top of ours, and the second half is unrelated game footage, so the response never lands."
+   "skipped": "showrunner_block: showrunner BLOCK: The moment (Barkov joking about playing GTA while injured) is buried: the hook line is vague, half of every interview frame is a TV schedule graphic, and our text runs over the shootout score bar."
   },
   {
    "sub": "hockey",
-   "who": "Dylan Larkin",
-   "why": "Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs, and the crowd's reaction carries it.",
-   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
-   "upvotes": 3031,
-   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
-   "title": "Dylan Larkin Hears Montreal Fans Chant His Name On His First Shift With The Habs",
-   "hook": "Montreal fans greet Larkin's first Habs shift",
+   "who": "Jon Cooper",
+   "why": "Cooper hands Darren Pang a mini turkey in the middle of a game interview, a week after the step stool bit.",
+   "post_title": "Jon Cooper gifting Darren Pang a (mini) turkey during a mid-game interview, following last week's step stool",
+   "upvotes": 518,
+   "url": "https://www.reddit.com/r/hockey/comments/1y5p06m/jon_cooper_gifting_darren_pang_a_mini_turkey/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y5p06m/jon_cooper_gifting_darren_pang_a_mini_turkey",
+   "title": "Jon Cooper Gifts Darren Pang A Mini Turkey Mid-Game And Pang Can't Handle It",
+   "hook": "Cooper brings Pang a mini turkey \ud83e\udd83",
    "ledger": {
     "moves": [],
     "mood": null,
@@ -94,24 +145,19 @@
       {
        "mode": "camera",
        "t0": 0.0,
-       "t1": 1.17,
-       "reason": "the framer: Close-up of the Montreal player in the red #86 helmet, face fully in columns 2-5 with the helmet top and chin",
-       "crop": [
-        540,
-        720,
-        242,
-        0
-       ]
+       "t1": 7.83,
+       "reason": "the framer: Cooper (standing, speaking into mic) in cols 3-6 and Pang (bald, glasses) in cols 6-7 (whole frame)",
+       "crop": null
       },
       {
        "mode": "camera",
-       "t0": 1.17,
-       "t1": 15.0,
-       "reason": "the framer: Play along the boards: Montreal #14 and the LA player #68 at the puck, and a player down near the boards, plus LA #40 in column 5",
+       "t0": 7.83,
+       "t1": 21.47,
+       "reason": "the framer: Cooper holding the turkey plate and Pang with mic in the inset at cols 0-2; the rest is the unrelated live game",
        "crop": [
-        540,
+        404,
         720,
-        242,
+        0,
         0
        ]
       }
@@ -134,83 +180,24 @@
     "own_captions": false,
     "talking": false
    },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic."
-    }
-   ],
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic.",
-    "score": 62
+    "blocked": false,
+    "reason": "",
+    "score": 79
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic."
-  },
-  {
-   "sub": "nfl",
-   "who": "Detroit Lions",
-   "why": "The Lions stuff a lineman like a Thanksgiving turkey to celebrate their first TD, a silly team moment anyone gets right away.",
-   "post_title": "[Highlight] Lions celebrate their first TD by stuffing their lineman like a turkey",
-   "upvotes": 8975,
-   "url": "https://www.reddit.com/r/nfl/comments/1y68yrc/highlight_lions_celebrate_their_first_td_by/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y68yrc/highlight_lions_celebrate_their_first_td_by",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nba",
-   "who": "Damian Lillard",
-   "why": "Lillard picks which teammate he'd trust to bring a Thanksgiving dish, a light, funny answer that needs no context.",
-   "post_title": "Damian Lillard when asked which teammate he would trust to bring a dish (Thanksgiving): \"I'm gonna go with Ja. Just 'cause that Southern hospitality, I know he got some in him, so I'm gonna go with Ja",
-   "upvotes": 2581,
-   "url": "https://streamable.com/unx5ym",
-   "topic": "https://www.reddit.com/r/nba/comments/1y5x2jb/damian_lillard_when_asked_which_teammate_he_would",
-   "title": "Damian Lillard Picks Who He'd Trust To Bring The Thanksgiving Dish",
-   "hook": "Dame picks his Thanksgiving dish guy \ud83e\udd83",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "1 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 23.98,
-       "reason": "the framer: Dame (the speaker) has his face in columns 4-5, with his shoulders and the ESPN mic in columns 3-6.",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.286,
-      0.375,
-      0.375,
-      0.375,
-      0.375
-     ],
-     "n_subjects": 2,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": true
-   },
-   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+   "video_url": "https://youtube.com/shorts/hjFpgiErtZk",
+   "ok": true,
+   "publish_at": "2026-11-28T03:00:00Z",
+   "seconds": 185,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261127-jon-cooper-gifts-darren-pang-a-mini-turkey-mid-g-a685c4d9",
+    "tiktok": "queued for 2026-11-28T03:00:00Z"
+   }
   }
  ],
  "already_today": 4,
- "pool": 134,
- "already_posted": 5,
- "refused_before": 10,
- "shipped": 0
+ "pool": 135,
+ "already_posted": 6,
+ "refused_before": 9,
+ "shipped": 1
 }
