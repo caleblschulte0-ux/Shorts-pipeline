@@ -1688,7 +1688,7 @@ def shot1():
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     T_E = 1.0                                           # the establishing wide ends
-    T_B = 2.35; T_C = 3.4                               # the cuts: to the truck, to the roadside
+    T_B = 2.15; T_C = 3.4                               # the cuts: to the truck, to the roadside
     P = place_grindavik_street()
     light = P["light"]
     data = load_data()
@@ -1714,18 +1714,19 @@ def shot1():
     bpy.context.view_layer.update()
     DC = bpy.data.objects[f"town house {S1_HOME[0]}_{S1_HOME[1]} door"].matrix_world.translation.copy()
     XF = DC.x; YD = DC.y
-    XT = -0.55; YT = YD - 3.2
+    XT = -0.55; YT = YD - 2.4
     tr = FX.truck(name="his tipper truck", loc=(XT, YT, 0.0), yaw=0.0, lights=True, power=90.0, seed=2)
     troot = tr["root"]
     SIDE = XT + 0.65                                    # its street side: the driver's door
     steel = lw_metal("cab grab handle", "#B9BCBE", rough=0.3)
     DOOR_Y = YT - 1.85 + 0.62
-    K.box("cab foot rung", (SIDE + 0.05, DOOR_Y - 0.05, 0.15), (0.1, 0.22, 0.025), steel, bev=0.004)
-    for z_ in (0.4, 0.72):
-        K.box("cab grab handle mount", (SIDE + 0.02, DOOR_Y - 0.33, z_), (0.04, 0.03, 0.03), steel, bev=0.004)
-    K.cyl("cab grab handle", (SIDE + 0.045, DOOR_Y - 0.33, 0.56), 0.014, 0.36, steel, v=12)
-    GRAB = Vector((SIDE + 0.06, DOOR_Y - 0.33, 0.55)); DOORP = Vector((SIDE + 0.02, DOOR_Y - 0.1, 0.56))
-    BED = Vector((XT + 0.1, YT + 0.2, 0.82))            # where the bag lands, on the tipper's floor
+    K.box("cab foot rung", (SIDE + 0.05, DOOR_Y + 0.02, 0.15), (0.1, 0.22, 0.025), steel, bev=0.004)
+    for z_ in (0.3, 0.62):                              # (q1w: at his size the handle and the door are within 0.19 m of his shoulders, or his arm locks)
+        K.box("cab grab handle mount", (SIDE + 0.02, DOOR_Y + 0.08, z_), (0.04, 0.03, 0.03), steel, bev=0.004)
+    K.cyl("cab grab handle", (SIDE + 0.045, DOOR_Y + 0.08, 0.46), 0.014, 0.36, steel, v=12)
+    GRAB = Vector((SIDE + 0.06, DOOR_Y + 0.08, 0.45)); DOORP = Vector((SIDE + 0.02, DOOR_Y - 0.09, 0.44))
+    FC = Vector((-0.8, -0.6, 0.0))                      # he faces in to the door, three-quarter to the lens ahead of the truck
+    PD = (GRAB + DOORP) / 2 - FC * 0.19; PD.z = 0.0
     # ---- the other cars, far up the street in the far lane, rolling out of town toward us in their dust
     cars = []
     for k, (col, y0, v) in enumerate((("#2F5E8C", YD + 12.0, 2.6), ("#C9C6BE", YD + 17.0, 2.4))):
@@ -1736,25 +1737,25 @@ def shot1():
             tj = 2.9 + 0.3 * j
             FX.dust_puff(base=(0.95, y0 - v * tj + 0.9, 0.05), w=0.7, h=0.6, t0=tj, dur=1.4, col=(0.5, 0.46, 0.4), dens=4.0, seed=7.0 + 3 * k + j, lean=(0.0, 0.3), name=f"dust off the cars {k} {j}")
     # ---- him: off his doorstep into the street, running down it and round his truck's tail to its street side
-    T_AT = 2.45; T_WIND = 2.5; T_REL = 2.98; T_FLY = 0.62
-    T_GO = 3.2; T_STEP = 3.7
-    PS = Vector((-0.85, YD + 0.5, 0.0)); PM = Vector((SIDE + 0.17, YT + 1.85 + 0.45, 0.0))
-    PT = Vector((SIDE + 0.17, YT + 0.2, 0.0)); PD = Vector((SIDE + 0.17, DOOR_Y - 0.2, 0.0))
-    data.place(PS.x, PS.y, math.degrees(yaw_of(0.15, -1.0)))
+    T_AT = 2.45; T_WIND = 2.5; T_REL = 2.98; T_FLY = 0.9
+    T_GO = 3.35; T_STEP = 3.85
+    PS = Vector((-0.85, YD + 0.57, 0.0)); PM = Vector((SIDE + 0.3, YT + 1.85 + 0.47, 0.0))
+    PT = Vector((SIDE + 0.3, YT - 0.35, 0.0))            # (q1w: 0.3 off the side, or the bag he throws goes through the rail)
+    BED = Vector((XT + 0.05, PT.y - 0.1, 0.82))          # where the bag lands, on the tipper's floor
+    data.place(PS.x, PS.y, math.degrees(yaw_of(0.5, -1.0)))
     kit = hard_hat(data)
     sc.frame_set(1); bpy.context.view_layer.update()
-    data.walk_to((-0.7, YD - 0.1), 0.0, 0.9, step=0.15, lift=0.05, bob=0.016)
-    data.walk_to((PM.x, PM.y), 0.95, 1.85, step=0.21, lift=0.09, bob=0.026)          # running
-    data.walk_to((PT.x, PT.y), 1.85, T_AT, step=0.21, lift=0.09, bob=0.026)
+    data.walk_to((PM.x, PM.y), 0.15, 0.92, step=0.19, lift=0.08, bob=0.024)          # (q1w POP: running from his door, not a sprint at the end)
+    data.walk_to((PT.x, PT.y), 0.92, T_AT, step=0.21, lift=0.09, bob=0.026)
     sc.frame_set(F(T_AT)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
     YB = yaw_of(-0.35, -1.0)                             # (the throw: three-quarter to the high lens, the truck at his right)
     while YB - YA > math.pi: YB -= 2 * math.pi
     while YB - YA < -math.pi: YB += 2 * math.pi
     for f in range(F(T_AT) + 1, F(T_GO) + 1):
         t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.25))
-    data.walk_to((PD.x, PD.y), T_GO, T_STEP, step=0.13, lift=0.045, bob=0.014)      # along the truck to its cab door
+    data.walk_to((PD.x, PD.y), T_GO, T_STEP, step=0.15, lift=0.05, bob=0.016)      # along the truck to its cab door
     sc.frame_set(F(T_STEP)); bpy.context.view_layer.update(); YS = data.arm.rotation_euler.z
-    YC = yaw_of(-0.9, -0.43)                             # to the door and the handle, three-quarter to the lens ahead of the truck
+    YC = yaw_of(FC.x, FC.y)                             # to the door and the handle, three-quarter to the lens ahead of the truck
     while YC - YS > math.pi: YC -= 2 * math.pi
     while YC - YS < -math.pi: YC += 2 * math.pi
     for f in range(F(T_STEP) + 1, NF + 8):
@@ -1769,11 +1770,11 @@ def shot1():
     HITCH = lambda t: 0.06 * W(t, 1.45, 0.15) * (1 - W(t, 1.62, 0.2))                 # (q1v HOLD: a hitch of the bag mid-run)
     def carried(t):
         m, f_, l_ = frame_at(t)
-        return m + f_ * 0.15 + Vector((0, 0, -0.17 + HITCH(t)))
+        return m + f_ * 0.145 + Vector((0, 0, -0.17 + HITCH(t)))
     lw_layer(data, "spine", lambda t: (24 * W(t, 0.95, 0.3) * (1 - W(t, T_AT - 0.2, 0.3)) + 16 * W(t, T_WIND, 0.15) * (1 - W(t, T_WIND + 0.15, 0.15)) - 12 * W(t, T_WIND + 0.2, 0.2) * (1 - W(t, T_REL + 0.25, 0.3)), 0, 0), 0.0, DUR + 0.4)    # leaning into the run; down into the heave; back as it goes up
     sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
     mR, fR, lR = frame_at(T_REL)
-    REL = mR + fR * 0.06 - lR * 0.09 + Vector((0, 0, 0.17))       # up at his right, over his shoulder, toward the truck
+    REL = mR + fR * 0.16 - lR * 0.04 + Vector((0, 0, 0.06))       # (q1w: over his shoulder it was in his head, and out of his reach) up in front of his face
     def bag_at(t):
         if t < T_WIND: return carried(t)
         if t < T_REL:
@@ -1786,21 +1787,20 @@ def shot1():
     G = Vector((0, 0, -9.8)); V0 = (BED - REL - 0.5 * G * T_FLY * T_FLY) / T_FLY
     def flying(t):
         s_ = min(T_FLY, t - T_REL); return REL + V0 * s_ + 0.5 * G * s_ * s_
-    duffel = s1_duffel("his duffel bag"); duffel.scale = (1.25, 1.25, 1.25)       # (q1v: under 12% of the frame, a purse)
+    duffel = s1_duffel("his duffel bag"); duffel.scale = (1.12, 1.12, 1.12)       # (q1v: under 12% of the frame, a purse; q1w: at 1.25 it was in his chest)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - data.pos()).dot(frame_at(0.0)[2]), reverse=True)    # sides[0]: his left
     for k_, sd in enumerate(sides):
         sg = 1.0 if k_ == 0 else -1.0
         def grip(t, sg=sg):
             if t < T_REL:
-                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.1) + Vector((0, 0, 0.06))
-            m, f_, l_ = frame_at(T_REL); return REL + l_ * (sg * 0.1) + Vector((0, 0, 0.1 + 0.04 * W(t, T_REL, 0.2)))     # his arms follow it up, open
-        data.reach(sd, grip, 0.0, T_REL + 0.3, lead=0.05, back=0.5, elbow_out=0.25)
+                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.095) + Vector((0, 0, 0.055))
+            m, f_, l_ = frame_at(t); return m + f_ * 0.16 + l_ * (sg * 0.11) + Vector((0, 0, 0.1 + 0.03 * W(t, T_REL, 0.2)))     # (q1w: a world point behind him as he walked off: arms behind his back) his arms follow it up, open
+        data.reach(sd, grip, 0.0, T_REL + 0.2, lead=0.05, back=0.4, elbow_out=0.25)
     # ---- at the cab: a foot up on the rung, a hand on the door, a hand on the grab handle
     sc.frame_set(F(T_STEP + 0.3)); bpy.context.view_layer.update()
     hs = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - GRAB).length)     # the hand nearer the grab handle takes it
     data.reach(hs[0], lambda t: GRAB.copy(), T_STEP + 0.05, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
     data.reach(hs[1], lambda t: DOORP.copy(), T_STEP + 0.15, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
-    lw_layer(data, "spine", lambda t: (10 * W(t, T_STEP, 0.3), 0, 0), T_STEP, DUR + 0.4)          # into the cab
     near_leg = min("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"leg.{s_}"].head - GRAB).length)
     lw_layer(data, f"leg.{near_leg}", lambda t: (-50 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
     lw_layer(data, f"shin.{near_leg}", lambda t: (62 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
@@ -1809,7 +1809,7 @@ def shot1():
     data.look_at(Vector((PM.x, PM.y - 2.0, 0.4)), 0.0, max_yaw=30, max_pitch=30, blend=0.0)
     data.look_at(PLUME, 1.15, max_yaw=35, max_pitch=30, blend=0.3)                     # a look back up at it as he runs
     data.look_at(Vector((PT.x, PT.y - 2.0, 0.4)), 1.75, max_yaw=30, max_pitch=30, blend=0.3)
-    data.look_at(BED + Vector((0, 0, 0.6)), T_AT - 0.1, max_yaw=45, max_pitch=45, blend=0.45)
+    data.look_at(REL + Vector((0, 0, 0.1)), T_AT - 0.1, max_yaw=40, max_pitch=40, blend=0.45)      # (q1w: at the bed his face turned 79 off the lens) at the bag going up
     data.look_at(GRAB + Vector((0, -0.2, 0.3)), T_GO + 0.1, max_yaw=35, max_pitch=35, blend=0.5)
     data.expression("alarmed", 0.0, T_AT, blend=0.15)
     data.expression("determined", T_AT, DUR + 1.0, blend=0.25)
@@ -1830,19 +1830,19 @@ def shot1():
     # truck's side; 4 low in the street ahead of the truck's nose, back at him climbing in, the cars far up the street
     WCAM = Vector((0.3, YD - 15.0, 2.2)); WLOOK = Vector((-0.6, PY, 10.0))
     sc.frame_set(F(1.63)); bpy.context.view_layer.update(); PR = data.pos()
-    CA0 = Vector((SIDE + 0.4, YT - 1.2, 0.5)); LA0 = PR + Vector((0, 0, 0.4))
-    CA, LA = compose.frame_data(data, CA0, LA0, 50.0, face_at=(0.45, 0.6), height=0.36, t=1.63)
-    CB0 = Vector((SIDE + 1.2, YT - 1.5, 1.5)); LB0 = PT + Vector((0, 0, 0.45))
+    CA0 = Vector((SIDE + 0.35, YT - 3.3, 0.5)); LA0 = PR + Vector((0, 0, 0.4))         # (q1w POP: close, he ran into the lens) long, from ahead of the truck's nose
+    CA, LA = compose.frame_data(data, CA0, LA0, 70.0, face_at=(0.45, 0.6), height=0.36, t=1.63)
+    CB0 = Vector((SIDE + 1.2, PT.y - 1.3, 1.5)); LB0 = PT + Vector((0, 0, 0.45))
     CB, LB = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.55, 0.55), height=0.36, t=TS)
     CC0 = Vector((SIDE + 0.0, YT - 4.2, 0.6)); LC0 = PD + Vector((0, 0, 0.4))
     CC, LC = compose.frame_data(data, CC0, LC0, 45.0, face_at=(0.4, 0.6), height=0.36, t=DUR - 0.05)
     print("S1 CAM A", tuple(round(v, 2) for v in CA), "B", tuple(round(v, 2) for v in CB), "C", tuple(round(v, 2) for v in CC), "truck street side x", round(SIDE, 2), flush=True)
-    cam = K.camera(tuple(CA), tuple(LA), lens=50.0, fstop=11.0)
+    cam = K.camera(tuple(CA), tuple(LA), lens=70.0, fstop=11.0)
     lw_cut(cam, lambda t: ((CA, LA) if t < T_B else (CB, LB) if t < T_C else (CC, LC)) + (data.pos() + Vector((0, 0, 0.4)),),
            lambda t: (WCAM, WLOOK, Vector((0.0, YD, 2.0))), 0.0, T_E, 35.0, 35.0)
     for f in range(1, NF + 8):                     # the lens per set-up: long in the street, normal up high, a little long ahead of the truck
         t = (f - 1) / FPS
-        cam.data.lens = 35.0 if t < T_E else 50.0 if t < T_B else 35.0 if t < T_C else 45.0
+        cam.data.lens = 35.0 if t < T_E else 70.0 if t < T_B else 35.0 if t < T_C else 45.0
         cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
@@ -1949,7 +1949,7 @@ def shot2():
     R = math.radians
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.6; T_LET = 1.55; T_WALK = 2.05; T_ARR = 2.6
+    T_AB = 0.6; T_LET = 1.4; T_WALK = 1.85; T_ARR = 2.75
     T_CUT = 1.72; T_WB = 2.72
     P = place_wall_works()
     light = P["light"]; walls = P["walls"]
@@ -2054,25 +2054,38 @@ def shot2():
         a = PULL(t); rx = Matrix.Rotation(a, 3, 'X')
         return PIV + rx @ (BAR + lf * u - PIV)
     YW0 = data.arm.rotation_euler.z
-    PE = Vector((S2_HOUSE[0] + 0.5, 0.72, 0.0))        # (q2f: on the door's steps he stood in them) at the house's front, by its door, the wall's foot behind him
+    PE = Vector((S2_HOUSE[0] + 0.25, 0.55, 0.0))       # (q2g) at the house's front by its door steps, the wall's foot beside him: he walks there FACING the low lens
     YWK = yaw_of(PE.x - PL.x, PE.y - PL.y)
     while YWK - YW0 > math.pi: YWK -= 2 * math.pi
     while YWK - YW0 < -math.pi: YWK += 2 * math.pi
     for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
         t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) - 0.055 * W(t, 1.25, 0.3)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
-        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45) + (YWK - YW0) * W(t, T_LET + 0.1, T_WALK - T_LET - 0.1))      # (q2e: STEADY, he turns to go before he goes)
+        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45) + (YWK - YW0) * W(t, T_LET - 0.05, T_WALK - T_LET + 0.05))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
-    for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.75, elbow_out=0.25)
+    def body_at(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        m = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2; f_ = data.forward(); f_.z = 0; f_.normalize()
+        return m, f_, Vector((-f_.y, f_.x, 0.0))
+    # (q2f/q2g: let go to a relaxed arm, the hands swept through his coat and whipped): off the bar the hands come to
+    # rest in front of his belly, held to his body as he goes; the shading hand goes up from there (FK, below)
+    for sd, u, sg, t_end in ((sides[0], 0.05, 1.0, DUR + 0.5), (sides[1], -0.06, -1.0, T_ARR + 0.1)):
+        def job(t, u=u, sg=sg, sd=sd):
+            a = on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))
+            if t <= T_LET: return a
+            m, f_, l_ = body_at(t)
+            side_ = 1.0 if (acts._shoulder(data, sd) - m).dot(l_) > 0 else -1.0
+            rest = m + f_ * 0.155 + l_ * (side_ * 0.07) + Vector((0, 0, -0.11))
+            return a.lerp(rest, ease(min(1.0, (t - T_LET) / 0.55)))
+        data.reach(sd, job, 0.0, t_end, lead=0.05, back=None, elbow_out=0.3)
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
     lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.5))), 0.0, DUR + 0.4)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
-    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.2, lift=0.045, bob=0.014)
+    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.17, lift=0.045, bob=0.014)
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(0.25, 0.97)          # (q2f: the lens is up the alley behind him, the wall towering over his back)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
+    YU = yaw_of(-0.95, -0.3)          # (q2f: the lens is up the alley behind him, the wall towering over his back)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
     while YU - YA > math.pi: YU -= 2 * math.pi
     while YU - YA < -math.pi: YU += 2 * math.pi
     for f in range(F(T_ARR) + 1, NF + 8):
@@ -2082,7 +2095,7 @@ def shot2():
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
     data.look_at(PE + Vector((0, -1.5, 0.3)), T_LET + 0.1, max_yaw=30, max_pitch=30, blend=0.7)
-    data.look_at(PE + Vector((-1.5, -0.3, 3.5)), T_ARR, max_yaw=45, max_pitch=40, blend=0.6)                         # (q2f) up at it, along its top
+    data.look_at(PE + Vector((-0.8, -0.25, 3.0)), T_ARR - 0.1, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
     data.expression("determined", 0.0, T_ARR, blend=0.15)
     data.expression("surprised", T_ARR, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
@@ -2090,7 +2103,7 @@ def shot2():
     def pose(t, P_, sides_="LR"):
         for sd in sides_:
             for bn, r_ in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r_)
-    pose(T_ARR + 0.15, SHADE, sides[1]); pose(T_ARR + 0.15, HIP, sides[0]); pose(DUR + 0.5, SHADE, sides[1]); pose(DUR + 0.5, HIP, sides[0])
+    pose(T_ARR + 0.45, SHADE, sides[1]); pose(DUR + 0.5, SHADE, sides[1])
     data.finish()
     # ---- the lens: out past the low row, low, back at him, the truck's tail pouring rock at the right and the house at
     # the left; then from up high over the rising wall; CUT WIDE across the town (he is behind his truck); then from up
@@ -2108,7 +2121,7 @@ def shot2():
     CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.38, 0.6), height=0.34, t=1.2)
     # (q2c: from up the wall the wall was behind the lens; q2e: the solver backed the lens behind the house's corner) set
     # by hand: low and close along the house's front, wide, tipped up so the wall rises over him at the right
-    CD = Vector((-1.25, 2.0, 0.25)); LD = PE + Vector((0.0, -0.3, 0.8))       # (q2f: from the house's door side the wall was out of frame) up the alley between the house and the truck, low, tipped up: him small, the wall over him
+    CD = PE + Vector((-1.2, 0.35, 0.25)); LD = PE + Vector((0.0, 0.0, 0.65))       # (q2g: up the alley the downpipe stood in front of him) low off the steps' end, along the house's front: him walking at us, the wall over his right       # (q2f: from the house's door side the wall was out of frame) up the alley between the house and the truck, low, tipped up: him small, the wall over him
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
