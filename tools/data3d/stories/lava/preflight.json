@@ -1323,6 +1323,52 @@
    "stills": 4,
    "unticked": []
   },
+  "8845355229bd9b4524b2351ee4d57c53945d617bc45ae51bbaf7ecf29da77175": {
+   "at": "2026-11-27 07:05:45Z",
+   "claims": 15,
+   "claims_key": "44c47971a74dccaf",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The car behind Data is gone in still 3, with no trace of where it went. The lava mound appears in still 3 and the falling bomb from still 2 is not seen landing.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "2-3"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The lava splash looks like a flat orange lump or sprite on the road, and its source isn't clear. Dark debris chunks sit in the foreground and a car vanishes between stills.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3-4"
+    },
+    {
+     "id": "look",
+     "note": "Data is a glossy toy-like cartoon character against a realistic street. The lava mound reads as a flat sprite or prop, and the ridge fire is a flat flame strip, not real lava.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The lava mound in the road is small and murky at phone size. The last still shows Data big but doesn't clearly show the bomb's result.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "3-4"
+    }
+   ],
+   "sha256": "8845355229bd9b4524b2351ee4d57c53945d617bc45ae51bbaf7ecf29da77175",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Ash and smoke rise behind the ridge, and a line of fire or spatter sits along its top. The plume is a hazy brown smear, not a towering black plume, and the fire runs the whole ridge, not a low band at one foot.",
+     "text": "a towering black ash plume stands on the ridge over the roofs, a low band of lava spatter at its foot"
+    }
+   ]
+  },
   "887f751281c977b1ddd824c4aab3edae154bd088a9ee345e39ae56f36ad738ab": {
    "at": "2026-11-26 07:47:30Z",
    "claims": 17,
