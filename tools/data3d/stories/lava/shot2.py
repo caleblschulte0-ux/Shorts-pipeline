@@ -16,7 +16,7 @@ S2_HS = (0.5, 2.6, 5.6)                 # the wall's three heights: knee-high to
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 0.97 * 5.6 / (11.0 / 2 - S2_CREST / 2 - 0.1)     # beat 3's faces (S3_BASE 11)
 S2_XT, S2_YT = 0.0, 2.2                 # his truck: tail to the wall at y 0.35, nose into town
-S2_HOUSE = (-2.5, 2.2, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1 m off the wall's foot, by the truck
+S2_HOUSE = (-2.2, 2.6, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1.4 m off the wall's foot, left of the truck's tail
 
 
 def s2_base(h):
@@ -42,7 +42,7 @@ def place_wall_works():
     lw_grid("town ground", -60, 60, 0.0, 40, 90, 50, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
     FX.ground("grass", area=(-12, 14, 4.2, 30), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
     lava_rock("town yard stones", 500, (-10, 12, 0.2, 14), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.12), moss=0.6,
-              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-3.45 < x < -1.55 and 0.4 < y < 3.5))       # (clear of the truck, the alley and the house)
+              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-3.15 < x < -1.25 and 1.2 < y < 3.9) or (-2.5 < x < -0.9 and 0.3 < y < 1.25))       # (clear of the truck, the house and his walk)
     walls = []
     path = [(float(x), 0.0) for x in range(-40, 41, 1)]
     for k, h in enumerate(S2_HS):
@@ -57,7 +57,7 @@ def place_wall_works():
                                           (1.0, 10.4, "#B8352B", "#7E9A86"), (8.6, 10.8, "#2F5E8C", "#E9D9A2"), (-11.0, 7.0, "#9E3A2E", "#F1EEE6"))):
         town_house(f"town house back {k}", (x, y, s2_ground_z(x, y)), yaw=0.0, w=3.0, d=2.6, storeys=1 + (k % 2), base=0.3, pitch=38, roof=roof, wall=wl, seed=21 + k)
     blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
-    fx, fy = 4.2, 4.6; fzz = s2_ground_z(fx, fy)
+    fx, fy = -4.4, 2.3; fzz = s2_ground_z(fx, fy)          # (q2c: in the yard by the house, where the wide sees it)
     K.cyl("flag pole", (fx, fy, fzz + 1.6), 0.025, 3.2, lw_paint("flag pole white", "#EDEDE8", rough=0.5), v=10)
     FS = 1.4; c = Vector((fx + 0.36 * FS, fy, fzz + 2.85))
     for nm, off, size, m in (("field", 0.0, (0.66, 0.012, 0.46), blue), ("white bar", -0.1, (0.13, 0.016, 0.46), white), ("white band", 0.0, (0.66, 0.016, 0.13), white),
@@ -89,12 +89,12 @@ def shot2():
     R = math.radians
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.6; T_LET = 1.74; T_WALK = 1.8; T_ARR = 2.75
+    T_AB = 0.6; T_LET = 1.95; T_WALK = 2.05; T_ARR = 2.62
     T_CUT = 1.72; T_WB = 2.72
     P = place_wall_works()
     light = P["light"]; walls = P["walls"]
     # ---- the wall grows: each heap rises out of the ground inside the one before it
-    RISE = [None, (0.55, 0.65), (1.3, 0.8)]
+    RISE = [None, (0.42, 0.75), (1.3, 0.8)]          # (q2c: the roof-high heap breaks the ground as the first rock lands on the row)
     def off(k, t):
         if k == 0: return 0.0
         a, d = RISE[k]; return -(S2_HS[k] + 0.25) * (1.0 - W(t, a, d))       # (q2a: from below the ground, or the plan's box never sees it grow)
@@ -170,7 +170,7 @@ def shot2():
     # ---- him: at the tip lever on the truck's side, between it and the house, facing out to the wall (q2a: from up
     # the alley between them the wall, the rock and the house were all out of the picture: the lens is out past the row)
     data = load_data()
-    PL = Vector((S2_XT - 0.93, 1.3, 0.0))
+    PL = Vector((S2_XT - 1.12, 0.75, 0.0))        # (q2c: at the tail's corner, so the pour is beside him in a close frame)
     YL = yaw_of(-0.12, -1.0)
     data.place(PL.x, PL.y, math.degrees(YL))
     kit = hard_hat(data)
@@ -194,20 +194,21 @@ def shot2():
         return PIV + rx @ (BAR + lf * u - PIV)
     YW0 = data.arm.rotation_euler.z
     for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PL), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))
+        t = (f - 1) / FPS; SW = 0.07 * W(t, 0.0, 0.5) - 0.05 * W(t, 0.5, 0.15) + 0.08 * W(t, T_AB, 0.5) - 0.06 * W(t, 1.2, 0.45)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.55, elbow_out=0.25)
+        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.9, elbow_out=0.25)
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.35)), 0, 0), 0.0, DUR + 0.4)
     lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.35))), 0.0, DUR + 0.4)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
-    PE = Vector((S2_HOUSE[0] + 0.62, 0.45, 0.0))
+    PE = Vector((S2_HOUSE[0] + 0.15, 0.85, 0.0))
     data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.14, lift=0.045, bob=0.014)
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(0.12, -1.0)
+    YU = yaw_of(-0.95, -0.3)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
     while YU - YA > math.pi: YU -= 2 * math.pi
     while YU - YA < -math.pi: YU += 2 * math.pi
     for f in range(F(T_ARR) + 1, NF + 8):
@@ -237,20 +238,22 @@ def shot2():
         o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT)); o.keyframe_insert("hide_render", frame=F(T_WB) - 1)
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_WB))
-    CA0 = PL + Vector((0.3, -3.2, 1.0)); LA0 = CA0 + Vector((-0.25, 6.0, -1.3))     # (q2b: from lower, the lens sat inside the low row)
+    CA0 = PL + Vector((0.15, -2.6, 0.9)); LA0 = CA0 + Vector((0.2, 6.0, -1.0))     # (q2c: out over the low row, the pour beside him at the right, the house behind at the left)
     CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.42, 0.6), height=0.36, t=0.25)
-    CB0 = PL + Vector((0.9, -7.0, 5.2)); LB0 = CB0 + Vector((-0.9, 7.0, -4.6))      # from far up over the rising wall, long: the crest at our feet
+    CB0 = PL + Vector((0.25, -4.6, 4.6)); LB0 = PL + Vector((0.0, 0.0, 0.3))      # from up over the rising wall, long: its face below us, him at its foot, the house beyond
     CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.5, 0.6), height=0.34, t=1.2)
-    CD0 = PE + Vector((0.2, -1.7, 1.9)); LD0 = CD0 + Vector((-0.25, 5.0, -3.2))
-    CD, LD = compose.frame_data(data, CD0, LD0, 35.0, face_at=(0.5, 0.62), height=0.34, t=DUR - 0.05)
+    CD0 = PE + Vector((-1.85, 0.4, 0.22)); LD0 = PE + Vector((0.4, -1.2, 1.3))      # (q2c: from up the wall the wall was behind the lens) low by the house's corner, up at the wall over him
+    CD, LD = compose.frame_data(data, CD0, LD0, 28.0, face_at=(0.5, 0.3), height=0.3, t=DUR - 0.05)
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
-    WC = Vector((-17.0, 6.5, 7.5)); WL = Vector((2.0, -9.0, 2.5))      # along the wall from the town's end: the wall over the house, the lava and the eruption beyond it                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
+    WC = Vector((-17.0, 6.5, 10.5)); WL = Vector((2.0, -9.0, 1.5))      # (q2c: higher, so the flow shows over the crest)      # along the wall from the town's end: the wall over the house, the lava and the eruption beyond it                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
     lw_cut(cam, lambda t: ((CA, LA) if t < T_AB else (CB, LB) if t < T_CUT else (CD, LD)) + (data.pos() + Vector((0, 0, 0.4)),),
            lambda t: (WC, WL, Vector((1.0, 0.0, 2.0))), T_CUT, T_WB, 35.0, 20.0)
     for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
         cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
+    for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
+        cam.data.lens = 28.0; cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
         for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'

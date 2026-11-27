@@ -1555,7 +1555,7 @@ def place_grindavik_street():
     coloured-roof houses down both sides, the old lava field and moss round the town, the ridge above it where the
     fissure opens under its plume, the road gate at the town's edge, far blue mountains."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, ph_mat("rock_face_01", scale=2.2, tint="#0B0B0C", name="lava field rock ground", rough=0.95, bump=1.2))   # REAL rock (Poly Haven), at a real size: BLACK lava rock (board B8: "a brown dirt bank")
+    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#343A2A", "#56603F", scale=0.35, rough=1.0, bump=0.35, detail=10))   # (coordinator, r1t: the black boulder bank behind the town read as the WALL, which shot 2 builds: the ridge is a smooth mossy hill in haze)   # REAL rock (Poly Haven), at a real size: BLACK lava rock (board B8: "a brown dirt bank")
     FX.road(a=(0, -7.5), b=(0, 12.5), width=2.3, line=True, shoulders=0, seed=5, z=-0.045, name="street road")      # the kit's real road: scanned asphalt, a worn centre line
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
@@ -1572,11 +1572,10 @@ def place_grindavik_street():
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
     lava_rock("street ash", 260, (-1.05, 1.05, -5.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,   # cinders and ash fallen on the street
               avoid=lambda x, y: -1.6 < y < 1.7 and abs(x + 0.5) < 0.34)   # (none where he runs)
-    lava_rock("lava field rock", 160, (-14, 14, -6, 14), s1_ground_z, seed=3, avoid=lambda x, y: abs(x) < 5.2 and y < 10.0)
+    lava_rock("lava field rock", 60, (-14, 14, -6, 8), s1_ground_z, seed=3, r=(0.04, 0.12), moss=0.6, avoid=lambda x, y: abs(x) < 5.2)
     # the slope up to the ridge is old lava field: broken black blocks and moss, never one smooth brown sheet (EMPTY
     # measured the bare slope as 30% of the set), with the town's power line and a gravel track climbing it
-    lava_rock("ridge slope rock", 520, (-7, 10, 8.5, 15.2), s1_ground_z, seed=11, r=(0.08, 0.32), moss=0.06)
-    lava_rock("ridge slope stone", 700, (-5, 8, 8.5, 15.0), s1_ground_z, seed=12, r=(0.03, 0.09), moss=0.1)
+    lava_rock("ridge slope stone", 160, (-7, 10, 8.5, 15.0), s1_ground_z, seed=12, r=(0.02, 0.05), moss=0.7)
     pole = lw_noise("power pole wood", "#4A3626", "#6E5238", scale=20, rough=0.9, stretch=(1, 1, 6))
     wire = K.mat("power line", "#151515", rough=0.5)
     tops = []
@@ -1659,149 +1658,187 @@ def place_grindavik_street():
     return dict(light=light, cores=cores, founts=founts, spat=spat, puffs=puffs, gate=gate, glow=glow + plume_lit, town_glow=town_glow, houses=houses, fz=fz)
 
 
+def s1_duffel(name="duffel bag"):
+    """HIS DUFFEL BAG (coordinator, r1t: "a red cylinder stuck to his side"): a soft holdall, its body sagging between
+    two dark end panels, two carry straps looped over its top, a zip along it; built along x about its centre."""
+    canvas = lw_canvas("duffel canvas", "#B0382A"); dark = K.mat("duffel trim", "#24221F", rough=0.8)
+    root = K.empty(name, (0, 0, 0))
+    body = K.capsule(name + " body", (-0.12, 0, 0), (0.12, 0, 0), 0.075, canvas, parent=root)
+    body.scale = (1.0, 1.0, 0.82)
+    for sx in (-1, 1):
+        K.cyl(name + " end", (sx * 0.15, 0, -0.004), 0.066, 0.022, dark, rot=(0, math.pi / 2, 0), v=24, parent=root)
+    K.box(name + " zip", (0, 0, 0.061), (0.22, 0.012, 0.006), dark, bev=0.002, parent=root)
+    for sy in (-1, 1):                                    # the two carry straps, looped over the top
+        a = Vector((-0.06, sy * 0.045, 0.05)); b = Vector((0.06, sy * 0.045, 0.05)); top = Vector((0, sy * 0.03, 0.12))
+        K.capsule(name + " strap", tuple(a), tuple(top + Vector((-0.03, 0, 0))), 0.008, dark, parent=root)
+        K.capsule(name + " strap", tuple(top + Vector((-0.03, 0, 0))), tuple(top + Vector((0.03, 0, 0))), 0.008, dark, parent=root)
+        K.capsule(name + " strap", tuple(top + Vector((0.03, 0, 0))), tuple(b), 0.008, dark, parent=root)
+    return root
+
+
 def shot1():
-    """EVERYONE HAD TO RUN, and so does he (coordinator, after the bomb blocked twice: four events and nothing more).
-    The town's main street by day, the black ash plume rising off the ridge right over the roofs. He stands at his own
-    front door, his bag on the bench beside it, looking up at it (still 1); he grabs the bag (still 2); on the pavement
-    he lobs it up into the back of his tipper truck (still 3); and from down the street the truck drives out of town at
-    us, the street empty, the town and the plume behind it (still 4, the wide)."""
-    T_GRAB = 1.0
-    T_WALK = 1.5; T_AT = 2.3; T_WIND = 2.45; T_REL = 0.68 * DUR + 0.03; T_FLY = 0.85
-    T_CUT = 0.84 * DUR
+    """EVERYONE HAD TO RUN, and so does he (coordinator, after r1t: "a different camera for every still").
+    1 ESTABLISH (the cutaway, him far off): down the main street, the town's roofs low in the frame, the hill behind
+    it soft in the haze, and a huge black ash plume rising off it with an orange-lit foot, the biggest thing there is.
+    2 Close on the pavement: he runs toward us with his duffel bag in both hands, the plume over the roofs behind him.
+    3 At his parked truck: he heaves the bag up over the tipper's side, arms up, the bag in the air at the rail.
+    4 From the roadside ahead: one hand on the cab door, the other on the grab handle, a foot up on the step, while the
+    other cars roll out of town past his truck in their own dust."""
+    R = math.radians
     W = lw_win
+    yaw_of = lambda dx, dy: math.atan2(dx, -dy)
+    T_E = 1.0                                           # the establishing wide ends
+    T_AT = 2.45; T_WIND = 2.5; T_REL = 2.72; T_FLY = 0.77
+    T_B = 2.35; T_C = 3.4                               # the cuts: to the truck, to the roadside
+    T_GO = 3.05; T_STEP = 3.62
     P = place_grindavik_street()
     light = P["light"]
     data = load_data()
-    R = math.radians
-    yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    # ---- the eruption: the kit's ash plume over the ridge, a low band of spatter at its foot (as in the board's rounds)
-    vents = P["founts"]
-    for v in vents: v.hide_render = True; v.hide_viewport = True
-    PX = S1_FX - 5.0                                    # the eruption on the ridge right behind the roofs of his side of the street
-    fo = FX.lava_fountain(base=(PX, S1_RIDGE_Y + 0.6, P["fz"] - 0.7), h=3.3, w=1.1, length=6.5, clots=150, clot_size=2.6, plume=1.0, lean=(-0.25, 0.35), seed=17, splats=0,
-                          t_end=DUR + 1.0, name="fissure fountain")
-    plumes = []
-    for k, (x, w_, h_) in enumerate(((-2.8, 3.4, 24.0), (1.4, 4.4, 30.0), (5.4, 3.2, 21.0))):
-        plumes.append(ash_plume((PX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=7.0, dens=8.0, lean=(-0.03 + 0.03 * k, 0.04), col=(0.07, 0.066, 0.063),
-                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))      # (pre-flight r1s: grey ash read as "a hazy brown smear, not a towering black plume")
-        lw_point(f"plume fire light {k}", (PX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)
-    for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True
-    for o in P["spat"]: o.hide_render = True
+    # ---- the eruption: ONE huge black ash column off the hill, orange-lit at its foot (r1t: "no plume, a thin fire
+    # fringe"); the fountains, the glowing slot and its spatter are cut
+    for v in P["founts"]: v.hide_render = True; v.hide_viewport = True
+    for o in P["spat"]: o.hide_render = True; o.hide_viewport = True
     for o in bpy.data.objects:
         if o.name.startswith("fissure glow"): o.hide_render = True; o.hide_viewport = True
         if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):
             o.data.energy = 0.0; o.hide_render = True
-    for L in P["glow"]: L.data.energy = 0.0
-    P["town_glow"].data.energy = 700.0
-    # ---- HIS front door (the house's own, at street level) and, on the bench beside it, his bag, packed
+    PX = S1_FX - 4.0; PY = S1_RIDGE_Y + 3.0; PZ = s1_ground_z(PX, PY)
+    plumes = []
+    for k, (dx, w_, h_, dy) in enumerate(((0.0, 9.0, 44.0, 0.0), (-4.5, 6.0, 30.0, 1.5), (4.0, 6.5, 34.0, 1.0))):
+        plumes.append(ash_plume((PX + dx, PY + dy, PZ - 0.5), w=w_, h=h_, S=7.0, dens=16.0, lean=(-0.02 + 0.02 * k, 0.03), col=(0.05, 0.047, 0.045),
+                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))
+    for k, dx in enumerate((-4.0, 0.0, 4.0)):
+        lw_point(f"plume fire light {k}", (PX + dx, PY - 1.0, PZ + 1.5), 60000.0, col=(1.0, 0.42, 0.1), r=2.5)      # the orange foot
+    P["town_glow"].data.energy = 900.0
+    # ---- HIS truck, parked at the kerb down the street from his door, its nose out of town; a foot rung and a grab
+    # handle at its cab door (at his size the kit's step is at his hip)
     bpy.context.view_layer.update()
     DC = bpy.data.objects[f"town house {S1_HOME[0]}_{S1_HOME[1]} door"].matrix_world.translation.copy()
     XF = DC.x; YD = DC.y
-    wood = lw_wood("doorstep bench wood", "#8A6E52")
-    BX, BY = XF + 0.17, YD - 0.52
-    K.box("doorstep bench seat", (BX, BY, 0.285), (0.2, 0.42, 0.03), wood, bev=0.006)
-    for sy in (-1, 1):
-        K.box("doorstep bench leg", (BX, BY + sy * 0.17, 0.135), (0.16, 0.03, 0.27), wood, bev=0.004)
-    BAG0 = Vector((BX + 0.03, BY, 0.3 + 0.055))
-    # ---- HIS truck, parked out in the street below his door, its tailgate toward the door, its nose out of town
-    YT = YD - 2.55; XT = 0.2
+    XT = -0.45; YT = YD - 2.4
     tr = FX.truck(name="his tipper truck", loc=(XT, YT, 0.0), yaw=0.0, lights=True, power=90.0, seed=2)
     troot = tr["root"]
-    def truck_y(t):
-        u = max(0.0, t - T_CUT); return YT - 1.6 * u * u - 2.2 * u     # pulls away and gathers speed
-    for f in range(1, NF + 1):
-        troot.location = (XT, truck_y((f - 1) / FPS), 0.0); troot.keyframe_insert("location", frame=f)
-    BED = Vector((XT - 0.25, YT + 1.25, 0.76))                   # where the bag lands, on the tipper's floor
-    # ---- him: by his door, the bench at his side; he grabs the bag, goes to the truck and lobs it up into the tipper
-    P0 = Vector((XF + 0.44, YD - 0.5, 0.0)); P2 = Vector((XF + 0.45, YD - 1.2, 0.0))
-    YD0 = yaw_of(-0.3, -1.0)
-    PS = Vector((XF + 0.3, YD - 0.12, 0.0))
-    data.place(PS.x, PS.y, math.degrees(YD0))
+    SIDE = XT - 0.65                                    # its kerb side
+    steel = lw_metal("cab grab handle", "#B9BCBE", rough=0.3)
+    DOOR_Y = YT - 1.85 + 0.62
+    K.box("cab foot rung", (SIDE - 0.05, DOOR_Y - 0.12, 0.15), (0.1, 0.22, 0.025), steel, bev=0.004)
+    for z_ in (0.4, 0.78):
+        K.box("cab grab handle mount", (SIDE - 0.02, DOOR_Y - 0.33, z_), (0.04, 0.03, 0.03), steel, bev=0.004)
+    K.cyl("cab grab handle", (SIDE - 0.045, DOOR_Y - 0.33, 0.59), 0.014, 0.4, steel, v=12)
+    GRAB = Vector((SIDE - 0.06, DOOR_Y - 0.33, 0.58)); DOORP = Vector((SIDE - 0.02, DOOR_Y + 0.02, 0.6))
+    BED = Vector((XT - 0.2, YT - 0.35, 0.8))           # where the bag lands, on the tipper's floor
+    # ---- the other cars, rolling out of town past his truck in the far lane, dust at their wheels
+    cars = []
+    for k, (col, y0, v) in enumerate((("#2F5E8C", YD + 3.0, 2.6), ("#C9C6BE", YD + 8.0, 2.4))):
+        c = s1_car(f"car leaving {k}", col); cars.append(c)
+        for f in range(1, NF + 1):
+            t = (f - 1) / FPS; c.location = (0.62, y0 - v * t, 0.0); c.keyframe_insert("location", frame=f)
+        for j in range(5):
+            tj = 2.6 + 0.35 * j
+            FX.dust_puff(base=(0.62, y0 - v * tj + 0.9, 0.05), w=0.7, h=0.6, t0=tj, dur=1.4, col=(0.5, 0.46, 0.4), dens=4.0, seed=7.0 + 3 * k + j, lean=(0.0, 0.3), name=f"dust off the cars {k} {j}")
+    # ---- him: off up the pavement from his door, running down it to the truck with the bag in both hands
+    PS = Vector((XF + 0.32, YD + 0.2, 0.0)); PT = Vector((SIDE - 0.27, YT - 0.3, 0.0))
+    PD = Vector((SIDE - 0.2, DOOR_Y - 0.16, 0.0))
+    data.place(PS.x, PS.y, math.degrees(yaw_of(0.15, -1.0)))
     kit = hard_hat(data)
     sc.frame_set(1); bpy.context.view_layer.update()
-    bag_sd = min("LR", key=lambda s_: acts._shoulder(data, s_).x)      # the hand on the bench's side
-    data.walk_to((P0.x, P0.y), 0.0, 0.7, step=0.12, lift=0.035, bob=0.012)          # out of his doorway, looking up at it
-    sc.frame_set(F(0.7)); Y0 = data.arm.rotation_euler.z
-    while YD0 - Y0 > math.pi: YD0 -= 2 * math.pi
-    while YD0 - Y0 < -math.pi: YD0 += 2 * math.pi
-    for f in range(F(0.7) + 1, F(T_WALK)):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(P0), rot=Y0 + (YD0 - Y0) * W(t, 0.7, 0.35))      # round to the bench
-    data.walk_to((P2.x, P2.y), T_WALK, T_AT, step=0.16, lift=0.05, bob=0.016)        # down the pavement toward the tailgate
-    sc.frame_set(F(T_AT)); YA = data.arm.rotation_euler.z
-    YB = yaw_of(0.35, -1.0)                                # three-quarter to the lens as he throws (q1n: square to the truck he was the back of his head)
+    data.walk_to((XF + 0.5, YD - 0.6), 0.0, 0.9, step=0.15, lift=0.05, bob=0.016)
+    data.walk_to((PT.x, PT.y), 0.95, T_AT, step=0.21, lift=0.08, bob=0.026)         # running
+    sc.frame_set(F(T_AT)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
+    YB = yaw_of(0.35, -1.0)                              # (the throw: three-quarter to the lens, the truck at his left)
     while YB - YA > math.pi: YB -= 2 * math.pi
     while YB - YA < -math.pi: YB += 2 * math.pi
-    T_GO = T_REL + 0.2
     for f in range(F(T_AT) + 1, F(T_GO) + 1):
-        t = (f - 1) / FPS
-        data._kobj(t, loc=tuple(P2), rot=YA + (YB - YA) * W(t, T_AT, 0.3))      # round to the truck
-    P3 = P2 + Vector((0.02, -0.4, 0.0))
-    data.walk_to((P3.x, P3.y), T_GO, T_CUT + 0.15, step=0.15, lift=0.05, bob=0.016)      # (q1r: still for 1.03s after the throw) and off up the pavement to his cab
-    # ---- face and head
-    PLUME = Vector((PX, S1_RIDGE_Y + 1.0, P["fz"] + 9.0))
-    data.look_at(PLUME, 0.0, max_yaw=30, max_pitch=40, blend=0.0)                  # up at it
-    data.look_at(BAG0, T_GRAB - 0.55, max_yaw=60, max_pitch=40, blend=0.8)
-    data.look_at(BED + Vector((0, 0, 0.4)), T_AT - 0.4, max_yaw=30, max_pitch=40, blend=0.8)
-    data.look_at(PLUME, T_REL + 0.3, max_yaw=30, max_pitch=40, blend=0.8)       # one last look up at it
-    data.expression("alarmed", 0.0, T_GRAB, blend=0.15)
-    data.expression("determined", T_GRAB, DUR + 1.0, blend=0.25)
-    # ---- the bag hand: down to the bag on the bench, lifts it, carries it, swings it back and lobs it over the side
-    carry_rel = lw_hand(data, bag_sd, [(T_GRAB + 0.15, (0.06, 0.08, -0.17)), (T_WALK + 0.35, (0.11, 0.08, -0.13)), (T_AT, (0.04, 0.07, -0.19)), (T_WIND, (0.05, 0.1, -0.15)), (T_REL - 0.22, (0.09, 0.06, 0.0)),
-                                       (T_REL, (0.13, 0.04, 0.09)), (T_REL + 0.3, (0.12, 0.05, 0.05)), (T_REL + 0.75, (0.09, 0.07, -0.06))])
-    GRIP = Vector((0, 0, 0.05))
-    def carry(t):
-        if t <= T_GRAB + 0.12: return BAG0 + GRIP
-        return (BAG0 + GRIP).lerp(carry_rel(t), W(t, T_GRAB + 0.12, 0.45))
-    data.reach(bag_sd, carry, T_GRAB, DUR + 0.5, lead=0.4, back=None, elbow_out=0.3)      # (his arm stays up from the throw: a relax into the cut whipped it)
-    lw_layer(data, "spine", lambda t: (22 * W(t, T_GRAB - 0.35, 0.3) * (1 - W(t, T_GRAB + 0.2, 0.35)) + 12 * W(t, T_WIND - 0.15, 0.2) * (1 - W(t, T_REL - 0.2, 0.2)), 0, 0), 0.4, DUR + 0.4)      # he bends to the bench for it; and into the wind-up
-    data.finish()
-    him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
-    for o in set(him):
-        if o.type not in ('MESH', 'CURVE', 'ARMATURE'): continue
-        o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
-        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT))                 # in the wide he is in his cab, out of the picture: the street empty
-    bag = K.capsule("kit bag", (0, -0.09, 0), (0, 0.09, 0), 0.055, lw_canvas("kit bag canvas", "#B0382A"))      # (q1j: a dark green bag at his size read as a black pod)
-    for k_, yy in enumerate((-0.09, 0.09)):
-        K.cyl(f"kit bag end {k_}", (0, yy, 0), 0.057, 0.012, K.mat("kit bag end", "#23291F", rough=0.8), rot=(math.pi / 2, 0, 0), parent=bag)
-    K.box("kit bag strap", (0, 0, 0.062), (0.018, 0.12, 0.01), K.mat("kit bag strap", "#1A1C18", rough=0.7), bev=0.004, parent=bag)
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.25))
+    data.walk_to((PD.x, PD.y), T_GO, T_STEP, step=0.13, lift=0.045, bob=0.014)      # along the truck to its cab door
+    sc.frame_set(F(T_STEP)); bpy.context.view_layer.update(); YS = data.arm.rotation_euler.z
+    YC = yaw_of(0.55, -0.8)                              # to the door, three-quarter to the roadside lens
+    while YC - YS > math.pi: YC -= 2 * math.pi
+    while YC - YS < -math.pi: YC += 2 * math.pi
+    for f in range(F(T_STEP) + 1, NF + 8):
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PD), rot=YS + (YC - YS) * W(t, T_STEP, 0.3))
+    # ---- the bag in both hands, at his belly as he runs; swung down, then heaved up and over the tipper's side
+    sc.frame_set(1); bpy.context.view_layer.update()
+    def frame_at(t):
+        sc.frame_set(F(t)); bpy.context.view_layer.update()
+        m = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2; f_ = data.forward(); f_.z = 0; f_.normalize()
+        return m, f_, Vector((-f_.y, f_.x, 0.0))
+    def carried(t):
+        m, f_, l_ = frame_at(t)
+        return m + f_ * 0.14 + Vector((0, 0, -0.17))
+    lw_layer(data, "spine", lambda t: (14 * W(t, 0.95, 0.3) * (1 - W(t, T_AT - 0.2, 0.3)) + 16 * W(t, T_WIND, 0.12) * (1 - W(t, T_WIND + 0.12, 0.12)) - 12 * W(t, T_WIND + 0.12, 0.12) * (1 - W(t, T_REL + 0.2, 0.3)), 0, 0), 0.0, DUR + 0.4)    # leaning into the run; down into the heave; back as it goes up
     sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
-    hand_at = lambda: data.arm.matrix_world @ data.pb[f"hand.{bag_sd}"].tail - GRIP
-    REL = hand_at()
+    mR, fR, lR = frame_at(T_REL)
+    REL = mR + fR * 0.08 + lR * 0.1 + Vector((0, 0, 0.16))       # up at his left, over his shoulder
+    WIND = None
+    def bag_at(t):
+        if t < T_WIND: return carried(t)
+        if t < T_REL:
+            a = carried(T_WIND); u = (t - T_WIND) / (T_REL - T_WIND)
+            m, f_, l_ = frame_at(t)
+            low = m + f_ * 0.1 + l_ * 0.05 + Vector((0, 0, -0.24))
+            if u < 0.4: return a.lerp(low, ease(u / 0.4))
+            return low.lerp(REL, ease((u - 0.4) / 0.6))
+        return None
     G = Vector((0, 0, -9.8)); V0 = (BED - REL - 0.5 * G * T_FLY * T_FLY) / T_FLY
-    print("S1 HOME door", tuple(round(v, 2) for v in DC), "release", tuple(round(v, 2) for v in REL), "v0", tuple(round(v, 2) for v in V0), flush=True)
+    def flying(t):
+        s_ = min(T_FLY, t - T_REL); return REL + V0 * s_ + 0.5 * G * s_ * s_
+    BAGROT = []
+    duffel = s1_duffel("his duffel bag")
+    sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - data.pos()).dot(frame_at(0.0)[2]), reverse=True)    # sides[0]: his left
+    for k_, sd in enumerate(sides):
+        sg = 1.0 if k_ == 0 else -1.0
+        def grip(t, sg=sg):
+            if t < T_REL:
+                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.085) + Vector((0, 0, 0.05))
+            m, f_, l_ = frame_at(T_REL); return REL + l_ * (sg * 0.085) + Vector((0, 0, 0.1 + 0.04 * W(t, T_REL, 0.2)))     # his arms follow it up, open
+        data.reach(sd, grip, 0.0, T_REL + 0.35, lead=0.05, back=0.45, elbow_out=0.25)
+    # ---- at the cab: a foot up on the rung, a hand on the door, a hand on the grab handle
+    sc.frame_set(F(T_STEP + 0.3)); bpy.context.view_layer.update()
+    hs = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - GRAB).length)     # the hand nearer the grab handle takes it
+    data.reach(hs[0], lambda t: GRAB.copy(), T_STEP + 0.05, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
+    data.reach(hs[1], lambda t: DOORP.copy(), T_STEP + 0.12, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
+    near_leg = min("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"leg.{s_}"].head - GRAB).length)
+    lw_layer(data, f"leg.{near_leg}", lambda t: (-50 * W(t, T_STEP + 0.15, 0.3), 0, 0), T_STEP, DUR + 0.4)
+    lw_layer(data, f"shin.{near_leg}", lambda t: (62 * W(t, T_STEP + 0.15, 0.3), 0, 0), T_STEP, DUR + 0.4)
+    # ---- face and head
+    PLUME = Vector((PX, PY, PZ + 12.0))
+    data.look_at(Vector((PT.x, PT.y - 2.0, 0.4)), 0.0, max_yaw=30, max_pitch=30, blend=0.0)
+    data.look_at(BED + Vector((0, 0, 0.6)), T_AT - 0.3, max_yaw=50, max_pitch=50, blend=0.5)
+    data.look_at(PLUME, T_GO + 0.1, max_yaw=40, max_pitch=40, blend=0.6)              # a look back up at it as he goes to the cab
+    data.expression("alarmed", 0.0, T_AT, blend=0.15)
+    data.expression("determined", T_AT, DUR + 1.0, blend=0.25)
+    data.finish()
     for f in range(1, NF + 1):
         t = (f - 1) / FPS
-        if t <= T_GRAB + 0.12:
-            bag.location = BAG0; bag.rotation_euler = (0, 0, 0.0)
-        elif t <= T_REL:
-            sc.frame_set(f); bpy.context.view_layer.update()
-            bag.location = hand_at(); bag.rotation_euler = (0, 0, data.arm.rotation_euler.z * W(t, T_GRAB + 0.12, 0.4))
+        if t < T_REL:
+            p = bag_at(t); _m, f_, l_ = frame_at(t); yaw = math.atan2(l_.y, l_.x)
+            duffel.location = p; duffel.rotation_euler = (0, 0, yaw)
         else:
-            s_ = min(T_FLY, t - T_REL); bag.location = REL + V0 * s_ + 0.5 * G * s_ * s_
-            if t - T_REL > T_FLY: bag.location = BED + Vector((0, truck_y(t) - YT, 0))      # in the tipper, going with it
-            bag.rotation_euler = (2.2 * min(T_FLY, t - T_REL), 0, data.arm.rotation_euler.z if t < T_CUT else 0.4)
-        bag.keyframe_insert("location", frame=f); bag.keyframe_insert("rotation_euler", frame=f)
-    # ---- the lens: on the pavement down from his door, between the house fronts and the truck, low, up the pavement:
-    # his door and bench, him, the plume over his roofs; it backs away down the pavement as he comes to the tailgate,
-    # the tipper's side rising at the right of the frame
-    CAM0 = Vector((XF + 0.55, YD - 2.6, 0.5)); LOOK0 = CAM0 + Vector((0.35, 6.0, 0.8))
-    C1, L1 = compose.frame_data(data, CAM0, LOOK0, 35.0, face_at=(0.5, 0.55), height=0.36, t=0.4)
-    CB0 = Vector((XF + 0.75, YD - 3.1, 0.5)); LB0 = CB0 + Vector((2.2, 6.0, 0.8))       # (q1o: the bag flew out of the frame's right side: the lens pans with him to the tailgate)
-    C2, L2 = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.28, 0.5), height=0.36, t=T_REL - 0.1)
-    print("S1 CAM", tuple(round(v, 2) for v in C1), "look", tuple(round(v, 2) for v in L1), "CAM2", tuple(round(v, 2) for v in C2), "look2", tuple(round(v, 2) for v in L2),
-          "truck left side x", round(XT - 0.64, 2), "house front x", round(XF, 2), flush=True)
-    cam = K.camera(tuple(C1), tuple(L1), lens=35.0, fstop=11.0)
-    WCAM = Vector((0.35, YT - 13.0, 1.0)); WLOOK = Vector((-0.2, YT + 6.0, 2.4))       # THE WIDE: down the street, the truck coming out of town at us
-    PAN = lambda t: W(t, T_WALK - 0.1, T_AT - T_WALK + 0.3)
-    lw_cut(cam, lambda t: (C1.lerp(C2, PAN(t)), L1.lerp(L2, PAN(t)), data.pos() + Vector((0, 0, 0.5))),
-           lambda t: (WCAM, WLOOK, Vector((XT, truck_y(t), 1.0))), T_CUT, DUR + 1.0, 35.0, 50.0)
-    founts = plumes + [fo["jet"]]
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("kit bag",), cutaway=(T_CUT, DUR + 1.0),
+            duffel.location = flying(t); duffel.rotation_euler = (1.8 * min(T_FLY, t - T_REL), 0, yaw)
+            if t - T_REL >= T_FLY: duffel.location = BED
+        duffel.keyframe_insert("location", frame=f); duffel.keyframe_insert("rotation_euler", frame=f)
+    print("S1 door", tuple(round(v, 2) for v in DC), "release", tuple(round(v, 2) for v in REL), "v0", tuple(round(v, 2) for v in V0), "bag at still 3", tuple(round(v, 2) for v in flying(0.68 * DUR)), flush=True)
+    # ---- the lens: 1 the establishing wide from far down the street; 2 low on the pavement ahead of him as he runs at
+    # us, the plume over the roofs behind him; 3 by the truck's cab looking back along its side as he heaves the bag;
+    # 4 low at the roadside ahead of the truck, the cars rolling past
+    WCAM = Vector((0.3, YD - 15.0, 2.2)); WLOOK = Vector((-0.6, PY, 10.0))
+    CA0 = Vector((XF + 0.45, YD - 3.4, 0.45)); LA0 = CA0 + Vector((0.2, 6.0, 1.3))
+    CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.45, 0.62), height=0.36, t=1.66)
+    CB0 = Vector((SIDE - 0.55, YT - 2.3, 0.55)); LB0 = CB0 + Vector((0.9, 6.0, 1.0))
+    CB, LB = compose.frame_data(data, CB0, LB0, 35.0, face_at=(0.35, 0.6), height=0.36, t=0.68 * DUR)
+    CC0 = Vector((SIDE - 0.9, YT - 4.6, 0.3)); LC0 = CC0 + Vector((1.1, 6.0, 0.9))
+    CC, LC = compose.frame_data(data, CC0, LC0, 35.0, face_at=(0.38, 0.6), height=0.36, t=DUR - 0.05)
+    print("S1 CAM A", tuple(round(v, 2) for v in CA), "B", tuple(round(v, 2) for v in CB), "C", tuple(round(v, 2) for v in CC), "truck left side x", round(SIDE, 2), "house front x", round(XF, 2), flush=True)
+    cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
+    lw_cut(cam, lambda t: ((CA, LA) if t < T_B else (CB, LB) if t < T_C else (CC, LC)) + (data.pos() + Vector((0, 0, 0.4)),),
+           lambda t: (WCAM, WLOOK, Vector((0.0, YD, 2.0))), 0.0, T_E, 35.0, 35.0)
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("his duffel bag", "cab grab handle"), cutaway=(0.0, T_E),
                 boxes=[],
-                conseq=[("a towering black ash plume rises off the ridge right over the town's roofs", lambda: founts, 0.0, DUR, {"whole": False}),
-                        ("he grabs his bag off the bench by his door", lambda: meshes([bag]), T_GRAB, T_GRAB + 0.8, {"whole": False, "moves": True}),
-                        ("his bag goes up into the back of his truck", lambda: meshes([bag]), T_REL - 0.3, T_REL + T_FLY, {"whole": False, "moves": True}),
-                        ("his truck drives away out of town, the street empty behind it", lambda: meshes([troot]), T_CUT, DUR, {"whole": False})])
+                conseq=[("a huge black ash plume rises off the hill over the town's roofs", lambda: plumes, 0.0, T_E, {"whole": False}),
+                        ("he runs down the street with his bag in both hands", lambda: meshes([duffel]), T_E, T_B, {"whole": False, "moves": True}),
+                        ("he heaves his bag up over the side of his truck", lambda: meshes([duffel]), T_REL - 0.2, T_REL + 0.5, {"whole": False, "moves": True}),
+                        ("the other cars roll out of town past his truck", lambda: meshes(cars), T_C, DUR, {"whole": False, "moves": True})])
 
 
 # ====================================================================================================
@@ -1825,7 +1862,7 @@ S2_HS = (0.5, 2.6, 5.6)                 # the wall's three heights: knee-high to
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 0.97 * 5.6 / (11.0 / 2 - S2_CREST / 2 - 0.1)     # beat 3's faces (S3_BASE 11)
 S2_XT, S2_YT = 0.0, 2.2                 # his truck: tail to the wall at y 0.35, nose into town
-S2_HOUSE = (-2.5, 2.2, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1 m off the wall's foot, by the truck
+S2_HOUSE = (-2.2, 2.6, 1.6, 2.4)        # the house: centre x, y, width, depth; its front (and door) 1.4 m off the wall's foot, left of the truck's tail
 
 
 def s2_base(h):
@@ -1851,7 +1888,7 @@ def place_wall_works():
     lw_grid("town ground", -60, 60, 0.0, 40, 90, 50, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
     FX.ground("grass", area=(-12, 14, 4.2, 30), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
     lava_rock("town yard stones", 500, (-10, 12, 0.2, 14), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.12), moss=0.6,
-              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-3.45 < x < -1.55 and 0.4 < y < 3.5))       # (clear of the truck, the alley and the house)
+              avoid=lambda x, y: (-1.25 < x < 0.8 and y < 4.4) or (-3.15 < x < -1.25 and 1.2 < y < 3.9) or (-2.5 < x < -0.9 and 0.3 < y < 1.25))       # (clear of the truck, the house and his walk)
     walls = []
     path = [(float(x), 0.0) for x in range(-40, 41, 1)]
     for k, h in enumerate(S2_HS):
@@ -1866,7 +1903,7 @@ def place_wall_works():
                                           (1.0, 10.4, "#B8352B", "#7E9A86"), (8.6, 10.8, "#2F5E8C", "#E9D9A2"), (-11.0, 7.0, "#9E3A2E", "#F1EEE6"))):
         town_house(f"town house back {k}", (x, y, s2_ground_z(x, y)), yaw=0.0, w=3.0, d=2.6, storeys=1 + (k % 2), base=0.3, pitch=38, roof=roof, wall=wl, seed=21 + k)
     blue = lw_paint("flag blue", "#02529C", rough=0.7); white = lw_paint("flag white", "#F4F4F0", rough=0.7); red = lw_paint("flag red", "#DC1E35", rough=0.7)
-    fx, fy = 4.2, 4.6; fzz = s2_ground_z(fx, fy)
+    fx, fy = -4.4, 2.3; fzz = s2_ground_z(fx, fy)          # (q2c: in the yard by the house, where the wide sees it)
     K.cyl("flag pole", (fx, fy, fzz + 1.6), 0.025, 3.2, lw_paint("flag pole white", "#EDEDE8", rough=0.5), v=10)
     FS = 1.4; c = Vector((fx + 0.36 * FS, fy, fzz + 2.85))
     for nm, off, size, m in (("field", 0.0, (0.66, 0.012, 0.46), blue), ("white bar", -0.1, (0.13, 0.016, 0.46), white), ("white band", 0.0, (0.66, 0.016, 0.13), white),
@@ -1898,12 +1935,12 @@ def shot2():
     R = math.radians
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
-    T_AB = 0.6; T_LET = 1.74; T_WALK = 1.8; T_ARR = 2.75
+    T_AB = 0.6; T_LET = 1.95; T_WALK = 2.05; T_ARR = 2.62
     T_CUT = 1.72; T_WB = 2.72
     P = place_wall_works()
     light = P["light"]; walls = P["walls"]
     # ---- the wall grows: each heap rises out of the ground inside the one before it
-    RISE = [None, (0.55, 0.65), (1.3, 0.8)]
+    RISE = [None, (0.42, 0.75), (1.3, 0.8)]          # (q2c: the roof-high heap breaks the ground as the first rock lands on the row)
     def off(k, t):
         if k == 0: return 0.0
         a, d = RISE[k]; return -(S2_HS[k] + 0.25) * (1.0 - W(t, a, d))       # (q2a: from below the ground, or the plan's box never sees it grow)
@@ -1979,7 +2016,7 @@ def shot2():
     # ---- him: at the tip lever on the truck's side, between it and the house, facing out to the wall (q2a: from up
     # the alley between them the wall, the rock and the house were all out of the picture: the lens is out past the row)
     data = load_data()
-    PL = Vector((S2_XT - 0.93, 1.3, 0.0))
+    PL = Vector((S2_XT - 1.12, 0.75, 0.0))        # (q2c: at the tail's corner, so the pour is beside him in a close frame)
     YL = yaw_of(-0.12, -1.0)
     data.place(PL.x, PL.y, math.degrees(YL))
     kit = hard_hat(data)
@@ -2003,20 +2040,21 @@ def shot2():
         return PIV + rx @ (BAR + lf * u - PIV)
     YW0 = data.arm.rotation_euler.z
     for f in range(1, F(T_WALK) + 1):          # (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PL), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))
+        t = (f - 1) / FPS; SW = 0.07 * W(t, 0.0, 0.5) - 0.05 * W(t, 0.5, 0.15) + 0.08 * W(t, T_AB, 0.5) - 0.06 * W(t, 1.2, 0.45)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
-        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.55, elbow_out=0.25)
+        data.reach(sd, (lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012))), 0.0, T_LET, lead=0.05, back=0.9, elbow_out=0.25)
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.35)), 0, 0), 0.0, DUR + 0.4)
     lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.35))), 0.0, DUR + 0.4)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
-    PE = Vector((S2_HOUSE[0] + 0.62, 0.45, 0.0))
+    PE = Vector((S2_HOUSE[0] + 0.15, 0.85, 0.0))
     data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.14, lift=0.045, bob=0.014)
     sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(0.12, -1.0)
+    YU = yaw_of(-0.95, -0.3)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
     while YU - YA > math.pi: YU -= 2 * math.pi
     while YU - YA < -math.pi: YU += 2 * math.pi
     for f in range(F(T_ARR) + 1, NF + 8):
@@ -2046,20 +2084,22 @@ def shot2():
         o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT)); o.keyframe_insert("hide_render", frame=F(T_WB) - 1)
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_WB))
-    CA0 = PL + Vector((0.3, -3.2, 1.0)); LA0 = CA0 + Vector((-0.25, 6.0, -1.3))     # (q2b: from lower, the lens sat inside the low row)
+    CA0 = PL + Vector((0.15, -2.6, 0.9)); LA0 = CA0 + Vector((0.2, 6.0, -1.0))     # (q2c: out over the low row, the pour beside him at the right, the house behind at the left)
     CA, LA = compose.frame_data(data, CA0, LA0, 35.0, face_at=(0.42, 0.6), height=0.36, t=0.25)
-    CB0 = PL + Vector((0.9, -7.0, 5.2)); LB0 = CB0 + Vector((-0.9, 7.0, -4.6))      # from far up over the rising wall, long: the crest at our feet
+    CB0 = PL + Vector((0.25, -4.6, 4.6)); LB0 = PL + Vector((0.0, 0.0, 0.3))      # from up over the rising wall, long: its face below us, him at its foot, the house beyond
     CB, LB = compose.frame_data(data, CB0, LB0, LENS_B, face_at=(0.5, 0.6), height=0.34, t=1.2)
-    CD0 = PE + Vector((0.2, -1.7, 1.9)); LD0 = CD0 + Vector((-0.25, 5.0, -3.2))
-    CD, LD = compose.frame_data(data, CD0, LD0, 35.0, face_at=(0.5, 0.62), height=0.34, t=DUR - 0.05)
+    CD0 = PE + Vector((-1.85, 0.4, 0.22)); LD0 = PE + Vector((0.4, -1.2, 1.3))      # (q2c: from up the wall the wall was behind the lens) low by the house's corner, up at the wall over him
+    CD, LD = compose.frame_data(data, CD0, LD0, 28.0, face_at=(0.5, 0.3), height=0.3, t=DUR - 0.05)
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=35.0, fstop=11.0)
-    WC = Vector((-17.0, 6.5, 7.5)); WL = Vector((2.0, -9.0, 2.5))      # along the wall from the town's end: the wall over the house, the lava and the eruption beyond it                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
+    WC = Vector((-17.0, 6.5, 10.5)); WL = Vector((2.0, -9.0, 1.5))      # (q2c: higher, so the flow shows over the crest)      # along the wall from the town's end: the wall over the house, the lava and the eruption beyond it                 # THE WIDE: across the town, high, the wall over the house, the lava beyond
     lw_cut(cam, lambda t: ((CA, LA) if t < T_AB else (CB, LB) if t < T_CUT else (CD, LD)) + (data.pos() + Vector((0, 0, 0.4)),),
            lambda t: (WC, WL, Vector((1.0, 0.0, 2.0))), T_CUT, T_WB, 35.0, 20.0)
     for f in range(F(T_AB), F(T_CUT)):                      # the high set-up is a long lens
         cam.data.lens = LENS_B; cam.data.keyframe_insert("lens", frame=f)
+    for f in range(F(T_WB), NF + 8):                        # the low set-up by the house is a wider lens: the wall over him
+        cam.data.lens = 28.0; cam.data.keyframe_insert("lens", frame=f)
     from character import _fcurves
     for fc in _fcurves(cam.data.animation_data.action):
         for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT'
