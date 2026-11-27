@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "right-whale-breeding-females__2ba1227d",
+  "slug": "right-whale-breeding-females",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Right Whale Recovery Grew, But Mothers Are The Bottleneck",
+  "hook": "A fragile whale rebound ends at a surprisingly small maternal bottleneck.",
+  "closing": "Protecting breeding mothers is essential if the right whale rebound is to continue.",
+  "question": "Can the rebound keep growing?",
+  "segments": [
+    {
+      "topic": "Right Whale Recovery",
+      "say": "The right whale population reached 384 in 2024. The recovery is real but still numerically fragile."
+    },
+    {
+      "topic": "Right Whale Calves",
+      "say": "The recent right whale season produced 22 calves. New births are the next step in that recovery."
+    },
+    {
+      "topic": "Right Whale Mothers",
+      "say": "Only 70 right whales are breeding females. The entire recovery ultimately depends on this small group."
+    }
+  ]
+}
