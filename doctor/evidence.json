@@ -1,45 +1,50 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261126",
-  "judged_date": "20261125",
+  "date": "20261127",
+  "judged_date": "20261126",
   "alarm": {
-    "date": "20261125",
+    "date": "20261126",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261125 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261125.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "credential_dead_groq",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-25T22:25:14+00:00).",
+        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-26T22:14:41+00:00).",
         "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
       },
       {
         "code": "forge_silent",
         "severity": "critical",
-        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (4 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
+        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (5 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
         "fix": "Read the forge step of the latest explainer AND story_forge runs: 'queue already full' means the top-up is counting stories the posting run holds (it must count POSTABLE ones, shared/queue_supply.py); 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
+      },
+      {
+        "code": "sports_source_dead",
+        "severity": "critical",
+        "detail": "trending: the sports run found ZERO Reddit video posts for 20261126 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
+        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261125.",
+        "detail": "explainer: 1/4 posted for 20261126.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 4/6 posted for 20261126.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (78 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (79 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "third: 6/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -226,179 +231,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-17T11:52:39+00:00",
-      "slug": "sports_nba__the_reasons",
-      "score": 100,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clear and engaging sports moment featuring Rick Carlisle's praise for LeBron James and LeBron's humble reaction.",
-      "auto_fails": [],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 95
-      },
-      "judge": "gemini-fallback",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "visual monotony",
-        "visible_evidence": "The split-screen composition remains largely static throughout the video, with minimal dynamic camera movement.",
-        "root_cause": "Reliance on static interview footage without additional dynamic visual elements.",
-        "repair_goal": "Introduce subtle camera movements (e.g., slow zoom/pan) or dynamic text animations to enhance visual engagement within the split-screen."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.103,
-        "effective_fps": 21.5,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.005,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 6.96,
-        "duration_s": 31.67
-      },
-      "fingerprint": "?|-|visual monotony"
-    },
-    {
-      "ts": "2026-11-17T11:56:43+00:00",
-      "slug": "sports_soccer_israeli_team",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked: judge response failed schema validation",
-      "auto_fails": [
-        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-        "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
-      ],
-      "problems": [
-        "checks.junk_imagery.evidence missing or empty",
-        "checks.decorative_mascot.evidence missing or empty",
-        "checks.bare_number_card.evidence missing or empty"
-      ],
-      "fixes": [
-        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 125
-      },
-      "judge": "gemini-fallback",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "malformed_judge_response"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.493,
-        "effective_fps": 12.2,
-        "max_dup_run": 31,
-        "measured": true,
-        "frozen_ratio": 0.115,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 7,
-        "judder_ratio": 0.016,
-        "judder_fps": 23.6,
-        "held_s": 11.96,
-        "max_dup_at_s": 0.29,
-        "duration_s": 41.5
-      },
-      "fingerprint": "?|malformed_judge_response|-"
-    },
-    {
-      "ts": "2026-11-17T16:49:30+00:00",
-      "slug": "sports_collegebasketball_ration_three",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked: judge response failed schema validation",
-      "auto_fails": [
-        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-        "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
-      ],
-      "problems": [
-        "checks.junk_imagery.evidence missing or empty",
-        "checks.decorative_mascot.evidence missing or empty",
-        "checks.bare_number_card.evidence missing or empty"
-      ],
-      "fixes": [
-        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "malformed_judge_response"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.006,
-        "effective_fps": 23.8,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 27.25,
-        "duration_s": 39.42
-      },
-      "fingerprint": "?|malformed_judge_response|-"
-    },
     {
       "ts": "2026-11-17T16:49:30+00:00",
       "slug": "sports_hockey_terates_nick",
@@ -4216,6 +4048,220 @@
         "duration_s": 19.33
       },
       "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-11-26T15:23:06+00:00",
+      "slug": "insect-planet",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The cabinet and the tag-the-bugs log are good ideas, but beat 1's tree-and-mat scene is muddled and mislabelled, and Data only does something in one beat.",
+      "auto_fails": [
+        "decorative_mascot: seg1:start-end: Data stands at the foot of the cabinet doing a little dance while the drawers fill by themselves. seg2:start-end: he waves next to the tree in the same spot while the beetle mat fills without him. He only causes the data in seg3, where he writes the blue name tags.",
+        "unreadable: seg3:start/mid: the small white subline 'of insects scientists think exist' sits on a pale green band and nearly disappears on a phone. seg2:start: 'all mammal species, all of them' is printed over pale leaf circles. The cabinet drawer labels (COLEOPTERA, HYMENOPTERA...) in seg1 are too small to read. At seg3:start the faded caption runs into a beetle."
+      ],
+      "problems": [
+        "seg2: the heading switches from '6,400 mammal species' to '1.5M beetles' while a mat labelled 'birds + mammals' fills with beetles, so it contradicts itself",
+        "seg2: the big tree has nothing to do with the number",
+        "seg1 and seg2: Data dances or waves in place while the data moves without him",
+        "seg3: the white subline on a pale green band is low contrast; the drawer labels in seg1 are unreadably small",
+        "The caption plate 'Bugs run this planet. We just live on it.' does not match the spoken hook 'Most of the bugs crawling around you have never even been given a name.'",
+        "The payoff (seg4) is a static hold of the seg3 picture with only two tags written, so there is no final reveal"
+      ],
+      "fixes": [
+        "Rebuild seg2 as a tiny labelled birds+mammals patch next to a huge beetle spread that Data pours or shovels out, with one headline number",
+        "Have Data pull the drawers open in seg1 so the insect drawers fill because he opens them",
+        "Put the seg3 subline on a darker band or use ink-coloured text; drop or enlarge the drawer labels",
+        "Make the hook caption the spoken hook line",
+        "In the payoff, pull back to show the log stretching on with thousands of blank tags so 'most are unnamed' lands visually"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 97
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "incoherent_data_demo_and_decorative_mascot",
+        "visible_evidence": "seg2:start shows '6,400 species / all mammal species' over a big generic tree while a mat labelled 'birds + mammals' fills with beetles. By seg2:end the heading reads '1.5M species of beetles'. Data waves in the same spot beside the trunk the whole time, and the tree plays no role in the number.",
+        "root_cause": "The picture mixes two comparisons. The tree means nothing, the mat is labelled for the losing group but fills with the winning one, and the mascot has no part in what is happening.",
+        "repair_goal": "Make one comparison you can read at a glance: a tiny birds+mammals patch (about 16k species) next to a huge spread of beetles (1.5M) that Data shovels or pours out until it buries the small patch. Label the patch and the spread correctly, drop the meaningless tree, and use one headline number."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.302,
+        "effective_fps": 16.8,
+        "max_dup_run": 26,
+        "measured": true,
+        "frozen_ratio": 0.115,
+        "frozen_fps": 21.2,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 8.0,
+        "max_dup_at_s": 26.08,
+        "duration_s": 32.33
+      },
+      "fingerprint": "?|decorative_mascot+unreadable|incoherent_data_demo_and_decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-26T16:02:48+00:00",
+      "slug": "insect-planet",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bespoke cabinet and library beats, but the closing log scene parks Data beside a barely changing row of tags, and the key 'birds + mammals' label gets covered.",
+      "auto_fails": [
+        "unreadable: At seg2:mid Data stands on top of the 'birds + mammals' label, which reads 'birds + m\u25aemmals'. That label carries the whole comparison. The drawer plates (COLEOPTERA, AMPHIBIA \u00b7 PISCES) are too small to read at phone size (seg1:mid), and the bottom caption 'insect species scientists' is ghosted, low-contrast over the beetle at seg3:start."
+      ],
+      "problems": [
+        "seg3/seg4: Data stands in one spot gesturing for about 12s while the tags change themselves; he is decorative here.",
+        "seg4: the 1-in-5 named payoff is two tags turning blue at the frame's left edge, a small change for the video's main point.",
+        "seg2:mid: Data covers the 'birds + mammals' label, the one thing the comparison depends on.",
+        "seg1: drawer nameplates like COLEOPTERA and AMPHIBIA \u00b7 PISCES are too small to read on a phone.",
+        "The hook plate says 'Bugs run this planet. We just live on it.' while the script's hook is about unnamed bugs, so the opening and the payoff do not match.",
+        "The closing reuses the log scene with no new picture, so the payoff does not land as a 'whoa'."
+      ],
+      "fixes": [
+        "Make Data the one who names the bugs. He walks the log with a label gun and stamps blue tags one by one, then runs out of tags at 1 in 5.",
+        "Make the row of blank tags stretch off-frame, or pull back to show an endless log, so 'millions unnamed' feels huge, and put the change in the centre of the frame.",
+        "Keep the library ladder's stopping point clear of the 'birds + mammals' label, or move the label above the thin book.",
+        "Make drawer nameplates bigger or cut them down to a few readable words.",
+        "Change the hook plate to the script's own hook line about unnamed bugs so the hook and closing match."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 97
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "From seg3:start through seg4:end, about 12s, Data stands in the same spot beside the log, waving or pointing. Meanwhile the only change is two small tags turning blue on the far left. The big headline changes from '5.5M species' to '1M named', but the picture barely changes.",
+        "root_cause": "In this scene Data does not cause the moving part, the tags. He is placed next to the machine instead of being its agent, and the 1-in-5 change is just two tags recolouring at the edge of the frame.",
+        "repair_goal": "Make Data the agent of the naming. He should walk along the log with a pen and label gun, writing or stamping a name tag that turns blue for each named bug, and run out of tags after 1 in 5 while the long row of blank white tags stretches off-frame. The named and unnamed counts should be readable at"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.33,
+        "effective_fps": 16.1,
+        "max_dup_run": 26,
+        "measured": true,
+        "frozen_ratio": 0.13,
+        "frozen_fps": 20.9,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.8,
+        "held_s": 8.79,
+        "max_dup_at_s": 26.08,
+        "duration_s": 32.33
+      },
+      "fingerprint": "?|unreadable|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-26T16:31:43+00:00",
+      "slug": "insect-planet",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Charming museum-themed bug metaphors with a strong beetle library beat, but the key point, 'most bugs are unnamed', lands as a tiny tag swap and the closing reuses that same scene.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: the unnamed-majority claim is drawn as about 10 tiny overlapping tags with 2 turning blue, which reads small and cramped.",
+        "seg4: the closing reuses the seg3 log, so the ending has no payoff image of its own.",
+        "Hook: Data only stands beside the bus with his hands on his head and does nothing tied to the stat.",
+        "seg3: the headline swaps from '5.5M species' to '1M named' in the same slot, two numbers in one beat, and the navy text sits low-contrast over the dark forest."
+      ],
+      "fixes": [
+        "Redraw seg3 at full scale: Data tags a handful of beetles while a huge swarm of unlabeled bugs spills across the forest floor, making the 4-in-5 unnamed share visually overwhelming.",
+        "Give the closing a distinct finished shot, for example a camera pull-back revealing endless unnamed bugs around Data's tiny labeled patch.",
+        "In the hook, have Data do something with the bus (waving bugs aboard, or squeezed out of a full bus) instead of standing beside it.",
+        "Keep one headline number in seg3 and put it on a lighter ground or give it a stronger outline against the forest."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 97
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "weak_payoff_depiction",
+        "visible_evidence": "A row of about 10 small beetles with tiny overlapping white tags hanging under them. Only 2 tags turn blue (seg3:end), the headline swaps from '5.5M species' to '1M named', and the closing (seg4) holds the same picture, so the video's central point ('most bugs have no name') arrives as a small, cram",
+        "root_cause": "The 'unnamed majority' idea is drawn as a token count of 10 tiny tags at the scale of a small prop. The change from named to unnamed is two small colour swaps, so the viewer barely sees it, and the closing has no picture of its own.",
+        "repair_goal": "Redraw seg3 so the unnamed majority is huge and obvious. For example, Data stamps names onto a few beetles while a vast forest floor of unlabeled bugs swarms beyond the frame, with the unnamed 4-in-5 visibly dwarfing the named 1-in-5 at full frame. Give the closing its own finished shot instead of r"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.274,
+        "effective_fps": 17.4,
+        "max_dup_run": 21,
+        "measured": true,
+        "frozen_ratio": 0.112,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 17,
+        "judder_ratio": 0.017,
+        "judder_fps": 23.6,
+        "held_s": 6.54,
+        "max_dup_at_s": 18.08,
+        "duration_s": 32.33
+      },
+      "fingerprint": "?|-|weak_payoff_depiction",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
@@ -4237,12 +4283,6 @@
       "count": 3,
       "days": [
         "2026-11-25"
-      ]
-    },
-    "?|malformed_judge_response|-": {
-      "count": 2,
-      "days": [
-        "2026-11-17"
       ]
     },
     "?|-|picture_contradicts_claim": {
@@ -4281,12 +4321,6 @@
       "count": 2,
       "days": [
         "2026-11-26"
-      ]
-    },
-    "?|-|visual monotony": {
-      "count": 1,
-      "days": [
-        "2026-11-17"
       ]
     },
     "?|junk_imagery|junk_imagery": {
@@ -4498,16 +4532,33 @@
       "days": [
         "2026-11-26"
       ]
+    },
+    "?|decorative_mascot+unreadable|incoherent_data_demo_and_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-11-26"
+      ]
+    },
+    "?|unreadable|decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-11-26"
+      ]
+    },
+    "?|-|weak_payoff_depiction": {
+      "count": 1,
+      "days": [
+        "2026-11-26"
+      ]
     }
   },
   "recent_commits": [
-    "521e890 2026-11-26 claim: mailbox verdicts 2026-11-26T14:48Z [skip ci]",
-    "493b578 2026-11-26 watchdog: chatgpt task verdicts 20261126 [skip ci]"
+    "749a079 2026-11-27 claim: mailbox verdicts 2026-11-27T05:15Z [skip ci]",
+    "38e4a2c 2026-11-27 claim: mailbox verdicts 2026-11-27T04:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-12": 5,
         "2026-11-13": 5,
         "2026-11-14": 5,
         "2026-11-15": 5,
@@ -4522,7 +4573,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-12": 6,
         "2026-11-13": 4,
         "2026-11-14": 5,
         "2026-11-15": 4,
@@ -4531,15 +4581,15 @@
         "2026-11-20": 1,
         "2026-11-22": 2,
         "2026-11-23": 1,
-        "2026-11-25": 2
+        "2026-11-25": 2,
+        "2026-11-26": 1
       },
-      "total_posted": 423,
-      "attempted": 423,
+      "total_posted": 424,
+      "attempted": 424,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-12": 6,
         "2026-11-13": 6,
         "2026-11-14": 6,
         "2026-11-15": 3,
@@ -4572,71 +4622,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 137,
+      "videos": 138,
       "top_by_vph": [
         {
+          "title": "Why This Is Really The Planet Of The Bugs",
+          "vph": 29.43,
+          "views": 271
+        },
+        {
           "title": "Why America Basically Killed The Landline",
-          "vph": 40.9,
-          "views": 934
+          "vph": 27.27,
+          "views": 936
         },
         {
           "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
-          "vph": 32.27,
-          "views": 834
+          "vph": 24.67,
+          "views": 921
         },
         {
           "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
-          "vph": 14.29,
-          "views": 1039
+          "vph": 12.38,
+          "views": 1042
         },
         {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 10.98,
-          "views": 994
-        },
-        {
-          "title": "Sperm Counts Have Fallen More Than 50% Since 1973",
-          "vph": 7.5,
-          "views": 725
+          "vph": 9.77,
+          "views": 996
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 135,
+      "videos": 136,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 4.03,
-          "views": 622
+          "vph": 3.91,
+          "views": 628
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.88,
-          "views": 564
+          "vph": 0.87,
+          "views": 566
         },
         {
           "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
-          "vph": 0.75,
+          "vph": 0.68,
           "views": 46
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.65,
-          "views": 213
+          "vph": 0.64,
+          "views": 214
         },
         {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.56,
-          "views": 103
+          "vph": 0.55,
+          "views": 105
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261123/brief.json",
       "retro/20261124/brief.json",
-      "retro/20261125/brief.json"
+      "retro/20261125/brief.json",
+      "retro/20261126/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
