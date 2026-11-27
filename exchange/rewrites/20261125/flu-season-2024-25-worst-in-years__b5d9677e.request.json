@@ -98,12 +98,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Shifts to an age-group rate; it doesn't follow from the toll or explain why the season was brutal. It reads as 'and anot",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Vaccination status of hospitalized patients is a separate fact and doesn't follow from the 75+ age rate. The hook's clai"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a demographic detail but doesn’t follow from the previous beat; it’s just another fact, not a cause/effect link to ",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Doesn’t logically follow from beat 1; it introduces a new angle about vaccination rather than building on the elderly ho"
  ],
  "reasons": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Shifts to an age-group rate; it doesn't follow from the toll or explain why the season was brutal. It reads as 'and anot",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Vaccination status of hospitalized patients is a separate fact and doesn't follow from the 75+ age rate. The hook's clai"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a demographic detail but doesn’t follow from the previous beat; it’s just another fact, not a cause/effect link to ",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Doesn’t logically follow from beat 1; it introduces a new angle about vaccination rather than building on the elderly ho"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -137,5 +137,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T14:25:49Z"
+ "refiled": "2026-11-27T17:54:20Z"
 }

@@ -28203,7 +28203,25 @@
       "code": "globe = subject_image('earth globe')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 640\nR = 330\nd.ellipse([cx - R - 30, cy - R - 30, cx + R + 30, cy + R + 30], outline=rgba(REST, 140), width=6)\nif globe is not None:\n    paste(globe, cx - R, cy - R, 2 * R, 2 * R)\n    fill_image(globe, values[0] / 100.0 * clamp(reveal * 1.1), cx - R, cy - R, 2 * R, 2 * R, direction='up', color=HIGHLIGHT)\nelse:\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=rgba(REST, 120))\nother = int(round(values[1]))\nfor k in range(other):\n    a = (k / float(other)) * 2 * math.pi + reveal * 2 * math.pi * 2.0\n    rr = R + 90 + 14 * math.sin(a * 3)\n    x = cx + rr * math.cos(a)\n    y = cy + rr * math.sin(a)\n    d.ellipse([x - 16, y - 16, x + 16, y + 16], fill=rgba(WARN if k % 2 else TEXT, 230))\ntext(str(int(values[0] * clamp(reveal * 1.1))) + '% ENGLISH', cx, RTOP + 20, size=80, color=HIGHLIGHT, center=True)\ntext('45% IS EVERYONE ELSE', cx, RBOT - 30, size=54, color=WARN, center=True)\n"
      }
     }
-   ]
+   ],
+   "scorecard": {
+    "scores": {
+     "premise": 8,
+     "hook": 12,
+     "arc": 14,
+     "factual": 5,
+     "visual_proof": 12,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 63,
+    "fatal": [
+     "invented_fact"
+    ],
+    "weakest": "factual",
+    "note": "Add a verifiable source for the percentage and growth figures to avoid invented facts.",
+    "fp": "e7605c82e395c60a"
+   }
   },
   {
    "slug": "cash-payments-decade-decline",

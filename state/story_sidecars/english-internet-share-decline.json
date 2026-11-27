@@ -1,0 +1,54 @@
+{
+ "slug": "english-internet-share-decline",
+ "brief": null,
+ "scorecard": {
+  "scores": {
+   "premise": 8,
+   "hook": 12,
+   "arc": 14,
+   "factual": 5,
+   "visual_proof": 12,
+   "payoff": 8,
+   "voice": 4
+  },
+  "total": 63,
+  "fatal": [
+   "invented_fact"
+  ],
+  "weakest": "factual",
+  "note": "Add a verifiable source for the percentage and growth figures to avoid invented facts.",
+  "fp": "e7605c82e395c60a"
+ },
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "The web diversified fast, yet English kept a narrower lead.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "English fell to 45% of web pages by 2005. The early web was no longer overwhelmingly English.",
+   "eyes": "a data picture (trend)",
+   "evidence": "UNESCO-affiliated web language monitoring report | English-language share of web pages | https://en.wikipedia.org/wiki/Languages_used_on_the_Internet | 2026-09-12"
+  },
+  {
+   "window": "beat 1",
+   "ears": "Arabic online content grew 2,501% over the measured decade. Other languages expanded far faster than English.",
+   "eyes": "substance: lines of Arabic script; cause: Data hammers the laptop's keys and every strike writes more lines of Arabic onto the screen",
+   "evidence": "Internet World Stats, cited in UNESCO multilingualism research | Growth in online content by language, 2001-2011 | https://en.wikipedia.org/wiki/Languages_used_on_the_Internet | 2026-09-12"
+  },
+  {
+   "window": "beat 2",
+   "ears": "English now appears on 55% of websites. It still leads, but no longer monopolizes the web.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "W3Techs | English's share of websites today vs every other language combined | https://w3techs.com/technologies/overview/content_language | 2026-09-12"
+  },
+  {
+   "window": "closing",
+   "ears": "Browsing beyond English now opens a large part of the modern web.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

@@ -102,12 +102,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: Longevity of the penny (232 years) is background trivia; it does not follow from or turn against the 86M yearly loss. It",
-  "thesis: seg2 ('Coin Nickel Cost') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The nickel's cost is a new fact on a different coin. 'Next coin problem' is only a loose pivot, and the beat gives no ca"
+  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year run is a history fact that restates the ending. It doesn't follow from the 86 million dollar loss, "
  ],
  "reasons": [
-  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: Longevity of the penny (232 years) is background trivia; it does not follow from or turn against the 86M yearly loss. It",
-  "thesis: seg2 ('Coin Nickel Cost') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The nickel's cost is a new fact on a different coin. 'Next coin problem' is only a loose pivot, and the beat gives no ca"
+  "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year run is a history fact that restates the ending. It doesn't follow from the 86 million dollar loss, "
  ],
  "judge": null,
  "prior_rejection": [],
@@ -141,5 +139,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T14:25:52Z"
+ "refiled": "2026-11-27T17:54:25Z"
 }

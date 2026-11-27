@@ -98,10 +98,12 @@
   }
  ],
  "held_for": [
-  "premise: brain: The pitch is a flat 'vinyl beats CDs but is small' fun fact with no real stake for the viewer, since the hook names no threat or surprising contradiction and the 'comeback' is undercut by streaming holding 84% of revenue."
+  "thesis: seg1 ('Vinyl Units') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Provides a separate metric rather than a causal follow‑up to beat 0",
+  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Introduces a new context about streaming instead of directly following from beat 1"
  ],
  "reasons": [
-  "premise: brain: The pitch is a flat 'vinyl beats CDs but is small' fun fact with no real stake for the viewer, since the hook names no threat or surprising contradiction and the 'comeback' is undercut by streaming holding 84% of revenue."
+  "thesis: seg1 ('Vinyl Units') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Provides a separate metric rather than a causal follow‑up to beat 0",
+  "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Introduces a new context about streaming instead of directly following from beat 1"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -135,5 +137,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T14:25:50Z"
+ "refiled": "2026-11-27T17:54:22Z"
 }

@@ -1,13 +1,13 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-27T14:25:52Z",
+ "updated": "2026-11-27T17:54:25Z",
  "open": [
   {
    "id": "cohabitation-overtakes-marriage__a4ac5305",
    "slug": "cohabitation-overtakes-marriage",
    "filed": "2026-11-27T14:25:50Z",
    "why": [
-    "premise: brain: The title is a searchable noun-phrase summary and the hook is a flat, hedged observation ('no longer merely a stop before marriage') with no concrete surprise, threat or stake the viewer can picture or that the beats overturn."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that viewers can picture, making it too generic."
    ],
    "request": "exchange/rewrites/20261127/cohabitation-overtakes-marriage__a4ac5305.request.json",
    "answer_path": "exchange/rewrites/20261127/cohabitation-overtakes-marriage__a4ac5305.answer.json"
@@ -17,7 +17,7 @@
    "slug": "feet-are-getting-bigger",
    "filed": "2026-11-27T14:25:50Z",
    "why": [
-    "premise: brain: The pitch is a vague, incoherent mix of foot length, width and national obesity with no clear surprise or villain, and the hook's 'reason should worry you' is an empty tease the beats never pay off with a concrete, pictureable threat."
+    "premise: brain: The pitch lacks a concrete, surprising hook or clear stakes for the viewer beyond generic size changes."
    ],
    "request": "exchange/rewrites/20261127/feet-are-getting-bigger__ab4c73aa.request.json",
    "answer_path": "exchange/rewrites/20261127/feet-are-getting-bigger__ab4c73aa.answer.json"
@@ -27,7 +27,8 @@
    "slug": "back-to-sleep-campaign-cut-sids",
    "filed": "2026-11-27T14:03:51Z",
    "why": [
-    "thesis: seg1 ('SIDS Sleeping Position') does not continue the story of the headline ('Back Sleeping Halved SIDS, But Thousands Still Die') — brain: Beat 1 does not follow from the drop in rate. It adds a separate fact about pre-campaign stomach-down cases and does not"
+    "thesis: seg1 ('SIDS Sleeping Position') does not continue the story of the headline ('Back Sleeping Halved SIDS, But Thousands Still Die') — brain: Provides background on prior positions but doesn't follow from beat 0's drop, breaking the causal chain.",
+    "thesis: seg2 ('SIDS Sleeping Deaths') does not continue the story of the headline ('Back Sleeping Halved SIDS, But Thousands Still Die') — brain: States ongoing deaths without a direct link to beat 1, so it doesn't follow sequentially."
    ],
    "request": "exchange/rewrites/20261127/back-to-sleep-campaign-cut-sids__27206090.request.json",
    "answer_path": "exchange/rewrites/20261127/back-to-sleep-campaign-cut-sids__27206090.answer.json"
@@ -37,7 +38,7 @@
    "slug": "fifty-otters-survived-climate-fight",
    "filed": "2026-11-27T14:03:51Z",
    "why": [
-    "premise: brain: The hook is a vague, stakeless recovery summary with no surprise or contradiction, and the title's 'carbon-protecting' claim leans on a secondary-source potential figure, so no belief gets turned over."
+    "thesis: seg2 ('Sea Otter Carbon') does not continue the story of the headline ('Fifty Sea Otters Rebuilt A Carbon-Protecting Population') — brain: Carbon storage is a new fact, not a consequence of the recovery. The beat gives no link from 3,000 otters to the kelp ca"
    ],
    "request": "exchange/rewrites/20261127/fifty-otters-survived-climate-fight__ba5d3132.request.json",
    "answer_path": "exchange/rewrites/20261127/fifty-otters-survived-climate-fight__ba5d3132.answer.json"
@@ -47,7 +48,7 @@
    "slug": "ocean-is-changing-color",
    "filed": "2026-11-27T14:03:51Z",
    "why": [
-    "premise: brain: The title is a garbled stat-string and the hook ('larger than researchers expected') is vague, with no named stake or threat for the viewer. The 56%-vs-50% surprise is marginal, and 'larger than Earth's total land' compares two unrelated areas without telling viewers why it matters to them."
+    "thesis: seg2 ('Ocean Color Area') does not continue the story of the headline ('Ocean Color Change Exceeded The Model And Spans More Than Land') — brain: Does not follow from the previous beat; it introduces a new aspect of the change rather than building on the model compa"
    ],
    "request": "exchange/rewrites/20261127/ocean-is-changing-color__84b45a11.request.json",
    "answer_path": "exchange/rewrites/20261127/ocean-is-changing-color__84b45a11.answer.json"
@@ -57,8 +58,7 @@
    "slug": "us-stops-making-pennies-232-years",
    "filed": "2026-11-27T14:03:51Z",
    "why": [
-    "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: Longevity of the penny (232 years) is background trivia; it does not follow from or turn against the 86M yearly loss. It",
-    "thesis: seg2 ('Coin Nickel Cost') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The nickel's cost is a new fact on a different coin. 'Next coin problem' is only a loose pivot, and the beat gives no ca"
+    "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year run is a history fact that restates the ending. It doesn't follow from the 86 million dollar loss, "
    ],
    "request": "exchange/rewrites/20261127/us-stops-making-pennies-232-years__482ebfa7.request.json",
    "answer_path": "exchange/rewrites/20261127/us-stops-making-pennies-232-years__482ebfa7.answer.json"
@@ -68,7 +68,7 @@
    "slug": "blood-type-rarity",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The pitch is a vague, generic statement ('blood supply depends on rarity and who donates') that names no concrete surprise, threat or contradiction, and the beats are a flat run of fun facts with no stake the viewer can picture."
+    "premise: brain: The pitch is vague and lacks a specific, picture‑worthy surprise or stakes; it merely states facts about blood type rarity without a concrete hook."
    ],
    "request": "exchange/rewrites/20261127/blood-type-rarity__a0ce30e1.request.json",
    "answer_path": "exchange/rewrites/20261127/blood-type-rarity__a0ce30e1.answer.json"
@@ -78,7 +78,7 @@
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The pitch is a vague, hedged statement ('worst toll is still unfolding in surviving species') with no concrete surprise or stake, and its title and beats read like a stats list (501 species, 39% declining, 40 frog species) rather than a belief the viewer holds being turned over."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives viewers a clear stakes or picture beyond generic disease statistics."
    ],
    "request": "exchange/rewrites/20261127/frog-fungus-mass-extinction__6acd0300.request.json",
    "answer_path": "exchange/rewrites/20261127/frog-fungus-mass-extinction__6acd0300.answer.json"
@@ -88,7 +88,7 @@
    "slug": "hadza-gut-bacteria-vs-americans",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The title is a searchable list of three topics and the hook ('Food and medicine expose why one gut community is far richer') is vague. It has no concrete stake or twist the viewer can picture, and the antibiotic beat is only loosely tied to the Hadza comparison."
+    "premise: brain: The pitch is vague and offers only generic comparisons without a concrete, surprising hook or clear stakes for the viewer."
    ],
    "request": "exchange/rewrites/20261127/hadza-gut-bacteria-vs-americans__cffe681a.request.json",
    "answer_path": "exchange/rewrites/20261127/hadza-gut-bacteria-vs-americans__cffe681a.answer.json"
@@ -98,7 +98,7 @@
    "slug": "normal-body-temperature-has-shifted",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The hook is an abstract, hedged statement (\"hides both biological change and measurement error\") that never names a concrete surprise or stake, and the beats read as a stack of figures. It does not say plainly that 98.6 is a myth or what that means for the viewer."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook that gives the viewer a clear stake or striking revelation."
    ],
    "request": "exchange/rewrites/20261127/normal-body-temperature-has-shifted__ce60494a.request.json",
    "answer_path": "exchange/rewrites/20261127/normal-body-temperature-has-shifted__ce60494a.answer.json"
@@ -108,7 +108,7 @@
    "slug": "right-whale-breeding-females",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The hook is abstract and hedged ('fragile whale rebound', 'surprisingly small maternal bottleneck') and never names a concrete threat or contradiction a viewer can picture. The beats are a flat run of 384, 22 and 70 with no belief turned over and no stake for the viewer."
+    "thesis: seg1 ('Right Whale Calves') does not continue the story of the headline ('Right Whale Recovery Grew, But Mothers Are The Bottleneck') — brain: Calf numbers illustrate recovery but don’t directly prove the maternal bottleneck claim nor follow causally from the pre"
    ],
    "request": "exchange/rewrites/20261127/right-whale-breeding-females__c95e9ff0.request.json",
    "answer_path": "exchange/rewrites/20261127/right-whale-breeding-females__c95e9ff0.answer.json"
@@ -118,7 +118,8 @@
    "slug": "runway-near-misses-climbing",
    "filed": "2026-11-27T14:03:50Z",
    "why": [
-    "premise: brain: The pitch is a vague, abstract statement ('risk is rising but not spread evenly') with a searchable-report title, and it names no concrete, picturable threat or belief-reversing surprise for the viewer."
+    "thesis: seg1 ('Runway Causes') does not continue the story of the headline ('Runway Near-Misses Rose, With Risk Concentrated In Causes And Airports') — brain: Adds a separate fact about cause distribution without stemming from beat 0",
+    "thesis: seg2 ('Runway Airports') does not continue the story of the headline ('Runway Near-Misses Rose, With Risk Concentrated In Causes And Airports') — brain: Adds another independent fact about airport concentration, not a consequence of beat 1"
    ],
    "request": "exchange/rewrites/20261127/runway-near-misses-climbing__694ab71c.request.json",
    "answer_path": "exchange/rewrites/20261127/runway-near-misses-climbing__694ab71c.answer.json"
@@ -128,7 +129,7 @@
    "slug": "drug-resistant-infections-2050",
    "filed": "2026-11-27T14:03:49Z",
    "why": [
-    "thesis: seg1 ('Resistance Deaths Projected') does not continue the story of the headline ('Resistance Deaths Could Become Cancer-Sized By 2050') — brain: Says today's toll is 'only the start' but gives no cause or turn from beat 0; it is a new projection fact, not a consequ"
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261127/drug-resistant-infections-2050__bd1acb3c.request.json",
    "answer_path": "exchange/rewrites/20261127/drug-resistant-infections-2050__bd1acb3c.answer.json"
@@ -138,7 +139,7 @@
    "slug": "english-internet-share-decline",
    "filed": "2026-11-27T14:03:49Z",
    "why": [
-    "premise: brain: The pitch is a muddled 'English lost its monopoly but still leads' with no concrete surprise or stake, and the hook ('diversified fast, yet kept a narrower lead') is vague and abstract, with no belief for the beats to overturn."
+    "story: fatal: invented_fact — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261127/english-internet-share-decline__f9add4c2.request.json",
    "answer_path": "exchange/rewrites/20261127/english-internet-share-decline__f9add4c2.answer.json"
@@ -158,7 +159,7 @@
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
    "filed": "2026-11-27T14:03:49Z",
    "why": [
-    "premise: brain: The pitch is a generic 'scale vs. attention vs. spending' summary stitched from five unrelated countries and metrics (India, Guinea-Bissau, Tanzania), so it has no single concrete subject, no belief to overturn, and no stake a viewer can picture."
+    "premise: brain: The pitch is vague and doesn’t promise a specific, picture‑worthy surprise or contradiction; it reads like a list of stats rather than a concrete hook."
    ],
    "request": "exchange/rewrites/20261127/india-beats-everyone-on-general-pupils-secondary-education-b__1ca2a845.request.json",
    "answer_path": "exchange/rewrites/20261127/india-beats-everyone-on-general-pupils-secondary-education-b__1ca2a845.answer.json"
@@ -168,7 +169,7 @@
    "slug": "nuclear-reactors-under-construction",
    "filed": "2026-11-27T14:03:49Z",
    "why": [
-    "premise: brain: The pitch is a flat, generic summary (\"active, large, and concentrated\") with no surprise, threat or contradiction to turn over, and its title is a searchable noun phrase with no stake for the viewer."
+    "premise: brain: The pitch is vague and doesn’t promise a specific, picture‑worthy surprise or contradiction beyond a generic statement about concentration in one country."
    ],
    "request": "exchange/rewrites/20261127/nuclear-reactors-under-construction__b2a211b8.request.json",
    "answer_path": "exchange/rewrites/20261127/nuclear-reactors-under-construction__b2a211b8.answer.json"
@@ -178,7 +179,8 @@
    "slug": "vinyl-beats-cd-sales-again",
    "filed": "2026-11-27T14:03:49Z",
    "why": [
-    "premise: brain: The pitch is a flat 'vinyl beats CDs but is small' fun fact with no real stake for the viewer, since the hook names no threat or surprising contradiction and the 'comeback' is undercut by streaming holding 84% of revenue."
+    "thesis: seg1 ('Vinyl Units') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Provides a separate metric rather than a causal follow‑up to beat 0",
+    "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Vinyl Beats CDs But Remains Tiny Beside Streaming') — brain: Introduces a new context about streaming instead of directly following from beat 1"
    ],
    "request": "exchange/rewrites/20261127/vinyl-beats-cd-sales-again__15055d71.request.json",
    "answer_path": "exchange/rewrites/20261127/vinyl-beats-cd-sales-again__15055d71.answer.json"
@@ -188,7 +190,8 @@
    "slug": "south-korea-robot-density-record",
    "filed": "2026-11-27T12:37:41Z",
    "why": [
-    "premise: brain: The hook is a vague guessing-game tease that never names the stake, and the title's \"more robots than people\" claim is a misleading framing of 1,220 robots per 10,000 workers, so the pitch is just a flat ranking fun fact with no threat or contradiction for the viewer to picture."
+    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Comparison to the US doesn’t directly prove why Korea has the most robots per worker and isn’t a logical continuation of",
+    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Switching to China introduces a new subject without a causal link to the previous beat, so it doesn’t support the same h"
    ],
    "request": "exchange/rewrites/20261127/south-korea-robot-density-record__62573b7c_r3.request.json",
    "answer_path": "exchange/rewrites/20261127/south-korea-robot-density-record__62573b7c_r3.answer.json"
@@ -219,7 +222,7 @@
    "slug": "tattoo-mainstream-shift",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "premise: brain: The title and hook land on a flat, widely known fun fact (tattoos got common) with no hidden stake, threat or reversal for the viewer, and beat 3 only adds a second statistic."
+    "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Talks about multiple tattoos rather than the proportion with at least one tattoo, so it doesn’t directly support the hea"
    ],
    "request": "exchange/rewrites/20261125/tattoo-mainstream-shift__1dd08721.request.json",
    "answer_path": "exchange/rewrites/20261125/tattoo-mainstream-shift__1dd08721.answer.json"
@@ -229,7 +232,7 @@
    "slug": "volcanoes-erupting-right-now",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "premise: brain: The pitch is a flat fun fact (about 1,400 volcanoes, a few erupting at any moment) with no stake or belief it overturns, and the hook \"A volcano is going off right now\" names no concrete threat, contradiction or scale the viewer can picture."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stake for the viewer beyond generic volcano statistics."
    ],
    "request": "exchange/rewrites/20261125/volcanoes-erupting-right-now__c4f5c8bb.request.json",
    "answer_path": "exchange/rewrites/20261125/volcanoes-erupting-right-now__c4f5c8bb.answer.json"
@@ -239,7 +242,8 @@
    "slug": "womens-college-hoops-out-rates-men",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "premise: brain: The hook is vague and temporal (\"That year\", \"the money is following\"), the beats mix NCAA viewership with WNBA attendance and rights data under a women's-college framing, and the pitch is a flat \"catching up\" trend line with no specific surprise or stake for the viewer."
+    "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance increase is presented as a separate fact, not shown as a consequence of the viewership rise.",
+    "thesis: seg2 (\"Women's Basketball Rights\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Media rights jump is not directly linked to the prior attendance increase, lacking clear causal connection."
    ],
    "request": "exchange/rewrites/20261125/womens-college-hoops-out-rates-men__1e8da731.request.json",
    "answer_path": "exchange/rewrites/20261125/womens-college-hoops-out-rates-men__1e8da731.answer.json"
@@ -249,7 +253,9 @@
    "slug": "autism-diagnosis-rate-rise",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "premise: brain: The pitch is a vague 'where a child is screened changes the diagnosis' with no concrete stake or picturable surprise, and the hook claims 'entirely' while the beats show only a measurement-rate gap between sites, not changed diagnoses."
+    "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Does not address the claim about screening location; only gives overall prevalence.",
+    "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Focuses on sex differences, unrelated to where screening occurs.",
+    "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: While it mentions site differences, it does not logically follow from the previous beats and the prior beats do not esta"
    ],
    "request": "exchange/rewrites/20261125/autism-diagnosis-rate-rise__c58fb06f.request.json",
    "answer_path": "exchange/rewrites/20261125/autism-diagnosis-rate-rise__c58fb06f.answer.json"
@@ -259,7 +265,7 @@
    "slug": "cruise-ship-outbreaks-climbing",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "premise: brain: The pitch is a flat fun fact (norovirus spreads on crowded ships) with no stake for the viewer, no belief to overturn and no specific surprise, and the hook 'One stomach virus keeps finding its way onto ships' names no concrete threat or scale the viewer can picture."
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261125/cruise-ship-outbreaks-climbing__64034cfe.request.json",
    "answer_path": "exchange/rewrites/20261125/cruise-ship-outbreaks-climbing__64034cfe.answer.json"
@@ -279,8 +285,8 @@
    "slug": "flu-season-2024-25-worst-in-years",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Shifts to an age-group rate; it doesn't follow from the toll or explain why the season was brutal. It reads as 'and anot",
-    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Vaccination status of hospitalized patients is a separate fact and doesn't follow from the 75+ age rate. The hook's clai"
+    "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a demographic detail but doesn’t follow from the previous beat; it’s just another fact, not a cause/effect link to ",
+    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Doesn’t logically follow from beat 1; it introduces a new angle about vaccination rather than building on the elderly ho"
    ],
    "request": "exchange/rewrites/20261125/flu-season-2024-25-worst-in-years__b5d9677e.request.json",
    "answer_path": "exchange/rewrites/20261125/flu-season-2024-25-worst-in-years__b5d9677e.answer.json"
@@ -290,7 +296,7 @@
    "slug": "index-funds-own-corporate-america",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg2 ('Who Votes Your Shares') does not continue the story of the headline ('Why You Might Not Know Who Owns Your Stocks') — brain: Shifts from who owns the shares to who votes them. It's a related fact about Vanguard's voting share, but beat 1 doesn't"
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261125/index-funds-own-corporate-america__60f18bd3.request.json",
    "answer_path": "exchange/rewrites/20261125/index-funds-own-corporate-america__60f18bd3.answer.json"
@@ -300,8 +306,7 @@
    "slug": "plastic-in-your-body",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg1 ('Plastic in the body') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: Adds a new fact about plastic in placenta and blood but does not logically follow from the brain tissue finding.",
-    "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: Introduces a health risk link rather than a direct continuation from the previous beat."
+    "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: Beat 2 shifts to health risk rather than continuing the explanation of why plastic appears in organs, breaking the narra"
    ],
    "request": "exchange/rewrites/20261125/plastic-in-your-body__331fd88e.request.json",
    "answer_path": "exchange/rewrites/20261125/plastic-in-your-body__331fd88e.answer.json"
@@ -311,7 +316,7 @@
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "premise: brain: The pitch is a flat adoption stat (\"robots handle 15.1% of surgeries\") with no personal stake, belief-flip or villain, and the hook's \"a new surgeon, and it isn't a person\" is a generic tech-trend line that never tells the viewer what it means for them."
+    "thesis: seg2 ('Robotic Surgeries Revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Revenue figure shows adoption but does not directly prove the headline's specific claim about the 15.1% surgery share."
    ],
    "request": "exchange/rewrites/20261125/robotic-surgery-doubled__f8f9a4ec.request.json",
    "answer_path": "exchange/rewrites/20261125/robotic-surgery-doubled__f8f9a4ec.answer.json"
@@ -321,7 +326,7 @@
    "slug": "usps-mail-volume-collapse",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg2 ('USPS Stamp Price') does not continue the story of the headline ('Why Your Stamp Keeps Getting More Expensive') — brain: Stamp price rising doesn't follow from the letter-mail decline as stated; the beat gives no causal link (e.g. fixed cost"
+    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261125/usps-mail-volume-collapse__4d6e7b3d.request.json",
    "answer_path": "exchange/rewrites/20261125/usps-mail-volume-collapse__4d6e7b3d.answer.json"
@@ -331,7 +336,8 @@
    "slug": "volcano-country-ranking",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Shifts from proving Indonesia isn't the capital to a general geological explanation for volcano abundance, not following"
+    "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Introduces Alaska as a separate fact rather than a logical continuation of beat 0",
+    "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Provides background on the Ring of Fire instead of directly supporting the headline claim"
    ],
    "request": "exchange/rewrites/20261125/volcano-country-ranking__d1d5c228.request.json",
    "answer_path": "exchange/rewrites/20261125/volcano-country-ranking__d1d5c228.answer.json"
