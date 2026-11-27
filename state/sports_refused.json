@@ -3,6 +3,14 @@
   "n": 2,
   "why": "download failed"
  },
+ "https://www.reddit.com/r/CFB/comments/1y1zeia/forman_good_morning_from_annapolis_where_army": {
+  "n": 1,
+  "why": "download failed"
+ },
+ "https://www.reddit.com/r/CFB/comments/1y2vy9n/more_issues_lane_kiffin_tried_to_strip_the_ball": {
+  "n": 2,
+  "why": "too short: the post runs 11.4s (< 15s)"
+ },
  "https://www.reddit.com/r/CollegeBasketball/comments/1xse798/a_guy_is_sleeping_in_the_rafters_near_the_end_of": {
   "n": 2,
   "why": "too short: the post runs 11.3s (< 15s)"
@@ -163,6 +171,10 @@
   "n": 2,
   "why": "someone else's edit: the footage already carries burned-in captions of what is said"
  },
+ "https://www.reddit.com/r/nba/comments/1y63y06/gloria_james_meets_her_grandson_vj_edgecombe": {
+  "n": 2,
+  "why": "too short: the post runs 9.4s (< 15s)"
+ },
  "https://www.reddit.com/r/nfl/comments/1xsbbcf/highlight_a_frustrated_josh_allen_slams_his": {
   "n": 2,
   "why": "too short: the post runs 7.6s (< 15s)"
@@ -282,6 +294,10 @@
  "https://www.reddit.com/r/soccer/comments/1y4r5j4/jos\u00e9_mourinho_what_did_i_tell_the_players_in_the": {
   "n": 2,
   "why": "not English (English p=0.02, 51% English words)"
+ },
+ "https://www.reddit.com/r/soccer/comments/1y5ma4i/gavi_on_his_limited_minutes_im_not_a_star_and_i": {
+  "n": 2,
+  "why": "not English (English p=0.04, 58% English words)"
  },
  "https://www.reddit.com/r/sports/comments/1xwjl4k/ufc_veteran_stephen_thompson_gets_a_highlight": {
   "n": 2,
