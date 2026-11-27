@@ -188,7 +188,7 @@ def shot2():
     K.capsule("tip lever bar", tuple(ROD_TOP), tuple(BAR + lf * -0.1), 0.011, steel, parent=piv)
     K.capsule("tip lever grip", tuple(BAR + lf * 0.08), tuple(BAR + lf * -0.1), 0.016, grip_m, parent=piv)
     PS_ = 1.0 if (PIV + Matrix.Rotation(0.2, 3, 'X') @ (BAR - PIV) - PL).length < (BAR - PL).length else -1.0       # the way that brings it to him
-    PULL = lambda t: PS_ * (R(11.0) * W(t, 0.0, 0.5) + R(11.0) * W(t, T_AB + 0.02, 0.55)) * (1.0 - W(t, T_DOWN, 0.5))      # (q2f READ: a bigger pull, his weight going with it)       # toward him about the pivot's x
+    PULL = lambda t: PS_ * (R(11.0) * W(t, 0.0, 0.5) + R(11.0) * W(t, T_AB + 0.02, 0.55)) * (1.0 - 0.7 * W(t, T_DOWN, 0.5))      # (q2s REACH: pushed right back it was 3 cm past his hand)      # (q2f READ: a bigger pull, his weight going with it)       # toward him about the pivot's x
     for f in range(1, NF + 1):
         piv.rotation_euler = (PULL((f - 1) / FPS), 0, 0); piv.keyframe_insert("rotation_euler", frame=f)
     def on_bar(t, u):

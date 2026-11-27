@@ -376,14 +376,14 @@
      "hands": "lever",
      "new": [
       {
-       "what": "lever",
-       "how": "moves",
-       "cause": "he pushes the tip lever back, the bed empty"
-      },
-      {
        "what": "truck",
        "how": "moves",
        "cause": "its empty bed comes back down as he pushes the lever"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he leans on the lever, looking right up at the wall's top"
       }
      ],
      "visible": [
