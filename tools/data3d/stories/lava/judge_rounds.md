@@ -1168,3 +1168,16 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - better: Show 'everyone' with two or three faceless neighbours running or piling into cars, and a car pulling away up the street with its tail lights on, whole and in the lane, big enough to read at phone size.
 - better: Rebuild the fountain as lava: hot yellow-white cores fading to orange and dark red, dark cooled spatter, a glowing stream running down the ridge face, and orange light on the near roofs and street. Drop the pale floating blobs or make them dark, glowing bombs on arcs.
 
+
+## 2026-11-27 23:18Z · storyboard · ci board run 46081610414
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: a measured pre-check failed: VARIETY lava beat 1: camera 'one low lens in the main street looking up it past him to the roofs and the ridge, a slow drift, tipping up with the plume' is not one of ['close', 'high', 'low', 'medium', 'over_shoulder', 'overhead', 'pov', 'profile', 'tracking', 'wide']
+- HARD: a measured pre-check failed: VARIETY lava beat 2: camera 'one locked low lens on the town side: the whole house at the right, him in the foreground at the left' is not one of ['close', 'high', 'low', 'medium', 'over_shoulder', 'overhead', 'pov', 'profile', 'tracking', 'wide']
+- HARD: a measured pre-check failed: lava: the beats repeat each other (store/variety.py): build each beat its own camera, act and props
+
