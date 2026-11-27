@@ -272,7 +272,7 @@
      "visible": [
       {
        "prop": "digger",
-       "as": "the digger piles a boulder on it: Iceland built it"
+       "as": "the digger builds it, a boulder in its bucket: Iceland built it"
       },
       {
        "prop": "wall",
@@ -415,7 +415,7 @@
     },
     {
      "event": "action",
-     "shows": "the river of glowing lava slams into the foot of the boulder face of the wall beside him and heaps up, steam rising off it",
+     "shows": "the river of glowing lava slams into the foot of the boulder face of the wall beside him and builds up against it, steam rising off it",
      "hands": "free",
      "new": [
       {
@@ -436,7 +436,7 @@
       },
       {
        "prop": "lava river",
-       "as": "when the lava came it hit the wall: it slams into the foot of the face and heaps up, steam rising"
+       "as": "when the lava came it hit the wall: it slams into the foot of the face and builds up against it, steam rising"
       },
       {
        "prop": "earth wall",
@@ -477,7 +477,7 @@
     },
     {
      "event": "reaction",
-     "shows": "he pumps his fists and grins at us, the dark crust heaped at the wall behind his shoulder",
+     "shows": "he punches the air and grins at us, the dark crust heaped at the wall behind his shoulder",
      "hands": "free",
      "new": [
       {
@@ -489,7 +489,7 @@
      "visible": [
       {
        "prop": "data",
-       "as": "he pumps his fists and grins"
+       "as": "he punches the air and grins"
       },
       {
        "prop": "lava river",
