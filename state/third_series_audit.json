@@ -6,8 +6,8 @@
       "median_vph": 0.02
     },
     "drama": {
-      "n": 13,
-      "median_vph": 0.04
+      "n": 12,
+      "median_vph": 0.055
     },
     "wholesome": {
       "n": 12,
@@ -17,13 +17,13 @@
       "n": 11,
       "median_vph": 0.06
     },
+    "fail": {
+      "n": 10,
+      "median_vph": 0.075
+    },
     "extended": {
       "n": 10,
       "median_vph": 0.01
-    },
-    "fail": {
-      "n": 9,
-      "median_vph": 0.1
     },
     "rage": {
       "n": 4,
