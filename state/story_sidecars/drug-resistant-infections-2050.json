@@ -1,0 +1,37 @@
+{
+ "slug": "drug-resistant-infections-2050",
+ "brief": null,
+ "scorecard": null,
+ "storyboard": [
+  {
+   "window": "hook",
+   "ears": "Today's resistance toll is the start of a cancer-sized crisis.",
+   "eyes": "the first beat's finished picture",
+   "evidence": "no number in the hook (hook_doctrine)"
+  },
+  {
+   "window": "beat 0",
+   "ears": "Resistance directly killed 1.27 million people in 2019. That's a packed city's worth, from infections medicine used to beat.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "The Lancet | Global deaths linked to antibiotic-resistant infections, 2019 (millions) | https://www.thelancet.com | 2026-10-10"
+  },
+  {
+   "window": "beat 1",
+   "ears": "By 2050, that could hit 10 million a year, nearly eight times today's toll. Germs keep winning as our drugs stop working.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "UK Government-commissioned review | Global deaths from drug-resistant infections, actual vs. 2050 projection (millions) | https://amr-review.org | 2026-10-10"
+  },
+  {
+   "window": "beat 2",
+   "ears": "Cancer kills about 10 million people a year today. Drug resistance is on track to match it, from infections we treat as routine.",
+   "eyes": "a data picture (comparison)",
+   "evidence": "O'Neill Review on AMR / World Health Organization | Projected 2050 drug-resistance deaths vs. current global cancer deaths (millions/year) | https://amr-review.org | 2026-10-10"
+  },
+  {
+   "window": "closing",
+   "ears": "Without working antibiotics, a scraped knee or surgery could turn deadly. That's why this matters to you.",
+   "eyes": "the last beat's finished picture",
+   "evidence": "restates no new number"
+  }
+ ]
+}

@@ -94,10 +94,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: It states the total area changed but does not directly follow from the previous beat about predictions; it's an addition"
+  "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Beat 1 adds a prediction rather than a direct consequence of Beat 0, so it doesn't follow the previous fact."
  ],
  "reasons": [
-  "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: It states the total area changed but does not directly follow from the previous beat about predictions; it's an addition"
+  "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Beat 1 adds a prediction rather than a direct consequence of Beat 0, so it doesn't follow the previous fact."
  ],
  "judge": null,
  "prior_rejection": [
@@ -133,5 +133,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T22:50:30Z"
+ "refiled": "2026-11-27T01:44:34Z"
 }

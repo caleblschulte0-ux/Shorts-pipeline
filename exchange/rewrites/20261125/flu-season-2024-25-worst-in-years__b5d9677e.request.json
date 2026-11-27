@@ -98,12 +98,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Just another statistic about age groups, not a causal link to the overall severity",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Does not directly follow from the previous beat, just adds a separate fact"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces a separate age‑group statistic rather than explaining why the season was brutal or linking to the shot‑skip c",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Provides shot‑uptake data but it isn’t a direct consequence of the elderly hospitalization rate and doesn’t continue a s"
  ],
  "reasons": [
-  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Just another statistic about age groups, not a causal link to the overall severity",
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Does not directly follow from the previous beat, just adds a separate fact"
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces a separate age‑group statistic rather than explaining why the season was brutal or linking to the shot‑skip c",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Provides shot‑uptake data but it isn’t a direct consequence of the elderly hospitalization rate and doesn’t continue a s"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -137,5 +137,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T22:50:27Z"
+ "refiled": "2026-11-27T01:44:31Z"
 }

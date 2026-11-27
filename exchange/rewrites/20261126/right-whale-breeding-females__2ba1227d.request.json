@@ -101,12 +101,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Whale Population') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Doesn't address the specific claim about 70 mothers, only overall population",
-  "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers, not directly on the 70 breeding females claim"
+  "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers rather than directly supporting the claim about only 70 mothers being critical, and it adds a ne"
  ],
  "reasons": [
-  "thesis: seg0 ('Whale Population') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Doesn't address the specific claim about 70 mothers, only overall population",
-  "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers, not directly on the 70 breeding females claim"
+  "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers rather than directly supporting the claim about only 70 mothers being critical, and it adds a ne"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -140,5 +138,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-26T22:50:28Z"
+ "refiled": "2026-11-27T01:44:32Z"
 }

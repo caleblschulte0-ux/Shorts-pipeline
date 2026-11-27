@@ -1,13 +1,13 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-26T22:50:30Z",
+ "updated": "2026-11-27T01:44:34Z",
  "open": [
   {
    "id": "back-to-sleep-campaign-cut-sids__766e4822",
    "slug": "back-to-sleep-campaign-cut-sids",
    "filed": "2026-11-26T22:50:30Z",
    "why": [
-    "thesis: seg2 ('Baby deaths remain') does not continue the story of the headline ('Why One Simple Rule Cut Baby Deaths In Half') — brain: Does not directly support the claim that the simple rule cut deaths in half; it only notes remaining deaths."
+    "thesis: seg2 ('Baby deaths remain') does not continue the story of the headline ('Why One Simple Rule Cut Baby Deaths In Half') — brain: Shifts focus from the rule's success to remaining deaths, not explaining 'why rule cut deaths in half' nor logically fol"
    ],
    "request": "exchange/rewrites/20261126/back-to-sleep-campaign-cut-sids__766e4822.request.json",
    "answer_path": "exchange/rewrites/20261126/back-to-sleep-campaign-cut-sids__766e4822.answer.json"
@@ -27,7 +27,7 @@
    "slug": "fifty-otters-survived-climate-fight",
    "filed": "2026-11-26T14:15:18Z",
    "why": [
-    "thesis: seg1 ('Sea Otters Recovered') does not continue the story of the headline ('How 50 Sea Otters Became A Carbon Lifeline') — brain: Beat 1 talks about population recovery and predator restoration, not directly proving the carbon‑lifeline claim of the h"
+    "story: fatal: invented_fact — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__57f785a8.request.json",
    "answer_path": "exchange/rewrites/20261126/fifty-otters-survived-climate-fight__57f785a8.answer.json"
@@ -37,7 +37,7 @@
    "slug": "english-internet-share-decline",
    "filed": "2026-11-26T14:15:15Z",
    "why": [
-    "thesis: seg2 ('English Websites Today') does not continue the story of the headline ('English Lost 30 Points Of The Early Web') — brain: Shows English share rising to 55%, contradicting the claim that it lost 30 points"
+    "thesis: seg2 ('English Websites Today') does not continue the story of the headline ('English Lost 30 Points Of The Early Web') — brain: Shows English at 55%, contradicting the claimed loss and does not follow from previous beats"
    ],
    "request": "exchange/rewrites/20261126/english-internet-share-decline__f1e023c6.request.json",
    "answer_path": "exchange/rewrites/20261126/english-internet-share-decline__f1e023c6.answer.json"
@@ -47,8 +47,7 @@
    "slug": "right-whale-breeding-females",
    "filed": "2026-11-26T14:15:15Z",
    "why": [
-    "thesis: seg0 ('Whale Population') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Doesn't address the specific claim about 70 mothers, only overall population",
-    "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers, not directly on the 70 breeding females claim"
+    "thesis: seg1 ('Whale Calves') does not continue the story of the headline ('Only 70 Right Whale Mothers Hold Up The Recovery') — brain: Focuses on calf numbers rather than directly supporting the claim about only 70 mothers being critical, and it adds a ne"
    ],
    "request": "exchange/rewrites/20261126/right-whale-breeding-females__2ba1227d.request.json",
    "answer_path": "exchange/rewrites/20261126/right-whale-breeding-females__2ba1227d.answer.json"
@@ -68,7 +67,8 @@
    "slug": "nuclear-reactors-under-construction",
    "filed": "2026-11-26T14:15:14Z",
    "why": [
-    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Beat 1 introduces a new statistic about China’s share without being a direct consequence of Beat 0; it’s another fact ra"
+    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Provides another statistic rather than a direct consequence of beat 0; does not follow causally.",
+    "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: States total worldwide construction but does not directly follow from the specific China share mentioned in beat 1."
    ],
    "request": "exchange/rewrites/20261126/nuclear-reactors-under-construction__1efdf38f.request.json",
    "answer_path": "exchange/rewrites/20261126/nuclear-reactors-under-construction__1efdf38f.answer.json"
@@ -78,7 +78,7 @@
    "slug": "hadza-gut-bacteria-vs-americans",
    "filed": "2026-11-26T12:33:21Z",
    "why": [
-    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('Why Hunter-Gatherers Have Richer Gut Bacteria') — brain: Introduces a new, unrelated cause (antibiotics) rather than building directly on the fiber explanation from beat 1"
+    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('Why Hunter-Gatherers Have Richer Gut Bacteria') — brain: Introduces antibiotics as a separate factor rather than directly continuing the fiber explanation"
    ],
    "request": "exchange/rewrites/20261126/hadza-gut-bacteria-vs-americans__efaf2d65_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/hadza-gut-bacteria-vs-americans__efaf2d65_r2.answer.json"
@@ -88,8 +88,8 @@
    "slug": "normal-body-temperature-has-shifted",
    "filed": "2026-11-26T12:33:21Z",
    "why": [
-    "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Adds a separate gender detail rather than a logical continuation of beat 0.",
-    "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces a new point about the original standard without stemming from beat 1."
+    "thesis: seg1 ('Body Temperature Sex') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Adds a separate fact about sex differences rather than a logical continuation of beat 0",
+    "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces a new historical point instead of directly following from beat 1"
    ],
    "request": "exchange/rewrites/20261126/normal-body-temperature-has-shifted__75403cdd_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/normal-body-temperature-has-shifted__75403cdd_r2.answer.json"
@@ -111,7 +111,7 @@
    "slug": "ocean-is-changing-color",
    "filed": "2026-11-26T12:33:21Z",
    "why": [
-    "thesis: seg2 ('Ocean area changed') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: It states the total area changed but does not directly follow from the previous beat about predictions; it's an addition"
+    "thesis: seg1 ('Ocean color prediction') does not continue the story of the headline ('Why Half The Ocean Is Changing Color') — brain: Beat 1 adds a prediction rather than a direct consequence of Beat 0, so it doesn't follow the previous fact."
    ],
    "request": "exchange/rewrites/20261126/ocean-is-changing-color__39dee9bf_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/ocean-is-changing-color__39dee9bf_r2.answer.json"
@@ -121,7 +121,8 @@
    "slug": "blood-type-rarity",
    "filed": "2026-11-26T12:33:20Z",
    "why": [
-    "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer beyond generic rarity."
+    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Rh-negative share is a general blood fact; it doesn't follow from or build on AB negative rarity, and it's not about hos",
+    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Donor mix by ethnicity is a tangent about who gives, not a consequence of Rh-negative rarity, and doesn't support the ho"
    ],
    "request": "exchange/rewrites/20261126/blood-type-rarity__b15ee3cb_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/blood-type-rarity__b15ee3cb_r2.answer.json"
@@ -131,7 +132,7 @@
    "slug": "cohabitation-overtakes-marriage",
    "filed": "2026-11-26T12:33:20Z",
    "why": [
-    "premise: brain: The pitch is generic about declining marriage rates without a concrete, surprising hook or specific stakes for the viewer."
+    "premise: brain: The pitch is a generic observation without a concrete, surprising hook or clear stakes for the viewer."
    ],
    "request": "exchange/rewrites/20261126/cohabitation-overtakes-marriage__3abe4654_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/cohabitation-overtakes-marriage__3abe4654_r2.answer.json"
@@ -151,8 +152,8 @@
    "slug": "vinyl-beats-cd-sales-again",
    "filed": "2026-11-26T12:28:56Z",
    "why": [
-    "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds a separate fact about unit sales; it doesn't follow causally from the revenue claim.",
-    "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming's market share, which doesn't directly support the claim that vinyl is beating CDs."
+    "thesis: seg1 ('Vinyl Sales') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Adds another supporting fact rather than a logical consequence of beat 0.",
+    "thesis: seg2 ('Vinyl Market') does not continue the story of the headline ('Why Vinyl Is Beating CDs Again') — brain: Discusses streaming market share, not directly proving vinyl beating CDs, and doesn't follow from beat 1."
    ],
    "request": "exchange/rewrites/20261126/vinyl-beats-cd-sales-again__f2741b84_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/vinyl-beats-cd-sales-again__f2741b84_r2.answer.json"
@@ -162,7 +163,7 @@
    "slug": "frog-fungus-mass-extinction",
    "filed": "2026-11-26T12:28:55Z",
    "why": [
-    "thesis: seg2 ('fungus frog impact') does not continue the story of the headline ('Why One Fungus Is Still Wiping Out Frogs') — brain: Introduces a new geographic fact rather than a direct consequence of the previous beat's decline statistic."
+    "story: fatal: unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261126/frog-fungus-mass-extinction__f17b2f42_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/frog-fungus-mass-extinction__f17b2f42_r2.answer.json"
@@ -172,8 +173,7 @@
    "slug": "runway-near-misses-climbing",
    "filed": "2026-11-26T12:28:55Z",
    "why": [
-    "thesis: seg1 ('Runway incursion cause') does not continue the story of the headline ('Why Serious Runway Near-Misses Keep Climbing') — brain: Provides a cause breakdown but doesn't directly explain the overall increase trend.",
-    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('Why Serious Runway Near-Misses Keep Climbing') — brain: Shows geographic clustering, not a causal link to the rising number of near‑misses."
+    "thesis: seg2 ('Runway danger clusters') does not continue the story of the headline ('Why Serious Runway Near-Misses Keep Climbing') — brain: Shows concentration of incidents at a few airports but doesn’t explain the overall rise nor directly follow from the pre"
    ],
    "request": "exchange/rewrites/20261126/runway-near-misses-climbing__0b20bf15_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/runway-near-misses-climbing__0b20bf15_r2.answer.json"
@@ -183,8 +183,8 @@
    "slug": "south-korea-robot-density-record",
    "filed": "2026-11-26T12:28:55Z",
    "why": [
-    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Adds a separate US‑Korea comparison rather than a logical continuation of the previous point",
-    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Discusses China’s robot installs, which doesn’t support the claim about South Korea’s robot‑to‑person ratio"
+    "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Provides a comparative fact about the US rather than a direct continuation or causal link to Korea's robot density.",
+    "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Discusses China’s robot installs and density, which does not support the claim about South Korea and does not follow fro"
    ],
    "request": "exchange/rewrites/20261126/south-korea-robot-density-record__62573b7c_r1.request.json",
    "answer_path": "exchange/rewrites/20261126/south-korea-robot-density-record__62573b7c_r1.answer.json"
@@ -194,8 +194,7 @@
    "slug": "feet-are-getting-bigger",
    "filed": "2026-11-26T12:28:54Z",
    "why": [
-    "thesis: seg1 ('Feet got wider') does not continue the story of the headline ('Why British Feet Keep Growing') — brain: Width increase is a separate fact, not a direct proof of overall foot growth and doesn't follow logically from the previ",
-    "thesis: seg2 ('Why British feet grow') does not continue the story of the headline ('Why British Feet Keep Growing') — brain: The cause explanation jumps from width to weight without a clear link to the prior beat, breaking the sequential narrati"
+    "premise: brain: The pitch lacks a concrete, surprising hook or specific stakes for the viewer, offering only generic size changes without a vivid, picture‑able conflict."
    ],
    "request": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.request.json",
    "answer_path": "exchange/rewrites/20261126/feet-are-getting-bigger__0e637ef8_r2.answer.json"
@@ -215,7 +214,7 @@
    "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "premise: brain: The hook is vague and doesn’t promise a concrete, picture‑worthy surprise or contradiction, making the pitch insufficiently specific."
+    "premise: brain: The hook is vague and doesn’t promise a concrete, picture‑worthy surprise or threat, making the pitch insufficiently specific."
    ],
    "request": "exchange/rewrites/20261125/india-beats-everyone-on-general-pupils-secondary-education-b__924c0bfe.request.json",
    "answer_path": "exchange/rewrites/20261125/india-beats-everyone-on-general-pupils-secondary-education-b__924c0bfe.answer.json"
@@ -246,8 +245,7 @@
    "slug": "tattoo-mainstream-shift",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "thesis: seg1 ('Tattooed women') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Adds a gender detail but isn’t a logical continuation of beat 0, just another fact.",
-    "thesis: seg2 ('Tattooed, then more') does not continue the story of the headline ('Why A Third Of America Is Now Tattooed') — brain: Discusses multiple tattoos, not the proportion with any tattoo, so it doesn’t support the headline claim."
+    "premise: brain: The pitch is generic statistics without a clear surprising hook or stakes for the viewer."
    ],
    "request": "exchange/rewrites/20261125/tattoo-mainstream-shift__1dd08721.request.json",
    "answer_path": "exchange/rewrites/20261125/tattoo-mainstream-shift__1dd08721.answer.json"
@@ -257,7 +255,7 @@
    "slug": "volcanoes-erupting-right-now",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "premise: brain: The pitch is generic and lacks a concrete, surprising hook or specific stakes for the viewer."
+    "premise: brain: The pitch is vague and lacks a concrete, surprising hook beyond a generic statement that volcanoes are always active."
    ],
    "request": "exchange/rewrites/20261125/volcanoes-erupting-right-now__c4f5c8bb.request.json",
    "answer_path": "exchange/rewrites/20261125/volcanoes-erupting-right-now__c4f5c8bb.answer.json"
@@ -267,7 +265,7 @@
    "slug": "womens-college-hoops-out-rates-men",
    "filed": "2026-11-25T10:59:52Z",
    "why": [
-    "story: fatal: unrenderable_visual, confusing — fix the words so it is true and pays off what it promises"
+    "thesis: seg1 (\"Women's Basketball Attendance\") does not continue the story of the headline (\"Why Women's College Basketball Is Catching Up Fast\") — brain: Attendance rise is another metric, not a direct consequence of the viewership figure; it reads as a separate fact rather"
    ],
    "request": "exchange/rewrites/20261125/womens-college-hoops-out-rates-men__1e8da731.request.json",
    "answer_path": "exchange/rewrites/20261125/womens-college-hoops-out-rates-men__1e8da731.answer.json"
@@ -277,9 +275,8 @@
    "slug": "autism-diagnosis-rate-rise",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg0 ('Autism Prevalence') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Beat 0 discusses overall prevalence but does not directly support the claim that rates depend on screening location.",
-    "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Beat 1 addresses sex differences, which is unrelated to the location-based claim and does not follow from Beat 0.",
-    "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Beat 2 introduces site differences, which is relevant to the claim, but it does not logically follow from Beat 1's focus"
+    "thesis: seg1 ('Autism By Sex') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Focuses on sex differences, not location relevance to diagnosis",
+    "thesis: seg2 ('Autism By Site') does not continue the story of the headline ('Why Autism Rates Depend On Where A Child Is Screened') — brain: Does not follow logically from beat 1 about sex; breaks the location‑focused narrative"
    ],
    "request": "exchange/rewrites/20261125/autism-diagnosis-rate-rise__c58fb06f.request.json",
    "answer_path": "exchange/rewrites/20261125/autism-diagnosis-rate-rise__c58fb06f.answer.json"
@@ -289,7 +286,7 @@
    "slug": "cruise-ship-outbreaks-climbing",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "premise: brain: The pitch is generic and lacks a specific, surprising hook or contradiction that gives viewers a clear stake beyond routine outbreak statistics."
+    "premise: brain: The pitch lacks a concrete, pictureable surprise or threat; it merely states a generic virus issue without a specific hook that viewers can visualize."
    ],
    "request": "exchange/rewrites/20261125/cruise-ship-outbreaks-climbing__64034cfe.request.json",
    "answer_path": "exchange/rewrites/20261125/cruise-ship-outbreaks-climbing__64034cfe.answer.json"
@@ -299,7 +296,7 @@
    "slug": "divorce-rate-quiet-decline",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg1 ('US Marriage Age') does not continue the story of the headline ('US Divorce Nearly Halved As First Marriage Moved Later') — brain: Shows correlation but doesn't directly prove or causally follow the divorce decline claim"
+    "premise: brain: The pitch is vague and lacks a concrete, picture‑worthy surprise or conflict for viewers to latch onto."
    ],
    "request": "exchange/rewrites/20261125/divorce-rate-quiet-decline__b3f767af.request.json",
    "answer_path": "exchange/rewrites/20261125/divorce-rate-quiet-decline__b3f767af.answer.json"
@@ -309,8 +306,8 @@
    "slug": "flu-season-2024-25-worst-in-years",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Just another statistic about age groups, not a causal link to the overall severity",
-    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Does not directly follow from the previous beat, just adds a separate fact"
+    "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces a separate age‑group statistic rather than explaining why the season was brutal or linking to the shot‑skip c",
+    "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Provides shot‑uptake data but it isn’t a direct consequence of the elderly hospitalization rate and doesn’t continue a s"
    ],
    "request": "exchange/rewrites/20261125/flu-season-2024-25-worst-in-years__b5d9677e.request.json",
    "answer_path": "exchange/rewrites/20261125/flu-season-2024-25-worst-in-years__b5d9677e.answer.json"
@@ -330,7 +327,7 @@
    "slug": "plastic-in-your-body",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg2 ('Plastic raises heart risk') does not continue the story of the headline ('Why Plastic Keeps Showing Up Inside Your Organs') — brain: Introduces a new risk correlation rather than a direct continuation from beat 1; it's an additional fact, not a logical "
+    "story: fatal: invented_fact, unrenderable_visual — fix the words so it is true and pays off what it promises"
    ],
    "request": "exchange/rewrites/20261125/plastic-in-your-body__331fd88e.request.json",
    "answer_path": "exchange/rewrites/20261125/plastic-in-your-body__331fd88e.answer.json"
@@ -340,8 +337,8 @@
    "slug": "robotic-surgery-doubled",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg0 ('Robotic Surgeries Rose') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: doesn't directly support the 15.1% share claim, only shows overall growth",
-    "thesis: seg2 ('Robotic Surgeries Revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: focuses on revenue, not the specific surgery share claim"
+    "thesis: seg0 ('Robotic Surgeries Rose') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Does not directly prove the headline's specific claim about 15.1% of general surgeries.",
+    "thesis: seg2 ('Robotic Surgeries Revenue') does not continue the story of the headline ('Robots Now Handle 15.1% Of General Surgeries') — brain: Focuses on revenue rather than directly supporting the 15.1% surgery share claim."
    ],
    "request": "exchange/rewrites/20261125/robotic-surgery-doubled__f8f9a4ec.request.json",
    "answer_path": "exchange/rewrites/20261125/robotic-surgery-doubled__f8f9a4ec.answer.json"
@@ -351,7 +348,7 @@
    "slug": "usps-mail-volume-collapse",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg2 ('USPS Stamp Price') does not continue the story of the headline ('Why Your Stamp Keeps Getting More Expensive') — brain: Only states the price; it doesn't explain why the stamp got more expensive"
+    "thesis: seg2 ('USPS Stamp Price') does not continue the story of the headline ('Why Your Stamp Keeps Getting More Expensive') — brain: Beat states the price itself rather than explaining why it’s rising, so it doesn’t help prove the headline claim."
    ],
    "request": "exchange/rewrites/20261125/usps-mail-volume-collapse__4d6e7b3d.request.json",
    "answer_path": "exchange/rewrites/20261125/usps-mail-volume-collapse__4d6e7b3d.answer.json"
@@ -361,8 +358,8 @@
    "slug": "volcano-country-ranking",
    "filed": "2026-11-25T10:59:51Z",
    "why": [
-    "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Introduces Alaska as another fact without a logical link to beat 0; it's just an additional comparison.",
-    "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Provides a general explanation about the Ring of Fire rather than directly supporting the headline, and doesn't follow l"
+    "thesis: seg1 ('Indonesia versus Alaska') does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Introduces Alaska without being a logical consequence of beat 0; it's an added fact rather than a follow‑on.",
+    "thesis: seg2 (\"Indonesia's Ring of Fire\") does not continue the story of the headline (\"Why Indonesia Isn't Actually The Volcano Capital\") — brain: Provides general context about the Ring of Fire rather than directly supporting the claim, and doesn't directly follow f"
    ],
    "request": "exchange/rewrites/20261125/volcano-country-ranking__d1d5c228.request.json",
    "answer_path": "exchange/rewrites/20261125/volcano-country-ranking__d1d5c228.answer.json"
