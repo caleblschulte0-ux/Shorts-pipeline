@@ -1,0 +1,216 @@
+{
+ "date": "2026-11-27",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Jerry Jones",
+   "why": "The Cowboys' owner and his family walk off after the biggest Thanksgiving collapse in NFL history, a reaction anyone gets at a glance.",
+   "post_title": "[Highlight] Jerry Jones and his family head to the locker room after the Cowboys blew the largest lead in NFL Thanksgiving history",
+   "upvotes": 11867,
+   "url": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "Brady answers Rodgers' comments about McCarthy and defends the sacred locker room, a rare direct response from him.",
+   "post_title": "[Highlight] Tom Brady Responds To Aaron Rodgers Comments About Mike McCarthy: \u201cThe sanctity of the NFL locker room is, is a very sacred place and we shouldn\u2019t ever lose track of that as players. It\u2019s ",
+   "upvotes": 9009,
+   "url": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers",
+   "title": "Tom Brady Fires Back At Aaron Rodgers Over Mike McCarthy Comments",
+   "hook": "Brady responds to Rodgers on McCarthy",
+   "ledger": {
+    "moves": [
+     "whoa@4.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.494
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.03,
+       0.231
+      ],
+      [
+       0.533,
+       0.741
+      ]
+     ]
+    },
+    "outro": null,
+    "cut_in": [
+     "Tom Brady@13.74"
+    ],
+    "cut_in_s": 3.78,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: This is a repost of someone else's split-screen edit: Brady is half cut off, their captions sit right on top of ours, and the second half is unrelated game footage, so the response never lands.",
+    "score": 45
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: This is a repost of someone else's split-screen edit: Brady is half cut off, their captions sit right on top of ours, and the second half is unrelated game footage, so the response never lands."
+  },
+  {
+   "sub": "hockey",
+   "who": "Dylan Larkin",
+   "why": "Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs, and the crowd's reaction carries it.",
+   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
+   "upvotes": 3031,
+   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
+   "title": "Dylan Larkin Hears Montreal Fans Chant His Name On His First Shift With The Habs",
+   "hook": "Montreal fans greet Larkin's first Habs shift",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.17,
+       "reason": "the framer: Close-up of the Montreal player in the red #86 helmet, face fully in columns 2-5 with the helmet top and chin",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.17,
+       "t1": 15.0,
+       "reason": "the framer: Play along the boards: Montreal #14 and the LA player #68 at the puck, and a player down near the boards, plus LA #40 in column 5",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic."
+  },
+  {
+   "sub": "nfl",
+   "who": "Detroit Lions",
+   "why": "The Lions stuff a lineman like a Thanksgiving turkey to celebrate their first TD, a silly team moment anyone gets right away.",
+   "post_title": "[Highlight] Lions celebrate their first TD by stuffing their lineman like a turkey",
+   "upvotes": 8975,
+   "url": "https://www.reddit.com/r/nfl/comments/1y68yrc/highlight_lions_celebrate_their_first_td_by/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y68yrc/highlight_lions_celebrate_their_first_td_by",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Damian Lillard",
+   "why": "Lillard picks which teammate he'd trust to bring a Thanksgiving dish, a light, funny answer that needs no context.",
+   "post_title": "Damian Lillard when asked which teammate he would trust to bring a dish (Thanksgiving): \"I'm gonna go with Ja. Just 'cause that Southern hospitality, I know he got some in him, so I'm gonna go with Ja",
+   "upvotes": 2581,
+   "url": "https://streamable.com/unx5ym",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5x2jb/damian_lillard_when_asked_which_teammate_he_would",
+   "title": "Damian Lillard Picks Who He'd Trust To Bring The Thanksgiving Dish",
+   "hook": "Dame picks his Thanksgiving dish guy \ud83e\udd83",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 23.98,
+       "reason": "the framer: Dame (the speaker) has his face in columns 4-5, with his shoulders and the ESPN mic in columns 3-6.",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.286,
+      0.375,
+      0.375,
+      0.375,
+      0.375
+     ],
+     "n_subjects": 2,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  }
+ ],
+ "already_today": 4,
+ "pool": 134,
+ "already_posted": 5,
+ "refused_before": 10,
+ "shipped": 0
+}
