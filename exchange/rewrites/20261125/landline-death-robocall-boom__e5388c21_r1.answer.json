@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "landline-death-robocall-boom__e5388c21_r1",
+  "slug": "landline-death-robocall-boom",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "Landlines Vanished While Robocalls Nearly Doubled",
+  "hook": "Home phones disappeared, but unwanted calling grew instead of fading.",
+  "closing": "The phone changed, yet unwanted calls became more common rather than less.",
+  "question": "Do you answer unknown numbers?",
+  "segments": [
+    {
+      "topic": "Landline Homes",
+      "say": "By 2024, 76% of adults had no landline. Wireless-only homes became the clear majority."
+    },
+    {
+      "topic": "Landline Robocall Mix",
+      "say": "Telemarketing made up 36% of robocalls in 2024. Commercial calling led the unwanted-call mix."
+    },
+    {
+      "topic": "Landline Robocall Volume",
+      "say": "Annual robocalls reached 52.8 billion in 2024. The volume nearly doubled as landlines became uncommon."
+    }
+  ]
+}
