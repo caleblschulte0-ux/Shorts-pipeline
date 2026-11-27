@@ -23018,14 +23018,50 @@
       "ts": "2026-11-27T13:00:04.639425+00:00"
     },
     "clip-20261127-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/BloodyOilyWasabiVoteNay-iA3QTvyzrlB0a4qv",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/ZOsJWPR3brA",
       "title": "Xqc Can't Believe This 13 Years Moment \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-11-27T13:02:25.260626+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-27T13:02:35.789932+00:00",
+      "uploaded_at": "2026-11-27T13:02:35.789950+00:00",
+      "publish_at": "2026-11-28T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261127-xqc-can-t-believe-this-13-years-moment-7c559ab9",
+        "tiktok": "queued for 2026-11-28T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/BloodyOilyWasabiVoteNay-iA3QTvyzrlB0a4qv",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "xQc and the 13 years moment \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6590,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 11.95
+      },
+      "director_cut": true
+    },
+    "rejected-belovedcleanmonitorarsonnosexy-fopklmmgjcbntqsu": {
+      "source_url": "https://www.twitch.tv/xalisa/clip/BelovedCleanMonitorArsonNoSexy-fopKLMmGJCBntQsU",
+      "streamer": "xalisa",
+      "title": "mama is cooked",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA 6 gameplay, slur, nothing visible ha)",
+      "ts": "2026-11-27T13:03:27.706394+00:00"
+    },
+    "rejected-apathetichelpfulshallotvotenay-jjsqha-zm3imnm65": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ApatheticHelpfulShallotVoteNay-jjSQha-zm3IMNM65",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Reacts To This Moment And Can't Believe It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin horizontal strip, roughly 25-30% of the canvas height. The rest is blurred padding. The fram; vision: The streamer's facecam is tiny in the bottom-left corner, so the reaction the title promises is barely visible.; vision: The streamer's UI, chat overlays and the ",
+      "ts": "2026-11-27T13:09:07.713584+00:00"
     }
   }
 }

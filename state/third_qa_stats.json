@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261118",
-      "dry_run": false,
-      "ts": "2026-11-18T19:24:50+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 128,
-        "with_retention": 114,
-        "with_curve": 14,
-        "fetched_at": "2026-11-18T17:27:22.387192+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261118-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261119",
       "dry_run": false,
       "ts": "2026-11-19T12:44:11+00:00",
@@ -6629,6 +6577,222 @@
             }
           },
           "took_s": 15.0
+        }
+      ]
+    },
+    {
+      "date": "20261127",
+      "dry_run": false,
+      "ts": "2026-11-27T13:09:07+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 107,
+        "with_curve": 15,
+        "fetched_at": "2026-11-27T08:46:20.547886+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261127-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "famous name, reaction unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA-style heist wandering, no clear payo",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Shroud Asks If He Just Stole This For No Reason"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.55,
+              "problems": [
+                "The sharp picture fills only about a third of the canvas height. It is a 16:9 gameplay strip with a lot of blurred paddi",
+                "The player is small in frame but still readable, so this is not a lost subject.",
+                "The hook card sits in the blurred bottom padding and covers nothing important.",
+                "The facecam inset is small."
+              ]
+            }
+          },
+          "took_s": 299.3
+        },
+        {
+          "slug": "clip-20261127-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261127-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "searched name, vague milestone",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA 6 backyard shootout, small facecam",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Can't Believe This 13 Years Moment \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.55,
+              "problems": [
+                "From about 1.5s to 3.5s the sharp picture shrinks to a thin strip in the middle third of the canvas. The subject and the",
+                "Framing is inconsistent. The clip alternates between a full-bleed crop (0.5s and 4.5s onward) and a small letterboxed st",
+                "The subject is small and far away for much of the clip, so the action is hard to follow. At 5.5\u20139.5s the character is a ",
+                "The hook caption sits over the lower-middle of the picture for the whole clip, and the gameplay UI text ('Mami, get insi"
+              ]
+            }
+          },
+          "took_s": 151.2
+        },
+        {
+          "slug": "clip-20261127-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin horizontal strip, roughly 25-30% of the canvas height. The rest is blurred padding. The fram; vision: The streamer's facecam is tiny in the bottom-left corner, so t",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unknown content, searchable-ish name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.58,
+              "why": "GTA 6 shower scene reaction, age-restric",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Reacts To This Moment And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin horizontal strip, roughly 25-30% of the canvas height. The rest is blurred padding. The fram",
+                "The streamer's facecam is tiny in the bottom-left corner, so the reaction the title promises is barely visible.",
+                "The streamer's UI, chat overlays and the stream's own captions are all shrunk into the strip and are illegible.",
+                "The footage is a shirtless, sexual shower and bed scene. This risks age-restriction or a platform flag, beyond the 'dign",
+                "The hook card sits in the blurred bottom padding, away from the action. The framing looks like a reposted full-screen st"
+              ]
+            },
+            "first_render": {
+              "reframe": "cameras",
+              "layout": "cameras",
+              "problems": [
+                "vision: Word captions run off the right edge of the frame, so 'Almost almost' and 'Morning hand' are cut off, and 'Morn' is cut ",
+                "vision: The channel's word captions overlap the stream's own captions ('Mornin' hands') in the 26.2s frame",
+                "vision: The source footage is sexualised: a wet bare back at 13.8s and a bed and kissing scene from 21s onward. It risks age-res",
+                "vision: The 28.8s frame shows a different layout, with a tiny streamer in the corner and the stream HUD (viewer count) visible. ",
+                "vision: The streamer's webcam is small in the early frames, and the stream HUD and viewer counter clutter the top"
+              ]
+            }
+          },
+          "took_s": 306.2
         }
       ]
     }
