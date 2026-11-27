@@ -33,12 +33,21 @@ def place_grindavik_street():
     lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
     # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
     # crack: an intact grey deck, its centre line painted fresh)
-    asph = lw_noise("street asphalt", "#343538", "#5A5C60", scale=3.0, rough=0.85, bump=0.15, detail=8, lo=0.3, hi=0.75)     # (r1w EMPTY: worn patches, still intact)
+    asph = lw_noise("street asphalt", "#2A2B2E", "#6A6C70", scale=5.0, rough=0.85, bump=0.35, detail=12, lo=0.42, hi=0.58)     # (r1y EMPTY: the near street still one smooth plane at phone size: a coarse aggregate grain)     # (r1w EMPTY: worn patches, still intact)
     K.box("street road", (0, 2.5, -0.035), (2.3, 20, 0.07), asph, bev=0.0)
     paint = K.mat("street line paint", "#E6E2D6", rough=0.6)
     y_ = -7.2
     while y_ < 12.0:
         K.box("street road line", (0, y_ + 0.5, 0.0015), (0.07, 1.0, 0.004), paint, bev=0.0); y_ += 2.2
+    for sx in (-1, 1):                                     # (r1x EMPTY 38%: the near street read as one smooth grey plane) its painted edge lines
+        K.box("street road edge line", (sx * 0.98, 2.5, 0.0015), (0.06, 20, 0.004), paint, bev=0.0)
+    iron = lw_noise("street cast iron", "#232325", "#45474A", scale=30.0, rough=0.6, bump=0.6)
+    K.cyl("street manhole cover", (0.9, -3.1, 0.004), 0.32, 0.012, iron, v=40, bev=0.003)     # the near street's own furniture: a manhole cover by the lens
+    for gy in (-3.3, -0.4, 2.6):                           # and the drain grates along the kerbs
+        for sx in (-1, 1):
+            K.box("street drain grate", (sx * 1.0, gy, 0.003), (0.22, 0.45, 0.01), iron, bev=0.0)
+    for k in range(7):                                     # and the zebra crossing just behind him
+        K.box("street crossing stripe", (-0.84 + 0.28 * k, -1.35, 0.0016), (0.15, 0.9, 0.004), paint, bev=0.0)
     kerb = ph_mat("concrete_wall_008", scale=1.0, tint="#C8C4BC", name="kerb concrete")
     for sx in (-1, 1):
         K.box("kerb", (sx * 1.15, 2.5, 0.04), (0.12, 20, 0.08), kerb, bev=0.01)
@@ -118,7 +127,7 @@ def shot1():
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
     # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.05)).normalized(); LOOK0 = CAM0 + D * 5.0
+    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.02)).normalized(); LOOK0 = CAM0 + D * 5.0
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(35)                              # three-quarter: his chest 35 degrees round toward the ridge
@@ -126,18 +135,22 @@ def shot1():
     kit = hard_hat(data)
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
     SIDE = Vector((-TO.y, TO.x, 0))                             # (his left as he faces the lens is the frame's... either way: a small shuffle)
-    Y_BACK = 0.12                                              # the flinch: a step toward us, away from it
+    Y_BACK = 0.18                                              # the flinch: a step toward us, away from it
+    RUN = TO * 0.1 + SIDE * 0.3                                # the run: past us, across the street (r1w: straight at the lens he grew to 0.58 and was cut by still 4)
+    YAW_RUN = math.atan2(RUN.x, -RUN.y)
+    YAW_RUN = YAW + math.atan2(math.sin(YAW_RUN - YAW), math.cos(YAW_RUN - YAW))
     for f in range(1, F(T_RUN) + 1):
         t = (f - 1) / FPS
         p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.1 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35) + 0.06 * W(t, T_BURST + 0.75, 0.35))     # (r1v HOLD/READ: a second step back before he runs)
         p.z = Z0 + 0.03 * lw_kick(t - T_BURST - 0.15, 0.25)
-        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4))
+        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4)
+                   + (YAW_RUN - YAW) * W(t, T_RUN - 0.55, 0.55))     # (r1x STEADY: he turns into the run before it, never a whip at its start)
         data._plant_feet_here(t, lift=(Z0, Z0))
     # the run: at the lens, a little to its left, past it and out of the street (still 4 is mid-stride, in the frame)
     sc.frame_set(F(T_RUN)); bpy.context.view_layer.update(); PR = data.pos()
     AWAY = (TO + SIDE * 0.12).normalized()
-    END = PR + TO * 0.1 + SIDE * 0.55                         # (r1w: straight at the lens he grew to 0.58 and was cut by still 4: he runs past us, across the street)
-    data.walk_to((END.x, END.y), T_RUN, DUR + 0.1, step=0.2, lift=0.08, bob=0.024, lean=10.0)
+    END = PR + RUN
+    data.walk_to((END.x, END.y), T_RUN, DUR + 0.1, step=0.15, lift=0.05, bob=0.012, lean=6.0)     # (r1x CLIPPING: a 2.4 cm bob sank his soles into the street)
     lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.85, 0.4) - 12 * W(t, T_BURST + 0.1, 0.3) + 10 * lw_kick(t - T_BURST - 0.15, 0.3)
                                        + 14 * W(t, T_RUN - 0.1, 0.3), 0, 0), 0, DUR + 0.4)
     HEAD = Vector((X0, Y0, Z0 + 0.5))
@@ -154,10 +167,10 @@ def shot1():
     HALF = lambda sg: ((-20, 0, -sg * 16), (-75, 0, -sg * 15), (-10, sg * -20, -sg * 12))      # forearms up, chest-high
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
     UP = lambda sg: ((-30, 0, -sg * 14), (-34, 0, -sg * 46), (-12, sg * -10, -sg * 15))
-    RUNA = lambda sg: ((22, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
-    RUNB = lambda sg: ((-30, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    RUNA = lambda sg: ((10, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    RUNB = lambda sg: ((-18, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
     keys = [0.0, 0.35, T_GLOW + 0.15, 1.3, 1.95, T_BURST + 0.1, T_BURST + 0.75, T_RUN]
-    run_t = [T_RUN + 0.2 + 0.22 * k for k in range(int((DUR + 0.5 - T_RUN - 0.2) / 0.22) + 1)]
+    run_t = [T_RUN + 0.2 + 0.26 * k for k in range(int((DUR + 0.5 - T_RUN - 0.2) / 0.26) + 1)]     # (r1z POP: a 52 degree pump every 0.22 s snapped)
     for sd in sides:
         sg = -1 if sd == "L" else 1
         seq = [LOW, LOW, HALF, HALF, WHOA, UP, WHOA, RUNA if sd == sides[0] else RUNB] if sd == sides[0] else [LOW, LOW, LOW, HALF, HALF, UP, WHOA, RUNB]

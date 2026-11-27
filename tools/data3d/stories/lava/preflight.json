@@ -2623,6 +2623,78 @@
      "text": "Back on the crest, down the finished row, he grins by his pale boulder, one arm out along it"
     }
    ]
+  },
+  "feba9538343dbe773ea2faea5f1c8eae55658174701969e94a22965bc8213580": {
+   "at": "2026-11-27 18:22:39Z",
+   "claims": 9,
+   "claims_key": "e3201a86ac95f0f3",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "Still 1 has no lava on the ridge and no fountain; they appear in 2-4 with no cause shown. The background houses also change with the camera.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    },
+    {
+     "id": "edges",
+     "note": "Data's head and hat are cut off by the left frame edge in still 3. The fountain is also clipped by the top edge in 3 and 4.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "3"
+    }
+   ],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Data does the same thing in all four stills: he stands in the street, gestures and looks worried, with only camera distance changing. No flinch and no run.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-4"
+    },
+    {
+     "id": "broken",
+     "note": "Data is half cut off by the left frame edge, and his head is turned in an odd way.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3"
+    },
+    {
+     "id": "look",
+     "note": "Data is a toy-like cartoon character against a semi-realistic street. The lava fountain looks like a flat, orange, textured column. The road texture looks like blurry noise.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "consequence",
+     "note": "The eruption grows, but the street and town stay unchanged and there is no consequence for the town. The last still has no result beyond Data standing there.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "feba9538343dbe773ea2faea5f1c8eae55658174701969e94a22965bc8213580",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "ACTION",
+     "note": "Data turns his head and looks startled in stills 3-4, but there is no clear flinch pose. His expression stays the same worried look.",
+     "text": "He flinches"
+    },
+    {
+     "from": "FOR",
+     "id": "c4",
+     "kind": "ACTION",
+     "note": "Data stands or turns in place in every still. No running stride and no travel along the street.",
+     "text": "runs"
+    },
+    {
+     "from": "SAYS",
+     "id": "c5",
+     "kind": "SAYS",
+     "note": "The eruption and a few houses show a volcano beside a town. There is no sign of Icelandic character, no people fleeing, no cars leaving, and Data is not visibly running.",
+     "text": "a stranger with the sound off would say the stills show what this line says: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    }
+   ]
   }
  }
 }
