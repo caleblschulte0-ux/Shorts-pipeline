@@ -131,6 +131,85 @@
    "stills": 4,
    "unticked": []
   },
+  "0a6d0a72878e14354ed851fe285daa81b138ab1077047d9c602f22ac299522a2": {
+   "at": "2026-11-27 19:29:10Z",
+   "claims": 11,
+   "claims_key": "fa33c0f8598390d3",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The blue car sits parked in the distance in stills 1-3, then appears huge at the right in still 4 with no travel shown. The lava fountain appears in still 3 after only a glow in still 2.",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "3-4"
+    },
+    {
+     "id": "edges",
+     "note": "In still 4 the car is cut by the right edge and Data's hat and head are near the top edge.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The car is cut off by the right frame edge. Data's chest and vest fit oddly, with the vest and tie floating on the coat.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "4"
+    },
+    {
+     "id": "look",
+     "note": "Data is a toy-like cartoon figure in a semi-realistic street. The lava fountain reads as a flat orange flame sprite and the smoke columns look like flat soft sprites.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "In still 2 Data's arm is held out stiffly with no clear purpose. In still 3 his hands are bunched at his chin and the arms look bent oddly.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "2-3"
+    },
+    {
+     "id": "consequence",
+     "note": "The eruption is small and far away on the ridge. The last still shows a car arriving beside Data, not a clear change to the town.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "4"
+    }
+   ],
+   "sha256": "0a6d0a72878e14354ed851fe285daa81b138ab1077047d9c602f22ac299522a2",
+   "shot": 1,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c3",
+     "kind": "ACTION",
+     "note": "The ridge shows an orange glow line in still 2, and Data holds his arm out to the side. It is not clearly a point at the glow, and the glow and the gesture are not tied together.",
+     "text": "it glows, he points"
+    },
+    {
+     "from": "FOR",
+     "id": "c5",
+     "kind": "ACTION",
+     "note": "Data has his hands at his chin in a worried pose, which is not a clear flinch. The blue car stays parked in the distance in stills 1-3, so there is no moment of it racing off.",
+     "text": "he flinches, a parked car races off"
+    },
+    {
+     "from": "FOR",
+     "id": "c6",
+     "kind": "ACTION",
+     "note": "Dark smoke and the fountain are visible, and the blue car is close beside Data. Data faces us with his mouth open but is not clearly running or looking back. The car is a big blue vehicle at the right edge, not clearly racing past, and the plume is not clearly towering.",
+     "text": "under a towering ash plume he runs at us looking back, the car races past"
+    },
+    {
+     "from": "SAYS",
+     "id": "c7",
+     "kind": "SAYS",
+     "note": "The stills show a volcano erupting beside a town and a car coming close. Nobody is clearly running or evacuating, and nothing identifies the town as Icelandic. The viewer cannot read 'everyone had to run'.",
+     "text": "a stranger with the sound off would say the stills show what this line says: A volcano keeps erupting right beside one Icelandic town, and everyone had to run"
+    }
+   ]
+  },
   "0f0eb5a3902dbd80420765eb0b2ae95f5e4982b241ae4ff01b0a9ea115198ec7": {
    "at": "2026-11-26 06:29:45Z",
    "claims": 15,
