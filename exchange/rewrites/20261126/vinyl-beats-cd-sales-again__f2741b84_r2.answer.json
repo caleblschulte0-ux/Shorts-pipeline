@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vinyl-beats-cd-sales-again__f2741b84_r2",
+  "slug": "vinyl-beats-cd-sales-again",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "Vinyl Beats CDs But Remains Tiny Beside Streaming",
+  "hook": "The format once declared dead now wins inside a much smaller market.",
+  "closing": "Vinyl's comeback is real, but streaming still defines how most music earns money.",
+  "question": "What record would you buy?",
+  "segments": [
+    {
+      "topic": "Vinyl Revenue",
+      "say": "Vinyl earned 1.2 billion dollars in 2022. Its revenue surpassed CDs."
+    },
+    {
+      "topic": "Vinyl Units",
+      "say": "Vinyl sold 41 million albums. The comeback also beat CDs by unit count."
+    },
+    {
+      "topic": "Vinyl Market",
+      "say": "Streaming holds 84% of recorded-music revenue. Vinyl wins its physical contest inside a streaming-dominated market."
+    }
+  ]
+}
