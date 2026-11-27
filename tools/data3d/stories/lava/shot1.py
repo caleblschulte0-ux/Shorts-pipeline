@@ -278,9 +278,18 @@ def shot1():
     for v in vents: v.hide_render = True; v.hide_viewport = True
     # the eruption is the KIT's: a fissure curtain of strand spray on the ridge, its gas above it, its clots on real
     # arcs, every lava colour off the kit's chart (an orange emission over ~2 renders peach, a red over ~1 salmon)
-    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y, P["fz"] - 1.3), h=8.5, w=1.3, length=9.0, clots=700, clot_size=2.6, lean=(-0.25, 0.35), seed=17, splats=0,
+    # (coordinator, after every pre-flight called the fountain wall "a flat flame card": NO wall of fire. The eruption
+    # is a towering dark ash plume lit orange from below, a LOW ragged band of spatter just over the ridge line, and a
+    # few glowing bombs on arcs. The threat reads from the plume's size and the light.)
+    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y + 0.6, P["fz"] - 0.7), h=2.6, w=1.0, length=9.0, clots=160, clot_size=2.6, plume=1.0, lean=(-0.25, 0.35), seed=17, splats=0,
                           t_end=DUR + 1.0, name="fissure fountain")
-    P["founts"] = [fo["jet"]]
+    plumes = []
+    for k, (x, w_, h_, dn) in enumerate(((-3.2, 5.5, 20.0, 3.2), (0.4, 7.0, 26.0, 3.8), (3.6, 6.0, 22.0, 3.4), (6.8, 5.0, 18.0, 3.0))):
+        plumes.append(FX.smoke_column(base=(S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.6), w=w_, h=h_, lean=(-0.06, 0.1), col=(0.075, 0.07, 0.068), dens=dn * 0.7,
+                                      seed=4.1 + 2.7 * k, t_end=DUR + 1.0, rise=2.2, name=f"eruption plume {k}")["volume"])
+        lw_point(f"plume fire light {k}", (S1_FX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)       # orange on the plume's underside and the ridge crest
+    FX.embers(origin=(S1_FX, S1_RIDGE_Y, P["fz"] + 0.2), n=9, speed=13.0, cone=0.55, size=(0.1, 0.2), period=2.4, seed=5, ground_z=P["fz"] - 1.0, splats=0, power=0.0, name="flung bomb")
+    P["founts"] = plumes + [fo["jet"]]
     for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True      # (from the street below, the kit's spatter rampart stood as a dark band ACROSS the fountain's white-hot foot: the ridge's own rock is its rampart here)
     for o in P["spat"]: o.hide_render = True
     for o in bpy.data.objects:                             # (my glowing slot along the ridge read as a white bar under the kit's fountain: the kit's own vent stands there)
@@ -309,10 +318,12 @@ def shot1():
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.6, h=2.6, seed=6.1, col=(0.16, 0.15, 0.14), dens=8.0, lean=(-0.15, 0.25), rise=1.4,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.6, h=3.0, seed=6.1, col=(0.13, 0.12, 0.11), dens=11.0, lean=(-0.15, 0.25), rise=1.4,
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
-    bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.1, 0.35), 0.0, col=(1.0, 0.4, 0.1), r=0.3)
-    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 170.0), (DUR + 1.0, 140.0)):
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.35, 0.05), w=0.85, h=1.2, seed=9.3, col=(0.34, 0.31, 0.29), dens=5.0, lean=(0.1, 0.1), rise=0.8,
+                    keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.15, 0.25), (T_HIT + 1.0, 0.12), (DUR + 1.0, 0.05)], t_end=DUR + 1.0, name="dust off the impact")     # the smash: a low burst of dust off the road
+    bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.45, 0.3), 0.0, col=(1.0, 0.55, 0.15), r=0.3)
+    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 210.0), (DUR + 1.0, 150.0)):
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
         L.data.energy = 0.0                                # (the kit lights its own fountain: my lamps bleached its rampart to a white bar)
@@ -341,6 +352,7 @@ def shot1():
     def pose(sd, t, P_):
         for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
     HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
+    DUCK = lambda sg: ((-92, 0, -sg * 46), (-62, 0, -sg * 14), (0, 0, 0))        # the flinch: both arms thrown up over his hat
     SHIELD = "none"                         # the arm up at his hat covered his face on the last still: both arms keep pumping
     OUT = lambda sg: ((8, 0, -sg * 76), (0, 0, -sg * 8), (0, 0, 0))            # one arm flung out at the fountains
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -351,7 +363,7 @@ def shot1():
         d_ = ease(min(1.0, max(0.0, (t - T_HIT) / 0.2))) * (1.0 - ease(min(1.0, max(0.0, (t - T_HIT - 0.75) / 0.35))))      # the bomb lands behind him: he FLINCHES, both hands thrown up, then runs on
         for sd, bb in (("L", b_), ("R", 1 - b_)):
             sg = -1 if sd == "L" else 1
-            for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), FLUNG(sg)):
+            for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), DUCK(sg)):
                 r = tuple(((wh[i] * (1 - g_) + (lo[i] * (1 - bb) + up[i] * bb) * g_) * (1 - e_) + (fl[i] if sd in SHIELD else (lo[i] * (1 - bb) + up[i] * bb)) * e_) for i in range(3)); r = tuple(r[i] * (1 - d_) + fl[i] * d_ for i in range(3)); data._k(bn, t, rot=r)
     data.finish()
     from character import _fcurves                         # his shoulders a quarter turned off the lens as he runs at it (coordinator: "square to the lens in all four stills")
@@ -363,7 +375,7 @@ def shot1():
             fc.update()
     # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
     # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.42, 0.36; X1, Y1, S1_ = 0.5, 0.47, 0.86; ZOOM = 0.24
+    X0, Y0, H0 = 0.58, 0.42, 0.36; X1, Y1, S1_ = 0.5, 0.44, 0.86; ZOOM = 0.19
     CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
     cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -385,4 +397,4 @@ def shot1():
     founts = P["founts"]
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("a curtain of lava fountains stands on the ridge over the town's roofs", lambda: founts, T_ERUPT, DUR, {"whole": False})])
+                conseq=[("a towering ash plume stands on the ridge over the town's roofs, lava spatter at its foot", lambda: founts, T_ERUPT, DUR, {"whole": False})])

@@ -98,7 +98,9 @@ def place_wall_works():
     # what the wall keeps out: from the town, lava fountains stand beyond the crest under their smoke (beat 1's ragged
     # fountains: a fat torn body and a thin taller jet), their feet hidden behind the wall
     for k, (x, y, hf) in enumerate(((-28.0, -120.0, 22.0), (-10.0, -126.0, 26.0), (8.0, -118.0, 21.0), (24.0, -124.0, 24.0))):      # (the kit's fountain, as in beat 1)
-        FX.lava_fountain(base=(x, y, 0.0), h=hf, w=2.5, length=8.0, plume=0.7 * hf, clot_size=2.6, clots=250, lean=(0.3, -0.2), seed=23 + k, splats=0, t_end=DUR + 1.0, name=f"far fountain {k}")
+        FX.lava_fountain(base=(x, y, 0.0), h=0.3 * hf, w=2.5, length=10.0, clots=120, clot_size=2.6, plume=2.0, lean=(0.3, -0.2), seed=23 + k, splats=0, t_end=DUR + 1.0, name=f"far fountain {k}")     # a LOW band of spatter...
+        FX.smoke_column(base=(x, y - 2.0, 0.25 * hf), w=0.55 * hf, h=2.6 * hf, lean=(0.3, -0.2), col=(0.075, 0.07, 0.068), dens=3.4, seed=1.7 + 2.3 * k, t_end=DUR + 1.0, rise=2.2, name=f"far plume {k}")     # ...under a towering dark ash plume
+        lw_point(f"far plume fire light {k}", (x, y + 2.0, 0.3 * hf), 90000.0, col=(1.0, 0.5, 0.14), r=3.0)       # lit orange from below
     def light():
         return FX.sky("day", sun_az=-30)["sun"]              # the kit's real day sky, ONE for the close stills and the wide; its sun from the side of both lenses
     return dict(light=light, wall=wall, house=houses[0], houses=houses)

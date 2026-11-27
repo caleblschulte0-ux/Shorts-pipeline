@@ -13,12 +13,13 @@
      "built_as": "a lump of glowing lava under a cracked black crust, bursting into a molten splash, flying bits and dark smoke"
     },
     {
-     "name": "lava fountains",
+     "name": "ash plume",
      "objects": [
+      "eruption plume",
       "fissure fountain"
      ],
      "whole": false,
-     "built_as": "a curtain of yellow-orange lava spray along the fissure on the black ridge, clots flung on arcs, dark gas over it"
+     "built_as": "towering columns of dark ash smoke over the fissure, lit orange from below, a low ragged band of yellow-white lava spatter at their foot"
     },
     {
      "name": "car",
@@ -41,13 +42,13 @@
    "stills": [
     {
      "event": "before",
-     "shows": "a ragged curtain of lava fountains stands on the ridge over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands in the street below, one arm flung out",
+     "shows": "a towering black ash plume stands on the ridge over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands in the street below, one arm flung out",
      "hands": "free",
      "new": [],
      "visible": [
       {
-       "prop": "lava fountains",
-       "as": "a ragged curtain of lava fountains stands on the ridge over the roofs: a volcano keeps erupting right beside the Icelandic town"
+       "prop": "ash plume",
+       "as": "a towering black ash plume stands on the ridge over the roofs, a low band of lava spatter at its foot: a volcano keeps erupting right beside the Icelandic town"
       },
       {
        "prop": "data",
@@ -73,7 +74,7 @@
       {
        "what": "lava bomb",
        "how": "comes",
-       "cause": "the fountains throw it out over the street"
+       "cause": "the eruption throws it out over the street"
       }
      ],
      "visible": [
@@ -86,8 +87,8 @@
        "as": "a car up the street behind him with its tail lights on"
       },
       {
-       "prop": "lava fountains",
-       "as": "the fountains on the ridge"
+       "prop": "ash plume",
+       "as": "the plume on the ridge"
       }
      ]
     },
@@ -99,7 +100,7 @@
       {
        "what": "lava bomb",
        "how": "falls",
-       "cause": "thrown out of the fountains, it comes down on the street"
+       "cause": "thrown out of the eruption, it comes down on the street"
       },
       {
        "what": "car",
@@ -198,12 +199,13 @@
      "built_as": "a two-storey tin-clad house, red tin roof, four-pane windows, a front door and steps"
     },
     {
-     "name": "lava fountains",
+     "name": "ash plumes",
      "objects": [
+      "far plume",
       "far fountain"
      ],
      "whole": false,
-     "built_as": "ragged orange lava fountains beyond the wall, thrown up under grey smoke"
+     "built_as": "dark ash plumes beyond the wall, lit orange from below, low lava spatter at their feet"
     }
    ],
    "framing": "close",
@@ -218,7 +220,7 @@
    "stills": [
     {
      "event": "before",
-     "shows": "the driver in his hard hat carries a dusty boulder along the crest of the wall in both hands, lava fountains smoking on the horizon",
+     "shows": "the driver in his hard hat carries a dusty boulder along the crest of the wall in both hands, the eruption's black ash plumes on the horizon",
      "hands": "boulder",
      "new": [],
      "visible": [
@@ -235,8 +237,8 @@
        "as": "the crest of the wall, its row of black boulders"
       },
       {
-       "prop": "lava fountains",
-       "as": "lava fountains on the horizon"
+       "prop": "ash plumes",
+       "as": "the black ash plumes on the horizon"
       }
      ]
     },
@@ -296,8 +298,8 @@
        "as": "him small on top of it"
       },
       {
-       "prop": "lava fountains",
-       "as": "lava fountains beyond it"
+       "prop": "ash plumes",
+       "as": "the black ash plumes beyond it"
       }
      ]
     },
