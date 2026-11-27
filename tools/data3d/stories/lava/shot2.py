@@ -12,10 +12,10 @@ mouth open. No fire and no lava in this shot."""
 
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
-S2_H = 7.0                              # the finished wall: from this low lens its top stands well over the house's ridge
-S2_HOUSE = (-4.8, 1.4, 1.6, 2.0)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
-S2_P0 = (0.0, 5.8)                     # (p2n: cut by the frame's left edge; r2y: he hid the digger) left of the frame, clear of the house and the digger
-S2_DIG = (-5.1, -0.3)                 # the digger on the crest: x, and y off the crest's middle (toward the far side)                   # where he stands: in the foreground, right of the house
+S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
+S2_HOUSE = (-0.7, 1.0, 1.3, 1.8)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
+S2_P0 = (0.45, 4.3)                    # Data: the left foreground, his feet near the bottom edge
+S2_DIG = (0.6, -0.3)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
 def s2_base(h):
@@ -36,9 +36,9 @@ def place_wall_works():
     FX.ground("grass", area=(-10, 10, 1.6, 20), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
     px, py = S2_P0
     lava_rock("town yard stones", 420, (-8, 8, 0.2, 12), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.1), moss=0.6,
-              avoid=lambda x, y: (-5.7 < x < -3.9 and 0.3 < y < 2.6) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
+              avoid=lambda x, y: (-1.55 < x < 0.15 and 0.0 < y < 2.1) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
     lava_rock("near yard stones", 360, (-3.5, 2.5, 3.6, 6.6), lambda x, y: s2_ground_z(x, y) + 0.015, seed=91, r=(0.012, 0.045), moss=0.5,   # (r2g EMPTY 22-24%: the foreground read as one smooth plane)
-              avoid=lambda x, y: (-5.7 < x < -3.9 and 0.3 < y < 2.6) or (abs(x - px) < 0.4 and abs(y - py) < 0.4))
+              avoid=lambda x, y: (-1.55 < x < 0.15 and 0.0 < y < 2.1) or (abs(x - px) < 0.4 and abs(y - py) < 0.4))
     b = s2_base(S2_H)
     wall = earth_wall("earth wall", [(float(x), -b / 2) for x in range(-30, 31, 1)], h=S2_H, crest=S2_CREST, base=b, seed=8)
     hx, hy, hw, hd = S2_HOUSE
@@ -56,7 +56,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [2.6, 3.6, 4.6, 6.2]                               # (p2a-p2e: it stands 3 m further back than the house, so it reads at half its height) the wall's top at each: a knee-high boulder row, window-high, at the eaves, far over the ridge and chimney
+    TOPS = [0.85, 2.25, 3.0, 7.6]                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -72,15 +72,16 @@ def shot2():
     # new each still. The kit's digger is posed when it is built, so each pose is its own digger, shown for its moment.
     rnd = lw_random.Random(12)
     rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
-    POSES = [(-25, 16, -70, -60, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, False),
-             (5, 10, -60, 20, False), (-15, 26, -90, -40, True)]
+    POSES = [(-25, 16, -70, -60, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, True),
+             (5, 10, -60, 20, True), (-15, 26, -90, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still)
     DX, DY = S2_DIG
     diggers = []
     for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
         before = set(bpy.data.objects)
         d = FX.digger(name=f"digger {k}", loc=(0, 0, 0), yaw=0.0, slew=0.0, boom=boom, stick=stick, bucket=bucket, lights=False, seed=3)
         d["house"].rotation_euler[2] = math.radians(slew)
-        d["root"].rotation_euler[2] = math.pi                    # its arm out over the town face, toward us
+        d["root"].rotation_euler[2] = math.pi + 0.7              # its arm out over the town face, three-quarter to us
+        d["root"].scale = (1.45, 1.45, 1.45)                      # (coordinator, r2y: real scale: as long as the house is wide, its arm up to the ridge)
         bpy.context.view_layer.update()
         if loaded:
             tip = d["bucket"].matrix_world.translation
@@ -106,7 +107,7 @@ def shot2():
                 prev = hid
     # ---- him: planted in one spot in the foreground, in four poses
     data = load_data()
-    CAM0 = Vector((0.225, 6.76, 0.45)); LOOK0 = CAM0 + Vector((-0.52, -0.85, -0.1)) * 5.0      # (r2q EMPTY 28%: the wider lens took in bare high sky: tipped down)      # (r2f/r2g EMPTY 22-24%: the high sky has no cloud: nearer, nearly level)      # (r2e: the house cut by the frame's edge) locked off, the whole house and sky over it
+    CAM0 = Vector((0.0, 6.0, 0.55)); LOOK0 = CAM0 + Vector((0.0, -1.0, 0.249)) * 5.0      # (coordinator, r2y: LOW, tilted up, close: the ground line in the bottom fifth, the house the right half up to mid-frame, the sky over it where the wall rises)
     X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     LENS = math.degrees(yaw_of(CAM0.x - X0, CAM0.y - Y0))
@@ -118,9 +119,9 @@ def shot2():
     for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
-        p = (Vector((X0, Y0, Z0)) + TO * (0.1 * W(t, T1 + 0.35, 0.4) + 0.12 * W(t, T2 + 0.45, 0.4) + 0.1 * W(t, T3 - 0.1, 0.4))
+        p = (Vector((X0, Y0, Z0)) + TO * (0.12 * W(t, T2 + 0.3, 0.4) + 0.12 * W(t, T3 - 0.1, 0.4))     # (coordinator, r2y: two real steps back)
              + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T3 + 0.1, 0.4)))     # (r2r READ: a weight shift in each pose)
-        yaw = LENS - 25 * W(t, T1, 0.35) - 25 * W(t, T2, 0.45) + 15 * W(t, T3, 0.35)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
+        yaw = LENS + 25 * W(t, T1, 0.35) + 12 * W(t, T2, 0.45) - 15 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
         data._plant_feet_here(t, lift=(Z0, Z0))
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -151,22 +152,22 @@ def shot2():
     # 4 leaning right back looking up, both arms dropped, mouth open
     for tt, dr in ((T3 + 0.3, 6), (T3 + 0.6, 14), (DUR + 0.5, 14)):     # (r2r HOLD: his arms drop on back as he leans)
         for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (dr if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) + 6 * W(t, T2 + 0.55, 0.3) - 30 * W(t, T3 - 0.25, 0.5), 0, 0), 0, DUR + 0.4)     # (r2t HOLD: the lean starts as the half-turn settles)
-    lw_layer(data, "chest", lambda t: (-14 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) + 6 * W(t, T2 + 0.55, 0.3) - 12 * W(t, T3 - 0.25, 0.5), 0, 0), 0, DUR + 0.4)     # (r2t HOLD: the lean starts as the half-turn settles)
+    lw_layer(data, "chest", lambda t: (-6 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)     # (r2y pre-flight: no head thrown back)
     HEAD = Vector((X0, Y0, Z0 + 0.5))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)            # 1 at us
     data.look_at(CAM0 + Vector((0, 0, 0.1)), T1 + 0.3, max_yaw=55, max_pitch=20, blend=0.2)       # 2 at us, the grin
-    data.look_at(HEAD + Vector((0.3, 0.2, 2.0)), T2 + 0.3, max_yaw=30, max_pitch=22, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
-    data.look_at(HEAD + Vector((0.2, 0.4, 3.0)), T3 + 0.3, max_yaw=30, max_pitch=25, blend=0.3)   # 4 right up at it
+    data.look_at(HEAD + Vector((-0.3, -0.6, 2.0)), T2 + 0.3, max_yaw=30, max_pitch=22, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
+    data.look_at(HEAD + Vector((-0.2, -0.8, 3.0)), T3 + 0.3, max_yaw=30, max_pitch=25, blend=0.3)   # 4 right up at it
     data.expression("determined", 0.0, T1 + 0.1, blend=0.15)
     data.expression("happy", T1 + 0.1, T2 + 0.1, blend=0.15)
     data.expression("surprised", T2 + 0.1, T3 + 0.1, blend=0.15)
     data.expression("alarmed", T3 + 0.1, DUR + 1.0, blend=0.15)
     data.finish()
-    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=16.0, fstop=11.0)     # (p2n, r2y: a wider lens: him, the digger and the house side by side, none hiding another)
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)     # (p2n, r2y: a wider lens: him, the digger and the house side by side, none hiding another)
     print("S2 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()), flush=True)
     still = lambda t: (CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5)))
-    lw_cut(cam, still, still, -1.0, -1.0, 16.0, 16.0)
+    lw_cut(cam, still, still, -1.0, -1.0, 24.0, 24.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
                 conseq=[("a digger piles a wall of black rock behind the house, from its knee to far over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])

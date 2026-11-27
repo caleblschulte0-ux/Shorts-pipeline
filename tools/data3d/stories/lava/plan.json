@@ -221,12 +221,12 @@
     "frame_h": 0.36
    },
    "action": "a digger piles a rock wall behind a house",
-   "consequence": "the rock wall stands far over the house's roof",
+   "consequence": "the rock wall rises to the eaves",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "a painted tin house; behind it a knee-high row of black boulders, a digger beside it; he faces us, hands on hips",
+     "shows": "a painted tin house; behind it a low row of black boulders at its window sills, a big digger on the row beside it, a boulder in its bucket; he faces us, hands on hips",
      "hands": "free",
      "new": [],
      "visible": [
@@ -236,11 +236,11 @@
       },
       {
        "prop": "wall",
-       "as": "a knee-high row of black rock boulders behind it"
+       "as": "a low row of black rock boulders behind it, at its window sills"
       },
       {
        "prop": "digger",
-       "as": "a digger beside the low row"
+       "as": "a big digger on the low row beside the house"
       },
       {
        "prop": "data",
@@ -250,7 +250,7 @@
     },
     {
      "event": "action",
-     "shows": "a digger piles the rock wall behind the house; it rises past the windows; he jerks a thumb over his shoulder at it, grinning",
+     "shows": "a digger piles the rock wall behind the house; it rises past the windows; he gestures at it with an open hand, grinning",
      "hands": "free",
      "new": [
       {
@@ -266,7 +266,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "a thumb over his shoulder at the wall, a grin"
+       "cause": "he gestures at it with an open hand"
       }
      ],
      "visible": [
@@ -284,13 +284,13 @@
       },
       {
        "prop": "data",
-       "as": "his thumb over his shoulder at it"
+       "as": "his open hand at it"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "the rock wall stands far over the house's roof, taller than the house, the digger on its crest; he half-turns and looks up at it",
+     "shows": "the rock wall rises to the eaves, the digger on its crest; he steps back and looks up at it",
      "hands": "free",
      "new": [
       {
@@ -306,13 +306,13 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "half-turned, looking up at it"
+       "cause": "he steps back and looks up at it"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the rock wall past the eaves, then far over the roof: taller than the house"
+       "as": "the rock wall up at the eaves, taller and taller: Iceland built it"
       },
       {
        "prop": "house",
@@ -324,13 +324,13 @@
       },
       {
        "prop": "data",
-       "as": "he looks up at it"
+       "as": "he steps back and looks up at it"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "he leans right back looking up, arms dropped, mouth open, the wall towering over the chimney with sky above it",
+     "shows": "the rock wall stands far over the house's roof, twice its height, taller than the house, the digger on its crest with sky above; he steps back again, hands open at his sides, looking up",
      "hands": "free",
      "new": [
       {
@@ -341,13 +341,13 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he leans right back, arms dropped, mouth open"
+       "cause": "he steps back again, hands open, looking up"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall towering over the chimney"
+       "as": "the wall far over the roof, twice the house's height: taller than the house"
       },
       {
        "prop": "digger",
@@ -355,7 +355,7 @@
       },
       {
        "prop": "data",
-       "as": "Data leans right back and looks up"
+       "as": "Data steps back again, hands open, and looks up"
       }
      ]
     }
