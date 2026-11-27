@@ -1412,7 +1412,7 @@ looks at us, turns his head at the glow, flinches at the fountain, and on still 
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_P0 = (-0.1, -2.65)                  # where he stands: in the street, in the foreground at the left of the lens
+S1_P0 = (0.15, -2.5)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
 S1_CAM = (0.35, -4.2, 0.42)            # the one lens, low in the street
 
 
@@ -1435,7 +1435,7 @@ def place_grindavik_street():
     lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
     # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
     # crack: an intact grey deck, its centre line painted fresh)
-    asph = lw_noise("street asphalt", "#2A2B2E", "#6A6C70", scale=5.0, rough=0.85, bump=0.35, detail=12, lo=0.42, hi=0.58)     # (r1y EMPTY: the near street still one smooth plane at phone size: a coarse aggregate grain)     # (r1w EMPTY: worn patches, still intact)
+    asph = lw_noise("street asphalt", "#28292C", "#4E5054", scale=40.0, rough=0.85, bump=0.35, detail=12, lo=0.38, hi=0.62)     # (r1za pre-flight: "blurry noise": a fine aggregate grain)     # (r1y EMPTY: the near street still one smooth plane at phone size: a coarse aggregate grain)     # (r1w EMPTY: worn patches, still intact)
     K.box("street road", (0, 2.5, -0.035), (2.3, 20, 0.07), asph, bev=0.0)
     paint = K.mat("street line paint", "#E6E2D6", rough=0.6)
     y_ = -7.2
@@ -1497,22 +1497,28 @@ def shot1():
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    T_GLOW = TS[0] + 0.3                                         # the ridge starts to glow
-    T_BURST = TS[1] + 0.35                                       # the fountain bursts up out of it
+    T_GLOW = TS[0] + 0.3                                         # the smoking ridge starts to glow
+    T_BURST = TS[2] - 0.55                                       # the fountain bursts up out of it (still 3: he flinches from it)
     T_PLUME = TS[2] - 0.3                                        # the ash plume climbs over it
-    T_RUN = TS[2] + 0.4                                          # he runs
+    T_RUN = TS[2] + 0.15                                         # he runs, out of the flinch (coordinator: the run starts in still 3's flinch)
+    T_CAR = TS[1] + 0.25                                         # the parked car pulls out at the glow and races away from it, past us
     P = place_grindavik_street()
     light = P["light"]
+    FZ = P["fz"]
+    # ---- still 1: thin smoke already rising off the ridge (coordinator, r1za pre-flight: the eruption has a visible start)
+    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=1.2, h=7.0,
+                      keys=[(0.0, 0.45), (T_GLOW, 0.6), (T_BURST, 0.8)], t_end=DUR + 1.0, seed=1.3 + k, col=(0.62, 0.62, 0.64), dens=2.5, lean=(0.04, 0.02))
+             for k, dx in enumerate((-3.5, 0.5, 4.0))]
     # ---- the eruption, growing still by still: the slot glows, the fountain bursts, the plume towers
     for o in P["slot"]:
         o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
     # (coordinator, after shot 2's r2e pre-flight: one grade in all four stills: no lamp lights the town; the glow is the
     # lava's own, the slot and the fountain)
-    FZ = P["fz"]
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=4.0, h_fire=16.0, h_smoke=6.0,     # (coordinator, p1c: bigger) lean=(0.05, 0.1), t_end=DUR + 1.0,
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=4.0, h_fire=10.0, h_smoke=5.0,     # (r1za pre-flight: 16 m was cut by the top edge: whole under it)
+                              lean=(0.05, 0.1), t_end=DUR + 1.0,
                               seed=2.3, fire=7.0, smoke_d=3.0, rise=4.0, spread=0.3,
-                              keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.5, 0.7), (TS[2], 1.0)], grow=True)
+                              keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.4, 0.75), (TS[3], 1.0)], grow=True)
     PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
     plumes, base0 = [], []
     for k, (dx, w_, h_, dy) in enumerate(((0.0, 13.0, 64.0, 0.0), (-5.5, 9.0, 44.0, 1.5), (5.0, 9.5, 50.0, 1.0))):     # (coordinator, p1c: towering out of the top of the frame by still 4)
@@ -1527,7 +1533,22 @@ def shot1():
             g = max(0.08, 0.08 + 0.92 * W(t, T_PLUME, TS[3] - T_PLUME))          # (a volume scaled near zero crashes Cycles: never under 0.08)
             o.scale = (s0 * g,) * 3; o.location = b + (l0 - b) * g
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
+    # ---- everyone had to run (coordinator, r1za): the one car, parked up the street in stills 1-2, pulls out as the
+    # fountain bursts and races down the street away from it, past us, a tail of dust behind it; still 4 nearly out of frame
+    CAR_X, CAR_Y0, CAR_Y4 = 0.62, 5.0, -1.2
+    car = FX.car(name="getaway car", loc=(CAR_X, CAR_Y0, 0.0), yaw=0.0, kind="hatch", col="#2F5E8C", lights=False, seed=4, dirt=0.4)
+    acc = 2 * (CAR_Y0 - CAR_Y4) / (TS[3] - T_CAR) ** 2
+    car_y = lambda t: CAR_Y0 - 0.5 * acc * max(0.0, t - T_CAR) ** 2
+    for f in range(1, NF + 8):
+        t = (f - 1) / FPS
+        if f in (1, F(T_CAR)) or t > T_CAR:
+            car["root"].location = (CAR_X, car_y(t), 0.0); car["root"].keyframe_insert("location", frame=f)
+    dust = []
+    for k, yd in enumerate((4.2, 2.6, 0.8)):                     # its dust: a puff off the street wherever its tail has passed
+        tk = T_CAR + math.sqrt(2 * max(0.0, CAR_Y0 - (yd - 1.2)) / acc)
+        dust.append(lw_steam(f"car dust {k}", (CAR_X, yd, 0.0), w=0.9, h=1.1, keys=[(tk - 0.05, 0.0), (tk + 0.25, 0.8), (tk + 1.5, 0.5)],
+                             t_end=DUR + 1.0, seed=7.1 + k, col=(0.58, 0.54, 0.47), dens=2.5, lean=(0.0, 0.05)))
+    # ---- him: centred in the street, three-quarter to us (coordinator, r1za: centred with margin in every still)
     data = load_data()
     CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.02)).normalized(); LOOK0 = CAM0 + D * 5.0
     X0, Y0 = S1_P0; Z0 = 0.0
@@ -1536,47 +1557,44 @@ def shot1():
     data.place(X0, Y0, math.degrees(YAW))
     kit = hard_hat(data)
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
-    SIDE = Vector((-TO.y, TO.x, 0))                             # (his left as he faces the lens is the frame's... either way: a small shuffle)
-    Y_BACK = 0.18                                              # the flinch: a step toward us, away from it
-    RUN = TO * 0.1 + SIDE * 0.3                                # the run: past us, across the street (r1w: straight at the lens he grew to 0.58 and was cut by still 4)
-    YAW_RUN = math.atan2(RUN.x, -RUN.y)
-    YAW_RUN = YAW + math.atan2(math.sin(YAW_RUN - YAW), math.cos(YAW_RUN - YAW))
+    SIDE = Vector((-TO.y, TO.x, 0))
+    Y_BACK = 0.15                                              # the flinch: a jolt back toward us, away from it
+    YAW_RUN = LENS                                             # the run: at the lens (walk_to faces his travel: turned before it starts)
     for f in range(1, F(T_RUN) + 1):
         t = (f - 1) / FPS
-        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.1 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35) + 0.06 * W(t, T_BURST + 0.75, 0.35))     # (r1v HOLD/READ: a second step back before he runs)
-        p.z = Z0 + 0.03 * lw_kick(t - T_BURST - 0.15, 0.25)
-        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4)
-                   + (YAW_RUN - YAW) * W(t, T_RUN - 0.55, 0.55))     # (r1x STEADY: he turns into the run before it, never a whip at its start)
+        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.06 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.1, 0.25))
+        p.z = Z0 - 0.05 * (W(t, T_BURST + 0.1, 0.25) - W(t, T_RUN - 0.18, 0.18))     # (the flinch: he ducks, knees bent, and comes up into the run)
+        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(10) * W(t, T_GLOW, 0.5) - math.radians(12) * W(t, T_BURST + 0.1, 0.3)
+                   + (YAW_RUN - YAW) * W(t, T_BURST + 0.2, 0.4))     # (r1x STEADY: he turns into the run during the flinch, never a whip at its start)
         data._plant_feet_here(t, lift=(Z0, Z0))
-    # the run: at the lens, a little to its left, past it and out of the street (still 4 is mid-stride, in the frame)
+    # the run: straight down the street at the lens (still 4 is mid-stride, centred, both feet in a run)
     sc.frame_set(F(T_RUN)); bpy.context.view_layer.update(); PR = data.pos()
-    AWAY = (TO + SIDE * 0.12).normalized()
-    END = PR + RUN
-    data.walk_to((END.x, END.y), T_RUN, DUR + 0.1, step=0.15, lift=0.05, bob=0.012, lean=6.0)     # (r1x CLIPPING: a 2.4 cm bob sank his soles into the street)
-    lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.85, 0.4) - 12 * W(t, T_BURST + 0.1, 0.3) + 10 * lw_kick(t - T_BURST - 0.15, 0.3)
-                                       + 14 * W(t, T_RUN - 0.1, 0.3), 0, 0), 0, DUR + 0.4)
-    HEAD = Vector((X0, Y0, Z0 + 0.5))
+    END = PR + TO * 0.95
+    data.walk_to((END.x, END.y), T_RUN, DUR + 0.85, step=0.24, lift=0.09, bob=0.012, lean=12.0)
+    lw_layer(data, "spine", lambda t: (-6 * W(t, T_GLOW + 0.2, 0.5) + 4 * W(t, 1.25, 0.4) - 16 * W(t, T_BURST + 0.1, 0.25)
+                                       + 26 * W(t, T_RUN - 0.05, 0.35), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # at us, as it starts
-    data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=24, max_pitch=25, blend=0.35)                             # round at the glow (FACE: his face stays within 70 of us)
-    data.look_at(RIDGE + Vector((0, 0, 6.0)), 1.85, max_yaw=24, max_pitch=32, blend=0.4)
-    data.look_at(RIDGE + Vector((0, 0, 9.0)), T_BURST + 0.1, max_yaw=20, max_pitch=40, blend=0.2)       # up at the fountain as it bursts
-    data.look_at(CAM0 + Vector((0, 0, 0.1)), T_RUN - 0.05, max_yaw=50, max_pitch=20, blend=0.25)        # and at us as he runs
+    data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=30, max_pitch=25, blend=0.35)                             # round at the glow (FACE: his face stays within 70 of us)
+    data.look_at(RIDGE + Vector((0, 0, 4.0)), 1.6, max_yaw=30, max_pitch=30, blend=0.4)
+    data.look_at(RIDGE + Vector((0, 0, 8.0)), T_BURST + 0.05, max_yaw=20, max_pitch=35, blend=0.15)     # up at the fountain as it bursts
+    data.look_at(RIDGE + Vector((0, 0, 6.0)), T_RUN + 0.5, max_yaw=55, max_pitch=25, blend=0.4)         # back over his shoulder at it as he runs
     data.expression("surprised", 0.0, T_BURST, blend=0.15)
-    data.expression("alarmed", T_BURST, DUR + 1.0, blend=0.2)
+    data.expression("alarmed", T_BURST, DUR + 1.0, blend=0.12)
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
     LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
+    POINT = lambda sg: ((-62, 0, -sg * 8), (-12, 0, -sg * 6), (-6, 0, 0))         # one arm out at the glow
     HALF = lambda sg: ((-20, 0, -sg * 16), (-75, 0, -sg * 15), (-10, sg * -20, -sg * 12))      # forearms up, chest-high
-    WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
-    UP = lambda sg: ((-30, 0, -sg * 14), (-34, 0, -sg * 46), (-12, sg * -10, -sg * 15))
-    RUNA = lambda sg: ((10, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
-    RUNB = lambda sg: ((-18, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
-    keys = [0.0, 0.35, T_GLOW + 0.15, 1.3, 1.95, T_BURST + 0.1, T_BURST + 0.75, T_RUN]
-    run_t = [T_RUN + 0.2 + 0.26 * k for k in range(int((DUR + 0.5 - T_RUN - 0.2) / 0.26) + 1)]     # (r1z POP: a 52 degree pump every 0.22 s snapped)
+    SHIELD = lambda sg: ((-48, 0, -sg * 12), (-98, 0, -sg * 22), (-14, sg * -12, -sg * 10))    # the flinch: both forearms up before his face
+    RUNA = lambda sg: ((14, 0, -sg * 20), (-80, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    RUNB = lambda sg: ((-26, 0, -sg * 20), (-80, 0, -sg * 10), (-5, sg * -10, -sg * 5))
+    keys = [0.0, 0.35, T_GLOW + 0.25, 1.4, 1.95, T_BURST + 0.1, T_RUN - 0.05, T_RUN + 0.25]
+    run_t = [T_RUN + 0.5 + 0.24 * k for k in range(int((DUR + 0.6 - T_RUN - 0.5) / 0.24) + 1)]     # (r1z POP: the pump never snaps)
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = [LOW, LOW, HALF, HALF, WHOA, UP, WHOA, RUNA if sd == sides[0] else RUNB] if sd == sides[0] else [LOW, LOW, LOW, HALF, HALF, UP, WHOA, RUNB]
-        sw = [(RUNB, RUNA) if sd == sides[0] else (RUNA, RUNB)][0]
+        near = sd == sides[0]
+        seq = [LOW, LOW, POINT if near else LOW, POINT if near else LOW, HALF, SHIELD, SHIELD, RUNA if near else RUNB]
+        sw = (RUNB, RUNA) if near else (RUNA, RUNB)
         for tk, pose in list(zip(keys, seq)) + [(tk, sw[k % 2]) for k, tk in enumerate(run_t)]:
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
@@ -1584,10 +1602,9 @@ def shot1():
     print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
           "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "run", round(T_RUN, 2), flush=True)
     def cam_at(t):
-        drift = Vector((0.0, 0.03, 0.02)) * (t / DUR)                 # a slow drift up the street
-        return CAM0 + drift, LOOK0 + drift, data.pos() + Vector((0, 0, 0.5))       # (no tilt: the plume grows in a still frame)
+        return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED: the drift moved the houses between stills)
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
-    erupt = P["slot"] + [fountain] + plumes
+    erupt = P["slot"] + [fountain] + plumes + smoke
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
                 conseq=[("a lava fountain bursts up over the town's roofs", lambda: [fountain], T_BURST + 0.35, DUR, {"whole": False}),       # (r1v: with the thin slot it measured 6% of the frame)
