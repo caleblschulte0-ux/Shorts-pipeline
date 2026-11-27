@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "south-korea-robot-density-record__62573b7c_r2",
+  "slug": "south-korea-robot-density-record",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Robot Density Rankings Change When Worker Concentration Replaces Install Totals",
+  "hook": "The country installing the most robots is not the most automated per worker.",
+  "closing": "Robot density reveals worker-level automation that raw installation totals can hide.",
+  "question": "Which robot measure matters more?",
+  "segments": [
+    {
+      "topic": "Robot Density Countries",
+      "say": "South Korea has 1,220 robots per ten thousand workers. Its worker-level concentration exceeds every listed country."
+    },
+    {
+      "topic": "Robot Density US",
+      "say": "The United States has 307 robots per ten thousand workers. South Korea's concentration is nearly four times higher."
+    },
+    {
+      "topic": "Robot Density Installs",
+      "say": "China has 166 robots per ten thousand workers despite the most installations. Volume and worker-level density produce different rankings."
+    }
+  ]
+}
