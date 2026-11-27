@@ -2082,20 +2082,15 @@ def shot2():
     for f in range(F(T_ARR) + 1, NF + 8):
         t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.35))
     # (q2i: reached before he walked, the hands were solved at the lever: 86 cm off) the hands, once his body is keyed
-    # (q2j/q2k: a hand eased from the bar to his belly fell 6 cm short twice, in the turn, inside the cutaway) simplified:
-    # the hands let go of the bar, the arms hold where they were through the wide, and take up the rest after it
-    for sd, u, up in ((sides[0], 0.05, 0.0), (sides[1], -0.06, 1.0)):
-        data.reach(sd, lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012)), 0.0, T_LET, lead=0.05, back=None, elbow_out=0.3)
-    for sd, u, up in ((sides[0], 0.05, 0.0), (sides[1], -0.06, 1.0)):
-        side_ = 1.0 if (acts._shoulder(data, sd) - body_at(T_WB)[0]).dot(body_at(T_WB)[2]) > 0 else -1.0
-        def job(t, side_=side_, up=up):
-            m, f_, l_ = body_at(t)
-            here = lambda c: m + f_ * c[0] + l_ * c[1] + Vector((0, 0, c[2]))
-            p = (0.12, side_ * 0.07, -0.09)                                            # in front of his belly
-            face = (0.12, 0.0, 0.08)                                                  # (q2h: an FK hand over his eyes swung behind his back) a hand up by his face
-            if up: k2 = ease(min(1.0, max(0.0, (t - T_ARR - 0.1) / 0.45))); p = tuple(p[i] + (face[i] - p[i]) * k2 for i in range(3))
-            return here(p)
-        data.reach(sd, job, T_WB - 0.15, DUR + 0.5, lead=0.35, back=None, elbow_out=0.3)
+    # (q2j/q2k: a hand eased from the bar to his belly fell 6 cm short twice, in the turn; q2l: a held pose clipped his
+    # thigh and the reach back to his belly went through his coat) simplified: the hands let go and fall relaxed, and
+    # one comes up by his face once he stands by the house
+    for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
+        data.reach(sd, lambda t, u=u: on_bar(min(t, T_LET), u) + Vector((0, 0, 0.012)), 0.0, T_LET, lead=0.05, back=0.5, elbow_out=0.3)
+    def face_job(t):
+        m, f_, l_ = body_at(t)
+        return m + f_ * 0.12 + Vector((0, 0, 0.08))                                 # a hand up by his face
+    data.reach(sides[1], face_job, T_ARR + 0.3, DUR + 0.5, lead=0.45, back=None, elbow_out=0.3)
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PE.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
