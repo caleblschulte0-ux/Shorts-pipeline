@@ -290,7 +290,7 @@
     },
     {
      "event": "result",
-     "shows": "the rock wall rises to the eaves, the digger on its crest; he steps back and looks up at it",
+     "shows": "the rock wall rises to the eaves, the digger on its crest; he steps back from it",
      "hands": "free",
      "new": [
       {
@@ -306,7 +306,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he steps back and looks up at it"
+       "cause": "he steps back from it"
       }
      ],
      "visible": [
@@ -324,7 +324,7 @@
       },
       {
        "prop": "data",
-       "as": "he steps back and looks up at it"
+       "as": "he steps back from it"
       }
      ]
     },
@@ -355,7 +355,7 @@
       },
       {
        "prop": "data",
-       "as": "Data steps back again, hands open, and looks up"
+       "as": "Data backs away again, hands open"
       }
      ]
     }
