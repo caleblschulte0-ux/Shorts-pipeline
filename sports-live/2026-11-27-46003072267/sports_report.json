@@ -1,0 +1,166 @@
+{
+ "date": "2026-11-27",
+ "format": "sports_moment",
+ "want": 5,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Joe Milton III",
+   "why": "A backup QB walks to the locker room to applause with Big Dom, proudly holding the Turkey trophy.",
+   "post_title": "[Highlight] Eagles QB Joe Milton III is greeted with applause as he heads to the locker room with Big Dom, proudly holding the Turkey trophy.",
+   "upvotes": 1715,
+   "url": "https://www.reddit.com/r/nfl/comments/1y6hptb/highlight_eagles_qb_joe_milton_iii_is_greeted/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y6hptb/highlight_eagles_qb_joe_milton_iii_is_greeted",
+   "title": "Joe Milton III Gets Applause Holding The Turkey Trophy \ud83e\udd83",
+   "hook": "Joe Milton III proudly holds the Turkey trophy",
+   "ledger": {
+    "moves": [
+     "zoom@8.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": null
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: The moment is real and correctly framed, but it is buried: the first 10 seconds are blurry crowd waiting, and the clip ends on the backs of camera crew."
+    },
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The real moment (Milton grinning with the Turkey trophy) is good, but it arrives at about 7s after a hook of strangers milling behind glass, and the clip ends on backs of heads rather than on him."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The trophy moment is real and charming but buried: the first ~10s show a distant lobby of strangers and the clip ends on the backs of heads.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The trophy moment is real and charming but buried: the first ~10s show a distant lobby of strangers and the clip ends on the backs of heads."
+  },
+  {
+   "sub": "nba",
+   "who": "Damian Lillard",
+   "why": "Dame picks which teammate he'd trust to bring Thanksgiving dishes, and the answer is funny and easy to get.",
+   "post_title": "Damian Lillard when asked which teammate he would trust to bring a dish (Thanksgiving): \"I'm gonna go with Ja. Just 'cause that Southern hospitality, I know he got some in him, so I'm gonna go with Ja",
+   "upvotes": 2581,
+   "url": "https://streamable.com/unx5ym",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5x2jb/damian_lillard_when_asked_which_teammate_he_would",
+   "title": "Damian Lillard Picks Who He'd Trust To Bring The Thanksgiving Dish",
+   "hook": "Dame picks who brings the dish \ud83e\udd83",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 23.98,
+       "reason": "the framer: Damian Lillard's face and the ESPN mic fill columns 3-6. He is the speaker, so the crop keeps his whole face and leaves out the crowd and the interviewer at the edge.",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.286,
+      0.375,
+      0.375,
+      0.375,
+      0.375
+     ],
+     "n_subjects": 2,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": true
+   },
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
+  },
+  {
+   "sub": "soccer",
+   "who": "Boca Juniors",
+   "why": "A little kid on camera says 'I'm Boca' and explains what his family is doing after the title win.",
+   "post_title": "After Boca Juniors' title win yesterday \u2014 Reporter: \"Are you a Boca fan?\" - Kid: \"I'm Boca\" - Reporter: \"Are you happy they won?\" - Kid: \"Yes, because they told me by tradition we're going over there ",
+   "upvotes": 4902,
+   "url": "https://www.reddit.com/r/soccer/comments/1y2tcal/after_boca_juniors_title_win_yesterday_reporter/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1y2tcal/after_boca_juniors_title_win_yesterday_reporter",
+   "skipped": "not English (English p=0.02, 52% English words)"
+  },
+  {
+   "sub": "nba",
+   "who": "Kevin Durant",
+   "why": "KD argues with the Suns players and says 'Y'all want to fight just say that.'",
+   "post_title": "KD argues with the Suns players: \u201cNot tryna fight nobody. Y\u2019all want to fight just say that.\u201d",
+   "upvotes": 1502,
+   "url": "https://streamable.com/cbd2ak",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5tz6w/kd_argues_with_the_suns_players_not_tryna_fight",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Erik Spoelstra",
+   "why": "Spoelstra tells how LeBron made adjustments to his adjustments in the bubble, a story about a rival the viewer can see in the games.",
+   "post_title": "Spoelstra on LeBron: \u201cI loved the discussions on how we saw the game...the best way to explain it is when we competed against them in the bubble\u2026 he was making adjustments to my adjustments and to my ",
+   "upvotes": 2012,
+   "url": "https://streamable.com/i1e9ok",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5ua3k/spoelstra_on_lebron_i_loved_the_discussions_on",
+   "title": "Erik Spoelstra Explains How LeBron Out-Adjusted Him In The Bubble",
+   "hook": "Spoelstra on LeBron's adjustments \ud83e\udde0",
+   "ledger": {
+    "moves": [
+     "zoom@9.93"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": [],
+     "subtitle_spans": [
+      0.852,
+      0.852,
+      0.852,
+      0.852,
+      0.852
+     ]
+    },
+    "outro": null,
+    "cut_in": [],
+    "cut_in_s": 0,
+    "shown": [],
+    "music": [],
+    "own_captions": true,
+    "talking": true
+   },
+   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+  }
+ ],
+ "already_today": 4,
+ "pool": 125,
+ "already_posted": 8,
+ "refused_before": 12,
+ "shipped": 0
+}
