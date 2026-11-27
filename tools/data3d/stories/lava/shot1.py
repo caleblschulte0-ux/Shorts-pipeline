@@ -113,15 +113,15 @@ def shot1():
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
     # (coordinator, after shot 2's r2e pre-flight: one grade in all four stills: no lamp lights the town; the glow is the
     # lava's own, the slot and the fountain)
-    # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole, the densest version: a wide base, a
+    # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole (p1a: h 20 ran out of the top; 13), the densest version: a wide base, a
     # bright core, and two more columns layered round it in depth so it is never one flame card)
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=6.0, h_fire=20.0, h_smoke=5.0,
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=6.0, h_fire=13.0, h_smoke=5.0,
                               lean=(0.03, 0.06), t_end=DUR + 1.0, seed=2.3, fire=10.0, smoke_d=3.0, rise=5.0, spread=0.35, flame_d=5.0,
                               keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.4, 0.75), (TS[2], 1.0)], grow=True)
     flanks = [lw_fire_column(f"lava fountain flank {k}", (S1_FX + dx, S1_RIDGE_Y + dy, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.3), w=3.2, h_fire=h_, h_smoke=3.0,
                              lean=(0.03 * (k * 2 - 1), 0.05), t_end=DUR + 1.0, seed=5.7 + 3.1 * k, fire=8.0, smoke_d=3.0, rise=4.5, spread=0.3, flame_d=4.5,
                              keys=[(T_BURST, 0.0), (T_BURST + 0.45, 0.7), (TS[2], 1.0)], grow=True)
-              for k, (dx, dy, h_) in enumerate(((-2.6, 1.2, 12.0), (2.4, -0.8, 14.0)))]
+              for k, (dx, dy, h_) in enumerate(((-2.6, 1.2, 8.0), (2.4, -0.8, 9.5)))]
     PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
     plumes, base0 = [], []
     for k, (dx, w_, h_, dy) in enumerate(((0.0, 13.0, 64.0, 0.0), (-5.5, 9.0, 44.0, 1.5), (5.0, 9.5, 50.0, 1.0))):     # (coordinator, p1c: towering out of the top of the frame by still 4)
@@ -140,7 +140,7 @@ def shot1():
     # lamps come on at the glow; they pull out into the street and speed down it toward us, past him on either side, dust
     # behind; on still 4 both are whole in the frame at mid-street, nearer than on still 3. Smooth from still 1 to 4.
     cars, dust = [], []
-    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.55, 9.0, 1.6, "#2F5E8C"), (-0.65, -0.55, 7.4, 0.6, "#B8352B"))):
+    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.95, 9.0, -0.4, "#2F5E8C"), (-0.65, -0.95, 7.4, -1.0, "#B8352B"))):
         c = FX.car(name=f"getaway car {k}", loc=(x0, y0, 0.0), yaw=0.0, kind="hatch", col=col, lights=True, seed=4 + k, dirt=0.4, power=30.0)
         t0 = T_CARS + 0.25 * k; T = TS[3] - t0; ra = 0.6
         v = (y0 - y4) / (T - ra / 2)
@@ -187,8 +187,8 @@ def shot1():
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(40) * W(t, T_GLOW, 0.6) - math.radians(10) * W(t, T_BURST + 0.08, 0.3)
                    - math.radians(55) * W(t, T_TURN, 0.6))
         data._plant_feet_here(t, lift=(Z0, Z0))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) - 22 * W(t, T_BURST + 0.08, 0.3) + 8 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
-    lw_layer(data, "chest", lambda t: (-10 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) + 16 * W(t, T_BURST + 0.08, 0.3) - 6 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "chest", lambda t: (6 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # 1 at us, calm
     data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=30, max_pitch=25, blend=0.35)                             # 2 round at the glow (FACE)
@@ -201,8 +201,8 @@ def shot1():
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
     LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
     DOWN = lambda sg: ((-8, 0, sg * 8), (-28, 0, 0), (-4, 0, 0))                  # 2 still down, a little tense
-    THROWN = lambda sg: ((-82, 0, -sg * 24), (-44, 0, -sg * 22), (-10, sg * -12, -sg * 15))     # 3 both arms thrown up beside his head (shot 3's UP, higher)
-    HELD = lambda sg: ((-64, 0, -sg * 20), (-50, 0, -sg * 20), (-10, sg * -12, -sg * 12))      # 4 still up as he turns
+    THROWN = lambda sg: ((-92, 0, -sg * 38), (-22, 0, -sg * 10), (-10, sg * -12, -sg * 15))     # 3 both arms thrown up beside his head (shot 3's UP, higher)
+    HELD = lambda sg: ((-78, 0, -sg * 34), (-26, 0, -sg * 12), (-10, sg * -12, -sg * 12))      # 4 still up as he turns
     keys = [0.0, 0.4, T_GLOW + 0.2, 1.4, T_BURST + 0.05, T_BURST + 0.4, TS[2] + 0.1, T_TURN + 0.3, DUR + 0.5]
     for sd in sides:
         sg = -1 if sd == "L" else 1
