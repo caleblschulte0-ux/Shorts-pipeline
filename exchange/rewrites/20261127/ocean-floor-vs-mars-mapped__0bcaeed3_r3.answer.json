@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-floor-vs-mars-mapped__0bcaeed3_r3",
+  "slug": "ocean-floor-vs-mars-mapped",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Unmapped Ocean Floor Covers More Area Than Mars",
+  "hook": "Earth's largest missing map sits beneath the ocean, not in space.",
+  "closing": "Modern maps still leave a planet-sized blind spot across Earth's ocean floor.",
+  "question": "Would you map ocean or Mars?",
+  "segments": [
+    {
+      "topic": "Ocean Floor Mapped",
+      "say": "Modern maps cover 28.7% of the ocean floor in 2026. Most seafloor still lacks detailed mapping."
+    },
+    {
+      "topic": "Ocean Floor vs Mars",
+      "say": "Mars is 99.5% mapped. Its surface coverage far exceeds the ocean floor's."
+    },
+    {
+      "topic": "Unmapped Ocean vs Mars",
+      "say": "Unmapped ocean floor spans 257 million square kilometers. That exceeds the entire surface area of Mars."
+    }
+  ]
+}
