@@ -2,76 +2,79 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 8,
+   "count": 7,
    "stories": {
-    "sports_dylan_larkin_larkin_as_he": 1,
-    "sports_josh_hokit_s_ciryl_gane": 2,
-    "sports_josh_hokit_blurry_after": 1,
-    "sports_dk_metcalf_lfs_ejection": 1,
-    "sports_nikita_kucherov_y_as_the_1st": 1,
-    "insect-planet": 2
+    "sports_tom_brady_ward_patrick": 2,
+    "sports_tom_brady_yard_fg_wins": 1,
+    "sports_kevin_durant_rooks_get_in": 1,
+    "sports_josh_hokit_s_ciryl_gane": 1,
+    "sports_tom_brady_aron_rodgers": 1,
+    "sports_aleksander_barkov_d_theft_auto": 1
    },
    "timestamps": [
-    "2026-11-26T12:28:01+00:00",
-    "2026-11-26T12:41:08+00:00",
-    "2026-11-26T12:45:30+00:00",
-    "2026-11-26T13:11:41+00:00",
-    "2026-11-26T13:17:25+00:00",
-    "2026-11-26T13:27:14+00:00",
-    "2026-11-26T15:23:06+00:00",
-    "2026-11-26T16:02:48+00:00"
+    "2026-11-27T11:46:55+00:00",
+    "2026-11-27T11:49:03+00:00",
+    "2026-11-27T11:51:14+00:00",
+    "2026-11-27T12:24:48+00:00",
+    "2026-11-27T12:43:34+00:00",
+    "2026-11-27T13:32:45+00:00",
+    "2026-11-27T20:45:32+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.3-mid4: the source has its own burned-in word captions ('THEIR FANS JUST', 'EATS AND HERE') stacked right above our line, so two layers of text compete. mid4/payoff@-0.4: a cut-off ",
-    "unreadable: mid2: our line 'Hokit breaks character on Gane' is printed directly over the UFC broadcast lower-third (the 'GANE ... HOKIT / UFC HEAVYWEIGHT CHAMPIONSHIP' bar), and the two collide into '",
-    "unreadable: mid1: our line 'Hokit breaks character on Gane' sits on top of the UFC broadcast's Stake/sponsor banner, so the caption is printed over a TV graphic"
+    "unreadable: At hook@0.3, hook@1.5, mid0, mid3, mid4, mid5 and payoff@-0.4 our line 'Every sound Tom Brady made in Eagles vs. Cowboys' sits on top of the broadcast score bug (Eagles and Cowboys logos, ",
+    "unreadable: OUR line 'The sounds of Tom Brady \ud83d\ude02' is printed directly over the broadcast scorebug in hook@0.3, hook@2.2, mid0, mid5 and payoff@-0.4. It collides with the '2ND & 6' and '4TH & 11 :16 59 ",
+    "unreadable: In every frame from hook@0.3 to payoff@-0.4 our line 'Brady calls a 60 yard game winner' sits on top of the broadcast scorebug ('4TH & 11', '60 YD ATTEMPT', the score). In mid4 it also lan"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 4,
+   "count": 7,
    "stories": {
-    "sports_markelle_fultz_ld_have_been": 1,
+    "sports_luka_doncic_ake_his_time": 1,
     "sports_dylan_larkin_larkin_as_he": 1,
-    "sports_tari_eason_ut_blows_the": 1,
-    "sports_kevin_durant_rooks_get_in": 1
+    "sports_kevin_durant_rooks_get_in": 2,
+    "sports_josh_hokit_s_ciryl_gane": 2,
+    "sports_tom_brady_aron_rodgers": 1
    },
    "timestamps": [
-    "2026-11-26T11:56:30+00:00",
-    "2026-11-26T12:28:01+00:00",
-    "2026-11-26T12:48:14+00:00",
-    "2026-11-26T12:57:21+00:00"
+    "2026-11-27T12:06:02+00:00",
+    "2026-11-27T12:08:12+00:00",
+    "2026-11-27T12:22:14+00:00",
+    "2026-11-27T12:24:48+00:00",
+    "2026-11-27T12:43:34+00:00",
+    "2026-11-27T12:49:43+00:00",
+    "2026-11-27T13:32:45+00:00"
    ],
    "examples": [
-    "junk_imagery: The crop cuts off the person speaking. In hook@2.2, mid0 (2.50s) and mid4 (11.73s), Fultz is half out of frame on the right edge: his nose and mouth sit at the border and the mic covers ",
-    "junk_imagery: mid0-mid4: wide broadcast shots of a faceoff and play; the fans doing the chant are never shown, and nothing marks which player is Larkin. By payoff@-0.4 the frame is on a goalie at his ",
-    "junk_imagery: mid4 (12.74s) is a tight crop of a forearm and ball with no player in frame, and mid5 (15.30s) is a blurry crowd shot with the man on the right cut off at the frame edge. In both, the cr"
+    "junk_imagery: hook@1.5, mid0, mid2, mid4, mid5: the speaker is a reporter in a thin letterboxed strip about 80px tall. Luka never appears and Reaves only shows up in generic game B-roll (mid1, mid3), ",
+    "junk_imagery: mid3-payoff@-0.4 (8.8-14.6s) show wide broadcast play, then an empty zone and a lone goalie under a cropped 'er Eats' TV graphic. No crowd is shown chanting and Larkin is not framed. Onl",
+    "junk_imagery: payoff@-0.4: the only frame showing the nose-to-nose has Durant cropped to a sliver of shoulder and the back of his head at the right edge. The hook frames (hook@0.3-2.2) show Brooks sho"
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
+  "empty_void": {
    "count": 1,
    "stories": {
-    "sports_sean_elliott__never_had_a": 1
+    "sports_luka_doncic_ake_his_time": 1
    },
    "timestamps": [
-    "2026-11-26T12:52:12+00:00"
+    "2026-11-27T12:06:02+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=1.21s of 39.42s (~2.0s frozen)"
+    "empty_void: hook@0.3 is mostly black above and below a thin strip. In hook@1.5, mid0, mid2, mid4, mid5 and payoff@-0.4, roughly 85% of the frame is a huge blurred, pixelated enlargement of the reporte"
    ],
    "recurred_after_fix": false
   },
-  "decorative_mascot": {
+  "dead_air": {
    "count": 1,
    "stories": {
-    "insect-planet": 1
+    "sports_joe_milton_iii_i_is_greeted": 1
    },
    "timestamps": [
-    "2026-11-26T15:23:06+00:00"
+    "2026-11-27T13:08:44+00:00"
    ],
    "examples": [
-    "decorative_mascot: seg1:start-end: Data stands at the foot of the cabinet doing a little dance while the drawers fill by themselves. seg2:start-end: he waves next to the tree in the same spot while th"
+    "dead_air: From hook@0.3 to mid1 (about 7s), a distant crowd waits behind glass doors and Milton never appears; nothing the line promises happens until about mid2 (11.9s)."
    ],
    "recurred_after_fix": false
   }
@@ -79,17 +82,17 @@
  "weak_dims": {
   "hook": {
    "median": 2,
-   "min": 0,
+   "min": 1,
    "max": 3
   },
   "data_demo": {
    "median": 3,
-   "min": 0,
+   "min": 1,
    "max": 4
   },
   "mascot": {
    "median": 4,
-   "min": 0,
+   "min": 4,
    "max": 4
   },
   "craft": {
@@ -98,8 +101,8 @@
    "max": 2
   },
   "pace": {
-   "median": 2,
-   "min": 0,
+   "median": 1,
+   "min": 1,
    "max": 2
   },
   "payoff": {
@@ -114,25 +117,25 @@
   }
  },
  "scores": [
-  57,
-  62,
-  66,
   70,
+  66,
+  66,
+  87,
+  79,
+  49,
   53,
-  83,
-  70,
+  66,
+  62,
   57,
   66,
-  14,
+  49,
+  87,
   62,
-  75,
-  70,
-  70,
-  83,
-  75,
-  75,
-  52,
-  74,
-  70
+  66,
+  62,
+  45,
+  62,
+  57,
+  79
  ]
 }
