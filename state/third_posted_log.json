@@ -22861,13 +22861,50 @@
       "ts": "2026-11-27T11:35:48.866121+00:00"
     },
     "clip-20261127-2": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-e9e9b98087769c38",
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/jyQWw0_0UXI",
       "title": "Kaicenat: Kai Cenat's werewolf act had people thinking he smacked CB",
       "kind": "story",
-      "ts": "2026-11-27T11:54:35.993344+00:00",
+      "ts": "2026-11-27T11:54:45.043470+00:00",
+      "uploaded_at": "2026-11-27T11:54:45.043484+00:00",
+      "publish_at": "2026-11-27T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261127-kaicenat-kai-cenat-s-werewolf-act-had-people-thi-496ae2d4",
+        "tiktok": "queued for 2026-11-27T18:30:00Z"
+      },
+      "story_key": "story-e9e9b98087769c38",
+      "member_keys": [
+        "vodmine://2915383492/708-948",
+        "https://www.twitch.tv/kaicenat/clip/CleanStrongLardWow-ijljc8q0MJOwps0R",
+        "https://www.twitch.tv/kaicenat/clip/CleanStrongLardWow-ijljc8q0MJOwps0R",
+        "vodmine://2915383492/978-1218"
+      ],
+      "streamer": "kaicenat",
+      "who": [
+        "kaicenat"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 40.8,
+      "narrative_score": 0,
+      "narrative_summary": "At his Halloween party stream, Kai Cenat turns into a werewolf and gets in the camera's face, and the act is so convincing that people think he really smacked CB.",
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "clip-20261127-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ExcitedPlumpMomNerfBlueBlaster-kcrH6JTKxuAS5S1u",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Reveals He's The Voice Actor Behind Mandy In GTA 6",
+      "kind": "twitch_clip",
+      "ts": "2026-11-27T12:33:48.321818+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

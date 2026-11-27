@@ -412,6 +412,15 @@
    "d": "2026-10-20",
    "said": "It's on the corner I'm speaking to you Don't do it down yeah, yeah, we we go we go guys go"
   },
+  "chillyfastlemurshadylulu-xtikdkxtxarkajhj": {
+   "ch": "ludwig",
+   "d": "2026-11-20",
+   "said": "First streamer I've seen that isn't a shit driver. Thank you, bro. I'm literally one of th",
+   "saw": "Ludwig, riding a motorcycle in a driving game, says he's the first streamer who isn't a bad driver while his character weaves down a road to",
+   "who": [
+    "ludwig"
+   ]
+  },
   "cleangoodparrotcoolstorybob-t20x93rpwcu27ave": {
    "ch": "xqc",
    "d": "2026-11-18",
@@ -747,6 +756,10 @@
    "d": "2026-11-05",
    "said": "three, four. boy, don't find just the don't bow. can't Five, six, seven, eight. OK. Hey, h"
   },
+  "enjoyableshakingcougarbleedpurple-jv0smhq0mum86dch": {
+   "ch": "gilticus",
+   "d": "2026-11-27"
+  },
   "enticingfrailtortoisecharliebitme-gljpqtpiaf3an235": {
    "ch": "ludwig",
    "d": "2026-11-22",
@@ -781,6 +794,11 @@
    "ch": "ishowspeed",
    "d": "2026-11-21",
    "said": "a little two on one"
+  },
+  "excitedplumpmomnerfblueblaster-kcrh6jtkxuas5s1u": {
+   "ch": "ohnepixel",
+   "d": "2026-11-27",
+   "said": "as well. Hearts in the Chad. This is finally out. I can share with you guys a secret which"
   },
   "exquisiteinnocentgaragepoooound-mldj-ot7fg9jjjla": {
    "ch": "kaicenat",
@@ -1565,6 +1583,16 @@
    "d": "2026-11-18",
    "said": "The dress is really pretty. Wait, what did Drew say? Nah, what did Drew say? What did Drew"
   },
+  "sassywiseringfeelsbadman-kwr9lkken2ayfe1p": {
+   "ch": "ludwig",
+   "d": "2026-11-20",
+   "said": "First streamer I've seen that isn't a shit driver. Thank you, bro. I'm literally one of th",
+   "saw": "Ludwig rides a motorbike down a road in an open-world game, with a weapons/items menu briefly open, and says he is one of the better drivers",
+   "who": [
+    "Ludwig (streamer, fa",
+    "Twitch chat (sidebar"
+   ]
+  },
   "savoryathleticcheetahossloth-hrr8w4afdaj1gmva": {
    "ch": "qtcinderella",
    "d": "2026-11-16",
@@ -2122,6 +2150,16 @@
    "ch": "stableronaldo",
    "d": "2026-11-16",
    "said": "Everyone was telling me that, oh, it's hard to do. Like what? This is real fucking easy, m"
+  },
+  "wonderfulzealousyogurtelegiggle-n6lvxcyenqqo2woz": {
+   "ch": "ludwig",
+   "d": "2026-11-20",
+   "said": "jumped in front of the car! Fuck! Asshole! God damn it! That's a suicide! That's not my fa",
+   "saw": "The streamer drives an open-top pickup through a GTA-style game, hits pedestrians and a car while trying to lose the cops, and says the pede",
+   "who": [
+    "Ludwig (streamer, vo",
+    "in-game pedestrians "
+   ]
   },
   "yawningrelatedwormdogface-exolhtiuvvy4ln-w": {
    "ch": "summit1g",
@@ -3171,6 +3209,62 @@
    ]
   },
   {
+   "d": "2026-11-27",
+   "edl": {
+    "beats": [
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 27.5,
+      "framing": "wide",
+      "link": "start",
+      "purpose": "Ludwig hits pedestrians and a car while running from the cops, then denies fault",
+      "role": "setup",
+      "source_id": "https://www.twitch.tv/ludwig/clip/WonderfulZealousYogurtEleGiggle-N6LvxcYeNqqo2woZ",
+      "start": 5.0,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "Five minutes later",
+      "effects": [],
+      "end": 9.7,
+      "framing": "tight",
+      "link": "but",
+      "purpose": "Minutes later he claims he is one of the better drivers, which contradicts the crash",
+      "role": "payoff",
+      "source_id": "https://www.twitch.tv/ludwig/clip/SassyWiseRingFeelsBadMan-KWr9lkKEN2ayfe1P",
+      "start": 6.3,
+      "transition": "hard_cut"
+     }
+    ],
+    "central_question": "Is Ludwig actually a good driver in GTA?",
+    "ending": {
+     "duration": 1.2,
+     "type": "reaction_hold"
+    },
+    "ending_emotion": "amusement",
+    "hook_overlay": "Ludwig: \"That's not my fault!\"",
+    "is_story": true,
+    "narration": [
+     {
+      "essential_because": "stream_title says GTA VI MARATHON; scene report says he is trying to lose the cops",
+      "over_beat": 0,
+      "text": "Ludwig streaming a GTA VI marathon, running from the cops."
+     }
+    ],
+    "premise": "Ludwig crashes his truck in GTA while fleeing the cops and blames a pedestrian, then brags he is one of the better drivers while riding a bike.",
+    "structure": "before_after",
+    "structure_reason": "The crash and denial come first, then the boast about being a great driver lands as irony.",
+    "target_duration": 30,
+    "title": "Ludwig says he's one of the better drivers in GTA 6 after this"
+   },
+   "score": 74,
+   "sources": [
+    "https://www.twitch.tv/ludwig/clip/SassyWiseRingFeelsBadMan-KWr9lkKEN2ayfe1P",
+    "https://www.twitch.tv/ludwig/clip/WonderfulZealousYogurtEleGiggle-N6LvxcYeNqqo2woZ"
+   ]
+  },
+  {
    "d": "2026-11-12",
    "edl": {
     "beats": [
@@ -3308,23 +3402,6 @@
   }
  ],
  "stories_tried": [
-  {
-   "d": "2026-10-29",
-   "edit": 5,
-   "members": [
-    "drabfairpuppystrawbeary-dwpyegfkwkdxwd4p"
-   ],
-   "premise": "Pokimane announces chat is getting chicken, goes to fetch it, plans to eat the mild sandwich before the spicy one, then ",
-   "why": "extended clip failed its checks: trails 28s past the picked moment"
-  },
-  {
-   "d": "2026-10-29",
-   "members": [
-    "tenderspikysparrowpastathat-9dx229vfizuvhcyf"
-   ],
-   "premise": "hellokiko@momenttenderspikysparrowpastathat-9dx229vfizuvhcyf",
-   "why": "its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-  },
   {
    "d": "2026-11-02",
    "members": [
@@ -3789,17 +3866,6 @@
    "d": "2026-11-25",
    "edit": 5,
    "members": [
-    "peacefulclevercardraccattack-ucc04g0td9xvgou1",
-    "polishedhypertoothkeyboardcat-lyxt3_2oqjyu0qwe",
-    "relatedcomfortablebillpartytime-iwoetc82rsbb_jvo"
-   ],
-   "premise": "ohnepixel keeps insisting he's done with a suggestive mobile game, then goes right back to playing it.",
-   "why": "rendered 21s, outside the 25-90s story band"
-  },
-  {
-   "d": "2026-11-25",
-   "edit": 5,
-   "members": [
     "blindingtiredgorillakeyboardcat-g6ajebwwat2o2wz8",
     "clip_01m6c39h6c77895cyke5n6zz8z",
     "rd:1xhqmg9",
@@ -3860,6 +3926,39 @@
    ],
    "premise": "pokimane@momentzealoushedonisticmetalimglitch-ku5zjuutw0ql2dkh",
    "why": "its VOD is unavailable: preflight:source only 5.2s \u2014 too short to edit"
+  },
+  {
+   "d": "2026-11-27",
+   "edit": 5,
+   "members": [
+    "peacefulclevercardraccattack-ucc04g0td9xvgou1",
+    "polishedhypertoothkeyboardcat-lyxt3_2oqjyu0qwe",
+    "relatedcomfortablebillpartytime-iwoetc82rsbb_jvo"
+   ],
+   "premise": "ohnepixel keeps insisting he's done with a suggestive mobile game, then goes right back to playing it.",
+   "why": "rendered 21s, outside the 25-90s story band"
+  },
+  {
+   "d": "2026-11-27",
+   "members": [
+    "crunchydarkledwholewheat-sdrzbb-9not-qxn8",
+    "enthusiasticfrozencockroachstonelightning-pxtncttuiq8fe8gw",
+    "tamevivaciousjuicefunrun-xsm9fvwyunkoag8o"
+   ],
+   "premise": "Jynxzi's run of selling and bargaining mishaps across Chained Together and How to Fish, from Ron said what to selling ra",
+   "why": "director judged: not a story \u2014 The footage doesn't show the scout's 'bartered and sold out by partners' bit. Clip 1 (Chained Together, 2026-09-02) is Jynxzi con"
+  },
+  {
+   "d": "2026-11-27",
+   "edit": 5,
+   "members": [
+    "chillyfastlemurshadylulu-xtikdkxtxarkajhj",
+    "sassywiseringfeelsbadman-kwr9lkken2ayfe1p",
+    "wonderfulzealousyogurtelegiggle-n6lvxcyenqqo2woz"
+   ],
+   "premise": "Ludwig crashes his truck in GTA while fleeing the cops and blames a pedestrian, then brags he is one of the better drive",
+   "retries_left": 2,
+   "why": "rendered; critic scored 74 after 2 revision(s) \u2014 @12s pacing: The middle of clip 1 (about 12-20s) is mostly driving with little happening. Trim it to the crashe"
   }
  ]
 }
