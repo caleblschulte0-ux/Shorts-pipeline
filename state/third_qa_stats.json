@@ -3,58 +3,6 @@
     {
       "date": "20261118",
       "dry_run": false,
-      "ts": "2026-11-18T13:48:58+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 128,
-        "with_retention": 115,
-        "with_curve": 14,
-        "fetched_at": "2026-11-18T12:28:44.345692+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261118-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261118-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261118",
-      "dry_run": false,
       "ts": "2026-11-18T19:24:50+00:00",
       "feedback": {
         "snapshot": true,
@@ -6316,6 +6264,371 @@
           "slug": "clip-20261126-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261127",
+      "dry_run": false,
+      "ts": "2026-11-27T12:47:11+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 107,
+        "with_curve": 15,
+        "fetched_at": "2026-11-27T08:46:20.547886+00:00"
+      },
+      "brain": {
+        "ok": 36,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261127-1",
+          "ok": false,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin letterbox strip, about 12% of the canvas height. The alien and gameplay are tiny and hard to; vision: The framing did not crop toward the action. The full wide 16:9",
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "Speed GTA 6 alien find",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "GTA6 alien find, searched name, mild rea",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Finds An ALIEN In GTA And Loses It \ud83d\udc7d"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.9,
+              "problems": [
+                "The sharp picture is a thin letterbox strip, about 12% of the canvas height. The alien and gameplay are tiny and hard to",
+                "The framing did not crop toward the action. The full wide 16:9 stream (facecam, HUD and game) is left in a narrow band, ",
+                "The streamer's facecam is tiny and the HUD text is unreadable.",
+                "The hook caption sits over the blurred padding, away from the sharp picture. It reads as a repost, not an edit."
+              ]
+            },
+            "self_heal": {
+              "verdict": "skipped",
+              "why": "the first render was already the blur fill; the simple render is the same picture"
+            }
+          },
+          "took_s": 76.6
+        },
+        {
+          "slug": "clip-20261127-2",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 121,
+                "refused_shown": 5,
+                "scouted": [],
+                "vod_arcs": 339,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2992,
+                "pool_with_vod": 2050,
+                "arc_sizes": [
+                  3,
+                  6,
+                  5,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "@momenttalentedkathishshrimpsaltbae-lifhpo44k4jufwp9",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "pokimane@momentfaintbrainydonutvotenay-yqjuck9sq4d4zcc1",
+                  "outcome": "already_refused",
+                  "why": "2026-11-06: its VOD is unavailable: preflight:source only 5.3s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "pokimane@momentzealoushedonisticmetalimglitch-ku5zjuutw0ql2d",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.2s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "kaicenat@momentcleanstronglardwow-ijljc8q0mjowps0r/kaicenat-",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1136.2
+        },
+        {
+          "slug": "clip-20261127-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "split",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 121,
+                "refused_shown": 5,
+                "scouted": [
+                  {
+                    "premise": "Jynxzi's run of selling and bargaining mishaps across Chained Together and How to Fish, from Ron said what to selling ra",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Caseoh's Kyle bit in GTA 6, ending with him catching two strangers stealing his statue.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Caseoh's best chaotic GTA 6 moments: locked brakes, a homicide report and near-miss body catches.",
+                    "shape": "multi_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Kai Cenat's GTA 6 saga: the $450k marathon setup, the 6-star run as Lucia, then crying over the worst ending.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 339,
+                "moments": 40,
+                "candidates": 529,
+                "pool": 2992,
+                "pool_with_vod": 2050,
+                "arc_sizes": [
+                  3,
+                  6,
+                  5,
+                  4,
+                  3,
+                  4,
+                  3,
+                  3,
+                  2,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "duration",
+                  "why": "21s outside 25-90s"
+                },
+                {
+                  "cluster": "scout:jynxzi/jynxzi-asks-creature-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't show the scout's 'bartered and sold out by partners' bit. Clip 1 (Chained Together, 2026-09-02) is Jynxzi confused by a map flip or glitch, with characters dangling on a chain. Nob"
+                },
+                {
+                  "cluster": "@momenttalentedkathishshrimpsaltbae-lifhpo44k4jufwp9",
+                  "outcome": "already_refused",
+                  "why": "2026-11-27: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ludwig@vod2934132437/ludwig-bett-driv-2026w47",
+                  "outcome": "narrative_failed",
+                  "why": "scores [68, 68, 74] after 2 revision(s) \u2014 @12s pacing: The middle of clip 1 (about 12-20s) is mostly driving with little happening. Trim it to the crashes and the blame lines so the contrast with the final claim arrives sooner.; @22s missing_context: The final line is cut off ('one of the better dri"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "GTA 6 voice actor, searchable live topic",
+              "blind": false
+            },
+            "content": {
+              "score": 0.86,
+              "why": "GTA 6 cast reveal, searched name",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Reveals He's The Voice Actor Behind Mandy In GTA 6"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The word captions sit over the top of her hair and forehead, and the hook card covers her chest. Neither hides the face ",
+                "In the rendered frames the streamer is mostly cropped out at the bottom-left, so only the reacting woman stays in view."
+              ]
+            }
+          },
+          "took_s": 209.6
+        },
+        {
+          "slug": "clip-20261127-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "cameras",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "vague, insider gameplay",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "GTA 6 physics gag, visible truck chaos",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Can't Believe The Physics In This Game, Then Jay Walks In"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "At 15.9s the layout briefly shrinks to a thin strip with a tiny subject, then returns to full size",
+                "The hook card sits over the facecam's forehead in a few frames, such as 17.4s",
+                "The 14.4s crop is tight on a truck cab, so it is hard to tell what is happening"
+              ]
+            }
+          },
+          "took_s": 239.0
+        },
+        {
+          "slug": "clip-20261127-5",
+          "ok": false,
+          "error": "RuntimeError: director: the clip ends mid-sentence on \"the\"",
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "GTA 6 reaction by searched streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA 6 cutscene, Kai's reaction minor",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 19.7
+        },
+        {
+          "slug": "clip-20261127-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Static heart pose, no event, thirst-bait)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown streamer",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Static heart pose, no event, thirst-bait",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 15.0
         }
       ]
     }

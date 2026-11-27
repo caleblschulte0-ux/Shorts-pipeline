@@ -22926,14 +22926,59 @@
       "director_cut": true
     },
     "clip-20261127-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/AlertHilariousFalconTF2John-10Ts4ml5K_wMro14",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/4mZhMcOoKlg",
       "title": "Ohnepixel Can't Believe The Physics In This Game, Then Jay Walks In",
       "kind": "twitch_clip",
-      "ts": "2026-11-27T12:38:17.930998+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-27T12:38:26.413523+00:00",
+      "uploaded_at": "2026-11-27T12:38:26.413537+00:00",
+      "publish_at": "2026-11-27T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261127-ohnepixel-can-t-believe-the-physics-in-this-game-1359b8c3",
+        "tiktok": "queued for 2026-11-27T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AlertHilariousFalconTF2John-10Ts4ml5K_wMro14",
+      "streamer": "ohnepixel",
+      "series": "fail",
+      "hook": "Physics enjoyer ohnepixel loses it \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8831,
+      "banger": 0.35,
+      "cut": {
+        "start": 0.0,
+        "end": 18.2
+      },
+      "director_cut": true
+    },
+    "rejected-concerneddarkmagepeanutbutterjellytime-mnyvixlma54d52zn": {
+      "source_url": "https://www.twitch.tv/clix/clip/ConcernedDarkMagePeanutButterJellyTime-mNYVIXLMA54D52ZN",
+      "streamer": "clix",
+      "title": "Clix Realizes They Just Got Set Up And Loses It After This Call",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip across the middle, roughly a third of the canvas height. The rest is black or blurred ; vision: The subject is small and far away. The streamer facecam is tiny and the game characters are small, so it is hard to read; vision: The footage is very dark and mur",
+      "ts": "2026-11-27T12:44:59.196387+00:00"
+    },
+    "rejected-pooroddsoybeansoonerlater-r11i8-nru3ooenw8": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PoorOddSoybeanSoonerLater-r11i8-nRU3oOEnW8",
+      "streamer": "kaicenat",
+      "title": "Kai was NOT ready for this GTA 6 scene",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"the\"",
+      "ts": "2026-11-27T12:45:18.854781+00:00"
+    },
+    "rejected-enjoyableshakingcougarbleedpurple-jv0smhq0mum86dch": {
+      "source_url": "https://www.twitch.tv/gilticus/clip/EnjoyableShakingCougarBleedPurple-jV0SMhq0muM86Dch",
+      "streamer": "gilticus",
+      "title": "\u0431\u0443\u0431\u0430\u0441\u0435\u0440\u0434\u0435\u0447\u043a\u043e",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static heart pose, no event, thirst-bait)",
+      "ts": "2026-11-27T12:47:11.856927+00:00"
     }
   }
 }
