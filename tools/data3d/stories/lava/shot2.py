@@ -76,7 +76,7 @@ def place_wall_works():
     lobe = [(30.0 + 13.0 * math.cos(a) * (1 + 0.12 * rl.uniform(-1, 1)), -30.0 + 7.0 * math.sin(a) * (1 + 0.12 * rl.uniform(-1, 1))) for a in [2 * math.pi * k / 18 for k in range(18)]]
     FX.lava_flow(lobe, z=s2_ground_z(30.0, -30.0) + 0.15, thick=0.5, fresh=0.85, drift=(0.0, 0.06), seed=6, name="lava flow beyond the wall")
     def light():
-        return FX.sky("day", sun_az=-30)["sun"]
+        return FX.sky("day", sun_az=170)["sun"]          # (coordinator 11-27: the wall a black void from the alley) the sun on the town side, on the wall's town face
     return dict(light=light, walls=walls, house=house, founts=founts)
 
 
@@ -212,18 +212,18 @@ def shot2():
     # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
     LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
     lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
-    lw_layer(data, "spine", lambda t: (0, 0, -18 + 40 * W(t, T_AB - 0.15, 0.6)), 0.0, DUR + 0.4)      # (coordinator 11-27) chest into the pour, then round to the alley as the wall grows      # (q2p REACH: unwinding it took his hand off the bar)
+    lw_layer(data, "spine", lambda t: (0, 0, -18 + 40 * W(t, T_CUT - 0.3, 0.6)), 0.0, DUR + 0.4)      # (coordinator 11-27) chest into the pour, then round to the alley as the wall grows      # (q2p REACH: unwinding it took his hand off the bar)
     # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
     # turns to the wall and looks up at it
     # (q2i-q2n: five rounds on the hands after a release; coordinator 11-27: remove the release) both hands stay on the
     # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
         data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    CD = Vector((-0.95, 2.3, 0.2)); LD = Vector((-0.7, -1.0, 1.4))      # low up the alley, tipped up: the finished wall towering over him      # (r2a EMPTY: from up high the set behind him was bare ground) low on the wall's foot, the town behind him     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
+    CD = Vector((-1.3, 2.0, 0.25)); LD = Vector((-1.4, -2.0, 1.8))      # (coordinator 11-27: no truck slab, him bigger)      # low up the alley, tipped up: the finished wall towering over him      # (r2a EMPTY: from up high the set behind him was bare ground) low on the wall's foot, the town behind him     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(Vector((S2_XT, -0.3, 0.7)), 0.0, max_yaw=60, max_pitch=40, blend=0.0)        # into the pour
-    data.look_at(Vector((S2_XT, 3.9, 2.8)), T_AB - 0.1, max_yaw=60, max_pitch=45, blend=0.6)       # the rock going onto the wall
+    data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall       # the rock going onto the wall
     data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
     data.look_at(CD + Vector((0, 0.6, 2.4)), T_WB - 0.45, max_yaw=35, max_pitch=50, blend=0.6)      # (q2q PLAN: a new pose) right up at the wall's top                         # (q2g) up at it
     data.expression("determined", 0.0, T_WB, blend=0.15)
@@ -237,7 +237,7 @@ def shot2():
     # ---- the lens: out past the low row, low, back at him, the truck's tail pouring rock at the right and the house at
     # the left; then from up high over the rising wall; CUT WIDE across the town (he is behind his truck); then from up
     # the wall's face, down at him at its foot by the house's door
-    LENS_B = 48.0
+    LENS_B = 55.0
     him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
     for o in set(him):
         if o.type not in ('MESH', 'CURVE', 'ARMATURE'): continue
@@ -247,7 +247,7 @@ def shot2():
     # (coordinator 11-27, r2a) all three set-ups on him are up the alley between the house and the truck, back at him:
     # the truck's tail pouring rock behind him onto the row, the wall growing behind him; the house at the right
     CA = Vector((0.9, -2.2, 0.9)); LA = Vector((-0.55, 0.45, 0.55))                  # (v2a: up the alley the bed's side hid the pour) out over the row, the pour between us and him, the tail and bed behind it
-    CB = Vector((-1.45, 3.4, 1.5)); LB = Vector((-0.6, -0.5, 1.1))                   # higher, further up the alley: the wall roof-high behind the pour, the house's front beside
+    CB = Vector((1.5, -0.15, 1.6)); LB = Vector((-1.5, 0.75, 0.75))                   # (coordinator 11-27: 2 and 4 read the same) across the tailgate: the rock pouring in front, him beyond, the house behind him for scale
     print("S2 CAM A", tuple(round(v, 2) for v in CA), "look", tuple(round(v, 2) for v in LA), "B", tuple(round(v, 2) for v in CB), "look", tuple(round(v, 2) for v in LB),
           "D", tuple(round(v, 2) for v in CD), "surface there", round(surface(CD.x, CD.y, DUR), 2), flush=True)
     cam = K.camera(tuple(CA), tuple(LA), lens=32.0, fstop=11.0)
