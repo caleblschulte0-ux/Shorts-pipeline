@@ -159,38 +159,46 @@
       "earth wall"
      ],
      "whole": false,
-     "built_as": "a wall of piled black lava rock with a flat crest, rising out of the ground behind the house"
+     "built_as": "a wall of heaped black lava rock with a flat crest, running away from the lens up the middle of the frame"
     },
     {
      "name": "house",
      "objects": [
       "town house by the wall"
      ],
+     "whole": true,
+     "built_as": "a painted tin house, red tin roof and chimney, right beside the wall on the town side"
+    },
+    {
+     "name": "digger",
+     "objects": [
+      "digger"
+     ],
      "whole": false,
-     "built_as": "a painted tin house, red tin roof, four-pane windows"
+     "built_as": "a yellow tracked digger on the far side, placing rock on the wall, a boulder in its bucket"
     },
     {
      "name": "lava",
      "objects": [
-      "lava behind the wall"
+      "lava flow far out"
      ],
      "whole": false,
-     "built_as": "the lava's orange glow and black smoke rising from behind the wall's crest, held out"
+     "built_as": "a glowing lava flow out on the black field beyond the wall, the plume on the horizon"
     }
    ],
    "framing": "close",
    "data": {
     "stands": "beside",
     "side": "left",
-    "frame_h": 0.36
+    "frame_h": 0.34
    },
-   "action": "the wall of black rock grows behind the house",
-   "consequence": "the wall of rock stands over the house's roof, the lava's glow held behind it",
+   "action": "a digger builds the wall of rock up beside the house",
+   "consequence": "the wall of rock stands taller than the house",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "a painted tin house, a knee-high row of black boulders at its feet; he stands facing us, hands on hips",
+     "shows": "down the wall end-on: a knee-high wall of black rock beside a tin house, the black field and a lava flow far off at the right; he faces us, hands on hips",
      "hands": "free",
      "new": [],
      "visible": [
@@ -200,7 +208,11 @@
       },
       {
        "prop": "wall",
-       "as": "a knee-high row of black boulders behind it"
+       "as": "a knee-high wall of black rock beside it"
+      },
+      {
+       "prop": "lava",
+       "as": "a lava flow far off on the black field"
       },
       {
        "prop": "data",
@@ -210,75 +222,89 @@
     },
     {
      "event": "action",
-     "shows": "the wall of black rock grows behind the house to its windows; he jerks a thumb back at it, grinning",
+     "shows": "a digger builds the wall of rock up beside the house, window-high now; he jerks a thumb at it, grinning",
      "hands": "free",
      "new": [
       {
+       "what": "digger",
+       "how": "moves",
+       "cause": "it swings a boulder onto the wall"
+      },
+      {
        "what": "wall",
        "how": "grows",
-       "cause": "Iceland builds it up, rock on rock"
+       "cause": "the digger piles rock on it"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "a thumb jerked back at the wall, a grin"
+       "cause": "a thumb jerked at the wall, a grin"
       }
      ],
      "visible": [
       {
-       "prop": "wall",
-       "as": "the wall of rock grows, built up window-high"
+       "prop": "digger",
+       "as": "a digger builds it: a boulder in its bucket"
       },
       {
-       "prop": "house",
-       "as": "the house beside it"
+       "prop": "wall",
+       "as": "the wall of rock grows window-high"
       },
       {
        "prop": "data",
-       "as": "his thumb over his shoulder at it"
+       "as": "his thumb out at it"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "the wall of rock built taller than the house stands over its roof, a first orange glow behind it; he half-turns, head up, a hand on his hat",
+     "shows": "a digger builds the black rock wall past the tin house's roof, taller than the house now; he half-turns and looks up at it",
      "hands": "free",
      "new": [
       {
        "what": "wall",
        "how": "grows",
-       "cause": "rock piled on until it stands over the roof"
+       "cause": "the digger keeps piling rock on it"
+      },
+      {
+       "what": "digger",
+       "how": "moves",
+       "cause": "it swings for another boulder"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "half-turned, head up, a hand holding his hat"
+       "cause": "half-turned, looking up at it"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall of rock built taller than the house stands over its roof"
+       "as": "the wall of rock built past the house's roof, taller than the house"
       },
       {
        "prop": "house",
-       "as": "the house's roof under it"
+       "as": "the house's roof beside the crest"
+      },
+      {
+       "prop": "lava",
+       "as": "the lava out on the far side, kept out"
       },
       {
        "prop": "data",
-       "as": "a hand on his hat, looking up"
+       "as": "he looks up at it"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "far over the house the wall holds the lava out: its orange glow and smoke rise behind the crest; he leans right back looking up, arms dropped, mouth open",
+     "shows": "the finished wall stands clearly over the chimney, the lava flow crept nearer on the far side, held off; he leans right back, arms dropped, mouth open",
      "hands": "free",
      "new": [
       {
        "what": "lava",
-       "how": "lights",
-       "cause": "the lava piles against the wall's far side"
+       "how": "moves",
+       "cause": "the flow creeps nearer across the black field"
       },
       {
        "what": "data",
@@ -288,12 +314,12 @@
      ],
      "visible": [
       {
-       "prop": "lava",
-       "as": "the lava's orange glow and smoke held behind the wall: it keeps the lava out"
+       "prop": "wall",
+       "as": "the wall towering over the chimney: it keeps the lava out"
       },
       {
-       "prop": "wall",
-       "as": "the wall grown past the roof, towering over it"
+       "prop": "lava",
+       "as": "the lava flow held off beyond the wall, on the far side"
       },
       {
        "prop": "data",

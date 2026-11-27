@@ -99,14 +99,14 @@
  },
  "ideas": [
   "behind the roofs of an Icelandic street the volcano erupts and grows still by still, a glow, a lava fountain, a towering black ash plume; he looks up, flinches and runs out of the street",
-  "beside a tin house a black rock wall grows from a knee-high row to far over the roof, the lava's orange glow and smoke held behind its crest; he looks up at it",
+  "down the wall end-on: a digger builds a black rock wall up beside a tin house until it stands over the chimney, a lava flow creeping nearer on the far side, held off; he looks up at it",
   "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and heaps up; it stops dead against the rock and goes dark, and he pumps his fists and grins",
   "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
   "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
  ],
  "storyboard": [
   "1 hook (one low street lens): over the roofs the ridge glows, a lava fountain bursts, an ash plume towers. He flinches, then runs.",
-  "2 the wall: beside a tin house a black rock wall grows past the roof, orange glow and smoke held behind it. He looks up.",
+  "2 the wall, end on: a digger builds a black rock wall past a tin house's roof, lava held off beyond. He looks up.",
   "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
   "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
   "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
@@ -139,29 +139,30 @@
    ]
   },
   {
-   "camera": "one locked low lens on the town side: the whole house at the right, him in the foreground at the left",
-   "data": "planted in one spot: hands on hips facing us, a thumb jerked back at the wall, half-turned with a hand on his hat, leaning right back looking up",
+   "camera": "one locked lens at the wall's near end, a little raised, looking along it: town and house at the left, the black field and the lava at the right",
+   "data": "planted in the foreground at the left: hands on hips facing us, a thumb jerked at the wall, half-turned looking up, leaning right back",
    "props": [
     "earth wall",
     "house by the wall",
-    "lava behind the wall"
+    "digger",
+    "lava flow"
    ],
    "arc": [
     {
      "at": 0.08,
-     "what": "a tin house, a knee-high row of boulders behind it; he faces us, hands on hips"
+     "what": "a knee-high wall beside the house, the lava far off at the right; hands on hips"
     },
     {
      "at": 0.38,
-     "what": "the wall window-high; he jerks a thumb back at it, grinning"
+     "what": "the digger builds it window-high; a thumb at it, a grin"
     },
     {
      "at": 0.68,
-     "what": "the wall over the roof, a first orange glow behind it; a hand on his hat, he looks up"
+     "what": "the wall taller than the house; half-turned, he looks up"
     },
     {
      "at": 0.98,
-     "what": "the wall towering, the lava's glow and smoke held behind it; he leans right back looking up"
+     "what": "the wall over the chimney, the lava nearer, held off; he leans right back"
     }
    ]
   },

@@ -1478,7 +1478,7 @@ def place_grindavik_street():
             if -4.5 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
         k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=0.8)           # the world's one bright day (the reset, 2026-11-25: no dusk)
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # the same REAL sky as the wall's beats (Poly Haven)
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(70))   # (r1v EMPTY 25%: clouds over the street) the same REAL sky as the wall's beats (Poly Haven)
         return k
     return dict(light=light, slot=slot, houses=houses, fz=fz)
 
@@ -1520,7 +1520,7 @@ def shot1():
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
     # ---- him: in the street in the foreground, three-quarter to us, turned toward the ridge at our right
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.16)).normalized(); LOOK0 = CAM0 + D * 5.0
+    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.1)).normalized(); LOOK0 = CAM0 + D * 5.0
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(35)                              # three-quarter: his chest 35 degrees round toward the ridge
@@ -1528,10 +1528,10 @@ def shot1():
     kit = hard_hat(data)
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
     SIDE = Vector((-TO.y, TO.x, 0))                             # (his left as he faces the lens is the frame's... either way: a small shuffle)
-    Y_BACK = 0.12                                               # the flinch: a step toward us, away from it
+    Y_BACK = 0.2                                               # the flinch: a step toward us, away from it
     for f in range(1, F(T_RUN) + 1):
         t = (f - 1) / FPS
-        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.05 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35))
+        p = Vector((X0, Y0, Z0)) + SIDE * (0.06 * W(t, 0.1, 0.35) - 0.1 * W(t, 1.25, 0.4)) + TO * (Y_BACK * W(t, T_BURST + 0.15, 0.35) + 0.1 * W(t, T_BURST + 0.75, 0.35))     # (r1v HOLD/READ: a second step back before he runs)
         p.z = Z0 + 0.03 * lw_kick(t - T_BURST - 0.15, 0.25)
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(8) * W(t, T_GLOW, 0.5) - math.radians(10) * W(t, T_BURST + 0.15, 0.4))
         data._plant_feet_here(t, lift=(Z0, Z0))
@@ -1558,11 +1558,11 @@ def shot1():
     UP = lambda sg: ((-30, 0, -sg * 14), (-34, 0, -sg * 46), (-12, sg * -10, -sg * 15))
     RUNA = lambda sg: ((22, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
     RUNB = lambda sg: ((-30, 0, -sg * 22), (-70, 0, -sg * 10), (-5, sg * -10, -sg * 5))
-    keys = [0.0, 0.35, T_GLOW + 0.15, 1.3, 1.95, T_BURST + 0.1, T_BURST + 0.6, T_RUN]
+    keys = [0.0, 0.35, T_GLOW + 0.15, 1.3, 1.95, T_BURST + 0.1, T_BURST + 0.75, T_RUN]
     run_t = [T_RUN + 0.2 + 0.22 * k for k in range(int((DUR + 0.5 - T_RUN - 0.2) / 0.22) + 1)]
     for sd in sides:
         sg = -1 if sd == "L" else 1
-        seq = [LOW, LOW, HALF, HALF, WHOA, UP, WHOA, RUNA if sd == sides[0] else RUNB] if sd == sides[0] else [LOW, LOW, LOW, HALF, HALF, UP, UP, RUNB]
+        seq = [LOW, LOW, HALF, HALF, WHOA, UP, WHOA, RUNA if sd == sides[0] else RUNB] if sd == sides[0] else [LOW, LOW, LOW, HALF, HALF, UP, WHOA, RUNB]
         sw = [(RUNB, RUNA) if sd == sides[0] else (RUNA, RUNB)][0]
         for tk, pose in list(zip(keys, seq)) + [(tk, sw[k % 2]) for k, tk in enumerate(run_t)]:
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
@@ -1577,7 +1577,7 @@ def shot1():
     erupt = P["slot"] + [fountain] + plumes
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("the ridge over the town's roofs glows orange and a lava fountain bursts up out of it", lambda: P["slot"] + [fountain], T_GLOW, TS[2] + 0.3, {"whole": False}),
+                conseq=[("a lava fountain bursts up over the town's roofs", lambda: [fountain], T_BURST + 0.35, DUR, {"whole": False}),       # (r1v: with the thin slot it measured 6% of the frame)
                         ("a huge black ash plume towers over the town", lambda: plumes, T_PLUME, DUR, {"whole": False})])
 
 
