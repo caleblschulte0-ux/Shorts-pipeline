@@ -96,10 +96,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Beat 2 introduces the idea that 98.6 was wrong originally, which doesn't directly follow from the previous beat about se"
+  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces the fact that 98.6 was wrong without stemming from the previous gender‑specific temperature drop, breaking th"
  ],
  "reasons": [
-  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Beat 2 introduces the idea that 98.6 was wrong originally, which doesn't directly follow from the previous beat about se"
+  "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Introduces the fact that 98.6 was wrong without stemming from the previous gender‑specific temperature drop, breaking th"
  ],
  "judge": null,
  "prior_rejection": [
@@ -136,5 +136,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T09:34:13Z"
+ "refiled": "2026-11-27T12:35:08Z"
 }

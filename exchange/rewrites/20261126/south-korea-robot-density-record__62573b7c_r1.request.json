@@ -102,12 +102,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Provides a comparative fact rather than a logical continuation of beat 0; does not directly prove the headline claim.",
-  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Shifts focus to China, unrelated to South Korea's robot density and not a consequence of beat 1."
+  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Shows US contrast but doesn't directly support why South Korea has more robots on its floors.",
+  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Introduces China’s install vs density data, unrelated to South Korea and not a logical continuation."
  ],
  "reasons": [
-  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Provides a comparative fact rather than a logical continuation of beat 0; does not directly prove the headline claim.",
-  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Shifts focus to China, unrelated to South Korea's robot density and not a consequence of beat 1."
+  "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Shows US contrast but doesn't directly support why South Korea has more robots on its floors.",
+  "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Introduces China’s install vs density data, unrelated to South Korea and not a logical continuation."
  ],
  "judge": null,
  "prior_rejection": [
@@ -144,5 +144,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T09:34:11Z"
+ "refiled": "2026-11-27T12:35:06Z"
 }

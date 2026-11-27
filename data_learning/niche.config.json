@@ -32229,17 +32229,17 @@
     "scores": {
      "premise": 12,
      "hook": 18,
-     "arc": 16,
+     "arc": 17,
      "factual": 13,
      "visual_proof": 12,
      "payoff": 9,
      "voice": 4
     },
-    "total": 84,
+    "total": 85,
     "fatal": [],
-    "weakest": "arc",
-    "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
-    "fp": "e9e35270017725a2"
+    "weakest": "premise",
+    "note": "Make the data visuals bold and simple so they stay readable on a small phone screen.",
+    "fp": "f34057f8797fba2a"
    },
    "segments": [
     {
@@ -36766,21 +36766,20 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 16,
-     "arc": 14,
+     "hook": 17,
+     "arc": 15,
      "factual": 13,
-     "visual_proof": 10,
-     "payoff": 8,
+     "visual_proof": 8,
+     "payoff": 9,
      "voice": 4
     },
-    "total": 75,
+    "total": 76,
     "fatal": [
-     "unrenderable_visual",
-     "confusing"
+     "unrenderable_visual"
     ],
-    "weakest": "premise",
-    "note": "Clarify and simplify the visual elements so they are instantly understandable on a phone screen; replace vague 'data picture' descriptions with concrete, eye‑catching imagery.",
-    "fp": "16b93481ea0f3919"
+    "weakest": "visual_proof",
+    "note": "Provide concrete, simple visual concepts that are clearly readable on a phone screen rather than vague 'data picture' placeholders.",
+    "fp": "dc1cb58b1d4ed155"
    },
    "segments": [
     {

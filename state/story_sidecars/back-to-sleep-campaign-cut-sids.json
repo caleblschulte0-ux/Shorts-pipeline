@@ -5,22 +5,22 @@
   "scores": {
    "premise": 12,
    "hook": 18,
-   "arc": 16,
+   "arc": 17,
    "factual": 13,
    "visual_proof": 12,
    "payoff": 9,
    "voice": 4
   },
-  "total": 84,
+  "total": 85,
   "fatal": [],
-  "weakest": "arc",
-  "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
-  "fp": "e9e35270017725a2"
+  "weakest": "premise",
+  "note": "Make the data visuals bold and simple so they stay readable on a small phone screen.",
+  "fp": "f34057f8797fba2a"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "For years, the way we put babies to bed was killing them.",
+   "ears": "The sleeping position parents trusted for years was the one putting babies in danger.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
