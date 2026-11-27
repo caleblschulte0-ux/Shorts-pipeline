@@ -372,7 +372,7 @@
     },
     {
      "event": "reaction",
-     "shows": "low by the house: the driver stands small at the foot of the towering wall beside the house door and looks up at it, a hand over his eyes",
+     "shows": "low by the house: the driver stands small at the foot of the towering wall by the house and looks up at it, a hand over his eyes",
      "hands": "free",
      "new": [
       {
@@ -392,7 +392,7 @@
       },
       {
        "prop": "house",
-       "as": "the house door beside him"
+       "as": "the house beside him"
       }
      ]
     }
