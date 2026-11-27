@@ -22898,13 +22898,41 @@
       "replay_count": 0
     },
     "clip-20261127-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/ExcitedPlumpMomNerfBlueBlaster-kcrH6JTKxuAS5S1u",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/sxMAw2u6Ao0",
       "title": "Ohnepixel Reveals He's The Voice Actor Behind Mandy In GTA 6",
       "kind": "twitch_clip",
-      "ts": "2026-11-27T12:33:48.321818+00:00",
+      "ts": "2026-11-27T12:34:02.770599+00:00",
+      "uploaded_at": "2026-11-27T12:34:02.770665+00:00",
+      "publish_at": "2026-11-27T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261127-ohnepixel-reveals-he-s-the-voice-actor-behind-ma-e9a3712d",
+        "tiktok": "queued for 2026-11-27T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ExcitedPlumpMomNerfBlueBlaster-kcrH6JTKxuAS5S1u",
+      "streamer": "ohnepixel",
+      "series": "drama",
+      "hook": "Ohnepixel says he plays Mandy in GTA 6",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7976,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20261127-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AlertHilariousFalconTF2John-10Ts4ml5K_wMro14",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Can't Believe The Physics In This Game, Then Jay Walks In",
+      "kind": "twitch_clip",
+      "ts": "2026-11-27T12:38:17.930998+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
