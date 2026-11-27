@@ -22850,6 +22850,25 @@
         "end": 25.26
       },
       "director_cut": true
+    },
+    "rejected-diligentcloudyanteaterrlytho-wtoiipye4hahsuxu": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/DiligentCloudyAnteaterRlyTho-wToiIPYE4haHsuxU",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Finds An ALIEN In GTA And Loses It \ud83d\udc7d",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin letterbox strip, about 12% of the canvas height. The alien and gameplay are tiny and hard to; vision: The framing did not crop toward the action. The full wide 16:9 stream (facecam, HUD and game) is left in a narrow band, ; vision: The streamer's facecam is tiny a",
+      "ts": "2026-11-27T11:35:48.866121+00:00"
+    },
+    "clip-20261127-2": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-e9e9b98087769c38",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat's werewolf act had people thinking he smacked CB",
+      "kind": "story",
+      "ts": "2026-11-27T11:54:35.993344+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
