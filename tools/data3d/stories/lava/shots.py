@@ -1584,22 +1584,24 @@ def shot1():
 # ====================================================================================================
 # shot2.py
 # ====================================================================================================
-"""BEAT 2: "So Iceland built a wall of rock taller than a house to keep the lava out."
+"""BEAT 2: "So Iceland built a wall of rock taller than a house."
 
-THE WALL RISES (coordinator, 2026-11-27, after the audit of every recorded verdict: the shots that passed have the
-WORLD doing the action while Data reacts, one camera, two or three props; then after r2e's pre-flight). One LOCKED lens,
-low on the town side: one painted tin house whole at the right of the frame, its back to the wall; Data planted in the
-foreground at the left. Behind the house a wall of black rock grows still by still, one grade throughout: a knee-high
-boulder row (still 1), window-high (still 2), at the eaves (still 3), far over the ridge and chimney (still 4), and from
-still 3 the lava's orange glow and smoke rise from behind its crest, held out. Data: hands on hips facing us; a thumb
-jerked back at the wall, grinning; half-turned, head up, a hand on his hat; leaning right back, arms dropped, mouth
-open."""
+THE WALL RISES (coordinator, 2026-11-27: after the audit of every recorded verdict the shots that passed have the WORLD
+doing the action while Data reacts, one camera, two or three props; then r2e's and r2i's pre-flights; the purpose
+clause "to keep the lava out" is line 3's picture now). One LOCKED lens, low on the town side: one painted tin house
+whole at the right of the frame, its back to the wall; Data planted in the foreground at the left, clear of it. Behind
+the house a long bank of black boulders grows still by still, one grade throughout, and its BUILDER rides up with it: a
+digger on its crest placing a boulder, its arm somewhere new each still. Knee-high (still 1, the digger at ground level
+beside the low row), window-high (2), at the eaves (3), far over the ridge and chimney with sky above it (4). Data: hands
+on hips facing us; a thumb jerked back at the wall, grinning; half-turned, looking up; leaning right back, arms dropped,
+mouth open. No fire and no lava in this shot."""
 
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 7.0                              # the finished wall: from this low lens its top stands well over the house's ridge
-S2_HOUSE = (-2.45, 2.6, 1.6, 2.4)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
-S2_P0 = (-0.25, 5.55)                   # where he stands: in the foreground, right of the house
+S2_HOUSE = (-2.8, 2.4, 1.6, 2.4)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
+S2_P0 = (-0.1, 5.55)
+S2_DIG = (-4.9, -0.3)                  # the digger on the crest: x, and y off the crest's middle (toward the far side)                   # where he stands: in the foreground, right of the house
 
 
 def s2_base(h):
@@ -1640,7 +1642,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [2.4, 3.5, 4.6, S2_H]                               # (p2a-p2e: it stands 3 m further back than the house, so it reads at half its height) the wall's top at each: a knee-high boulder row, window-high, at the eaves, far over the ridge and chimney
+    TOPS = [2.4, 3.5, 4.6, 6.2]                               # (p2a-p2e: it stands 3 m further back than the house, so it reads at half its height) the wall's top at each: a knee-high boulder row, window-high, at the eaves, far over the ridge and chimney
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -1652,18 +1654,42 @@ def shot2():
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
         wall["root"].location = (0, 0, top(t) - S2_H); wall["root"].keyframe_insert("location", frame=f)
-    # ---- the lava held out: its glow and smoke rising from behind the crest (the same burning gas as shots 3-5), a
-    # hint by still 3 and strong by still 4; nothing lights the town side
-    held = []
-    for k, x in enumerate((-6.5, -1.0, 4.5)):
-        o = lw_fire_column(f"lava behind the wall {k}", (x, yc - 0.6, S2_H - 0.6), w=3.4, h_fire=4.5,     # (p2b: further back, the crest hid every flame from this low lens)
-                           h_smoke=12.0,
-                           lean=(0.05, -0.15), t_end=DUR + 1.0, seed=3.1 + 2.3 * k, fire=8.0, smoke_d=3.5, rise=1.6,
-                           keys=[(TS[2] - 0.45, 0.0), (TS[2], 0.4), (TS[3] - 0.2, 1.0)], grow=False)
-        l0 = o.location.copy(); held.append(o)
-        for f in range(1, NF + 8):                                # (p2a: built at the finished crest it hid behind it) it rides up with the crest
+    # ---- its builder: one digger on the crest, riding up with it, placing a boulder on the town face, its arm somewhere
+    # new each still. The kit's digger is posed when it is built, so each pose is its own digger, shown for its moment.
+    rnd = lw_random.Random(12)
+    rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
+    POSES = [(-25, 16, -70, -60, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, False),
+             (5, 10, -60, 20, False), (-15, 26, -90, -40, True)]
+    DX, DY = S2_DIG
+    diggers = []
+    for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
+        before = set(bpy.data.objects)
+        d = FX.digger(name=f"digger {k}", loc=(0, 0, 0), yaw=0.0, slew=0.0, boom=boom, stick=stick, bucket=bucket, lights=False, seed=3)
+        d["house"].rotation_euler[2] = math.radians(slew)
+        d["root"].rotation_euler[2] = math.pi                    # its arm out over the town face, toward us
+        bpy.context.view_layer.update()
+        if loaded:
+            tip = d["bucket"].matrix_world.translation
+            bo = lw_block(f"digger {k} boulder", (tip.x, tip.y, tip.z + 0.1), 0.15, rock_m, rnd, squash=0.8); bo.parent = d["house"]
+            bo.matrix_parent_inverse = d["house"].matrix_world.inverted()
+        objs = [o for o in bpy.data.objects if o not in before]
+        for f in range(1, NF + 8):
             t = (f - 1) / FPS
-            o.location = l0 + Vector((0, 0, top(t) - S2_H)); o.keyframe_insert("location", frame=f)
+            d["root"].location = (DX, yc + DY, top(t)); d["root"].keyframe_insert("location", frame=f)
+        diggers.append(objs)
+    order = [0, 1, 2, 3, 4, 5]
+    STEP = DUR / 9.0                                             # a working swing: each still lands mid-pose, on a different one
+    pose_at = lambda t: order[int(max(0.0, t) / STEP) % len(order)]
+    print("S2 digger poses at the stills", [pose_at(t) for t in TS], flush=True)
+    for k, objs in enumerate(diggers):
+        prev = None
+        for f in range(1, NF + 8):
+            t = (f - 1) / FPS; hid = pose_at(t) != k
+            if hid != prev:
+                for o in objs:
+                    o.hide_render = hid; o.hide_viewport = hid
+                    o.keyframe_insert("hide_render", frame=f); o.keyframe_insert("hide_viewport", frame=f)
+                prev = hid
     # ---- him: planted in one spot in the foreground, in four poses
     data = load_data()
     CAM0 = Vector((0.225, 6.76, 0.45)); LOOK0 = CAM0 + Vector((-0.52, -0.85, 0.04)) * 5.0      # (r2f/r2g EMPTY 22-24%: the high sky has no cloud: nearer, nearly level)      # (r2e: the house cut by the frame's edge) locked off, the whole house and sky over it
@@ -1673,10 +1699,10 @@ def shot2():
     data.place(X0, Y0, LENS)                                    # 1 facing us
     data.arm.location.z = Z0
     kit = hard_hat(data)
-    T1, T2, T3 = 0.5, 1.5, 2.5                                  # the turns between the poses (each 0.35 s)
-    data.turn_to(LENS - 25, T1, T1 + 0.35)                      # 2 a quarter round toward the wall at his back
-    data.turn_to(LENS - 50, T2, T2 + 0.35)                      # 3 half-turned to it
-    data.turn_to(LENS - 35, T3, T3 + 0.35)                      # 4 back toward us a little, leaning back
+    T1, T2, T3 = 0.2 * DUR, 0.5 * DUR, 0.8 * DUR             # the turns between the poses (line 2 is a short line now)
+    data.turn_to(LENS - 25, T1, T1 + 0.3)                      # 2 a quarter round toward the wall at his back
+    data.turn_to(LENS - 50, T2, T2 + 0.3)                      # 3 half-turned to it
+    data.turn_to(LENS - 35, T3, T3 + 0.3)                      # 4 back toward us a little, leaning back
     sc.frame_set(1); bpy.context.view_layer.update()
     M = data.arm.matrix_world
     def pts(t):
@@ -1690,19 +1716,16 @@ def shot2():
         for tt in (0.0, T1 - 0.05):
             data._arm_ik(s_, hp + rt * sg * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
     # 2 a thumb jerked back over his shoulder at the wall, a grin; the other hand still on his hip
-    M_, fw, rt = pts(T1 + 0.35)
+    M_, fw, rt = pts(T1 + 0.3)
     sh = M_ @ data.J["R"]["sh"]; hpL = M_ @ data.J["L"]["hip"]
-    for tt in (T1 + 0.35, T2 - 0.05):
+    for tt in (T1 + 0.3, T2 - 0.05):
         data._arm_ik("R", sh + rt * 0.2 + fw * 0.03 + Vector((0, 0, 0.0)), tt, 1.0); data._k("hand.R", tt, rot=(-20, 0, 25))      # (r2f: over the shoulder put the arm behind his back, the hand in his head) out to the side, jerked back
         data._arm_ik("L", hpL - rt * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k("hand.L", tt, rot=(0, 0, -20))
-    # 3 half-turned, head up, one hand holding his hat on; the other arm hanging
-    M_, fw, rt = pts(T2 + 0.35)
-    hat_c = M_ @ data.pb["head"].tail                         # the crown of his head, under the hat
-    for tt in (T2 + 0.35, T3 - 0.05):
-        data._arm_ik("R", hat_c + rt * 0.31 + fw * 0.05 + Vector((0, 0, 0.04)), tt, 2.0)       # (r2g: his forearm 3 cm into his head)        # (p2a: lower, his hand hid his face); data._k("hand.R", tt, rot=(0, 0, 30))
-        for bn in ("arm.L", "fore.L", "hand.L"): data._k(bn, tt, rot=data.RELAXED[bn])
+    # 3 half-turned, looking up at it, his arms down (r2i: a hand at his head read as broken)
+    for tt in (T2 + 0.3, T3 - 0.05):
+        for bn in data.RELAXED: data._k(bn, tt, rot=data.RELAXED[bn])
     # 4 leaning right back looking up, both arms dropped, mouth open
-    for tt in (T3 + 0.35, DUR + 0.5):
+    for tt in (T3 + 0.3, DUR + 0.5):
         for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (6 if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
     lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) - 24 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
     lw_layer(data, "chest", lambda t: (-14 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
@@ -1722,8 +1745,7 @@ def shot2():
     lw_cut(cam, still, still, -1.0, -1.0, 24.0, 24.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("a wall of black rock rises behind the house, from its knee to far over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False}),
-                        ("the lava's orange glow and smoke held behind the wall's crest", lambda: held, TS[2] - 0.2, DUR, {"whole": False})])
+                conseq=[("a digger piles a wall of black rock behind the house, from its knee to far over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])
 
 
 # ====================================================================================================
