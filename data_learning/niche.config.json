@@ -19962,7 +19962,7 @@
    "slug": "blood-type-rarity",
    "title": "Blood Type Supply Varies By Distribution, Rh Status, And Donor Background",
    "hook": "Blood supply depends on rarity and on who shows up to donate.",
-   "closing": "Knowing your blood type helps reveal where donor supply is strongest or thinnest.",
+   "closing": "Know your blood type: if it's rare, you may be the donor someone is waiting for.",
    "question": "Do you know your blood type?",
    "caption": "AB negative is the rarest blood type in America, at just 1%. It comes down to one gene most people never think about — and it varies by ethnic background too, which is exactly why blood banks need donors from every community. 👇 Know your type?",
    "hashtags": [
@@ -19992,7 +19992,7 @@
      "ascending": false,
      "role": "1 · THE SPREAD",
      "topic": "Blood Type Distribution",
-     "say": "AB-negative represents just 1% of the population. It sits at the rarest edge of blood type distribution.",
+     "say": "Only one person in a hundred has AB-negative, the rarest blood type. Finding a matching donor is a long shot.",
      "scene": {
       "mechanic": "blood-vial-rack",
       "concept": "eight blood-sample vials stand in a lab rack, each filled to its share of the US population, O+ towering over a nearly-empty AB- vial",
@@ -20008,7 +20008,7 @@
      "insight_type": "share",
      "role": "2 · THE FACTOR",
      "topic": "Rh Blood Type",
-     "say": "Rh-negative blood represents 15% of the population. Negative blood types draw from a much smaller donor pool.",
+     "say": "Just 15% of people are Rh-negative, so there are far fewer donors for them. When supply dips, negative types run short first.",
      "scene": {
       "mechanic": "rh-genetic-drop",
       "concept": "one giant blood-drop shape fills red from the bottom to the 85% Rh-positive line, leaving the top 15% Rh-negative sliver empty, a DNA strand overhead",
@@ -20025,7 +20025,7 @@
      "ascending": false,
      "role": "3 · WHY DIVERSITY MATTERS",
      "topic": "Blood Type Background",
-     "say": "O-positive reaches 53% among Latin American donors. Donor background helps shape the available blood supply.",
+     "say": "53% of Latin American donors are O-positive, well above other groups. So the blood on the shelf depends on who donates.",
      "scene": {
       "mechanic": "donor-meter-lineup",
       "concept": "four blood-donor photos stand over their own filling meter, height set by how common O-positive is in that ethnic background",
@@ -20033,10 +20033,10 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:37:40Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-27T14:00:14Z",
    "hook_was": "Only 1 percent of people carry the rarest blood type.",
-   "retold": "retell/v3"
+   "retold": "retell/v4"
   },
   {
    "slug": "boomerang-generation",
@@ -27659,7 +27659,7 @@
    "slug": "ocean-floor-vs-mars-mapped",
    "title": "Unmapped Ocean Floor Covers More Area Than Mars",
    "hook": "Earth's largest missing map sits beneath the ocean, not in space.",
-   "closing": "Modern maps still leave a planet-sized blind spot across Earth's ocean floor.",
+   "closing": "Our own ocean is less mapped than Mars, and we can't protect what we can't see.",
    "question": "Would you map ocean or Mars?",
    "caption": "We've photographed 99.5% of an entire other planet, and only 28.7% of our own ocean floor. The unmapped part alone is bigger than all of Mars. Which frontier should we finish first? 👇",
    "hashtags": [
@@ -27687,7 +27687,7 @@
      "insight_type": "trend",
      "topic": "Ocean Floor Mapped",
      "role": "1 · THE CRAWL",
-     "say": "Modern maps cover 28.7% of the ocean floor in 2026. Most seafloor still lacks detailed mapping.",
+     "say": "Just 28.7% of the ocean floor is mapped in detail. That's up from a sliver, but still under a third.",
      "scene": {
       "mechanic": "sonar-ping-seabed-grid",
       "concept": "a sonar ping sweeps across a dark seafloor grid and lights only the cells it has mapped: 6% in 2017 creeping to 28.7% in 2026, the rest stays black",
@@ -27705,7 +27705,7 @@
      "ascending": false,
      "topic": "Ocean Floor vs Mars",
      "role": "2 · THE COMPARISON",
-     "say": "Mars is 99.5% mapped. Its surface coverage far exceeds the ocean floor's.",
+     "say": "Mars is 99.5% mapped. We know the surface of another planet nearly perfectly, but not the seafloor of our own.",
      "scene": {
       "mechanic": "two-planets-pixel-reveal",
       "concept": "Mars and Earth's ocean floor as two discs of tiles; a scan sweeps both - Mars lights almost completely, the seafloor disc stays mostly black",
@@ -27722,7 +27722,7 @@
      "ascending": false,
      "topic": "Unmapped Ocean vs Mars",
      "role": "3 · THE SCALE",
-     "say": "Unmapped ocean floor spans 257 million square kilometers. That exceeds the entire surface area of Mars.",
+     "say": "The unmapped ocean floor covers 257 million square kilometers. That's far more ground than the whole surface of Mars.",
      "scene": {
       "mechanic": "mars-fits-in-the-unmapped",
       "concept": "the unmapped ocean as a huge dark disc sized by area; Mars drops in at true scale and covers only part of it, then a second Mars can't even fill the rest",
@@ -27730,8 +27730,9 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:37:41Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-11-27T14:01:50Z",
+   "retold": "retell/v4"
   },
   {
    "slug": "freshwater-accessible",
@@ -33570,7 +33571,25 @@
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-27T12:37:40Z",
    "retold": "retell/v4",
-   "hook_was": "Today's resistance toll is the start of a cancer-sized crisis."
+   "hook_was": "Today's resistance toll is the start of a cancer-sized crisis.",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 16,
+     "arc": 14,
+     "factual": 13,
+     "visual_proof": 8,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 73,
+    "fatal": [
+     "unrenderable_visual"
+    ],
+    "weakest": "visual_proof",
+    "note": "Create clearer, simpler visuals that are easily readable on a phone screen.",
+    "fp": "308b7930aada4b0a"
+   }
   },
   {
    "slug": "amazon-warehouse-robot-army",
@@ -36767,21 +36786,21 @@
    "hook_was": "The species almost went silent in 2018.",
    "scorecard": {
     "scores": {
-     "premise": 10,
-     "hook": 17,
-     "arc": 15,
+     "premise": 8,
+     "hook": 14,
+     "arc": 12,
      "factual": 13,
      "visual_proof": 8,
-     "payoff": 9,
-     "voice": 4
+     "payoff": 4,
+     "voice": 3
     },
-    "total": 76,
+    "total": 62,
     "fatal": [
-     "unrenderable_visual"
+     "missing_payoff"
     ],
-    "weakest": "visual_proof",
-    "note": "Provide concrete, simple visual concepts that are clearly readable on a phone screen rather than vague 'data picture' placeholders.",
-    "fp": "dc1cb58b1d4ed155"
+    "weakest": "payoff",
+    "note": "Provide a clear payoff that directly answers the hook, e.g., show what happens to the rebound if the small group of mothers is not protected.",
+    "fp": "cdc46e8cd3514170"
    },
    "segments": [
     {
@@ -37626,19 +37645,21 @@
    "hook_was": "78 gigawatts of nuclear power is still being built.",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 16,
-     "arc": 15,
+     "premise": 7,
+     "hook": 12,
+     "arc": 8,
      "factual": 12,
-     "visual_proof": 12,
-     "payoff": 8,
-     "voice": 4
+     "visual_proof": 8,
+     "payoff": 2,
+     "voice": 3
     },
-    "total": 79,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "Clarify the specific numbers (e.g., \"10 new reactors\" and \"78 large reactors\") with up‑to‑date, verifiable data to avoid the invented_fact risk and boost factual credibility.",
-    "fp": "71934dad25757c1f"
+    "total": 52,
+    "fatal": [
+     "missing_payoff"
+    ],
+    "weakest": "payoff",
+    "note": "Provide a clear payoff that directly answers the opening hook and on-screen question, tying the data to a concrete conclusion about future nuclear growth.",
+    "fp": "5e53179fe0f96253"
    }
   },
   {
@@ -38542,22 +38563,21 @@
    "rewritten_at": "2026-11-27T12:31:18Z",
    "scorecard": {
     "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 15,
-     "factual": 8,
+     "premise": 8,
+     "hook": 15,
+     "arc": 12,
+     "factual": 10,
      "visual_proof": 8,
      "payoff": 8,
      "voice": 4
     },
-    "total": 73,
+    "total": 65,
     "fatal": [
-     "invented_fact",
      "unrenderable_visual"
     ],
-    "weakest": "factual",
-    "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
-    "fp": "2daee2cfb23e7edd"
+    "weakest": "premise",
+    "note": "Make the visual elements clearer and more phone‑friendly; replace vague 'data picture' references with simple, bold graphics that instantly convey the statistics.",
+    "fp": "b9a39112ee41fd53"
    },
    "hook_was": "Are planes getting too close on the ground?",
    "segments": [
@@ -38609,7 +38629,7 @@
   {
    "slug": "feet-are-getting-bigger",
    "title": "British Feet Grew Longer, Wider, And Under More Weight",
-   "hook": "Changing shoe sizes reflect more than simple growth in length.",
+   "hook": "Your grandfather's shoes wouldn't fit you, and the reason should worry you.",
    "closing": "Foot length, width, and body weight all matter when choosing shoes that fit.",
    "question": "Has your shoe size changed?",
    "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
@@ -38712,22 +38732,22 @@
    "scorecard": {
     "scores": {
      "premise": 10,
-     "hook": 16,
-     "arc": 14,
-     "factual": 12,
-     "visual_proof": 8,
-     "payoff": 3,
-     "voice": 4
+     "hook": 12,
+     "arc": 12,
+     "factual": 8,
+     "visual_proof": 6,
+     "payoff": 4,
+     "voice": 3
     },
-    "total": 67,
+    "total": 55,
     "fatal": [
+     "invented_fact",
      "missing_payoff",
-     "confusing",
      "unrenderable_visual"
     ],
     "weakest": "payoff",
-    "note": "Add a clear payoff that directly answers the opening hook, e.g., state the projected timeline or what must happen for the reef to recover, rather than ending with an open question.",
-    "fp": "60f86a68cc967dee"
+    "note": "Add a clear, concrete payoff that answers the opening question—e.g., give a specific timeline or actionable insight on whether reefs can recover fast enough.",
+    "fp": "6a974dfecb79a20f"
    },
    "hook_was": "Reef bleaching now returns about every 2 years.",
    "segments": [

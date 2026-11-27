@@ -98,10 +98,12 @@
   }
  ],
  "held_for": [
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces vaccination rate without a logical link from the previous beat about elderly hospitalizations."
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a separate statistic about age risk rather than a causal link to the previous beat, breaking the sequential story f",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces vaccination data that doesn't directly follow from the elderly hospitalization rate, lacking a logical bridge"
  ],
  "reasons": [
-  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces vaccination rate without a logical link from the previous beat about elderly hospitalizations."
+  "thesis: seg1 ('Flu season hospital rate') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Adds a separate statistic about age risk rather than a causal link to the previous beat, breaking the sequential story f",
+  "thesis: seg2 ('Flu shots') does not continue the story of the headline ('Why Last Flu Season Was So Brutal') — brain: Introduces vaccination data that doesn't directly follow from the elderly hospitalization rate, lacking a logical bridge"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -135,5 +137,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T12:35:06Z"
+ "refiled": "2026-11-27T14:03:48Z"
 }

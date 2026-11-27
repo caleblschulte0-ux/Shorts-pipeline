@@ -3,48 +3,50 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 12,
-   "hook": 16,
-   "arc": 15,
+   "premise": 7,
+   "hook": 12,
+   "arc": 8,
    "factual": 12,
-   "visual_proof": 12,
-   "payoff": 8,
-   "voice": 4
+   "visual_proof": 8,
+   "payoff": 2,
+   "voice": 3
   },
-  "total": 79,
-  "fatal": [],
-  "weakest": "arc",
-  "note": "Clarify the specific numbers (e.g., \"10 new reactors\" and \"78 large reactors\") with up‑to‑date, verifiable data to avoid the invented_fact risk and boost factual credibility.",
-  "fp": "71934dad25757c1f"
+  "total": 52,
+  "fatal": [
+   "missing_payoff"
+  ],
+  "weakest": "payoff",
+  "note": "Provide a clear payoff that directly answers the opening hook and on-screen question, tying the data to a concrete conclusion about future nuclear growth.",
+  "fp": "5e53179fe0f96253"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Nuclear was supposed to be dead. China didn't get the memo.",
+   "ears": "The nuclear buildout is active, large, and concentrated in one country.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Builders started 10 new nuclear reactors last year, continuing a small but real rebound.",
+   "ears": "Ten nuclear reactor projects started construction in 2025. The worldwide buildout is still adding new projects.",
    "eyes": "a data picture (trend)",
    "evidence": "International Energy Agency (IEA) | New nuclear reactor construction starts worldwide per year | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
   },
   {
    "window": "beat 1",
-   "ears": "China alone accounts for 50 percent of all nuclear capacity now under construction.",
+   "ears": "China holds 50% of nuclear capacity under construction. Half of the active buildout is concentrated there.",
    "eyes": "substance: wet grey concrete; cause: Data pours buckets of concrete from each tower's top deck and the wall rises lift by lift",
    "evidence": "International Energy Agency (IEA) | Share of global nuclear capacity under construction, by country | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
   },
   {
    "window": "beat 2",
-   "ears": "Worldwide, nuclear power under construction equals building 78 large reactors at once.",
+   "ears": "Worldwide nuclear construction totals 78 gigawatts. That concentrated pipeline adds up to substantial generating capacity.",
    "eyes": "substance: reactor domes and cooling towers; cause: Data pulls the crane lever down and the steel dome is lowered onto the reactor, then more reactor sites rise across the plain",
    "evidence": "International Energy Agency (IEA) | Nuclear capacity under construction worldwide vs one typical reactor | https://www.iea.org/reports/global-energy-review-2026/technology-nuclear | 2026-11-01"
   },
   {
    "window": "closing",
-   "ears": "The supposedly dying industry is quietly shaping tomorrow's electricity supply.",
+   "ears": "Today's nuclear construction map will shape where future generating capacity comes online.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

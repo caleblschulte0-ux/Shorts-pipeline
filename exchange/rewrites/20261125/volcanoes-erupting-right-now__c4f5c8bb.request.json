@@ -98,14 +98,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Mentions many active volcanoes but says only a few erupt now, not supporting the claim of ~45 simultaneous eruptions.",
-  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Discusses geographic clustering, which doesn't substantiate the specific number of eruptions occurring now.",
-  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Focuses on a subset of dangerous volcanoes, unrelated to the total count of current eruptions."
+  "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer"
  ],
  "reasons": [
-  "thesis: seg0 ('Active volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Mentions many active volcanoes but says only a few erupt now, not supporting the claim of ~45 simultaneous eruptions.",
-  "thesis: seg1 ('Ring of Fire volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Discusses geographic clustering, which doesn't substantiate the specific number of eruptions occurring now.",
-  "thesis: seg2 ('Most dangerous volcanoes') does not continue the story of the headline ('About 45 Volcanoes Are Erupting On Earth Right Now') — brain: Focuses on a subset of dangerous volcanoes, unrelated to the total count of current eruptions."
+  "premise: brain: The pitch is vague and lacks a concrete, surprising hook or specific stakes for the viewer"
  ],
  "judge": null,
  "prior_rejection": [],
@@ -139,5 +135,5 @@
   ]
  },
  "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
- "refiled": "2026-11-27T12:35:06Z"
+ "refiled": "2026-11-27T14:03:49Z"
 }

@@ -3,50 +3,50 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 10,
-   "hook": 17,
-   "arc": 15,
+   "premise": 8,
+   "hook": 14,
+   "arc": 12,
    "factual": 13,
    "visual_proof": 8,
-   "payoff": 9,
-   "voice": 4
+   "payoff": 4,
+   "voice": 3
   },
-  "total": 76,
+  "total": 62,
   "fatal": [
-   "unrenderable_visual"
+   "missing_payoff"
   ],
-  "weakest": "visual_proof",
-  "note": "Provide concrete, simple visual concepts that are clearly readable on a phone screen rather than vague 'data picture' placeholders.",
-  "fp": "dc1cb58b1d4ed155"
+  "weakest": "payoff",
+  "note": "Provide a clear payoff that directly answers the hook, e.g., show what happens to the rebound if the small group of mothers is not protected.",
+  "fp": "cdc46e8cd3514170"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "The whale comeback depends on a group smaller than a packed bus.",
+   "ears": "A fragile whale rebound ends at a surprisingly small maternal bottleneck.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "The right whale population reached 384. The rebound exists, but every animal still matters.",
+   "ears": "The right whale population reached 384 in 2024. The recovery is real but still numerically fragile.",
    "eyes": "substance: the whale rising free; cause: Data hauls the fishing rope off the whale, one haul per year, and it rises and blows",
    "evidence": "NOAA Fisheries / Northeast Fisheries Science Center | North Atlantic right whale population estimate | https://www.fisheries.noaa.gov/resource/peer-reviewed-research/population-size-estimate-north-atlantic-right-whales | 2026-10-29"
   },
   {
    "window": "beat 1",
-   "ears": "The latest season produced 22 calves. New births are finally adding momentum to the rebound.",
+   "ears": "The recent right whale season produced 22 calves. New births are the next step in that recovery.",
    "eyes": "a data picture (comparison)",
    "evidence": "NOAA Fisheries | North Atlantic right whale calves born, 2018 vs recent season | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "beat 2",
-   "ears": "Only 70 are breeding females. Losing a few mothers could erase the progress those calves represent.",
+   "ears": "Only 70 right whales are breeding females. The entire recovery ultimately depends on this small group.",
    "eyes": "a data picture (share)",
    "evidence": "NOAA Fisheries | Reproductively active females as a share of the right whale population | https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024 | 2026-10-29"
   },
   {
    "window": "closing",
-   "ears": "Protecting each mother is the clearest way to keep this fragile recovery moving.",
+   "ears": "Protecting breeding mothers is essential if the right whale rebound is to continue.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }

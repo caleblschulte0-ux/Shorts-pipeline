@@ -3,51 +3,50 @@
  "brief": null,
  "scorecard": {
   "scores": {
-   "premise": 12,
-   "hook": 18,
-   "arc": 15,
-   "factual": 8,
+   "premise": 8,
+   "hook": 15,
+   "arc": 12,
+   "factual": 10,
    "visual_proof": 8,
    "payoff": 8,
    "voice": 4
   },
-  "total": 73,
+  "total": 65,
   "fatal": [
-   "invented_fact",
    "unrenderable_visual"
   ],
-  "weakest": "factual",
-  "note": "Provide verifiable sources for the statistics and design clearer, phone‑friendly visuals that directly illustrate each beat.",
-  "fp": "2daee2cfb23e7edd"
+  "weakest": "premise",
+  "note": "Make the visual elements clearer and more phone‑friendly; replace vague 'data picture' references with simple, bold graphics that instantly convey the statistics.",
+  "fp": "b9a39112ee41fd53"
  },
  "storyboard": [
   {
    "window": "hook",
-   "ears": "Serious runway danger more than doubled in about a decade.",
+   "ears": "The runway danger is rising, but it is not spread evenly.",
    "eyes": "the first beat's finished picture",
    "evidence": "no number in the hook (hook_doctrine)"
   },
   {
    "window": "beat 0",
-   "ears": "Safety officials logged 23 serious runway near-misses, roughly one every two weeks and more than double the pace about a decade earlier.",
+   "ears": "Serious runway near-misses reached 23 in 2023. The yearly count more than doubled from a decade earlier.",
    "eyes": "substance: red warning flags; cause: Data places a red warning flag on the runway edge for every near-miss, walking down the runway",
    "evidence": "Federal Aviation Administration / U.S. Senate Commerce Committee | Serious (Category A/B) US runway incursions per year | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
   },
   {
    "window": "beat 1",
-   "ears": "Six in ten runway incursions came from people or vehicles entering by mistake, showing why ground coordination drives the danger.",
+   "ears": "Pedestrian or vehicle deviations caused 60% of runway incursions. One category dominates the incident mix.",
    "eyes": "a data picture (share)",
    "evidence": "Federal Aviation Administration | What caused FY2023's 1,756 US runway incursions | https://www.commerce.senate.gov/services/files/E26C0D2B-B5DE-4AE9-BF55-5D0C54843CB8 | 2026-11-06"
   },
   {
    "window": "beat 2",
-   "ears": "That runway danger clusters: just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst near-misses.",
+   "ears": "Eight airports account for 33% of the worst runway incursions. Serious risk clusters at a small set of locations.",
    "eyes": "a data picture (comparison)",
    "evidence": "AVweb analysis of FAA data | Share of the worst US runway incursions at just 8 airports | https://avweb.com/aviation-news/us-runway-incursion-hotspots/ | 2026-11-06"
   },
   {
    "window": "closing",
-   "ears": "Every runway near-miss is a warning before the collision that cannot be undone.",
+   "ears": "Concentrated causes and hotspots show where runway safety work can focus first.",
    "eyes": "the last beat's finished picture",
    "evidence": "restates no new number"
   }
