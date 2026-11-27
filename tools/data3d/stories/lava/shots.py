@@ -1738,28 +1738,28 @@ def shot1():
             FX.dust_puff(base=(0.95, y0 - v * tj + 0.9, 0.05), w=0.7, h=0.6, t0=tj, dur=1.4, col=(0.5, 0.46, 0.4), dens=4.0, seed=7.0 + 3 * k + j, lean=(0.0, 0.3), name=f"dust off the cars {k} {j}")
     # ---- him: off his doorstep into the street, running down it and round his truck's tail to its street side
     T_AT = 2.45; T_WIND = 2.5; T_REL = 2.98; T_FLY = 0.9
-    T_GO = 3.35; T_STEP = 3.85
-    PS = Vector((-0.85, YD + 0.57, 0.0)); PM = Vector((SIDE + 0.3, YT + 1.85 + 0.47, 0.0))
-    PT = Vector((SIDE + 0.3, YT - 0.35, 0.0))            # (q1w: 0.3 off the side, or the bag he throws goes through the rail)
+    T_GO = 3.2; T_STEP = 3.85
+    PS = Vector((-0.6, YD + 0.3, 0.0)); PM = Vector((SIDE + 0.3, YT + 1.85 + 0.47, 0.0))
+    PT = Vector((SIDE + 0.3, YT - 0.2, 0.0))            # (q1w: 0.3 off the side, or the bag he throws goes through the rail)
     BED = Vector((XT + 0.05, PT.y - 0.1, 0.82))          # where the bag lands, on the tipper's floor
     data.place(PS.x, PS.y, math.degrees(yaw_of(0.5, -1.0)))
     kit = hard_hat(data)
     sc.frame_set(1); bpy.context.view_layer.update()
-    data.walk_to((PM.x, PM.y), 0.15, 0.92, step=0.19, lift=0.08, bob=0.024)          # (q1w POP: running from his door, not a sprint at the end)
-    data.walk_to((PT.x, PT.y), 0.92, T_AT, step=0.21, lift=0.09, bob=0.026)
+    data.walk_to((PM.x, PM.y), 0.0, 0.85, step=0.17, lift=0.08, bob=0.024)          # (q1w POP: running from his door, not a sprint at the end)
+    data.walk_to((PT.x, PT.y), 0.85, T_AT, step=0.21, lift=0.09, bob=0.026)
     sc.frame_set(F(T_AT)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YB = yaw_of(-0.35, -1.0)                             # (the throw: three-quarter to the high lens, the truck at his right)
+    YB = yaw_of(0.1, -1.0)                             # (the throw: three-quarter to the high lens, the truck at his right)
     while YB - YA > math.pi: YB -= 2 * math.pi
     while YB - YA < -math.pi: YB += 2 * math.pi
     for f in range(F(T_AT) + 1, F(T_GO) + 1):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.25))
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.4))
     data.walk_to((PD.x, PD.y), T_GO, T_STEP, step=0.15, lift=0.05, bob=0.016)      # along the truck to its cab door
     sc.frame_set(F(T_STEP)); bpy.context.view_layer.update(); YS = data.arm.rotation_euler.z
     YC = yaw_of(FC.x, FC.y)                             # to the door and the handle, three-quarter to the lens ahead of the truck
     while YC - YS > math.pi: YC -= 2 * math.pi
     while YC - YS < -math.pi: YC += 2 * math.pi
     for f in range(F(T_STEP) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PD), rot=YS + (YC - YS) * W(t, T_STEP, 0.3))
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PD), rot=YS + (YC - YS) * W(t, T_STEP, 0.45))
     # ---- the bag in both hands, at his belly as he runs (hitched up once on the way); swung down, then heaved up over
     # his right shoulder and thrown up over the tipper's side
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1767,14 +1767,14 @@ def shot1():
         sc.frame_set(F(t)); bpy.context.view_layer.update()
         m = (acts._shoulder(data, "L") + acts._shoulder(data, "R")) / 2; f_ = data.forward(); f_.z = 0; f_.normalize()
         return m, f_, Vector((-f_.y, f_.x, 0.0))
-    HITCH = lambda t: 0.06 * W(t, 1.45, 0.15) * (1 - W(t, 1.62, 0.2))                 # (q1v HOLD: a hitch of the bag mid-run)
+    HITCH = lambda t: 0.06 * W(t, 1.2, 0.15) * (1 - W(t, 1.37, 0.2)) + 0.06 * W(t, 1.85, 0.15) * (1 - W(t, 2.02, 0.2))                 # (q1v HOLD: a hitch of the bag mid-run)
     def carried(t):
         m, f_, l_ = frame_at(t)
         return m + f_ * 0.145 + Vector((0, 0, -0.17 + HITCH(t)))
-    lw_layer(data, "spine", lambda t: (24 * W(t, 0.95, 0.3) * (1 - W(t, T_AT - 0.2, 0.3)) + 16 * W(t, T_WIND, 0.15) * (1 - W(t, T_WIND + 0.15, 0.15)) - 12 * W(t, T_WIND + 0.2, 0.2) * (1 - W(t, T_REL + 0.25, 0.3)), 0, 0), 0.0, DUR + 0.4)    # leaning into the run; down into the heave; back as it goes up
+    lw_layer(data, "spine", lambda t: (14 * W(t, 0.95, 0.3) * (1 - W(t, T_AT - 0.2, 0.3)) + 16 * W(t, T_WIND, 0.15) * (1 - W(t, T_WIND + 0.15, 0.15)) - 12 * W(t, T_WIND + 0.2, 0.2) * (1 - W(t, T_REL + 0.25, 0.3)), 0, 0), 0.0, DUR + 0.4)    # leaning into the run; down into the heave; back as it goes up
     sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
     mR, fR, lR = frame_at(T_REL)
-    REL = mR + fR * 0.16 - lR * 0.04 + Vector((0, 0, 0.06))       # (q1w: over his shoulder it was in his head, and out of his reach) up in front of his face
+    REL = mR + fR * 0.18 - lR * 0.04 + Vector((0, 0, 0.0))       # (q1w: over his shoulder it was in his head, and out of his reach) up in front of his face
     def bag_at(t):
         if t < T_WIND: return carried(t)
         if t < T_REL:
@@ -1793,9 +1793,9 @@ def shot1():
         sg = 1.0 if k_ == 0 else -1.0
         def grip(t, sg=sg):
             if t < T_REL:
-                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.095) + Vector((0, 0, 0.055))
-            m, f_, l_ = frame_at(t); return m + f_ * 0.16 + l_ * (sg * 0.11) + Vector((0, 0, 0.1 + 0.03 * W(t, T_REL, 0.2)))     # (q1w: a world point behind him as he walked off: arms behind his back) his arms follow it up, open
-        data.reach(sd, grip, 0.0, T_REL + 0.2, lead=0.05, back=0.4, elbow_out=0.25)
+                m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.04) + Vector((0, 0, 0.1))       # (q1x: round its ends his arms were in it) on its straps
+            m, f_, l_ = frame_at(t); return m + f_ * 0.17 + l_ * (sg * 0.06) + Vector((0, 0, 0.08 - 0.2 * W(t, T_REL + 0.1, 0.45)))     # (q1w: a world point behind him as he walked off: arms behind his back) his arms follow it up, open
+        data.reach(sd, grip, 0.0, T_STEP - 0.3, lead=0.05, back=None, elbow_out=0.3)       # (q1x FLUID: no drop to a relaxed arm; the cab takes the hands from here)
     # ---- at the cab: a foot up on the rung, a hand on the door, a hand on the grab handle
     sc.frame_set(F(T_STEP + 0.3)); bpy.context.view_layer.update()
     hs = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - GRAB).length)     # the hand nearer the grab handle takes it
@@ -1850,7 +1850,7 @@ def shot1():
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("his duffel bag", "cab grab handle"), cutaway=(0.0, T_E),
                 boxes=[],
                 conseq=[("a huge black ash plume rises off the hill over the town's roofs", lambda: plumes, 0.0, T_E, {"whole": False}),
-                        ("he runs down the street with his bag in both hands", lambda: meshes([duffel]), T_E, T_B, {"whole": False, "moves": True}),
+                        ("he runs down the street with his bag in both hands", lambda: meshes([duffel]), 1.25, T_B, {"whole": False, "moves": True}),
                         ("he heaves his bag up over his head and throws it into his truck", lambda: meshes([duffel]), T_REL - 0.3, T_REL + 0.5, {"whole": False, "moves": True}),
                         ("the other cars roll out of town toward his truck", lambda: meshes(cars), T_C, DUR, {"whole": False})])
 
