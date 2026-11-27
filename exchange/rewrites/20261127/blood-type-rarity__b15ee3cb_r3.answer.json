@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__b15ee3cb_r3",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Blood Type Supply Varies By Distribution, Rh Status, And Donor Background",
+  "hook": "Blood supply depends on rarity and on who shows up to donate.",
+  "closing": "Knowing your blood type helps reveal where donor supply is strongest or thinnest.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood Type Distribution",
+      "say": "AB-negative represents just 1% of the population. It sits at the rarest edge of blood type distribution."
+    },
+    {
+      "topic": "Rh Blood Type",
+      "say": "Rh-negative blood represents 15% of the population. Negative blood types draw from a much smaller donor pool."
+    },
+    {
+      "topic": "Blood Type Background",
+      "say": "O-positive reaches 53% among Latin American donors. Donor background helps shape the available blood supply."
+    }
+  ]
+}
