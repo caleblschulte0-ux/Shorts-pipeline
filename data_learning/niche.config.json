@@ -28125,9 +28125,9 @@
   },
   {
    "slug": "english-internet-share-decline",
-   "title": "English Lost 30 Points Of The Early Web",
-   "hook": "Search only in English and nearly half the web disappears.",
-   "closing": "The internet still uses English most, but its fastest growth now comes from elsewhere.",
+   "title": "English Lost Its Web Monopoly But Still Leads Today",
+   "hook": "The web diversified fast, yet English kept a narrower lead.",
+   "closing": "Browsing beyond English now opens a large part of the modern web.",
    "question": "Which language do you browse in?",
    "caption": "English was 75% of web pages in 1998. It's down to about 55% of websites today, while other languages grew 10x faster online. What language do you think runs the internet? Guess below. 👇",
    "hashtags": [
@@ -28145,7 +28145,7 @@
     "shorts"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-26T12:33:21Z",
+   "rewritten_at": "2026-11-27T12:29:03Z",
    "retold": "retell/v4",
    "hook_was": "English once ran 75 percent of the web. Not anymore.",
    "segments": [
@@ -28156,9 +28156,9 @@
       "file": "english_web_page_share.json"
      },
      "insight_type": "trend",
-     "topic": "English Web Share",
+     "topic": "English Web Then",
      "role": "1 · THE OLD WEB",
-     "say": "English fell to 45% of web pages by 2005. The early internet stopped being overwhelmingly English.",
+     "say": "English fell to 45% of web pages by 2005. The early web was no longer overwhelmingly English.",
      "scene": {
       "mechanic": "english-wall-floods",
       "concept": "a wall of 100 web pages starts three-quarters gold English, then other-language pages flood in from the right until English falls to 45",
@@ -28173,9 +28173,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "English Growth Rival",
+     "topic": "English Rival Growth",
      "role": "2 · THE CATCH-UP",
-     "say": "Arabic content grew 2,501%. Other languages expanded far faster as new populations came online.",
+     "say": "Arabic online content grew 2,501% over the measured decade. Other languages expanded far faster than English.",
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _ar_line(cr, xr, yb, w, seed, ink, sz):\n    # one line of Arabic handwriting, written right to left: a joined baseline\n    # with teeth, tall alifs, a curl at each word's end, dots above and below\n    cr.set_source_rgba(*_c(ink))\n    cr.set_line_width(max(2.6, 0.2 * sz))\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.set_line_join(cairo.LINE_JOIN_ROUND)\n    x = xr\n    i = 0\n    while x > xr - w + 24:\n        ww = 38 + ((seed * 7 + i * 13) % 5) * 15\n        x0 = max(xr - w, x - ww)\n        cr.move_to(x, yb)\n        n = int((x - x0) / 10)\n        for j in range(n):\n            xx = x - j * 10\n            cr.line_to(xx - 4, yb)\n            if (seed + i + j) % 3 == 0:\n                cr.line_to(xx - 6, yb - 0.4 * sz)\n                cr.line_to(xx - 8, yb)\n        cr.line_to(x0, yb)\n        cr.curve_to(x0 - 7, yb + 2, x0 - 7, yb + 0.45 * sz, x0 + 3, yb + 0.45 * sz)\n        cr.stroke()\n        if (seed + i) % 2 == 0:\n            cr.move_to(x - 4, yb)\n            cr.line_to(x - 4, yb - 0.75 * sz)\n            cr.stroke()\n        for d in range((seed + i) % 3):\n            dy = yb - 0.5 * sz if (i + d) % 2 else yb + 0.32 * sz\n            cr.arc(x - 14 - d * 9, dy, max(1.6, 0.11 * sz), 0, 2 * math.pi)\n            cr.fill()\n        x = x0 - 16\n        i += 1\n\n\ndef _en_line(cr, xl, yb, w, seed, ink, sz):\n    # one line of Latin type, left to right: words as x-height blocks with\n    # the odd ascender\n    cr.set_source_rgba(*_c(ink))\n    x = xl\n    i = 0\n    while x < xl + w - 24:\n        ww = min(xl + w - x, 26 + ((seed * 5 + i * 11) % 6) * 12)\n        cr.rectangle(x, yb - 0.42 * sz, ww, 0.42 * sz)\n        cr.fill()\n        if (seed + i) % 2 == 0:\n            cr.rectangle(x, yb - 0.72 * sz, 5, 0.72 * sz)\n            cr.fill()\n        x += ww + 12\n        i += 1\n\n\ndef _dome(cr, x, base, w, h, rgb):\n    # a mosque on the skyline: a drum, a dome, a finial\n    box(cr, x - w / 2, base, w, h, (214, 196, 168), depth=0.18 * w)\n    cr.arc(x, base - h, w * 0.42, math.pi, 2 * math.pi)\n    cr.close_path()\n    solid(cr, rgb, finish=\"gloss\")\n    cr.set_source_rgba(*_c((120, 100, 60)))\n    cr.set_line_width(max(3, w * 0.012))\n    cr.move_to(x, base - h - w * 0.42)\n    cr.line_to(x, base - h - w * 0.42 - max(26, w * 0.09))\n    cr.stroke()\n\n\ndef _minaret(cr, x, base, h):\n    cylinder(cr, x - 16, base, 32, h, (222, 206, 178))\n    for fr in (0.45, 0.78):\n        cr.rectangle(x - 26, base - h * fr, 52, 12)\n        solid(cr, (190, 174, 146), rim=False)\n    cr.move_to(x - 16, base - h)\n    cr.line_to(x, base - h - 52)\n    cr.line_to(x + 16, base - h)\n    cr.close_path()\n    solid(cr, (90, 130, 120))\n\n\ndef _lantern(cr, x, base, s, t):\n    # a brass fanous right by the camera: ring, pointed cap, three glass\n    # panes of its six-sided body, a flame glowing inside\n    glow(cr, x, base - 150 * s, 200 * s, (255, 190, 110), 0.35 + 0.05 * math.sin(t * 3))\n    cr.set_source_rgba(*_c((150, 112, 50)))\n    cr.set_line_width(6 * s)\n    cr.arc(x, base - 330 * s, 18 * s, 0, 2 * math.pi)\n    cr.stroke()\n    cr.move_to(x - 70 * s, base - 250 * s)\n    cr.line_to(x, base - 312 * s)\n    cr.line_to(x + 70 * s, base - 250 * s)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    box(cr, x - 76 * s, base - 236 * s, 152 * s, 16 * s, P[\"brass\"], depth=14 * s, finish=\"metal\")\n    panes = [(-70, -36, (224, 150, 70)), (-36, 36, (240, 196, 110)), (36, 70, (70, 150, 150))]\n    for a_, b_, col in panes:\n        cr.move_to(x + a_ * s, base - 236 * s)\n        cr.line_to(x + b_ * s, base - 236 * s)\n        cr.line_to(x + b_ * 0.86 * s, base - 50 * s)\n        cr.line_to(x + a_ * 0.86 * s, base - 50 * s)\n        cr.close_path()\n        solid(cr, col, finish=\"glass\", a=0.92)\n    glow(cr, x, base - 140 * s, 46 * s, (255, 236, 170), 0.9)\n    cr.set_source_rgba(*_c(P[\"brass_shade\"]))\n    cr.set_line_width(5 * s)\n    for xx in (-36, 36):\n        cr.move_to(x + xx * s, base - 236 * s)\n        cr.line_to(x + xx * 0.86 * s, base - 50 * s)\n    cr.stroke()\n    box(cr, x - 66 * s, base, 132 * s, 50 * s, P[\"brass\"], depth=14 * s, finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a laptop screen filling with Arabic writing\n    SUBSTANCE: lines of Arabic script\n    CAUSE: Data hammers the laptop's keys and every strike writes more lines of Arabic onto the screen\n    A rooftop café at sunset over an Arabic city: a great golden dome and two\n    minarets fading into the haze, a wooden table running back toward the\n    parapet, and on it a laptop turned hard toward the sun, its screen\n    receding into the picture, two pages open: English left, Arabic right.\n    Ten years ago each page held ONE line; that line stays boxed as a dashed\n    ghost with the old level marked across both. Data walks the keyboard\n    hammering key after key, and every strike writes lines onto both pages\n    at their real multiples: English creeps to under four lines while the\n    Arabic page fills top to bottom, twenty-six times its old self. Done by\n    0.66 and held; the cursor blinks, the tea steams, the lantern flickers,\n    birds cross the sky, Data keeps hammering. By the camera: a brass\n    lantern, a phone already written in Arabic, a glass of tea.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    ar = next((r for r in rows if \"arab\" in r[0].lower()), max(rows, key=lambda r: r[1]))\n    en = next((r for r in rows if \"engl\" in r[0].lower()), min(rows, key=lambda r: r[1]))\n    rA = 1.0 + ar[1] / 100.0\n    rE = 1.0 + en[1] / 100.0\n\n    S = 6\n    a0, a1 = 0.08, 0.66\n    span = (a1 - a0) / S\n    k = int(clamp((u - a0) / span, 0, S - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    g = ease(seg(f, 0.3, 0.85))                 # the lines write on the strike\n    step = 0.0 if u < a0 else (k + g) / S\n    done = u >= a0 and k == S - 1 and g >= 0.999\n    LA = 1.0 + (rA - 1.0) * step\n    LE = 1.0 + (rE - 1.0) * step\n\n    # THE SETTING: an Arabic city at sunset, seen from a rooftop\n    gy = landscape(cr, t, \"town\", horizon=1100)\n    _dome(cr, 560, gy + 20, 560, 220, (206, 168, 84))          # the great mosque\n    for x, w, h, col in ((20, 220, 110, (70, 132, 140)), (1070, 220, 120, (196, 160, 80))):\n        _dome(cr, x, gy + 20, w, h, col)\n    for x, h in ((80, 520), (1000, 560)):\n        _minaret(cr, x, gy + 20, h)\n    birds(cr, t, y0=680, n=5, rgb=(60, 50, 60))\n    haze(cr, 560, 1140, (236, 196, 160), a=0.45)\n    # the rooftop terrace: warm tiles running back to the parapet\n    cr.move_to(0, 1150)\n    cr.line_to(W, 1120)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (196, 150, 112), edge=False)\n    cr.set_source_rgba(*_c((150, 108, 78), 0.5))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(1300, 1060)\n        cr.line_to(-1000 + i * 260, H)\n    cr.stroke()\n    box(cr, 0, 1180, W, 54, (214, 180, 140), depth=24)       # parapet\n\n    # the table: its top running back into the picture, its front edge near\n    cast_shadow(cr, 0, W, 1720, length=200, a=0.3)\n    cr.move_to(70, 1330)\n    cr.line_to(1080, 1290)\n    cr.line_to(1080, 1690)\n    cr.line_to(-20, 1690)\n    cr.close_path()\n    solid(cr, (150, 98, 62), finish=\"gloss\")\n    cr.set_source_rgba(*_c((110, 70, 44), 0.5))\n    cr.set_line_width(3)\n    for i in range(6):\n        y_ = 1350 + i * 60\n        cr.move_to(0, y_ + 10)\n        cr.line_to(W, y_ - 30 + i * 6)\n    cr.stroke()\n    cr.rectangle(-20, 1690, W + 40, 40)\n    solid(cr, (104, 66, 40), rim=False)\n\n    # the laptop, turned hard toward the sun: its right side recedes\n    SH, OX, BY, SC = -0.15, 560.0, 1560.0, 0.8\n\n    def mp(x, y):\n        return (OX + SC * (x - OX), BY + SC * (y - BY) + SH * SC * (x - OX))\n\n    def kx(i):\n        return 210 + 110 * i\n    if u < a0:\n        hx = kx(0)\n    elif done or u >= a1:\n        hx = kx(S - 1)\n    else:\n        hx = kx(k - 1 + ease(seg(f, 0.0, 0.25))) if k > 0 else kx(0)\n    FOOT = 1432\n    hit_x = hx + 75\n    striking = a0 <= u < a1 and 0.3 <= f < 0.55\n\n    lx0, ly0 = mp(40, 1460)\n    lx1, ly1 = mp(1040, 1460)\n    cast_shadow(cr, lx0, lx1, ly0, length=240, a=0.32)\n    contact_shadow(cr, (lx0 + lx1) / 2, (ly0 + ly1) / 2 + 6, lx1 - lx0, a=0.5)\n\n    cr.save()\n    cr.transform(cairo.Matrix(SC, SH * SC, 0.0, SC, OX * (1 - SC),\n                              BY * (1 - SC) - SH * SC * OX))\n    # the laptop base and its keys\n    cr.move_to(90, 1250)\n    cr.line_to(990, 1250)\n    cr.line_to(1040, 1440)\n    cr.line_to(40, 1440)\n    cr.close_path()\n    solid(cr, (176, 180, 188), finish=\"metal\")\n    cr.rectangle(40, 1440, 1000, 20)\n    solid(cr, (118, 122, 132), finish=\"metal\", rim=False)\n    for r_ in range(4):\n        yb = 1286 + r_ * 44\n        s_ = (yb - 1250) / 190.0\n        xl, xr = 90 - 50 * s_ + 16, 990 + 50 * s_ - 16\n        kw = (xr - xl) / 13.0\n        for c_ in range(13):\n            x_ = xl + c_ * kw\n            down = r_ == 3 and striking and x_ <= hit_x < x_ + kw\n            box(cr, x_ + 3, yb + (6 if down else 0), kw - 12, 24 - (6 if down else 0),\n                (60, 62, 70) if not down else (90, 94, 104), depth=8)\n            if down:\n                glow(cr, x_ + kw / 2, yb - 10, 50, (255, 236, 190), 0.5)\n\n    # the lid, its side going back into the picture, and the screen\n    box(cr, 80, 1250, 880, 600, (70, 74, 84), depth=90, finish=\"metal\")\n    vgrad(cr, [(0, (30, 34, 44)), (1, (20, 22, 30))], 674, 1226, 104, 936)\n    TOP, BOT = 736, 1214\n    U = (BOT - TOP - 6) / rA                    # one line = ten years ago\n    panes = [(120, 508, (92, 96, 106), \"ENGLISH\"), (532, 920, P[\"accent2\"], \"ARABIC\")]\n    for x0, x1, bar, name in panes:\n        vgrad(cr, [(0, (250, 248, 243)), (1, (230, 233, 238))], 730, BOT, x0, x1)\n        cr.rectangle(x0, 688, x1 - x0, 40)\n        solid(cr, bar, finish=\"gloss\", rim=False)\n        for d in range(3):\n            disc(cr, x0 + 18 + d * 18, 708, 6, (236, 232, 224))\n        text(cr, name, x1 - 14, 718, 28, look.INK, anchor=\"right\", shadow=False)\n\n    ink = (34, 36, 44)\n    w = 388 - 28\n    xr = 920 - 14\n    cur = None\n    for i in range(int(math.ceil(LA))):\n        fr = clamp(LA - i)\n        if fr <= 0:\n            continue\n        cr.save()\n        cr.rectangle(xr - w * fr - 2, TOP + i * U - 3, w * fr + 6, U + 6)\n        cr.clip()\n        _ar_line(cr, xr, TOP + i * U + U * 0.62, w, i * 3 + 1, ink, U)\n        cr.restore()\n        cur = (xr - w * fr - 6, TOP + i * U)\n    xl = 120 + 14\n    for i in range(int(math.ceil(LE))):\n        fr = clamp(LE - i)\n        if fr <= 0:\n            continue\n        cr.save()\n        cr.rectangle(xl - 2, TOP + i * U - 3, w * fr + 4, U + 6)\n        cr.clip()\n        _en_line(cr, xl, TOP + i * U + U * 0.7, w, i * 5 + 2, (70, 76, 90), U)\n        cr.restore()\n    if cur is not None and (math.sin(t * 6.0) > 0 or not done):\n        cr.rectangle(cur[0], cur[1] + 1, 3, U - 2)\n        cr.set_source_rgba(*_c(P[\"accent2\"]))\n        cr.fill()\n\n    # THE SCALE on the pages: the one line each held ten years ago\n    if u > 0.06:\n        la = ease(seg(u, 0.06, 0.12))\n        cr.rectangle(124, TOP - 2, 380, U + 2)\n        ghost(cr, a=0.85)\n        cr.rectangle(536, TOP - 2, 380, U + 2)\n        ghost(cr, a=0.85)\n        then_mark(cr, 124, 760, TOP + U, \"10 yrs ago\", a=la)\n    # English's own growth, written on its own mostly-empty page\n    ea = ease(seg(u, a1, a1 + 0.04)) if done else 0.0\n    if ea > 0:\n        text(cr, f\"+{en[1]:,.0f}%\", 314, BOT - 50, 76, (110, 116, 130),\n             face=\"display\", anchor=\"center\", shadow=False, alpha=ea)\n    glow(cr, 280, 780, 280, (255, 226, 190), 0.14)    # the sunset on the glass\n    cr.restore()\n\n    # right by the camera: a brass lantern, a phone in Arabic, a glass of tea\n    contact_shadow(cr, 470, 1880, 380, a=0.35)\n    cr.move_to(300, 1770)\n    cr.line_to(610, 1746)\n    cr.line_to(652, 1870)\n    cr.line_to(332, 1898)\n    cr.close_path()\n    solid(cr, (36, 38, 46), finish=\"gloss\")\n    cr.save()\n    cr.move_to(322, 1778)\n    cr.line_to(598, 1758)\n    cr.line_to(634, 1862)\n    cr.line_to(348, 1884)\n    cr.close_path()\n    cr.clip()\n    vgrad(cr, [(0, (246, 244, 238)), (1, (220, 224, 230))], 1750, 1890, 310, 650)\n    for i in range(4):\n        _ar_line(cr, 610 + i * 6, 1792 + i * 24, 250, i + 7, ink, 18)\n    cr.restore()\n    contact_shadow(cr, 120, 1910, 260, a=0.4)\n    _lantern(cr, 120, 1900, 1.3, t)\n    contact_shadow(cr, 900, 1880, 170, a=0.35)\n    cr.move_to(845, 1700)\n    cr.line_to(955, 1700)\n    cr.line_to(938, 1880)\n    cr.line_to(862, 1880)\n    cr.close_path()\n    solid(cr, (176, 82, 40), finish=\"glass\", a=0.9)\n    cr.save()\n    cr.scale(1, 0.3)\n    cr.arc(900, 1700 / 0.3, 55, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (206, 110, 56), finish=\"gloss\")\n    steam(cr, 900, 1660, t, strength=1.3)\n    vignette(cr, a=0.3)\n\n    fx, fy = mp(hx, FOOT)\n    if u < a0:\n        host(\"point\", fx, fy, 220)\n    elif u < 0.92:\n        host(\"hammer\", fx, fy, 220, beat=k if u < a1 + 0.02 else S + int((u - a1) / 0.09))\n    else:\n        host(\"hold_up\", fx, fy, 220)\n\n    if done:\n        fit_readout(cr, f\"+{ar[1]:,.0f}%\", f\"{ar[0]} web content in ten years\",\n                    80, 520, size=130, max_w=900)\n    else:\n        fit_readout(cr, \"The web\", \"written in its own languages · ten years\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130, max_w=900)\n",
      "scene": {
       "mechanic": "language-growth-race-lanes",
@@ -28191,9 +28191,9 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "English Websites Today",
+     "topic": "English Web Today",
      "role": "3 · THE LEAD TODAY",
-     "say": "English now appears on 55% of websites. It still leads, but nearly half the web speaks something else.",
+     "say": "English now appears on 55% of websites. It still leads, but no longer monopolizes the web.",
      "scene": {
       "mechanic": "english-globe-half-filled",
       "concept": "a globe fills gold to 55 percent while a ring of 45 orbiting dots, the other languages, circle the missing part",
@@ -32202,10 +32202,10 @@
   },
   {
    "slug": "back-to-sleep-campaign-cut-sids",
-   "title": "Why One Simple Rule Cut Baby Deaths In Half",
-   "hook": "The sleeping position parents trusted for years was the one putting babies in danger.",
-   "closing": "Know a new parent? Tell them: back to sleep. It costs nothing and it works.",
-   "question": "Did you know which way babies should sleep?",
+   "title": "Back Sleeping Halved SIDS, But Thousands Still Die",
+   "hook": "A safer sleep position transformed infant survival without ending the danger.",
+   "closing": "Putting babies on their backs remains a simple step parents can use tonight.",
+   "question": "Do new parents know this rule?",
    "caption": "SIDS deaths in the US fell by more than half in under two decades -- not from new medicine, but from one changed instruction to parents. Here's how 'back to sleep' became one of the most effective public health campaigns ever. Did you know which way babies should sleep? 👇",
    "hashtags": [
     "sids",
@@ -32230,8 +32230,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "Campaign cut SIDS",
-     "say": "SIDS deaths fell to 0.64 per thousand babies, less than half the 1991 rate. One simple change in how babies sleep did that.",
+     "topic": "SIDS Sleeping Rate",
+     "say": "The SIDS rate fell to 0.64 per thousand births by 2008. Back sleeping accompanied a drop of more than half.",
      "scene": {
       "mechanic": "crib-night-lights",
       "concept": "two rows of cribs, glowing nightlights drop from 13 to 6 per 10,000 babies",
@@ -32246,8 +32246,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE FIX",
-     "topic": "Babies Put Down",
-     "say": "Before the campaign, over 85% of SIDS cases were babies put down on their stomachs. Flipping them onto their backs did the trick.",
+     "topic": "SIDS Sleeping Position",
+     "say": "Before the campaign, 85.4% of SIDS cases involved stomach-down placement. Sleep position became the prevention target.",
      "illustrated_scene": null,
      "viz": "trend"
     },
@@ -32259,8 +32259,8 @@
      },
      "insight_type": "trend",
      "role": "3 · WHY IT STILL MATTERS",
-     "topic": "Baby deaths remain",
-     "say": "About 3,400 babies still die in sleep-related deaths every year. The danger is smaller, not gone, so the back still matters.",
+     "topic": "SIDS Sleeping Deaths",
+     "say": "About 3,400 sleep-related infant deaths still occur yearly. The improvement did not erase the need for safer sleep.",
      "scene": {
       "mechanic": "crib-census",
       "concept": "34 cribs, each one a hundred babies still lost each year",
@@ -32269,8 +32269,8 @@
     }
    ],
    "retold": "retell/v3",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:36Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:29:03Z",
    "hook_was": "SIDS deaths fell 53% after one simple fix.",
    "scorecard": {
     "scores": {
@@ -36742,10 +36742,10 @@
   },
   {
    "slug": "right-whale-breeding-females",
-   "title": "Only 70 Right Whale Mothers Hold Up The Recovery",
-   "hook": "The whale comeback depends on a group smaller than a packed bus.",
-   "closing": "Protecting each mother is the clearest way to keep this fragile recovery moving.",
-   "question": "Can right whales recover?",
+   "title": "Right Whale Recovery Grew, But Mothers Are The Bottleneck",
+   "hook": "A fragile whale rebound ends at a surprisingly small maternal bottleneck.",
+   "closing": "Protecting breeding mothers is essential if the right whale rebound is to continue.",
+   "question": "Can the rebound keep growing?",
    "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
    "hashtags": [
     "rightwhale",
@@ -36761,7 +36761,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-26T12:28:55Z",
+   "rewritten_at": "2026-11-27T12:29:04Z",
    "hook_was": "The species almost went silent in 2018.",
    "segments": [
     {
@@ -36772,8 +36772,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE TURN",
-     "topic": "Whale Population",
-     "say": "The right whale population reached 384. The rebound exists, but every animal still matters.",
+     "topic": "Right Whale Recovery",
+     "say": "The right whale population reached 384 in 2024. The recovery is real but still numerically fragile.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _rw_top(x, X0, L, WL, Hb):\n    q = clamp((x - X0) / L)\n    hump = Hb * (math.sin(math.pi * q) ** 0.75)\n    head = 26 * math.exp(-((q - 0.12) / 0.07) ** 2)\n    return WL - hump - head\n\n\ndef _rw_blow(cr, x, y, p):\n    if p <= 0 or p >= 1:\n        return\n    hgt = 230 * ease(min(1.0, p * 2.4))\n    a = 0.85 * (1.0 - p)\n    for sgn in (-1, 1):\n        ang = sgn * 0.33\n        tx, ty = x + math.sin(ang) * hgt, y - math.cos(ang) * hgt\n        wid = 16 + 70 * ease(min(1.0, p * 2.0))\n        nx, ny = math.cos(ang), math.sin(ang)\n        cr.move_to(x - 6 * nx, y - 6 * ny)\n        cr.curve_to(x - 10 * nx + (tx - x) * 0.5, y + (ty - y) * 0.5,\n                    tx - wid * 0.6 * nx, ty - wid * 0.3, tx, ty - wid * 0.4)\n        cr.curve_to(tx + wid * 0.6 * nx, ty - wid * 0.3,\n                    x + 10 * nx + (tx - x) * 0.5, y + (ty - y) * 0.5,\n                    x + 6 * nx, y + 6 * ny)\n        cr.close_path()\n        cr.set_source_rgba(*_c((240, 244, 248), a))\n        cr.fill()\n        glow(cr, tx, ty - wid * 0.2, wid, (240, 244, 248), a * 0.6)\n\n\ndef _rw_skiff(cr, x, y):\n    contact_shadow(cr, x + 160, y + 36, 380, a=0.35)\n    box(cr, x - 34, y - 6, 40, 74, (58, 60, 68), finish=\"metal\")\n    disc(cr, x - 14, y - 70, 9, (40, 40, 46), finish=\"metal\")\n    cr.move_to(x, y - 62)\n    cr.line_to(x + 320, y - 74)\n    cr.curve_to(x + 312, y, x + 284, y + 30, x + 252, y + 36)\n    cr.line_to(x + 42, y + 36)\n    cr.curve_to(x + 20, y + 22, x + 6, y - 18, x, y - 62)\n    cr.close_path()\n    solid(cr, (196, 70, 48))\n    seams(cr, x + 18, y - 52, x + 300, y + 30, (196, 70, 48), n=4, axis='h')\n    cr.rectangle(x, y - 76, 322, 12)\n    solid(cr, (226, 218, 202))\n    trim(cr, x + 60, y - 50, x + 150, y - 10, (226, 218, 202), w=5)\n    text(cr, \"NOAA\", x + 74, y - 18, 22, (240, 236, 226), face=\"bold\", shadow=False)\n    for i in range(6):\n        disc(cr, x + 30 + i * 52, y - 70, 5, (150, 150, 158), finish=\"metal\")\n    cr.set_source_rgba(*_c((232, 128, 44)))\n    cr.set_line_width(6)\n    for i in range(4):\n        cr.save()\n        cr.translate(x + 262, y - 84)\n        cr.scale(1, 0.4)\n        cr.arc(0, 0, 18 + i * 6, 0, 2 * math.pi)\n        cr.restore()\n        cr.stroke()\n    disc(cr, x + 200, y - 96, 16, (236, 120, 40))\n    cr.set_source_rgba(*_c((240, 246, 250), 0.6))\n    cr.set_line_width(4)\n    cr.move_to(x - 30, y + 40)\n    cr.curve_to(x + 100, y + 52, x + 220, y + 52, x + 340, y + 34)\n    cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a right whale surfacing\n    SUBSTANCE: the whale rising free\n    CAUSE: Data hauls the fishing rope off the whale, one haul per year, and it rises and blows\n    A North Atlantic right whale at dawn, black, finless, its head crusted\n    with pale callosities, wrapped in orange fishing rope. From a research\n    skiff Data hauls one rope off per year; as each comes free the whale\n    rises higher out of the sea and blows its V-shaped spout, and the far\n    pod of backs grows to that year's count. Done by 0.6, then held: the\n    whale breathes, a calf's flukes lift by the camera, Data holds the rope.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    a0, a1 = 0.08, 0.6\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    if u < a0:\n        pull = rise = drift = 0.0\n    else:\n        pull = ease(seg(f, 0.1, 0.45))\n        rise = ease(seg(f, 0.35, 0.8))\n        drift = ease(seg(f, 0.05, 0.5))\n    freed = 0.0 if u < a0 else k + rise\n    if k == 0 or u < a0:\n        val = rows[0][1]\n    else:\n        val = rows[k - 1][1] + (rows[k][1] - rows[k - 1][1]) * rise\n    landed_to = (k if rise >= 0.999 else k - 1) if u >= a0 else -1\n    shown = rows[landed_to] if landed_to >= 0 else None\n\n    HZ = 820\n    landscape(cr, t, \"coast\", horizon=HZ, time=\"dawn\", seed=\"right whale\", skyline=False)\n    vgrad(cr, [(0, (164, 178, 186)), (0.2, (78, 116, 146)), (1, (16, 42, 68))], HZ, H)\n    glow(cr, 300, HZ + 20, 320, (255, 210, 160), 0.3)\n\n    # the far pod: one back per ~16 whales, scattered, varied\n    cnt = val / 16.0\n    for i in range(30):\n        vis = clamp(cnt - i)\n        if vis <= 0:\n            continue\n        px = 40 + ((i * 0.6180339) % 1.0) * 1000\n        r = (i * 0.4142136) % 1.0\n        py = HZ + 24 + r * 90\n        s = 0.35 + 0.7 * r + 0.15 * ((i * 0.37) % 1.0)\n        cr.save()\n        cr.translate(px, py)\n        cr.scale(s, s)\n        cr.move_to(-40, 0)\n        cr.curve_to(-30, -22, 20, -24, 40, 0)\n        cr.close_path()\n        solid(cr, (34, 38, 46), a=vis, rim=False)\n        cr.restore()\n        if i % 4 == 0:\n            _rw_blow(cr, px - 20 * s, py - 14 * s, ((t * 0.5 + i * 0.29) % 1.0) * 0.9)\n    haze(cr, HZ, 1000, (180, 186, 190), a=0.35)\n\n    # wave crests drifting toward the camera\n    for i in range(70):\n        r = i % 10\n        y = HZ + 30 + (r / 9.0) ** 1.6 * 900\n        s = 0.3 + r / 9.0 * 1.7\n        x = ((i * 137 + t * 30 * s) % 1220) - 70\n        cr.set_source_rgba(*_c((206, 224, 236), 0.45))\n        cr.set_line_width(2 * s)\n        cr.move_to(x, y)\n        cr.curve_to(x + 12 * s, y - 5 * s, x + 24 * s, y - 5 * s, x + 36 * s, y)\n        cr.stroke()\n\n    # THE WHALE\n    X0, L, WL = 230.0, 760.0, 1190.0\n    bob = 6 * math.sin(t * 1.5) if u > a1 else 0.0\n    Hb = 100 + 52 * freed\n    WLb = WL + bob\n    cast_shadow(cr, X0 + 100, X0 + L, WL + 30, length=220, a=0.15)\n    cr.save()\n    cr.translate(X0 + L * 0.5, WL + 40)\n    cr.scale(1, 0.18)\n    cr.arc(0, 0, L * 0.56, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((10, 20, 30), 0.4))\n    cr.fill()\n    cr.move_to(X0 + L * 0.3, WL + 50)\n    cr.curve_to(X0 + L * 0.34, WL + 120, X0 + L * 0.42, WL + 140, X0 + L * 0.46, WL + 90)\n    cr.close_path()\n    cr.set_source_rgba(*_c((10, 20, 30), 0.35))\n    cr.fill()\n    cr.move_to(X0, WLb)\n    for i in range(1, 49):\n        x = X0 + L * i / 48\n        cr.line_to(x, _rw_top(x, X0, L, WLb, Hb))\n    cr.line_to(X0 + L, WLb)\n    cr.close_path()\n    solid(cr, (42, 46, 54))\n    # bowed mouth line, eye, callosities, scars\n    cr.set_source_rgba(*_c((150, 154, 160), 0.8))\n    cr.set_line_width(4)\n    cr.move_to(X0 + 8, WLb - 8)\n    cr.curve_to(X0 + 0.1 * L, _rw_top(X0 + 0.1 * L, X0, L, WLb, Hb) + 40,\n                X0 + 0.2 * L, _rw_top(X0 + 0.2 * L, X0, L, WLb, Hb) + 50,\n                X0 + 0.27 * L, WLb - 18)\n    cr.stroke()\n    disc(cr, X0 + 0.25 * L, WLb - 30, 6, (18, 18, 22))\n    for i in range(16):\n        x = X0 + L * (0.03 + 0.16 * ((i * 0.6180339) % 1.0))\n        y = _rw_top(x, X0, L, WLb, Hb) + 5 + 22 * ((i * 0.4142136) % 1.0)\n        disc(cr, x, y, 4 + 5 * ((i * 0.37) % 1.0), (218, 210, 190))\n    cr.set_source_rgba(*_c((120, 126, 134), 0.5))\n    cr.set_line_width(2)\n    for i in range(8):\n        x = X0 + L * (0.35 + 0.5 * ((i * 0.53) % 1.0))\n        y = _rw_top(x, X0, L, WLb, Hb) + 20 + 30 * ((i * 0.71) % 1.0)\n        cr.move_to(x, y)\n        cr.line_to(x + 26, y + 6)\n        cr.stroke()\n    # foam at the waterline\n    cr.set_source_rgba(*_c((236, 244, 248), 0.75))\n    cr.set_line_width(5)\n    cr.move_to(X0 - 30, WLb)\n    for i in range(1, 25):\n        x = X0 - 30 + (L + 60) * i / 24\n        cr.line_to(x, WLb + 4 * math.sin(i * 1.3 + t * 3))\n    cr.stroke()\n\n    # Data's skiff and the rope bands\n    bx = 110 + 110 * (min(k, n) + drift) * 3.0 / max(1, n) if u >= a0 else 110.0\n    if u > a1:\n        bx = 440.0\n    FY = 1464\n    DH = 300\n    dx = bx + 130\n    hx, hy = dx + 30, FY - 0.62 * DH\n    band_q = [0.38, 0.55, 0.72]\n    for j in range(3):\n        jj = min(j, n - 1)\n        p = 1.0 if (u >= a0 and j < k) else (pull if (u >= a0 and j == k) else 0.0)\n        if u > a1:\n            p = 1.0\n        if p >= 1.0:\n            continue\n        x = X0 + L * band_q[j]\n        ytop = _rw_top(x, X0, L, WLb, Hb)\n        ox, oy = (hx - x) * 0.45 * p, (hy - ytop) * 0.3 * p\n        cr.set_source_rgba(*_c((150, 70, 26), 1 - p))\n        cr.set_line_width(20)\n        cr.move_to(x - 18 + ox, WLb + oy)\n        cr.curve_to(x - 8 + ox, ytop + 40 + oy, x + ox, ytop + 10 + oy, x + 6 + ox, ytop + oy)\n        cr.stroke()\n        cr.set_source_rgba(*_c((236, 128, 44), 1 - p))\n        cr.set_line_width(13)\n        cr.move_to(x - 18 + ox, WLb + oy)\n        cr.curve_to(x - 8 + ox, ytop + 40 + oy, x + ox, ytop + 10 + oy, x + 6 + ox, ytop + oy)\n        cr.stroke()\n        if j == k and u >= a0:\n            cr.set_source_rgba(*_c((236, 128, 44)))\n            cr.set_line_width(6)\n            cr.move_to(hx, hy)\n            cr.curve_to(hx + (x - hx) * 0.4, hy + 60, x + ox - 40, ytop + oy - 10, x + 6 + ox, ytop + oy)\n            cr.stroke()\n\n    # the blow: after each rope comes free, and on every breath after\n    bhx = X0 + 0.24 * L\n    bhy = _rw_top(bhx, X0, L, WLb, Hb) + 4\n    if u >= a0 and u <= a1:\n        _rw_blow(cr, bhx, bhy, seg(f, 0.62, 1.0))\n    elif u > a1:\n        _rw_blow(cr, bhx, bhy, (t % 1.6) / 1.6)\n\n    _rw_skiff(cr, bx, FY + 56)\n\n    # right by the camera: a calf's flukes lift and sink\n    lift = math.sin(math.pi * ((t / 2.6) % 1.0))\n    FX, FW = 860, 1720\n    cr.save()\n    cr.rectangle(0, 0, W, FW + 2)\n    cr.clip()\n    ty = FW - 280 * lift\n    cr.move_to(FX - 30, FW + 10)\n    cr.curve_to(FX - 22, ty + 80, FX - 10, ty + 40, FX, ty + 20)\n    cr.curve_to(FX + 10, ty + 40, FX + 22, ty + 80, FX + 30, FW + 10)\n    cr.close_path()\n    solid(cr, (40, 44, 52))\n    cr.move_to(FX, ty + 30)\n    cr.curve_to(FX - 60, ty - 10, FX - 120, ty - 20, FX - 150, ty - 50)\n    cr.curve_to(FX - 100, ty - 20, FX - 40, ty + 10, FX, ty + 6)\n    cr.curve_to(FX + 40, ty + 10, FX + 100, ty - 20, FX + 150, ty - 50)\n    cr.curve_to(FX + 120, ty - 20, FX + 60, ty - 10, FX, ty + 30)\n    cr.close_path()\n    solid(cr, (40, 44, 52))\n    cr.restore()\n    cr.set_source_rgba(*_c((236, 244, 248), 0.7 * lift))\n    cr.set_line_width(5)\n    cr.save()\n    cr.translate(FX, FW + 4)\n    cr.scale(1, 0.25)\n    cr.arc(0, 0, 60 + 60 * lift, 0, 2 * math.pi)\n    cr.restore()\n    cr.stroke()\n\n    # the shore we watch from\n    cr.move_to(0, 1790)\n    for i in range(1, 13):\n        cr.line_to(W * i / 12, 1790 + 22 * math.sin(i * 1.7) - 10 * (i % 2))\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (118, 108, 94))\n    foreground(cr, \"coast\", y0=1780)\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", dx, FY, DH)\n    elif u <= a1 + 0.02:\n        host(\"haul\", dx, FY, DH, beat=k)\n    else:\n        host(\"hold_up\", dx, FY, DH)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} right whales\", f\"left in the North Atlantic · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Right whales\", f\"North Atlantic, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -36784,8 +36784,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · FROM ZERO",
-     "topic": "Whale Calves",
-     "say": "The latest season produced 22 calves. New births are finally adding momentum to the rebound."
+     "topic": "Right Whale Calves",
+     "say": "The recent right whale season produced 22 calves. New births are the next step in that recovery."
     },
     {
      "source": "offline",
@@ -36795,8 +36795,8 @@
      },
      "insight_type": "share",
      "role": "3 · THE BOTTLENECK",
-     "topic": "Whale Mothers",
-     "say": "Only 70 are breeding females. Losing a few mothers could erase the progress those calves represent."
+     "topic": "Right Whale Mothers",
+     "say": "Only 70 right whales are breeding females. The entire recovery ultimately depends on this small group."
     }
    ],
    "scorecard": {
@@ -39124,10 +39124,10 @@
   },
   {
    "slug": "fifty-otters-survived-climate-fight",
-   "title": "How 50 Sea Otters Became A Carbon Lifeline",
-   "hook": "A near-extinction revealed how sea otters protect coastal carbon.",
-   "closing": "Saving sea otters also preserves kelp habitat and a natural carbon store.",
-   "question": "Would you protect sea otters?",
+   "title": "Fifty Sea Otters Rebuilt A Carbon-Protecting Population",
+   "hook": "A tiny surviving group became the start of a coastal recovery.",
+   "closing": "Protecting sea otters preserves their recovery and the kelp carbon linked to them.",
+   "question": "Should otter recovery be expanded?",
    "caption": "Fur traders hunted California's sea otters down to about 50 survivors. They've crept back to 3,000 — and the kelp forests they protect could store millions of tons of CO2. Would you want them near your coastline? 👇",
    "hashtags": [
     "seaotters",
@@ -39145,7 +39145,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-26T12:33:22Z",
+   "rewritten_at": "2026-11-27T12:29:04Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -39174,8 +39174,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · NEARLY WIPED OUT",
-     "topic": "Sea Otters Survived",
-     "say": "Only 50 sea otters survived the fur trade. That remnant kept the entire population alive."
+     "topic": "Sea Otter Low",
+     "say": "California sea otters fell to 50 by the 1930s. The population survived from a tiny remnant."
     },
     {
      "source": "offline",
@@ -39185,8 +39185,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SLOW COMEBACK",
-     "topic": "Sea Otters Recovered",
-     "say": "The population reached about 3,000 sea otters. Their return restored a crucial predator to coastal kelp."
+     "topic": "Sea Otter Recovery",
+     "say": "California sea otters later reached 3,000. The remnant grew into today's recovered population."
     },
     {
      "source": "offline",
@@ -39196,8 +39196,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHY IT MATTERS",
-     "topic": "Sea Otters Protect",
-     "say": "Sea-otter-protected kelp can store 8.7 million metric tons of CO2 yearly. Recovery now safeguards a carbon sink."
+     "topic": "Sea Otter Carbon",
+     "say": "Otter-protected kelp could store 8.7 million metric tons of carbon dioxide yearly. Their range carries measurable carbon potential."
     }
    ]
   },
