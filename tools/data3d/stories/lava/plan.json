@@ -7,10 +7,10 @@
     {
      "name": "eruption",
      "objects": [
+      "ridge smoke",
       "fissure glow",
       "lava fountain",
-      "eruption plume",
-      "ridge smoke"
+      "eruption plume"
      ],
      "whole": false,
      "built_as": "the volcano on the ridge over the town: thin smoke rising off it first, then a glowing slot of lava along its top, a lava fountain bursting up out of it, a huge black ash plume over it"
@@ -24,12 +24,12 @@
      "built_as": "Grindavik's low painted houses with coloured tin roofs down both sides of the main street"
     },
     {
-     "name": "car",
+     "name": "cars",
      "objects": [
       "getaway car"
      ],
-     "whole": false,
-     "built_as": "one small blue hatchback parked up the main street, that pulls out and races down it away from the eruption, past the lens, a tail of dust behind it"
+     "whole": true,
+     "built_as": "two small hatchbacks, blue and red, parked at the kerbs up the main street; their lamps come on at the glow, then they pull out and speed down the street toward the lens, dust behind them"
     }
    ],
    "framing": "close",
@@ -38,8 +38,8 @@
     "side": "left",
     "frame_h": 0.36
    },
-   "action": "the ridge over the town's roofs glows orange",
-   "consequence": "a lava fountain bursts up over the town's roofs right beside it",
+   "action": "the ridge behind the town glows orange",
+   "consequence": "the ridge erupts in a tall lava fountain",
    "says_still": 3,
    "unseen": [
     {
@@ -54,31 +54,31 @@
    "stills": [
     {
      "event": "before",
-     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, a car parked up the street, thin smoke rising off the ridge over the roofs; he stands centred in the street, three-quarter to us, looking at us",
+     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, two cars parked at the kerbs up the street, the ridge behind the town smokes; Data stands centred in the street facing us, calm",
      "hands": "free",
      "new": [],
      "visible": [
+      {
+       "prop": "eruption",
+       "as": "the ridge behind the town smokes"
+      },
       {
        "prop": "houses",
        "as": "the painted tin-roofed houses of one Icelandic town"
       },
       {
+       "prop": "cars",
+       "as": "two cars parked at the kerbs up the street"
+      },
+      {
        "prop": "data",
-       "as": "the driver in his hard hat in the street"
-      },
-      {
-       "prop": "eruption",
-       "as": "thin smoke rises off the ridge over the roofs"
-      },
-      {
-       "prop": "car",
-       "as": "a car parked up the street"
+       "as": "Data in his hard hat in the street, calm"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "the smoking ridge over the town's roofs glows orange, the volcano erupting; he turns and points at it",
+     "shows": "the ridge behind the town glows orange along its top; Data's head and shoulders turn toward it, arms down; the parked cars' headlights come on",
      "hands": "free",
      "new": [
       {
@@ -87,69 +87,70 @@
        "cause": "lava breaks out along the ridge"
       },
       {
+       "what": "cars",
+       "how": "lights",
+       "cause": "their drivers start them as the ridge glows"
+      },
+      {
        "what": "data",
        "how": "pose",
-       "cause": "he turns and points at the glow"
+       "cause": "he turns his head and shoulders to the glow"
       }
      ],
      "visible": [
       {
        "prop": "eruption",
-       "as": "the volcano erupting: an orange glow along the ridge over the town's roofs"
+       "as": "the ridge glows orange over the roofs"
       },
       {
-       "prop": "houses",
-       "as": "the town's roofs under it"
+       "prop": "cars",
+       "as": "the parked cars, headlights on"
       },
       {
        "prop": "data",
-       "as": "he points up at it"
+       "as": "he turns toward the glow"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "a lava fountain bursts up over the town's roofs right beside it; he flinches, ducking, both forearms up before his face; the car pulls out and races down the street",
+     "shows": "the ridge erupts in a tall lava fountain under a black plume; Data recoils, leaning back, both arms thrown up beside his head, mouth open; both cars pull out into the street, dust behind them",
      "hands": "free",
      "new": [
       {
        "what": "eruption",
        "how": "grows",
-       "cause": "the lava fountain bursts up out of the ridge"
+       "cause": "the lava fountain erupts out of the ridge"
+      },
+      {
+       "what": "cars",
+       "how": "moves",
+       "cause": "they speed out of town away from it"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he flinches, ducking, forearms up"
-      },
-      {
-       "what": "car",
-       "how": "moves",
-       "cause": "its driver flees the eruption"
+       "cause": "he recoils from it"
       }
      ],
      "visible": [
       {
        "prop": "eruption",
-       "as": "a lava fountain bursts up right beside the town, over its roofs"
+       "as": "the volcano erupts right beside the town in a tall lava fountain"
       },
       {
-       "prop": "houses",
-       "as": "the town's roofs"
+       "prop": "cars",
+       "as": "both cars pull out into the street, dust behind them"
       },
       {
        "prop": "data",
-       "as": "he flinches, ducking, forearms up before his face"
-      },
-      {
-       "prop": "car",
-       "as": "a parked car races off down the street"
+       "as": "Data recoils, arms thrown up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "the ash plume towers bigger over the town; he runs down the street at us in full stride, looking back over his shoulder at the fountain; the car races past, nearly out of the frame, dust behind it",
+     "shows": "the black plume fills the top of the sky over the town; the two cars speed down the street toward us, either side of him, dust trailing; Data, still recoiled, half-turns toward us as if to follow",
      "hands": "free",
      "new": [
       {
@@ -158,28 +159,28 @@
        "cause": "the ash plume climbs off the fountain"
       },
       {
-       "what": "data",
-       "how": "pose",
-       "cause": "he runs down the street at us, arms pumping, looking back"
+       "what": "cars",
+       "how": "moves",
+       "cause": "they speed out of town"
       },
       {
-       "what": "car",
-       "how": "moves",
-       "cause": "it races away from the eruption"
+       "what": "data",
+       "how": "pose",
+       "cause": "he half-turns to follow them"
       }
      ],
      "visible": [
       {
        "prop": "eruption",
-       "as": "a huge black ash plume towers over the town"
+       "as": "the lava fountain under a black plume filling the sky"
+      },
+      {
+       "prop": "cars",
+       "as": "everyone had to run: cars speed out of town past him, dust trailing"
       },
       {
        "prop": "data",
-       "as": "he had to run: he runs at us in full stride, looking back at it"
-      },
-      {
-       "prop": "car",
-       "as": "everyone had to run: the car races past us, out of the street"
+       "as": "Data, still recoiled, half-turns to follow them"
       }
      ]
     }

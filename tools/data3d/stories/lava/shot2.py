@@ -13,9 +13,9 @@ mouth open. No fire and no lava in this shot."""
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 2.5                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 7.0                              # the finished wall: from this low lens its top stands well over the house's ridge
-S2_HOUSE = (-2.8, 2.4, 1.6, 2.4)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
-S2_P0 = (-0.1, 5.55)
-S2_DIG = (-4.9, -0.3)                  # the digger on the crest: x, and y off the crest's middle (toward the far side)                   # where he stands: in the foreground, right of the house
+S2_HOUSE = (-3.9, 1.4, 1.6, 2.0)       # the house: centre x, y, width, depth; its front 1.4 m off the wall's foot (y 0)
+S2_P0 = (-0.17, 5.6)                   # (p2n: cut by the frame's left edge) left of the frame, clear of the house
+S2_DIG = (-4.75, -0.3)                 # the digger on the crest: x, and y off the crest's middle (toward the far side)                   # where he stands: in the foreground, right of the house
 
 
 def s2_base(h):
@@ -36,9 +36,9 @@ def place_wall_works():
     FX.ground("grass", area=(-10, 10, 1.6, 20), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
     px, py = S2_P0
     lava_rock("town yard stones", 420, (-8, 8, 0.2, 12), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.1), moss=0.6,
-              avoid=lambda x, y: (-3.4 < x < -1.5 and 1.2 < y < 3.9) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
+              avoid=lambda x, y: (-4.8 < x < -3.0 and 0.3 < y < 3.0) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
     lava_rock("near yard stones", 360, (-3.5, 2.5, 3.6, 6.6), lambda x, y: s2_ground_z(x, y) + 0.015, seed=91, r=(0.012, 0.045), moss=0.5,   # (r2g EMPTY 22-24%: the foreground read as one smooth plane)
-              avoid=lambda x, y: (-3.4 < x < -1.5 and 1.2 < y < 3.9) or (abs(x - px) < 0.4 and abs(y - py) < 0.4))
+              avoid=lambda x, y: (-4.8 < x < -3.0 and 0.3 < y < 3.0) or (abs(x - px) < 0.4 and abs(y - py) < 0.4))
     b = s2_base(S2_H)
     wall = earth_wall("earth wall", [(float(x), -b / 2) for x in range(-30, 31, 1)], h=S2_H, crest=S2_CREST, base=b, seed=8)
     hx, hy, hw, hd = S2_HOUSE
@@ -56,7 +56,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [2.4, 3.5, 4.6, 6.2]                               # (p2a-p2e: it stands 3 m further back than the house, so it reads at half its height) the wall's top at each: a knee-high boulder row, window-high, at the eaves, far over the ridge and chimney
+    TOPS = [3.0, 3.8, 4.6, 6.2]                               # (p2a-p2e: it stands 3 m further back than the house, so it reads at half its height) the wall's top at each: a knee-high boulder row, window-high, at the eaves, far over the ridge and chimney
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -91,8 +91,8 @@ def shot2():
             t = (f - 1) / FPS
             d["root"].location = (DX, yc + DY, top(t)); d["root"].keyframe_insert("location", frame=f)
         diggers.append(objs)
-    order = [0, 1, 2, 3, 4, 5]
-    STEP = DUR / 9.0                                             # a working swing: each still lands mid-pose, on a different one
+    order = [0, 4, 1, 3, 2, 5]                                 # (r2x pre-flight: on still 4 its raised arm was cut by the top edge: the low swing lands there)
+    STEP = DUR / 8.0                                             # a working swing: each still lands mid-pose, on a different one
     pose_at = lambda t: order[int(max(0.0, t) / STEP) % len(order)]
     print("S2 digger poses at the stills", [pose_at(t) for t in TS], flush=True)
     for k, objs in enumerate(diggers):
@@ -106,17 +106,23 @@ def shot2():
                 prev = hid
     # ---- him: planted in one spot in the foreground, in four poses
     data = load_data()
-    CAM0 = Vector((0.225, 6.76, 0.45)); LOOK0 = CAM0 + Vector((-0.52, -0.85, 0.04)) * 5.0      # (r2f/r2g EMPTY 22-24%: the high sky has no cloud: nearer, nearly level)      # (r2e: the house cut by the frame's edge) locked off, the whole house and sky over it
+    CAM0 = Vector((0.225, 6.76, 0.45)); LOOK0 = CAM0 + Vector((-0.52, -0.85, -0.1)) * 5.0      # (r2q EMPTY 28%: the wider lens took in bare high sky: tipped down)      # (r2f/r2g EMPTY 22-24%: the high sky has no cloud: nearer, nearly level)      # (r2e: the house cut by the frame's edge) locked off, the whole house and sky over it
     X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     LENS = math.degrees(yaw_of(CAM0.x - X0, CAM0.y - Y0))
     data.place(X0, Y0, LENS)                                    # 1 facing us
     data.arm.location.z = Z0
     kit = hard_hat(data)
-    T1, T2, T3 = 0.2 * DUR, 0.5 * DUR, 0.8 * DUR             # the turns between the poses (line 2 is a short line now)
-    data.turn_to(LENS - 25, T1, T1 + 0.3)                      # 2 a quarter round toward the wall at his back
-    data.turn_to(LENS - 50, T2, T2 + 0.3)                      # 3 half-turned to it
-    data.turn_to(LENS - 35, T3, T3 + 0.3)                      # 4 back toward us a little, leaning back
+    T1, T2, T3 = 0.17 * DUR, 0.45 * DUR, 0.8 * DUR             # the turns between the poses (line 2 is a short line now)
+    TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()
+    for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
+        t = (f - 1) / FPS
+        SD = Vector((-TO.y, TO.x, 0))
+        p = (Vector((X0, Y0, Z0)) + TO * (0.1 * W(t, T1 + 0.35, 0.4) + 0.12 * W(t, T2 + 0.45, 0.4) + 0.1 * W(t, T3 - 0.1, 0.4))
+             + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T3 + 0.1, 0.4)))     # (r2r READ: a weight shift in each pose)
+        yaw = LENS - 25 * W(t, T1, 0.35) - 25 * W(t, T2, 0.45) + 15 * W(t, T3, 0.35)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
+        data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
+        data._plant_feet_here(t, lift=(Z0, Z0))
     sc.frame_set(1); bpy.context.view_layer.update()
     M = data.arm.matrix_world
     def pts(t):
@@ -130,18 +136,22 @@ def shot2():
         for tt in (0.0, T1 - 0.05):
             data._arm_ik(s_, hp + rt * sg * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
     # 2 a thumb jerked back over his shoulder at the wall, a grin; the other hand still on his hip
-    M_, fw, rt = pts(T1 + 0.3)
-    sh = M_ @ data.J["R"]["sh"]; hpL = M_ @ data.J["L"]["hip"]
-    for tt in (T1 + 0.3, T2 - 0.05):
-        data._arm_ik("R", sh + rt * 0.2 + fw * 0.03 + Vector((0, 0, 0.0)), tt, 1.0); data._k("hand.R", tt, rot=(-20, 0, 25))      # (r2f: over the shoulder put the arm behind his back, the hand in his head) out to the side, jerked back
+    for tt, jab in ((T1 + 0.4, 0.0), (T2 - 0.05, 0.0)):     # (r2s/r2t FLUID: no second jab, the thumb comes up over 0.45 s)     # (r2r ANATOMY: the hand's target follows him as he steps; READ: the thumb jabs back twice)
+        M_, fw, rt = pts(tt)
+        sh = M_ @ data.J["R"]["sh"]; hpL = M_ @ data.J["L"]["hip"]
+        data._arm_ik("R", sh + rt * 0.2 + fw * (0.03 - jab) + Vector((0, 0, jab)), tt, 1.0); data._k("hand.R", tt, rot=(-20, 0, 25))      # (r2f: over the shoulder put the arm behind his back, the hand in his head) out to the side, jerked back
         data._arm_ik("L", hpL - rt * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k("hand.L", tt, rot=(0, 0, -20))
     # 3 half-turned, looking up at it, his arms down (r2i: a hand at his head read as broken)
-    for tt in (T2 + 0.3, T3 - 0.05):
+    for tt in (T2 + 0.5,):                                     # (r2q FLUID: the hands come down over 0.55 s)
         for bn in data.RELAXED: data._k(bn, tt, rot=data.RELAXED[bn])
+    for tt in (T2 + 0.8, T3 - 0.05):                          # (r2v HOLD: his hands drift open from his sides as he takes it in)
+        for bn in data.RELAXED:
+            r = data.RELAXED[bn]
+            data._k(bn, tt, rot=(r[0] - (16 if bn.startswith("arm") else 0), r[1], r[2] + ((-24 if bn.endswith(".R") else 24) if bn.startswith("arm") else 0)))
     # 4 leaning right back looking up, both arms dropped, mouth open
-    for tt in (T3 + 0.3, DUR + 0.5):
-        for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (6 if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) - 24 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
+    for tt, dr in ((T3 + 0.3, 6), (T3 + 0.6, 14), (DUR + 0.5, 14)):     # (r2r HOLD: his arms drop on back as he leans)
+        for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (dr if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
+    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) + 6 * W(t, T2 + 0.55, 0.3) - 30 * W(t, T3 - 0.25, 0.5), 0, 0), 0, DUR + 0.4)     # (r2t HOLD: the lean starts as the half-turn settles)
     lw_layer(data, "chest", lambda t: (-14 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
     HEAD = Vector((X0, Y0, Z0 + 0.5))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)            # 1 at us
@@ -153,10 +163,10 @@ def shot2():
     data.expression("surprised", T2 + 0.1, T3 + 0.1, blend=0.15)
     data.expression("alarmed", T3 + 0.1, DUR + 1.0, blend=0.15)
     data.finish()
-    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=20.0, fstop=11.0)     # (p2n: a wider lens: him, the digger and the house side by side)
     print("S2 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()), flush=True)
     still = lambda t: (CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5)))
-    lw_cut(cam, still, still, -1.0, -1.0, 24.0, 24.0)
+    lw_cut(cam, still, still, -1.0, -1.0, 20.0, 20.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
                 conseq=[("a digger piles a wall of black rock behind the house, from its knee to far over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])

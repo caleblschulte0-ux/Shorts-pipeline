@@ -2237,6 +2237,32 @@
     }
    ]
   },
+  "df067b5fb47a794b58950bcef7688e9260afc0a730b9a0e2aa9be4cb9e2584e5": {
+   "at": "2026-11-27 20:12:22Z",
+   "claims": 8,
+   "claims_key": "3cc7006e1c1fa18d",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "In still 4 the excavator is cut by the top edge, the house is cut by the right edge, and the wall runs off the frame.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The excavator is half cut off by the top frame edge in still 4. It is also tiny and barely readable in still 2.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "4"
+    }
+   ],
+   "sha256": "df067b5fb47a794b58950bcef7688e9260afc0a730b9a0e2aa9be4cb9e2584e5",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "df08a6a272e279ddabf189679528755a49673d48d562f4cc3648dac349983136": {
    "at": "2026-11-26 11:19:45Z",
    "claims": 14,
