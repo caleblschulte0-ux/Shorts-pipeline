@@ -108,12 +108,10 @@
   }
  ],
  "held_for": [
-  "thesis: seg1 ('English Rival Growth') does not continue the story of the headline ('English Lost Its Web Monopoly But Still Leads Today') — brain: Shows another language's growth but doesn't directly prove the same headline claim and isn't a logical continuation of b",
-  "thesis: seg2 ('English Web Today') does not continue the story of the headline ('English Lost Its Web Monopoly But Still Leads Today') — brain: States current English share but doesn't follow as a consequence of beat 1; it's presented as a separate fact."
+  "premise: brain: The pitch is a muddled 'English lost its monopoly but still leads' with no concrete surprise or stake, and the hook ('diversified fast, yet kept a narrower lead') is vague and abstract, with no belief for the beats to overturn."
  ],
  "reasons": [
-  "thesis: seg1 ('English Rival Growth') does not continue the story of the headline ('English Lost Its Web Monopoly But Still Leads Today') — brain: Shows another language's growth but doesn't directly prove the same headline claim and isn't a logical continuation of b",
-  "thesis: seg2 ('English Web Today') does not continue the story of the headline ('English Lost Its Web Monopoly But Still Leads Today') — brain: States current English share but doesn't follow as a consequence of beat 1; it's presented as a separate fact."
+  "premise: brain: The pitch is a muddled 'English lost its monopoly but still leads' with no concrete surprise or stake, and the hook ('diversified fast, yet kept a narrower lead') is vague and abstract, with no belief for the beats to overturn."
  ],
  "judge": null,
  "prior_rejection": [],
@@ -146,5 +144,6 @@
    }
   ]
  },
- "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request.",
+ "refiled": "2026-11-27T14:25:50Z"
 }
