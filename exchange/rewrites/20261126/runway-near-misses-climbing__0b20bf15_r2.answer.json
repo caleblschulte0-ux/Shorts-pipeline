@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "runway-near-misses-climbing__0b20bf15_r2",
+  "slug": "runway-near-misses-climbing",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "Runway Near-Misses Rose, With Risk Concentrated In Causes And Airports",
+  "hook": "The runway danger is rising, but it is not spread evenly.",
+  "closing": "Concentrated causes and hotspots show where runway safety work can focus first.",
+  "question": "Which runway risk worries you most?",
+  "segments": [
+    {
+      "topic": "Runway Near-Misses",
+      "say": "Serious runway near-misses reached 23 in 2023. The yearly count more than doubled from a decade earlier."
+    },
+    {
+      "topic": "Runway Causes",
+      "say": "Pedestrian or vehicle deviations caused 60% of runway incursions. One category dominates the incident mix."
+    },
+    {
+      "topic": "Runway Airports",
+      "say": "Eight airports account for 33% of the worst runway incursions. Serious risk clusters at a small set of locations."
+    }
+  ]
+}
