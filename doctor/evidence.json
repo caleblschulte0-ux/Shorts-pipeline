@@ -7,22 +7,16 @@
     "ok": false,
     "alarms": [
       {
-        "code": "credential_dead_groq",
+        "code": "chatgpt_task_failed_doctor",
         "severity": "critical",
-        "detail": "the `groq` credential is DEAD (HTTP 403 \u2014 the credential was refused; probed 2026-11-26T22:14:41+00:00).",
-        "fix": "Mint a new key at console.groq.com/keys and replace the GROQ_API_KEY repository secret. Groq is the FIRST text brain in `_call_llm`; with it refused every call falls through to Gemini's free quota, which one run exhausts."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261126 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261126.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "forge_silent",
         "severity": "critical",
         "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (5 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
         "fix": "Read the forge step of the latest explainer AND story_forge runs: 'queue already full' means the top-up is counting stories the posting run holds (it must count POSTABLE ones, shared/queue_supply.py); 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
-      },
-      {
-        "code": "sports_source_dead",
-        "severity": "critical",
-        "detail": "trending: the sports run found ZERO Reddit video posts for 20261126 (sports_report.json pool=0) \u2014 every route (API, PullPush, RSS) refused the runner, so nothing was cut or judged.",
-        "fix": "Authenticate the Reddit reads: create a 'script' app at reddit.com/prefs/apps and set the repository secrets REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET \u2014 the OAuth path (funnel/media_funnel._reddit_token) is already built and sports.yml already passes both. Until then the channel posts nothing, however healthy every brain is."
       },
       {
         "code": "short_slate_explainer",
@@ -231,1466 +225,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-17T16:49:30+00:00",
-      "slug": "sports_hockey_terates_nick",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 0,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The video promises a massive hockey hit but fails to show the actual impact, only presenting the lead-up and aftermath.",
-      "auto_fails": [
-        "junk_imagery: The video claims 'Chychrun destroys Cousins on the ice' but the actual hit is not shown in the footage, only the lead-up and aftermath."
-      ],
-      "problems": [
-        "The crucial moment of Jakob Chychrun's hit on Nick Cousins is entirely missing from the video.",
-        "The video relies on descriptive text rather than visual demonstration for its central claim, which is a critical failure for a 'sports moment' format.",
-        "The absence of the core action significantly weakens both the hook's promise and the video's payoff."
-      ],
-      "fixes": [
-        "Integrate clear footage of Jakob Chychrun delivering the hit to Nick Cousins into the video, ideally in the hook or early segments.",
-        "Ensure the visual content directly and unequivocally demonstrates the claim made in the on-screen text.",
-        "Re-edit the sequence to build up to and clearly show the impact, followed by the reactions, to create a compelling sports moment."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 80
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "The video's central claim of 'Chychrun destroys Cousins on the ice' is not visually demonstrated; the actual hit is missing from the footage.",
-        "root_cause": "Incorrect or incomplete footage selection for the promised 'sports moment', failing to include the key action.",
-        "repair_goal": "Replace or augment the footage in seg0 to clearly show Jakob Chychrun delivering the hit to Nick Cousins."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.025,
-        "effective_fps": 23.4,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 19.75,
-        "duration_s": 26.5
-      },
-      "fingerprint": "?|junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-11-17T17:49:44+00:00",
-      "slug": "sports_dawson_mercer_er_opens_the",
-      "score": 100,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A well-executed sports highlight showing Mercer's goal and celebration.",
-      "auto_fails": [],
-      "problems": [
-        "Fragmented text overlays ('HE'LL GO TO', 'UP ON THE') make some phrases incomplete during the action build-up."
-      ],
-      "fixes": [
-        "Ensure all on-screen text overlays form complete and coherent phrases or sentences."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 66
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid0",
-        "index": 4,
-        "failure_class": "craft",
-        "visible_evidence": "Text overlays 'HE'LL GO TO' and 'UP ON THE' are fragmented and incomplete phrases across mid0 and mid1.",
-        "root_cause": "Text generation for build-up phrases is too short or cut off, leading to incomplete sentences.",
-        "repair_goal": "Ensure on-screen text forms complete, coherent phrases or full sentences."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.008,
-        "effective_fps": 23.8,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.008,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.9,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.08
-      },
-      "fingerprint": "?|-|craft"
-    },
-    {
-      "ts": "2026-11-17T19:48:49+00:00",
-      "slug": "sports_erik_johnson_s_on_players",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 3,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The video effectively presents Erik Johnson's interview but suffers from long static visual periods.",
-      "auto_fails": [
-        "dead_air: The video has a held_s of 5.0s, and frames mid1 to mid2 (6.92s) show identical visual content and text."
-      ],
-      "problems": [
-        "The visual presentation is too static for extended periods, particularly the talking head shot with minimal cuts or dynamic elements.",
-        "The pace feels slow due to the lack of visual variation over long stretches."
-      ],
-      "fixes": [
-        "Incorporate more dynamic camera work (zooms, different angles) or B-roll footage to break up the long talking head segment.",
-        "Ensure text updates are accompanied by more significant visual changes to maintain engagement."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "dead_air",
-        "visible_evidence": "The video shows Erik Johnson speaking with minimal changes in expression or camera angle for extended periods (e.g., from t=9.43s to t=37.13s), with only the lower third text updating.",
-        "root_cause": "Lack of dynamic visual changes or cuts within the interview segment, leading to a static presentation despite the speaker's activity.",
-        "repair_goal": "Introduce more dynamic cuts, zooms, or visual elements to break up the long static talking head shot and maintain viewer engagement."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.428,
-        "effective_fps": 13.7,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.007,
-        "frozen_fps": 23.8,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 5.0,
-        "max_dup_at_s": 11.75,
-        "duration_s": 39.12
-      },
-      "fingerprint": "?|dead_air|dead_air"
-    },
-    {
-      "ts": "2026-11-17T19:48:49+00:00",
-      "slug": "sports_vancouver_canucks_e_first_time",
-      "score": 100,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The video effectively shows a hockey brawl, fulfilling the promise of the hook.",
-      "auto_fails": [],
-      "problems": [
-        "Early on-screen text (\"TALKING ABOUT MARILINA\", \"THEY'RE HEALTHY AND\") does not align with the visual progression of the brawl, creating a temporary narrative disconnect."
-      ],
-      "fixes": [
-        "Adjust early on-screen text to build anticipation for the brawl or directly relate to the visual action shown at that moment."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 67
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid0",
-        "index": 0,
-        "failure_class": "content_disconnect",
-        "visible_evidence": "On-screen text \"TALKING ABOUT MARILINA\" appears while the visual shows a calm hockey game, not yet the promised brawl.",
-        "root_cause": "The on-screen text, likely a voiceover transcript, does not align with the visual progression of the main event (the brawl).",
-        "repair_goal": "Ensure on-screen text directly supports or enhances the visual action, especially when building towards the promised \"brawl\"."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.119,
-        "effective_fps": 21.1,
-        "max_dup_run": 21,
-        "measured": true,
-        "frozen_ratio": 0.022,
-        "frozen_fps": 23.5,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 1.71,
-        "max_dup_at_s": 2.92,
-        "duration_s": 22.42
-      },
-      "fingerprint": "?|-|content_disconnect"
-    },
-    {
-      "ts": "2026-11-17T20:48:47+00:00",
-      "slug": "sports_devon_levi_picks_up_the",
-      "score": 100,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 4,
-        "data_demo": 5,
-        "mascot": 4,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "Devon Levi explains his sand ritual in a clear and engaging interview clip.",
-      "auto_fails": [],
-      "problems": [
-        "The video ends somewhat abruptly, lacking a strong concluding moment or 'punchline' for the payoff."
-      ],
-      "fixes": [
-        "Edit the clip to conclude with a more impactful statement from the speaker, or add a brief graphic that summarizes the ritual's significance or the interview's main takeaway."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 56
-      },
-      "judge": "showrunner-rejudge",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 0,
-        "failure_class": "lack_of_impactful_conclusion",
-        "visible_evidence": "The video ends with the speaker still talking, without a clear concluding statement or visual emphasis.",
-        "root_cause": "The clip was cut without a strong final soundbite or visual cue to signal completion and impact.",
-        "repair_goal": "Re-edit the clip to end on a more definitive statement, a summary graphic, or a visual reaction that provides a stronger sense of closure."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.038,
-        "effective_fps": 23.1,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 17.75,
-        "duration_s": 18.62
-      },
-      "fingerprint": "?|-|lack_of_impactful_conclusion"
-    },
-    {
-      "ts": "2026-11-18T01:25:43+00:00",
-      "slug": "third-interstellar-visitor",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The sky-to-dig arc is solid, but the closing scene prints its caption over the headline number and Data does nothing there, so the payoff lands as clutter.",
-      "auto_fails": [
-        "unreadable: In seg4:start through payoff@-1.8, the white closing caption sits on top of the big yellow '0.975 km' / '5.6 km' headline, so the headline reads as '0.975 Km' / '5.6 Kili' and neither text is clean."
-      ],
-      "problems": [
-        "seg4: the closing caption overlaps the '0.975 km' / '5.6 km' headline, so neither is readable",
-        "seg2: the speed streaks are nearly the same length, so the faster arrival isn't visible without reading the number",
-        "seg2 and seg4: Data stands and waves instead of driving the motion",
-        "seg0/seg1 reuse the hook's observatory shot, so the first five seconds feel like one scene"
-      ],
-      "fixes": [
-        "Give the closing line the top band alone: drop or move the scene's headline block (or move the caption) so no text overlaps",
-        "In seg2, scale each streak's length and the rock's travel to its speed (ATLAS visibly about 1.8x 'Oumuamua's), with Data launching or clocking each one",
-        "In seg4, have Data roll the cart or aim the scanner from the small Borisov sample to the giant ATLAS rock",
-        "Make seg1 a different shot from the hook, such as a close-up through the eyepiece"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "text_collision",
-        "visible_evidence": "seg4:start and seg4:mid: the closing caption 'Repeated visitors let scientists compare material...' is printed over the big '0.975 km' headline and its subline. Data just stands and waves beside the cart while the scanner light moves on its own.",
-        "root_cause": "The closing scene keeps its own headline-number block in the same top band where the closing line is laid, and nobody gave Data the action that drives the comparison.",
-        "repair_goal": "Give the closing line the top band alone and drop or move the scene's headline number. Have Data push the cart or swing the scanner from the small Borisov sample to the giant ATLAS rock himself, so the comparison of the two samples is something he does."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.203,
-        "effective_fps": 19.1,
-        "max_dup_run": 14,
-        "measured": true,
-        "frozen_ratio": 0.083,
-        "frozen_fps": 22.0,
-        "max_frozen_run": 14,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.9,
-        "held_s": 3.33,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.25
-      },
-      "fingerprint": "?|unreadable|text_collision",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T01:45:11+00:00",
-      "slug": "third-interstellar-visitor",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The pictures are clean and on topic and the size reveal works, but Data watches the speed beat instead of driving it, and the ending is flat.",
-      "auto_fails": [
-        "decorative_mascot: From hook@0.3 through seg1:end Data stands in the same place beside the observatory, pointing, while the telescope moves by itself. In seg2:start and seg2:end he stands on a platform waving as the rocks streak past. He only does real work in seg3, where he shovels the dust off the rock."
-      ],
-      "problems": [
-        "seg2: Data stands and waves while the rocks fly. He is not causing the motion, and the streaks do not show the 1.8x speed difference.",
-        "hook/seg0/seg1: Data stays in one spot pointing beside the observatory while the telescope moves by itself, for about 7 seconds.",
-        "seg0 and seg1 show nearly the same finished observatory frame, so the visitor-count idea is said twice.",
-        "Closing (seg4): Data mostly stands in front of the comparison, so the ending does not land a final reveal."
-      ],
-      "fixes": [
-        "seg2: Turn the speed beat into a timed race that Data starts. All three visitors leave one line together and the distances they cover show the 1.8x gap.",
-        "seg0/seg1: Have Data crank the telescope wheel (it is already behind him) so that he is the one who spots each new visitor.",
-        "seg4: Have Data push the 5.6 km rock's cart under the scanner beside the small sample, with the size gap landing as the final reveal."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 94
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg2:start to seg2:end: Data stands on a raised plank deck in the desert and waves while three labelled rocks streak overhead. The '1.8x the first' tag carries the comparison, and the streaks look about the same length, so the speed difference does not show.",
-        "root_cause": "The speed claim is drawn as decoration in the sky with Data watching it. He does not cause the motion, and nothing shows the speeds as distance covered in the same time.",
-        "repair_goal": "Make Data the cause and make speed into distance. For example, Data sets off a timed race (he drops a flag or hits a stopwatch) in which all three visitors are released from one line at once, and ATLAS travels about 1.8x as far as 'Oumuamua in the same time. Keep the gap on screen at the payoff and "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.208,
-        "effective_fps": 19.0,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.094,
-        "frozen_fps": 21.7,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 3.96,
-        "max_dup_at_s": 0.0,
-        "duration_s": 31.46
-      },
-      "fingerprint": "?|decorative_mascot|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T02:28:36+00:00",
-      "slug": "religious-nones-rise",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The candle and church scenes are strong, made of the subject and driven by Data, but the last beat turns the 'passing Catholics' payoff into a tablecloth bar chart, and the hook says 28% while the screen shows 29%.",
-      "auto_fails": [
-        "unreadable: seg3:end: the 'Other faiths' table label is tiny and pressed against 'Catholic', so it cannot be read on a phone. The '2021' and '1990' tags in seg1:end are also very small."
-      ],
-      "problems": [
-        "The hook narration says 28% while the hook and seg1 frames show 29% (2021), and seg3 shows 28%. A viewer sees two different numbers for the same claim.",
-        "seg3: the ranking is a stacked bar disguised as tablecloths. The overtake of the Catholics, which is the headline, is never animated as an event.",
-        "seg3:end: the 'Other faiths' label is tiny and collides with 'Catholic'.",
-        "seg1: the small '2021' and '1990' tags are barely readable.",
-        "The closing (payoff@-0.4) holds the same table with no new picture, so the ending is flat."
-      ],
-      "fixes": [
-        "Make the hook and the scenes use one figure and one year, either 28% everywhere or 29% for 2021 everywhere.",
-        "Redraw seg3 so the Unaffiliated group visibly overtakes the Catholics, with Data driving it, for example by dragging their table section forward.",
-        "Measure label widths and drop or relocate 'Other faiths' so no table label collides.",
-        "Give the closing its own shot tied to 'churches and communities', such as the emptying chapel, instead of a repeat of the table."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 4,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "seg3: a long table with Protestant, Unaffiliated, Catholic and Other faiths cloths. The 'Other faiths' label is crammed and tiny. The Protestant cloth shows 40% but its edge is hard to compare with Unaffiliated. In the closing frames the table just sits there while the line plays, and payoff@-0.4 is",
-        "root_cause": "The ranking is shown as coloured tablecloth segments, which is really a stacked bar laid on a table. Nothing shows the moment the nones overtake the Catholics, so the 'passing Catholics' payoff never lands as an event.",
-        "repair_goal": "Show the overtake as action. For example, the Unaffiliated cloth visibly pushes the Catholic group down the table into third place while Data drags it. Give every label a measured width so none collide, and end on the overtake rather than a static table."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.24,
-        "effective_fps": 18.2,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.116,
-        "frozen_fps": 21.2,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 4.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.92
-      },
-      "fingerprint": "?|unreadable|weak_payoff",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T03:00:51+00:00",
-      "slug": "religious-nones-rise",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The opening (Data snuffing church candles) is strong, but the closing falls off: it reuses the 1990 readout and small labels are struck through by roof lines.",
-      "auto_fails": [
-        "unreadable: In seg4:start and seg4:mid the small subtitle 'of US adults had no religion \u00b7 1990' runs through the church gable line. In payoff@-0.4 the tiny 'of US adults have no religion \u00b7 2021 \u00b7 ahead of Catholics' is crossed by the roof edge and would not read on a phone. In seg3:end 'Catholic Other faiths' is cramped against the right edge."
-      ],
-      "problems": [
-        "The hook says 28% but the frame shows 29% (hook@0.3), and at seg0:start the counter drops back to 8% while the voice is still saying 28%.",
-        "seg4 closing shows '8% ... 1990' under a line about the future, so the payoff contradicts itself.",
-        "Small grey subtitles run across the church gable and roof lines in seg4:start and payoff@-0.4, which makes them unreadable on a phone.",
-        "The row labels in seg4 (Protestant / Catholic / No religion) are on rows that look the same, so the reorder carries no visible size.",
-        "seg3:end has 'Catholic' and 'Other faiths' crammed together at the right edge.",
-        "seg1: Data stands at the gate and gestures but does not cause the walk-out."
-      ],
-      "fixes": [
-        "Make the hook and seg0 numbers match the narration (28%, or say 29%), and keep the finished 29% on screen through the hook.",
-        "Rebuild the closing as generational replacement: young figures step onto the steps and the No religion row grows past Catholic. Drop the 1990 readout.",
-        "Put the headline and strapline on clean sky or ground, never across building edges.",
-        "Give 'Other faiths' its own space or leave it out; keep every label inside the frame.",
-        "In seg1 have Data open the gate, or ring the bell to no answer, so he causes the people walking off."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "unclear_payoff_and_unreadable_labels",
-        "visible_evidence": "seg4:start shows '8% ... 1990' under the closing line, which is about the future. Data shuffles three rows labelled Protestant / Catholic / No religion that look the same, and the small grey label text is crossed by the church gable and roof lines. In payoff@-0.4 the 29% sits with a tiny strapline c",
-        "root_cause": "The closing reuses the opening's 1990 to 2021 readout instead of showing the generational replacement it talks about. The row labels are placed over a busy building and are not tied to anything a viewer can count.",
-        "repair_goal": "Make the closing show younger figures stepping up while older ones step down, so the No religion row visibly grows past the Catholic row as Data waves them up. Put a single headline number on clean sky, away from the gable line. Drop the 1990 readout from the closing."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.237,
-        "effective_fps": 18.3,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.113,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 4.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.92
-      },
-      "fingerprint": "?|unreadable|unclear_payoff_and_unreadable_labels",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T03:25:10+00:00",
-      "slug": "religious-nones-rise",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong subject-made scenes (snuffed candles, people leaving church, a boarded church), but the hook says 28% while the screen shows 8% and then 29%, and the table scenes are a bar chart with plates.",
-      "auto_fails": [
-        "unreadable: seg3:end: the 'Other faiths' label is tiny, butts against 'Catholic' and touches the right edge. seg0:start: the small '1990'/'2021' tags sit on a busy stained-glass window. seg4:start: the closing white text runs over the white steeple and clouds."
-      ],
-      "problems": [
-        "The hook says '28%' while the on-screen headline reads 8% (1990) for the whole hook, then lands on 29% (2021). The numbers contradict each other in the first seconds.",
-        "The seg2/seg3 table is a generic segmented bar made of place settings; the 'passing Catholics' moment is not dramatised.",
-        "The tiny 'Other faiths' label is crammed against 'Catholic' at the right edge (seg3:end); the small year tags sit on the stained glass (seg0).",
-        "The closing white text sits on the white steeple and clouds (seg4:start). The payoff is a question card, not a 'whoa' moment.",
-        "The 10% vs 36% generational gap in seg1 can't be counted in the crowd; the number is only in the label."
-      ],
-      "fixes": [
-        "Make the hook's number and the headline the same value and data year (28% everywhere, or say 29%). Open on the finished candle state, not on 1990.",
-        "Stage 'passing Catholics' as an event: the unaffiliated section visibly grows past the Catholic seats and pushes them down to third, ideally with Data moving chairs.",
-        "Remove the tiny 'Other faiths' label or give it room; move the year tags off the stained glass onto a plain plate.",
-        "Put the closing line on a dark scrim or sky area, not over the steeple.",
-        "In seg1, make the young leavers a countable share (about 36% of the young group walks out vs about 10% of the old group)."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "claim_mismatch_and_confusing_readout",
-        "visible_evidence": "From hook@0.8 to seg0:end the hook reads '28% of Americans, passing Catholics' while the headline says '8%' with '1990'. The finished frame (hook@0.3/seg1:end) shows 29% and 3.6x, which contradicts the spoken 28%. Small year tags sit on the stained glass.",
-        "root_cause": "The readout steps from 1990 to 2021 under a hook that states the present-day value, and it uses a different data year (29%, 2021) from the narration's 28%.",
-        "repair_goal": "Open on the finished state with the same number the hook says. Make the snuffed-candle share read at a glance (lit vs dark, about 28% dark) with one headline number that matches the narration. Remove the tiny year tags from the window, or move them onto a plain backdrop."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.223,
-        "effective_fps": 18.6,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.113,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 4.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.92
-      },
-      "fingerprint": "?|unreadable|claim_mismatch_and_confusing_readout",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T14:17:41+00:00",
-      "slug": "lake-mead-water-crisis",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The lake and dam art is strong, but Data watches the water fall instead of causing it, the 27% beat is missing, and the ending just repeats the dam frame.",
-      "auto_fails": [
-        "decorative_mascot: seg2:start to seg3:end: Data stands on top of the dam holding a red valve wheel and pointing while the water drops by itself. He never turns the wheel or causes the drop. In the lake scene (seg1) he only leans on the lever and then reacts in shock, so he does not cause the retreat either.",
-        "unreadable: seg0:end: the caption '153 feet. The' is grey and faint, sitting on a brown dark sphere, and can barely be read. seg3:start: 'Did you know Lake Mead fell this low?' is faded grey on dark ground."
-      ],
-      "problems": [
-        "seg2: Data points and holds a valve wheel he never turns while the water drops on its own.",
-        "The script's '27 percent full' beat never appears on screen: seg1:end moves straight to seg2:start's '97 feet above'.",
-        "seg0: the '1,200 ft \u00b7 2000' counter stays on screen while the water visibly drains, so the number and the picture disagree.",
-        "seg0:end: the caption '153 feet. The' is faded and low-contrast over a dark sphere.",
-        "Dark brown spheres along the bottom of the lake scene read as unexplained blobs behind the captions.",
-        "seg3: the payoff is a static repeat of the dam with its labels removed. Nothing new happens, such as the lights going dark."
-      ],
-      "fixes": [
-        "Make Data turn the valve wheel with a wind-up and crank so the water level drops because of him.",
-        "Give the 27% beat its own shot: a bathtub ring on the canyon or dam with a quarter-full mark, its own picture before the shutoff beat.",
-        "Animate the hook counter down from 1,200 to 1,047 as the water drains, instead of holding 1,200.",
-        "Remove or lighten the dark spheres under the captions and keep caption text at full contrast.",
-        "End on the stakes: the dam's lights or turbines go dark as the water nears the shutoff line, so the payoff lands visually."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 69
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot / missing beat",
-        "visible_evidence": "seg2:start through seg2:end: the water drops toward the dashed shutoff line while Data stands on the dam rim pointing, with a valve wheel he never turns. The '27 percent full' beat in the script never appears in any frame; the video jumps from 'visible from shore' (seg1:end) straight to '97 feet abo",
-        "root_cause": "The dam scene casts Data as a pointer beside the moving part, not the cause of the drop. The 27% capacity beat seems to have been squeezed out or merged, so the 'barely a quarter full' turn is never shown.",
-        "repair_goal": "Have Data crank the outlet valve so his turning visibly drains the water down toward the shutoff line, landing on '97 ft above the power shutoff'. Restore the 27% beat with its own picture: a bathtub ring on the dam face showing the full line and the water sitting just above one quarter."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.136,
-        "effective_fps": 20.7,
-        "max_dup_run": 18,
-        "measured": true,
-        "frozen_ratio": 0.054,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.08
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|decorative_mascot / missing beat",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T14:45:06+00:00",
-      "slug": "lake-mead-water-crisis",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke lake-and-dam scenes with Data driving the drain, but the 27% beat never shows on screen and the ending reuses the last scene instead of showing the lights going out.",
-      "auto_fails": [],
-      "problems": [
-        "No sampled frame shows the 27-percent-full beat. The captions go straight from the 153 ft scene (seg1) to '97 feet above' (seg2).",
-        "seg2:end puts the water just above the 'shutoff' dashes, so the picture says ~0 ft of margin while the label says 97 ft.",
-        "seg3 closing reuses seg2's picture: no power or lights payoff, Data only reacts with hands on head.",
-        "The hook mascot only clutches his head on the dam crest (hook@0.3\u20132.2) rather than causing anything.",
-        "Dark floating boulders in the seg1 foreground read as odd blobs behind the captions."
-      ],
-      "fixes": [
-        "Give the 27% beat its own on-screen scene, for example the lake drawn as a capacity gauge on the canyon wall draining to just past a quarter.",
-        "Scale the seg2 shutoff line so the remaining 97 ft of water above it is visibly substantial, and mark it with a yardstick.",
-        "Draw a closing where the powerhouse lights from the hook go dark as the water nears shutoff.",
-        "Replace the foreground boulder blobs in seg1 with grounded shoreline detail, or remove them."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 69
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "flat_payoff",
-        "visible_evidence": "seg3:start through payoff@-0.4 reuse the seg2 dam scene unchanged. Data clutches his head, a boat drifts, and a text block covers the sky. Nothing new happens: no lights going dark, no turbines stopping.",
-        "root_cause": "The closing has no scene of its own. It holds the last beat's finished picture and lays a text block over it, so the threat the hook promised (the lights going out) is never shown.",
-        "repair_goal": "Draw a closing payoff where the hook's threat lands. Water reaches the shutoff line, the powerhouse windows and pylon lights from the hook flicker and go dark, and Data strains at the valve wheel as the turbines spin down. Keep the closing line short and away from the hero."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.25,
-        "effective_fps": 18.0,
-        "max_dup_run": 18,
-        "measured": true,
-        "frozen_ratio": 0.052,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.08
-      },
-      "fingerprint": "?|-|flat_payoff",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-18T14:57:21+00:00",
-      "slug": "lake-mead-water-crisis",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 3,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The Lake Mead drop is drawn beautifully, but the 27%-full beat has no picture, and the closing reuses beat one's number instead of showing the lights going out.",
-      "auto_fails": [],
-      "problems": [
-        "The 27%-full beat is narrated but never visualised; seg2 opens under a generic 'America's biggest reservoir' title.",
-        "The closing (seg3) repeats 1,200 to 1,047 ft from seg1 instead of paying off the Hoover power threat: the city lights stay on throughout.",
-        "In the hook, Data only holds his head on the dam crest. He reacts instead of causing anything.",
-        "The hook's opening frames show the intact dam with water flowing; the threat isn't visible yet."
-      ],
-      "fixes": [
-        "Build a dedicated 27% scene: a full line at the top of the wall, the water draining to a quarter, Data opening the outlet, and one '27% full' headline.",
-        "Make the closing pay off the stakes: as the water nears the shutoff line, the powerhouse turbine slows and the city windows go dark.",
-        "In the hook, have Data turn the outlet valve so the water level visibly drops past the intake, flash-forwarding to the low-water state."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 69
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "claim_not_drawn",
-        "visible_evidence": "The beat 'Lake Mead fell to 27 percent full' never appears on screen. seg2:start is headed 'Lake Mead / America's biggest reservoir' while the caption already says '97 feet above', and no frame shows a quarter-full measure. The 27% beat and the 97 ft beat collapse into one dam-wall scene.",
-        "root_cause": "The 27%-full beat has no picture of its own. The window reuses the shutoff-line dam scene with a generic title, so the story's central number is only spoken.",
-        "repair_goal": "Give the 27% beat its own shot. Show the dam wall or the canyon with the 'full' line at the top and the water stopping at about a quarter of that height, with Data as the cause: he opens the outlet valve and the level drains to 27%. Put one big '27% full' on the subject. Then the 97 ft shutoff beat "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.25,
-        "effective_fps": 18.0,
-        "max_dup_run": 18,
-        "measured": true,
-        "frozen_ratio": 0.054,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.5,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.08
-      },
-      "fingerprint": "?|-|claim_not_drawn",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-20T09:54:56+00:00",
-      "slug": "richest-americans-live-14-years-longer",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The cake hook and the hourglass beat where Data pours sand are strong, but the middle 'progress' beat is a generic house-and-fence scene that never shows its claim, and the ending reuses the last picture with no fresh punch.",
-      "auto_fails": [
-        "unreadable: At seg1:start the caption 'men by 14.6' is ghosted at very low contrast on the white floor and cannot be read. At seg4:start 'Would you want to know your number?' sits over the pocket watch at the frame bottom."
-      ],
-      "problems": [
-        "seg2: houses and fence are generic; the '+9 years' is only in the label, and the claim that the gap beats 60 years of progress is never shown",
-        "seg0/seg1: Data points beside the cake while the candles light themselves; he is not the cause",
-        "seg1:start: a ghosted 'men by 14.6' caption is unreadable on the white floor",
-        "seg2: a stray deer/dog in the foreground has nothing to do with the story",
-        "seg4: the closing reuses the seg3 hourglasses unchanged apart from Data's pose, so the payoff is flat"
-      ],
-      "fixes": [
-        "Redraw seg2 so Data hammers in 9 fence posts, one per year of progress, beside a visibly longer 14.6-post run (or a ghost of the cake candles) to show the gap is bigger",
-        "Give Data a match or lighter in seg0/seg1 so he lights each candle on the rich cake himself",
-        "Fix the caption fade on the cake-to-cake transition so no half-transparent text is left on the floor",
-        "Remove the foreground animal from seg2",
-        "Give the closing its own picture, e.g. the poorest hourglass running out while the richest keeps flowing, so the last frame lands a new 'whoa'"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 104
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "weak_demonstration",
-        "visible_evidence": "seg2:start-end shows a static pair of houses with a picket fence. The headline swaps 69.8 to 78.4 years and adds '+9 years since 1960'. Data holds a sledgehammer by the fence but is never seen driving a post. A deer/dog wanders in the foreground. Nothing on screen compares the 9 years with the 14.6-",
-        "root_cause": "The scene draws a generic suburban setting for 'progress' and leaves the number in the label. The picture is not made of the claim: sixty years of progress is SMALLER than the rich-poor gap.",
-        "repair_goal": "Redraw seg2 so the comparison is the picture. Data hammers in fence posts one per year of national progress: 9 posts since 1960, each landing on a swing. Beside that run, the 14.6-year rich-poor gap is drawn as a visibly longer fence (or a then_mark ghost of the cake's 14.6 candles), so the viewer s"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.271,
-        "effective_fps": 17.5,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.112,
-        "frozen_fps": 21.3,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.007,
-        "judder_fps": 23.8,
-        "held_s": 6.12,
-        "max_dup_at_s": 0.0,
-        "duration_s": 34.75
-      },
-      "fingerprint": "?|unreadable|weak_demonstration",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-22T13:19:35+00:00",
-      "slug": "sperm-counts-cut-in-half",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The microscope opening (dense to sparse swimmers) is strong, but the 'accelerating' beat is a generic conveyor that never shows anything speeding up, and the closing is a block of text over a static bottle.",
-      "auto_fails": [],
-      "problems": [
-        "seg2: the conveyor of jars does not show acceleration; '2.3x faster' is text only.",
-        "seg0/seg1: the microscope label reads '2018 sample' while the header still says '101M per mL \u00b7 1973' (hook@2.2/seg0:end), so the picture and number disagree for a beat.",
-        "seg3/seg4: Data stands shocked beside the bottle instead of draining it, a weaker bit than his knob and crank work earlier.",
-        "seg4: the closing is a five-line text block that restates the beats with no fresh whoa. The payoff is flat, and the text crosses the ceiling light bar."
-      ],
-      "fixes": [
-        "Redraw seg2 so the loss rate visibly speeds up on one subject object, Data driving it, with the old pace drawn as a ghost or then-mark.",
-        "Swap the microscope label to '2018 sample' at the same moment the header changes to 49M.",
-        "In seg3, have Data open the bottle's valve so the level falls because he drains it.",
-        "Shorten the closing line and land it on one picture of the stakes, not a paragraph over the same bottle."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 89
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "weak_demonstration",
-        "visible_evidence": "seg2:start and seg2:mid show jars sliding down a conveyor into a biohazard bin, with Data cranking a wheel and the label '2.6% a year \u2026 2.3x faster'. Nothing in the picture speeds up or shows a faster loss rate.",
-        "root_cause": "The beat is about ACCELERATION: 2.6% a year after 2000, more than double the old pace. A steady conveyor of identical jars shows throughput, not a rate that speeds up, so only the text carries '2.3x faster'.",
-        "repair_goal": "Make the speed-up visible on the subject. Show two eras side by side or in sequence: pre-2000, the jar's swimmers drain slowly; post-2000, Data cranks harder and the jar drains visibly more than twice as fast, with a 'then' tick for the old pace on the same jar so a viewer sees 2.3x without reading "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.138,
-        "effective_fps": 20.7,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.038,
-        "frozen_fps": 23.1,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 1.58,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.54
-      },
-      "fingerprint": "?|-|weak_demonstration",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-22T14:29:29+00:00",
-      "slug": "freshwater-accessible",
-      "score": 65,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Data drives every scene well, but the payoff number (0.007%) is drawn as a brim-full trough, and the 3.5% fresh slice is never drawn at all. The pictures contradict the 'almost nothing' story.",
-      "auto_fails": [],
-      "problems": [
-        "seg2/payoff: a full trough of water illustrates 0.007%, so the picture says abundance while the narration says nearly invisible.",
-        "seg0: the '3.5% is fresh' label points at the tank rim, and no freshwater slice is separated out or shown.",
-        "The hook and seg0 are the same tank scene with a pour, so the opening repeats beat one visually instead of landing a shock.",
-        "The closing and finish reuse the seg2 frame with no new reveal, so the payoff never builds to a 'whoa'.",
-        "Unexplained black spheres sit in the sand foreground of the tank scene (hook, seg0) and read as debris."
-      ],
-      "fixes": [
-        "Redraw seg2 so the 0.007% is a visibly tiny thing (a drop or thimble Data pumps into a cup) set against the 99.993% shown as the huge ocean or tank behind it.",
-        "In seg0, drain or partition the tank so a thin 3.5% fresh layer separates visibly from the salt water, with Data skimming it off.",
-        "Make the hook the finished payoff contrast (a giant tank next to a single drop) rather than an empty tank filling.",
-        "Remove or explain the black spheres in the foreground sand."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 86
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "picture_contradicts_claim",
-        "visible_evidence": "At seg2:end the headline says 0.007%, 'within reach', but the picture shows a large stone trough filled to the brim with blue water, almost as big as the sea behind it. Nothing in the frame looks tiny. The scene also opens on 99.993% 'locked away' (seg2:start) without showing where that water is loc",
-        "root_cause": "The pump-and-trough machine shows ACCESS but not SCALE. The trough fills to full whatever the number is, so the 'nearly invisible share' story is drawn as abundance.",
-        "repair_goal": "Draw the earlier size on the subject: the full Earth-water tank or the ocean behind it as the whole, then Data pumping out a single drop or thimble that lands in a cup, with the huge locked-away volume visibly dwarfing it. The tininess has to be seen without reading 0.007%."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.161,
-        "effective_fps": 20.1,
-        "max_dup_run": 20,
-        "measured": true,
-        "frozen_ratio": 0.063,
-        "frozen_fps": 22.5,
-        "max_frozen_run": 14,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.9,
-        "held_s": 2.79,
-        "max_dup_at_s": 22.58,
-        "duration_s": 28.54
-      },
-      "fingerprint": "?|-|picture_contradicts_claim",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-22T15:04:59+00:00",
-      "slug": "freshwater-accessible",
-      "score": 65,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The scenes are attractive and Data actually works in each one, but none of them shows the shrinking proportions the story is about: the 3.5% slice is never drawn and the 0.007% payoff is a full trough.",
-      "auto_fails": [],
-      "problems": [
-        "seg1: the tank stays fully blue under '3.5% is fresh'; the freshwater slice the narration promises is never drawn",
-        "seg2: 68.7% is a growing ice wall with no visible whole to be a share of",
-        "seg3: the 0.007% payoff shows a full trough of water, which contradicts 'nearly invisible'",
-        "seg4: the closing is the seg3 scene with text and no picture payoff; the 'COMMENT BELOW' card at the end is filler",
-        "The story needs a funnel (all water, then the fresh slice, then the ice, then the reachable sliver), but each beat is a separate unrelated setting, so the shrinking never builds"
-      ],
-      "fixes": [
-        "seg1: after the tank fills, drain it down (or split off) to a thin 3.5% freshwater layer, so the viewer sees the slice",
-        "seg2: freeze about two-thirds of that freshwater slice into ice inside the same vessel, or show the glacier as most of a marked whole",
-        "seg3: Data pumps hard and only a drop or a thin film lands in a big empty trough, with the earlier tank ghosted behind it for scale",
-        "Carry one vessel through every beat so the 100%, 3.5% and 0.007% shrink visibly on screen",
-        "Closing: hold on the single drop beside the huge ghost tank instead of a text card"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "picture_contradicts_claim",
-        "visible_evidence": "seg3:start to seg3:end: Data pumps into a stone trough that is already full of blue water, under '0.007% sits in rivers and lakes'. The picture shows plenty of reachable water while the narration says it is a nearly invisible share.",
-        "root_cause": "The scene draws a generic full trough with no scale against the rest of Earth's water, so the smallness that is the whole payoff is never shown.",
-        "repair_goal": "Show the 0.007% as a tiny amount against a huge one. For example, Data pumps hard and only one drop or a thin film reaches a huge empty trough, with a ghost outline of the full tank/ocean behind it for scale. The last frame should land on how little comes out."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.161,
-        "effective_fps": 20.1,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.066,
-        "frozen_fps": 22.4,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 3.33,
-        "max_dup_at_s": 7.92,
-        "duration_s": 29.25
-      },
-      "fingerprint": "?|-|picture_contradicts_claim",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-22T15:34:47+00:00",
-      "slug": "freshwater-accessible",
-      "score": 61,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The pictures are well made but never show the proportions. The 3.5% slice is never split out, and the 0.007% beat shows a brimming basin, the opposite of 'nearly invisible'.",
-      "auto_fails": [
-        "dead_air: seg0:end, seg1:start, seg1:mid and seg1:end show nearly the same frame for about 7s: a full tank, the same two labels and Data waving. Beat 1 adds nothing visual to the opening, so two beats read as identical."
-      ],
-      "problems": [
-        "seg1 is a repeat of the finished opening tank. The 3.5% fresh slice the narration promises is never drawn, and Data only waves.",
-        "seg3 basin fills to the brim, which visually says 'lots of water' while the narration says 0.007% is nearly invisible.",
-        "No scene carries a share across from the last. The tank, the glacier and the basin are three unrelated containers, so the viewer never sees the whole shrink to the sliver.",
-        "The hook opens on a finished full tank with two labels, so the shock rests on the numbers, not the picture.",
-        "The payoff ends on the same basin with a comment prompt and has no 'whoa' reveal of how tiny the reachable share is."
-      ],
-      "fixes": [
-        "seg1: Data siphons the fresh layer off the top of the salty tank into a small jar about 1/28 its size, and the jar is the new subject.",
-        "seg2: freeze about two-thirds of that small jar solid (ice crystallising up from the base, Data chipping at it) so 68.7% is seen as a share of the jar.",
-        "seg3: Data pumps and gets a single drop or a thin film in the basin next to the huge sea behind him, so the scale contrast proves 0.007%.",
-        "Closing: pull back to show the full tank, the jar and the drop in one frame as the reveal.",
-        "Hook: open on the most extreme contrast, the whole tank against one drop, instead of the finished tank with labels."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 87
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "claim_not_shown",
-        "visible_evidence": "From seg1:start to seg1:end the tank is uniformly full and blue, with the same 96.5%/3.5% labels as seg0:end. The 3.5% 'thin freshwater slice' the narration describes is never drawn. The callout line points at the rim and no layer separates out. Data just waves.",
-        "root_cause": "The beat reuses the finished opening tank instead of acting out its own claim. The 3.5% split exists only as a label, never as a change in the water.",
-        "repair_goal": "Make the 3.5% slice happen on screen. Data siphons or ladles a thin top layer of fresh water out of the salty tank into a small separate jar beside it, so the jar visibly holds about 1/28 of the tank. The tank stays salty/grey-blue and the jar is clear. Drop the reused 96.5% label and leave one numb"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.168,
-        "effective_fps": 20.0,
-        "max_dup_run": 20,
-        "measured": true,
-        "frozen_ratio": 0.064,
-        "frozen_fps": 22.5,
-        "max_frozen_run": 17,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 2.88,
-        "max_dup_at_s": 22.92,
-        "duration_s": 28.88
-      },
-      "fingerprint": "?|dead_air|claim_not_shown",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-11-22T17:25:33+00:00",
-      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 7.33,
-        "static_at_s": 55.33,
-        "dark_fraction": 0.026,
-        "sampled": 189
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": "longform",
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.931,
-        "effective_fps": 1.7,
-        "max_dup_run": 83,
-        "measured": true,
-        "frozen_ratio": 0.394,
-        "frozen_fps": 14.5,
-        "max_frozen_run": 24,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 54.62,
-        "max_dup_at_s": 22.46,
-        "duration_s": 63.08
-      },
-      "fingerprint": "longform|temporal_gate|-"
-    },
-    {
-      "ts": "2026-11-22T22:26:23+00:00",
-      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 7.33,
-        "static_at_s": 55.33,
-        "dark_fraction": 0.026,
-        "sampled": 189
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": "longform",
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.931,
-        "effective_fps": 1.7,
-        "max_dup_run": 83,
-        "measured": true,
-        "frozen_ratio": 0.394,
-        "frozen_fps": 14.5,
-        "max_frozen_run": 24,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 54.62,
-        "max_dup_at_s": 22.46,
-        "duration_s": 63.08
-      },
-      "fingerprint": "longform|temporal_gate|-"
-    },
-    {
-      "ts": "2026-11-25T00:22:56+00:00",
-      "slug": "sports_georgia_tech_a_tech_press",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real, on-topic troll moment and the line delivers it, but the camera drops to the floor right as he says it and we never see anyone react, so the payoff is a meme highlight instead of the room.",
-      "auto_fails": [],
-      "problems": [
-        "mid2 and mid4: the phone whips down to chairs and carpet, giving several seconds of unreadable shaky footage",
-        "The fan is never seen and the players' reaction to the troll is never shown, so the payoff is weak",
-        "The last ~4s (mid5 to payoff@-0.4) is a generic UGA highlight inside blurred bars, an edit the source already made rather than the moment itself"
-      ],
-      "fixes": [
-        "Cut the floor and chair whip-pans so the presser wide shot holds under 'Who runs this state'",
-        "Hard-cut on 'Georgia Dogs' to the highlight with a punch-in and a sound hit, then end early, before the montage drags",
-        "If the source has a player reaction after the troll, use that as the payoff instead of the highlight"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 49
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "shaky_unreadable_footage",
-        "visible_evidence": "At mid2 (7.21s) the phone swings down to the back of a chair, and at mid4 it points at the carpet and a table leg. You never see the troll land in the room: no player reaction and no fan in shot.",
-        "root_cause": "The source is the fan's own pocket POV. The camera drops right as the troll line is said, so the reaction in the room is never filmed and the clip cuts to a highlight montage instead.",
-        "repair_goal": "Trim the whip-pans at mid2 and mid4 and keep the presser wide shot (mid1) under 'Who runs this state'. Then hard-cut on 'Georgia Dogs' to the UGA highlight with a punch-in and a sound hit, so the troll lands as one clean beat."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.013,
-        "effective_fps": 23.7,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 3.33,
-        "duration_s": 16.25
-      },
-      "fingerprint": "?|-|shaky_unreadable_footage"
-    },
-    {
-      "ts": "2026-11-25T00:28:00+00:00",
-      "slug": "sports_gary_neville__face_whilst",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The promised slap never appears in any sampled frame, and most of the clip is a tiny wide studio shot letterboxed in blur, so the moment never lands.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through hook@2.2, mid2, mid4 and payoff@-0.4 are all a wide letterboxed five-man studio shot where Neville is a small figure at the far left. No sampled frame shows the slap the line and title promise, so the crop sits on the panel and not on the moment.",
-        "empty_void: In every frame (hook@0.3, mid0, mid2, payoff@-0.4) the 16:9 footage fills only the middle third. The top and bottom are blurred copies of the same footage, roughly 60% of the screen, and the subject is tiny inside the strip."
-      ],
-      "problems": [
-        "The hook frames are a wide, tiny panel shot with no slap and no reason for a stranger to stay.",
-        "The slap the line and title promise is not visible in any sampled frame.",
-        "About 60% of the screen is blurred fill and the subject is small in the middle strip.",
-        "The cut keeps returning to the wide shot (mid2, mid4, payoff) instead of holding on Neville."
-      ],
-      "fixes": [
-        "Trim so the slap happens in the first 1-2 seconds.",
-        "Reframe vertically onto Neville (tight crop or punch-in) for the slap and the explanation.",
-        "Add a punch-in and a sound hit on the slap and on the panel's laughter.",
-        "End on the panel reaction, framed close enough to read the faces."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "crop_misses_subject",
-        "visible_evidence": "hook@0.3 to hook@2.2 show a wide shot of the full panel at tiny scale in a letterbox strip, with Neville about 60px tall at the far left. The slap is never shown, and the sampled frames through payoff@-0.4 never show it either.",
-        "root_cause": "The clip was kept as the broadcast's wide 16:9 framing over a blurred fill instead of being reframed onto Neville. The opening is setup talk rather than the slap itself.",
-        "repair_goal": "Open on the slap: cut the clip so the slap lands within the first 2 seconds, and punch in or crop vertically to Neville so he fills the frame. Use the wide panel only for the laughter reaction afterwards."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.241,
-        "effective_fps": 18.2,
-        "max_dup_run": 12,
-        "measured": true,
-        "frozen_ratio": 0.141,
-        "frozen_fps": 20.6,
-        "max_frozen_run": 9,
-        "judder_ratio": 0.058,
-        "judder_fps": 22.6,
-        "held_s": 4.67,
-        "max_dup_at_s": 7.67,
-        "duration_s": 39.08
-      },
-      "fingerprint": "?|empty_void+junk_imagery|crop_misses_subject"
-    },
     {
       "ts": "2026-11-25T00:49:26+00:00",
       "slug": "sports_bernie_brewer_howed_out_in",
@@ -4262,21 +2796,1515 @@
       },
       "fingerprint": "?|-|weak_payoff_depiction",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-11-27T11:39:01+00:00",
+      "slug": "sports_luis_fiallo__breaks_down",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, emotional signing reaction that lands at the end. The opening shows a hug without his face, and the tears come late.",
+      "auto_fails": [],
+      "problems": [
+        "The hook opens on a hug with Fiallo's face hidden. The tears come around 18-24s.",
+        "Nothing on screen shows him hearing the news. The 'hears' moment is implied by the text line only."
+      ],
+      "fixes": [
+        "Lay the doubled-over or face-in-hands reaction over the first second, or punch in on his face at the open.",
+        "Add a zoom with a sound hit when he bends over crying (mid4) so the payoff hits harder."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 94
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "soft_open",
+        "visible_evidence": "hook@0.3 to hook@2.2 show a hug already under way, with the player's face mostly turned away. The tears and his face only arrive at mid3 (t=18.6s).",
+        "root_cause": "The cut opens at the start of the source clip, not on the strongest reaction. Its most emotional frames, face in hands and doubling over, come in the back half.",
+        "repair_goal": "Flash the doubled-over or face-in-hands reaction (mid3/mid4 around 18-24s) over the first ~1s, or punch in on his face at the open, so a stranger sees tears in the first two seconds."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.001,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.001,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 31.33
+      },
+      "fingerprint": "?|-|soft_open"
+    },
+    {
+      "ts": "2026-11-27T11:41:03+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment (Milton grinning and lifting the Turkey trophy with Big Dom) shows up only at about 12-21s. A blurry, empty opening and a back-of-heads ending bury it, so a stranger swipes away before he appears.",
+      "auto_fails": [
+        "dead_air: From hook@0.3 through mid1 (about 0-8s) the camera shows a blurry concourse crowd behind glass, a passing man's head (hook@0.8) and people standing at rope lines. Milton is not visible and nothing happens for roughly 7 seconds."
+      ],
+      "problems": [
+        "hook@0.3-mid1: about 8 seconds of concourse crowd and a head blocking the lens before the subject appears. That is a dead opening.",
+        "The 'applause' in the line is never shown clearly, and no crowd reaction is visible in frame.",
+        "payoff@-1.8 and payoff@-0.4 end on the backs of heads and a camera rig at the locker-room door, so the clip fades out instead of landing."
+      ],
+      "fixes": [
+        "Trim the head of the clip so it opens at about t=10s, with Milton coming through the doors holding the trophy.",
+        "Add a punch-in plus a cheer hit on the trophy lift (mid3) and on the laugh with Big Dom (mid4).",
+        "End at about t=22s on the smile with Big Dom, and cut the walk into the locker room."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_dead_open",
+        "visible_evidence": "hook@0.3 is a blurry crowd behind glass, and in hook@0.8 a man's head passes and fills the frame. In hook@1.5 and hook@2.2 people stand at rope lines with the subject nowhere in view, and he does not appear until mid2 at t=11.9s.",
+        "root_cause": "The cut starts at the beginning of the fan's phone clip instead of at the moment. The first 8 or more seconds are waiting in a concourse before Milton walks out with the trophy.",
+        "repair_goal": "Start the cut at about t=9-10s, when Milton comes through the doors smiling with the trophy (mid2). Open on him lifting the trophy beside Big Dom (mid3) with a punch-in and a crowd-cheer hit, and end on the laugh with Big Dom (mid4) instead of the backs of heads at the locker-room door (payoff@-0.4)"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|dead_air|weak_hook_dead_open"
+    },
+    {
+      "ts": "2026-11-27T11:42:38+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment is real and lands mid-clip, but the first ~5s is a blurry crowd shot from far away and the end fizzles on the backs of heads.",
+      "auto_fails": [
+        "dead_air: hook@0.3 to mid0 (~2.5s) is a blurry, distant crowd behind glass doors, and the subject does not clearly arrive until mid1 (7.2s); payoff@-1.8 to payoff@-0.4 is the backs of heads and a camera rig after he has left"
+      ],
+      "problems": [
+        "Hook (0-2.5s) is a shaky, distant crowd shot; Milton and the trophy are not identifiable",
+        "The subject does not clearly appear until about 7s",
+        "The ending (mid5 to payoff) is the backs of heads and a camera after he has left the frame",
+        "No zoom or sound hit on the trophy lift at mid2"
+      ],
+      "fixes": [
+        "Start the cut around mid1 with Milton walking toward the camera holding the trophy",
+        "Punch in on the trophy lift and his grin at mid2/mid3",
+        "End on the MILTON III #14 shot at mid4 and drop the trailing crowd footage"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook",
+        "visible_evidence": "hook@0.3 to mid0: a shaky, blurry shot from far down a corridor of a crowd behind glass doors and stanchions; Milton is not identifiable and the trophy is not visible",
+        "root_cause": "The cut starts at the beginning of the fan's phone recording instead of the moment he walks into frame holding the trophy",
+        "repair_goal": "Trim the opening ~5s so frame one is Milton grinning toward the camera with the trophy (around the mid1 timestamp), and end the cut as he enters the locker room (around mid4) rather than on the backs of heads"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|dead_air|weak_hook"
+    },
+    {
+      "ts": "2026-11-27T11:44:13+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment is real and correctly identified, but the first 7 seconds are a distant hallway with no Milton and no trophy, and the clip ends on strangers' backs.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.5s) shows a far-off glass doorway and staff, with no subject or trophy, so a stranger has no reason to stay",
+        "Milton first appears at about 7s and the trophy is first held up at about 12s, nearly halfway through",
+        "The applause is never clearly shown: nobody is visibly clapping in the sampled frames",
+        "The ending (mid5 and payoff) sits on backs of heads and a camera after he has walked away, so it trails off with no landing"
+      ],
+      "fixes": [
+        "Cold-open on the trophy raise (mid2) or the smiling close-up (mid3)",
+        "Trim the 0-6s hallway lead-in",
+        "End on the mid3/mid4 close-up of Milton with the trophy or the jersey reveal, cutting before the crowd at the door",
+        "Add a zoom or sound hit on the trophy raise so the reaction lands"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_no_subject",
+        "visible_evidence": "hook@0.3 to mid0 (0-2.5s): a far-off shaky shot of a glass doorway with backs of staff and a woman in grey, and no Milton or trophy visible. He first appears at mid1 (7.2s) and the trophy only at mid2 (11.9s). payoff@-0.4 ends on the backs of staff and a camera, with Milton gone.",
+        "root_cause": "The cut starts at the start of the source clip instead of at the moment, so the first seconds are hallway filler and the clip runs past him into the locker room door",
+        "repair_goal": "Open on Milton raising the turkey trophy (about 11-12s, mid2) or on his close-up smile with it (mid3), then cut back to the walk-out. End on the mid3 or mid4 close-up before the camera loses him in the crowd."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|-|weak_hook_no_subject"
+    },
+    {
+      "ts": "2026-11-27T11:46:55+00:00",
+      "slug": "sports_tom_brady_ward_patrick",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The real clip lands its comic Brady calls, but our hook line sits on top of the broadcast score bug for most of the video.",
+      "auto_fails": [
+        "unreadable: At hook@0.3, hook@1.5, mid0, mid3, mid4, mid5 and payoff@-0.4 our line 'Every sound Tom Brady made in Eagles vs. Cowboys' sits on top of the broadcast score bug (Eagles and Cowboys logos, '2ND & 6', '4TH & 11 59 YD ATTEMPT', clock digits). The bug's text and logos show through and collide with our words. At mid4 the source caption also reads garbled as 'S|OH!1!'."
+      ],
+      "problems": [
+        "Our on-screen line sits over the TV score bug (logos, down and distance, clock) at hook@0.3, hook@1.5, mid0, mid3, mid4, mid5 and payoff@-0.4. That breaks the 'never over a TV graphic' rule.",
+        "The source's sound caption at mid4 reads garbled as 'S|OH!1!'.",
+        "At mid5 the footage is blurry, wide and low on detail, so the 'OH!' moment does not land.",
+        "The payoff at payoff@-0.4 is an ordinary touchdown with no Brady caption visible, so the video fades out instead of ending on its best sound."
+      ],
+      "fixes": [
+        "Move our line out of the score bug's zone, either above the source captions or into the blurred band, or crop the footage so the bug falls outside the text area.",
+        "End on the strongest Brady sound (for example 'PISS MISSILE!' or 'IT IS GOOD!') rather than on a captionless touchdown.",
+        "Cut or tighten the blurry mid5 wide shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 73
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 0,
+        "failure_class": "unreadable",
+        "visible_evidence": "At mid0, our two-line hook text lies directly over the score bug ('4TH & 6 :12', team logos and clock digits). The same overlap repeats at hook@0.3, mid3, mid4, mid5 and payoff@-0.4.",
+        "root_cause": "Our line is pinned to a fixed bottom-third y position. That is exactly where this broadcast's score bug sits, and the footage is not cropped or masked to keep the bug clear of our line.",
+        "repair_goal": "Move our line clear of the broadcast graphics, for example above the source's burned-in sound captions or into the blurred band at the top or bottom. Or crop and scale the footage so the score bug sits outside the area under our line. Then no TV graphic shows under our text in any frame."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.055,
+        "effective_fps": 22.7,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.054,
+        "frozen_fps": 22.7,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.05,
+        "judder_fps": 22.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 5.75,
+        "duration_s": 24.17
+      },
+      "fingerprint": "?|unreadable|unreadable"
+    },
+    {
+      "ts": "2026-11-27T11:49:03+00:00",
+      "slug": "sports_tom_brady_ward_patrick",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The footage is real and fits the 'Brady sounds' premise, but our line is printed straight over the broadcast scorebug in almost every frame, and the cut jumps between game times without context, so a stranger cannot follow which call goes with which play.",
+      "auto_fails": [
+        "unreadable: OUR line 'The sounds of Tom Brady \ud83d\ude02' is printed directly over the broadcast scorebug in hook@0.3, hook@2.2, mid0, mid5 and payoff@-0.4. It collides with the '2ND & 6' and '4TH & 11 :16 59 YD ATTEMPT' boxes and sits on top of the score digits, so the two layers of text overlap and both become hard to read on a phone."
+      ],
+      "problems": [
+        "OUR caption overlaps the TV scorebug and down-and-distance graphic in hook@0.3, hook@2.2, mid0, mid3, mid5 and payoff@-0.4, so the text layers are illegible on a phone.",
+        "The clips jump from 4th quarter (mid0, 31-17) to 1st quarter (mid1, 7-0) and back to 4th, with no on-screen cue that each is a separate Brady call, which is confusing.",
+        "mid4 is a dark, near-unreadable crowd cutaway that adds nothing visually.",
+        "The payoff ends at the pre-kick wide shot (payoff@-0.4, :02 4th, 59 YD ATTEMPT). The ball going through is not shown in frame, so the 'it is good!' payoff may not land visually before the end.",
+        "The moment depends entirely on audio. From the picture alone, a stranger cannot tell which sound is Brady's or what is funny about it."
+      ],
+      "fixes": [
+        "Move our line out of the scorebug's band, either up near the top of the footage or into the lower blurred letterbox, and check that no frame has burned-in broadcast text under it.",
+        "End on the ball clearing the uprights or on the celebration right after the kick, so the 'it is good!' call lands on screen before the cut.",
+        "Drop or replace the dark crowd cutaway (mid4) with a play that matches one of Brady's calls.",
+        "Keep the sequence in game order, or cut tightly to each call, so each sound clearly matches its play."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.021,
+        "sampled": 47
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "unreadable",
+        "visible_evidence": "hook@0.3\u2013hook@2.2: the white outlined line 'The sounds of Tom Brady \ud83d\ude02' sits on top of the TV scorebug ('2ND & 6', '24 10:13 4TH 31'). The text layers overlap, and the line also covers the down-and-distance box. The same collision repeats in every frame through payoff@-0.4.",
+        "root_cause": "The caption sits at a fixed bottom-third Y position that lands exactly on the broadcast's own score graphic. The source footage keeps its scorebug at that height, and the placement does not check for burned-in TV graphics.",
+        "repair_goal": "Move our line clear of the broadcast scorebug, for example above the footage at around y\u224890-140 or in the bottom blurred band below the score graphic, so no on-screen TV text sits under it in any frame. Also check that the opening two seconds show a clear Brady-call moment (the touchdown celebration"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.086,
+        "effective_fps": 21.9,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.086,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.075,
+        "judder_fps": 22.2,
+        "held_s": 0.0,
+        "max_dup_at_s": 5.75,
+        "duration_s": 15.58
+      },
+      "fingerprint": "?|unreadable|unreadable"
+    },
+    {
+      "ts": "2026-11-27T11:51:14+00:00",
+      "slug": "sports_tom_brady_yard_fg_wins",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The 60-yard game-winner itself lands, but our line sits on top of the TV scorebug for the whole video, Brady (who the line is about) is never seen, and the first 6 seconds are a static lineup.",
+      "auto_fails": [
+        "unreadable: In every frame from hook@0.3 to payoff@-0.4 our line 'Brady calls a 60 yard game winner' sits on top of the broadcast scorebug ('4TH & 11', '60 YD ATTEMPT', the score). In mid4 it also lands right under the clip's own 'IT IS GOOD!' caption and crosses the 36-38 score bar, so text is stacked on text"
+      ],
+      "problems": [
+        "Our hook text overlaps the broadcast scorebug in every frame (hook@0.3 to payoff@-0.4), so both are hard to read",
+        "In mid4 our line is stacked directly under the clip's own 'IT IS GOOD!' caption and the score bar",
+        "The hook opens about 6s before the snap with the teams just lined up, so nothing grabs a stranger in the first 2 seconds",
+        "The line promises Brady's call, but Brady never appears on screen; the 'squeal' is audio only",
+        "The footage is letterboxed between blurred bands, which wastes about 25% of the vertical frame"
+      ],
+      "fixes": [
+        "Move the hook line into the top blurred band (or crop the footage so the scorebug is out of the text area) so it never overlaps a TV graphic or burned-in caption",
+        "Start the cut about 1s before the snap so the kick happens inside the hook window",
+        "Scale the footage up to fill more of the 9:16 frame and reduce the blurred letterbox",
+        "If a Brady booth shot exists, cut to it on the call; otherwise reword the line so it does not imply we see Brady"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "text_over_broadcast_graphic",
+        "visible_evidence": "hook@0.3 to hook@2.2: our white line is printed straight over the green-and-white scorebug, so both the hook and the score/down/distance blur together. The shot is a wide, still view of teams lined up for the snap, and Brady is never seen",
+        "root_cause": "The hook line is placed at a fixed bottom-third position without checking for the TV graphic in that band. The cut also opens about 6 seconds before the snap, so nothing happens on screen in the first two seconds",
+        "repair_goal": "Move our line to the empty band above the footage (or to a stretch of clear field) so it never touches the scorebug or the clip's own 'IT IS GOOD!' caption. Trim the opening so the first frame is close to the snap (the play clock near :22), so the kick starts within the first second"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.409,
+        "effective_fps": 14.2,
+        "max_dup_run": 40,
+        "measured": true,
+        "frozen_ratio": 0.022,
+        "frozen_fps": 23.5,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.71,
+        "max_dup_at_s": 4.25,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|unreadable|text_over_broadcast_graphic"
+    },
+    {
+      "ts": "2026-11-27T11:57:45+00:00",
+      "slug": "sports_josh_allen_o_tyler_bass",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Clean split-screen repost: the game-winning 57-yard kick on top and Josh Allen's reaction below. The payoff lands with the 13-10 FINAL, but his reaction is muted and the opening caption 'IT'S NOT GOOD' confuses.",
+      "auto_fails": [],
+      "problems": [
+        "Captions 'IT'S NOT GOOD,' sit on screen from hook@0.3 to mid0 and read as if the kick missed, which contradicts our game-winning line",
+        "Allen's reaction in the bottom half is subdued, so the moment the title sells ('can't believe') is not strongly shown",
+        "The first two seconds are a static setup before the snap"
+      ],
+      "fixes": [
+        "Trim the opening to start near the snap so the ball is in the air by about second 1",
+        "Shorten or drop the 'IT'S NOT GOOD' speech caption, or give it its context",
+        "Punch in on Allen's face at the moment of the make (mid3 to mid4)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "muted_reaction",
+        "visible_evidence": "hook@0.3 to mid0: the bottom half holds Allen's near-expressionless face behind the captions while the kick is lined up, and the caption 'IT'S NOT GOOD,' reads for over two seconds as if the kick missed",
+        "root_cause": "The source is a slow build-up, and a speech caption with no context makes the opening read as the opposite of the outcome",
+        "repair_goal": "Open nearer the snap or the ball in flight, or keep the 'IT'S NOT GOOD' caption short so it does not contradict the game-winning line, and push in on Allen's face when the kick lands"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.028,
+        "effective_fps": 23.3,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 0.29,
+        "max_dup_at_s": 0.5,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|-|muted_reaction"
+    },
+    {
+      "ts": "2026-11-27T11:59:29+00:00",
+      "slug": "sports_george_pickens_tely_heading",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment is shown with Pickens clearly in frame, but the hook opens on fans' backs and a tiny venue screen, and the payoff of him walking back is distant and soft.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.2s) is the backs of fans and a distant screen; Pickens and the 2-second clock are not legible at phone size.",
+        "The payoff (mid4 to payoff@-0.4) shows Pickens as a small figure far down the tunnel, so the realisation or return does not land with any punch.",
+        "No zoom or sound hit marks the beat where he realises there is time left."
+      ],
+      "fixes": [
+        "Open on Pickens entering the tunnel, or punch in on the :02 clock.",
+        "Zoom in on Pickens turning back toward the field in mid4/mid5 and add a sound hit there.",
+        "Trim the fan-screen lead-in to about 1 second."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 75
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_hook",
+        "visible_evidence": "hook@0.3 to hook@2.2 are phone footage of the backs of fans watching a big screen at a distance. The clock (:07, then :03) is tiny, and Pickens is not visible until mid1.",
+        "root_cause": "The cut opens on the lead-in field goal filmed off a venue screen, not on Pickens himself.",
+        "repair_goal": "Open on Pickens jogging into the tunnel (mid1), or flash-forward to it, and punch in on the scoreboard clock showing :02 so the joke reads in the first second."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.134,
+        "effective_fps": 20.8,
+        "max_dup_run": 11,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 0.92,
+        "max_dup_at_s": 0.92,
+        "duration_s": 25.0
+      },
+      "fingerprint": "?|-|slow_hook"
+    },
+    {
+      "ts": "2026-11-27T12:06:02+00:00",
+      "slug": "sports_luka_doncic_ake_his_time",
+      "score": 49,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 0,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The promised Luka moment is never shown: a reporter in a sliver of a strip, swamped by a giant blurred copy of his own face, relays it second-hand.",
+      "auto_fails": [
+        "junk_imagery: hook@1.5, mid0, mid2, mid4, mid5: the speaker is a reporter in a thin letterboxed strip about 80px tall. Luka never appears and Reaves only shows up in generic game B-roll (mid1, mid3), so the line's promised moment, Luka's warning, is never shown. The reporter is also tiny and cut off at the shoulders.",
+        "empty_void: hook@0.3 is mostly black above and below a thin strip. In hook@1.5, mid0, mid2, mid4, mid5 and payoff@-0.4, roughly 85% of the frame is a huge blurred, pixelated enlargement of the reporter's face, and the real picture is a sliver in the middle."
+      ],
+      "problems": [
+        "Most frames are a thin letterboxed strip, with about 85% of the screen a blurred, pixelated enlargement of the reporter's face (hook@1.5, mid0, mid2, mid4, mid5).",
+        "Neither Luka nor the warning is ever on screen. The story is relayed by a reporter, so the line's promise is told, not shown.",
+        "The hook opens on black with a sliver of game footage (hook@0.3), so nothing makes a stranger stay.",
+        "The B-roll (mid1, mid3, mid4) is generic game footage that does not illustrate a heel injury, a trade or a warning.",
+        "The word captions misspell Luka as 'LUCA' (hook@1.5).",
+        "There is no payoff beat: it ends on the reporter mid-sentence (payoff@-0.4)."
+      ],
+      "fixes": [
+        "Crop the interview to 9:16 on the reporter's face, removing the source's letterbox bars, so no blur fill is needed.",
+        "Open on Luka himself or on Luka and Reaves together, not on black.",
+        "Cut in B-roll that matches the words: Luka hurting his heel in 2024 and the trade news when the reporter says 'traded'.",
+        "Fix the caption spelling to 'Luka'.",
+        "End on a line that lands, such as the reason Luka gives Reaves, instead of a mid-sentence trail-off."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.015,
+        "sampled": 67
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 0,
+        "failure_class": "empty_void",
+        "visible_evidence": "mid0 (t=2.50s): a landscape interview is shrunk into a thin horizontal strip mid-frame, with a giant blurred copy of the reporter's face filling the rest of the 9:16 frame. The speaker's face is only a few pixels tall.",
+        "root_cause": "A 16:9 source with its own letterbox bars was fit-to-width rather than cropped to the speaker, so the bars plus a blur fill take up most of the vertical frame.",
+        "repair_goal": "Detect and remove the source's letterbox bars, then crop the interview to a 9:16 frame centred on the reporter's face so he fills the frame. Better, find footage of Luka himself or of the Luka-Reaves exchange so the claim is shown, not relayed."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.128,
+        "effective_fps": 20.9,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.047,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.039,
+        "judder_fps": 23.1,
+        "held_s": 0.0,
+        "max_dup_at_s": 1.38,
+        "duration_s": 22.42
+      },
+      "fingerprint": "?|empty_void+junk_imagery|empty_void"
+    },
+    {
+      "ts": "2026-11-27T12:08:12+00:00",
+      "slug": "sports_dylan_larkin_larkin_as_he",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The line promises Montreal fans chanting for Larkin, but the footage is wide broadcast play that ends on a lone goalie. The crowd and Larkin are never shown, so the moment never lands.",
+      "auto_fails": [
+        "junk_imagery: mid3-payoff@-0.4 (8.8-14.6s) show wide broadcast play, then an empty zone and a lone goalie under a cropped 'er Eats' TV graphic. No crowd is shown chanting and Larkin is not framed. Only hook@0.3 (the #89 helmet close-up) is about him, so the footage does not show what the line promises."
+      ],
+      "problems": [
+        "The chant the line promises is never shown: no crowd shot, no Larkin close-up after hook@0.3.",
+        "mid4 to payoff@-0.4 show an empty zone and a goalie under a cropped 'er Eats' TV graphic, which is unrelated filler.",
+        "The burned-in commentary captions from another account ('THEIR FANS JUST', 'EATS AND HERE') mark this as a repost and crowd our line.",
+        "There is no zoom or sound hit on a reaction, so the edit has no repost-style punch.",
+        "The ending gives no payoff: a stranger would not know what happened."
+      ],
+      "fixes": [
+        "Source a clip that shows the crowd chanting and Larkin on the ice or bench reacting, and punch in on it as the chant peaks.",
+        "Trim everything after about 9s (goalie and empty-zone footage) and end on the crowd or Larkin.",
+        "Use a clean broadcast feed without another account's captions, or crop them out.",
+        "Add a punch-in with a sound hit on the 'We got Larkin' chant."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "moment_not_shown",
+        "visible_evidence": "From mid4 (10.9s) to payoff@-0.4 (14.6s) the frame shows a near-empty zone, then a goalie alone in his crease, under a 'er Eats' sponsor graphic cut off at the left edge. No fans, no Larkin, no chant.",
+        "root_cause": "The source is someone else's repost: the game broadcast with their burned-in commentary captions. The cut keeps that wide game feed, so the chant happens only off-screen as audio while the frames show unrelated play.",
+        "repair_goal": "Cut to the crowd chanting and to Larkin (a close-up or his reaction on the bench or ice) while 'We got Larkin' is audible. End on the crowd or Larkin, not the goalie. Drop the clip with the cropped Uber Eats graphic, and use a clean source without another account's burned-in captions."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.017,
+        "effective_fps": 23.6,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.011,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 2.79,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|junk_imagery|moment_not_shown"
+    },
+    {
+      "ts": "2026-11-27T12:17:47+00:00",
+      "slug": "sports_kevin_durant_rooks_get_in",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The face-off and separation are really shown, but the first 2 seconds are a tiny wide shot of normal play and the ejection payoff never clearly lands.",
+      "auto_fails": [],
+      "problems": [
+        "The hook frames (0.3-2.2s) are wide, distant play with nothing happening; a stranger has no reason to stay",
+        "The confrontation does not arrive until ~9.7s",
+        "The source repost's commentary captions ('THESE TWO GUYS', 'CHIRP.', 'NATURE DOES NOT') are burned in and stacked right above our line, so two text layers compete",
+        "Blurred letterbox bands top and bottom waste about a quarter of the frame; this is a re-crop of another repost",
+        "The ending (payoff@-1.8, -0.4) is Durant walking away. The ejection the title promises is never clearly shown"
+      ],
+      "fixes": [
+        "Cold-open on the nose-to-nose shot (mid4 framing) and cut the wide-play build-up",
+        "Use clean source footage without another channel's burned-in commentary captions, or move our line so it is clearly separated",
+        "Fill the 9:16 frame with the footage instead of a blurred letterbox",
+        "End on the ref's ejection call or Brooks leaving the floor so the payoff lands"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.008,
+        "sampled": 121
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_hook",
+        "visible_evidence": "hook@0.3 to hook@2.2 are a wide broadcast shot of ordinary half-court play. The players are tiny and nothing confrontational happens, while the source's captions say 'THESE TWO GUYS... WEREN'T EVEN WATCHING ON.'",
+        "root_cause": "The cut starts at the beginning of the source repost's build-up instead of the confrontation. The nose-to-nose moment only arrives around mid1 (~9.7s)",
+        "repair_goal": "Open on the nose-to-nose close-up (the BROOKS #3 vs Durant shot at mid4, or the separation at mid1) within the first second. Trim or shorten the wide-play lead-in so the hook frame shows the face-off the line promises"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.026,
+        "effective_fps": 23.4,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.025,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.023,
+        "judder_fps": 23.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 21.38,
+        "duration_s": 40.42
+      },
+      "fingerprint": "?|-|slow_hook"
+    },
+    {
+      "ts": "2026-11-27T12:22:14+00:00",
+      "slug": "sports_kevin_durant_rooks_get_in",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The nose-to-nose the line promises shows up for under a second at the very end, with KD cropped half out of frame, and the ejection is never shown.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: the only frame showing the nose-to-nose has Durant cropped to a sliver of shoulder and the back of his head at the right edge. The hook frames (hook@0.3-2.2) show Brooks shouting alone, with his face pushed to the frame edge at hook@0.3."
+      ],
+      "problems": [
+        "The hook is a Brooks-only close-up; KD does not appear in the first 2 seconds despite the line naming him.",
+        "payoff@-0.4: the face-to-face moment crops Durant to a shoulder and the back of his head at the right edge.",
+        "mid2 (bench reaction) and mid4 (live play) are filler unrelated to the confrontation.",
+        "The ejection or second technical, which is in the title, is never shown.",
+        "mid1 and mid4 are letterboxed with dark bands, so the wide shots read small on a phone."
+      ],
+      "fixes": [
+        "Open on the face-to-face with a crop or split that keeps both KD and Brooks whole.",
+        "Cut to the referee's technical or ejection signal as the payoff beat.",
+        "Remove the bench and live-play filler; keep the cut tight around the confrontation, about 15-20s.",
+        "Fill the frame on the wide shots instead of letterboxing them."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 119
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "crop_misses_subject",
+        "visible_evidence": "hook@0.3 through mid0: a tight shot of Brooks alone shouting at someone off-screen, with no KD and no confrontation. The confrontation the line promises only shows up at payoff@-0.4, where KD is half out of frame at the right edge.",
+        "root_cause": "The cut opens on a Brooks reaction close-up instead of the confrontation. The vertical crop is centred on Brooks, so when the two are face to face Durant falls outside the 9:16 window. The middle wanders into crowd and replay footage (mid1, mid2, mid4) and never shows the ejection call.",
+        "repair_goal": "Open on the face-to-face moment with BOTH players framed: widen the crop or split it so Durant and Brooks are both whole in frame. Then cut to the referee's second technical or ejection signal as the payoff, and drop the wandering live-play and bench segments (mid2, mid4)."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.021,
+        "effective_fps": 23.5,
+        "max_dup_run": 3,
+        "measured": true,
+        "frozen_ratio": 0.02,
+        "frozen_fps": 23.5,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.015,
+        "judder_fps": 23.6,
+        "held_s": 0.0,
+        "max_dup_at_s": 21.96,
+        "duration_s": 39.71
+      },
+      "fingerprint": "?|junk_imagery|crop_misses_subject"
+    },
+    {
+      "ts": "2026-11-27T12:24:48+00:00",
+      "slug": "sports_kevin_durant_rooks_get_in",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The hook is a routine layup, the ejection is never shown, Durant is never clearly seen being held back, and our line overlaps the TV score bug at the end.",
+      "auto_fails": [
+        "junk_imagery: mid4 (t=11.46s) the crop sits on the back of Brooks' head and ear, not his face. Durant is never clearly identified being held back anywhere from mid5 to payoff@-0.4; the person in black on the left edge is half out of frame.",
+        "unreadable: mid5, payoff@-1.8 and payoff@-0.4: our line 'KD gets held back' is printed on top of the TV score bug (102 BONUS 115 23.8), so the two collide."
+      ],
+      "problems": [
+        "The first ~2.5s (hook@0.3 to mid0) is ordinary gameplay with no conflict, so nothing makes a stranger stay.",
+        "The ejection, the second technical or the ref's signal, never appears.",
+        "Durant is not identifiable in the separation shot (mid5 to payoff); the player being held is at the left edge and half out of frame.",
+        "mid4 crops to the back of Brooks' head.",
+        "Our line sits over the TV score bug in mid5, payoff@-1.8 and payoff@-0.4."
+      ],
+      "fixes": [
+        "Cold-open on the scuffle or separation, then show the build-up if there's room.",
+        "Include the ref's ejection call, and keep Durant centred and recognisable while he is held back.",
+        "Track the close-up crop on Brooks' face instead of letting it drift behind his head.",
+        "Move our line above the score bug, or crop the bug out, in the closing wide shot."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 47
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "hook_shows_wrong_moment",
+        "visible_evidence": "hook@0.3 to hook@2.2 and mid0 show an ordinary half-court possession and a layup under the basket. There is no scuffle, ejection or Durant moment, while the line promises 'Brooks gets tossed, KD gets held back'.",
+        "root_cause": "The cut starts at the beginning of the Reddit clip (routine play) instead of the altercation. The promised ejection and separation only show up, faintly, in a wide shot in the last 2 seconds.",
+        "repair_goal": "Open on the altercation itself (Brooks and Durant face to face, or staff separating them, as at payoff@-1.8). Then show the ref's ejection signal, and frame Durant clearly while he is held back. Raise our line above the score bug, and crop the close-up on Brooks' face, not the back of his head."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.005,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.005,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 13.62,
+        "duration_s": 15.71
+      },
+      "fingerprint": "?|junk_imagery+unreadable|hook_shows_wrong_moment"
+    },
+    {
+      "ts": "2026-11-27T12:43:34+00:00",
+      "slug": "sports_josh_hokit_s_ciryl_gane",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The admission is real, but the source's split-screen is re-cropped into collage debris, and on the fight cutaway our line sits over the UFC graphic.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4: the source's two-panel podcast layout has been re-cropped into a broken collage. Hokit's own panel shows as a sliver of jacket at top-right, and a strip of Bisping's set shows at bottom-left, so the frame is crop debris around the speaker rather than a clean shot.",
+        "unreadable: At mid4 our hook line 'Josh Hokit admits Gane is a nice guy' is printed over the UFC broadcast lower-third ('GANE ... HOKIT', 'UFC HEAVYWEIGHT CHAMPIONSHIP'), and the two sets of text tangle so neither reads cleanly."
+      ],
+      "problems": [
+        "Every frame is a broken re-crop of a side-by-side podcast layout, with slivers of each panel bleeding into the other (hook@0.3, mid0, mid5).",
+        "At mid4 our hook line overlaps the UFC broadcast lower-third, so neither reads.",
+        "The word captions sit right above our line and read as two stacked caption tracks.",
+        "The payoff (the hospital at 6 AM) never comes through clearly in the frames, so a stranger only hears fragments.",
+        "The first two seconds are a static talking head with 'BUT WE RAN', which gives no clear reason to stay."
+      ],
+      "fixes": [
+        "Crop to a single speaker panel full-frame (Hokit), with clean cuts to Bisping only on his laugh.",
+        "Move our line above the broadcast graphic on the UFC cutaway, or trim the cutaway.",
+        "Lead with the strongest line (the hospital encounter) inside the first two seconds.",
+        "Make sure the hospital/6 AM payoff is spoken and on screen before the end."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 0,
+        "failure_class": "bad_crop_restream_layout",
+        "visible_evidence": "From hook@0.3 to payoff@-0.4 the frame stacks Bisping's webcam on top and Hokit on the bottom. A cut-off sliver of Hokit's panel sits at top-right and a strip of Bisping's set at bottom-left, so the source's split-screen has been scaled and cropped badly. Short word captions ('BUT WE RAN', 'LIKE,') ",
+        "root_cause": "The cropper treated a side-by-side podcast frame as one shot, so it kept both panels plus fragments of each other instead of choosing the speaker. The fight cutaway also put our line on top of the TV graphic.",
+        "repair_goal": "Crop to Hokit's own panel full-frame, with face_and_content or speaker-only framing and no slivers from the other panel. Cut to Bisping's laugh only on the reaction. On the UFC cutaway, move our line clear of the broadcast lower-third or drop the cutaway. Show the hospital-at-6AM line clearly before"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.109,
+        "effective_fps": 21.4,
+        "max_dup_run": 6,
+        "measured": true,
+        "frozen_ratio": 0.026,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.014,
+        "judder_fps": 23.7,
+        "held_s": 0.38,
+        "max_dup_at_s": 1.83,
+        "duration_s": 27.21
+      },
+      "fingerprint": "?|junk_imagery+unreadable|bad_crop_restream_layout"
+    },
+    {
+      "ts": "2026-11-27T12:49:43+00:00",
+      "slug": "sports_josh_hokit_s_ciryl_gane",
+      "score": 49,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "This is a restream: a podcast host's webcam stacked over another video with stray edge strips, and the hospital story the line promises is never clearly shown.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4: a restream layout. A host at a webcam and mic (top panel) reacts to a second video (bottom panel), and slivers of both feeds repeat at the left and right edges. Neither panel clearly shows Josh Hokit telling the hospital story the line promises."
+      ],
+      "problems": [
+        "Every frame except mid1 is a two-panel restream with duplicated slivers of both feeds at the left and right edges.",
+        "It isn't clear the speaker is Hokit, and a stranger couldn't follow the hospital anecdote from what's on screen.",
+        "The only real moment is the fight clip in mid1, and it has nothing to do with the hospital line."
+      ],
+      "fixes": [
+        "Use Hokit's original interview clip, cropped tight on him, with the hospital and 6 AM quote as the core.",
+        "Open on the Gane vs Hokit fight clip for context, then cut to Hokit telling the story.",
+        "If no single-feed source exists, refuse this post."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 106
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "restream_wrong_crop",
+        "visible_evidence": "hook@0.3: the frame is split. The top shows a podcast host at a mic, the bottom shows a man in an NY beanie in a yard, and there are duplicated slivers of both feeds at the left and right edges. We never get a clean shot of Hokit telling the hospital story.",
+        "root_cause": "The source is a reaction or podcast restream with a multi-panel layout. It was cropped as if it were a single shot, so we got two half-panels and stray edge strips.",
+        "repair_goal": "Use the original interview footage of Hokit speaking, framed full and centred, and cut to the line where he talks about the hospital and 6 AM. If that footage isn't available, drop this source."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.089,
+        "effective_fps": 21.9,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.031,
+        "frozen_fps": 23.3,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.021,
+        "judder_fps": 23.5,
+        "held_s": 0.0,
+        "max_dup_at_s": 6.25,
+        "duration_s": 35.17
+      },
+      "fingerprint": "?|junk_imagery|restream_wrong_crop"
+    },
+    {
+      "ts": "2026-11-27T12:52:28+00:00",
+      "slug": "sports_tari_eason_ut_blows_the",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment lands: the steal, the windmill crash and Eason's sheepish grin. The replay section's crop drifts onto a teammate's back and an arm.",
+      "auto_fails": [],
+      "problems": [
+        "mid4 and mid5: the replay crop sits on #1 Wagler's back and then a forearm with the ball, not Eason",
+        "The footage is soft and upscaled throughout",
+        "In the hook the steal is small in a wide shot, so the action is hard to read at phone size"
+      ],
+      "fixes": [
+        "Track Eason in the 16-20s replay crop, or trim it and go straight to his grin",
+        "Punch in on the steal in the first 2s so the breakaway reads right away"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 66
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 9,
+        "failure_class": "crop_misses_subject",
+        "visible_evidence": "At mid5 the frame is filled by a forearm and the ball. At mid4 it is the back of #1 Wagler rather than Eason, and the replay detail is soft and upscaled.",
+        "root_cause": "A tight replay angle was put through a centre crop. The vertical reframe does not follow the player who matters, so the replay section loses its subject.",
+        "repair_goal": "Reframe the replay section (about 16-20s) to follow Eason, or cut it shorter and go sooner to his grin and the bench reaction. Make sure the person in the moment is in the frame at every replay."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 15.46,
+        "duration_s": 22.08
+      },
+      "fingerprint": "?|-|crop_misses_subject"
+    },
+    {
+      "ts": "2026-11-27T13:05:27+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment is real and correctly framed, but it is buried: the first 10 seconds are blurry crowd waiting, and the clip ends on the backs of camera crew.",
+      "auto_fails": [],
+      "problems": [
+        "The hook is the blurry backs of a crowd and a head blocking the lens (hook@0.3-hook@2.2). Neither Milton nor the trophy is visible, so a stranger has no reason to stay.",
+        "Milton does not appear until mid2 (11.87s), so nearly half the runtime is waiting.",
+        "The 'greeted with applause' part is barely shown. No applauding crowd is clearly visible around him.",
+        "The ending (payoff@-0.4) is the backs of camera crew, so the clip trails off instead of landing on the smile or trophy.",
+        "No punch-in or sound hit on the trophy raise. It is raw phone footage with no repost-style edit."
+      ],
+      "fixes": [
+        "Start the cut at about 10.5s, so the first frame is Milton walking in with the trophy.",
+        "End at about 22s on his grin with the trophy next to Big Dom, and drop the hallway crowd-back tail.",
+        "Add a punch-in and a sound hit at the trophy raise (mid3, about 16.5s)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_subject_absent",
+        "visible_evidence": "From hook@0.3 to mid1 (0-7s) the viewer sees blurry crowds behind glass, a bald head blocking the lens at hook@0.8, and a man in a brown blazer. Milton and the trophy first appear at mid2 (11.87s), and the last frame (payoff@-0.4) is the back of a camera crew.",
+        "root_cause": "The cut starts from the raw clip's beginning, so about 10s of waiting in the concourse comes before the subject appears. The tail runs past the moment into crowd backs in the locker-room hallway.",
+        "repair_goal": "Trim the start to about 10.5s so frame 1 is Milton walking in with the trophy and smiling (mid2). End on his smile with the trophy beside Big Dom (around mid4, 21s), and cut the crowd-back tail. Add a punch-in on the trophy raise."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|-|weak_hook_subject_absent"
+    },
+    {
+      "ts": "2026-11-27T13:07:08+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment (Milton grinning with the Turkey trophy) is good, but it arrives at about 7s after a hook of strangers milling behind glass, and the clip ends on backs of heads rather than on him.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.5s): a distant, obstructed shot through glass doors of staff and security. Milton and the trophy are not visible, so there is no reason to stay.",
+        "About 25% of the opening frames are wasted on a grey pillar at the right edge (hook@0.3 to mid1).",
+        "The ending (mid5, payoff@-0.4) is backs of heads, a camera rig and a wall. Milton is gone, so nothing lands in the last seconds.",
+        "No punch-in or sound hit on the trophy lift (mid2), which is the clip's best beat."
+      ],
+      "fixes": [
+        "Start the cut around t\u22486-7s, as Milton enters frame with the trophy.",
+        "Punch in on the trophy raise at mid2 with a hit, and keep the cheering audio up.",
+        "End on mid3's grin with the staffer reacting, or on the jersey-back walk into the locker room at mid4; cut before the backs-of-heads tail.",
+        "Re-crop the opening away from the pillar so the people fill the 9:16 frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_open_subject_absent",
+        "visible_evidence": "From hook@0.3 to hook@2.2 and on to mid0, the camera looks from a distance through glass doors at staff and security milling about. Milton and the trophy only show up clearly at mid1 (t=7.19s), and the right quarter of the frame is a grey pillar.",
+        "root_cause": "The cut starts the source clip at frame 0, so the first ~6s are the wait before he arrives and the promised subject is off screen while a stranger decides whether to swipe.",
+        "repair_goal": "Trim the open to start around t\u22486-7s, when Milton walks into frame grinning with the trophy (mid1/mid2). Punch in on him lifting the trophy with a sound hit, and end on his smile beside the staff in the tunnel (mid3), not on the backs of heads at the locker-room door."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|-|slow_open_subject_absent"
+    },
+    {
+      "ts": "2026-11-27T13:08:44+00:00",
+      "slug": "sports_joe_milton_iii_i_is_greeted",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The trophy moment is real and charming but buried: the first ~10s show a distant lobby of strangers and the clip ends on the backs of heads.",
+      "auto_fails": [
+        "dead_air: From hook@0.3 to mid1 (about 7s), a distant crowd waits behind glass doors and Milton never appears; nothing the line promises happens until about mid2 (11.9s)."
+      ],
+      "problems": [
+        "Hook (0-2.2s): a far-off crowd behind glass and a blurry passerby at hook@0.8. A stranger cannot tell who to watch, and Milton is not in frame.",
+        "Dead stretch from 0 to about 10s with people waiting and no subject (hook through mid1).",
+        "Payoff: the last seconds (mid5 to payoff@-0.4) show Milton's back, then a camera rig and the backs of heads. The moment fades out instead of landing.",
+        "The shaky vertical phone footage has a gray pillar taking up the right sixth of the frame in the early shots."
+      ],
+      "fixes": [
+        "Trim the clip to start at the trophy raise (about 16s, mid3) or at least at Milton's entrance (about 11s, mid2).",
+        "End on the grinning close-up with the trophy (mid4, about 21s) rather than the locker room door crowd.",
+        "Add a punch-in and a sound hit when he lifts the trophy, so the reaction lands like the repost channels do it."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_buried_moment",
+        "visible_evidence": "hook@0.3-2.2 is a far-off lobby of bystanders behind stanchions. At hook@0.8 a blurry man's head fills the frame. Milton and the trophy are not visible until mid2 (11.9s).",
+        "root_cause": "The cut starts at the start of the fan's phone clip, not at the moment. The first 10s are waiting, and the clip ends on the backs of heads and a camera rig (payoff@-0.4).",
+        "repair_goal": "Open on mid3 (about 16.5s), where Milton raises the turkey trophy toward the camera, or on mid4, where he is grinning beside the staffer. Cut the lobby lead-in from 0 to 10s, and end around 22-24s on the smile rather than the crowd at the locker room door."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.75
+      },
+      "fingerprint": "?|dead_air|weak_hook_buried_moment"
+    },
+    {
+      "ts": "2026-11-27T13:32:45+00:00",
+      "slug": "sports_tom_brady_aron_rodgers",
+      "score": 45,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 0,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "This is a repost of someone else's split-screen edit: Brady is half cut off, their captions sit right on top of ours, and the second half is unrelated game footage, so the response never lands.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through mid2: a repost of another channel's edit (\"SM HIGHLIGHTS\" watermark), with the same broadcast stacked twice in a split screen. In the top panel Brady is cut off at the right edge. From mid4 to the payoff it cuts to unrelated Eagles-Cowboys game footage, also stacked twice, while the line says Brady responds to Rodgers.",
+        "unreadable: hook@0.3 to mid4: our line \"Brady responds to Rodgers on McCarthy\" sits directly under the source's own burned-in karaoke captions (\"THINK IN RESPONSE\"), so two caption layers stack over Brady's face and chest in the bottom panel."
+      ],
+      "problems": [
+        "The source is another channel's split-screen repost (SM HIGHLIGHTS watermark) showing the same footage twice.",
+        "In the top panel Brady is half out of frame at the right edge (hook@0.3, mid0).",
+        "Our on-screen line is stacked directly under the source's burned-in captions.",
+        "From mid4 to the payoff the clip shows game plays instead of Brady, so the promised response is never seen.",
+        "A stranger cannot tell what Rodgers said or what Brady's point is. The clip ends mid-thought."
+      ],
+      "fixes": [
+        "Pull the original broadcast clip and crop to a single frame centred on Brady.",
+        "Remove the duplicated panel, the watermark and the source captions. Put our line where no other text sits.",
+        "Keep the whole answer on Brady and end on the 'sacred locker room' line, with no cutaway to game footage.",
+        "Add context in the line saying what Rodgers said, so the response has stakes."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 55
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "restream_wrong_crop",
+        "visible_evidence": "hook@0.3 to mid2: the source is another channel's duplicated top/bottom split screen with its watermark and its captions. In the top panel Brady is half out of frame at the right edge, and our line is stacked under their captions. From mid4 on, the clip is game footage, not Brady.",
+        "root_cause": "The cut takes a reposter's already-edited split-screen video as its source instead of the original broadcast. It keeps their captions and their filler B-roll, and never centres the speaker.",
+        "repair_goal": "Use the original broadcast clip of Brady speaking, cropped to a single 9:16 frame centred on Brady. Remove the duplicated panel, the watermark and the burned captions. Keep only the part where he answers about Rodgers and McCarthy, and end on the full \"sacred locker room\" line instead of cutting to "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.273,
+        "effective_fps": 17.4,
+        "max_dup_run": 27,
+        "measured": true,
+        "frozen_ratio": 0.043,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.018,
+        "judder_fps": 23.6,
+        "held_s": 2.08,
+        "max_dup_at_s": 1.42,
+        "duration_s": 18.33
+      },
+      "fingerprint": "?|junk_imagery+unreadable|restream_wrong_crop"
+    },
+    {
+      "ts": "2026-11-27T13:35:23+00:00",
+      "slug": "sports_dylan_larkin_larkin_as_he",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The hook close-up of #89 is good, but the clip never shows the chant or Larkin's reaction and fizzles out on a generic goalie shot under a cropped sponsor graphic.",
+      "auto_fails": [],
+      "problems": [
+        "The promised moment (fans chanting 'We Got Larkin') is never seen. The crowd is only background in the wide shots (mid0, mid2).",
+        "The payoff (payoff@-0.4) is a wide shot of the goalie with no Larkin and no fans, so it lands nothing.",
+        "A cropped 'er Eats' TV graphic sits over the upper left in mid4 and payoff@-0.4.",
+        "The video is letterboxed with blurred bars that waste about a quarter of the vertical frame.",
+        "The commentary word captions ('THEIR FANS JUST', 'EATS AND HERE') are filler from the broadcaster talking about sponsors."
+      ],
+      "fixes": [
+        "Cut to crowd shots of fans chanting, and to Larkin on the ice or bench reacting, while the chant is audible.",
+        "Trim the tail after the faceoff sequence and end on the chant or Larkin's reaction.",
+        "Crop or punch in so the TV sponsor graphic is excluded, and fill the vertical frame instead of letterboxing.",
+        "Add a punch-in zoom on #89 when the chant peaks."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 45
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 11,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 ends on a wide shot of the Kings goalie in his crease. A cropped 'er Eats' TV sponsor graphic covers the upper left (also in mid4). No fans are shown chanting and Larkin is not in frame.",
+        "root_cause": "The moment the line promises (the 'We Got Larkin' chant) can only be heard. The cut never shows the crowd reacting or Larkin's reaction, and it runs out on routine play in the defensive zone.",
+        "repair_goal": "End on the crowd chanting and/or a tight shot of Larkin hearing it, such as a reaction on the bench or on the ice. Cut the generic goalie and Uber Eats graphic tail, and land the chant in the last 3 seconds."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.017,
+        "effective_fps": 23.6,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.011,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 0.0,
+        "max_dup_at_s": 2.79,
+        "duration_s": 15.0
+      },
+      "fingerprint": "?|-|weak_payoff"
     }
   ],
   "showrunner_recurrence": {
-    "?|-|weak_payoff": {
-      "count": 4,
+    "?|unreadable|unreadable": {
+      "count": 5,
       "days": [
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ]
     },
-    "?|unreadable|unreadable": {
+    "?|-|weak_payoff": {
+      "count": 5,
+      "days": [
+        "2026-11-25",
+        "2026-11-26",
+        "2026-11-27"
+      ]
+    },
+    "?|junk_imagery|crop_misses_subject": {
       "count": 3,
       "days": [
         "2026-11-25",
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ]
     },
     "?|decorative_mascot+unreadable|decorative_mascot": {
@@ -4285,26 +4313,14 @@
         "2026-11-25"
       ]
     },
-    "?|-|picture_contradicts_claim": {
-      "count": 2,
+    "?|unreadable|text_over_broadcast_graphic": {
+      "count": 3,
       "days": [
-        "2026-11-22"
-      ]
-    },
-    "longform|temporal_gate|-": {
-      "count": 2,
-      "days": [
-        "2026-11-22"
+        "2026-11-26",
+        "2026-11-27"
       ]
     },
     "?|temporal_gate|-": {
-      "count": 2,
-      "days": [
-        "2026-11-25",
-        "2026-11-26"
-      ]
-    },
-    "?|junk_imagery|crop_misses_subject": {
       "count": 2,
       "days": [
         "2026-11-25",
@@ -4317,118 +4333,17 @@
         "2026-11-26"
       ]
     },
-    "?|unreadable|text_over_broadcast_graphic": {
+    "?|junk_imagery|moment_not_shown": {
       "count": 2,
       "days": [
-        "2026-11-26"
+        "2026-11-26",
+        "2026-11-27"
       ]
     },
-    "?|junk_imagery|junk_imagery": {
-      "count": 1,
+    "?|-|slow_hook": {
+      "count": 2,
       "days": [
-        "2026-11-17"
-      ]
-    },
-    "?|-|craft": {
-      "count": 1,
-      "days": [
-        "2026-11-17"
-      ]
-    },
-    "?|dead_air|dead_air": {
-      "count": 1,
-      "days": [
-        "2026-11-17"
-      ]
-    },
-    "?|-|content_disconnect": {
-      "count": 1,
-      "days": [
-        "2026-11-17"
-      ]
-    },
-    "?|-|lack_of_impactful_conclusion": {
-      "count": 1,
-      "days": [
-        "2026-11-17"
-      ]
-    },
-    "?|unreadable|text_collision": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|decorative_mascot|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|unreadable|weak_payoff": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|unreadable|unclear_payoff_and_unreadable_labels": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|unreadable|claim_mismatch_and_confusing_readout": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|decorative_mascot+unreadable|decorative_mascot / missing beat": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|-|flat_payoff": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|-|claim_not_drawn": {
-      "count": 1,
-      "days": [
-        "2026-11-18"
-      ]
-    },
-    "?|unreadable|weak_demonstration": {
-      "count": 1,
-      "days": [
-        "2026-11-20"
-      ]
-    },
-    "?|-|weak_demonstration": {
-      "count": 1,
-      "days": [
-        "2026-11-22"
-      ]
-    },
-    "?|dead_air|claim_not_shown": {
-      "count": 1,
-      "days": [
-        "2026-11-22"
-      ]
-    },
-    "?|-|shaky_unreadable_footage": {
-      "count": 1,
-      "days": [
-        "2026-11-25"
-      ]
-    },
-    "?|empty_void+junk_imagery|crop_misses_subject": {
-      "count": 1,
-      "days": [
-        "2026-11-25"
+        "2026-11-27"
       ]
     },
     "?|junk_imagery|crop_loses_subject": {
@@ -4509,12 +4424,6 @@
         "2026-11-26"
       ]
     },
-    "?|junk_imagery|moment_not_shown": {
-      "count": 1,
-      "days": [
-        "2026-11-26"
-      ]
-    },
     "?|-|vague_hook_no_context": {
       "count": 1,
       "days": [
@@ -4550,11 +4459,95 @@
       "days": [
         "2026-11-26"
       ]
+    },
+    "?|-|soft_open": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|dead_air|weak_hook_dead_open": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|dead_air|weak_hook": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|weak_hook_no_subject": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|muted_reaction": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|empty_void+junk_imagery|empty_void": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|junk_imagery+unreadable|hook_shows_wrong_moment": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|junk_imagery+unreadable|bad_crop_restream_layout": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|junk_imagery|restream_wrong_crop": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|crop_misses_subject": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|weak_hook_subject_absent": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|slow_open_subject_absent": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|dead_air|weak_hook_buried_moment": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|junk_imagery+unreadable|restream_wrong_crop": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
     }
   },
   "recent_commits": [
-    "749a079 2026-11-27 claim: mailbox verdicts 2026-11-27T05:15Z [skip ci]",
-    "38e4a2c 2026-11-27 claim: mailbox verdicts 2026-11-27T04:47Z [skip ci]"
+    "98c2b7c 2026-11-27 claim: mailbox verdicts 2026-11-27T14:48Z [skip ci]",
+    "61136ca 2026-11-27 watchdog: chatgpt task verdicts 20261127 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4565,10 +4558,11 @@
         "2026-11-16": 5,
         "2026-11-17": 4,
         "2026-11-25": 5,
-        "2026-11-26": 5
+        "2026-11-26": 5,
+        "2026-11-27": 4
       },
-      "total_posted": 586,
-      "attempted": 586,
+      "total_posted": 590,
+      "attempted": 590,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4604,11 +4598,12 @@
         "2026-11-24": 6,
         "2026-11-25": 6,
         "2026-11-26": 4,
-        "2026-11-27": 2
+        "2026-11-27": 6,
+        "2026-11-28": 1
       },
-      "total_posted": 610,
-      "attempted": 1587,
-      "rejected_or_pending": 977
+      "total_posted": 615,
+      "attempted": 1600,
+      "rejected_or_pending": 985
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4625,59 +4620,59 @@
       "videos": 138,
       "top_by_vph": [
         {
-          "title": "Why This Is Really The Planet Of The Bugs",
-          "vph": 29.43,
-          "views": 271
-        },
-        {
           "title": "Why America Basically Killed The Landline",
-          "vph": 27.27,
-          "views": 936
+          "vph": 21.44,
+          "views": 1008
         },
         {
           "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
-          "vph": 24.67,
-          "views": 921
+          "vph": 19.13,
+          "views": 957
+        },
+        {
+          "title": "Why This Is Really The Planet Of The Bugs",
+          "vph": 14.34,
+          "views": 314
         },
         {
           "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
-          "vph": 12.38,
-          "views": 1042
+          "vph": 10.79,
+          "views": 1045
         },
         {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 9.77,
+          "vph": 8.68,
           "views": 996
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 136,
+      "videos": 140,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 3.91,
-          "views": 628
+          "vph": 3.58,
+          "views": 636
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
-          "vph": 0.87,
-          "views": 566
-        },
-        {
-          "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
-          "vph": 0.68,
-          "views": 46
+          "vph": 0.86,
+          "views": 572
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.64,
+          "vph": 0.61,
           "views": 214
         },
         {
+          "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
+          "vph": 0.54,
+          "views": 46
+        },
+        {
           "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.55,
+          "vph": 0.51,
           "views": 105
         }
       ],
