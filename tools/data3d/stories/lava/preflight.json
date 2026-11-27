@@ -1566,6 +1566,38 @@
     }
    ]
   },
+  "7d8fb1b6bc1e8e6481a5f055d4f6e5b628a178d734ea7b9c900be33f77def6c4": {
+   "at": "2026-11-27 22:52:15Z",
+   "claims": 6,
+   "claims_key": "560ceadcdefa809f",
+   "continuity": [
+    {
+     "id": "edges",
+     "note": "The digger bucket and arm are cut off at the top edge in stills 3 and 4. In still 4 the digger cab and arm are close to the top edge. The wall is also cut at the left edge in stills 1 and 2.",
+     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
+     "stills": "1-4"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The digger sits on top of a tall flat-topped wall with no visible ramp or support, and its bucket is trimmed by the top edge in stills 3 and 4. The wall reads as a slab. Between stills 1 and 2 the digger jumps in position.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "3-4"
+    },
+    {
+     "id": "body",
+     "note": "Data stands and gestures beside the scene instead of working the digger, and his hands hold nothing. His limbs and feet bend normally.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "7d8fb1b6bc1e8e6481a5f055d4f6e5b628a178d734ea7b9c900be33f77def6c4",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "8188d54278e468bf3d3bed67db10c67eb72e7b32b3ab5c03950d772900582f2a": {
    "at": "2026-11-26 10:55:44Z",
    "claims": 18,
@@ -2594,6 +2626,18 @@
    "sha256": "ebfe3e73e13fc3c608e919d7c65b49a3775469294de63e139d85d10ca140c097",
    "shot": 1,
    "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
+  "ec73f91f32a0e464b0f35da7ea6ad7ae2db3cc39608d960f4949989b896e33a7": {
+   "at": "2026-11-27 22:57:08Z",
+   "claims": 6,
+   "claims_key": "560ceadcdefa809f",
+   "continuity": [],
+   "defects": [],
+   "sha256": "ec73f91f32a0e464b0f35da7ea6ad7ae2db3cc39608d960f4949989b896e33a7",
+   "shot": 2,
+   "status": "pass",
    "stills": 4,
    "unticked": []
   },

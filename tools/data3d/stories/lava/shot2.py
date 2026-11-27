@@ -13,9 +13,9 @@ mouth open. No fire and no lava in this shot."""
 S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
 S2_SLOPE = 4.0 # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
-S2_HOUSE = (-0.7, 1.0, 1.3, 1.8)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
+S2_HOUSE = (-1.05, 0.75, 1.2, 0.95) # (coordinator, r2zh: a CENTRE GAP for the digger: the house takes the right ~35%, its gable end to us)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
 S2_P0 = (0.3, 4.6)                     # Data: the left foreground, his feet near the bottom edge
-S2_DIG = (0.6, -0.8)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
+S2_DIG = (0.05, -0.8)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
 def s2_base(h):
@@ -46,7 +46,7 @@ def place_wall_works():
             for n_ in m_.node_tree.nodes:
                 if n_.bl_idname == "ShaderNodeMix" and n_.blend_type == 'MULTIPLY': n_.inputs[7].default_value = (*K.lin("#8E877E"), 1)
     hx, hy, hw, hd = S2_HOUSE
-    house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=math.pi, w=hw, d=hd, storeys=1, base=0.3, pitch=38, roof="#B8352B", wall="#E9D9A2", seed=5)
+    house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=math.pi / 2, w=hw, d=hd, storeys=1, base=0.3, pitch=50, roof="#B8352B", wall="#E9D9A2", seed=5)
     def light():
         k = iceland_light(sun_elev=38, sun_az=160, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(185))      # (r2za EMPTY 48%: turned so its clouds stand over the house) a REAL sky with cloud in it (Poly Haven)
@@ -60,7 +60,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [1.2, 3.0, 4.4, 5.8]  # (coordinator, r2zg: still 4's crest and digger with clear sky above)                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
+    TOPS = [1.2, 2.9, 4.1, 5.4]  # (coordinator, r2zg: still 4's crest and digger with clear sky above)                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -78,8 +78,8 @@ def shot2():
     dig_x = lambda t: S2_DIG[0]
     dig_z = lambda t: top(t)
     rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
-    POSES = [(-10, 55, -75, -40, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, True),
-             (-20, -2, -55, 20, True), (-15, 12, -85, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
+    POSES = [(-10, 55, -75, -40, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 10, -100, 50, True),
+             (-20, -8, -105, 30, True), (-15, 2, -100, -20, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
     DX, DY = S2_DIG
     diggers = []
     for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
@@ -113,7 +113,7 @@ def shot2():
                 prev = hid
     # ---- him: planted in one spot in the foreground, in four poses
     data = load_data()
-    CAM0 = Vector((0.0, 6.0, 0.55)); LOOK0 = CAM0 + Vector((0.0, -1.0, 0.249)) * 5.0      # (coordinator, r2y: LOW, tilted up, close: the ground line in the bottom fifth, the house the right half up to mid-frame, the sky over it where the wall rises)
+    CAM0 = Vector((0.0, 6.0, 0.55)); LOOK0 = CAM0 + Vector((0.0, -1.0, 0.285)) * 5.0      # (coordinator, r2y: LOW, tilted up, close: the ground line in the bottom fifth, the house the right half up to mid-frame, the sky over it where the wall rises)
     X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     LENS = math.degrees(yaw_of(CAM0.x - X0, CAM0.y - Y0))
@@ -125,7 +125,7 @@ def shot2():
     for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
-        p = (Vector((X0, Y0, Z0)) + TO * (0.13 * W(t, T2 + 0.3, 0.45) + 0.13 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
+        p = (Vector((X0, Y0, Z0)) + TO * (0.1 * W(t, T2 + 0.3, 0.45) + 0.1 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
              + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T2 + 0.75, 0.4)))     # (r2r READ: a weight shift in each pose)
         yaw = LENS + 25 * W(t, T1, 0.35) + 12 * W(t, T2, 0.45) - 22 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
