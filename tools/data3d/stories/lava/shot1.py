@@ -10,7 +10,7 @@ S1_LANE = -1.0                         # the cars' lane (x)
 S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
 S1_CARX = -0.6                         # the leaving car's line up the street
-S1_HIT = (-0.4, 1.35, 0.0)              # where the lava bomb lands on the street, behind him
+S1_HIT = (-0.62, 1.5, 0.0)              # (r1n: at -0.4 it landed right behind him and he hid it; at -0.95 the frame edge cut it: the left lane, a step deeper)              # where the lava bomb lands on the street, behind him
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
 
@@ -281,12 +281,15 @@ def shot1():
     # (coordinator, after every pre-flight called the fountain wall "a flat flame card": NO wall of fire. The eruption
     # is a towering dark ash plume lit orange from below, a LOW ragged band of spatter just over the ridge line, and a
     # few glowing bombs on arcs. The threat reads from the plume's size and the light.)
-    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y + 0.6, P["fz"] - 0.7), h=2.6, w=1.0, length=9.0, clots=160, clot_size=2.6, plume=1.0, lean=(-0.25, 0.35), seed=17, splats=0,
+    fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y + 0.6, P["fz"] - 0.7), h=3.3, w=1.1, length=11.5, clots=210, clot_size=2.6, plume=1.0, lean=(-0.25, 0.35), seed=17, splats=0,
                           t_end=DUR + 1.0, name="fissure fountain")
     plumes = []
-    for k, (x, w_, h_, dn) in enumerate(((-3.2, 5.5, 20.0, 3.2), (0.4, 7.0, 26.0, 3.8), (3.6, 6.0, 22.0, 3.4), (6.8, 5.0, 18.0, 3.0))):
-        plumes.append(FX.smoke_column(base=(S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.6), w=w_, h=h_, lean=(-0.06, 0.1), col=(0.075, 0.07, 0.068), dens=dn * 0.7,
-                                      seed=4.1 + 2.7 * k, t_end=DUR + 1.0, rise=2.2, name=f"eruption plume {k}")["volume"])
+    # (sheet r1n: the four full-size columns merged into one hard-edged dark slab cut by the top of the frame. Three
+    # BILLOWING columns rise from the fissure with sky between them, built at the kit's own size and scaled up so their
+    # billows scale with them, soft at the top where they thin away)
+    for k, (x, w_, h_) in enumerate(((-2.8, 3.4, 24.0), (1.4, 4.4, 30.0), (5.4, 3.2, 21.0))):
+        plumes.append(ash_plume((S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=5.0, dens=5.0, lean=(-0.03 + 0.03 * k, 0.04),
+                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))
         lw_point(f"plume fire light {k}", (S1_FX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)       # orange on the plume's underside and the ridge crest
     FX.embers(origin=(S1_FX, S1_RIDGE_Y, P["fz"] + 0.2), n=9, speed=13.0, cone=0.55, size=(0.1, 0.2), period=2.4, seed=5, ground_z=P["fz"] - 1.0, splats=0, power=0.0, name="flung bomb")
     P["founts"] = plumes + [fo["jet"]]
@@ -296,7 +299,7 @@ def shot1():
         if o.name.startswith("fissure glow"): o.hide_render = True; o.hide_viewport = True
         if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):      # (my own lamps bleached the kit's rampart to a white bar: the kit lights its own fountain)
             o.data.energy = 0.0; o.hide_render = True
-    clot = lw_emit("fountain clot", "#FFA51E", 0.9)          # (the bomb's flung bits: yellow-orange and dim)
+    clot = lava_mat("bomb bits lava", heat=1.4, scale=18.0, glow="#FF8A10", fresh=0.3)      # (q1a: dim emissive bits read as pale beige popcorn on the road: crusted, glowing in their cracks)          # (the bomb's flung bits: yellow-orange and dim)
     # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
     # lies there glowing and smoking to the end (still 4)
     T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.7
@@ -318,12 +321,12 @@ def shot1():
             u_ = min(1.0, max(0.0, ((f - 1) / FPS - T_HIT) / 0.4))
             o.location = (HIT.x + d_ * math.cos(a_) * u_, HIT.y + d_ * math.sin(a_) * u_, 0.03 + hz * 4 * u_ * (1 - u_)); o.keyframe_insert("location", frame=f)
         o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.6, h=3.0, seed=6.1, col=(0.13, 0.12, 0.11), dens=11.0, lean=(-0.15, 0.25), rise=1.4,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.1, 0.05), w=0.5, h=1.6, seed=6.1, col=(0.13, 0.12, 0.11), dens=7.0, lean=(0.12, 0.3), rise=1.4,      # (low, leaning away: the car up the street stays in sight)
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.3, 1.0), (DUR + 1.0, 0.85)], t_end=DUR + 1.0, name="smoke off the bomb")
-    FX.smoke_column(base=(HIT.x, HIT.y + 0.35, 0.05), w=0.85, h=1.2, seed=9.3, col=(0.34, 0.31, 0.29), dens=5.0, lean=(0.1, 0.1), rise=0.8,
+    FX.smoke_column(base=(HIT.x, HIT.y + 0.35, 0.05), w=0.7, h=0.8, seed=9.3, col=(0.34, 0.31, 0.29), dens=3.0, lean=(0.1, 0.1), rise=0.8,
                     keys=[(T_HIT - 0.02, 0.0), (T_HIT + 0.15, 0.25), (T_HIT + 1.0, 0.12), (DUR + 1.0, 0.05)], t_end=DUR + 1.0, name="dust off the impact")     # the smash: a low burst of dust off the road
     bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.45, 0.3), 0.0, col=(1.0, 0.55, 0.15), r=0.3)
-    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 420.0), (T_HIT + 0.6, 210.0), (DUR + 1.0, 150.0)):
+    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 140.0), (T_HIT + 0.6, 60.0), (DUR + 1.0, 45.0)):      # (r1n: 420 W blew the street out white)
         bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
     for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
         L.data.energy = 0.0                                # (the kit lights its own fountain: my lamps bleached its rampart to a white bar)

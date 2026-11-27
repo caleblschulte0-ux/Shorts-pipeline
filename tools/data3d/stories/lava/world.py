@@ -1244,6 +1244,18 @@ def lw_clouds(cover=0.55, scale=0.9, drift=(0.03, 0.02)):
         mp.inputs["Location"].default_value = (drift[0] * t, drift[1] * t, 0); mp.inputs["Location"].keyframe_insert("default_value", frame=f)
 
 
+def ash_plume(base, w, h, S=6.0, dens=5.0, seed=0.0, lean=(0.04, 0.03), col=(0.075, 0.07, 0.068), rise=0.5, t_end=None, name="ash plume"):
+    """AN ERUPTION'S ASH COLUMN: the kit's smoke column built at a size the kit's billows were made for (w/S by h/S)
+    and scaled up S times about its foot, so its billows scale with it. Built at full size, the kit's noise is a few
+    metres across on a column sixty metres high, and the column renders as a smooth hard-edged cone (lava shot 2's
+    sheet r2l: "hard dark inverted cones hanging in the sky"). dens is the optical depth a kit-sized column has: the
+    shader's density is divided by S, since every ray through it is S times longer."""
+    b = Vector(base)
+    o = FX.smoke_column(base=tuple(b), w=w / S, h=h / S, lean=lean, col=col, dens=dens / S, seed=seed, rise=rise, t_end=t_end, name=name)["volume"]
+    o.location = b + (o.location - b) * S; o.scale = (S, S, S)
+    return o
+
+
 # ---------------------------------------------------------------- his body: layers, kicks and smooth hand paths
 def lw_layer(data, bone, off, t0, t1):
     """ADD off(t) (degrees, x y z) on top of whatever already keys `bone`, every frame of t0..t1"""
