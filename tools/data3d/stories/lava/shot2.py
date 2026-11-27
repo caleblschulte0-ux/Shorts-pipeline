@@ -208,6 +208,20 @@ def shot2():
         return m, f_, Vector((-f_.y, f_.x, 0.0))
     # (q2f/q2g: let go to a relaxed arm, the hands swept through his coat and whipped): off the bar the hands come to
     # rest in front of his belly, held to his body as he goes; the shading hand goes up from there (FK, below)
+    # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
+    LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
+    lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.5))), 0.0, DUR + 0.4)
+    # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
+    # turns to the wall and looks up at it
+    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.17, lift=0.045, bob=0.014)
+    sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
+    YU = yaw_of(-0.95, -0.3)          # (q2f: the lens is up the alley behind him, the wall towering over his back)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
+    while YU - YA > math.pi: YU -= 2 * math.pi
+    while YU - YA < -math.pi: YU += 2 * math.pi
+    for f in range(F(T_ARR) + 1, NF + 8):
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.35))
+    # (q2i: reached before he walked, the hands were solved at the lever: 86 cm off) the hands, once his body is keyed
     m0, f0, l0 = body_at(T_LET)
     for sd, u, up in ((sides[0], 0.05, 0.0), (sides[1], -0.06, 1.0)):
         a = on_bar(T_LET, u) + Vector((0, 0, 0.012)) - m0
@@ -224,19 +238,6 @@ def shot2():
             if up: k2 = ease(min(1.0, max(0.0, (t - T_ARR - 0.1) / 0.45))); p = tuple(p[i] + (face[i] - p[i]) * k2 for i in range(3))
             return here(p)
         data.reach(sd, job, 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    # (q2a: on the sheet he stood still 1.5s): he throws his weight back on each pull, and twists to watch the rock go
-    LEAN = lambda t: -18 * W(t, 0.0, 0.5) + 12 * W(t, 0.52, 0.18) - 20 * W(t, T_AB, 0.5)
-    lw_layer(data, "spine", lambda t: (LEAN(t) * (1 - W(t, T_LET, 0.5)), 0, 0), 0.0, DUR + 0.4)
-    lw_layer(data, "spine", lambda t: (0, 0, 20 * W(t, T_AB - 0.1, 0.5) * (1 - W(t, T_LET, 0.5))), 0.0, DUR + 0.4)
-    # he lets go and goes to the wall's foot in front of the house, by its door (in the wide, behind his truck); there he
-    # turns to the wall and looks up at it
-    data.walk_to((PE.x, PE.y), T_WALK, T_ARR, step=0.17, lift=0.045, bob=0.014)
-    sc.frame_set(F(T_ARR)); bpy.context.view_layer.update(); YA = data.arm.rotation_euler.z
-    YU = yaw_of(-0.95, -0.3)          # (q2f: the lens is up the alley behind him, the wall towering over his back)          # (q2c: three-quarter to the low lens by the house's corner, the wall over his shoulder)
-    while YU - YA > math.pi: YU -= 2 * math.pi
-    while YU - YA < -math.pi: YU += 2 * math.pi
-    for f in range(F(T_ARR) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PE), rot=YA + (YU - YA) * W(t, T_ARR, 0.35))
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PE.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
