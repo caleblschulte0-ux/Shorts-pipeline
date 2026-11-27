@@ -2,7 +2,7 @@
  "note": "Written 2026-11-26 from shots 3, 4 and 5 AS THEY PASSED the board (71, 72, 72): the plan they would have started from. Shots 1 and 2 were written 2026-11-26 by the session restaging them (not yet passed).",
  "shots": [
   {
-   "prop": "front door",
+   "prop": "bag",
    "props": [
     {
      "name": "ash plume",
@@ -12,14 +12,6 @@
      ],
      "whole": false,
      "built_as": "towering columns of black ash smoke rising off the ridge, lit orange from below, a low ragged band of yellow-white lava spatter at their foot"
-    },
-    {
-     "name": "front door",
-     "objects": [
-      "his front door"
-     ],
-     "whole": true,
-     "built_as": "his house's own painted front door, two panels and a brass knob, on a hinge at the street-level doorway of his tin-clad house"
     },
     {
      "name": "bag",
@@ -37,6 +29,14 @@
      ],
      "whole": false,
      "built_as": "his tipper truck: a glazed cab, six wheels, an orange steel tipper body, head and tail lamps lit"
+    },
+    {
+     "name": "bench",
+     "objects": [
+      "doorstep bench"
+     ],
+     "whole": false,
+     "built_as": "a small wooden bench of weathered planks by his front door"
     }
    ],
    "framing": "close",
@@ -45,14 +45,14 @@
     "side": "left",
     "frame_h": 0.34
    },
-   "action": "he shuts his front door",
+   "action": "he grabs his bag off the bench",
    "consequence": "he throws the bag up into his truck",
    "says_still": 1,
    "stills": [
     {
      "event": "before",
-     "shows": "a towering black ash plume rises off the ridge right over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands at his open front door with his bag, looking up at it",
-     "hands": "bag",
+     "shows": "a towering black ash plume rises off the ridge right over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands at his front door, his bag on the bench beside him, looking up at it",
+     "hands": "free",
      "new": [],
      "visible": [
       {
@@ -60,47 +60,47 @@
        "as": "a towering black ash plume rises off the ridge right over the roofs: a volcano keeps erupting right beside the Icelandic town"
       },
       {
-       "prop": "front door",
-       "as": "his front door standing open"
+       "prop": "bag",
+       "as": "his bag on the bench beside him"
       },
       {
-       "prop": "bag",
-       "as": "his bag in his hand"
+       "prop": "bench",
+       "as": "the bench by his door"
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat stands at his open front door, looking up at it"
+       "as": "the driver in his hard hat stands at his front door, looking up at it"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "he shuts his front door beside him, his bag in his other hand",
+     "shows": "he grabs his bag off the bench and lifts it",
      "hands": "bag",
      "new": [
       {
-       "what": "front door",
+       "what": "bag",
        "how": "moves",
-       "cause": "he pushes it shut"
+       "cause": "he grabs it and lifts it off the bench"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "his arm out on the door"
+       "cause": "turned to the bench, his hand on the bag"
       }
      ],
      "visible": [
       {
-       "prop": "front door",
-       "as": "he shuts the door"
+       "prop": "bag",
+       "as": "he grabs the bag off the bench"
       },
       {
-       "prop": "bag",
-       "as": "his bag in his other hand"
+       "prop": "bench",
+       "as": "the bench, empty now"
       },
       {
        "prop": "data",
-       "as": "his hand on the door"
+       "as": "his hand on the bag"
       }
      ]
     },

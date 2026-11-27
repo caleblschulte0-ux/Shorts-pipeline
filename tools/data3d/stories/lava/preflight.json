@@ -2343,6 +2343,65 @@
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house to keep the lava out"
     }
    ]
+  },
+  "fe2993eb3530faf734f41561043ceaccac230eaeba18e30a941cb872a7e4b1ef": {
+   "at": "2026-11-27 08:04:28Z",
+   "claims": 15,
+   "claims_key": "caf585e050c935e8",
+   "continuity": [],
+   "defects": [
+    {
+     "id": "gag",
+     "note": "Stills 1 and 2 show nearly the same striding pose from the same angle. Only the rock position differs, so there is no new event between them.",
+     "rule": "ONE-SECOND GAG: the stills are different EVENTS, something new happens in each one. It fails when two or more stills show the same pose or the same action only bigger, nearer, or from another distance",
+     "stills": "1-2"
+    },
+    {
+     "id": "look",
+     "note": "The glossy cartoon Data sits against realistic rock and lava, which looks mismatched. The fire at the horizon reads as flat orange strips.",
+     "rule": "OFF THE LOOK: every element belongs to one realistic look: no toy, no flat untextured box or slab, no sprite or clip-art thing beside realistic ones; fire, smoke, lava, dust and water read as the real thing",
+     "stills": "1-4"
+    },
+    {
+     "id": "body",
+     "note": "In still 2 the pale boulder is beside his leg with neither hand on it. In still 1 the rock is held in one hand only. In still 4 his arm is out toward the rock but not touching it.",
+     "rule": "BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride",
+     "stills": "1-2"
+    },
+    {
+     "id": "consequence",
+     "note": "No change is shown. No boulder is dropped onto a row and no finished row appears. Still 4 is not a visible result of anything done in stills 1 and 2.",
+     "rule": "CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first",
+     "stills": "1-4"
+    }
+   ],
+   "sha256": "fe2993eb3530faf734f41561043ceaccac230eaeba18e30a941cb872a7e4b1ef",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c7",
+     "kind": "ACTION",
+     "note": "In still 1 a grey rock is held low in one hand and is not clearly pale or held in both hands. In still 2 the pale rock sits near his leg with no hands on it, so no carrying along the crest is shown.",
+     "text": "the driver in his hard hat carries a pale boulder along the crest in both hands"
+    },
+    {
+     "from": "FOR",
+     "id": "c8",
+     "kind": "ACTION",
+     "note": "No drop and no dust puff is visible. A pale rock just sits on the ground in still 2.",
+     "text": "He drops it onto the end of the row in a puff of dust"
+    },
+    {
+     "from": "FOR",
+     "id": "c10",
+     "kind": "ACTION",
+     "note": "Data's arm is out in still 4, but he is not clearly grinning and his hand is not on the pale boulder. The boulder sits apart at the right, and no finished row is shown.",
+     "text": "Back on the crest, down the finished row, he grins by his pale boulder, one arm out along it"
+    }
+   ]
   }
  }
 }
