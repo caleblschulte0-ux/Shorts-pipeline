@@ -479,9 +479,13 @@ def _call_mailbox(system: str, user: str) -> str:
 
 #: A BACKEND THAT JUST REFUSED US IS BENCHED, NOT RE-ASKED.
 #:
-#: 2026-11-24, explainer run 45318587673: GROQ_API_KEY had been dead for two
-#: weeks (state/credentials.json: "HTTP 403 — the credential was refused",
-#: alarmed daily) and Groq answered every one of the run's 39 calls with 429.
+#: 2026-11-24, explainer run 45318587673: state/credentials.json had said
+#: "HTTP 403 — the credential was refused" of GROQ_API_KEY for two weeks
+#: (alarmed daily) and Groq answered every one of the run's 39 calls with 429.
+#: (2026-11-27: that 403 was Cloudflare refusing the heartbeat's bare
+#: Python-urllib user agent, not Groq refusing the key — a 429 is a key that
+#: was ACCEPTED and throttled; scripts/credential_check.py now sends this
+#: module's user agent and reads an edge block as UNREACHABLE.)
 #: The chain fell through to Gemini each time, as designed — but only after
 #: `_call_groq` had slept through its six retries, 12 seconds apiece. That is
 #: 3,086 seconds asleep on a backend the run had already found dead, 51

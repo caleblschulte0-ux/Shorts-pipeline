@@ -62,10 +62,29 @@ _ACTION = {
 }
 
 
+#: THE PROBE SENDS THE REQUEST PRODUCTION SENDS. Groq sits behind Cloudflare,
+#: which answers urllib's default "Python-urllib/3.x" user agent with HTTP 403
+#: (its error 1010) before the key is ever looked at. Production has carried
+#: this header since the day that was learned (shared/script_generator.py);
+#: this probe did not, so from 2026-11-10 to 2026-11-26 it reported the Groq
+#: key DEAD every day — "mint a new one" — while the posting runs on the same
+#: key were being answered with 429s, which only a VALID key gets (run
+#: 45919952865: twenty-six of them, not one 401 or 403). The key was fine and
+#: the window was spent; the alarm sent the operator after the wrong fix.
+UA = "shorts-pipeline/1.0"
+
+
+def _headers(headers: dict | None) -> dict:
+    h = dict(headers or {})
+    if not any(k.lower() == "user-agent" for k in h):
+        h["User-Agent"] = UA
+    return h
+
+
 def _get(url: str, headers: dict | None = None, timeout: int = 20):
     """GET, returning (http_status, body). A status code is the answer here —
     an HTTPError is data, not an exception."""
-    req = urllib.request.Request(url, headers=headers or {}, method="GET")
+    req = urllib.request.Request(url, headers=_headers(headers), method="GET")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, r.read(2000).decode("utf-8", "replace")
@@ -74,13 +93,25 @@ def _get(url: str, headers: dict | None = None, timeout: int = 20):
 
 
 def _post(url: str, data: bytes, headers: dict, timeout: int = 20):
-    req = urllib.request.Request(url, data=data, headers=headers,
+    req = urllib.request.Request(url, data=data, headers=_headers(headers),
                                  method="POST")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, r.read(2000).decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
         return e.code, e.read(2000).decode("utf-8", "replace")
+
+
+#: What an EDGE (Cloudflare, a WAF, a captive page) answers with when it
+#: refuses the request itself: its numbered error ("error code: 1010") or an
+#: HTML page. A service refusing a credential answers in its own API JSON.
+_EDGE_BLOCK = re.compile(r"error code:\s*10\d\d|<!doctype html|<html", re.I)
+
+
+def edge_block(body: str) -> bool:
+    """True when a 401/403 came from the edge in front of the service, which
+    never saw the key — so the status says nothing about the credential."""
+    return bool(_EDGE_BLOCK.search(body or ""))
 
 
 def classify(status: int, body: str = "") -> tuple[str, str]:
@@ -91,9 +122,22 @@ def classify(status: int, body: str = "") -> tuple[str, str]:
     ambiguous in general but not here: every probe below sends a request that
     is well formed by construction, so the only thing left to be wrong with
     it is the key — Google returns 400 API_KEY_INVALID rather than 401.
+
+    A 401/403 whose body is the EDGE's (Cloudflare's "error code: 1010", an
+    HTML page) is not the service's verdict on the key: the request was
+    refused before the key was read. That is UNREACHABLE, and the detail
+    says which edge said so, so the next reader does not rotate a key that
+    was never seen.
     """
+    said = " ".join((body or "").split())[:80]
     if status in (401, 403):
-        return DEAD, f"HTTP {status} — the credential was refused"
+        if edge_block(body):
+            return UNREACHABLE, (f"HTTP {status} from the edge in front of "
+                                 f"the service, not the service ({said}) — "
+                                 f"the key was never read; fix the request, "
+                                 f"not the key")
+        return DEAD, (f"HTTP {status} — the credential was refused"
+                      + (f": {said}" if said else ""))
     if status == 429:
         return LIMITED, "HTTP 429 — rate limited or out of quota"
     if status == 400 and ("API_KEY_INVALID" in body or "api key" in body.lower()

@@ -1,9 +1,12 @@
 """A BACKEND THAT JUST REFUSED US IS BENCHED, NOT RE-ASKED.
 
 2026-11-24, explainer run 45318587673 (the eighth run in a row to post
-nothing). GROQ_API_KEY had been dead for two weeks — state/credentials.json
-said "HTTP 403 — the credential was refused", alarmed daily — and Groq
-answered every one of the run's 39 `_call_llm` calls with 429. The chain
+nothing). state/credentials.json had said "HTTP 403 — the credential was
+refused" of GROQ_API_KEY for two weeks, alarmed daily, and Groq answered
+every one of the run's 39 `_call_llm` calls with 429. (The 403 turned out
+to be Cloudflare refusing the heartbeat's bare user agent, not Groq refusing
+the key — see tests/test_credential_check.py, TheProbeIsTheProductionRequest;
+the benching here is right either way: a 429 storm is still a storm.) The chain
 fell through to Gemini each time, as `tests/test_llm_falls_through.py`
 requires, but only after `_call_groq` had slept through its six retries at
 12 seconds apiece (GROQ_MAX_RETRIES=6 in explainer.yml):
