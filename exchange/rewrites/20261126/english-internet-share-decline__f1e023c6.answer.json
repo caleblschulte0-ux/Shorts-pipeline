@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__f1e023c6",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "English Lost Its Web Monopoly But Still Leads Today",
+  "hook": "The web diversified fast, yet English kept a narrower lead.",
+  "closing": "Browsing beyond English now opens a large part of the modern web.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English Web Then",
+      "say": "English fell to 45% of web pages by 2005. The early web was no longer overwhelmingly English."
+    },
+    {
+      "topic": "English Rival Growth",
+      "say": "Arabic online content grew 2,501% over the measured decade. Other languages expanded far faster than English."
+    },
+    {
+      "topic": "English Web Today",
+      "say": "English now appears on 55% of websites. It still leads, but no longer monopolizes the web."
+    }
+  ]
+}
