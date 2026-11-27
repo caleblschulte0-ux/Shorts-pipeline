@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-reactors-under-construction__1efdf38f",
+  "slug": "nuclear-reactors-under-construction",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Nuclear Construction Is Growing, And Half Centers On China",
+  "hook": "The nuclear building wave is real, but one country dominates it.",
+  "closing": "Where nuclear construction happens now will shape who supplies future electricity.",
+  "question": "Will nuclear construction keep growing?",
+  "segments": [
+    {
+      "topic": "Nuclear Construction Starts",
+      "say": "Ten nuclear reactor projects started construction in 2025. The global building pipeline is still moving."
+    },
+    {
+      "topic": "Nuclear Construction China",
+      "say": "China holds 50% of nuclear capacity under construction. Half of the pipeline is concentrated in one country."
+    },
+    {
+      "topic": "Nuclear Construction Scale",
+      "say": "Worldwide nuclear construction totals 78 gigawatts. That concentration sits inside a large global buildout."
+    }
+  ]
+}
