@@ -1181,3 +1181,14 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - HARD: a measured pre-check failed: VARIETY lava beat 2: camera 'one locked low lens on the town side: the whole house at the right, him in the foreground at the left' is not one of ['close', 'high', 'low', 'medium', 'over_shoulder', 'overhead', 'pov', 'profile', 'tracking', 'wide']
 - HARD: a measured pre-check failed: lava: the beats repeat each other (store/variety.py): build each beat its own camera, act and props
 
+
+## 2026-11-27 23:36Z · storyboard · ci board run 46083128517
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | None | - | FAIL |
+
+**shot 2** (FAIL, None, bar 70)
+
+- HARD: no verdict: shot 2: CONSEQUENCE named in rounds [1, 2, 3, 4, 5, 6, 17] and nothing written against it since round 17. Fix what it says, then: python tools/data3d/store/notes_ledger.py fix lava 2 "CONSEQUENCE" "<what changed>". Last said: CONSEQUENCE: frame 3: where the boulder lands is pushed to the far left edge. The dust puff is cut off by the frame edge, and the boulder ends up on the ground ahead of him a
+
