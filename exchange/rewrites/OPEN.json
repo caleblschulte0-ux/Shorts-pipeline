@@ -1,111 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-27T12:35:30Z",
+ "updated": "2026-11-27T12:37:41Z",
  "open": [
   {
    "id": "south-korea-robot-density-record__62573b7c_r3",
    "slug": "south-korea-robot-density-record",
-   "filed": "2026-11-27T12:35:29Z",
+   "filed": "2026-11-27T12:37:41Z",
    "why": [
     "thesis: seg1 ('Korea Vs US Robots') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Provides a comparative fact rather than a logical continuation of beat 0; does not directly prove the headline claim.",
     "thesis: seg2 ('Robot Installs Vs Density') does not continue the story of the headline ('Why South Korea Has More Robots Than People On Its Factory Floors') — brain: Shifts focus to China, unrelated to South Korea's robot density and not a consequence of beat 1."
    ],
    "request": "exchange/rewrites/20261127/south-korea-robot-density-record__62573b7c_r3.request.json",
    "answer_path": "exchange/rewrites/20261127/south-korea-robot-density-record__62573b7c_r3.answer.json"
-  },
-  {
-   "id": "nuclear-reactors-under-construction__1efdf38f_r1",
-   "slug": "nuclear-reactors-under-construction",
-   "filed": "2026-11-27T12:31:18Z",
-   "why": [
-    "thesis: seg1 ('Nuclear Construction Share') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Shows China's share but doesn't directly follow from the previous fact, it's just another statistic.",
-    "thesis: seg2 ('Nuclear Capacity Building') does not continue the story of the headline (\"Why Nuclear Power Isn't Actually Dying\") — brain: Gives a total count but isn't a logical consequence of the China‑specific share mentioned before."
-   ],
-   "request": "exchange/rewrites/20261127/nuclear-reactors-under-construction__1efdf38f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261127/nuclear-reactors-under-construction__1efdf38f_r1.answer.json"
-  },
-  {
-   "id": "ocean-floor-vs-mars-mapped__0bcaeed3_r3",
-   "slug": "ocean-floor-vs-mars-mapped",
-   "filed": "2026-11-27T12:31:18Z",
-   "why": [
-    "repeat: the TITLE is too close to a video already up: \"We've Mapped Mars Better Than Our Own Ocean\". The story is fine; the PACKAGING repeats. Give this video its own title (and a hook that says what THIS story shows), not the posted video's shape with a noun swapped.",
-    "beats: seg1: the line's headline number (1.4e+08) is 403,807x away from anything this beat's picture can show — say a number the picture shows",
-    "pace: hook is 19 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261127/ocean-floor-vs-mars-mapped__0bcaeed3_r3.request.json",
-   "answer_path": "exchange/rewrites/20261127/ocean-floor-vs-mars-mapped__0bcaeed3_r3.answer.json"
-  },
-  {
-   "id": "frog-fungus-mass-extinction__f17b2f42_r3",
-   "slug": "frog-fungus-mass-extinction",
-   "filed": "2026-11-27T12:31:17Z",
-   "why": [
-    "premise: brain: The pitch is vague about the fungus and offers no concrete, picture‑able surprise or stakes beyond generic numbers."
-   ],
-   "request": "exchange/rewrites/20261127/frog-fungus-mass-extinction__f17b2f42_r3.request.json",
-   "answer_path": "exchange/rewrites/20261127/frog-fungus-mass-extinction__f17b2f42_r3.answer.json"
-  },
-  {
-   "id": "great-barrier-reef-bleaching-accelerating__d03b86c2_r1",
-   "slug": "great-barrier-reef-bleaching-accelerating",
-   "filed": "2026-11-27T12:31:17Z",
-   "why": [
-    "story: fatal: missing_payoff, confusing, unrenderable_visual — fix the words so it is true and pays off what it promises"
-   ],
-   "request": "exchange/rewrites/20261127/great-barrier-reef-bleaching-accelerating__d03b86c2_r1.request.json",
-   "answer_path": "exchange/rewrites/20261127/great-barrier-reef-bleaching-accelerating__d03b86c2_r1.answer.json"
-  },
-  {
-   "id": "hadza-gut-bacteria-vs-americans__efaf2d65_r3",
-   "slug": "hadza-gut-bacteria-vs-americans",
-   "filed": "2026-11-27T12:31:17Z",
-   "why": [
-    "thesis: seg2 ('bacteria killers') does not continue the story of the headline ('Why Hunter-Gatherers Have Richer Gut Bacteria') — brain: Introduces a new cause (antibiotics) rather than building directly on the previous fiber explanation, breaking the requi"
-   ],
-   "request": "exchange/rewrites/20261127/hadza-gut-bacteria-vs-americans__efaf2d65_r3.request.json",
-   "answer_path": "exchange/rewrites/20261127/hadza-gut-bacteria-vs-americans__efaf2d65_r3.answer.json"
-  },
-  {
-   "id": "normal-body-temperature-has-shifted__75403cdd_r3",
-   "slug": "normal-body-temperature-has-shifted",
-   "filed": "2026-11-27T12:31:17Z",
-   "why": [
-    "thesis: seg2 ('Body Temperature Standard') does not continue the story of the headline ('Why Body Temperature Is No Longer 98.6') — brain: Beat 2 introduces the idea that 98.6 was wrong originally, which doesn't directly follow from the previous beat about se"
-   ],
-   "request": "exchange/rewrites/20261127/normal-body-temperature-has-shifted__75403cdd_r3.request.json",
-   "answer_path": "exchange/rewrites/20261127/normal-body-temperature-has-shifted__75403cdd_r3.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__b15ee3cb_r3",
-   "slug": "blood-type-rarity",
-   "filed": "2026-11-27T12:31:16Z",
-   "why": [
-    "thesis: seg1 ('Rh blood type') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Discusses Rh negativity generally, not the specific rare blood type, and doesn't follow from beat 0.",
-    "thesis: seg2 ('Blood type background') does not continue the story of the headline ('Why Hospitals Panic Over One Blood Type') — brain: Shows ethnic donor distribution, unrelated to the rarity of the single blood type and not a logical continuation."
-   ],
-   "request": "exchange/rewrites/20261127/blood-type-rarity__b15ee3cb_r3.request.json",
-   "answer_path": "exchange/rewrites/20261127/blood-type-rarity__b15ee3cb_r3.answer.json"
-  },
-  {
-   "id": "drug-resistant-infections-2050__608d4eff_r1",
-   "slug": "drug-resistant-infections-2050",
-   "filed": "2026-11-27T12:29:04Z",
-   "why": [
-    "thesis: seg2 ('Resistance Matches Cancer') does not continue the story of the headline ('Ten Million Resistance Deaths Are Projected By 2050') — brain: Provides a comparison to cancer deaths rather than evidence supporting the 10 million resistance deaths projection."
-   ],
-   "request": "exchange/rewrites/20261127/drug-resistant-infections-2050__608d4eff_r1.request.json",
-   "answer_path": "exchange/rewrites/20261127/drug-resistant-infections-2050__608d4eff_r1.answer.json"
-  },
-  {
-   "id": "india-beats-everyone-on-general-pupils-secondary-education-b__924c0bfe",
-   "slug": "india-beats-everyone-on-general-pupils-secondary-education-b",
-   "filed": "2026-11-25T10:59:52Z",
-   "why": [
-    "premise: brain: The hook is vague and the beats just list statistics without a concrete, surprising contradiction or vivid scale that viewers can picture."
-   ],
-   "request": "exchange/rewrites/20261125/india-beats-everyone-on-general-pupils-secondary-education-b__924c0bfe.request.json",
-   "answer_path": "exchange/rewrites/20261125/india-beats-everyone-on-general-pupils-secondary-education-b__924c0bfe.answer.json"
   },
   {
    "id": "insect-planet__04cc201f",
