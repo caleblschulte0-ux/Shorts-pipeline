@@ -231,8 +231,8 @@ def shot2():
             if t <= T_LET: return on_bar(t, u) + Vector((0, 0, 0.012))
             m, f_, l_ = body_at(t)
             here = lambda c: m + f_ * c[0] + l_ * c[1] + Vector((0, 0, c[2]))
-            rest = (0.155, side_ * 0.07, -0.11)                                       # in front of his belly
-            face = (0.15, -side_ * 0.04, 0.1)                                         # (q2h: an FK hand over his eyes swung behind his back) a hand up by his face
+            rest = (0.12, side_ * 0.07, -0.09)                                         # in front of his belly
+            face = (0.12, 0.0, 0.08)                                                  # (q2h: an FK hand over his eyes swung behind his back) a hand up by his face
             k = ease(min(1.0, (t - T_LET) / 0.8))
             p = tuple(a[i] + (rest[i] - a[i]) * k for i in range(3))
             if up: k2 = ease(min(1.0, max(0.0, (t - T_ARR - 0.1) / 0.45))); p = tuple(p[i] + (face[i] - p[i]) * k2 for i in range(3))
