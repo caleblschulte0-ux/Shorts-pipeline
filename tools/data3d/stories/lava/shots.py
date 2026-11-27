@@ -1409,19 +1409,19 @@ still: nothing (still 1), an orange glow along the ridge (still 2), a lava fount
 3), the fountain under a towering black ash plume (still 4). Data, in the foreground at the left, three-quarter to us,
 looks at us, turns his head at the glow, flinches at the fountain, and on still 4 runs at the lens, out of the street."""
 
-S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
+S1_RIDGE_Y = 30.0                      # the fissure's line on the ridge (coordinator, high lens: the ridge pushed back and lower so the fountain stands whole under the top margin)
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
 S1_P0 = (0.15, -2.6)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
-S1_CAM = (0.35, -4.2, 0.42)            # the one lens, low in the street
+S1_CAM = (0.3, -3.9, 1.25)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
 
 
 def s1_ground_z(x, y):
     """the street flat, the land round the town rolling, and the ridge rising behind it to the fissure"""
     z = -0.07 if abs(x) < 1.1 else 0.0                    # (the road's own deck lies in this shallow bed: the kit's road, never the rock showing through it)
     if abs(x) > 2.4: z += 0.15 * lw_fbm(x * 0.3, y * 0.3, 3) + 0.03 * (abs(x) - 2.4)
-    r = max(0.0, (y - 9.0) / 6.0)
-    z += 8.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 8.5 else 0.0)
+    r = max(0.0, (y - 18.0) / 12.0)
+    z += 5.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 17.5 else 0.0)
     if y > S1_RIDGE_Y: z -= 0.6 * min(1.0, (y - S1_RIDGE_Y) / 2.0)
     return z
 
@@ -1506,24 +1506,24 @@ def shot1():
     light = P["light"]
     FZ = P["fz"]
     # ---- still 1: thin smoke already rising off the ridge (coordinator, r1za pre-flight: the eruption has a visible start)
-    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=1.2, h=7.0,
+    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=2.4, h=11.0,
                       keys=[(0.0, 0.45), (T_GLOW, 0.6), (T_BURST, 0.8)], t_end=DUR + 1.0, seed=1.3 + k, col=(0.62, 0.62, 0.64), dens=2.5, lean=(0.04, 0.02))
-             for k, dx in enumerate((-3.5, 0.5, 4.0))]
+             for k, dx in enumerate((-6.0, 0.5, 6.5))]
     # ---- the eruption, growing still by still: the slot glows, the fountain erupts, the plume fills the sky
     for o in P["slot"]:
         o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
     # (coordinator, after shot 2's r2e pre-flight: one grade in all four stills: no lamp lights the town; the glow is the
     # lava's own, the slot and the fountain)
-    # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole, the densest version: a wide base, a
+    # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole (p1a: h 20 ran out of the top; 13), the densest version: a wide base, a
     # bright core, and two more columns layered round it in depth so it is never one flame card)
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=6.0, h_fire=20.0, h_smoke=5.0,
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=7.0, h_fire=12.0, h_smoke=5.0,
                               lean=(0.03, 0.06), t_end=DUR + 1.0, seed=2.3, fire=10.0, smoke_d=3.0, rise=5.0, spread=0.35, flame_d=5.0,
                               keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.4, 0.75), (TS[2], 1.0)], grow=True)
     flanks = [lw_fire_column(f"lava fountain flank {k}", (S1_FX + dx, S1_RIDGE_Y + dy, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.3), w=3.2, h_fire=h_, h_smoke=3.0,
                              lean=(0.03 * (k * 2 - 1), 0.05), t_end=DUR + 1.0, seed=5.7 + 3.1 * k, fire=8.0, smoke_d=3.0, rise=4.5, spread=0.3, flame_d=4.5,
                              keys=[(T_BURST, 0.0), (T_BURST + 0.45, 0.7), (TS[2], 1.0)], grow=True)
-              for k, (dx, dy, h_) in enumerate(((-2.6, 1.2, 12.0), (2.4, -0.8, 14.0)))]
+              for k, (dx, dy, h_) in enumerate(((-2.6, 1.2, 8.0), (2.4, -0.8, 9.5)))]
     PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
     plumes, base0 = [], []
     for k, (dx, w_, h_, dy) in enumerate(((0.0, 13.0, 64.0, 0.0), (-5.5, 9.0, 44.0, 1.5), (5.0, 9.5, 50.0, 1.0))):     # (coordinator, p1c: towering out of the top of the frame by still 4)
@@ -1542,7 +1542,7 @@ def shot1():
     # lamps come on at the glow; they pull out into the street and speed down it toward us, past him on either side, dust
     # behind; on still 4 both are whole in the frame at mid-street, nearer than on still 3. Smooth from still 1 to 4.
     cars, dust = [], []
-    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.55, 9.0, 1.6, "#2F5E8C"), (-0.65, -0.55, 7.4, 0.6, "#B8352B"))):
+    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.95, 9.0, -0.4, "#2F5E8C"), (-0.65, -0.95, 7.4, -1.0, "#B8352B"))):
         c = FX.car(name=f"getaway car {k}", loc=(x0, y0, 0.0), yaw=0.0, kind="hatch", col=col, lights=True, seed=4 + k, dirt=0.4, power=30.0)
         t0 = T_CARS + 0.25 * k; T = TS[3] - t0; ra = 0.6
         v = (y0 - y4) / (T - ra / 2)
@@ -1574,7 +1574,7 @@ def shot1():
     # stands calm facing us, turns his head and shoulders to the glow, recoils from the fountain (leaning back, both arms
     # thrown up beside his head, mouth open), and holding the recoil half-turns to the lens side as if to follow the cars.
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.12, 1.0, 0.1)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
+    CAM0 = Vector(S1_CAM); D = Vector((-0.06, 1.0, -0.158)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(10)                              # 1 facing us
@@ -1589,8 +1589,8 @@ def shot1():
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(40) * W(t, T_GLOW, 0.6) - math.radians(10) * W(t, T_BURST + 0.08, 0.3)
                    - math.radians(55) * W(t, T_TURN, 0.6))
         data._plant_feet_here(t, lift=(Z0, Z0))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) - 22 * W(t, T_BURST + 0.08, 0.3) + 8 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
-    lw_layer(data, "chest", lambda t: (-10 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) + 16 * W(t, T_BURST + 0.08, 0.3) - 6 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "chest", lambda t: (6 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # 1 at us, calm
     data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=30, max_pitch=25, blend=0.35)                             # 2 round at the glow (FACE)
@@ -1603,8 +1603,8 @@ def shot1():
     sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
     LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
     DOWN = lambda sg: ((-8, 0, sg * 8), (-28, 0, 0), (-4, 0, 0))                  # 2 still down, a little tense
-    THROWN = lambda sg: ((-82, 0, -sg * 24), (-44, 0, -sg * 22), (-10, sg * -12, -sg * 15))     # 3 both arms thrown up beside his head (shot 3's UP, higher)
-    HELD = lambda sg: ((-64, 0, -sg * 20), (-50, 0, -sg * 20), (-10, sg * -12, -sg * 12))      # 4 still up as he turns
+    THROWN = lambda sg: ((-92, 0, -sg * 38), (-22, 0, -sg * 10), (-10, sg * -12, -sg * 15))     # 3 both arms thrown up beside his head (shot 3's UP, higher)
+    HELD = lambda sg: ((-78, 0, -sg * 34), (-26, 0, -sg * 12), (-10, sg * -12, -sg * 12))      # 4 still up as he turns
     keys = [0.0, 0.4, T_GLOW + 0.2, 1.4, T_BURST + 0.05, T_BURST + 0.4, TS[2] + 0.1, T_TURN + 0.3, DUR + 0.5]
     for sd in sides:
         sg = -1 if sd == "L" else 1
@@ -1612,12 +1612,12 @@ def shot1():
         for tk, pose in zip(keys, seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=28.0, fstop=11.0)
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)
     print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
           "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "turn", round(T_TURN, 2), flush=True)
     def cam_at(t):
         return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED: the drift moved the houses between stills)
-    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 28.0, 28.0)
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)
     erupt = P["slot"] + [fountain] + flanks + plumes + smoke
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
@@ -1640,12 +1640,12 @@ beside the low row), window-high (2), at the eaves (3), far over the ridge and c
 on hips facing us; a thumb jerked back at the wall, grinning; half-turned, looking up; leaning right back, arms dropped,
 mouth open. No fire and no lava in this shot."""
 
-S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
-S2_SLOPE = 4.0 # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
+S2_CREST = 3.0 # (coordinator, after board 46083546367: a flat bench of rock at the crest for the digger to sit on)                          # beat 3's crest (S3_CREST)
+S2_SLOPE = 3.0 # (same: a sloped, rubbly bank, not a vertical slab) # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-1.05, 0.75, 1.2, 0.95) # (coordinator, r2zh: a CENTRE GAP for the digger: the house takes the right ~35%, its gable end to us)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
 S2_P0 = (0.3, 4.6)                     # Data: the left foreground, his feet near the bottom edge
-S2_DIG = (0.05, -0.8)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
+S2_DIG = (0.05, 0.0)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
 def s2_base(h):
@@ -1662,8 +1662,8 @@ def place_wall_works():
     """THE WALL'S FOOT IN TOWN: moss ground and yard stones, one painted tin house with its front to the wall, the wall
     (risen by the shot), the black field beyond it."""
     lw_grid("lava field ground", -60, 60, -60, 0.6, 90, 70, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))
-    lw_grid("town ground", -40, 40, 0.0, 30, 80, 40, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
-    FX.ground("grass", area=(-10, 10, 1.6, 20), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
+    lw_grid("town ground", -40, 40, 0.0, 30, 80, 40, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#5A5650", name="town ground rock"))     # (coordinator, after board 46083546367: the dark volcanic ground of shots 4-5, not a lawn)
+    lw_steam("eruption smoke", (7.0, -26.0, 1.0), w=7.0, h=30.0, seed=3.3, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.2, 0.5), rise=1.2, t_end=DUR + 1.0)     # (same: the eruption's dark smoke beyond the wall at the left, shot 4's own column, in every still: the reason the wall is built)
     px, py = S2_P0
     lava_rock("town yard stones", 420, (-8, 8, 0.2, 12), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.1), moss=0.6,
               avoid=lambda x, y: (-1.55 < x < 0.15 and 0.0 < y < 2.1) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
@@ -1678,7 +1678,7 @@ def place_wall_works():
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=math.pi / 2, w=hw, d=hd, storeys=1, base=0.3, pitch=50, roof="#B8352B", wall="#E9D9A2", seed=5)
     def light():
-        k = iceland_light(sun_elev=38, sun_az=160, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
+        k = iceland_light(sun_elev=30, sun_az=160, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(185))      # (r2za EMPTY 48%: turned so its clouds stand over the house) a REAL sky with cloud in it (Poly Haven)
         return k
     return dict(light=light, wall=wall, house=house)
@@ -1755,9 +1755,9 @@ def shot2():
     for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
-        p = (Vector((X0, Y0, Z0)) + TO * (0.1 * W(t, T2 + 0.3, 0.45) + 0.1 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
+        p = (Vector((X0, Y0, Z0)) + TO * (0.08 * W(t, T2 + 0.3, 0.45) + 0.08 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
              + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T2 + 0.75, 0.4)))     # (r2r READ: a weight shift in each pose)
-        yaw = LENS + 25 * W(t, T1, 0.35) + 12 * W(t, T2, 0.45) - 22 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
+        yaw = LENS + 35 + 10 * W(t, T1, 0.35) - 5 * W(t, T2, 0.45) - 15 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
         data._plant_feet_here(t, lift=(Z0, Z0))
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1766,39 +1766,43 @@ def shot2():
         sc.frame_set(F(t)); bpy.context.view_layer.update(); M = data.arm.matrix_world
         fw = data.forward(); rt = Vector((math.cos(data.arm.rotation_euler.z), math.sin(data.arm.rotation_euler.z), 0))
         return M, fw, rt
-    # 1 hands on hips, facing us
-    M_, fw, rt = pts(0.0)
-    for s_, sg in (("L", -1), ("R", 1)):
-        hp = M_ @ data.J[s_]["hip"]
-        for tt in (0.0, T1 - 0.05):
-            data._arm_ik(s_, hp + rt * sg * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
-    # 2 a thumb jerked back over his shoulder at the wall, a grin; the other hand still on his hip
-    for tt, jab in ((T1 + 0.4, 0.0), (T2 - 0.05, 0.0)):     # (r2s/r2t FLUID: no second jab, the thumb comes up over 0.45 s)     # (r2r ANATOMY: the hand's target follows him as he steps; READ: the thumb jabs back twice)
+    # (coordinator, after board 46083546367: "he does nothing". He is the digger crew: the BANKSMAN guiding it, body
+    # three-quarter toward it, a big and different arm signal each still, nothing in his hands.)
+    UP = Vector((0, 0, 1))
+    def sig(tt, fn):
         M_, fw, rt = pts(tt)
-        sh = M_ @ data.J["R"]["sh"]; hpL = M_ @ data.J["L"]["hip"]
-        data._arm_ik("R", sh + rt * 0.2 + fw * (0.03 - jab) + Vector((0, 0, jab)), tt, 1.0); data._k("hand.R", tt, rot=(-20, 0, 25))      # (r2f: over the shoulder put the arm behind his back, the hand in his head) out to the side, jerked back
-        data._arm_ik("L", hpL - rt * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k("hand.L", tt, rot=(0, 0, -20))
-    # 3 half-turned, looking up at it, his arms down (r2i: a hand at his head read as broken)
-    for tt in (T2 + 0.5,):                                     # (r2q FLUID: the hands come down over 0.55 s)
-        for bn in data.RELAXED: data._k(bn, tt, rot=data.RELAXED[bn])
-    for tt in (T2 + 0.8, T3 - 0.05):                          # (r2v HOLD: his hands drift open from his sides as he takes it in)
-        for bn in data.RELAXED:
-            r = data.RELAXED[bn]
-            data._k(bn, tt, rot=(r[0] - (16 if bn.startswith("arm") else 0), r[1], r[2] + ((-34 if bn.endswith(".R") else 34) if bn.startswith("arm") else 0)))
-    # 4 leaning right back looking up, both arms dropped, mouth open
-    for tt, dr in ((T3 + 0.3, 6), (T3 + 0.6, 14), (DUR + 0.5, 14)):     # (r2r HOLD: his arms drop on back as he leans)
-        for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (dr if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) + 6 * W(t, T2 + 0.55, 0.3) - 8 * W(t, T3 - 0.25, 0.5), 0, 0), 0, DUR + 0.4)     # (r2t HOLD: the lean starts as the half-turn settles)
-    lw_layer(data, "chest", lambda t: (-3 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)     # (r2y pre-flight: no head thrown back)
-    HEAD = Vector((X0, Y0, Z0 + 0.5))
-    data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)            # 1 at us
-    data.look_at(CAM0 + Vector((0, 0, 0.1)), T1 + 0.3, max_yaw=55, max_pitch=20, blend=0.2)       # 2 at us, the grin
-    data.look_at(CAM0 + Vector((-0.5, 0.0, 0.5)), T2 + 0.3, max_yaw=10, max_pitch=8, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
-    data.look_at(CAM0 + Vector((-0.7, 0.0, 0.8)), T3 + 0.3, max_yaw=8, max_pitch=8, blend=0.3)   # 4 at it (r2ze: glasses floated with the head pitched up; coordinator: keep the pitch small, he backs away)
-    data.expression("determined", 0.0, T1 + 0.1, blend=0.15)
-    data.expression("happy", T1 + 0.1, T2 + 0.1, blend=0.15)
-    data.expression("surprised", T2 + 0.1, T3 + 0.1, blend=0.15)
-    data.expression("alarmed", T3 + 0.1, DUR + 1.0, blend=0.15)
+        for s_, sg in (("L", -1), ("R", 1)):
+            tgt = fn(s_, sg, M_ @ data.J[s_]["sh"], M_ @ data.J[s_]["hip"], fw, rt)
+            if tgt is None:
+                for bn in (f"arm.{s_}", f"fore.{s_}", f"hand.{s_}"): data._k(bn, tt, rot=data.RELAXED[bn])
+            else:
+                data._arm_ik(s_, tgt[0], tt, tgt[1]); data._k(f"hand.{s_}", tt, rot=tgt[2])
+    hip_hand = lambda sg, hp, fw, rt: (hp + rt * sg * 0.07 + fw * 0.02 + UP * 0.05, 1.4, (0, 0, sg * 20))
+    # 1 beckoning it up: his right arm up and forward, the hand waving it on; the left on his hip
+    for k, tt in enumerate((0.0, 0.3, 0.6)):
+        hi = 0.17 if k % 2 == 0 else 0.09
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, hi=hi: (sh + fw * (0.08 if hi > 0.1 else 0.14) + UP * hi + rt * 0.05, 0.6, (-40 if hi > 0.1 else 20, 0, 10)) if sg > 0 else hip_hand(sg, hp, fw, rt))
+    # 2 both arms up over his head, waving it higher
+    for k, tt in enumerate((T1 + 0.4, T1 + 0.7, T1 + 1.0, T2 - 0.05)):
+        w_ = 0.05 if k % 2 == 0 else -0.04
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, w_=w_: (sh + UP * 0.2 + rt * sg * (0.07 + w_) + fw * 0.03, 0.5, (0, 0, sg * 10)))
+    # 3 HOLD: his right arm straight out flat toward it, palm down, patting the air; the left down; a half-step back
+    for k, tt in enumerate((T2 + 0.4, T2 + 0.75, T2 + 1.05, T3 - 0.05)):
+        dz = 0.0 if k % 2 == 0 else -0.07
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, dz=dz: (sh + fw * 0.2 + rt * 0.08 + UP * (0.02 + dz), 0.3, (0, 0, 90)) if sg > 0 else None)
+    # 4 done: both arms wide, thumbs up at the finished height, a step further back
+    for k, tt in enumerate((T3 + 0.35, T3 + 0.65, DUR + 0.5)):
+        dz = 0.0 if k % 2 == 0 else 0.07
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, dz=dz: (sh + rt * sg * 0.19 + UP * (0.06 + dz) + fw * 0.05, 0.5, (0, -sg * 30, sg * 15)))
+    lw_layer(data, "spine", lambda t: (-3 * W(t, T1, 0.35) + 4 * W(t, T2, 0.35) - 6 * W(t, T3, 0.4), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "chest", lambda t: (-3 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
+    HEAD = Vector((X0, Y0, Z0 + 0.5)); DIGP = Vector((S2_DIG[0], -s2_base(S2_H) / 2, 3.0))
+    data.look_at(DIGP, 0.0, max_yaw=15, max_pitch=8, blend=0.0)            # 1 at the digger, his face still to us
+    data.look_at(DIGP, T1 + 0.3, max_yaw=15, max_pitch=10, blend=0.2)       # 2 at it
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), T2 + 0.3, max_yaw=30, max_pitch=8, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
+    data.look_at(DIGP, T3 + 0.3, max_yaw=15, max_pitch=10, blend=0.3)   # 4 at it (r2ze: glasses floated with the head pitched up; coordinator: keep the pitch small, he backs away)
+    data.expression("determined", 0.0, T3 + 0.1, blend=0.15)
+    data.expression("happy", T3 + 0.1, DUR + 1.0, blend=0.15)
     data.finish()
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)     # (p2n, r2y: a wider lens: him, the digger and the house side by side, none hiding another)
     print("S2 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()), flush=True)

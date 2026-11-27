@@ -106,7 +106,7 @@
  ],
  "storyboard": [
   "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils. Cars speed out of town past him.",
-  "2 His digger builds a rock wall behind a house until it towers far over the roof.",
+  "2 He waves his digger on as it builds a rock wall behind a house until it towers far over the roof.",
   "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and builds up against it, steam rising off it. It stops dead against the rock, its crust going dark, and he punches the air and grins at us.",
   "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
   "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
@@ -140,7 +140,7 @@
   },
   {
    "camera": "low",
-   "data": "planted in one spot: hands on hips facing us, a thumb over his shoulder at the wall, half-turned looking up, leaning right back",
+   "data": "waves his digger on as the banksman: beckons it up with one arm, waves it higher with both arms, signals hold with one arm out flat, then arms wide, thumbs up",
    "props": [
     "earth wall",
     "house by the wall",
@@ -149,19 +149,19 @@
    "arc": [
     {
      "at": 0.08,
-     "what": "a knee-high row of boulders behind the house, the digger beside it; hands on hips"
+     "what": "a knee-high row of boulders behind the house, the digger on it; one arm up, beckoning it on"
     },
     {
      "at": 0.38,
-     "what": "the wall past the windows; a thumb over his shoulder, grinning"
+     "what": "the wall past the windows; both arms up, waving it higher"
     },
     {
      "at": 0.68,
-     "what": "the wall far over the roof, the digger on its crest; he backs away"
+     "what": "the wall over the eaves, the digger on its crest; one arm straight out flat: hold"
     },
     {
      "at": 0.98,
-     "what": "the wall towering over the chimney; he leans right back"
+     "what": "the wall towering over the roof; arms wide, thumbs up, a step further back"
     }
    ]
   },

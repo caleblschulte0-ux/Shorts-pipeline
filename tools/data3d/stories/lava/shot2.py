@@ -10,12 +10,12 @@ beside the low row), window-high (2), at the eaves (3), far over the ridge and c
 on hips facing us; a thumb jerked back at the wall, grinning; half-turned, looking up; leaning right back, arms dropped,
 mouth open. No fire and no lava in this shot."""
 
-S2_CREST = 1.6                          # beat 3's crest (S3_CREST)
-S2_SLOPE = 4.0 # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
+S2_CREST = 3.0 # (coordinator, after board 46083546367: a flat bench of rock at the crest for the digger to sit on)                          # beat 3's crest (S3_CREST)
+S2_SLOPE = 3.0 # (same: a sloped, rubbly bank, not a vertical slab) # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-1.05, 0.75, 1.2, 0.95) # (coordinator, r2zh: a CENTRE GAP for the digger: the house takes the right ~35%, its gable end to us)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
 S2_P0 = (0.3, 4.6)                     # Data: the left foreground, his feet near the bottom edge
-S2_DIG = (0.05, -0.8)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
+S2_DIG = (0.05, 0.0)                    # the digger on the crest: x (just left of the house, never behind it), and y off the crest's middle
 
 
 def s2_base(h):
@@ -32,8 +32,8 @@ def place_wall_works():
     """THE WALL'S FOOT IN TOWN: moss ground and yard stones, one painted tin house with its front to the wall, the wall
     (risen by the shot), the black field beyond it."""
     lw_grid("lava field ground", -60, 60, -60, 0.6, 90, 70, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))
-    lw_grid("town ground", -40, 40, 0.0, 30, 80, 40, s2_ground_z, lw_noise("town moss ground", "#4E5A34", "#8C9263", scale=0.9, rough=1.0, bump=0.5, detail=12))
-    FX.ground("grass", area=(-10, 10, 1.6, 20), zfn=lambda x, y: s2_ground_z(x, y) + 0.03, seed=4, name="town grass")
+    lw_grid("town ground", -40, 40, 0.0, 30, 80, 40, s2_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#5A5650", name="town ground rock"))     # (coordinator, after board 46083546367: the dark volcanic ground of shots 4-5, not a lawn)
+    lw_steam("eruption smoke", (7.0, -26.0, 1.0), w=7.0, h=30.0, seed=3.3, col=(0.42, 0.41, 0.42), dens=2.5, lean=(0.2, 0.5), rise=1.2, t_end=DUR + 1.0)     # (same: the eruption's dark smoke beyond the wall at the left, shot 4's own column, in every still: the reason the wall is built)
     px, py = S2_P0
     lava_rock("town yard stones", 420, (-8, 8, 0.2, 12), lambda x, y: s2_ground_z(x, y) + 0.02, seed=78, r=(0.03, 0.1), moss=0.6,
               avoid=lambda x, y: (-1.55 < x < 0.15 and 0.0 < y < 2.1) or (abs(x - px) < 0.5 and abs(y - py) < 0.5))
@@ -48,7 +48,7 @@ def place_wall_works():
     hx, hy, hw, hd = S2_HOUSE
     house = town_house("town house by the wall", (hx, hy, s2_ground_z(hx, hy)), yaw=math.pi / 2, w=hw, d=hd, storeys=1, base=0.3, pitch=50, roof="#B8352B", wall="#E9D9A2", seed=5)
     def light():
-        k = iceland_light(sun_elev=38, sun_az=160, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
+        k = iceland_light(sun_elev=30, sun_az=160, sun=3.2, sky=0.45, haze=1.2)       # (coordinator, r2e: lit so the boulders read) the sun raking across the wall's town face from the right
         ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(185))      # (r2za EMPTY 48%: turned so its clouds stand over the house) a REAL sky with cloud in it (Poly Haven)
         return k
     return dict(light=light, wall=wall, house=house)
@@ -125,9 +125,9 @@ def shot2():
     for f in range(1, NF + 8):                                 # (r2q HOLD/READ/FAR: planted, but a step back from the wall as it climbs, then another)
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
-        p = (Vector((X0, Y0, Z0)) + TO * (0.1 * W(t, T2 + 0.3, 0.45) + 0.1 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
+        p = (Vector((X0, Y0, Z0)) + TO * (0.08 * W(t, T2 + 0.3, 0.45) + 0.08 * W(t, T3 - 0.1, 0.45))     # (coordinator, r2y: two real steps back)
              + SD * (0.06 * W(t, 0.15, 0.35) - 0.06 * W(t, 1.25, 0.35) + 0.1 * W(t, T2 + 0.75, 0.4)))     # (r2r READ: a weight shift in each pose)
-        yaw = LENS + 25 * W(t, T1, 0.35) + 12 * W(t, T2, 0.45) - 22 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
+        yaw = LENS + 35 + 10 * W(t, T1, 0.35) - 5 * W(t, T2, 0.45) - 15 * W(t, T3, 0.35)     # (p2q: the house and wall are at his left now: he turns that way)     # 2 a quarter round; 3 half-turned to it; 4 back toward us a little, leaning back
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
         data._plant_feet_here(t, lift=(Z0, Z0))
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -136,39 +136,43 @@ def shot2():
         sc.frame_set(F(t)); bpy.context.view_layer.update(); M = data.arm.matrix_world
         fw = data.forward(); rt = Vector((math.cos(data.arm.rotation_euler.z), math.sin(data.arm.rotation_euler.z), 0))
         return M, fw, rt
-    # 1 hands on hips, facing us
-    M_, fw, rt = pts(0.0)
-    for s_, sg in (("L", -1), ("R", 1)):
-        hp = M_ @ data.J[s_]["hip"]
-        for tt in (0.0, T1 - 0.05):
-            data._arm_ik(s_, hp + rt * sg * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
-    # 2 a thumb jerked back over his shoulder at the wall, a grin; the other hand still on his hip
-    for tt, jab in ((T1 + 0.4, 0.0), (T2 - 0.05, 0.0)):     # (r2s/r2t FLUID: no second jab, the thumb comes up over 0.45 s)     # (r2r ANATOMY: the hand's target follows him as he steps; READ: the thumb jabs back twice)
+    # (coordinator, after board 46083546367: "he does nothing". He is the digger crew: the BANKSMAN guiding it, body
+    # three-quarter toward it, a big and different arm signal each still, nothing in his hands.)
+    UP = Vector((0, 0, 1))
+    def sig(tt, fn):
         M_, fw, rt = pts(tt)
-        sh = M_ @ data.J["R"]["sh"]; hpL = M_ @ data.J["L"]["hip"]
-        data._arm_ik("R", sh + rt * 0.2 + fw * (0.03 - jab) + Vector((0, 0, jab)), tt, 1.0); data._k("hand.R", tt, rot=(-20, 0, 25))      # (r2f: over the shoulder put the arm behind his back, the hand in his head) out to the side, jerked back
-        data._arm_ik("L", hpL - rt * 0.07 + fw * 0.02 + Vector((0, 0, 0.05)), tt, 1.4); data._k("hand.L", tt, rot=(0, 0, -20))
-    # 3 half-turned, looking up at it, his arms down (r2i: a hand at his head read as broken)
-    for tt in (T2 + 0.5,):                                     # (r2q FLUID: the hands come down over 0.55 s)
-        for bn in data.RELAXED: data._k(bn, tt, rot=data.RELAXED[bn])
-    for tt in (T2 + 0.8, T3 - 0.05):                          # (r2v HOLD: his hands drift open from his sides as he takes it in)
-        for bn in data.RELAXED:
-            r = data.RELAXED[bn]
-            data._k(bn, tt, rot=(r[0] - (16 if bn.startswith("arm") else 0), r[1], r[2] + ((-34 if bn.endswith(".R") else 34) if bn.startswith("arm") else 0)))
-    # 4 leaning right back looking up, both arms dropped, mouth open
-    for tt, dr in ((T3 + 0.3, 6), (T3 + 0.6, 14), (DUR + 0.5, 14)):     # (r2r HOLD: his arms drop on back as he leans)
-        for bn in data.RELAXED: data._k(bn, tt, rot=(data.RELAXED[bn][0] + (dr if bn.startswith("arm") else 0),) + tuple(data.RELAXED[bn][1:]))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T2, 0.35) + 6 * W(t, T2 + 0.55, 0.3) - 8 * W(t, T3 - 0.25, 0.5), 0, 0), 0, DUR + 0.4)     # (r2t HOLD: the lean starts as the half-turn settles)
-    lw_layer(data, "chest", lambda t: (-3 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)     # (r2y pre-flight: no head thrown back)
-    HEAD = Vector((X0, Y0, Z0 + 0.5))
-    data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)            # 1 at us
-    data.look_at(CAM0 + Vector((0, 0, 0.1)), T1 + 0.3, max_yaw=55, max_pitch=20, blend=0.2)       # 2 at us, the grin
-    data.look_at(CAM0 + Vector((-0.5, 0.0, 0.5)), T2 + 0.3, max_yaw=10, max_pitch=8, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
-    data.look_at(CAM0 + Vector((-0.7, 0.0, 0.8)), T3 + 0.3, max_yaw=8, max_pitch=8, blend=0.3)   # 4 at it (r2ze: glasses floated with the head pitched up; coordinator: keep the pitch small, he backs away)
-    data.expression("determined", 0.0, T1 + 0.1, blend=0.15)
-    data.expression("happy", T1 + 0.1, T2 + 0.1, blend=0.15)
-    data.expression("surprised", T2 + 0.1, T3 + 0.1, blend=0.15)
-    data.expression("alarmed", T3 + 0.1, DUR + 1.0, blend=0.15)
+        for s_, sg in (("L", -1), ("R", 1)):
+            tgt = fn(s_, sg, M_ @ data.J[s_]["sh"], M_ @ data.J[s_]["hip"], fw, rt)
+            if tgt is None:
+                for bn in (f"arm.{s_}", f"fore.{s_}", f"hand.{s_}"): data._k(bn, tt, rot=data.RELAXED[bn])
+            else:
+                data._arm_ik(s_, tgt[0], tt, tgt[1]); data._k(f"hand.{s_}", tt, rot=tgt[2])
+    hip_hand = lambda sg, hp, fw, rt: (hp + rt * sg * 0.07 + fw * 0.02 + UP * 0.05, 1.4, (0, 0, sg * 20))
+    # 1 beckoning it up: his right arm up and forward, the hand waving it on; the left on his hip
+    for k, tt in enumerate((0.0, 0.3, 0.6)):
+        hi = 0.17 if k % 2 == 0 else 0.09
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, hi=hi: (sh + fw * (0.08 if hi > 0.1 else 0.14) + UP * hi + rt * 0.05, 0.6, (-40 if hi > 0.1 else 20, 0, 10)) if sg > 0 else hip_hand(sg, hp, fw, rt))
+    # 2 both arms up over his head, waving it higher
+    for k, tt in enumerate((T1 + 0.4, T1 + 0.7, T1 + 1.0, T2 - 0.05)):
+        w_ = 0.05 if k % 2 == 0 else -0.04
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, w_=w_: (sh + UP * 0.2 + rt * sg * (0.07 + w_) + fw * 0.03, 0.5, (0, 0, sg * 10)))
+    # 3 HOLD: his right arm straight out flat toward it, palm down, patting the air; the left down; a half-step back
+    for k, tt in enumerate((T2 + 0.4, T2 + 0.75, T2 + 1.05, T3 - 0.05)):
+        dz = 0.0 if k % 2 == 0 else -0.07
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, dz=dz: (sh + fw * 0.2 + rt * 0.08 + UP * (0.02 + dz), 0.3, (0, 0, 90)) if sg > 0 else None)
+    # 4 done: both arms wide, thumbs up at the finished height, a step further back
+    for k, tt in enumerate((T3 + 0.35, T3 + 0.65, DUR + 0.5)):
+        dz = 0.0 if k % 2 == 0 else 0.07
+        sig(tt, lambda s_, sg, sh, hp, fw, rt, dz=dz: (sh + rt * sg * 0.19 + UP * (0.06 + dz) + fw * 0.05, 0.5, (0, -sg * 30, sg * 15)))
+    lw_layer(data, "spine", lambda t: (-3 * W(t, T1, 0.35) + 4 * W(t, T2, 0.35) - 6 * W(t, T3, 0.4), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "chest", lambda t: (-3 * W(t, T3, 0.35), 0, 0), 0, DUR + 0.4)
+    HEAD = Vector((X0, Y0, Z0 + 0.5)); DIGP = Vector((S2_DIG[0], -s2_base(S2_H) / 2, 3.0))
+    data.look_at(DIGP, 0.0, max_yaw=15, max_pitch=8, blend=0.0)            # 1 at the digger, his face still to us
+    data.look_at(DIGP, T1 + 0.3, max_yaw=15, max_pitch=10, blend=0.2)       # 2 at it
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), T2 + 0.3, max_yaw=30, max_pitch=8, blend=0.3)     # (r2y pre-flight: thrown back his head read as broken)   # 3 up at it
+    data.look_at(DIGP, T3 + 0.3, max_yaw=15, max_pitch=10, blend=0.3)   # 4 at it (r2ze: glasses floated with the head pitched up; coordinator: keep the pitch small, he backs away)
+    data.expression("determined", 0.0, T3 + 0.1, blend=0.15)
+    data.expression("happy", T3 + 0.1, DUR + 1.0, blend=0.15)
     data.finish()
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)     # (p2n, r2y: a wider lens: him, the digger and the house side by side, none hiding another)
     print("S2 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()), flush=True)

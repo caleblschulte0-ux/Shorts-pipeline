@@ -244,13 +244,13 @@
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat, hands on hips"
+       "as": "the driver in his hard hat, one arm up beckoning his digger on"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "a digger piles the rock wall behind the house; it rises past the windows; he gestures at it with an open hand, grinning",
+     "shows": "a digger builds the rock wall behind the house; it rises past the windows; he waves it on with both arms up",
      "hands": "free",
      "new": [
       {
@@ -266,7 +266,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he gestures at it with an open hand"
+       "cause": "he waves it higher with both arms up"
       }
      ],
      "visible": [
@@ -284,13 +284,13 @@
       },
       {
        "prop": "data",
-       "as": "his open hand at it"
+       "as": "he waves it on, both his arms up"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "the rock wall rises to the eaves, the digger on its crest; he steps back from it",
+     "shows": "the rock wall rises to the eaves, the digger on its crest; he signals hold, one arm straight out flat",
      "hands": "free",
      "new": [
       {
@@ -306,7 +306,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he steps back from it"
+       "cause": "he holds one arm straight out flat, palm down, and steps back"
       }
      ],
      "visible": [
@@ -324,7 +324,7 @@
       },
       {
        "prop": "data",
-       "as": "he steps back from it"
+       "as": "his arm straight out flat, palm down: hold"
       }
      ]
     },
@@ -341,7 +341,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he steps back again, hands open, looking up"
+       "cause": "he steps back again, arms wide, thumbs up"
       }
      ],
      "visible": [
@@ -355,7 +355,7 @@
       },
       {
        "prop": "data",
-       "as": "Data backs away again, hands open"
+       "as": "Data arms wide, thumbs up at the finished height"
       }
      ]
     }
