@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "normal-body-temperature-has-shifted__75403cdd_r3",
+  "slug": "normal-body-temperature-has-shifted",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:18:00Z",
+  "title": "Body Temperature Changed Across Eras, Sexes, And Measurements",
+  "hook": "The familiar normal temperature hides both biological change and measurement error.",
+  "closing": "One historic number cannot capture how normal body temperature varies and changes.",
+  "question": "What temperature feels normal to you?",
+  "segments": [
+    {
+      "topic": "Body Temperature Shift",
+      "say": "Men born in the 1990s average 97.5 degrees. Body temperature is lower than the historic figure."
+    },
+    {
+      "topic": "Body Temperature Sex",
+      "say": "Men's average temperature fell 1.06 degrees. The decline was larger than the one measured in women."
+    },
+    {
+      "topic": "Body Temperature Standard",
+      "say": "The original figure recalculates to 98.2 degrees. Measurement also explains why the old standard no longer fits."
+    }
+  ]
+}
