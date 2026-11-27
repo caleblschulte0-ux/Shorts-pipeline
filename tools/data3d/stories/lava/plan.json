@@ -9,10 +9,11 @@
      "objects": [
       "fissure glow",
       "lava fountain",
-      "eruption plume"
+      "eruption plume",
+      "ridge smoke"
      ],
      "whole": false,
-     "built_as": "the volcano on the ridge over the town: a glowing slot of lava along its top, a lava fountain bursting up out of it, a huge black ash plume over it"
+     "built_as": "the volcano on the ridge over the town: thin smoke rising off it first, then a glowing slot of lava along its top, a lava fountain bursting up out of it, a huge black ash plume over it"
     },
     {
      "name": "houses",
@@ -21,6 +22,14 @@
      ],
      "whole": false,
      "built_as": "Grindavik's low painted houses with coloured tin roofs down both sides of the main street"
+    },
+    {
+     "name": "car",
+     "objects": [
+      "getaway car"
+     ],
+     "whole": false,
+     "built_as": "one small blue hatchback parked up the main street, that pulls out and races down it away from the eruption, past the lens, a tail of dust behind it"
     }
    ],
    "framing": "close",
@@ -45,7 +54,7 @@
    "stills": [
     {
      "event": "before",
-     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, the quiet ridge over them; he stands in the street, three-quarter to us, looking at us",
+     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, a car parked up the street, thin smoke rising off the ridge over the roofs; he stands centred in the street, three-quarter to us, looking at us",
      "hands": "free",
      "new": [],
      "visible": [
@@ -56,12 +65,20 @@
       {
        "prop": "data",
        "as": "the driver in his hard hat in the street"
+      },
+      {
+       "prop": "eruption",
+       "as": "thin smoke rises off the ridge over the roofs"
+      },
+      {
+       "prop": "car",
+       "as": "a car parked up the street"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "the ridge over the town's roofs glows orange, the volcano erupting; he turns his head up at it",
+     "shows": "the smoking ridge over the town's roofs glows orange, the volcano erupting; he turns and points at it",
      "hands": "free",
      "new": [
       {
@@ -72,7 +89,7 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he turns his head up at the glow, hands coming up"
+       "cause": "he turns and points at the glow"
       }
      ],
      "visible": [
@@ -86,13 +103,13 @@
       },
       {
        "prop": "data",
-       "as": "he looks up at it"
+       "as": "he points up at it"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "a lava fountain bursts up over the town's roofs right beside it, black ash climbing off it; he flinches back, arms up",
+     "shows": "a lava fountain bursts up over the town's roofs right beside it; he flinches, ducking, both forearms up before his face; the car pulls out and races down the street",
      "hands": "free",
      "new": [
       {
@@ -103,7 +120,12 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he flinches back, arms up"
+       "cause": "he flinches, ducking, forearms up"
+      },
+      {
+       "what": "car",
+       "how": "moves",
+       "cause": "its driver flees the eruption"
       }
      ],
      "visible": [
@@ -117,13 +139,17 @@
       },
       {
        "prop": "data",
-       "as": "he flinches back"
+       "as": "he flinches, ducking, forearms up before his face"
+      },
+      {
+       "prop": "car",
+       "as": "a parked car races off down the street"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "a huge black ash plume towers over the town; he runs past us, out of the street",
+     "shows": "the ash plume towers bigger over the town; he runs down the street at us in full stride, looking back over his shoulder at the fountain; the car races past, nearly out of the frame, dust behind it",
      "hands": "free",
      "new": [
       {
@@ -134,7 +160,12 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he runs, arms pumping"
+       "cause": "he runs down the street at us, arms pumping, looking back"
+      },
+      {
+       "what": "car",
+       "how": "moves",
+       "cause": "it races away from the eruption"
       }
      ],
      "visible": [
@@ -144,7 +175,11 @@
       },
       {
        "prop": "data",
-       "as": "he had to run: he runs past us, out of the street"
+       "as": "he had to run: he runs at us in full stride, looking back at it"
+      },
+      {
+       "prop": "car",
+       "as": "everyone had to run: the car races past us, out of the street"
       }
      ]
     }
