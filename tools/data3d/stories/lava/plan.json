@@ -62,7 +62,7 @@
     "frame_h": 0.36
    },
    "action": "he runs down the street with his duffel bag in both hands",
-   "consequence": "he heaves his bag up over the side of his tipper truck",
+   "consequence": "he heaves his bag up over his head into his tipper truck",
    "says_still": 1,
    "stills": [
     {
@@ -83,7 +83,7 @@
     },
     {
      "event": "action",
-     "shows": "low on the pavement: the driver in his hard hat runs down the street toward us with his duffel bag in both hands, the plume over the roofs behind him",
+     "shows": "low in the street: the driver in his hard hat runs down the street toward us with his duffel bag in both hands, the plume over the roofs behind him",
      "hands": "bag",
      "new": [
       {
@@ -114,13 +114,13 @@
     },
     {
      "event": "result",
-     "shows": "at his tipper truck: he heaves his bag up over the side of the truck, arms up, the bag in the air at the rail",
-     "hands": "free",
+     "shows": "at his tipper truck: he heaves his bag up over his head to throw it into the truck, arms up, both hands on it",
+     "hands": "bag",
      "new": [
       {
        "what": "bag",
        "how": "moves",
-       "cause": "he heaves it up over the side"
+       "cause": "he heaves it up over his head"
       },
       {
        "what": "data",
@@ -131,7 +131,7 @@
      "visible": [
       {
        "prop": "bag",
-       "as": "he heaves the bag up over the side"
+       "as": "he heaves the bag up over his head"
       },
       {
        "prop": "truck",
@@ -145,7 +145,7 @@
     },
     {
      "event": "reaction",
-     "shows": "at the roadside: he climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle, as the other cars roll out of town past his truck in their dust",
+     "shows": "ahead of the truck's nose: he climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle, as the other cars roll out of town down the street toward it in their dust",
      "hands": "handle",
      "new": [
       {

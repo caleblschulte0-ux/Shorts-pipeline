@@ -105,16 +105,16 @@
     "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
   ],
   "storyboard": [
-    "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, a hill over the roofs; far down the street, then low on the pavement, then at his truck, then at the roadside): a huge black ash plume rises off the hill over the town's roofs. The driver in his hard hat runs down the street with his duffel bag in both hands. He heaves it up over the side of his tipper truck. He climbs into the cab as the other cars roll out of town.",
-    "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then from up the wall): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
+    "1 hook (the main street by day: painted tin-roofed houses and Icelandic flags, a hill over the roofs; far down the street, then low in the street, then at his truck, then ahead of its nose): a huge black ash plume rises off the hill over the town's roofs. The driver in his hard hat runs down the street with his duffel bag in both hands. He heaves it up over his head into his tipper truck. He climbs into the cab as the other cars roll out of town.",
+    "2 the wall (by day at the wall's foot in the town, by one painted tin house; close on him at his truck's tip lever, then from up high, then far off across the town, then low by the house): the driver in his hard hat pulls his tipper truck's tip lever, tipping its rock onto a low row of rock in a puff of dust. More rock slides off the truck and the wall grows roof-high. The finished wall stands taller than the house, the lava out beyond it. He looks up at it by the house door.",
     "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and heaps up, steam rising off it. It stops dead against the rock, its crust going dark, and he pumps his fists and grins at us.",
     "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
     "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
   ],
   "staging": [
     {
-      "camera": "far down the street for the plume over the roofs; then low on the pavement ahead of him; then by his truck's cab looking back along its side; then low at the roadside ahead of the truck",
-      "data": "runs down the pavement with his duffel bag in both hands, heaves it up over the tipper's side, then climbs into the cab, a foot on the rung, a hand on the door and one on the grab handle",
+      "camera": "far down the street for the plume over the roofs; then low in the street ahead of him; then from up over the far lane at his truck's side; then low in the street ahead of the truck's nose",
+      "data": "runs down the street with his duffel bag in both hands, heaves it up over his head into the tipper, then climbs into the cab at the driver's door, a foot on the rung, a hand on the door and one on the grab handle",
       "props": [
         "ash plume",
         "main street",
@@ -130,20 +130,20 @@
         },
         {
           "at": 0.38,
-          "what": "low on the pavement: he runs toward us with his duffel bag in both hands, the plume over the roofs behind him"
+          "what": "low in the street: he runs toward us with his duffel bag in both hands, the plume over the roofs behind him"
         },
         {
           "at": 0.68,
-          "what": "at his truck: he heaves the bag up over the tipper's side, arms up, the bag in the air at the rail"
+          "what": "at his truck: he heaves the bag up over his head to throw it into the tipper, arms up, both hands on it"
         },
         {
           "at": 0.98,
-          "what": "at the roadside: he climbs into the cab, a hand on the door and one on the grab handle, as the other cars roll out of town past his truck"
+          "what": "ahead of the truck's nose: he climbs into the cab, a hand on the door and one on the grab handle, as the other cars roll out of town down the street toward it"
         }
       ]
     },
     {
-      "camera": "out past the low row, low, back at him at the lever; then from up high over the rising wall; then a cut to the wide across the town; then from up the wall's face down at him",
+      "camera": "out past the low row, low, back at him at the lever; then from up high over the rising wall; then a cut to the wide across the town; then low by the house's corner, up at him and the wall over him",
       "data": "both hands on his tipper truck's tip lever, he pulls it and tips its rock onto the wall, then walks to the wall's foot by the house door and looks up at it",
       "props": [
         "tip lever",
