@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "great-barrier-reef-bleaching-accelerating__d03b86c2",
+  "slug": "great-barrier-reef-bleaching-accelerating",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T12:44:00Z",
+  "title": "Great Barrier Reef Bleaching Returns Before Recovery Finishes",
+  "hook": "Each new bleaching event arrives while the last recovery is unfinished.",
+  "closing": "Repeated bleaching matters because interrupted recovery leaves the reef less time to rebuild.",
+  "question": "Can the reef recover fast enough?",
+  "segments": [
+    {
+      "topic": "Reef Bleaching Count",
+      "say": "The Great Barrier Reef has had three mass bleaching events this decade. An occasional shock became recurring damage."
+    },
+    {
+      "topic": "Reef Bleaching Gap",
+      "say": "The average bleaching gap since 2020 is two years. New damage now returns quickly."
+    },
+    {
+      "topic": "Reef Recovery Window",
+      "say": "A reef typically needs ten years to recover. The current bleaching pace interrupts that recovery window."
+    }
+  ]
+}
