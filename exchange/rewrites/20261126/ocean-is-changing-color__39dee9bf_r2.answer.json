@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ocean-is-changing-color__39dee9bf_r2",
+  "slug": "ocean-is-changing-color",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "Ocean Color Change Exceeded The Model And Spans More Than Land",
+  "hook": "Satellites found an ocean-wide shift larger than researchers expected.",
+  "closing": "Ocean color change now covers an area larger than all land on Earth.",
+  "question": "What could this shift mean?",
+  "segments": [
+    {
+      "topic": "Ocean Color Change",
+      "say": "Ocean color changed across 56% of the surface. The shift is already visible at planetary scale."
+    },
+    {
+      "topic": "Ocean Color Model",
+      "say": "The model predicted 50% would change color. Satellite observations later exceeded that forecast."
+    },
+    {
+      "topic": "Ocean Color Area",
+      "say": "Changed ocean color spans 203 million square kilometers. That area is larger than Earth's total land."
+    }
+  ]
+}
