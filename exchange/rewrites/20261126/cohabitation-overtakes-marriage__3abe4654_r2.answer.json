@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cohabitation-overtakes-marriage__3abe4654_r2",
+  "slug": "cohabitation-overtakes-marriage",
+  "by": "chatgpt",
+  "written_at": "2026-11-27T13:02:00Z",
+  "title": "Living Together Now Spans Young Adults Through Later Life",
+  "hook": "Living together is no longer merely a stop before marriage.",
+  "closing": "Living together now marks a broader change across several stages of adult life.",
+  "question": "Would you live together before marriage?",
+  "segments": [
+    {
+      "topic": "Living Together Young",
+      "say": "Living with an unmarried partner reaches 9% among the youngest adults. It now exceeds living with a spouse."
+    },
+    {
+      "topic": "Living Together Marriage",
+      "say": "Living with a spouse fell to 40% by 2018. Marriage became less dominant for the next age group."
+    },
+    {
+      "topic": "Living Together Older",
+      "say": "Cohabiting adults aged fifty-plus reached 4.2 million by 2022. Living together also expanded later in life."
+    }
+  ]
+}
