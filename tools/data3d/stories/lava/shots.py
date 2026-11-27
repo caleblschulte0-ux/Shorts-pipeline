@@ -1740,8 +1740,8 @@ def shot1():
     T_AT = 2.45; T_WIND = 2.5; T_REL = 2.98; T_FLY = 0.9
     T_GO = 3.2; T_STEP = 3.85
     PS = Vector((-0.6, YD + 0.3, 0.0)); PM = Vector((SIDE + 0.3, YT + 1.85 + 0.47, 0.0))
-    PT = Vector((SIDE + 0.3, YT - 0.2, 0.0))            # (q1w: 0.3 off the side, or the bag he throws goes through the rail)
-    BED = Vector((XT + 0.05, PT.y - 0.1, 0.82))          # where the bag lands, on the tipper's floor
+    PT = PD.copy()            # (coordinator 11-27: no free hands: he throws from the cab door, then his hands go straight to the truck) (old: (q1w: 0.3 off the side, or the bag he throws goes through the rail)
+    BED = Vector((XT + 0.05, YT - 0.3, 0.82))          # where the bag lands, on the tipper's floor
     data.place(PS.x, PS.y, math.degrees(yaw_of(0.5, -1.0)))
     kit = hard_hat(data)
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1751,15 +1751,11 @@ def shot1():
     YB = yaw_of(0.1, -1.0)                             # (the throw: three-quarter to the high lens, the truck at his right)
     while YB - YA > math.pi: YB -= 2 * math.pi
     while YB - YA < -math.pi: YB += 2 * math.pi
-    for f in range(F(T_AT) + 1, F(T_GO) + 1):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.4))
-    data.walk_to((PD.x, PD.y), T_GO, T_STEP, step=0.15, lift=0.05, bob=0.016)      # along the truck to its cab door
-    sc.frame_set(F(T_STEP)); bpy.context.view_layer.update(); YS = data.arm.rotation_euler.z
     YC = yaw_of(FC.x, FC.y)                             # to the door and the handle, three-quarter to the lens ahead of the truck
-    while YC - YS > math.pi: YC -= 2 * math.pi
-    while YC - YS < -math.pi: YC += 2 * math.pi
-    for f in range(F(T_STEP) + 1, NF + 8):
-        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PD), rot=YS + (YC - YS) * W(t, T_STEP, 0.45))
+    while YC - YB > math.pi: YC -= 2 * math.pi
+    while YC - YB < -math.pi: YC += 2 * math.pi
+    for f in range(F(T_AT) + 1, NF + 8):
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(PT), rot=YA + (YB - YA) * W(t, T_AT, 0.4) + (YC - YB) * W(t, T_REL + 0.1, 0.45))
     # ---- the bag in both hands, at his belly as he runs (hitched up once on the way); swung down, then heaved up over
     # his right shoulder and thrown up over the tipper's side
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -1795,12 +1791,12 @@ def shot1():
             if t < T_REL:
                 m, f_, l_ = frame_at(t); return bag_at(t) + l_ * (sg * 0.04) + Vector((0, 0, 0.1))       # (q1x: round its ends his arms were in it) on its straps
             m, f_, l_ = frame_at(t); return m + f_ * 0.17 + l_ * (sg * 0.06) + Vector((0, 0, 0.08 - 0.2 * W(t, T_REL + 0.1, 0.45)))     # (q1w: a world point behind him as he walked off: arms behind his back) his arms follow it up, open
-        data.reach(sd, grip, 0.0, T_STEP - 0.3, lead=0.05, back=None, elbow_out=0.3)       # (q1x FLUID: no drop to a relaxed arm; the cab takes the hands from here)
+        data.reach(sd, grip, 0.0, T_REL, lead=0.05, back=None, elbow_out=0.3)       # (coordinator 11-27) off the bag the hands go straight to the truck       # (q1x FLUID: no drop to a relaxed arm; the cab takes the hands from here)
     # ---- at the cab: a foot up on the rung, a hand on the door, a hand on the grab handle
-    sc.frame_set(F(T_STEP + 0.3)); bpy.context.view_layer.update()
+    sc.frame_set(F(T_REL + 0.6)); bpy.context.view_layer.update()
     hs = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - GRAB).length)     # the hand nearer the grab handle takes it
-    data.reach(hs[0], lambda t: GRAB.copy(), T_STEP + 0.05, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
-    data.reach(hs[1], lambda t: DOORP.copy(), T_STEP + 0.15, DUR + 0.5, lead=0.3, back=None, elbow_out=0.2)
+    data.reach(hs[0], lambda t: GRAB.copy(), T_REL + 0.5, DUR + 0.5, lead=0.45, back=None, elbow_out=0.2)
+    data.reach(hs[1], lambda t: DOORP.copy(), T_REL + 0.6, DUR + 0.5, lead=0.5, back=None, elbow_out=0.2)
     near_leg = min("LR", key=lambda s_: (data.arm.matrix_world @ data.pb[f"leg.{s_}"].head - GRAB).length)
     lw_layer(data, f"leg.{near_leg}", lambda t: (-50 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
     lw_layer(data, f"shin.{near_leg}", lambda t: (62 * W(t, T_STEP + 0.2, 0.3), 0, 0), T_STEP, DUR + 0.4)
@@ -1810,7 +1806,7 @@ def shot1():
     data.look_at(PLUME, 1.15, max_yaw=35, max_pitch=30, blend=0.3)                     # a look back up at it as he runs
     data.look_at(Vector((PT.x, PT.y - 2.0, 0.4)), 1.75, max_yaw=30, max_pitch=30, blend=0.3)
     data.look_at(REL + Vector((0, 0, 0.1)), T_AT - 0.1, max_yaw=40, max_pitch=40, blend=0.45)      # (q1w: at the bed his face turned 79 off the lens) at the bag going up
-    data.look_at(GRAB + Vector((0, -0.2, 0.3)), T_GO + 0.1, max_yaw=35, max_pitch=35, blend=0.5)
+    data.look_at(GRAB + Vector((0, -0.2, 0.3)), T_REL + 0.15, max_yaw=35, max_pitch=35, blend=0.5)
     data.expression("alarmed", 0.0, T_AT, blend=0.15)
     data.expression("determined", T_AT, DUR + 1.0, blend=0.25)
     data.finish()
@@ -2059,7 +2055,7 @@ def shot2():
     while YWK - YW0 > math.pi: YWK -= 2 * math.pi
     while YWK - YW0 < -math.pi: YWK += 2 * math.pi
     for f in range(1, NF + 8):          # (coordinator 11-27: he never lets go on screen: no walk, no release) (q2b: on the sheet he stood still a second) round to the pour as the bed goes up, and back
-        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5) + 0.03 * W(t, T_LET - 0.05, 0.4)      # (q2c: READ, he stood 1.7s: his weight goes back on each pull)
+        t = (f - 1) / FPS; SW = 0.035 * W(t, 0.0, 0.5) - 0.02 * W(t, 0.5, 0.15) + 0.04 * W(t, T_AB, 0.5)      # (q2o REACH: no weight back off the bar now he stays at it) (q2c: READ, he stood 1.7s: his weight goes back on each pull)
         data._kobj(t, loc=tuple(PL - fw * SW), rot=YW0 - R(24) * W(t, 0.15, 0.4) + R(24) * W(t, 0.95, 0.45))      # (q2e: STEADY, he turns to go before he goes)
     sides = sorted("LR", key=lambda s_: (acts._shoulder(data, s_) - PL).dot(lf), reverse=True)      # sides[0]: his hand toward the truck
     def body_at(t):
@@ -2078,12 +2074,13 @@ def shot2():
     # lever on every frame of the shot; the last set-up is a new lens on him at the lever, from up the wall's face
     for sd, u in ((sides[0], 0.05), (sides[1], -0.06)):
         data.reach(sd, lambda t, u=u: on_bar(t, u) + Vector((0, 0, 0.012)), 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.3)
-    CD = PL + Vector((0.1, -1.5, 1.9)); LD = PL + Vector((-0.25, 0.1, 0.25))     # up the wall's face, down at him at its foot, the house's corner behind him
+    CD = PL + Vector((0.2, -1.5, 1.9)); LD = PL + Vector((0.1, 0.0, 0.25))     # up the wall's face, down at him at its foot, the lever whole beside him (q2o EDGE)
     TAILP = hinge_at(0.8) @ tail_l
     CREST = Vector((PL.x, -s2_base(S2_HS[2]) / 2 + 0.6, S2_HS[2]))
     data.look_at(TAILP + Vector((0, 0, 0.3)), 0.0, max_yaw=50, max_pitch=30, blend=0.0)
     data.look_at(Vector((S2_XT, -0.6, 1.4)), T_AB - 0.1, max_yaw=60, max_pitch=40, blend=0.6)       # the rock going onto the wall
-    data.look_at(CD + Vector((0, -0.3, 0.6)), T_CUT + 0.3, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
+    data.look_at(Vector((-17.0, 6.5, 10.5)), T_CUT - 0.25, max_yaw=35, max_pitch=20, blend=0.5)     # (q2o KEYS: the back of his head to the wide) round over his shoulder at the town
+    data.look_at(CD + Vector((0, -0.3, 0.6)), T_WB - 0.45, max_yaw=35, max_pitch=40, blend=0.6)                         # (q2g) up at it
     data.expression("determined", 0.0, T_WB, blend=0.15)
     data.expression("surprised", T_WB, DUR + 1.0, blend=0.3)
     SHADE = lambda sg: ((-20, 0, -sg * 96), (-20, 0, -sg * 52), (0, 0, 0))                       # a hand up over his eyes
