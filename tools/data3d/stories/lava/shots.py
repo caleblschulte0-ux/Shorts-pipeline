@@ -1403,8 +1403,8 @@ def lw_cut(cam, main, wide, t0, t1, lens_main, lens_wide):
 """BEAT 1, THE HOOK: "A volcano keeps erupting right beside one Icelandic town, and everyone had to run."
 
 Grindavik's main street by day, low painted houses with coloured tin roofs down both sides, the black ridge over the
-roofs. A curtain of lava fountains stands on the ridge from the first frame. The digger driver looks back up at it and
-bolts down the middle of the street at the lens, lava bombs landing on the road behind him."""
+roofs and the eruption's black ash plume over it. The driver shuts his front door on it, throws his bag into his
+tipper truck and drives out of town."""
 
 S1_PIV = Vector((0.85, 0.0, 0.5))      # the siren pole's foot, at the kerb
 S1_CRANK_R = 0.045                     # the winch crank's knob, out from its hub
@@ -1413,6 +1413,8 @@ S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
 S1_FX, S1_FGAP = 1.6, 1.4             # the row of vents: its middle (x) and the gap between two vents
 S1_CARX = 0.3                          # the leaving car's line up the street (pre-flight r1s: in the left lane the bomb hid it on still 3)
 S1_HIT = (-0.62, 1.5, 0.0)              # (r1n: at -0.4 he hid it; at -0.95 the frame edge cut it; q1d: in the right lane it fell behind him: the left lane, its smash low so the car up the street stays in sight)
+S1_HOME = (-1, 2)                      # his house: the left row's third, its door at street level
+S1_HOME_BASE = 0.05
 S1_SEE = 65.0                          # his quarter turn off the lens as he stands looking up at it
 S1_NV = 5                              # the vents: a row of five fountains, each one seen on its own
 
@@ -1566,7 +1568,7 @@ def place_grindavik_street():
         while y < 9.5:
             w = rnd.uniform(3.2, 4.0); d = rnd.uniform(2.6, 3.0)       # Grindavik houses, not sheds (board after the fire test)
             hs = town_house(f"town house {sx}_{k}", (sx * (1.65 + d / 2), y + w / 2, 0), yaw=-sx * math.pi / 2, w=w, d=d, storeys=1,   # LOW painted tin houses (board B8: "grey clapboard terraces")
-                            roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=0.3, seed=k)
+                            roof=("#B8352B", "#2F5E8C", "#3F7A4A", "#C9A23A")[(k + (sx > 0)) % 4], wall=("#B44A3C", "#E9D9A2", "#BFD3DD", "#F1EEE6", "#7E9A86")[(k + 2 * (sx > 0)) % 5], base=(S1_HOME_BASE if (sx, k) == S1_HOME else 0.3), seed=k)
             houses.append(hs); y += w + rnd.uniform(0.4, 0.8); k += 1
     lava_rock("street ash", 260, (-1.05, 1.05, -5.0, 9.0), lambda x, y: 0.012, seed=21, r=(0.015, 0.05), moss=0.0,   # cinders and ash fallen on the street
               avoid=lambda x, y: -1.6 < y < 1.7 and abs(x + 0.5) < 0.34)   # (none where he runs)
@@ -1641,9 +1643,8 @@ def place_grindavik_street():
         o.rotation_euler = (0, math.radians(90), 0)
     # EVERYONE HAD TO RUN: one car pulling away far up the street, whole in the frame, its tail lights to us (the
     # open front doors are cut: the board read their slabs as white boxes at the frame's edge)
-    car = FX.car(name="car leaving", loc=(S1_CARX, 4.7, 0.0), yaw=math.pi, kind="hatch", col="#B9BEC4", seed=3, brake=True, power=150.0)["root"]      # the kit's real car, its tail lamps lit
-    for f in range(1, NF + 1):
-        car.location = (S1_CARX, 4.7 + 0.98 * (f - 1) / FPS, 0.0); car.keyframe_insert("location", frame=f)
+    # (coordinator, after the bomb blocked twice: no car leaving up the street and no bomb: HE is the one who runs,
+    # in his own truck, and the street he leaves is empty)
     # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
     town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
     bpy.context.view_layer.update()
@@ -1659,152 +1660,147 @@ def place_grindavik_street():
 
 
 def shot1():
-    """EVERYONE HAD TO RUN, so he runs. A wide lens low in the main street, pulling back ahead of him: the low painted
-    houses with their tin roofs down both sides, the black ridge over the roofs with a curtain of lava fountains on it
-    from the first frame. He stands at the kerb looking back up at it, mouth open; he bolts down the middle of the
-    street at us, arms pumping, glowing bombs landing on the road behind him; he is big in the frame, terrified, the
-    fire bigger behind; he reaches us."""
-    T_ERUPT = 0.0
-    T_SURGE = 0.74 * DUR
-    T_RUN = 0.18 * DUR                                     # he bolts
+    """EVERYONE HAD TO RUN, and so does he (coordinator, after the bomb blocked twice: four events and nothing more).
+    The town's main street by day, the black ash plume rising off the ridge right over the roofs. He stands at his own
+    open front door with his kit bag, looking up at it (still 1); he pulls the door shut behind him (still 2); on the
+    pavement he throws the bag up into the back of his tipper truck parked at the kerb (still 3); and from down the
+    street the truck drives away out of town at us, him at the wheel, the empty street, the town and the plume behind
+    it (still 4, the wide)."""
+    T_OUT = 0.7; T_GRAB = 0.95; T_PULL = 1.35; T_SHUT = 1.58
+    T_WALK = 1.62; T_AT = 2.2; T_WIND = 2.5; T_REL = 0.68 * DUR + 0.03; T_FLY = 0.65
+    T_CUT = 0.84 * DUR
     W = lw_win
     P = place_grindavik_street()
     light = P["light"]
     data = load_data()
-    PW = Vector((-0.55, 1.3, 0.0)); PM = Vector((-0.45, -0.74, 0.0)); PE = Vector((-0.43, -1.0, 0.0)); T_SLOW = 0.75 * DUR     # from the kerb by a front door, down the middle of the street, at us
-    data.place(PW.x, PW.y, 0.0)
-    kit = hard_hat(data)
-    rnd = lw_random.Random(9)
-    # ---- the eruption: the row of fountains stands on the ridge from the first frame and surges at T_SURGE
-    vents = P["founts"]; rf = lw_random.Random(17)
+    R = math.radians
+    yaw_of = lambda dx, dy: math.atan2(dx, -dy)
+    # ---- the eruption: the kit's ash plume over the ridge, a low band of spatter at its foot (as in the board's rounds)
+    vents = P["founts"]
     for v in vents: v.hide_render = True; v.hide_viewport = True
-    # the eruption is the KIT's: a fissure curtain of strand spray on the ridge, its gas above it, its clots on real
-    # arcs, every lava colour off the kit's chart (an orange emission over ~2 renders peach, a red over ~1 salmon)
-    # (coordinator, after every pre-flight called the fountain wall "a flat flame card": NO wall of fire. The eruption
-    # is a towering dark ash plume lit orange from below, a LOW ragged band of spatter just over the ridge line, and a
-    # few glowing bombs on arcs. The threat reads from the plume's size and the light.)
-    # (pre-flight r1s: an 11.5 m curtain "runs the whole ridge, not a low band at its foot": a band under the plumes)
     fo = FX.lava_fountain(base=(S1_FX, S1_RIDGE_Y + 0.6, P["fz"] - 0.7), h=3.3, w=1.1, length=6.5, clots=150, clot_size=2.6, plume=1.0, lean=(-0.25, 0.35), seed=17, splats=0,
                           t_end=DUR + 1.0, name="fissure fountain")
     plumes = []
-    # (sheet r1n: the four full-size columns merged into one hard-edged dark slab cut by the top of the frame. Three
-    # BILLOWING columns rise from the fissure with sky between them, built at the kit's own size and scaled up so their
-    # billows scale with them, soft at the top where they thin away; r1o: near-black ash showed no billow at phone size and
-    # EMPTY measured the top of the frame as one smooth region: a dark grey ash the sun models, the billows smaller)
     for k, (x, w_, h_) in enumerate(((-2.8, 3.4, 24.0), (1.4, 4.4, 30.0), (5.4, 3.2, 21.0))):
-        plumes.append(ash_plume((S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=7.0, dens=8.0, lean=(-0.03 + 0.03 * k, 0.04), col=(0.07, 0.066, 0.063),      # (pre-flight r1s: grey ash read as "a hazy brown smear, not a towering black plume"; EMPTY had room, 14%)
-                               
-                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))
-        lw_point(f"plume fire light {k}", (S1_FX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)       # orange on the plume's underside and the ridge crest
-    FX.embers(origin=(S1_FX, S1_RIDGE_Y, P["fz"] + 0.2), n=26, speed=13.0, cone=0.55, size=(0.1, 0.2), period=2.4, seed=5, ground_z=P["fz"] - 1.0, splats=0, power=0.0, name="flung bomb")
-    P["founts"] = plumes + [fo["jet"]]
-    for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True      # (from the street below, the kit's spatter rampart stood as a dark band ACROSS the fountain's white-hot foot: the ridge's own rock is its rampart here)
+        plumes.append(ash_plume((S1_FX - 1.6 + x, S1_RIDGE_Y + 1.5 + 0.6 * (k % 2), P["fz"] + 0.2), w=w_, h=h_, S=7.0, dens=8.0, lean=(-0.03 + 0.03 * k, 0.04), col=(0.07, 0.066, 0.063),
+                                seed=4.1 + 2.7 * k, t_end=DUR + 1.0, name=f"eruption plume {k}"))      # (pre-flight r1s: grey ash read as "a hazy brown smear, not a towering black plume")
+        lw_point(f"plume fire light {k}", (S1_FX - 1.6 + x, S1_RIDGE_Y + 1.0, P["fz"] + 2.2), 5200.0, col=(1.0, 0.5, 0.14), r=1.2)
+    for o in fo["rampart"]: o.hide_render = True; o.hide_viewport = True
     for o in P["spat"]: o.hide_render = True
-    for o in bpy.data.objects:                             # (my glowing slot along the ridge read as a white bar under the kit's fountain: the kit's own vent stands there)
+    for o in bpy.data.objects:
         if o.name.startswith("fissure glow"): o.hide_render = True; o.hide_viewport = True
-        if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):      # (my own lamps bleached the kit's rampart to a white bar: the kit lights its own fountain)
+        if o.type == "LIGHT" and o.name.startswith(("fissure light", "plume underlight")):
             o.data.energy = 0.0; o.hide_render = True
-    clot = lava_mat("bomb bits lava", heat=1.4, scale=18.0, glow="#FF8A10", fresh=0.3)      # (q1a: dim emissive bits read as pale beige popcorn on the road: crusted, glowing in their cracks)          # (the bomb's flung bits: yellow-orange and dim)
-    # ---- THE BOMB: one big clot comes down out of the fountains and smashes into the street behind him (still 3), and
-    # lies there glowing and smoking to the end (still 4)
-    T_HIT = 0.58 * DUR; HIT = Vector(S1_HIT); B0 = Vector((S1_FX - 1.0, S1_RIDGE_Y - 0.5, P["fz"] + 1.0)); TF = 1.45      # (q1f: from a lens tipped down its 1.7 s arc ran out of the top of still 2)
-    bomb = lw_block("lava bomb", tuple(B0), 0.38, lava_mat("bomb lava", heat=0.9, scale=7.0, glow="#FF8A10", fresh=0.0), rf, squash=0.9)
-    vz0 = (HIT.z + 0.14 - B0.z + 0.5 * 9.8 * TF * TF) / TF
+    for L in P["glow"]: L.data.energy = 0.0
+    P["town_glow"].data.energy = 700.0
+    # ---- HIS front door: the house's own door is swapped for one on a hinge (on the side up the street), standing open
+    bpy.context.view_layer.update()
+    hd = bpy.data.objects[f"town house {S1_HOME[0]}_{S1_HOME[1]} door"]
+    DC = hd.matrix_world.translation.copy()                     # the door's middle, on the house front
+    for nm in (" door", " door knob"):
+        o = bpy.data.objects[f"town house {S1_HOME[0]}_{S1_HOME[1]}{nm}"]; o.hide_render = True; o.hide_viewport = True
+    XF = DC.x; YD = DC.y
+    HINGE = Vector((XF + 0.02, YD - 0.25, 0.0))       # (on the side toward the lens: open, the door stands beside him, never in front of him)
+    hinge = K.empty("his front door hinge", tuple(HINGE))
+    dm = hd.material_slots[0].material
+    K.box("his front door", (0.25, 0.0, DC.z), (0.5, 0.035, 1.0), dm, bev=0.008, parent=hinge)          # at angle 0 it stands open, square off the wall into the street
+    for k_, zz in enumerate((0.25, 0.75)):
+        K.box(f"his front door panel {k_}", (0.25, -0.02, DC.z - 0.5 + zz), (0.36, 0.008, 0.36), dm, bev=0.01, parent=hinge)
+    K.cyl("his front door knob", (0.42, -0.04, DC.z - 0.02), 0.02, 0.03, lw_metal("knob brass", "#B8903A"), rot=(math.pi / 2, 0, 0), parent=hinge)
+    PULL_TO = R(60)
+    def door_ang(t):
+        if t < T_GRAB: return 0.0
+        if t < T_PULL: return PULL_TO * ease((t - T_GRAB) / (T_PULL - T_GRAB))
+        return PULL_TO + (R(90) - PULL_TO) * ease_out(min(1.0, (t - T_PULL) / (T_SHUT - T_PULL)))      # let go, it swings on and shuts
     for f in range(1, NF + 1):
-        t = (f - 1) / FPS; s_ = max(0.0, min(TF, t - (T_HIT - TF))); u_ = s_ / TF
-        bomb.location = (B0.x + (HIT.x - B0.x) * u_, B0.y + (HIT.y - B0.y) * u_, B0.z + vz0 * s_ - 0.5 * 9.8 * s_ * s_); bomb.keyframe_insert("location", frame=f)
-        bomb.rotation_euler = (3.0 * s_, 2.0 * s_, 0.0); bomb.keyframe_insert("rotation_euler", frame=f)
-        bomb.hide_render = t < T_HIT - TF; bomb.keyframe_insert("hide_render", frame=f)      # it lands IN its own molten splash, smoking (pre-flight r1p: alone on the road the lump read as "a lava-textured block")
-    # THE SMASH, all of it the kit's (pre-flight r1p: "no smash, crater or smoke is visible"): a splash of molten lava
-    # spreading on the asphalt, glowing clots thrown out of it on real arcs that splat where they land, a burst of road
-    # dust, and a column of dark smoke rising off it, leaning away from the car up the street
-    pool = FX.lava_pool(centre=(HIT.x, HIT.y), r=0.42, z=0.012, seed=3, rim=False, heat=2.6, name="lava bomb splash")      # (r1q: at heat 1.3 the splash read as a pale pink disc in daylight)
-    for o in [pool["lava"]] + ([pool["bank"]] if pool.get("bank") else []):
-        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_HIT) - 1); o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_HIT))
-    for L_ in pool["lights"]:                               # its glow comes with it
-        e_ = L_.data.energy; L_.data.energy = 0.0; L_.data.keyframe_insert("energy", frame=F(T_HIT) - 1); L_.data.energy = e_; L_.data.keyframe_insert("energy", frame=F(T_HIT))
-    FX.embers(origin=(HIT.x, HIT.y, 0.05), n=16, speed=2.6, cone=1.1, size=(0.025, 0.06), t0=T_HIT, t1=T_HIT + 0.05, period=9.0, seed=8, ground_z=0.0, splats=5, name="bomb burst")
-    FX.dust_puff(base=(HIT.x, HIT.y, 0.02), w=0.8, h=0.35, t0=T_HIT, dur=1.4, seed=9.3, name="dust off the impact")
-    # (q1c: a column of smoke off it rose straight across the car leaving up the street: the smash stays LOW, splash, clots and dust)
-    # (pre-flight r1s, the bomb's second block: an all-glowing lump on the road "a flat orange lump or sprite". The
-    # picture changes: a BLACK crusted rock glowing only in its cracks, and it lands BURNING, the kit's real fire on it)
-    bf = FX.fire(base=(HIT.x, HIT.y, 0.1), w=0.34, h=0.42, smoke=1.1, lean=(0.05, 0.12), seed=6.2, keys=[(T_HIT - 0.04, 0.0), (T_HIT + 0.1, 1.0), (DUR + 1.0, 0.85)], name="bomb fire")
-    bl = lw_point("light of the bomb", (HIT.x, HIT.y - 0.45, 0.3), 0.0, col=(1.0, 0.55, 0.15), r=0.3)
-    for t_, e_ in ((T_HIT - 0.03, 0.0), (T_HIT + 0.08, 140.0), (T_HIT + 0.6, 60.0), (DUR + 1.0, 45.0)):      # (r1n: 420 W blew the street out white)
-        bl.data.energy = e_; bl.data.keyframe_insert("energy", frame=F(t_))
-    for L in P["glow"]:                                   # its light: on the ridge rock, and warm on the underside of the smoke (constant: one grade through the shot)
-        L.data.energy = 0.0                                # (the kit lights its own fountain: my lamps bleached its rampart to a white bar)
-    P["town_glow"].data.energy = 700.0                    # the fire lights the world: orange on the ridge top, the smoke's underside and the near roofs
-    # ---- him: at the kerb looking back up at it, then he BOLTS down the street at us
-    RUNV = (PM - PW) / (T_SLOW - T_RUN)
-    to_cam = math.radians(26)                              # the lens is ahead of him and to his left: he comes at it three-quarter
-    run_yaw = math.atan2(PM.x - PW.x, -(PM.y - PW.y))
-    yaw_see = math.atan2(-0.5, 0.85) + math.radians(S1_SEE)                     # still 1: side-on across the street, a little toward us, his face in profile up at the fountains
-    data.place(PW.x, PW.y, math.degrees(yaw_see))
-    data._kobj(0.0, loc=tuple(PW), rot=yaw_see)
-    data._kobj(T_RUN - 0.42, loc=tuple(PW), rot=yaw_see); data._kobj(T_RUN - 0.02, loc=tuple(PW), rot=run_yaw)      # he turns, then he runs
-    data.walk_to((PM.x, PM.y), T_RUN, T_SLOW, step=0.24, lift=0.12, lean=34.0, bob=0.026, ramp=0.15)
-    data.walk_to((PE.x, PE.y), T_SLOW, DUR + 0.3, step=0.09, lift=0.035, lean=20.0, bob=0.01)      # ...and he pulls up at the lens, still coming
-    lw_layer(data, "spine", lambda t: (-12 * (1 - W(t, T_RUN - 0.15, 0.2)) + 8 * W(t, T_RUN, 0.3), 0, 0), 0, DUR + 0.4)
-    RIDGE = Vector((-7.0, S1_RIDGE_Y, 12.0))               # the row's end on the lens's side: he looks back over the shoulder we can see
-    CAM0 = PW + Vector((-0.25, -1.6, 1.0)); LOOK0 = PW + Vector((0.5, 3.0, 1.5))      # (r1r: looking up 12 degrees the sky over the plumes was a quarter of the frame)
-    data.look_at(Vector((PW.x - 6.0, PW.y + 0.6, 8.0)), 0.0, max_yaw=42, max_pitch=32, blend=0.0)                    # back up at the fountains over his shoulder
-    data.look_at(CAM0 + RUNV * 0.6, T_RUN + 0.15, max_yaw=50, max_pitch=30, blend=0.6)
-    data.look_at(CAM0 + RUNV * (T_SLOW - T_RUN) + Vector((0.3, -0.6, 0.0)), 0.6 * DUR, max_yaw=55, max_pitch=8, blend=0.5)   # his face to us to the end              # the end: running out past us, his head back over his shoulder at the fire
-    data.expression("alarmed", 0.0, DUR + 1.0, blend=0.1)
-    UPF = lambda sg: ((-82, 0, -sg * 10), (-100, 0, -sg * 10), (0, 0, 0))      # a runner's arms: bent square, one fist up in front as the other elbow goes back
-    LOW = lambda sg: ((56, 0, -sg * 14), (-74, 0, -sg * 6), (0, 0, 0))
-    FLUNG = lambda sg: ((-58, 0, -sg * 34), (-72, 0, -sg * 14), (0, 0, 0))            # the end: both hands thrown up in front of him, palms out                     # the end: both arms thrown up
-    WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))
-    def pose(sd, t, P_):
-        for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), P_(-1 if sd == "L" else 1)): data._k(bn, t, rot=r)
-    HANG = lambda sg: ((-2, 0, -sg * 26), (-38, 0, -sg * 16), (-10, sg * -30, -sg * 10))
-    DUCK = lambda sg: ((-92, 0, -sg * 46), (-62, 0, -sg * 14), (0, 0, 0))        # the flinch: both arms thrown up over his hat
-    SHIELD = "none"                         # the arm up at his hat covered his face on the last still: both arms keep pumping
-    OUT = lambda sg: ((8, 0, -sg * 76), (0, 0, -sg * 8), (0, 0, 0))            # one arm flung out at the fountains
-    sc.frame_set(1); bpy.context.view_layer.update()
-    far = max("LR", key=lambda s_: acts._shoulder(data, s_).y); oth = "R" if far == "L" else "L"       # the arm on the ridge's side
-    pose(far, 0.0, OUT); pose(oth, 0.0, HANG); pose(far, T_RUN - 0.25, OUT); pose(far, T_RUN - 0.05, WHOA); pose(oth, T_RUN - 0.1, WHOA)
-    for f in range(F(T_RUN), NF + 8):                  # arms pumping, one forward as the other goes back (over the walk's own swing)
-        t = (f - 1) / FPS; b_ = 0.5 + 0.5 * math.sin(2 * math.pi * (t - T_RUN) / 0.528); g_ = ease(min(1.0, (t - T_RUN) / 0.55)); e_ = ease(min(1.0, max(0.0, (t - T_SLOW + 0.1) / 0.5)))
-        d_ = ease(min(1.0, max(0.0, (t - T_HIT) / 0.2))) * (1.0 - ease(min(1.0, max(0.0, (t - T_HIT - 0.75) / 0.35))))      # the bomb lands behind him: he FLINCHES, both hands thrown up, then runs on
-        for sd, bb in (("L", b_), ("R", 1 - b_)):
-            sg = -1 if sd == "L" else 1
-            for bn, lo, up, wh, fl in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), LOW(sg), UPF(sg), WHOA(sg), DUCK(sg)):
-                r = tuple(((wh[i] * (1 - g_) + (lo[i] * (1 - bb) + up[i] * bb) * g_) * (1 - e_) + (fl[i] if sd in SHIELD else (lo[i] * (1 - bb) + up[i] * bb)) * e_) for i in range(3)); r = tuple(r[i] * (1 - d_) + fl[i] * d_ for i in range(3)); data._k(bn, t, rot=r)
+        hinge.rotation_euler = (0, 0, door_ang((f - 1) / FPS)); hinge.keyframe_insert("rotation_euler", frame=f)
+    def knob(t):
+        a = door_ang(t); return HINGE + Vector((0.42 * math.cos(a) + 0.045 * math.sin(a), 0.42 * math.sin(a) - 0.045 * math.cos(a), DC.z - 0.02))
+    # ---- HIS truck, parked at the kerb below his door, its tipper toward him, its nose down the street out of town
+    YT = YD - 1.55; XT = 0.1
+    tr = FX.truck(name="his tipper truck", loc=(XT, YT, 0.0), yaw=0.0, lights=True, power=90.0, seed=2)
+    troot = tr["root"]
+    def truck_y(t):
+        u = max(0.0, t - T_CUT); return YT - 1.6 * u * u - 2.2 * u     # pulls away from the kerb and gathers speed
+    for f in range(1, NF + 1):
+        troot.location = (XT, truck_y((f - 1) / FPS), 0.0); troot.keyframe_insert("location", frame=f)
+    BED = Vector((XT - 0.1, YD - 0.62, 0.8))                   # where the bag lands, on the tipper's floor
+    # ---- him: out of his doorway with the bag in his street-side hand, the door open beside him
+    PS = Vector((XF + 0.3, YD + 0.42, 0.0)); P0 = Vector((XF + 0.62, YD + 0.1, 0.0)); P2 = Vector((XF + 0.58, YD - 0.48, 0.0))
+    data.place(PS.x, PS.y, math.degrees(yaw_of(0.3, -0.3)))
+    kit = hard_hat(data)
+    data.walk_to((P0.x, P0.y), 0.0, T_OUT, step=0.12, lift=0.03, bob=0.012)           # a step out of his doorway, the plume over the roofs
+    sc.frame_set(F(T_OUT)); bpy.context.view_layer.update()
+    Y0 = data.arm.rotation_euler.z
+    wall_sd = min("LR", key=lambda s_: acts._shoulder(data, s_).x); bag_sd = "R" if wall_sd == "L" else "L"
+    YD0 = yaw_of(-0.3, -1.0)
+    while YD0 - Y0 > math.pi: YD0 -= 2 * math.pi
+    while YD0 - Y0 < -math.pi: YD0 += 2 * math.pi
+    for f in range(F(T_OUT) + 1, F(T_WALK)):
+        t = (f - 1) / FPS; data._kobj(t, loc=tuple(P0), rot=Y0 + (YD0 - Y0) * W(t, T_OUT, 0.3))      # round to us, the door at his side
+    data.walk_to((P2.x, P2.y), T_WALK, T_AT, step=0.14, lift=0.04, bob=0.014)           # down the pavement to the tipper's side
+    sc.frame_set(F(T_AT)); YA = data.arm.rotation_euler.z
+    YB = yaw_of(0.75, -0.65); YC = yaw_of(0.15, -1.0)
+    while YB - YA > math.pi: YB -= 2 * math.pi
+    while YB - YA < -math.pi: YB += 2 * math.pi
+    while YC - YB > math.pi: YC -= 2 * math.pi
+    while YC - YB < -math.pi: YC += 2 * math.pi
+    for f in range(F(T_AT) + 1, NF + 8):
+        t = (f - 1) / FPS
+        data._kobj(t, loc=tuple(P2), rot=YA + (YB - YA) * W(t, T_AT, 0.3) + (YC - YB) * W(t, T_REL + 0.25, 0.4))      # round to the truck, the throw, round to us
+    # ---- face and head
+    PLUME = Vector((S1_FX, S1_RIDGE_Y + 1.0, P["fz"] + 9.0))
+    data.look_at(PLUME, 0.0, max_yaw=45, max_pitch=40, blend=0.0)                  # up at it over his shoulder
+    data.look_at(knob(T_GRAB) + Vector((0, 0, 0.1)), T_GRAB - 0.25, max_yaw=60, max_pitch=40, blend=0.25)
+    data.look_at(BED + Vector((0, 0, 0.4)), T_AT - 0.2, max_yaw=50, max_pitch=40, blend=0.3)
+    data.look_at(PLUME, T_REL + 0.35, max_yaw=40, max_pitch=40, blend=0.35)       # one last look up at it
+    data.expression("alarmed", 0.0, T_PULL, blend=0.15)
+    data.expression("determined", T_PULL, DUR + 1.0, blend=0.25)
+    # ---- the door hand: back to the knob, pulls the door after him, lets go
+    data.reach(wall_sd, knob, T_GRAB, T_PULL, lead=0.3, back=0.45, elbow_out=0.4)
+    # ---- the bag hand: carries it, swings it back, and lobs it up over the tipper's side
+    carry = lw_hand(data, bag_sd, [(0.0, (0.04, 0.07, -0.2)), (T_AT, (0.06, 0.07, -0.2)), (T_WIND, (-0.07, 0.08, -0.17)), (T_REL - 0.16, (0.08, 0.05, 0.02)),
+                                   (T_REL, (0.16, 0.03, 0.17)), (T_REL + 0.3, (0.13, 0.05, 0.08))])
+    data.reach(bag_sd, carry, 0.0, T_REL + 0.3, lead=0.05, back=0.5, elbow_out=0.3)
     data.finish()
-    from character import _fcurves                         # his shoulders a quarter turned off the lens as he runs at it (coordinator: "square to the lens in all four stills")
-    for fc in _fcurves(data.arm.animation_data.action):
-        if fc.data_path == "rotation_euler" and fc.array_index == 2:
-            for kp in fc.keyframe_points:
-                t_ = (kp.co[0] - 1) / FPS; dz = math.radians(30) * W(t_, T_RUN + 0.1, 0.4) - math.radians(6) * W(t_, 0.76 * DUR, 0.5)
-                kp.co[1] += dz; kp.handle_left[1] += dz; kp.handle_right[1] += dz
-            fc.update()
-    # ---- the lens: ahead of him down the street, backing away slower than he runs: he starts small and left, down the
-    # street, and comes up big at the right third, running out past it (coordinator: "make the distance read")
-    X0, Y0, H0 = 0.58, 0.56, 0.36; X1, Y1, S1_ = 0.5, 0.54, 0.86; ZOOM = 0.19      # (r1o/r1p/r1r: EMPTY measured the sky over the plume as one smooth region: the lens tips down, the street fills more)
-    CAMr, LOOKr = compose.frame_data(data, CAM0, LOOK0, 24.0, face_at=(X0, Y0), height=H0, t=0.0)
-    cam = K.camera(tuple(CAMr), tuple(LOOKr), lens=24.0, fstop=11.0)
-    sc.frame_set(1); bpy.context.view_layer.update()
-    pos0 = data.pos().copy(); F0 = data.arm.matrix_world @ data.pb["head"].head; hoff = F0 - pos0
-    ax = (LOOKr - CAMr).normalized(); rt = ax.cross(Vector((0, 0, 1))).normalized(); up = rt.cross(ax).normalized()
-    v0 = F0 - CAMr; D0 = v0.dot(ax); HF = D0 * 1.5; WF = HF * 9.0 / 16.0     # the frame's size in metres at his distance (a 36 mm gate on the tall side)
-    XA, YA = 0.5 + v0.dot(rt) / WF, 0.5 + v0.dot(up) / HF                                 # where his head really sits on the first frame
-    print("S1 LENS D0", round(D0, 2), "WF", round(WF, 2), "HF", round(HF, 2), "head at", round(XA, 2), round(YA, 2), flush=True)
-    GROW = lambda t: ease(min(1.0, max(0.0, (t - T_SLOW) / 1.0)))      # he is only big once he has pulled up: a run that close is a smear
-    def cam_at(t):
-        sc.frame_set(F(t)); u = ease(min(1.0, max(0.0, (t - T_RUN) / (DUR - T_RUN)))) * 0.5 + 0.5 * min(1.0, max(0.0, (t - T_RUN) / (DUR - T_RUN)))
-        g = GROW(t); s_ = 1.0 - 0.04 * u + (S1_ - 0.96) * g; zf = 1.0 + ZOOM * g; x_ = XA + (X1 - XA) * min(1.0, 1.6 * u); y_ = YA + (Y1 - YA) * g
-        fp = data.pos() + hoff; fp.z = F0.z
-        c = fp - ax * (D0 * s_) - rt * ((x_ - 0.5) * WF * s_ / zf) - up * ((y_ - 0.5) * HF * s_ / zf)
-        return c, c + (LOOKr - CAMr), data.pos() + Vector((0, 0, 0.5))
-    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)
-    for f in range(1, NF + 1):                             # ...and the lens closes on him as he reaches it: the last still is HIM, at the lens, from the waist up
-        cam.data.lens = 24.0 * (1.0 + ZOOM * GROW((f - 1) / FPS)); cam.data.keyframe_insert("lens", frame=f)
-    founts = P["founts"]
-    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
+    him = [data.arm] + list(data.arm.children_recursive) + [o for o in bpy.data.objects if o.name.startswith(("hard hat", "hi-vis"))]
+    for o in set(him):
+        if o.type not in ('MESH', 'CURVE', 'ARMATURE'): continue
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_CUT) - 1)
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=F(T_CUT))                 # in the wide he is in his cab, out of the picture: the street empty
+    bag = K.capsule("kit bag", (0, -0.12, 0), (0, 0.12, 0), 0.075, lw_canvas("kit bag canvas", "#3B4A35"))
+    for k_, yy in enumerate((-0.12, 0.12)):
+        K.cyl(f"kit bag end {k_}", (0, yy, 0), 0.077, 0.012, K.mat("kit bag end", "#23291F", rough=0.8), rot=(math.pi / 2, 0, 0), parent=bag)
+    K.box("kit bag strap", (0, 0, 0.085), (0.02, 0.16, 0.012), K.mat("kit bag strap", "#1A1C18", rough=0.7), bev=0.004, parent=bag)
+    sc.frame_set(F(T_REL)); bpy.context.view_layer.update()
+    REL = data.arm.matrix_world @ data.pb[f"hand.{bag_sd}"].tail + Vector((0, 0, -0.07))
+    G = Vector((0, 0, -9.8)); V0 = (BED - REL - 0.5 * G * T_FLY * T_FLY) / T_FLY
+    print("S1 HOME door", tuple(round(v, 2) for v in DC), "release", tuple(round(v, 2) for v in REL), "v0", tuple(round(v, 2) for v in V0), flush=True)
+    for f in range(1, NF + 1):
+        t = (f - 1) / FPS
+        if t <= T_REL:
+            sc.frame_set(f); bpy.context.view_layer.update()
+            bag.location = data.arm.matrix_world @ data.pb[f"hand.{bag_sd}"].tail + Vector((0, 0, -0.07)); bag.rotation_euler = (0, 0, data.arm.rotation_euler.z)
+        else:
+            s_ = min(T_FLY, t - T_REL); bag.location = REL + V0 * s_ + 0.5 * G * s_ * s_
+            if t - T_REL > T_FLY: bag.location = BED + Vector((0, truck_y(t) - YT, 0))      # in the tipper, going with it
+            bag.rotation_euler = (2.2 * min(T_FLY, t - T_REL), 0, data.arm.rotation_euler.z if t < T_CUT else 0.4)
+        bag.keyframe_insert("location", frame=f); bag.keyframe_insert("rotation_euler", frame=f)
+    # ---- the lens: on the pavement between the truck and the house fronts, low, looking up the street: his door, the
+    # tipper's side at the right of the frame, the street running up to the ridge and the plume over the roofs
+    CAM0 = Vector((XF + 0.6, YD - 3.0, 0.62)); LOOK0 = Vector((XF + 0.62, YD + 4.0, 1.75))
+    C1, L1 = compose.frame_data(data, CAM0, LOOK0, 30.0, face_at=(0.42, 0.5), height=0.34, t=0.4)
+    print("S1 CAM", tuple(round(v, 2) for v in C1), "look", tuple(round(v, 2) for v in L1), "truck side x", round(XT + 0.64, 2), "house front x", round(XF, 2), flush=True)
+    cam = K.camera(tuple(C1), tuple(L1), lens=30.0, fstop=11.0)
+    WCAM = Vector((0.35, YT - 13.0, 1.0)); WLOOK = Vector((-0.2, YT + 6.0, 2.4))       # THE WIDE: down the street, the truck coming out of town at us
+    lw_cut(cam, lambda t: (C1, L1, data.pos() + Vector((0, 0, 0.5))), lambda t: (WCAM, WLOOK, Vector((XT, truck_y(t), 1.0))), T_CUT, DUR + 1.0, 30.0, 50.0)
+    founts = plumes + [fo["jet"]]
+    return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=("his front door", "kit bag"), cutaway=(T_CUT, DUR + 1.0),
                 boxes=[],
-                conseq=[("a towering ash plume stands on the ridge over the town's roofs, lava spatter at its foot", lambda: founts, T_ERUPT, DUR, {"whole": False})])
+                conseq=[("a towering black ash plume rises off the ridge right over the town's roofs", lambda: founts, 0.0, DUR, {"whole": False}),
+                        ("he pulls his front door shut", lambda: meshes([hinge]), T_GRAB, T_SHUT + 0.3, {"whole": False}),
+                        ("his bag goes up into the back of his truck", lambda: meshes([bag]), T_REL - 0.3, T_REL + T_FLY, {"whole": False, "moves": True}),
+                        ("his truck drives away out of town, the street empty behind it", lambda: meshes([troot]), T_CUT, DUR, {"whole": False})])
 
 
 # ====================================================================================================

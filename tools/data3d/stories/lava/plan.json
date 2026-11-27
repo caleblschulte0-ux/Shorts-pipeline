@@ -2,17 +2,8 @@
  "note": "Written 2026-11-26 from shots 3, 4 and 5 AS THEY PASSED the board (71, 72, 72): the plan they would have started from. Shots 1 and 2 were written 2026-11-26 by the session restaging them (not yet passed).",
  "shots": [
   {
-   "prop": "lava bomb",
+   "prop": "front door",
    "props": [
-    {
-     "name": "lava bomb",
-     "objects": [
-      "lava bomb",
-      "lava bomb splash"
-     ],
-     "whole": true,
-     "built_as": "a lump of glowing lava under a cracked black crust that lands in a splash of molten lava on the road, glowing clots flung out on arcs and a low burst of road dust"
-    },
     {
      "name": "ash plume",
      "objects": [
@@ -20,144 +11,154 @@
       "fissure fountain"
      ],
      "whole": false,
-     "built_as": "towering columns of dark ash smoke over the fissure, lit orange from below, a low ragged band of yellow-white lava spatter at their foot"
+     "built_as": "towering columns of black ash smoke rising off the ridge, lit orange from below, a low ragged band of yellow-white lava spatter at their foot"
     },
     {
-     "name": "car",
+     "name": "front door",
      "objects": [
-      "car leaving"
+      "his front door"
      ],
      "whole": true,
-     "built_as": "a small silver hatchback: a lofted body, glass, wheels on rims, red tail lamps lit"
+     "built_as": "his house's own painted front door, two panels and a brass knob, on a hinge at the street-level doorway of his tin-clad house"
+    },
+    {
+     "name": "bag",
+     "objects": [
+      "kit bag"
+     ],
+     "whole": true,
+     "held": true,
+     "built_as": "a green canvas kit bag, a soft roll with dark ends and a strap"
+    },
+    {
+     "name": "truck",
+     "objects": [
+      "his tipper truck"
+     ],
+     "whole": false,
+     "built_as": "his tipper truck: a glazed cab, six wheels, an orange steel tipper body, head and tail lamps lit"
     }
    ],
    "framing": "close",
    "data": {
     "stands": "in front of",
-    "side": "right",
-    "frame_h": 0.36
+    "side": "left",
+    "frame_h": 0.34
    },
-   "action": "he bolts down the street toward us",
-   "consequence": "a lava bomb smashes into the road behind him, in a splash of glowing lava",
-   "says_still": 2,
+   "action": "he shuts his front door",
+   "consequence": "he throws the bag up into his truck",
+   "says_still": 1,
    "stills": [
     {
      "event": "before",
-     "shows": "a towering black ash plume stands on the ridge over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands in the street below, one arm flung out",
-     "hands": "free",
+     "shows": "a towering black ash plume rises off the ridge right over the roofs of the Icelandic town, the volcano erupting right beside it, and the driver stands at his open front door with his bag, looking up at it",
+     "hands": "bag",
      "new": [],
      "visible": [
       {
        "prop": "ash plume",
-       "as": "a towering black ash plume stands on the ridge over the roofs, a low band of lava spatter at its foot: a volcano keeps erupting right beside the Icelandic town"
+       "as": "a towering black ash plume rises off the ridge right over the roofs: a volcano keeps erupting right beside the Icelandic town"
+      },
+      {
+       "prop": "front door",
+       "as": "his front door standing open"
+      },
+      {
+       "prop": "bag",
+       "as": "his bag in his hand"
       },
       {
        "prop": "data",
-       "as": "the driver in his yellow hard hat stands in the street below it, one arm flung out"
+       "as": "the driver in his hard hat stands at his open front door, looking up at it"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "he bolts down the street toward us, everyone had to run: a car up the street behind him with its tail lights on",
-     "hands": "free",
+     "shows": "he shuts his front door beside him, his bag in his other hand",
+     "hands": "bag",
      "new": [
+      {
+       "what": "front door",
+       "how": "moves",
+       "cause": "he pushes it shut"
+      },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he runs, arms pumping"
-      },
-      {
-       "what": "car",
-       "how": "goes",
-       "cause": "it drives away up the street"
-      },
-      {
-       "what": "lava bomb",
-       "how": "comes",
-       "cause": "the eruption throws it out over the street"
+       "cause": "his arm out on the door"
       }
      ],
      "visible": [
       {
+       "prop": "front door",
+       "as": "he shuts the door"
+      },
+      {
+       "prop": "bag",
+       "as": "his bag in his other hand"
+      },
+      {
        "prop": "data",
-       "as": "he bolts down the street toward us: everyone had to run"
-      },
-      {
-       "prop": "car",
-       "as": "a car up the street behind him with its tail lights on"
-      },
-      {
-       "prop": "ash plume",
-       "as": "the plume on the ridge"
+       "as": "his hand on the door"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "a lava bomb smashes into the road behind him, in a splash of glowing lava",
-     "hands": "free",
+     "shows": "he throws the bag up into his truck at the kerb, swinging it up over the side",
+     "hands": "bag",
      "new": [
       {
-       "what": "lava bomb",
-       "how": "falls",
-       "cause": "thrown out of the eruption, it comes down on the street"
-      },
-      {
-       "what": "car",
-       "how": "goes",
-       "cause": "it keeps driving away up the street"
+       "what": "bag",
+       "how": "moves",
+       "cause": "he swings it up to throw it over the truck's side"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "the bomb lands behind him: he flinches, both hands thrown up"
+       "cause": "turned to the truck, his arm swinging up"
       }
      ],
      "visible": [
       {
-       "prop": "lava bomb",
-       "as": "a lava bomb smashes into the road behind him, in a splash of glowing lava"
+       "prop": "bag",
+       "as": "he throws the bag into his truck"
+      },
+      {
+       "prop": "truck",
+       "as": "his truck at the kerb"
       },
       {
        "prop": "data",
-       "as": "he runs on, flinching, both hands thrown up"
-      },
-      {
-       "prop": "car",
-       "as": "the car, smaller up the street"
+       "as": "his arm swinging up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "he reaches us, big in the frame, still running, wide-eyed, the bomb burning on the road behind him",
+     "shows": "from far down the street his truck drives out of town toward us, the street empty, the plume over the town behind it",
      "hands": "free",
      "new": [
       {
-       "what": "data",
-       "how": "pose",
-       "cause": "he leans in close, one fist forward, one back"
+       "what": "truck",
+       "how": "moves",
+       "cause": "he drives it out of town"
       },
       {
-       "what": "lava bomb",
-       "how": "burns",
-       "cause": "it lies where it hit, smoking"
-      },
-      {
-       "what": "car",
-       "how": "goes",
-       "cause": "it keeps driving away up the street"
+       "what": "bag",
+       "how": "moves",
+       "cause": "thrown, it lands in the truck and goes with it"
       }
      ],
      "visible": [
       {
-       "prop": "data",
-       "as": "he reaches us, big in the frame, still running, wide-eyed"
+       "prop": "truck",
+       "as": "everyone had to run: his truck drives out of town"
       },
       {
-       "prop": "lava bomb",
-       "as": "the bomb burning on the road behind him"
+       "prop": "ash plume",
+       "as": "the plume over the town behind it"
       }
      ]
     }
@@ -165,6 +166,10 @@
    "unseen": [
     {
      "word": "keeps",
+     "why": "how"
+    },
+    {
+     "word": "everyone",
      "why": "how"
     }
    ]
