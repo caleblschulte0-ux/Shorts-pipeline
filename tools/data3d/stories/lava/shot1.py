@@ -7,19 +7,19 @@ still: nothing (still 1), an orange glow along the ridge (still 2), a lava fount
 3), the fountain under a towering black ash plume (still 4). Data, in the foreground at the left, three-quarter to us,
 looks at us, turns his head at the glow, flinches at the fountain, and on still 4 runs at the lens, out of the street."""
 
-S1_RIDGE_Y = 15.0                      # the fissure's line on the ridge
+S1_RIDGE_Y = 30.0                      # the fissure's line on the ridge (coordinator, high lens: the ridge pushed back and lower so the fountain stands whole under the top margin)
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
 S1_P0 = (0.15, -2.6)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
-S1_CAM = (0.3, -4.0, 1.65)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
+S1_CAM = (0.3, -3.9, 1.25)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
 
 
 def s1_ground_z(x, y):
     """the street flat, the land round the town rolling, and the ridge rising behind it to the fissure"""
     z = -0.07 if abs(x) < 1.1 else 0.0                    # (the road's own deck lies in this shallow bed: the kit's road, never the rock showing through it)
     if abs(x) > 2.4: z += 0.15 * lw_fbm(x * 0.3, y * 0.3, 3) + 0.03 * (abs(x) - 2.4)
-    r = max(0.0, (y - 9.0) / 6.0)
-    z += 8.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 8.5 else 0.0)
+    r = max(0.0, (y - 18.0) / 12.0)
+    z += 5.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 17.5 else 0.0)
     if y > S1_RIDGE_Y: z -= 0.6 * min(1.0, (y - S1_RIDGE_Y) / 2.0)
     return z
 
@@ -104,9 +104,9 @@ def shot1():
     light = P["light"]
     FZ = P["fz"]
     # ---- still 1: thin smoke already rising off the ridge (coordinator, r1za pre-flight: the eruption has a visible start)
-    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=1.2, h=7.0,
+    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=2.4, h=11.0,
                       keys=[(0.0, 0.45), (T_GLOW, 0.6), (T_BURST, 0.8)], t_end=DUR + 1.0, seed=1.3 + k, col=(0.62, 0.62, 0.64), dens=2.5, lean=(0.04, 0.02))
-             for k, dx in enumerate((-3.5, 0.5, 4.0))]
+             for k, dx in enumerate((-6.0, 0.5, 6.5))]
     # ---- the eruption, growing still by still: the slot glows, the fountain erupts, the plume fills the sky
     for o in P["slot"]:
         o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
@@ -115,7 +115,7 @@ def shot1():
     # lava's own, the slot and the fountain)
     # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole (p1a: h 20 ran out of the top; 13), the densest version: a wide base, a
     # bright core, and two more columns layered round it in depth so it is never one flame card)
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=6.0, h_fire=13.0, h_smoke=5.0,
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=7.0, h_fire=12.0, h_smoke=5.0,
                               lean=(0.03, 0.06), t_end=DUR + 1.0, seed=2.3, fire=10.0, smoke_d=3.0, rise=5.0, spread=0.35, flame_d=5.0,
                               keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.4, 0.75), (TS[2], 1.0)], grow=True)
     flanks = [lw_fire_column(f"lava fountain flank {k}", (S1_FX + dx, S1_RIDGE_Y + dy, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.3), w=3.2, h_fire=h_, h_smoke=3.0,
@@ -172,7 +172,7 @@ def shot1():
     # stands calm facing us, turns his head and shoulders to the glow, recoils from the fountain (leaning back, both arms
     # thrown up beside his head, mouth open), and holding the recoil half-turns to the lens side as if to follow the cars.
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.08, 1.0, -0.23)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
+    CAM0 = Vector(S1_CAM); D = Vector((-0.06, 1.0, -0.158)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(10)                              # 1 facing us
@@ -210,12 +210,12 @@ def shot1():
         for tk, pose in zip(keys, seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
     data.finish()
-    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=20.0, fstop=11.0)
+    cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)
     print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
           "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "turn", round(T_TURN, 2), flush=True)
     def cam_at(t):
         return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED: the drift moved the houses between stills)
-    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 20.0, 20.0)
+    lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)
     erupt = P["slot"] + [fountain] + flanks + plumes + smoke
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
