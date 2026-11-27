@@ -28145,7 +28145,7 @@
     "shorts"
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:29:03Z",
+   "rewritten_at": "2026-11-27T12:31:16Z",
    "retold": "retell/v4",
    "hook_was": "English once ran 75 percent of the web. Not anymore.",
    "segments": [
@@ -32221,6 +32221,26 @@
     "didyouknow",
     "sciencefacts"
    ],
+   "retold": "retell/v3",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:16Z",
+   "hook_was": "SIDS deaths fell 53% after one simple fix.",
+   "scorecard": {
+    "scores": {
+     "premise": 12,
+     "hook": 18,
+     "arc": 16,
+     "factual": 13,
+     "visual_proof": 12,
+     "payoff": 9,
+     "voice": 4
+    },
+    "total": 84,
+    "fatal": [],
+    "weakest": "arc",
+    "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
+    "fp": "e9e35270017725a2"
+   },
    "segments": [
     {
      "source": "offline",
@@ -32267,27 +32287,7 @@
       "code": "baby = subject_image('sleeping baby')\nv = values[0]\nn = int(round(v / 100.0))\ncols = 6\nfor k in range(n):\n    cx = RX0 + 100 + (k % cols) * 165\n    cy = RTOP + 150 + (k // cols) * 150\n    t = clamp(reveal * 1.4 - k * 0.02)\n    d.rounded_rectangle([cx - 60, cy - 36, cx + 60, cy + 36], radius=12, outline=rgba(TEXT, int(200 * t)), width=4)\n    d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=rgba(HIGHLIGHT, int(220 * t)))\n    if baby is not None:\n        paste(baby, cx - 30, cy - 22, w=60, h=44)\n    d.line([cx - 52, cy + 36, cx - 52, cy + 56], fill=rgba(TEXT, int(200 * t)), width=4)\n    d.line([cx + 52, cy + 36, cx + 52, cy + 56], fill=rgba(TEXT, int(200 * t)), width=4)\ntext(fmt(v * clamp(reveal * 1.2)), 540, RBOT - 200, size=120, color=HIGHLIGHT, center=True)\ntext('cribs, each one a hundred babies', 540, RBOT - 60, size=40, color=TEXT, center=True)\n"
      }
     }
-   ],
-   "retold": "retell/v3",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:29:03Z",
-   "hook_was": "SIDS deaths fell 53% after one simple fix.",
-   "scorecard": {
-    "scores": {
-     "premise": 12,
-     "hook": 18,
-     "arc": 16,
-     "factual": 13,
-     "visual_proof": 12,
-     "payoff": 9,
-     "voice": 4
-    },
-    "total": 84,
-    "fatal": [],
-    "weakest": "arc",
-    "note": "Simplify the data visuals so they remain clear and readable on a phone screen; heavy charts can lose impact in a short.",
-    "fp": "e9e35270017725a2"
-   }
+   ]
   },
   {
    "slug": "lightning-deaths-collapsed-not-the-storms",
@@ -34248,9 +34248,9 @@
   },
   {
    "slug": "vinyl-beats-cd-sales-again",
-   "title": "Why Vinyl Is Beating CDs Again",
-   "hook": "The format everyone buried years ago is now outselling the one that replaced it.",
-   "closing": "Vinyl survived streaming by becoming a premium niche, not the mass market.",
+   "title": "Vinyl Beats CDs But Remains Tiny Beside Streaming",
+   "hook": "The format once declared dead now wins inside a much smaller market.",
+   "closing": "Vinyl's comeback is real, but streaming still defines how most music earns money.",
    "question": "What record would you buy?",
    "caption": "In 2022, vinyl album sales passed CDs in America for the first time since 1987 -- but the twist is what it says about the entire music industry. Do you still own a CD? 👇",
    "hashtags": [
@@ -34268,8 +34268,8 @@
     "nostalgia"
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:40Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:19Z",
    "hook_was": "In 2022, vinyl beat CD sales for the first time since 1987.",
    "segments": [
     {
@@ -34282,7 +34282,7 @@
      "use_baseline": true,
      "role": "1 · THE CROSSOVER",
      "topic": "Vinyl Revenue",
-     "say": "Vinyl earned 1.2 billion dollars last year, more than CDs managed to sell at all.",
+     "say": "Vinyl earned 1.2 billion dollars in 2022. Its revenue surpassed CDs.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _vr_sleeve(cr, x, y, s, i):\n    pal = [(196, 70, 58), (232, 180, 72), (70, 110, 160), (96, 150, 110),\n           (220, 214, 196), (150, 80, 140), (52, 56, 74), (210, 120, 60),\n           (40, 120, 130), (236, 140, 150), (120, 96, 70)]\n    h = (i * 2654435761) % 1000003\n    col = pal[h % len(pal)]\n    art = pal[(h // 11) % len(pal)]\n    if art == col:\n        art = pal[(h // 11 + 3) % len(pal)]\n    if (h // 7) % 3 != 1:\n        disc(cr, x + s * (0.58 + 0.12 * ((h // 5) % 2)), y + s * 0.5, s * 0.46, (26, 26, 30), finish=\"gloss\")\n        disc(cr, x + s * (0.58 + 0.12 * ((h // 5) % 2)), y + s * 0.5, s * 0.12, pal[(h // 13) % len(pal)])\n    cr.rectangle(x, y, s, s)\n    solid(cr, col)\n    m = (h // 17) % 6\n    if m == 0:\n        cr.arc(x + s / 2, y + s / 2, s * 0.26, 0, 2 * math.pi)\n    elif m == 1:\n        cr.rectangle(x + s * 0.12, y + s * 0.62, s * 0.76, s * 0.14)\n    elif m == 2:\n        cr.move_to(x + s * 0.15, y + s * 0.85)\n        cr.line_to(x + s * 0.5, y + s * 0.22)\n        cr.line_to(x + s * 0.85, y + s * 0.85)\n        cr.close_path()\n    elif m == 3:\n        cr.rectangle(x + s * 0.2, y + s * 0.2, s * 0.34, s * 0.34)\n    elif m == 4:\n        # a face: a head and shoulders portrait\n        cr.arc(x + s * 0.5, y + s * 0.42, s * 0.16, 0, 2 * math.pi)\n        cr.move_to(x + s * 0.2, y + s)\n        cr.curve_to(x + s * 0.24, y + s * 0.62, x + s * 0.76, y + s * 0.62, x + s * 0.8, y + s)\n        cr.close_path()\n    else:\n        for b in range(3):\n            cr.rectangle(x, y + s * (0.3 + b * 0.18), s, s * 0.07)\n    cr.set_source_rgba(*_c(art, 0.9))\n    cr.fill()\n    cr.rectangle(x + s * 0.1, y + s * 0.08, s * (0.3 + 0.3 * ((h // 3) % 3) / 2), 6)\n    cr.set_source_rgba(*_c((240, 236, 226), 0.8))\n    cr.fill()\n    # shelf wear on the sleeve's corner\n    cr.move_to(x + s, y + s * 0.82)\n    cr.line_to(x + s, y + s)\n    cr.line_to(x + s * 0.82, y + s)\n    cr.close_path()\n    cr.set_source_rgba(*_c((250, 246, 236), 0.25))\n    cr.fill()\n\n\ndef _vr_ellipse(cr, cx, cy, r, k):\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(1, k)\n    cr.arc(0, 0, r, 0, 2 * math.pi)\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a record shop's wall of records\n    SUBSTANCE: vinyl record sleeves\n    CAUSE: Data shoves the sliding divider across the wall with his own hands, giving vinyl more of it and squeezing the CDs\n    One shop wall is all the music sold: vinyl on the left of a sliding\n    wooden divider, CD cases on the right. Two back-to-back shoves push the\n    divider from halfway to vinyl's true share of the two, the sign over the\n    wall cut at the same place, the CD cases squeezed tight. A scuff on the\n    floor shows where the divider used to stand. Done by 0.60 and held while\n    he keeps his hands on its handle, a shopper's crate by the camera is\n    flipped through and the record on the turntable keeps spinning.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    vin = next((r for r in rows if \"vinyl\" in r[0].lower()), max(rows, key=lambda r: r[1]))\n    cdr = next((r for r in rows if r is not vin), rows[-1])\n    v, c = vin[1], cdr[1]\n    share = v / (v + c) if (v + c) > 0 else 0.5\n    ratio = v / c if c else 0.0\n    X0, X1 = 60, 1020\n    s1 = ease(seg(u, 0.06, 0.33))\n    s2 = ease(seg(u, 0.33, 0.60))\n    frac = 0.5 + (share - 0.5) * (0.5 * s1 + 0.5 * s2)\n    px = X0 + (X1 - X0) * frac\n    k = 0 if u < 0.33 else 1\n    done = u >= 0.60\n\n    # the shop: warm wall, ceiling lamps\n    vgrad(cr, [(0, (58, 44, 40)), (0.6, (122, 88, 64)), (1, (148, 108, 76))], 0, 1310)\n    seams(cr, 0, 120, W, 690, (122, 88, 64), n=12, axis=\"v\", a=0.25)\n    for lx in (200, 540, 880):\n        glow(cr, lx, 70, 260, (255, 226, 180), 0.45)\n        cr.rectangle(lx - 60, 40, 120, 26)\n        solid(cr, (60, 52, 48), finish=\"metal\")\n        disc(cr, lx, 76, 14, (255, 236, 196))\n    # the shop window onto a dusk street\n    cr.save()\n    cr.rectangle(640, 170, 360, 380)\n    cr.clip()\n    vgrad(cr, [(0, (60, 70, 120)), (0.6, (220, 130, 100)), (1, (240, 170, 120))], 170, 550, 640, 1000)\n    for i in range(6):\n        bx = 640 + i * 62\n        bh = 120 + (i * 53) % 150\n        cr.rectangle(bx, 550 - bh, 58, bh)\n        cr.set_source_rgba(*_c((44, 38, 56)))\n        cr.fill()\n        for wj in range(int(bh // 40)):\n            cr.rectangle(bx + 10 + (wj % 2) * 22, 550 - bh + 14 + wj * 36, 12, 16)\n            cr.set_source_rgba(*_c((250, 210, 140), 0.8))\n            cr.fill()\n    cr.restore()\n    haze(cr, 170, 560, (170, 120, 96), a=0.3)\n    cr.rectangle(814, 170, 12, 380)\n    solid(cr, (110, 80, 56), rim=False)\n    trim(cr, 640, 170, 1000, 550, (110, 80, 56), w=14)\n    # band posters on the wall, pinned and a little crooked\n    for i, (x, y, w, h) in enumerate([(70, 200, 150, 210), (240, 180, 170, 240), (430, 210, 150, 200)]):\n        cols = [(200, 80, 60), (60, 90, 140), (220, 180, 80)]\n        cr.save()\n        cr.translate(x + w / 2, y + h / 2)\n        cr.rotate((-0.03, 0.02, -0.015)[i])\n        cr.translate(-(x + w / 2), -(y + h / 2))\n        cr.rectangle(x, y, w, h)\n        solid(cr, cols[i])\n        cr.arc(x + w / 2, y + h * 0.36, w * 0.18, 0, 2 * math.pi)\n        cr.move_to(x + w * 0.18, y + h * 0.78)\n        cr.curve_to(x + w * 0.24, y + h * 0.5, x + w * 0.76, y + h * 0.5, x + w * 0.82, y + h * 0.78)\n        cr.close_path()\n        cr.set_source_rgba(*_c((30, 28, 34), 0.75))\n        cr.fill()\n        cr.rectangle(x + 14, y + h - 36, w - 28, 12)\n        cr.set_source_rgba(*_c((244, 238, 226), 0.8))\n        cr.fill()\n        cr.rectangle(x + 30, y + h - 18, w - 60, 6)\n        cr.set_source_rgba(*_c((244, 238, 226), 0.55))\n        cr.fill()\n        trim(cr, x, y, x + w, y + h, (236, 228, 210), w=5)\n        for qx in (x + 10, x + w - 10):\n            disc(cr, qx, y + 10, 5, (200, 60, 50))\n        cr.restore()\n    haze(cr, 170, 470, (130, 96, 72), a=0.25)\n\n    # the floor, planked, with the divider's track and its old scuff\n    vgrad(cr, [(0, (112, 80, 56)), (1, (70, 50, 36))], 1310, H)\n    seams(cr, 0, 1310, W, H, (112, 80, 56), n=14, axis=\"v\", a=0.4)\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(6)\n    cr.move_to(X0, 1446)\n    cr.line_to(X1, 1446)\n    cr.stroke()\n    _vr_ellipse(cr, X0 + (X1 - X0) * 0.5, 1452, 46, 0.22)\n    cr.set_source_rgba(*_c((40, 28, 20), 0.4))\n    cr.fill()\n\n    # the wall unit\n    contact_shadow(cr, 540, 1312, 1000, a=0.4)\n    box(cr, X0, 1310, X1 - X0, 620, (86, 58, 40), depth=36)\n    seams(cr, X0, 690, X1, 1310, (86, 58, 40), n=10, axis=\"v\", a=0.3)\n    for r in range(4):\n        board = 850 + r * 150\n        cr.save()\n        cr.rectangle(X0 + 6, board - 146, px - X0 - 6, 146)\n        cr.clip()\n        x = X0 + 12 + (r * 29) % 23\n        j = 0\n        while x < X1:\n            hh = (r * 131 + j * 71) % 997\n            s = 96 + hh % 26\n            lean = ((hh // 7) % 5 - 2) * 0.035\n            cr.save()\n            cr.translate(x, board)\n            cr.rotate(lean)\n            _vr_sleeve(cr, 0, -s, s, r * 17 + j * 5 + 3)\n            cr.restore()\n            x += s + 8 + (hh // 3) % 18\n            j += 1\n        cr.restore()\n        n = 30\n        a = px + 22\n        sp = (X1 - 12 - a) / n\n        wd = max(4.0, min(15.0, sp - 1.5))\n        cdc = [(200, 60, 60), (60, 90, 150), (230, 200, 80), (232, 232, 228), (48, 48, 54), (90, 150, 120)]\n        for j in range(n):\n            x = a + j * sp\n            hh = 112 + (j * 7 + r * 5) % 12\n            cr.rectangle(x, board - hh, wd, hh)\n            solid(cr, cdc[(j * 7 + r * 3 + j // 4) % 6], rim=False)\n            if j % 3 == 0:\n                cr.rectangle(x + 1, board - hh + 8, max(1.0, wd - 2), 3)\n                cr.set_source_rgba(*_c((250, 250, 250), 0.7))\n                cr.fill()\n        box(cr, X0, board + 12, X1 - X0, 12, (150, 110, 74), depth=10)\n\n    # the sign over the wall, cut where the divider stands\n    cr.set_source_rgba(*_c((50, 46, 44)))\n    cr.set_line_width(3)\n    for sx in (X0 + 40, X1 - 40):\n        cr.move_to(sx, 604)\n        cr.line_to(sx, 500)\n    cr.stroke()\n    cr.rectangle(X0, 604, px - X0, 56)\n    solid(cr, P[\"accent2\"])\n    cr.rectangle(px, 604, X1 - px, 56)\n    solid(cr, (150, 148, 150))\n    text(cr, \"VINYL\", (X0 + px) / 2, 648, 44, look.INK, anchor=\"center\", shadow=False)\n    if X1 - px > 140:\n        text(cr, \"CDs\", (px + X1) / 2, 648, 40, look.INK, anchor=\"center\", shadow=False)\n\n    # the sliding divider, with a push bar\n    contact_shadow(cr, px, 1446, 90, a=0.45)\n    box(cr, px - 18, 1444, 36, 790, (156, 108, 68), depth=14)\n    seams(cr, px - 18, 660, px + 18, 1444, (156, 108, 68), n=3, axis=\"h\")\n    cr.rectangle(px - 34, 1150, 14, 170)\n    solid(cr, (176, 176, 182), finish=\"metal\")\n    for by in (1158, 1312):\n        cr.rectangle(px - 34, by - 4, 20, 8)\n        solid(cr, (120, 120, 128), finish=\"metal\", rim=False)\n    disc(cr, px - 8, 1438, 9, (60, 60, 66), finish=\"metal\")\n    disc(cr, px + 10, 1438, 9, (60, 60, 66), finish=\"metal\")\n\n    # right by the camera: a crate of records being flipped through\n    contact_shadow(cr, 250, 1905, 420, a=0.4)\n    for j in range(5):\n        sx = 90 + j * 62\n        sy = 1600 + (j % 2) * 14\n        s = 190\n        if j in (2, 4):\n            per = 1.7\n            ph = ((t + (0.85 if j == 2 else 0.0)) % per) / per\n            tilt = 0.75 * math.sin(math.pi * ph)\n            cr.save()\n            cr.translate(sx, sy + s)\n            cr.rotate(tilt)\n            _vr_sleeve(cr, 0, -s, s, 40 + j + int((t + j) / per))\n            cr.restore()\n        else:\n            _vr_sleeve(cr, sx, sy, s, 40 + j)\n    box(cr, 60, 1905, 400, 190, (150, 108, 70), depth=50)\n    seams(cr, 60, 1715, 460, 1905, (150, 108, 70), n=3, axis=\"h\")\n    # the turntable, its record spinning\n    contact_shadow(cr, 800, 1905, 460, a=0.4)\n    box(cr, 580, 1905, 420, 110, (120, 84, 56), depth=70)\n    _vr_ellipse(cr, 800, 1760, 180, 0.38)\n    solid(cr, (24, 24, 28), finish=\"gloss\")\n    cr.set_source_rgba(*_c((120, 120, 130), 0.35))\n    cr.set_line_width(2)\n    for rr in (150, 122, 94):\n        _vr_ellipse(cr, 800, 1760, rr, 0.38)\n        cr.stroke()\n    ang = t * 3.3\n    cr.save()\n    cr.translate(800, 1760)\n    cr.scale(1, 0.38)\n    cr.move_to(0, 0)\n    cr.arc(0, 0, 175, ang, ang + 0.7)\n    cr.close_path()\n    cr.restore()\n    cr.set_source_rgba(*_c((240, 240, 250), 0.5))\n    cr.fill()\n    _vr_ellipse(cr, 800, 1760, 56, 0.38)\n    solid(cr, (196, 58, 50))\n    disc(cr, 800 + 130 * math.cos(ang + 2.4), 1760 + 130 * 0.38 * math.sin(ang + 2.4), 15,\n         (244, 238, 226))\n    disc(cr, 800 + 36 * math.cos(ang), 1760 + 36 * 0.38 * math.sin(ang), 8, (244, 238, 226))\n    cr.set_source_rgba(*_c((180, 180, 188)))\n    cr.set_line_width(8)\n    cr.move_to(960, 1720)\n    cr.line_to(890, 1768)\n    cr.stroke()\n    disc(cr, 960, 1720, 16, (170, 170, 178), finish=\"metal\")\n    vignette(cr, a=0.28)\n\n    # Data, a clerk shoving the divider by its push bar with both hands\n    if u < 0.06:\n        host(\"point\", 300, 1440, 320)\n    else:\n        hx, hands = None, None\n        for hy in (1170, 1190, 1210, 1230):\n            hs = [(px - 27, hy), (px - 27, hy + 90)]\n            sx = stand_at(hs, 1440, 320, px - 140)\n            if sx is not None:\n                hx, hands = sx, hs\n                break\n        if hx is None:\n            hands = [(px - 27, 1220), (px - 27, 1300)]\n            hx = px - 120\n        host(\"grip\", hx, 1440, 320, hands=hands, lower=\"brace\",\n             expr=\"happy\" if done else \"strain\", beat=k)\n\n    if done:\n        fit_readout(cr, f\"${int(round(v)):,}M\", f\"{vin[0]} records · US sales\",\n                    80, 520, a=ease(seg(u, 0.60, 0.64)), size=130)\n        text(cr, f\"{ratio:.1f}x\", (X0 + px) / 2, 830, 110, look.INK, face=\"display\",\n             anchor=\"center\", alpha=ease(seg(u, 0.60, 0.66)))\n    else:\n        fit_readout(cr, \"Vinyl vs CDs\", \"US music sales, million dollars\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n",
      "viz": "comparison"
     },
@@ -34295,8 +34295,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE UNITS",
-     "topic": "Vinyl Sales",
-     "say": "Vinyl also outsold CDs in plain unit count, not just dollars.",
+     "topic": "Vinyl Units",
+     "say": "Vinyl sold 41 million albums. The comeback also beat CDs by unit count.",
      "scene": {
       "mechanic": "crate-records-drop-in",
       "concept": "41 vinyl discs and 33 CDs drop one at a time into two crates, one disc per million sold, the vinyl crate towering over the CD crate",
@@ -34313,7 +34313,7 @@
      "ascending": false,
      "role": "3 · THE CATCH",
      "topic": "Vinyl Market",
-     "say": "Streaming still takes 84 percent of music revenue, leaving vinyl a small but growing niche.",
+     "say": "Streaming holds 84% of recorded-music revenue. Vinyl wins its physical contest inside a streaming-dominated market.",
      "scene": {
       "mechanic": "streaming-tide-over-shelf",
       "concept": "a shelf of 100 records, streaming's tide sweeps and turns 84 of them into play buttons, leaving 11 vinyl and CDs standing",
@@ -36761,8 +36761,27 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:29:04Z",
+   "rewritten_at": "2026-11-27T12:31:18Z",
    "hook_was": "The species almost went silent in 2018.",
+   "scorecard": {
+    "scores": {
+     "premise": 10,
+     "hook": 16,
+     "arc": 14,
+     "factual": 13,
+     "visual_proof": 10,
+     "payoff": 8,
+     "voice": 4
+    },
+    "total": 75,
+    "fatal": [
+     "unrenderable_visual",
+     "confusing"
+    ],
+    "weakest": "premise",
+    "note": "Clarify and simplify the visual elements so they are instantly understandable on a phone screen; replace vague 'data picture' descriptions with concrete, eye‑catching imagery.",
+    "fp": "16b93481ea0f3919"
+   },
    "segments": [
     {
      "source": "offline",
@@ -36798,26 +36817,7 @@
      "topic": "Right Whale Mothers",
      "say": "Only 70 right whales are breeding females. The entire recovery ultimately depends on this small group."
     }
-   ],
-   "scorecard": {
-    "scores": {
-     "premise": 10,
-     "hook": 16,
-     "arc": 14,
-     "factual": 13,
-     "visual_proof": 10,
-     "payoff": 8,
-     "voice": 4
-    },
-    "total": 75,
-    "fatal": [
-     "unrenderable_visual",
-     "confusing"
-    ],
-    "weakest": "premise",
-    "note": "Clarify and simplify the visual elements so they are instantly understandable on a phone screen; replace vague 'data picture' descriptions with concrete, eye‑catching imagery.",
-    "fp": "16b93481ea0f3919"
-   }
+   ]
   },
   {
    "slug": "pedestrian-deaths-outlier",
@@ -38296,10 +38296,10 @@
   },
   {
    "slug": "cohabitation-overtakes-marriage",
-   "title": "Why Young Adults Are Skipping Marriage",
-   "hook": "Fewer young adults are getting married at all these days.",
-   "closing": "If living together already beats marriage for the young, what happens to marriage next?",
-   "question": "Would you live together before marrying?",
+   "title": "Living Together Now Spans Young Adults Through Later Life",
+   "hook": "Living together is no longer merely a stop before marriage.",
+   "closing": "Living together now marks a broader change across several stages of adult life.",
+   "question": "Would you live together before marriage?",
    "caption": "Among 18-to-24-year-olds, more now live with an unmarried partner than with a spouse. Fifty years ago that was almost unthinkable. Would you live together before marrying? Let me know.",
    "hashtags": [
     "cohabitation",
@@ -38324,8 +38324,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE CROSSOVER",
-     "topic": "Young adults living together",
-     "say": "Among the youngest adults, 9 percent now live with an unmarried partner, more than live with a spouse.",
+     "topic": "Living Together Young",
+     "say": "Living with an unmarried partner reaches 9% among the youngest adults. It now exceeds living with a spouse.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _cw_window(cr, x, y, w, h, state, rgb, i, t):\n    # a walk-up window: frame, panes, sill; lit = a couple at home inside\n    dark = (40, 48, 70)\n    col = tuple(int(a + (b - a) * state) for a, b in zip(dark, rgb))\n    cr.rectangle(x, y, w, h)\n    solid(cr, col, rim=False)\n    if state > 0.001:\n        glow(cr, x + w / 2, y + h / 2, w * 0.9, rgb, 0.4 * state)\n        # the two of them at home, side by side, each a little different\n        for j in range(2):\n            px = x + w * (0.34 + 0.32 * j) + 3 * math.sin(t * 0.7 + i + j)\n            hh = h * (0.30 + 0.06 * ((i + j) % 3))\n            cr.rectangle(px - 11, y + h - hh, 22, hh)\n            cr.set_source_rgba(*_c((34, 30, 40), 0.85 * state))\n            cr.fill()\n            cr.arc(px, y + h - hh - 9, 10 + (i + j) % 2, 0, 2 * math.pi)\n            cr.fill()\n    # curtains tied back at the sides\n    for sx in (x + 4, x + w - 16):\n        cr.rectangle(sx, y + 4, 12, h * 0.7)\n        cr.set_source_rgba(*_c((150, 120, 110), 0.7))\n        cr.fill()\n    seams(cr, x, y, x + w, y + h, (90, 60, 50), n=2, axis=\"v\", width=3.0)\n    cr.move_to(x, y + h * 0.5)\n    cr.line_to(x + w, y + h * 0.5)\n    cr.set_source_rgba(*_c((236, 226, 210)))\n    cr.set_line_width(3)\n    cr.stroke()\n    trim(cr, x, y, x + w, y + h, (236, 226, 210), w=6)\n    box(cr, x - 8, y + h + 12, w + 16, 10, (214, 204, 188), depth=6)\n    # a lintel\n    box(cr, x - 6, y - 2, w + 12, 10, (196, 184, 168), depth=4)\n\n\ndef _cw_car(cr, x, y, s):\n    contact_shadow(cr, x + 130 * s, y + 4, 280 * s, a=0.4)\n    box(cr, x, y - 18 * s, 270 * s, 50 * s, (150, 44, 40), depth=30 * s, finish=\"metal\")\n    cr.move_to(x + 50 * s, y - 68 * s)\n    cr.line_to(x + 80 * s, y - 112 * s)\n    cr.line_to(x + 190 * s, y - 112 * s)\n    cr.line_to(x + 225 * s, y - 68 * s)\n    cr.close_path()\n    solid(cr, (130, 38, 36), finish=\"metal\")\n    cr.rectangle(x + 88 * s, y - 104 * s, 44 * s, 32 * s)\n    cr.rectangle(x + 140 * s, y - 104 * s, 44 * s, 32 * s)\n    solid(cr, (120, 150, 176), finish=\"glass\", rim=False)\n    for wx in (x + 60 * s, x + 210 * s):\n        disc(cr, wx, y - 10 * s, 26 * s, (34, 34, 38))\n        disc(cr, wx, y - 10 * s, 11 * s, (170, 170, 176), finish=\"metal\")\n    glow(cr, x + 4 * s, y - 40 * s, 30 * s, (255, 230, 170), 0.7)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a brick walk-up of couples' homes\n    SUBSTANCE: lit apartment windows\n    CAUSE: Data throws each breaker lever down by hand and that floor's couples' homes light up\n    One walk-up at dusk is ALL the youngest adults living with a partner,\n    cut at the true split: 7 parts married (warm lamplight), 9 parts living\n    together unmarried (accent light). At the building's breaker panel Data\n    throws four levers down one after another with his own two hands; the\n    first two light the married homes, the last two light the unmarried\n    ones, and there are more of them. Done by 0.62, then he holds the last\n    lever down while traffic passes on the street.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    un = next((r for r in rows if \"unmarried\" in r[0].lower()), max(rows, key=lambda r: r[1]))\n    sp = next((r for r in rows if r is not un), min(rows, key=lambda r: r[1]))\n    vu, vs = un[1], sp[1]\n    N = 16\n    nm = int(round(N * vs / max(1e-6, vs + vu)))\n    nu = N - nm\n    order = [(i * 7 + 3) % N for i in range(N)]\n    kinds = [\"m\"] * nm + [\"u\"] * nu\n    h1 = (nm + 1) // 2\n    h2 = (nu + 1) // 2\n    trip_of = [0] * h1 + [1] * (nm - h1) + [2] * h2 + [3] * (nu - h2)\n    win_kind, win_trip, win_rank = {}, {}, {}\n    for j, w in enumerate(order):\n        win_kind[w] = kinds[j]\n        win_trip[w] = trip_of[j]\n    for k_ in range(4):\n        ws = [w for w in order if win_trip[w] == k_]\n        for r_, w in enumerate(ws):\n            win_rank[w] = (r_, len(ws))\n\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / 4\n    k = int(clamp((u - a0) / span, 0, 3.999))\n    f = clamp((u - a0 - k * span) / span) if u >= a0 else 0.0\n    if u >= a1:\n        k, f = 3, 1.0\n\n    def pull_of(j):\n        if u < a0 or j > k:\n            return 0.0\n        if j < k:\n            return 1.0\n        return ease(seg(f, 0.25, 0.45))\n\n    def lit(w):\n        if u < a0:\n            return 0.0\n        tk = win_trip[w]\n        if tk < k:\n            return 1.0\n        if tk > k:\n            return 0.0\n        r_, n_ = win_rank[w]\n        g = seg(f, 0.4, 0.75) * n_ - r_\n        return ease(clamp(g))\n\n    ACC = P[\"accent2\"]\n    WARM = (255, 214, 150)\n\n    landscape(cr, t, \"town\", time=\"dusk\", seed=\"brick walk-up\", skyline=True)\n    haze(cr, 600, 1200, (214, 170, 160), a=0.3)\n    # the sidewalk and the street to the camera\n    cr.rectangle(0, 1470, W, 110)\n    solid(cr, (150, 144, 138), edge=False, rim=False)\n    seams(cr, 0, 1470, W, 1580, (150, 144, 138), n=7, axis=\"v\")\n    box(cr, 0, 1590, W, 12, (180, 174, 166), depth=8)\n    cr.rectangle(0, 1590, W, H - 1590)\n    solid(cr, (70, 70, 76), edge=False, rim=False)\n    for i in range(6):\n        cr.rectangle(40 + i * 200, 1760, 110, 10)\n        cr.set_source_rgba(*_c((226, 210, 150), 0.8))\n        cr.fill()\n\n    # the walk-up\n    cast_shadow(cr, 100, 700, 1470, length=320, a=0.3)\n    b = building(cr, 100, 700, 1470, 700, P[\"brick\"], roof=\"flat\", boards=False)\n    seams(cr, b[\"x0\"], b[\"top\"], b[\"x1\"], b[\"base\"], P[\"brick\"], n=22, axis=\"h\", width=1.5, a=0.35)\n    box(cr, b[\"x0\"] - 14, b[\"top\"] + 24, b[\"x1\"] - b[\"x0\"] + 28, 26, (214, 204, 188), depth=20)\n    # water tower on legs, low on the roof\n    for lx in (580, 630):\n        cr.rectangle(lx, b[\"top\"] - 40, 8, 40)\n        solid(cr, (70, 60, 54), rim=False)\n    cylinder(cr, 565, b[\"top\"] - 40, 80, 80, (150, 110, 76))\n    seams(cr, 565, b[\"top\"] - 120, 645, b[\"top\"] - 40, (150, 110, 76), n=5, axis=\"v\")\n\n    cols = [150, 280, 410, 540]\n    rtop = [b[\"top\"] + 60, b[\"top\"] + 200, b[\"top\"] + 340, b[\"top\"] + 480]\n    for w in range(N):\n        r_, c_ = divmod(w, 4)\n        rgb = ACC if win_kind[w] == \"u\" else WARM\n        _cw_window(cr, cols[c_], rtop[r_], 90, 100, lit(w), rgb, w, t)\n    # fire escape on the right bays\n    for r_ in range(3):\n        y = rtop[r_] + 125\n        cr.rectangle(520, y, 150, 8)\n        solid(cr, (40, 40, 46), finish=\"metal\", rim=False)\n        cr.set_source_rgba(*_c((40, 40, 46)))\n        cr.set_line_width(3)\n        for i in range(8):\n            cr.move_to(524 + i * 20, y)\n            cr.line_to(524 + i * 20, y - 34)\n        cr.move_to(520, y - 34)\n        cr.line_to(670, y - 34)\n        cr.stroke()\n    # the front door\n    cr.rectangle(580, 1378, 90, 92)\n    solid(cr, (70, 40, 36))\n    trim(cr, 580, 1378, 670, 1470, (236, 226, 210), w=7)\n    disc(cr, 655, 1425, 6, P[\"brass\"], finish=\"metal\")\n\n    # the breaker panel on the wall, four levers, one per group of homes\n    box(cr, 140, 1462, 410, 80, (120, 124, 130), depth=14, finish=\"metal\")\n    trim(cr, 140, 1382, 550, 1462, (160, 164, 170), w=5)\n    LX = [210, 310, 410, 510]\n    LY = 1428\n    grips = []\n    for j, lx_ in enumerate(LX):\n        on = pull_of(j) > 0.6\n        disc(cr, lx_ + 18, 1450, 6, ACC if (on and j >= 2) else (WARM if on else (60, 60, 64)),\n             finish=\"gloss\")\n        grips.append(lever(cr, lx_, LY, pull_of(j)))\n\n    # traffic on the street keeps the world moving\n    cx = 1300 - ((t * 380) % 2000)\n    _cw_car(cr, cx, 1720, 1.4)\n    # a street lamp right by the camera\n    contact_shadow(cr, 980, 1880, 80, a=0.4)\n    cylinder(cr, 968, 1880, 24, 700, (50, 52, 58), finish=\"metal\")\n    glow(cr, 980, 1170, 120, (255, 220, 160), 0.6)\n    disc(cr, 980, 1170, 26, (255, 232, 180), finish=\"glass\")\n    foreground(cr, \"town\", y0=1820)\n    vignette(cr, a=0.28)\n\n    FY, HH = 1500.0, 300\n    if u < a0:\n        host(\"point\", LX[0] + 90, FY, HH)\n    else:\n        hands = grips[k]\n        walking = k > 0 and f < 0.25 and u < a1\n        if walking:\n            x0 = stand_at(grips[k - 1], FY, HH, LX[k - 1] + 70) or (LX[k - 1] + 70)\n            x1 = stand_at(hands, FY, HH, LX[k] + 70) or (LX[k] + 70)\n            host(\"hold_up\", x0 + (x1 - x0) * ease(f / 0.25), FY, HH, beat=k)\n        else:\n            gx = stand_at(hands, FY, HH, LX[k] + 70)\n            if gx is None:\n                host(\"strain\", LX[k] + 70, FY, HH, beat=k)\n            else:\n                host(\"grip\", gx, FY, HH, hands=hands, lower=\"follow\",\n                     expr=\"strain\" if f < 0.5 and u < a1 else \"happy\")\n\n    show_u = u >= a1 or (k == 3 and f > 0.75)\n    show_s = u >= a0 and (k >= 2 or (k == 1 and f > 0.75))\n    if show_u:\n        fit_readout(cr, f\"{int(round(vu))}%\", \"live with a partner, unmarried\",\n                    80, 520, size=130, rgb=ACC)\n        text(cr, f\"vs {int(round(vs))}% with a spouse\", W - 80, 790, 44, look.INK,\n             anchor=\"right\", alpha=ease(seg(u, a1 - 0.04, a1 + 0.02)))\n    elif show_s:\n        fit_readout(cr, f\"{int(round(vs))}%\", \"live with a spouse\", 80, 520, size=130)\n    else:\n        fit_readout(cr, \"Who's home\", \"the youngest adults and their partners\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -38336,8 +38336,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE OLDER GROUP",
-     "topic": "Getting married less",
-     "say": "Back in 1968, 82 percent of adults that age lived with a spouse. Today it's fewer than half.",
+     "topic": "Living Together Marriage",
+     "say": "Living with a spouse fell to 40% by 2018. Marriage became less dominant for the next age group.",
      "scene": {
       "title": true,
       "elements": [
@@ -38356,8 +38356,8 @@
      },
      "insight_type": "trend",
      "role": "3 · EVEN OLDER ADULTS",
-     "topic": "Older adults living together",
-     "say": "Even older couples are following suit -- cohabiting couples past retirement age have climbed to about 4.2 million since 2000.",
+     "topic": "Living Together Older",
+     "say": "Cohabiting adults aged fifty-plus reached 4.2 million by 2022. Living together also expanded later in life.",
      "scene": {
       "title": true,
       "elements": [
@@ -38370,16 +38370,16 @@
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:38Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:16Z",
    "hook_was": "9% of young adults live with a partner — not a spouse."
   },
   {
    "slug": "ocean-is-changing-color",
-   "title": "Why Half The Ocean Is Changing Color",
-   "hook": "Satellites caught the ocean quietly changing color, and scientists aren't sure what it means.",
-   "closing": "Nobody knows yet what it means for the sea life down there, or for us.",
-   "question": "Have you noticed the ocean looking different?",
+   "title": "Ocean Color Change Exceeded The Model And Spans More Than Land",
+   "hook": "Satellites found an ocean-wide shift larger than researchers expected.",
+   "closing": "Ocean color change now covers an area larger than all land on Earth.",
+   "question": "What could this shift mean?",
    "caption": "NASA satellites tracked the ocean's color for 20 years — and more than half of it has visibly shifted. A climate model predicted this back in 2019, and now the data backs it up. Have you noticed the ocean looking different? 👇",
    "hashtags": [
     "oceancolor",
@@ -38404,8 +38404,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE SHIFT",
-     "topic": "Ocean color change",
-     "say": "Twenty years of NASA satellite data show 56 percent of the ocean's surface now looks different."
+     "topic": "Ocean Color Change",
+     "say": "Ocean color changed across 56% of the surface. The shift is already visible at planetary scale."
     },
     {
      "source": "offline",
@@ -38415,8 +38415,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE PREDICTION",
-     "topic": "Ocean color prediction",
-     "say": "A 2019 climate model predicted about half the ocean would shift color -- satellites found a bit more than that."
+     "topic": "Ocean Color Model",
+     "say": "The model predicted 50% would change color. Satellite observations later exceeded that forecast."
     },
     {
      "source": "offline",
@@ -38426,13 +38426,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE SCALE",
-     "topic": "Ocean area changed",
-     "say": "The changed area covers roughly 203 million square kilometers, bigger than every continent on Earth combined."
+     "topic": "Ocean Color Area",
+     "say": "Changed ocean color spans 203 million square kilometers. That area is larger than Earth's total land."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:38Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:18Z",
    "scorecard": {
     "scores": {
      "premise": 10,
@@ -38517,10 +38517,10 @@
   },
   {
    "slug": "runway-near-misses-climbing",
-   "title": "Why Serious Runway Near-Misses Keep Climbing",
-   "hook": "Serious runway danger more than doubled in about a decade.",
-   "closing": "Every runway near-miss is a warning before the collision that cannot be undone.",
-   "question": "Which airport risk worries you most?",
+   "title": "Runway Near-Misses Rose, With Risk Concentrated In Causes And Airports",
+   "hook": "The runway danger is rising, but it is not spread evenly.",
+   "closing": "Concentrated causes and hotspots show where runway safety work can focus first.",
+   "question": "Which runway risk worries you most?",
    "caption": "Serious runway near-misses hit a level not seen in years — and they're not spread evenly across airports. A handful of hubs account for nearly a third of the worst ones. Does this make you nervous to fly? 👇",
    "hashtags": [
     "aviation",
@@ -38537,8 +38537,8 @@
     "planespotting"
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:40Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:18Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -38568,8 +38568,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
-     "topic": "Runway near-misses",
-     "say": "Safety officials logged 23 serious runway near-misses last year, more than double the pace from about a decade earlier.",
+     "topic": "Runway Near-Misses",
+     "say": "Serious runway near-misses reached 23 in 2023. The yearly count more than doubled from a decade earlier.",
      "scene": {
       "title": true,
       "elements": [
@@ -38589,8 +38589,8 @@
      },
      "insight_type": "share",
      "role": "2 · THE CAUSE",
-     "topic": "Runway incursion cause",
-     "say": "Six in ten of those incidents came from people or vehicles entering a runway by mistake."
+     "topic": "Runway Causes",
+     "say": "Pedestrian or vehicle deviations caused 60% of runway incursions. One category dominates the incident mix."
     },
     {
      "source": "offline",
@@ -38600,17 +38600,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHERE IT CLUSTERS",
-     "topic": "Runway danger clusters",
-     "say": "Just 8 airports, including Boston and Chicago Midway, hold almost a third of the worst near-misses."
+     "topic": "Runway Airports",
+     "say": "Eight airports account for 33% of the worst runway incursions. Serious risk clusters at a small set of locations."
     }
    ]
   },
   {
    "slug": "feet-are-getting-bigger",
-   "title": "Why British Feet Keep Growing",
-   "hook": "Your feet are changing shape, and your waistline is a big part of why.",
-   "closing": "Your shoes aren't shrinking. You're outgrowing them, so check your size before you buy.",
-   "question": "What shoe size do you wear?",
+   "title": "British Feet Grew Longer, Wider, And Under More Weight",
+   "hook": "Changing shoe sizes reflect more than simple growth in length.",
+   "closing": "Foot length, width, and body weight all matter when choosing shoes that fit.",
+   "question": "Has your shoe size changed?",
    "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
    "hashtags": [
     "shoesize",
@@ -38634,8 +38634,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GROWTH",
-     "topic": "British feet grew",
-     "say": "In the 1970s, the average British man wore a size 8 shoe. Now his feet have grown two full sizes.",
+     "topic": "British Feet Length",
+     "say": "Average British men's shoes reached size 10 today. Feet measure two sizes longer than in the 1970s.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _shoe(cr, hx, base, L, rgb, sole=(38, 30, 26)):\n    dk = tuple(int(c * 0.5) for c in rgb)\n    lw = max(1.5, 0.006 * L)\n    # sole and heel block, a little toe spring\n    cr.move_to(hx, base - 0.07 * L)\n    cr.line_to(hx + 0.9 * L, base - 0.07 * L)\n    cr.curve_to(hx + 1.0 * L, base - 0.07 * L, hx + 1.02 * L, base - 0.025 * L,\n                hx + 0.96 * L, base - 0.02 * L)\n    cr.line_to(hx + 0.26 * L, base - 0.02 * L)\n    cr.line_to(hx + 0.24 * L, base)\n    cr.line_to(hx + 0.01 * L, base)\n    cr.close_path()\n    solid(cr, sole)\n    # the leather upper: heel counter, collar, tongue, vamp, toe\n    cr.move_to(hx + 0.005 * L, base - 0.07 * L)\n    cr.curve_to(hx - 0.02 * L, base - 0.18 * L, hx, base - 0.3 * L, hx + 0.04 * L, base - 0.33 * L)\n    cr.curve_to(hx + 0.14 * L, base - 0.30 * L, hx + 0.26 * L, base - 0.29 * L, hx + 0.36 * L, base - 0.32 * L)\n    cr.line_to(hx + 0.42 * L, base - 0.37 * L)\n    cr.curve_to(hx + 0.5 * L, base - 0.33 * L, hx + 0.62 * L, base - 0.27 * L, hx + 0.76 * L, base - 0.22 * L)\n    cr.curve_to(hx + 0.9 * L, base - 0.17 * L, hx + 1.0 * L, base - 0.14 * L, hx + 0.99 * L, base - 0.07 * L)\n    cr.close_path()\n    solid(cr, rgb, finish=\"gloss\")\n    cr.set_source_rgba(*_c(dk, 0.85))\n    cr.set_line_width(lw)\n    # toe cap seam\n    cr.move_to(hx + 0.74 * L, base - 0.07 * L)\n    cr.curve_to(hx + 0.72 * L, base - 0.14 * L, hx + 0.76 * L, base - 0.2 * L, hx + 0.8 * L, base - 0.205 * L)\n    cr.stroke()\n    # heel counter seam\n    cr.move_to(hx + 0.06 * L, base - 0.07 * L)\n    cr.curve_to(hx + 0.16 * L, base - 0.15 * L, hx + 0.22 * L, base - 0.22 * L, hx + 0.27 * L, base - 0.295 * L)\n    cr.stroke()\n    # collar padding\n    cr.move_to(hx + 0.05 * L, base - 0.31 * L)\n    cr.curve_to(hx + 0.14 * L, base - 0.285 * L, hx + 0.26 * L, base - 0.275 * L, hx + 0.35 * L, base - 0.30 * L)\n    cr.stroke()\n    # eyelet facing and laces\n    cr.move_to(hx + 0.37 * L, base - 0.30 * L)\n    cr.line_to(hx + 0.6 * L, base - 0.25 * L)\n    cr.stroke()\n    cr.set_source_rgba(*_c((236, 226, 206), 0.95))\n    cr.set_line_width(lw * 1.2)\n    for i in range(4):\n        x = hx + (0.4 + 0.05 * i) * L\n        y = base - (0.315 - 0.012 * i) * L\n        cr.move_to(x - 0.02 * L, y - 0.015 * L)\n        cr.line_to(x + 0.02 * L, y + 0.012 * L)\n        cr.move_to(x + 0.02 * L, y - 0.015 * L)\n        cr.line_to(x - 0.02 * L, y + 0.012 * L)\n    cr.stroke()\n    # broguing along the toe cap\n    cr.set_source_rgba(*_c(dk, 0.9))\n    for i in range(10):\n        q = i / 9.0\n        x = hx + (0.715 + 0.07 * q) * L\n        y = base - (0.085 + 0.11 * q) * L\n        cr.arc(x, y, max(1.2, 0.005 * L), 0, 2 * math.pi)\n        cr.fill()\n    # welt stitching\n    cr.set_source_rgba(*_c((214, 196, 160), 0.8))\n    cr.set_line_width(max(1.0, lw * 0.7))\n    for i in range(16):\n        x = hx + (0.04 + 0.055 * i) * L\n        cr.move_to(x, base - 0.055 * L)\n        cr.line_to(x + 0.025 * L, base - 0.055 * L)\n    cr.stroke()\n\n\ndef _bus(cr, bx, base):\n    red = (190, 38, 34)\n    contact_shadow(cr, bx + 280, base, 560, a=0.35)\n    box(cr, bx, base - 14, 560, 250, red, depth=40)\n    for row, y in enumerate((base - 220, base - 110)):\n        for i in range(6):\n            cr.rectangle(bx + 18 + i * 90, y, 72, 62)\n            solid(cr, (60, 70, 86), finish=\"glass\", rim=False)\n            trim(cr, bx + 18 + i * 90, y, bx + 90 + i * 90, y + 62, (214, 200, 180), w=3)\n    cr.rectangle(bx, base - 132, 560, 8)\n    solid(cr, (240, 220, 150), rim=False, edge=False)\n    for wx in (bx + 90, bx + 450):\n        disc(cr, wx, base - 10, 30, (30, 30, 34), finish=\"metal\")\n        disc(cr, wx, base - 10, 12, (150, 150, 156), finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a man's leather shoe on a foot gauge\n    SUBSTANCE: the shoe's leather length\n    CAUSE: Data grips the gauge's slider and drags it out two sizes, the shoe growing to fill it\n    A British shoe shop at dusk, a bus passing in the window. On the counter\n    the shop's foot-measuring gauge holds a man's brogue at the 1970s size;\n    Data takes the sliding toe-stop in both hands and hauls it out one size,\n    then the next, and the shoe grows to meet it. The gauge itself carries\n    the scale: a notch at each size the shoe has reached, the 1970s and\n    today named, so how far it grew reads at a glance. Done by 0.60, held.\n    No painted sign text over the shelves: the readout owns that corner.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    if rows[0][0].strip().lower() in (\"today\", \"now\", \"current\") and len(rows) > 1:\n        rows = rows[::-1]\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    n = max(1, int(round(abs(v1 - v0))))\n    a0, a1 = 0.12, 0.60\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    push = ease(seg(f, 0.1, 0.72))\n    cur = v0 if u < a0 else v0 + (v1 - v0) * (k + push) / n\n    done = u >= a0 and k == n - 1 and push >= 0.999\n\n    HX = 124.0\n    PER = 110.0\n    def toe_x(sz):\n        return HX + 420.0 + (sz - v0) * PER * (1 if v1 >= v0 else -1)\n    TOP, BASE = 1170, 1186\n    sx = toe_x(cur)\n    L = sx - HX\n\n    # the shop: a warm ceiling with pendant lamps\n    vgrad(cr, [(0, (52, 40, 34)), (0.6, (120, 92, 70)), (1, (176, 140, 104))], 0, 1180)\n    for lx in (180, 540, 900):\n        cr.set_source_rgba(*_c((30, 26, 24)))\n        cr.set_line_width(3)\n        cr.move_to(lx, 0)\n        cr.line_to(lx, 150)\n        cr.stroke()\n        glow(cr, lx, 200, 220, (255, 220, 160), 0.45)\n        cr.move_to(lx - 50, 200)\n        cr.line_to(lx - 20, 150)\n        cr.line_to(lx + 20, 150)\n        cr.line_to(lx + 50, 200)\n        cr.close_path()\n        solid(cr, (40, 70, 60))\n        disc(cr, lx, 204, 12, (255, 236, 190))\n\n    # the window onto the high street at dusk\n    WX0, WY0, WX1, WY1 = 580, 300, 1040, 1060\n    cr.save()\n    cr.rectangle(WX0, WY0, WX1 - WX0, WY1 - WY0)\n    cr.clip()\n    vgrad(cr, [(0, (60, 66, 110)), (0.6, (214, 130, 110)), (1, (240, 190, 140))], WY0, 860, WX0, WX1)\n    xs = WX0 - 40\n    for i, (w_, h_) in enumerate(((150, 300), (130, 250), (170, 330), (140, 280))):\n        rowhouse(cr, xs, w_, h_, 880, P[\"brick\"] if i % 2 == 0 else P[\"brick_cool\"],\n                 P[\"brick_shade\"] if i % 2 == 0 else P[\"brick_cool_shade\"], t=t)\n        xs += w_ - 4\n    vgrad(cr, [(0, (120, 116, 112)), (1, (70, 68, 70))], 880, WY1, WX0, WX1)\n    glow(cr, 700, 640, 90, (255, 210, 140), 0.6)\n    haze(cr, WY0, 900, (214, 150, 130), a=0.4)\n    for j in range(2):\n        bx = WX1 + 40 - ((t * 180 + j * 760) % 1520)\n        _bus(cr, bx, 1030)\n    cr.set_source_rgba(1, 1, 1, 0.07)\n    cr.move_to(WX0, WY0 + 300)\n    cr.line_to(WX0 + 220, WY0)\n    cr.line_to(WX0 + 320, WY0)\n    cr.line_to(WX0, WY0 + 440)\n    cr.close_path()\n    cr.fill()\n    cr.restore()\n    trim(cr, WX0, WY0, WX1, WY1, (226, 214, 190), w=16)\n    cr.rectangle(WX0 + (WX1 - WX0) / 2 - 6, WY0, 12, WY1 - WY0)\n    solid(cr, (226, 214, 190))\n\n    # the wall of shoes on the left\n    cols = [(120, 70, 40), (36, 32, 34), (150, 46, 40), (182, 140, 96), (70, 84, 120), (96, 60, 46)]\n    for r_, sy in enumerate((680, 860, 1040)):\n        box(cr, 0, sy + 18, 560, 18, (150, 108, 70), depth=26)\n        x = 20 + (r_ * 23) % 40\n        for c_ in range(3):\n            Ls = 120 + ((r_ * 3 + c_) * 17) % 40\n            contact_shadow(cr, x + Ls / 2, sy, Ls, a=0.3)\n            _shoe(cr, x, sy, Ls, cols[(r_ * 2 + c_) % len(cols)])\n            x += Ls + 40 + ((r_ + c_) * 11) % 30\n\n    # the counter\n    cr.move_to(0, TOP)\n    cr.line_to(W, TOP)\n    cr.line_to(W, 1215)\n    cr.line_to(0, 1215)\n    cr.close_path()\n    solid(cr, (164, 116, 74), edge=False)\n    cr.rectangle(0, 1215, W, 380)\n    solid(cr, (104, 70, 44))\n    seams(cr, 0, 1230, W, 1590, (104, 70, 44), n=6, axis=\"v\")\n    trim(cr, 0, 1213, W, 1232, (180, 136, 90), w=6)\n    # the floor by the camera\n    vgrad(cr, [(0, (120, 86, 58)), (1, (80, 56, 38))], 1590, H)\n    seams(cr, 0, 1600, W, H, (110, 80, 54), n=7, axis=\"h\")\n\n    # the gauge\n    contact_shadow(cr, 540, 1202, 960, a=0.4)\n    box(cr, 70, 1202, 940, 18, (58, 60, 66), depth=40, finish=\"metal\")\n    s_lo = v0 - 2\n    s_hi = v1 + 2\n    hs = s_lo\n    while hs <= s_hi + 1e-6:\n        tx = toe_x(hs)\n        if 80 < tx < 1000:\n            whole = abs(hs - round(hs)) < 1e-6\n            cr.set_source_rgba(*_c((236, 232, 222)))\n            cr.set_line_width(3 if whole else 2)\n            cr.move_to(tx, 1186)\n            cr.line_to(tx, 1196 if not whole else 1200)\n            cr.stroke()\n        hs += 0.5\n    box(cr, 70, 1190, 52, 74, (176, 178, 186), depth=24, finish=\"metal\")\n\n    # the shoe, grown to the slider\n    cast_shadow(cr, HX, sx, BASE, length=200, a=0.22)\n    contact_shadow(cr, (HX + sx) / 2, BASE + 2, L, a=0.4)\n    _shoe(cr, HX, BASE, L, (132, 76, 42))\n    # the slider Data hauls\n    box(cr, sx, BASE + 2, 44, 120, P[\"accent2\"], depth=22, finish=\"metal\")\n    for by in (BASE - 30, BASE - 90):\n        disc(cr, sx + 22, by, 5, (60, 60, 66), finish=\"metal\")\n\n    # THE SCALE on the gauge: a notch at each size the shoe reached\n    reached = [v0] + [v0 + (v1 - v0) * (i + 1) / n for i in range(n)\n                      if u >= a0 and (i < k or (i == k and push >= 0.999))]\n    for j, sz in enumerate(reached):\n        nx = toe_x(sz)\n        cr.set_source_rgba(*_c((244, 238, 226)))\n        cr.set_line_width(6)\n        cr.move_to(nx, 1206)\n        cr.line_to(nx, 1240)\n        cr.stroke()\n    text(cr, l0, toe_x(v0), 1280, 32, look.INK, face=\"bold\", anchor=\"center\")\n    if done:\n        text(cr, l1, toe_x(v1), 1280, 32, look.INK, face=\"bold\", anchor=\"center\")\n\n    # by the camera: an open shoebox and a fitting stool\n    contact_shadow(cr, 230, 1882, 400, a=0.4)\n    box(cr, 40, 1880, 360, 150, (214, 200, 176), depth=80)\n    cr.rectangle(60, 1736, 320, 20)\n    solid(cr, (238, 232, 222), rim=False)\n    seams(cr, 40, 1740, 400, 1880, (214, 200, 176), n=3, axis=\"v\")\n    contact_shadow(cr, 850, 1902, 300, a=0.4)\n    cylinder(cr, 720, 1900, 260, 130, (128, 40, 40))\n    seams(cr, 720, 1790, 980, 1900, (128, 40, 40), n=5, axis=\"v\")\n    vignette(cr, a=0.28)\n\n    # Data: points at the old shoe, crosses to the slider, hauls it out\n    FY, DH = 1205, 300\n    def grip_pose(x_s):\n        hands = [(x_s + 52, BASE - 108), (x_s + 56, BASE - 52)]\n        gx = stand_at(hands, FY, DH, x_s + 130)\n        return hands, gx\n    hands, gx = grip_pose(sx)\n    if u < 0.05:\n        host(\"point\", 950, FY, DH)\n    elif u < a0:\n        _, g0 = grip_pose(toe_x(v0))\n        tx = g0 if g0 is not None else toe_x(v0) + 110\n        host(\"point\", 950 + (tx - 950) * ease(seg(u, 0.05, a0)), FY, DH)\n    elif gx is not None:\n        host(\"grip\", gx, FY, DH, hands=hands, lower=\"follow\",\n             expr=\"happy\" if u > 0.8 else \"strain\")\n    else:\n        host(\"shove\", sx + 100, FY, DH, beat=k)\n\n    if done:\n        fit_readout(cr, f\"Size {int(round(v1))}\", f\"average British man's shoe · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"+{int(round(v1 - v0))} sizes\", W - 80, 690, 90, look.INK,\n             face=\"display\", anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"Size {int(round(v0))}\", f\"average British man's shoe · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -38646,8 +38646,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · NOT JUST LENGTH",
-     "topic": "Feet got wider",
-     "say": "It's not just length. About two in three women say their feet got wider as adults."
+     "topic": "British Feet Width",
+     "say": "Sixty-seven percent of women report wider feet in adulthood. The change is not limited to length."
     },
     {
      "source": "offline",
@@ -38657,13 +38657,13 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "Why British feet grow",
-     "say": "Podiatrists blame body size. Two in three adults in England are overweight, and extra weight spreads the foot."
+     "topic": "British Feet Weight",
+     "say": "Sixty-six percent of adults in England are overweight or obese. Body weight adds context to changing feet."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:39Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:17Z",
    "hook_was": "Your feet are bigger than your grandparents'.",
    "scorecard": {
     "scores": {
@@ -39145,7 +39145,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:29:04Z",
+   "rewritten_at": "2026-11-27T12:31:17Z",
    "scorecard": {
     "scores": {
      "premise": 12,
@@ -39203,9 +39203,9 @@
   },
   {
    "slug": "us-stops-making-pennies-232-years",
-   "title": "Why America Finally Killed The Penny",
-   "hook": "The US was losing money on every penny and nickel it made.",
-   "closing": "The penny's long run ends because minting pocket change stopped making financial sense.",
+   "title": "Coin Costs Ended The Penny And Put The Nickel On Notice",
+   "hook": "Pocket change now costs more to make than its face value.",
+   "closing": "Ending the penny solves one coin loss while the nickel problem remains.",
    "question": "Would you miss the penny?",
    "caption": "Making a penny costs 3.69 cents for something worth one. After 232 years, the US is finally pulling the plug — and the nickel loses even more. Would you miss it? 👇",
    "hashtags": [
@@ -39223,8 +39223,8 @@
     "finance"
    ],
    "retold": "retell/v4",
-   "words_by": "claude-rewrite",
-   "rewritten_at": "2026-11-25T09:55:40Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-27T12:31:19Z",
    "hook_was": "It costs more to make than it's worth — so they're done.",
    "scorecard": {
     "scores": {
@@ -39253,8 +39253,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · WHAT STOPPING IS WORTH",
-     "topic": "Penny Annual Loss",
-     "say": "Making pennies cost taxpayers 86 million dollars a year, more than the coin was worth."
+     "topic": "Coin Penny Loss",
+     "say": "The penny program lost 86 million dollars yearly. Ending production turns that recurring loss into savings."
     },
     {
      "source": "offline",
@@ -39265,8 +39265,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · HOW LONG IT RAN",
-     "topic": "Penny Long Run",
-     "say": "That decision ends the penny's 232-year run, far longer than any other coin the US ever dropped."
+     "topic": "Coin Penny Run",
+     "say": "The penny lasted 232 years. Its unusually long production run finally ends under mounting cost pressure."
     },
     {
      "source": "offline",
@@ -39276,8 +39276,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COIN THAT'S WORSE",
-     "topic": "Nickel Bigger Loss",
-     "say": "The nickel is even worse: it costs 13.78 cents to make a coin worth five."
+     "topic": "Coin Nickel Cost",
+     "say": "A nickel costs 13.78 cents to produce. The next coin problem is already larger than its face value."
     }
    ]
   },
