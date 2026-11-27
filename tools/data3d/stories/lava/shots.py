@@ -1690,7 +1690,7 @@ def shot2():
     planted in one spot in four distinct poses.)"""
     W = lw_win
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    TOPS = [1.2, 2.8, 4.3, 5.7]  # (coordinator, r2zg: still 4's crest and digger with clear sky above)                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
+    TOPS = [1.2, 3.0, 4.4, 5.8]  # (coordinator, r2zg: still 4's crest and digger with clear sky above)                             # (coordinator, r2y: measured against the house from the lens) the crest at the windows' sill, their top, the eaves, then twice the house
     def top(t):
         if t <= TS[0]: return TOPS[0]
         for k in range(3):
@@ -1705,16 +1705,11 @@ def shot2():
     # ---- its builder: one digger on the crest, riding up with it, placing a boulder on the town face, its arm somewhere
     # new each still. The kit's digger is posed when it is built, so each pose is its own digger, shown for its moment.
     rnd = lw_random.Random(12)
-    HEAP = 4.5                                                    # (r2zh pre-flight: "in still 1 the digger sits behind the house roof with no ground or wall visible beneath it, so it looks as though it floats") it works from its own heap of rock, high enough to stand clear over the roof, and the wall rises to swallow it
-    dig_x = lambda t: 0.33 + (S2_DIG[0] - 0.33) * W(t, TS[0] + 0.15, TS[1] - TS[0] - 0.4)
-    dig_z = lambda t: max(top(t), HEAP)
-    heap = earth_wall("digger heap", [(0.33 + float(x) * 0.5, yc + S2_DIG[1]) for x in range(-5, 6)], h=HEAP, crest=2.2, base=2.2 + 2.0 * 0.97 * HEAP / S2_SLOPE, seed=9)
-    for f in range(1, NF + 8):
-        t = (f - 1) / FPS
-        heap["root"].location = (dig_x(t) - 0.33, 0, dig_z(t) - HEAP - 0.05); heap["root"].keyframe_insert("location", frame=f)
+    dig_x = lambda t: S2_DIG[0]
+    dig_z = lambda t: top(t)
     rock_m = lw_noise("loose lava rock", "#141312", "#3E3A36", scale=12, rough=0.95, bump=0.9, detail=10)
     POSES = [(-10, 55, -75, -40, True), (-5, 30, -95, -20, True), (15, 40, -110, 10, True), (25, 22, -80, 50, True),
-             (5, -2, -55, 20, True), (-15, 12, -85, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
+             (-20, -2, -55, 20, True), (-15, 12, -85, -40, True)]     # (coordinator, r2y: a boulder in its bucket every still) (p2t: in still 1 it works in the gap between him and the house, then drives along the crest to the left)
     DX, DY = S2_DIG
     diggers = []
     for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
