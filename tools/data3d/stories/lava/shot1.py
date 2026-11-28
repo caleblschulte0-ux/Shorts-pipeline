@@ -11,7 +11,7 @@ S1_RIDGE_Y = 20.0                      # the fissure's line on the ridge's crest
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
 S1_P0 = (0.2, -3.15)                   # where he stands: in the street, 0.95 m in front of the lens and below it (p1d: at 1.15 m he measured 0.26-0.30) (coordinator, r1za: margin all round)
-S1_CAM = (0.3, -4.1, 1.35)             # (coordinator, after p1c, option (a): a HIGH lens, 1.35 m over a 0.82 m Data, tipped 16 degrees down the street; higher cannot hold him at a third of the frame) the one lens
+S1_CAM = (0.3, -4.07, 1.25)   # (p1e FRAME: feet cut on 3-4 at 1.35 m: 0.43 m over his hat, tipped 22 deg)            # (coordinator, after p1c, option (a): a HIGH lens, 1.35 m over a 0.82 m Data, tipped 16 degrees down the street; higher cannot hold him at a third of the frame) the one lens
 
 
 def s1_ground_z(x, y):
@@ -84,7 +84,10 @@ def place_grindavik_street():
             if -4.5 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
         k = iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)           # (coordinator, after p1c: shot 4's light and sky exactly)
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # (r1v EMPTY 25%: clouds over the street) the same REAL sky as the wall's beats (Poly Haven)
+        bg = ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # (r1v EMPTY 25%: clouds over the street) the same REAL sky as the wall's beats (Poly Haven)
+        nt = sc.world.node_tree; env = next(n for n in nt.nodes if n.type == 'TEX_ENVIRONMENT')       # (world block "cold and bright": shot 2's drained, cold pale sky)
+        hs = nt.nodes.new("ShaderNodeHueSaturation"); hs.inputs["Saturation"].default_value = 0.45; hs.inputs["Value"].default_value = 1.05
+        nt.links.new(env.outputs["Color"], hs.inputs["Color"]); nt.links.new(hs.outputs["Color"], bg.inputs["Color"])
         return k
     return dict(light=light, slot=slot, houses=houses, fz=fz)
 
@@ -181,7 +184,7 @@ def shot1():
     # bent, shoulders hunched, arms up guarding his head, mouth open, leaning away from the ridge toward us; 4 the same
     # crouch, wide-eyed at us
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.02, math.cos(math.radians(19.5)), -math.sin(math.radians(19.5)))).normalized()     # (p1d: nearer, so tipped further down to keep his feet); LOOK0 = CAM0 + D * 5.0
+    CAM0 = Vector(S1_CAM); D = Vector((-0.02, math.cos(math.radians(22.0)), -math.sin(math.radians(22.0)))).normalized(); LOOK0 = CAM0 + D * 5.0     # (p1d: nearer, so tipped further down to keep his feet)
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(8)                               # 1 facing us
@@ -197,12 +200,12 @@ def shot1():
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(20) + math.radians(18) * W(t, T_GLOW, 0.6) - math.radians(14) * W(t, T_DUCK, 0.35)
                    - math.radians(24) * W(t, TS[2] + 0.35, 0.5))     # (p1d FACE: square to us with it all behind him on three stills) three-quarter on 1-3, square to us on 4
         data._plant_feet_here(t, lift=(Z0, Z0))
-    lw_layer(data, "spine", lambda t: (-3 * W(t, T_GLOW + 0.2, 0.5) + 7 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)     # hunched forward, away from the ridge behind him (p1d: at 13 his hat hid his face from the high lens)
-    lw_layer(data, "chest", lambda t: (3 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-3 * W(t, T_GLOW + 0.2, 0.5) + 2 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)     # hunched forward, away from the ridge behind him (p1d: at 13 his hat hid his face from the high lens)
+    lw_layer(data, "chest", lambda t: (0 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # 1 at us, calm
     data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=35, max_pitch=12, blend=0.35)                             # 2 back round at the glow (FACE)
-    data.look_at(RIDGE + Vector((0, 0, 6.0)), T_DUCK, max_yaw=28, max_pitch=6, blend=0.2)              # 3 back at the fountain as he ducks
+    data.look_at(Vector((X0 - 1.6, Y0 + 2.5, 1.0)), T_DUCK, max_yaw=45, max_pitch=15, blend=0.2)      # 3 (p1e: ducked at the fountain, his hat hid his face from the high lens) round at the car coming down the street, head up
     data.look_at(CAM0 + Vector((0, 0, 0.1)), TS[2] + 0.45, max_yaw=40, max_pitch=20, blend=0.35)       # 4 wide-eyed at us
     data.expression("determined", 0.0, T_GLOW, blend=0.15)
     data.expression("surprised", T_GLOW, T_DUCK, blend=0.15)

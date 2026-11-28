@@ -1441,39 +1441,6 @@
    "stills": 4,
    "unticked": []
   },
-  "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14": {
-   "at": "2026-11-26 03:49:07Z",
-   "claims": 15,
-   "claims_key": "edd128785e00db7b",
-   "continuity": [
-    {
-     "id": "edges",
-     "note": "The lava fountains, the subject, are cut by the top edge in every still. In still 4 Data's right hand touches the right edge and a flag is cut off.",
-     "rule": "the shot's subject and Data are whole in the frame in every still: nothing that is the subject is cut by a frame edge",
-     "stills": "2-3"
-    }
-   ],
-   "sha256": "771ad76b3e9844e727875833a0d3b523a12502d9fb32ecde31defb6a21873c14",
-   "shot": 1,
-   "status": "blocked",
-   "stills": 4,
-   "unticked": [
-    {
-     "from": "FOR",
-     "id": "c8",
-     "kind": "ACTION",
-     "note": "He moves toward the camera in a run, but his head faces the lens. Only his eyes glance up toward the fire, so there is no clear look back over the shoulder.",
-     "text": "He bolts down the street toward us, looking back at it over his shoulder"
-    },
-    {
-     "from": "FOR",
-     "id": "c10",
-     "kind": "ACTION",
-     "note": "He is bigger in frame, but his arms are bent or out to the sides with fists at shoulder height. Neither arm is clearly thrown up. The fire is behind him.",
-     "text": "He ends big in the frame with both arms thrown up, terrified, the fire roaring behind him"
-    }
-   ]
-  },
   "79191120016056e1a54741ec8b91aa661fce6bdfcaa84f713cce37ae14749e39": {
    "at": "2026-11-26 11:37:07Z",
    "claims": 14,
@@ -1968,6 +1935,32 @@
     }
    ]
   },
+  "aa8f215389c7e53095661bea8c13c2ea77c35b08e9107d8836477a731b9dd3c5": {
+   "at": "2026-11-28 05:21:32Z",
+   "claims": 8,
+   "claims_key": "13cda2cee6318879",
+   "continuity": [
+    {
+     "id": "props",
+     "note": "The wall is a low strip behind the house in still 1 and grows taller across stills 2 to 4. The digger moves from the left of the house in still 1 to above the house in still 2. The wall is built in the shot, but no still shows rock being tipped until still 3. The radio is held in different places, t",
+     "rule": "every prop and every thing that matters in still n is still there in still n+1, or the stills show where it went (nothing vanishes, nothing appears from nowhere)",
+     "stills": "1-2"
+    }
+   ],
+   "defects": [
+    {
+     "id": "broken",
+     "note": "The wall appears and grows between stills with the digger moving, and the digger's treads do not clearly sit on the wall in still 2. The wall looks like a flat textured backdrop panel with a stripe of rocks along its top. In stills 2 and 3 the digger seems to hover over the wall.",
+     "rule": "BROKEN: nothing in any still is broken: no stray rod, bar or streak, no flat sprite or card, nothing floating with no support, nothing that changes place between stills with no cause shown, and no object half cut off by a frame edge",
+     "stills": "2-3"
+    }
+   ],
+   "sha256": "aa8f215389c7e53095661bea8c13c2ea77c35b08e9107d8836477a731b9dd3c5",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": []
+  },
   "ad6226857076ee31015ccfa67136f1a5bb8b1984bb95f557f369116df9c222b7": {
    "at": "2026-11-28 03:03:17Z",
    "claims": 8,
@@ -2005,6 +1998,26 @@
      "kind": "SAYS",
      "note": "The house and a tall rock wall with a digger on top are shown. Nothing shows Iceland, and a 'wall of rock' reads only loosely, so a stranger would not clearly get the line's fact.",
      "text": "a stranger with the sound off would say the stills show what this line says: So Iceland built a wall of rock taller than a house"
+    }
+   ]
+  },
+  "ae9b2421ed6be3eb0ec42a00310d8098a36cbcb985595ad81ca68c15912b8123": {
+   "at": "2026-11-28 04:57:30Z",
+   "claims": 8,
+   "claims_key": "13cda2cee6318879",
+   "continuity": [],
+   "defects": [],
+   "sha256": "ae9b2421ed6be3eb0ec42a00310d8098a36cbcb985595ad81ca68c15912b8123",
+   "shot": 2,
+   "status": "blocked",
+   "stills": 4,
+   "unticked": [
+    {
+     "from": "FOR",
+     "id": "c1",
+     "kind": "ACTION",
+     "note": "A digger is visible in every still, and Data holds a small dark radio at his side in stills 1-3 (arm out in still 2). It is never raised to his mouth, so a stranger would not read it as radioing the digger.",
+     "text": "He radios a digger"
     }
    ]
   },
@@ -2189,39 +2202,6 @@
      "kind": "ACTION",
      "note": "Data stands with one arm out sideways over boulders. No boulder of his own can be picked out, and the row is not clearly set up.",
      "text": "Back on the crest he stands by his boulder, one arm out along the row"
-    }
-   ]
-  },
-  "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1": {
-   "at": "2026-11-26 03:17:44Z",
-   "claims": 17,
-   "claims_key": "41cef8052ec876a1",
-   "continuity": [
-    {
-     "id": "grade",
-     "note": "Stills 3-4 are noticeably brighter and washed out, with a whiter house and a lighter sky and street. Stills 1-2 are darker and moodier.",
-     "rule": "the grade and the lighting are the same in every still (the same time of day and colour of light; no still darker, greyer or tinted differently from the others) unless a claim says the light changes",
-     "stills": "1-2 vs 3-4"
-    }
-   ],
-   "sha256": "c56c9f0735eeda184088b35afdd3382488d4780c104fdcafd357d8884151e3b1",
-   "shot": 5,
-   "status": "blocked",
-   "stills": 4,
-   "unticked": [
-    {
-     "from": "FOR",
-     "id": "c9",
-     "kind": "ACTION",
-     "note": "In still 3 Data faces the camera with his mouth open. In still 2 his eyes point left, but the window is not yet lit. No still shows him turned round toward the lit window.",
-     "text": "he looks round at it"
-    },
-    {
-     "from": "SAYS",
-     "id": "c11",
-     "kind": "SAYS",
-     "note": "The burning houses and the intact row are visible. No wall is shown, and nothing shows that almost nobody moved back, such as empty houses or leaving cars. The window lighting does not carry that.",
-     "text": "a stranger with the sound off would say the stills show what this line says: Three houses burned. The wall saved the rest, but almost nobody moved back. Would you?"
     }
    ]
   },

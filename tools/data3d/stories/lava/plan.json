@@ -29,7 +29,7 @@
       "getaway car"
      ],
      "whole": true,
-     "built_as": "two small hatchbacks, blue and red, parked at the kerbs up the main street; their lamps come on at the glow, then they pull out and speed down the street toward the lens, dust behind them"
+     "built_as": "one small red hatchback parked at the kerb up the main street; its lamps come on at the glow, then it pulls out and speeds down the street toward the lens, past him, dust behind it"
     }
    ],
    "framing": "close",
@@ -54,13 +54,13 @@
    "stills": [
     {
      "event": "before",
-     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, two cars parked at the kerbs up the street, the ridge behind the town smokes; Data stands centred in the street facing us, calm",
+     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, a car parked at the kerb up the street, the dark ridge over the town smokes; Data stands centred in the street facing us, calm",
      "hands": "free",
      "new": [],
      "visible": [
       {
        "prop": "eruption",
-       "as": "the ridge behind the town smokes"
+       "as": "the dark ridge over the town smokes"
       },
       {
        "prop": "houses",
@@ -68,7 +68,7 @@
       },
       {
        "prop": "cars",
-       "as": "two cars parked at the kerbs up the street"
+       "as": "a car parked at the kerb up the street"
       },
       {
        "prop": "data",
@@ -78,7 +78,7 @@
     },
     {
      "event": "action",
-     "shows": "the ridge behind the town glows orange along its top; Data's head and shoulders turn toward it, arms down; the parked cars' headlights come on",
+     "shows": "the ridge behind the town glows orange along its top; Data's head and shoulders turn toward it, arms down; the parked car's headlights come on",
      "hands": "free",
      "new": [
       {
@@ -89,7 +89,7 @@
       {
        "what": "cars",
        "how": "lights",
-       "cause": "their drivers start them as the ridge glows"
+       "cause": "its driver starts it as the ridge glows"
       },
       {
        "what": "data",
@@ -104,7 +104,7 @@
       },
       {
        "prop": "cars",
-       "as": "the parked cars, headlights on"
+       "as": "the parked car, headlights on"
       },
       {
        "prop": "data",
@@ -114,7 +114,7 @@
     },
     {
      "event": "result",
-     "shows": "the ridge erupts in a tall lava fountain under a black plume; Data recoils, leaning back, both arms thrown up beside his head, mouth open; both cars pull out into the street, dust behind them",
+     "shows": "the volcano on the ridge erupting right beside the town in a tall lava fountain under a black plume; Data recoils, knees bent, arms up, mouth open, looking round at the car; the car pulls out into the street, dust behind it",
      "hands": "free",
      "new": [
       {
@@ -125,7 +125,7 @@
       {
        "what": "cars",
        "how": "moves",
-       "cause": "they speed out of town away from it"
+       "cause": "it speeds out of town away from it"
       },
       {
        "what": "data",
@@ -140,17 +140,17 @@
       },
       {
        "prop": "cars",
-       "as": "both cars pull out into the street, dust behind them"
+       "as": "the car pulls out into the street, dust behind it"
       },
       {
        "prop": "data",
-       "as": "Data recoils, arms thrown up"
+       "as": "Data recoils, arms up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "the black plume fills the top of the sky over the town; the two cars speed down the street toward us, either side of him, dust trailing; Data, still recoiled, half-turns toward us as if to follow",
+     "shows": "the black plume fills the top of the sky over the town; the car speeds down the street toward us, past him, dust trailing; Data, still crouched, turns to us wide-eyed, hands out",
      "hands": "free",
      "new": [
       {
@@ -161,12 +161,12 @@
       {
        "what": "cars",
        "how": "moves",
-       "cause": "they speed out of town"
+       "cause": "it speeds out of town"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he half-turns to follow them"
+       "cause": "he turns to us wide-eyed"
       }
      ],
      "visible": [
@@ -176,11 +176,11 @@
       },
       {
        "prop": "cars",
-       "as": "everyone had to run: cars speed out of town past him, dust trailing"
+       "as": "everyone had to run: a car speeds out of town past him, dust trailing"
       },
       {
        "prop": "data",
-       "as": "Data, still recoiled, half-turns to follow them"
+       "as": "Data, still crouched, wide-eyed at us, hands out"
       }
      ]
     }
@@ -237,7 +237,7 @@
    "stills": [
     {
      "event": "before",
-     "shows": "a painted tin house; behind it a knee-high bank of black boulders, a big digger on it tipping a bucket of rock over its lip; he radios it, the radio at his mouth, his other hand on his hip",
+     "shows": "a painted tin house; behind it a knee-high bank of black boulders, a big digger on it tipping a bucket of rock over its lip; the radio up in his hand, his other hand on his hip",
      "hands": "radio",
      "new": [],
      "visible": [
@@ -255,7 +255,7 @@
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat radioing it, the radio at his mouth, a hand on his hip"
+       "as": "the driver in his hard hat, a radio up in his hand, a hand on his hip"
       }
      ]
     },

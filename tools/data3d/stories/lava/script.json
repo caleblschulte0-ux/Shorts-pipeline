@@ -98,14 +98,14 @@
   }
  },
  "ideas": [
-  "behind the roofs of an Icelandic street the volcano erupts and grows still by still, a glow, a lava fountain, a towering black ash plume; he looks up, flinches and runs out of the street",
+  "over the roofs of an Icelandic street the dark ridge smokes, glows, then erupts in a tall lava fountain; he recoils as a car speeds out of town past him",
   "behind a tin house a digger tips bucket after bucket of black boulders onto a bank until it stands taller than the roof; he watches it rise",
   "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and builds up against it; it stops dead against the rock and goes dark, and he punches the air and grins",
   "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
   "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
  ],
  "storyboard": [
-  "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils. Cars speed out of town past him.",
+  "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils as a car speeds out of town past him.",
   "2 He radios a digger as it tips rock onto a wall behind a house until it stands taller than the roof. He turns to us, grinning.",
   "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and builds up against it, steam rising off it. It stops dead against the rock, its crust going dark, and he punches the air and grins at us.",
   "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
@@ -114,7 +114,7 @@
  "staging": [
   {
    "camera": "high",
-   "data": "three-quarter to us in the foreground at the left: looks at us, turns his head up at the glow, flinches at the fountain, then runs at the lens, out of the street",
+   "data": "in the street below a high lens: looks at us, turns his head to the glow on the ridge, recoils on bent knees, arms up, as the fountain bursts and a car speeds past him, then wide-eyed at us, hands out",
    "props": [
     "eruption",
     "town houses"
@@ -122,19 +122,19 @@
    "arc": [
     {
      "at": 0.08,
-     "what": "the quiet street, the painted houses and the ridge over the roofs; he looks at us"
+     "what": "the quiet street, the painted houses and the dark ridge over the roofs smoking; he looks at us"
     },
     {
      "at": 0.38,
-     "what": "the ridge over the roofs glows orange; he turns his head up at it"
+     "what": "the ridge glows orange along its top, the parked car's lamps on; he turns his head to it"
     },
     {
      "at": 0.68,
-     "what": "a lava fountain bursts up over the roofs; he flinches back, arms up"
+     "what": "a lava fountain bursts up off the ridge; he recoils, knees bent, arms up, as the car pulls out"
     },
     {
      "at": 0.98,
-     "what": "a huge black ash plume towers over the town; he runs past us, out of the street"
+     "what": "the fountain under its plume, lava running down the ridge; the car speeds past him; he is wide-eyed at us, hands out"
     }
    ]
   },

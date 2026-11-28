@@ -14,7 +14,7 @@ S2_CREST = 3.0 # (coordinator, after board 46083546367: a flat bench of rock at 
 S2_SLOPE = 3.5 # (same: a sloped, rubbly bank, not a vertical slab) # (r2zf pre-flight: "the wall only a little above the roof": a steeper face brings its crest nearer the lens)                          # (w2b: a shallow face put its top 6 m back, barely over the ridge) a steep face of piled boulders
 S2_H = 8.0                              # the finished wall: from this low lens its top stands well over the house's ridge
 S2_HOUSE = (-1.75, 1.1, 3.2, 2.6)    # (coordinator, after r3d: shot 4's real house size: 1.2 m read as a toy, so the lens stands back 5 m) # (coordinator, r2zh: a CENTRE GAP for the digger: the house takes the right ~35%, its gable end to us)         # (coordinator, r2y: composition) the house: centre x, y, width, depth; the right half of the frame, just clear of the wall's foot (y 0)
-S2_P0 = (0.35, 10.35)                   # Data: the left foreground, 1.65 m from the lens (r3f pre-flight CONSEQUENCE: "the wall small, Data dominates": he stands back to a third of the frame)
+S2_P0 = (0.35, 10.57)   # (r4b FAR: 0.29 of the frame, the measured floor is 0.32: 0.12 m nearer, the lens tipped a little less up to keep his feet)                   # Data: the left foreground, 1.65 m from the lens (r3f pre-flight CONSEQUENCE: "the wall small, Data dominates": he stands back to a third of the frame)
 S2_CAM = (0.0, 12.0, 0.55)             # (after r3d: 6 m further back (r3e: at 5 m the house ran off the right edge) for the real-sized house, same height and tilt)
 S2_DIG = (1.2, 0.2)                     # (after r3d: side-on along the crest, in the gap left of the house, driving right as it goes; r3c/r3d: end-on its arm read as a pole) # (coordinator, after r2zu: the digger is the CAUSE, bigger: its body on the crest behind the house (r3a: behind his head it hid him and its bucket), its arm out over the gap where the bucket tips at the lip) x, and y off the crest's middle
 
@@ -91,7 +91,7 @@ def s2_radio():
         K.box("radio grille", (0, -0.0135, 0.07 + 0.01 * k), (0.03, 0.002, 0.004), rub, bev=0.001, parent=root)
     K.cyl("radio antenna", (0.012, 0.0, 0.12), 0.0055, 0.06, rub, v=10, parent=root)
     K.cyl("radio knob", (-0.011, 0.0, 0.1), 0.006, 0.014, rub, v=10, parent=root)
-    root.scale = (2.0, 2.0, 2.0)                               # (r3m: at 0.1 m it hid inside his fist) the size of a real handset in his hand
+    root.scale = (1.7, 1.7, 1.7)                               # (r3m: at 0.1 m it hid inside his fist) the size of a real handset in his hand
     return root
 
 
@@ -162,6 +162,15 @@ def shot2():
         r_ = rr.uniform(0.16, 0.34)
         bo = lw_block(f"crest rubble lane {k}", (0, 0, 0), r_, crest_m, rr, squash=0.75)
         bo.parent = wall["root"]; bo.location = (x, y, S2_H + r_ * 0.3)
+    # (r4a pre-flight: "the wall looks like a flat textured backdrop panel") boulders standing proud of its town face, shadowed gaps between
+    fh = S2_H * 0.97; fy0 = yc + b / 2; run = b / 2 - S2_CREST / 2 - 0.1
+    nrm_ = Vector((0.0, fh, run)).normalized()
+    for k in range(300):
+        x = rr.uniform(-11.0, 11.0); z = rr.uniform(S2_H - TOPS[3] - 0.2, fh - 0.15)
+        r_ = rr.uniform(0.16, 0.42)
+        q = Vector((x, fy0 - run * z / fh, z)) + nrm_ * r_ * 0.35
+        bo = lw_block(f"wall face boulder {k}", (0, 0, 0), r_, crest_m, rr, squash=0.7)
+        bo.parent = wall["root"]; bo.location = q
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
         wall["root"].location = (0, 0, top(t) - S2_H); wall["root"].keyframe_insert("location", frame=f)
@@ -174,7 +183,7 @@ def shot2():
     #         slew, boom, stick, curl(+ = mouth out and down: tipping), loaded
     TIP = [(-45, 9, -135, 81), (-45, 10, -136, 81), (-45, 11, -137, 80), (-45, 13, -137, 80)]      # the bucket's hinge 0.35 m past the lip, 0.5-0.65 m over the crest: x -0.8, -1.3, -1.9, -2.5
     LOAD = [(-37.5, 26, -152, -24), (-37.5, 26, -152, -24), (-37.5, 26, -152, -24)]     # between: swung back up over the crest, the bucket curled full
-    RXS = [DX, DX - 0.5, DX - 1.1, DX - 1.7]                      # it drives along the crest toward the house as the wall passes the roof it drives along the crest as it goes, its arm side-on to us
+    RXS = [DX, DX - 0.1, DX - 0.9, DX - 1.7]   # (r4a pre-flight BROKEN: on still 2 its tracks hid behind the roof, "hovering": it stays left of the roof until the wall is over it)                      # it drives along the crest toward the house as the wall passes the roof it drives along the crest as it goes, its arm side-on to us
     def rx(t):
         if t <= TS[0]: return RXS[0]
         for k in range(3):
@@ -185,9 +194,7 @@ def shot2():
     for k, (slew, boom, stick, bucket, loaded) in enumerate(POSES):
         before = set(bpy.data.objects)
         d = FX.digger(name=f"digger {k}", loc=(0, 0, 0), yaw=0.0, slew=0.0, boom=boom, stick=stick, bucket=bucket, lights=False, seed=3)
-        drv = K.mat("digger driver", "#1C1D20", rough=0.8)          # (coordinator: a dark seated figure in the cab, if cheap) its driver
-        K.box(f"digger {k} driver body", (-0.4, -0.22, 1.05), (0.24, 0.2, 0.34), drv, bev=0.04, parent=d["house"])
-        K.box(f"digger {k} driver head", (-0.4, -0.26, 1.32), (0.15, 0.15, 0.16), drv, bev=0.05, parent=d["house"])
+        pass     # (board rev 6 pre-check FX HAND: the hand-built dark driver boxes "stand in for digger": removed; the kit's cab stays empty)
         d["house"].rotation_euler[2] = math.radians(slew)
         d["root"].rotation_euler[2] = -math.pi / 2               # its tracks along the crest, side-on to us
         d["root"].scale = (1.6, 1.6, 1.6)                         # (coordinator, after r2zu: bigger) (r2y: real scale: as long as the house is wide)
@@ -225,8 +232,8 @@ def shot2():
     G_ = 9.8
     tip_m = lw_noise("tipped rock", "#4A4642", "#8E877E", scale=12, rough=0.95, bump=0.9, detail=10)     # the wall's own grey basalt
     for k, ts in enumerate(TS):
-        for j in range(6):
-            t0 = ts - WIN[0] + 0.02 + j * 0.075; life = 0.5
+        for j in range(10):                                       # (r4a pre-flight: "no still shows rock being tipped until still 3") a stream over the lip on every still
+            t0 = ts - 0.62 + j * 0.06; life = 0.85
             vx, vy = rnd.uniform(-0.35, 0.35), rnd.uniform(0.45, 0.8)
             bo = lw_block(f"tipped boulder {k}_{j}", (0, 0, 0), rnd.uniform(0.16, 0.26), tip_m, rnd, squash=0.8)     # (r3b: 0.1 m dark rocks did not read leaving the bucket)
             prev = None
@@ -242,7 +249,7 @@ def shot2():
                     bo.keyframe_insert("hide_render", frame=f); bo.keyframe_insert("hide_viewport", frame=f); prev = on
     # ---- him: planted in the foreground, he only REACTS (coordinator, after r2zu: no signalling)
     data = load_data()
-    CAM0 = Vector(S2_CAM); LOOK0 = CAM0 + Vector((0.0, -1.0, 0.285)) * 5.0      # (coordinator, r2y: LOW, tilted up, close)
+    CAM0 = Vector(S2_CAM); LOOK0 = CAM0 + Vector((0.0, -1.0, 0.245)) * 5.0      # (coordinator, r2y: LOW, tilted up, close)
     X0, Y0 = S2_P0; Z0 = s2_ground_z(X0, Y0) + 0.02
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     LENS = math.degrees(yaw_of(CAM0.x - X0, CAM0.y - Y0))
@@ -255,8 +262,9 @@ def shot2():
         t = (f - 1) / FPS
         SD = Vector((-TO.y, TO.x, 0))
         p = (Vector((X0, Y0, Z0)) + TO * (0.05 * W(t, T1, 0.45) + 0.04 * W(t, T2 + 0.15, 0.45))     # (r3e FRAME: 0.15 m nearer the lens put his feet under the bottom edge)     # a step back as it passes the roof, then another
-             + SD * (0.05 * W(t, 0.1, 0.35) - 0.05 * W(t, T2 + 0.3, 0.4)))
-        yaw = LENS - (41 + 4 * W(t, T2, 0.45) - 45 * W(t, T3, 0.5))     # (r3g/r3i FACE: 48 put a still at 75)     # (r3f pre-flight: "he never looks at the wall", "no turn to us") 1-3 turned well round to the digger; 4 right round to us
+             + SD * (0.05 * W(t, 0.1, 0.35) - 0.05 * W(t, T2 + 0.3, 0.4) + 0.05 * W(t, TS[2] + 0.15, 0.35))     # (r4b HOLD: a weight shift after still 3)
+             + SD * 0.09 * W(t, 0.27 * DUR, 0.4))     # (r4b/r4d READ: still for 1.6 s on screen; a step toward the lens reads as nothing) a side-step along the yard as the wall climbs
+        yaw = LENS - (41 - 10 * (W(t, 0.25 * DUR, 0.4) - W(t, T2 - 0.1, 0.35)) + 4 * W(t, T2, 0.45) - 45 * W(t, T3, 0.5))     # (r4c READ: 1.77 s still) a step back from it, half round toward us (FACE_MAX 70 on still 2), and in again     # (r3g/r3i FACE: 48 put a still at 75)     # (r3f pre-flight: "he never looks at the wall", "no turn to us") 1-3 turned well round to the digger; 4 right round to us
         data._kobj(t, loc=tuple(p), rot=math.radians(yaw))
         data._plant_feet_here(t, lift=(Z0, Z0))
     sc.frame_set(1); bpy.context.view_layer.update()
@@ -271,8 +279,8 @@ def shot2():
         for s_, sg in (("L", -1), ("R", 1)):
             if s_ == "L": continue                                 # his near hand holds the radio all shot (data.reach below)
             sh = M_ @ data.J[s_]["sh"]; hp = M_ @ data.J[s_]["hip"]; w_ = want.get(s_, "hang")
-            if w_ == "hip":
-                data._arm_ik(s_, hp + rt * sg * 0.05 - fw * 0.03 + UP * 0.1, tt, 3.0)     # (r3c: at full stretch the hands hung by his hips: nearer the shoulder, the elbows jut out); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
+            if w_ in ("hip", "hip_out"):
+                data._arm_ik(s_, hp + rt * sg * (0.05 if w_ == "hip" else 0.085) - fw * 0.03 + UP * 0.1, tt, 3.0)     # (r3c: at full stretch the hands hung by his hips: nearer the shoulder, the elbows jut out); data._k(f"hand.{s_}", tt, rot=(0, 0, sg * 20))
             elif w_ == "open":                                    # (r3e: the thumbs up read as a fist: dropped) hands open at his sides, relieved
                 for bn, r in zip((f"arm.{s_}", f"fore.{s_}", f"hand.{s_}"), data.ARMS["open"](sg)): data._k(bn, tt, rot=r)
             elif w_ == "whoa":
@@ -284,25 +292,27 @@ def shot2():
     # 1 watching it work, one hand on his hip
     for tt in (0.0, T1 - 0.05): arms(tt, {"R": "hip"})
     # 2 the wall reaches the roof: a step back, looking up at it, hands out: whoa (r3f pre-flight: four near-identical poses)
-    for tt in (T1 + 0.4, T2 - 0.05): arms(tt, {"R": "whoa"})
+    for tt in (T1 + 0.4, TS[1] + 0.1): arms(tt, {"R": "whoa"})
+    arms(TS[1] + 0.45, {"R": "hip"})     # (r4c HOLD 0.87 s) the hand drops to his hip as the wall tops the roof
     # 3 head up further, leaning back, both hands on his hips
-    for tt in (T2 + 0.45, T3 - 0.05): arms(tt, {"R": "hip"})
+    for tt in (T2 + 0.45, T3 - 0.05): arms(tt, {"R": "hip_out"})     # (r3t CLIPPING: leaning back, his hand on his hip sank into his coat: further out)
     # 4 round to us: hands open, a relieved grin
     for tt in (T3 + 0.5, DUR + 0.5): arms(tt, {"R": "open"})
     # (coordinator, after r3j BODY "holds nothing, nothing links him to the work": he RADIOS the digger) a hand-held
     # radio in his near hand the whole shot: at his mouth on stills 1-2, lowered to his chest on 3, down at his side on 4
-    radio = s2_radio()
-    path = lw_hand(data, "L", [(0.0, (0.11, -0.05, 0.05)), (T1 + 0.3, (0.11, -0.05, 0.06)), (T2 - 0.1, (0.11, -0.05, 0.05)),
-                               (T2 + 0.4, (0.09, -0.05, -0.12)), (T3 - 0.05, (0.09, -0.05, -0.12)), (T3 + 0.45, (0.07, 0.07, -0.13)), (DUR + 0.5, (0.07, 0.07, -0.13))])
-    data.reach("L", path, 0.0, DUR + 0.5, lead=0.05, back=None, elbow_out=0.5)
     lw_layer(data, "spine", lambda t: (-4 * W(t, T1, 0.4) - 7 * W(t, T2, 0.45) + 11 * W(t, T3, 0.45), 0, 0), 0, DUR + 0.4)     # leaning back further as it climbs
     lw_layer(data, "chest", lambda t: (-3 * W(t, T1, 0.4) - 4 * W(t, T2, 0.45) + 7 * W(t, T3, 0.45), 0, 0), 0, DUR + 0.4)
     BK = [lips[k] + Vector((RXS[k], yc + DY, TOPS[k])) for k in range(4)]      # the bucket on each still
     data.look_at(BK[0], 0.0, max_yaw=20, max_pitch=6, blend=0.0)              # 1 at the bucket (r3g FACE: 75 degrees off the lens at 30)
     data.look_at(BK[1], T1 + 0.3, max_yaw=30, max_pitch=13, blend=0.35)      # 2 up at it
-    data.look_at(BK[2], T2 + 0.35, max_yaw=30, max_pitch=20, blend=0.4)     # 3 further up (the rest is his lean back: r2ze, the glasses float on a big head pitch)
+    data.look_at(BK[2] - Vector((0, 0, 2.2)), T2 + 0.1, max_yaw=30, max_pitch=12, blend=0.3)     # (r4b HOLD 1.13 s) down the wall's face where the rocks land, then...
+    data.look_at(BK[2], TS[2] - 0.15, max_yaw=30, max_pitch=20, blend=0.35)     # 3 further up (the rest is his lean back: r2ze, the glasses float on a big head pitch)
     data.look_at(CAM0 + Vector((0, 0, 0.1)), T3 + 0.35, max_yaw=15, max_pitch=8, blend=0.4)     # 4 to us
     data.perform("happy", T3 + 0.4, hold=DUR - T3, arms=False)                # 4 a happy bounce, his grin (r3f: "not clearly a grin")
+    radio = s2_radio()     # (r3v FLUID f105: solved before his lean and the happy bounce, the hand fell out of reach: solved after them)
+    path = lw_hand(data, "L", [(0.0, (0.12, 0.08, -0.02)), (T1 - 0.15, (0.12, 0.08, -0.02)), (T1 + 0.3, (0.14, 0.04, 0.04)), (T1 + 0.4, (0.14, 0.04, 0.04)), (T2 - 0.1, (0.14, 0.04, 0.04)),     # (r3w: held out it never read as radioing; r3x: at his mouth on still 1 his forearm cut his head; r3y: the spline overshot into it) up by his shoulder on 1, at his mouth on 2     # (r3r CLIPPING: in his face) beside his cheek, clear of it
+                               (T2 + 0.4, (0.15, 0.05, -0.01)), (TS[2], (0.16, 0.04, -0.07)), (T3 - 0.05, (0.12, 0.06, -0.13)), (T3 + 0.45, (0.05, 0.05, -0.14)), (DUR + 1.0, (0.05, 0.05, -0.14))])
+    data.reach("L", path, 0.0, DUR + 1.0, lead=0.05, back=None, elbow_out=1.0)     # (r3z: at 0.5 the elbow flipped at his mouth)
     data.expression("determined", 0.0, T1 + 0.2, blend=0.15)
     data.expression("surprised", T1 + 0.2, T3 + 0.2, blend=0.2)
     data.expression("happy", T3 + 0.2, DUR + 1.0, blend=0.2)
@@ -310,7 +320,9 @@ def shot2():
     for f in range(1, NF + 8):                                 # held UPRIGHT in his fist, antenna up, its face to us: the fist round its middle
         sc.frame_set(f); bpy.context.view_layer.update()
         M = data.arm.matrix_world @ data.pb["hand.L"].matrix
-        radio.location = M.translation + (M.to_3x3() @ Vector((0, 0.045, 0))) - Vector((0, 0, 0.09))
+        radio.location = M.translation + (M.to_3x3() @ Vector((0, 0.045, 0))) - Vector((0, 0, 0.077))
+        aw = radio.location - data.arm.matrix_world.translation; aw.z = 0.0
+        if aw.length > 1e-4: radio.location += aw.normalized() * 0.015      # (r3s CLIPPING: at his side it brushed his coat) on the outer side of his fist
         radio.rotation_euler = (0.0, 0.0, math.atan2(CAM0.x - radio.location.x, -(CAM0.y - radio.location.y)))
         radio.keyframe_insert("location", frame=f); radio.keyframe_insert("rotation_euler", frame=f)
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)     # (p2n, r2y: a wider lens: him, the digger and the house side by side, none hiding another)
