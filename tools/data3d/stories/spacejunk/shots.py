@@ -60,7 +60,7 @@ def hole(s, p, r=0.075, seed=3, wood=(0.55, 0.38, 0.2)):
 def shot1():
     """the living room: it comes through the ceiling and punches into the floor in front of him"""
     s = D.Shot(globals(), "living_room"); s.place("lebombo", turn=135)
-    s.hero(u=0.3, height=0.44)
+    s.hero(u=0.3, height=0.4, face_v=0.47)
     sofa = s.model("sofa_03", u=0.86, v=0.31, yaw=-25, scale=0.62)
     hit = s.spot(0.63, 0.14); top = s.air(0.66, 1.25, (hit - s.C).length)
     j = junk(tuple(top), BIG); T = 0.24
@@ -82,13 +82,17 @@ def shot1():
 def pallet(p, scale=1.0):
     """the load NASA let go: a flat cargo pallet carrying nine old batteries, 2.6 tonnes"""
     root = bpy.data.objects.new("battery pallet", None); bpy.context.collection.objects.link(root); root.location = p
-    base = _metal("pallet base", (0.55, 0.56, 0.58), 0.6, 0.2); cell = _metal("battery", (0.9, 0.9, 0.88), 0.7, 0.0); edge = _metal("pallet gold", (0.8, 0.55, 0.12), 0.5, 0.3)
+    base = _metal("pallet base", (0.42, 0.43, 0.45), 0.4, 0.9); cell = _metal("battery", (0.78, 0.78, 0.76), 0.55, 0.1); edge = _metal("pallet rail", (0.15, 0.15, 0.16), 0.5, 0.8)
+    cap = _metal("battery cap", (0.08, 0.08, 0.09), 0.6, 0.2); foil = _metal("pallet foil", (0.75, 0.55, 0.18), 0.3, 1.0)
     def box(loc, sz, m):
         bpy.ops.mesh.primitive_cube_add(size=1, location=loc); o = bpy.context.active_object; o.scale = sz; o.data.materials.append(m); o.parent = root; o.name = "pallet part"
     k = scale; box((0, 0, 0), (1.6 * k, 1.2 * k, 0.12 * k), base)
     for i in range(3):
         for jx in range(3):
             box(((i - 1) * 0.5 * k, (jx - 1) * 0.37 * k, 0.24 * k), (0.42 * k, 0.3 * k, 0.34 * k), cell)
+            box(((i - 1) * 0.5 * k, (jx - 1) * 0.37 * k, 0.42 * k), (0.3 * k, 0.2 * k, 0.03 * k), cap)
+    box((0, 0, -0.09 * k), (1.5 * k, 1.1 * k, 0.06 * k), foil)
+    for sy in (-1, 1): box((0, sy * 0.62 * k, 0.2 * k), (1.6 * k, 0.03 * k, 0.03 * k), edge)
     for sx in (-1, 1): box((sx * 0.84 * k, 0, 0.06 * k), (0.08 * k, 1.24 * k, 0.3 * k), edge)
     return root
 
@@ -98,7 +102,7 @@ def shot2():
     s = D.Shot(globals(), "back_garden_day"); s.place("suburban_garden", turn=45)
     s.hero(u=0.3, height=0.4, face_v=0.5)
     a, b = s.air(1.25, 0.9, 9.0), s.air(-0.2, 0.72, 9.0)
-    pl = pallet(tuple(a), 1.25); pl.rotation_euler = (0.5, 0.2, 0.3)
+    pl = pallet(tuple(a), 1.7); pl.rotation_euler = (0.5, 0.2, 0.3)
     s.move(pl, [(0.0, a, (30, 10, 20)), (1.0, b, (160, 70, 110))], ease=False)
     s.act([(0.02, "look", "lens"), (0.04, "wave"), (0.14, "look", pl), (0.3, "surprised"), (0.42, "look", pl), (0.55, "whoa"), (0.68, "look", pl), (0.72, "worried"), (0.86, "look", "lens"), (0.88, "shrug")])
     s.happens("a pallet of old batteries drifts across the sky over the garden", [pl], 0.0, 1.0, moves=[pl])
@@ -135,7 +139,7 @@ def fireball(s, a, b, t0, t1, r=0.16, tail=2.2, die=None, name="fireball", col=(
 def shot3():
     """the same sky at night, three years on: the pallet comes back as a fireball, breaks up, burns away piece by
     piece, and one piece keeps going down behind the trees"""
-    s = D.Shot(globals(), "night_field"); s.place("preller_drive", turn=180, light=2.2, plate=2.0)
+    s = D.Shot(globals(), "night_field"); s.place("preller_drive", turn=180, light=3.2, plate=2.3)
     s.hero(u=0.28, height=0.38, face_v=0.42)
     a = s.air(1.15, 0.97, 14.0); m = s.air(0.62, 0.8, 14.0)
     main = fireball(s, a, m, 0.0, 0.42, r=0.8, tail=9.0, die=0.44, name="pallet burning")
@@ -172,8 +176,8 @@ def shot5():
     s = D.Shot(globals(), "front_drive"); s.place("suburban_parking_area", turn=225)
     s.hero(u=0.32, height=0.46)
     crate = s.model("wooden_crate_01", u=0.72, v=0.2, yaw=20)
-    box = s.model("cardboard_box_01", u=0.86, v=0.24, yaw=-15)
-    tool = s.model("metal_toolbox", u=0.52, v=0.09, yaw=35)
+    lad = s.model("ladder_sectioned_01", u=0.9, v=0.3, yaw=-70)
+    bag = s.model("cement_bag", u=0.55, v=0.1, yaw=30)
     top = D.compose.corners(s.parts(crate)); zt = max(c[2] for c in top); pc = s._point(crate)
     j = junk((pc.x, pc.y, zt + 0.05 * D.U * BIG + 1.2), BIG)
     s.fall(j, Vector((pc.x, pc.y, zt + 1.4)), Vector((pc.x, pc.y, zt + 0.05 * D.U * BIG)), 0.12, 0.2, spin=(0, 0, 120), bounce=0.05)
