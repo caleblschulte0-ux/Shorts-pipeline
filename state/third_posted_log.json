@@ -23238,14 +23238,32 @@
       "ts": "2026-11-28T13:15:21.233386+00:00"
     },
     "clip-20261128-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/OilyKawaiiSnoodDerp-tzsXCiXagywtBJNq",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/nwA2_xvn_kk",
       "title": "Lacy Asks Him To Restart The Whole GTA Marathon And He Actually Agrees",
       "kind": "twitch_clip",
-      "ts": "2026-11-28T13:18:15.956518+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-28T13:18:25.957193+00:00",
+      "uploaded_at": "2026-11-28T13:18:25.957208+00:00",
+      "publish_at": "2026-11-29T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261128-lacy-asks-him-to-restart-the-whole-gta-marathon--60b603dd",
+        "tiktok": "queued for 2026-11-29T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/OilyKawaiiSnoodDerp-tzsXCiXagywtBJNq",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy asks him to restart the whole game \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7330,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 32.79
+      },
+      "director_cut": true
     }
   }
 }
