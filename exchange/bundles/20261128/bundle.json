@@ -455,7 +455,7 @@
       "channel": "explainer",
       "job": "rewrite_words",
       "reason": "these stories were composed with NO brain reachable \u2014 their numbers are real but their title/hook/narration came from a deterministic template",
-      "write": 3,
+      "write": 5,
       "stories": [
         {
           "slug": "cereal-production-is-1-5x-higher-than-in-1972",
@@ -491,6 +491,32 @@
             "In 1972, rural population was 63.1 % of total population. By 2025: 42.2 % of total population \u2014 down to 67 percent of that.",
             "In 1972, population in the largest city was 18.2 % of urban population. By 2025: 16.2 % of urban population \u2014 barely moved.",
             "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+          ]
+        },
+        {
+          "slug": "pol3-immunization-is-4-6x-higher-than-in-1980",
+          "current_title": "Pol3 immunization Is 4.6x Higher Than In 1980",
+          "current_hook": "In 1980 it was 18.3. Now it's 84.2, and almost nobody noticed.",
+          "current_closing": "The numbers were public the whole time.",
+          "current_question": "",
+          "says": [
+            "1972: 11.7 per 1,000 people. 2024: 7.55 per 1,000 people \u2014 down to 65 percent of that.",
+            "2000: 48.9. 2019: 40.5 \u2014 down to 83 percent of that.",
+            "1980: 18.3. 2024: 84.2 \u2014 4.6 times higher.",
+            "1985: 625,000. 2023: 260,000 \u2014 down to 42 percent of that."
+          ]
+        },
+        {
+          "slug": "passengers-carried-air-transport-is-10-6x-higher-than-in-197",
+          "current_title": "Passengers carried air transport Is 10.6x Higher Than In 1973",
+          "current_hook": "In 1973 it was 401.6 million. Now it's 4269.0 million, and almost nobody noticed.",
+          "current_closing": "The numbers were public the whole time.",
+          "current_question": "",
+          "says": [
+            "1973: 401.6 million. 2023: 4269.0 million \u2014 10.6 times higher.",
+            "China leads at 946,499 million passenger-km; Korea, Rep. is 100,381 million passenger-km.",
+            "2010: 547.1 million. 2024: 913.3 million \u2014 1.7 times higher.",
+            "1995: 8.54 % of total exports. 2019: 7.39 % of total exports \u2014 down to 87 percent of that."
           ]
         }
       ],
