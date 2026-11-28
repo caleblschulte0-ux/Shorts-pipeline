@@ -23376,14 +23376,32 @@
       "ts": "2026-11-28T13:50:28.269936+00:00"
     },
     "clip-20261128-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/PiercingMotionlessGnatPeanutButterJellyTime-Lgaxg8ItCK9yzJL7",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/zqVLOb-wz8k",
       "title": "Lacy Dances And Sings Her Heart Out On Stream And Chat Can't Look Away \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-11-28T13:54:38.119791+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-28T13:54:53.988418+00:00",
+      "uploaded_at": "2026-11-28T13:54:53.988434+00:00",
+      "publish_at": "2026-11-29T06:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261128-lacy-dances-and-sings-her-heart-out-on-stream-an-881b42f2",
+        "tiktok": "queued for 2026-11-29T06:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/PiercingMotionlessGnatPeanutButterJellyTime-Lgaxg8ItCK9yzJL7",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy starts singing on stream \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4833,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 44.0
+      },
+      "director_cut": true
     }
   }
 }

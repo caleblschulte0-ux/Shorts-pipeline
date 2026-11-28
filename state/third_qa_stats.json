@@ -3,204 +3,6 @@
     {
       "date": "20261120",
       "dry_run": false,
-      "ts": "2026-11-20T13:00:04+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 134,
-        "with_retention": 114,
-        "with_curve": 15,
-        "fetched_at": "2026-11-20T08:46:14.733538+00:00"
-      },
-      "brain": {
-        "ok": 8,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shylily": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tenz": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yugi": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261120-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261120-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261120-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261120-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261120-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261120-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broke",
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "GTA 6 comparison, searched name",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "GTA6 tech comparison, no drama",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Shows GTA 6 With Modded Framegen On vs Off And The Difference Is Wild"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": [
-                "render_qa: freeze: 4.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
-              ]
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.6,
-              "problems": [
-                "The frame at 16.9s is fully black in the sharp region, with only a tiny caption showing. It looks like a broken or empty",
-                "The sharp picture is a thin landscape strip, about a third of the canvas height. The renderer did not crop toward the ac",
-                "The player character is small and far away in most frames, so it is hard to read on a phone.",
-                "The streamer facecam is a tiny corner inset, and the footage does not clearly show the framegen on vs off comparison the",
-                "The small in-picture captions are tiny and sit low, and they read as hard to follow."
-              ]
-            },
-            "first_render": {
-              "reframe": "facecam_gameplay",
-              "layout": "facecam_gameplay",
-              "problems": [
-                "vision: Frame at 16.9s: the gameplay region is solid black while captions still show, so the picture has dropped out.",
-                "vision: The sharp gameplay strip fills only about a third of the canvas. The player is small throughout, and the bottom third is",
-                "vision: The hook card sits over the facecam's face for the whole video. The face is the top panel, which makes the layout look c",
-                "vision: The framegen on vs off comparison is never visible; the clip is just a character walking through grass."
-              ]
-            }
-          },
-          "took_s": 455.8
-        }
-      ]
-    },
-    {
-      "date": "20261120",
-      "dry_run": false,
       "ts": "2026-11-20T19:08:22+00:00",
       "feedback": {
         "snapshot": true,
@@ -6392,6 +6194,138 @@
             }
           },
           "took_s": 174.4
+        },
+        {
+          "slug": "clip-20261128-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261128",
+      "dry_run": false,
+      "ts": "2026-11-28T13:54:54+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 136,
+        "with_retention": 100,
+        "with_curve": 15,
+        "fetched_at": "2026-11-28T13:18:33.429702+00:00"
+      },
+      "brain": {
+        "ok": 9,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yugi": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261128-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261128-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261128-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261128-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, no snip, unknown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA 6 club dance, dark, risqu\u00e9, thin",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Dances And Sings Her Heart Out On Stream And Chat Can't Look Away \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Word captions sit mid-frame over the dancers' bodies in a few frames, but never over a face",
+                "Some frames are dark and the subject is small, though still readable"
+              ]
+            }
+          },
+          "took_s": 265.7
+        },
+        {
+          "slug": "clip-20261128-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20261128-6",
