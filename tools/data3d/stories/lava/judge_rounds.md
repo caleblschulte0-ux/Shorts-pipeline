@@ -1210,3 +1210,17 @@ Every run of the 3D judge on this story, appended by tools/data3d/store/judge3d.
 - HARD: PRE-FLIGHT: HARD DEFECT body (stills 1-4): Data holds nothing and does not operate the excavator. He just gestures, so he does not work the digger. His limbs and feet are otherwise fine. The question: BODY: Data's hands are on whatever he holds, carries or works (nothing of his floats beside him or rests on him with no hand on it), his limbs bend as limbs do, and his feet are down unless he is mid-stride.
 - HARD: PRE-FLIGHT: HARD DEFECT consequence (stills 1-4): The wall is big at the end and the last still differs from the first. But what causes it is unclear, since the excavator is not seen digging or building, and Data just stands there. The result reads weakly. The question: CONSEQUENCE: what happens in the shot visibly changes something a phone viewer can see: its subject is big enough to read at a glance, and the last still shows the result, not the same picture as the first.
 
+
+## 2026-11-28 04:14Z · storyboard · ci board run 46106012832
+
+| shot | score | panel | result |
+|---|---|---|---|
+| 2 | 0 | - | FAIL |
+
+**shot 2** (FAIL, 0, bar 70)
+
+- HARD: a measured pre-check failed: FX lava shot 2: HAND: shot2 line 1827: a box named "digger   driver body" stands in for digger. The panel fails a hand-built one as OFF THE LOOK (a toy, a flat sprite, clay); build it with FX.digger (not binding: written before the kit, see store/fx_lint.py)
+- HARD: a measured pre-check failed: FX lava shot 2: HAND: shot2 line 1828: a box named "digger   driver head" stands in for digger. The panel fails a hand-built one as OFF THE LOOK (a toy, a flat sprite, clay); build it with FX.digger (not binding: written before the kit, see store/fx_lint.py)
+- HARD: a measured pre-check failed: CLIPPING shot 2: Coat / continuous tapered body into radio body on 14 frames (deepest 2.2 cm), frames [58, 61, 64, 67, 70, 73]... -> FAIL
+- HARD: a measured pre-check failed: CLIPPING shot 2: Coat center seam into radio body on 11 frames (deepest 2.3 cm), frames [55, 58, 61, 64, 67, 70]... -> FAIL
+
