@@ -12242,6 +12242,27 @@
 ],
 "type": "model"
 },
+"dashed_anti_skid_tiles": {
+"categories": [
+"floor",
+"man made"
+],
+"name": "Dashed Anti Skid Tiles",
+"tags": [
+"square",
+"floor",
+"antislip",
+"rubber",
+"slipresistant",
+"antiskid",
+"durable",
+"gym floor",
+"gym",
+"dashed pattern",
+"raised dashes"
+],
+"type": "texture"
+},
 "de_balie": {
 "categories": [
 "indoor",
