@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e",
+  "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:20:17.314Z",
+  "title": "National Risk Rankings Change With The Metric",
+  "hook": "One danger shrank, another exploded, and a third changed leaders.",
+  "closing": "The metric you choose can redraw which country appears most at risk.",
+  "question": "Which national risk matters most?",
+  "segments": [
+    {
+      "topic": "National Homicide Rate",
+      "say": "The homicide rate fell to 5.2 per hundred-thousand people. One national danger eased while other pressures moved elsewhere."
+    },
+    {
+      "topic": "National Battle Toll",
+      "say": "Ukraine recorded 68,097 battle-related deaths. National danger looks completely different when war replaces ordinary crime."
+    },
+    {
+      "topic": "National Heating Demand",
+      "say": "Greece led with 23,795 heating degree days. National pressure shifts again when climate replaces violence."
+    }
+  ]
+}
