@@ -195,15 +195,17 @@
       "earth wall"
      ],
      "whole": false,
-     "built_as": "a long bank of heaped black lava boulders with a top line of single boulders, running the full width behind the house"
+     "built_as": "a long bank of heaped black lava boulders, loose rubble along its crest, running the full width behind the house"
     },
     {
      "name": "house",
      "objects": [
-      "town house by the wall"
+      "town house by the wall",
+      "iceland flag",
+      "flag pole"
      ],
      "whole": true,
-     "built_as": "a painted tin house, red tin roof and chimney, its back to the wall"
+     "built_as": "a painted tin house at the town's real size, red tin roof and chimney, its gable end to us, its back to the wall, Iceland's flag on a short pole at its corner"
     },
     {
      "name": "digger",
@@ -211,7 +213,16 @@
       "digger"
      ],
      "whole": false,
-     "built_as": "a yellow tracked digger on the wall's crest placing a boulder, riding up with it"
+     "built_as": "a yellow tracked digger on the wall's crest, riding up with it, tipping a bucket of boulders over the lip onto the wall's face"
+    },
+    {
+     "name": "radio",
+     "objects": [
+      "radio"
+     ],
+     "whole": true,
+     "held": true,
+     "built_as": "a black hand-held radio with a short antenna, matte plastic, in his hand the whole shot"
     }
    ],
    "framing": "close",
@@ -220,43 +231,43 @@
     "side": "left",
     "frame_h": 0.36
    },
-   "action": "a digger piles a rock wall behind a house",
-   "consequence": "the rock wall rises to the eaves",
+   "action": "his digger tips rock onto a wall behind a house",
+   "consequence": "the rock wall rises taller than the roof",
    "says_still": 3,
    "stills": [
     {
      "event": "before",
-     "shows": "a painted tin house; behind it a low row of black boulders at its window sills, a big digger on the row beside it, a boulder in its bucket; he faces us, hands on hips",
-     "hands": "free",
+     "shows": "a painted tin house; behind it a knee-high bank of black boulders, a big digger on it tipping a bucket of rock over its lip; he radios it, the radio at his mouth, his other hand on his hip",
+     "hands": "radio",
      "new": [],
      "visible": [
       {
        "prop": "house",
-       "as": "a painted tin house in Iceland"
+       "as": "a painted tin house in Iceland, the Icelandic flag flying by it"
       },
       {
        "prop": "wall",
-       "as": "a low row of black rock boulders behind it, at its window sills"
+       "as": "a knee-high bank of black rock boulders behind it"
       },
       {
        "prop": "digger",
-       "as": "a big digger on the low row beside the house"
+       "as": "a big digger on the bank, its bucket tipping rock at the lip"
       },
       {
        "prop": "data",
-       "as": "the driver in his hard hat, one arm up beckoning his digger on"
+       "as": "the driver in his hard hat radioing it, the radio at his mouth, a hand on his hip"
       }
      ]
     },
     {
      "event": "action",
-     "shows": "a digger builds the rock wall behind the house; it rises past the windows; he waves it on with both arms up",
-     "hands": "free",
+     "shows": "the digger tips rock onto the wall behind the house; it rises up to the roof; he steps back and radios it, looking up, his other hand out",
+     "hands": "radio",
      "new": [
       {
        "what": "wall",
        "how": "grows",
-       "cause": "the digger piles boulders on it"
+       "cause": "the digger tips boulders onto it"
       },
       {
        "what": "digger",
@@ -266,37 +277,37 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he waves it higher with both arms up"
+       "cause": "he steps back and radios it, his other hand out"
       }
      ],
      "visible": [
       {
        "prop": "digger",
-       "as": "the digger builds it, a boulder in its bucket: Iceland built it"
+       "as": "the digger tips a bucket of rock onto it: Iceland built it"
       },
       {
        "prop": "wall",
-       "as": "the rock wall rises past the windows"
+       "as": "the rock wall rises up to the roof"
       },
       {
        "prop": "house",
-       "as": "the house's windows"
+       "as": "the house's roof"
       },
       {
        "prop": "data",
-       "as": "he waves it on, both his arms up"
+       "as": "he radios it, the radio at his mouth, his other hand out"
       }
      ]
     },
     {
      "event": "result",
-     "shows": "the rock wall rises to the eaves, the digger on its crest; he signals hold, one arm straight out flat",
-     "hands": "free",
+     "shows": "the rock wall over the roof, the digger on its crest tipping rock, boulders falling down its face; he leans back, the radio lowered to his chest, a hand on his hip, looking up",
+     "hands": "radio",
      "new": [
       {
        "what": "wall",
        "how": "grows",
-       "cause": "the digger keeps piling boulders on it"
+       "cause": "the digger keeps tipping boulders onto it"
       },
       {
        "what": "digger",
@@ -306,56 +317,56 @@
       {
        "what": "data",
        "how": "pose",
-       "cause": "he holds one arm straight out flat, palm down, and steps back"
+       "cause": "he lowers the radio to his chest, a hand on his hip"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the rock wall up at the eaves, taller and taller: Iceland built it"
+       "as": "the rock wall over the roof, taller and taller: Iceland built it"
       },
       {
        "prop": "house",
-       "as": "the house's roof and eaves under it"
+       "as": "the house's roof under it"
       },
       {
        "prop": "digger",
-       "as": "the digger on its crest"
+       "as": "the digger on its crest, rocks falling from its bucket"
       },
       {
        "prop": "data",
-       "as": "his arm straight out flat, palm down: hold"
+       "as": "the radio lowered to his chest, a hand on his hip, looking up"
       }
      ]
     },
     {
      "event": "reaction",
-     "shows": "the rock wall stands far over the house's roof, twice its height, taller than the house, the digger on its crest with sky above; he steps back again, hands open at his sides, looking up",
-     "hands": "free",
+     "shows": "the rock wall stands taller than the house's roof, the digger on its crest still tipping rock, sky above; he turns to us, grinning, the radio at his side, his other hand open",
+     "hands": "radio",
      "new": [
       {
        "what": "digger",
        "how": "moves",
-       "cause": "it swings for another boulder"
+       "cause": "it drives along the crest and tips another bucket"
       },
       {
        "what": "data",
        "how": "pose",
-       "cause": "he steps back again, arms wide, thumbs up"
+       "cause": "he turns to us, grinning, the radio at his side"
       }
      ],
      "visible": [
       {
        "prop": "wall",
-       "as": "the wall towers far over the roof, twice the house's height: taller than the house"
+       "as": "the wall stands taller than the roof: taller than the house"
       },
       {
        "prop": "digger",
-       "as": "the digger swinging on its crest"
+       "as": "the digger on its crest tipping rock, sky above it"
       },
       {
        "prop": "data",
-       "as": "Data arms wide, thumbs up at the finished height"
+       "as": "he turns to us, grinning, the radio at his side, his other hand open"
       }
      ]
     }

@@ -7,19 +7,19 @@ still: nothing (still 1), an orange glow along the ridge (still 2), a lava fount
 3), the fountain under a towering black ash plume (still 4). Data, in the foreground at the left, three-quarter to us,
 looks at us, turns his head at the glow, flinches at the fountain, and on still 4 runs at the lens, out of the street."""
 
-S1_RIDGE_Y = 38.0                      # the fissure's line on the ridge (coordinator, high lens: the ridge pushed back and lower so the fountain stands whole under the top margin)
+S1_RIDGE_Y = 20.0                      # the fissure's line on the ridge's crest (coordinator, after p1c: no ridge showed: a dark bare lava ridge right across the end of the street, its crest just over the roofs)
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_P0 = (0.15, -2.7)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
-S1_CAM = (0.3, -3.9, 1.15)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
+S1_P0 = (0.2, -3.15)                   # where he stands: in the street, 0.95 m in front of the lens and below it (p1d: at 1.15 m he measured 0.26-0.30) (coordinator, r1za: margin all round)
+S1_CAM = (0.3, -4.1, 1.35)             # (coordinator, after p1c, option (a): a HIGH lens, 1.35 m over a 0.82 m Data, tipped 16 degrees down the street; higher cannot hold him at a third of the frame) the one lens
 
 
 def s1_ground_z(x, y):
     """the street flat, the land round the town rolling, and the ridge rising behind it to the fissure"""
     z = -0.07 if abs(x) < 1.1 else 0.0                    # (the road's own deck lies in this shallow bed: the kit's road, never the rock showing through it)
     if abs(x) > 2.4: z += 0.15 * lw_fbm(x * 0.3, y * 0.3, 3) + 0.03 * (abs(x) - 2.4)
-    r = max(0.0, (y - 24.0) / 14.0)
-    z += 5.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 23.5 else 0.0)
+    r = max(0.0, (y - 14.0) / 6.0)
+    z += 3.6 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.4 * lw_fbm(x * 0.25, y * 0.3, 7) if y > 13.5 else 0.0)     # (p1d: 6 m at y 16 stood as a cliff over the whole top band: lower and further, its crest just over the roofs)
     if y > S1_RIDGE_Y: z -= 0.6 * min(1.0, (y - S1_RIDGE_Y) / 2.0)
     return z
 
@@ -30,7 +30,7 @@ def place_grindavik_street():
     above it where the fissure opens (its glowing slot built here, hidden until the eruption comes), far blue
     mountains. Nothing else in the street: no cars, flags, poles or trucks (coordinator: two or three props)."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -50, 50, -14, 60, 160, 140, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
+    lw_grid("lava field ground", -50, 50, -14, 60, 160, 180, s1_ground_z, ph_mat("aerial_rocks_02", scale=1.4, tint="#4E4A45", name="lava field rock ground"))     # (coordinator, after p1c: shots 3-5's bare dark lava rock, not green moss)     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
     # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
     # crack: an intact grey deck, its centre line painted fresh)
     asph = lw_noise("street asphalt", "#28292C", "#4E5054", scale=40.0, rough=0.85, bump=0.35, detail=12, lo=0.38, hi=0.62)     # (r1za pre-flight: "blurry noise": a fine aggregate grain)     # (r1y EMPTY: the near street still one smooth plane at phone size: a coarse aggregate grain)     # (r1w EMPTY: worn patches, still intact)
@@ -64,7 +64,7 @@ def place_grindavik_street():
     px, py = S1_P0
     # (coordinator, p1c: no cinders on the street: nothing has happened yet)
     lava_rock("lava field rock", 60, (-14, 14, -6, 8), s1_ground_z, seed=3, r=(0.04, 0.12), moss=0.6, avoid=lambda x, y: abs(x) < 5.2)
-    lava_rock("ridge slope stone", 260, (-12, 14, 8.5, 15.0), s1_ground_z, seed=12, r=(0.05, 0.16), moss=0.5)     # (r1w EMPTY: the slope needs its rocks big enough to read at phone size)
+    lava_rock("ridge slope stone", 320, (-12, 14, 14.0, 20.5), s1_ground_z, seed=12, r=(0.08, 0.22), moss=0.0)     # (r1w EMPTY: the slope needs its rocks big enough to read at phone size)
     for k in range(6):                                     # the far blue mountains over the ridge
         x = -40 + 16 * k
         K.sph("far mountain", (x, 70, -4), 14.0, K.mat("far mountain", "#7D8A9C", rough=1.0), scale=(1.4, 0.5, 0.7 + 0.15 * (k % 3)), seg=24, ring=12)
@@ -76,52 +76,62 @@ def place_grindavik_street():
         o = K.box("fissure glow", (x, S1_RIDGE_Y + 0.12 * math.sin(2.3 * k), s1_ground_z(x, S1_RIDGE_Y) + 0.12), (0.95, w_ * 1.6, 0.3), fl, bev=0.05)     # (p1a: sunk in the ridge, the glow never showed)
         o.rotation_euler = (0, 0, 0.15 * math.sin(3.1 * k)); slot.append(o)
     fz = s1_ground_z(S1_FX, S1_RIDGE_Y)
-    # a house across the end of the street, under the ridge: its red tin roof slopes toward the lens
-    town_house("town house at the street's end", (1.3, 10.4, s1_ground_z(1.3, 9.0)), yaw=0.0, w=3.2, d=2.6, storeys=1, base=0.5, roof="#B8352B", wall="#E9D9A2", seed=3)
+    # (coordinator, after p1c: the house across the street's end read as the thing on fire: gone, the ridge stands there)
     bpy.context.view_layer.update()
     for o in bpy.data.objects:                             # (the near houses' door steps stood in the frame's corner as bare pale blocks: cut)
         if o.name.endswith(" step") or " step." in o.name:
             c = o.matrix_world.translation
             if -4.5 < c.y < 3.5: o.hide_render = True; o.hide_viewport = True
     def light():
-        k = iceland_light(sun_elev=26, sun_az=-35, sun=3.0, sky=0.4, haze=0.8)           # the world's one bright day (the reset, 2026-11-25: no dusk)
-        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(70))   # (r1v EMPTY 25%: clouds over the street) the same REAL sky as the wall's beats (Poly Haven)
+        k = iceland_light(sun_elev=30, sun_az=-30, sun=3.2, sky=0.45, haze=1.2)           # (coordinator, after p1c: shot 4's light and sky exactly)
+        ph_sky("kloofendal_48d_partly_cloudy_puresky", strength=0.6, rot=math.radians(20))   # (r1v EMPTY 25%: clouds over the street) the same REAL sky as the wall's beats (Poly Haven)
         return k
     return dict(light=light, slot=slot, houses=houses, fz=fz)
 
 
 def shot1():
-    """THE TOWN, AND IT ERUPTS. See the module's head."""
+    """THE TOWN, AND IT ERUPTS. See the module's head. (coordinator, after p1c: a real ridge across the end of the street,
+    its fountain three times the size and bright, a lava streak down its face; one car; he really recoils.)"""
     W = lw_win
     yaw_of = lambda dx, dy: math.atan2(dx, -dy)
     TS = [f_ * DUR for f_ in (0.08, 0.38, 0.68, 0.98)]           # the four stills
-    T_GLOW = TS[0] + 0.3                                         # the smoking ridge starts to glow; the cars' lamps come on
-    T_BURST = TS[2] - 0.55                                       # the fountain erupts out of it (still 3: he recoils from it)
+    T_GLOW = TS[0] + 0.3                                         # the smoking ridge starts to glow; the car's lamps come on
+    T_BURST = TS[2] - 0.55                                       # the fountain erupts out of it (still 3: he ducks from it)
     T_PLUME = TS[2] - 0.3                                        # the ash plume climbs over it
-    T_CARS = TS[1] + 0.15                                        # the two parked cars pull out and speed out of town, past him
-    T_TURN = TS[2] + 0.35                                        # he half-turns toward the lens side, about to follow them
+    T_CARS = TS[1] + 0.15                                        # the parked car pulls out and speeds out of town, past him
     P = place_grindavik_street()
     light = P["light"]
     FZ = P["fz"]
-    # ---- still 1: thin smoke already rising off the ridge (coordinator, r1za pre-flight: the eruption has a visible start)
-    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=2.4, h=11.0,
-                      keys=[(0.0, 0.45), (T_GLOW, 0.6), (T_BURST, 0.8)], t_end=DUR + 1.0, seed=1.3 + k, col=(0.62, 0.62, 0.64), dens=2.5, lean=(0.04, 0.02))
-             for k, dx in enumerate((-6.0, 0.5, 6.5))]
-    # ---- the eruption, growing still by still: the slot glows, the fountain erupts, the plume fills the sky
+    # ---- still 1: thin smoke already rising off the ridge; thicker at the glow
+    smoke = [lw_steam(f"ridge smoke {k}", (S1_FX + dx, S1_RIDGE_Y + 0.3, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.1), w=2.0, h=9.0,
+                      keys=[(0.0, 0.35), (T_GLOW, 0.75), (T_BURST, 0.9)], t_end=DUR + 1.0, seed=1.3 + k, col=(0.55, 0.55, 0.57), dens=2.5, lean=(0.04, 0.02))
+             for k, dx in enumerate((-5.0, 0.5, 5.5))]
     for o in P["slot"]:
         o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(T_GLOW))
         o.hide_render = False; o.keyframe_insert("hide_render", frame=F(T_GLOW) + 1)
-    # (coordinator, after shot 2's r2e pre-flight: one grade in all four stills: no lamp lights the town; the glow is the
-    # lava's own, the slot and the fountain)
-    # (coordinator, r1ze: the fountain twice as tall, near the top margin but whole (p1a: h 20 ran out of the top; 13), the densest version: a wide base, a
-    # bright core, and two more columns layered round it in depth so it is never one flame card)
-    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=7.0, h_fire=12.0, h_smoke=5.0,
-                              lean=(0.03, 0.06), t_end=DUR + 1.0, seed=2.3, fire=10.0, smoke_d=3.0, rise=5.0, spread=0.35, flame_d=5.0,
+    # (coordinator, after p1c: three or four times the fountain, wide and bright, up and off the top edge)
+    fountain = lw_fire_column("lava fountain", (S1_FX, S1_RIDGE_Y, FZ - 0.3), w=8.0, h_fire=14.0, h_smoke=5.0,
+                              lean=(0.03, 0.06), t_end=DUR + 1.0, seed=2.3, fire=14.0, smoke_d=3.0, rise=5.0, spread=0.35, flame_d=5.0,
                               keys=[(T_BURST - 0.05, 0.0), (T_BURST + 0.4, 0.75), (TS[2], 1.0)], grow=True)
-    flanks = [lw_fire_column(f"lava fountain flank {k}", (S1_FX + dx, S1_RIDGE_Y + dy, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.3), w=3.2, h_fire=h_, h_smoke=3.0,
-                             lean=(0.03 * (k * 2 - 1), 0.05), t_end=DUR + 1.0, seed=5.7 + 3.1 * k, fire=8.0, smoke_d=3.0, rise=4.5, spread=0.3, flame_d=4.5,
+    flanks = [lw_fire_column(f"lava fountain flank {k}", (S1_FX + dx, S1_RIDGE_Y + dy, s1_ground_z(S1_FX + dx, S1_RIDGE_Y) - 0.3), w=3.6, h_fire=h_, h_smoke=3.0,
+                             lean=(0.03 * (k * 2 - 1), 0.05), t_end=DUR + 1.0, seed=5.7 + 3.1 * k, fire=11.0, smoke_d=3.0, rise=4.5, spread=0.3, flame_d=4.5,
                              keys=[(T_BURST, 0.0), (T_BURST + 0.45, 0.7), (TS[2], 1.0)], grow=True)
-              for k, (dx, dy, h_) in enumerate(((-2.6, 1.2, 8.0), (2.4, -0.8, 9.5)))]
+              for k, (dx, dy, h_) in enumerate(((-3.0, 0.6, 10.0), (2.8, -0.4, 11.5)))]
+    # its light on the ridge's face and down the street: the slot's glow, then the fountain's
+    glows = [lw_point(f"eruption glow {k}", (S1_FX + dx, S1_RIDGE_Y - 1.5, FZ + 1.5), 0.0, col=(1.0, 0.42, 0.1), r=1.5) for k, dx in enumerate((-4.0, 0.0, 4.0))]
+    for g in glows:
+        for t_, e_ in ((0.0, 0.0), (T_GLOW, 0.0), (T_GLOW + 0.3, 2500.0), (T_BURST, 2500.0), (T_BURST + 0.4, 16000.0)):
+            g.data.energy = e_; g.data.keyframe_insert("energy", frame=F(t_))
+    # a lava streak running down the ridge face from the fissure by still 4, segment by segment
+    rl = lava_mat("ridge lava", heat=2.2, scale=3.0, fresh=1.0)
+    streak = []
+    for k in range(7):
+        y1 = S1_RIDGE_Y - 0.2 - 0.8 * k; y0 = y1 - 0.85; wd = 0.55 + 0.1 * k
+        cx = S1_FX + 0.3 * math.sin(1.3 * k)
+        o = lw_grid(f"ridge lava streak {k}", cx - wd, cx + wd, y0, y1, 10, 8, lambda x, y: s1_ground_z(x, y) + 0.06, rl)
+        t_on = T_BURST + 0.3 + k * (TS[3] - 0.15 - T_BURST - 0.3) / 7
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=1); o.keyframe_insert("hide_render", frame=F(t_on))
+        o.hide_render = False; o.keyframe_insert("hide_render", frame=F(t_on) + 1); streak.append(o)
     PX, PY = S1_FX - 1.0, S1_RIDGE_Y + 2.5; PZ = s1_ground_z(PX, PY)
     plumes, base0 = [], []
     for k, (dx, w_, h_, dy) in enumerate(((0.0, 13.0, 64.0, 0.0), (-5.5, 9.0, 44.0, 1.5), (5.0, 9.5, 50.0, 1.0))):     # (coordinator, p1c: towering out of the top of the frame by still 4)
@@ -136,13 +146,12 @@ def shot1():
             g = max(0.08, 0.08 + 0.92 * W(t, T_PLUME, TS[3] - T_PLUME))          # (a volume scaled near zero crashes Cycles: never under 0.08)
             o.scale = (s0 * g,) * 3; o.location = b + (l0 - b) * g
             o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    # ---- the town flees (coordinator, r1ze: the WORLD does the fleeing): two cars parked at the kerbs up the street; their
-    # lamps come on at the glow; they pull out into the street and speed down it toward us, past him on either side, dust
-    # behind; on still 4 both are whole in the frame at mid-street, nearer than on still 3. Smooth from still 1 to 4.
+    # ---- the town flees (coordinator, after p1c: ONE car, whole in the frame on every still): parked at the kerb up the
+    # street; its lamps come on at the glow; it pulls out and speeds down the street toward us, past him, dust behind
     cars, dust = [], []
-    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.9, 9.0, 0.6, "#2F5E8C"), (-0.65, -0.9, 7.4, -0.1, "#B8352B"))):
+    for k, (x0, x1, y0, y4, col) in enumerate(((-0.65, -0.9, 8.4, 1.3, "#B8352B"),)):
         c = FX.car(name=f"getaway car {k}", loc=(x0, y0, 0.0), yaw=0.0, kind="hatch", col=col, lights=True, seed=4 + k, dirt=0.4, power=30.0)
-        t0 = T_CARS + 0.25 * k; T = TS[3] - t0; ra = 0.6
+        t0 = T_CARS; T = TS[3] - t0; ra = 0.6
         v = (y0 - y4) / (T - ra / 2)
         def cy(t, y0=y0, t0=t0, v=v, ra=ra):
             u = max(0.0, t - t0)
@@ -168,56 +177,55 @@ def shot1():
             bs = m.node_tree.nodes["Principled BSDF"]; si = bs.inputs["Emission Strength"]; e = si.default_value
             si.keyframe_insert("default_value", frame=F(T_GLOW) + 3)
             si.default_value = 0.0; si.keyframe_insert("default_value", frame=1); si.keyframe_insert("default_value", frame=F(T_GLOW)); si.default_value = e
-    # ---- him: centred in the street (coordinator, r1za: centred with margin in every still). No run, no point: he
-    # stands calm facing us, turns his head and shoulders to the glow, recoils from the fountain (leaning back, both arms
-    # thrown up beside his head, mouth open), and holding the recoil half-turns to the lens side as if to follow the cars.
+    # ---- him (coordinator, after p1c): 1 facing us, calm; 2 his head turned back to the ridge; 3 a real recoil: knees
+    # bent, shoulders hunched, arms up guarding his head, mouth open, leaning away from the ridge toward us; 4 the same
+    # crouch, wide-eyed at us
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.06, 1.0, -0.194)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
+    CAM0 = Vector(S1_CAM); D = Vector((-0.02, math.cos(math.radians(19.5)), -math.sin(math.radians(19.5)))).normalized()     # (p1d: nearer, so tipped further down to keep his feet); LOOK0 = CAM0 + D * 5.0
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
-    YAW = LENS + math.radians(10)                              # 1 facing us
+    YAW = LENS + math.radians(8)                               # 1 facing us
     data.place(X0, Y0, math.degrees(YAW))
     kit = hard_hat(data)
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
     SIDE = Vector((-TO.y, TO.x, 0))
+    T_DUCK = T_BURST + 0.06
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
-        p = (Vector((X0, Y0, Z0)) + SIDE * (0.05 * W(t, 0.1, 0.35) - 0.1 * W(t, T_GLOW + 0.15, 0.45))
-             + TO * (0.04 * W(t, T_BURST + 0.08, 0.3) - 0.06 * W(t, T_TURN + 0.25, 0.45)))     # a step to the glow; the recoil's step back; a step toward the lens side
-        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(40) * W(t, T_GLOW, 0.6) - math.radians(10) * W(t, T_BURST + 0.08, 0.3)
-                   - math.radians(55) * W(t, T_TURN, 0.6))
+        p = (Vector((X0, Y0, Z0)) + SIDE * (0.04 * W(t, 0.1, 0.35) - 0.04 * W(t, T_GLOW + 0.15, 0.45))
+             + TO * (0.03 * W(t, T_DUCK, 0.3)) - Vector((0, 0, 0.07)) * W(t, T_DUCK, 0.3))     # the duck: a half-step away from it and down on bent knees
+        data._kobj(t, loc=tuple(p), rot=YAW + math.radians(20) + math.radians(18) * W(t, T_GLOW, 0.6) - math.radians(14) * W(t, T_DUCK, 0.35)
+                   - math.radians(24) * W(t, TS[2] + 0.35, 0.5))     # (p1d FACE: square to us with it all behind him on three stills) three-quarter on 1-3, square to us on 4
         data._plant_feet_here(t, lift=(Z0, Z0))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) - 16 * W(t, T_BURST + 0.08, 0.3) + 6 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
-    lw_layer(data, "chest", lambda t: (-6 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-3 * W(t, T_GLOW + 0.2, 0.5) + 7 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)     # hunched forward, away from the ridge behind him (p1d: at 13 his hat hid his face from the high lens)
+    lw_layer(data, "chest", lambda t: (3 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # 1 at us, calm
-    data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=30, max_pitch=25, blend=0.35)                             # 2 round at the glow (FACE)
-    data.look_at(RIDGE + Vector((0, 0, 4.0)), 1.9, max_yaw=30, max_pitch=30, blend=0.4)
-    data.look_at(RIDGE + Vector((0, 0, 12.0)), T_BURST + 0.05, max_yaw=25, max_pitch=40, blend=0.15)    # 3 up at the fountain as it erupts
-    data.look_at(RIDGE + Vector((0, 0, 10.0)), T_TURN + 0.3, max_yaw=55, max_pitch=30, blend=0.4)       # 4 still on it as he turns away
+    data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=35, max_pitch=12, blend=0.35)                             # 2 back round at the glow (FACE)
+    data.look_at(RIDGE + Vector((0, 0, 6.0)), T_DUCK, max_yaw=28, max_pitch=6, blend=0.2)              # 3 back at the fountain as he ducks
+    data.look_at(CAM0 + Vector((0, 0, 0.1)), TS[2] + 0.45, max_yaw=40, max_pitch=20, blend=0.35)       # 4 wide-eyed at us
     data.expression("determined", 0.0, T_GLOW, blend=0.15)
-    data.expression("surprised", T_GLOW, T_BURST, blend=0.15)
-    data.expression("alarmed", T_BURST, DUR + 1.0, blend=0.1)
-    sides = sorted("LR", key=lambda s_: -acts._shoulder(data, s_).x)
+    data.expression("surprised", T_GLOW, T_DUCK, blend=0.15)
+    data.expression("alarmed", T_DUCK, DUR + 1.0, blend=0.1)
     LOW = lambda sg: ((-4, 0, sg * 5), (-22, 0, 0), (0, 0, 0))                    # (r2e pre-flight 'talking with his hands out': his arms hang)
     DOWN = lambda sg: ((-8, 0, sg * 8), (-28, 0, 0), (-4, 0, 0))                  # 2 still down, a little tense
-    THROWN = lambda sg: ((-92, 0, -sg * 38), (-22, 0, -sg * 10), (-10, sg * -12, -sg * 15))     # 3 both arms thrown up beside his head (shot 3's UP, higher)
-    HELD = lambda sg: ((-78, 0, -sg * 34), (-26, 0, -sg * 12), (-10, sg * -12, -sg * 12))      # 4 still up as he turns
-    keys = [0.0, 0.4, T_GLOW + 0.2, 1.4, T_BURST + 0.05, T_BURST + 0.4, TS[2] + 0.1, T_TURN + 0.3, DUR + 0.5]
-    for sd in sides:
+    GUARD = lambda sg: ((-58, 0, -sg * 12), (-48, 0, -sg * 22), (-10, sg * -12, -sg * 15))     # 3 (p1c, p1d: these read as arms crossed at his belly) shot 4's UP, which its board passed: both arms thrown up beside his head
+    WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))         # 4 still crouched, hands out: whoa (shot 4's WHOA)
+    keys = [0.0, 0.4, T_GLOW + 0.2, 1.4, T_DUCK, T_DUCK + 0.3, TS[2] + 0.25, TS[2] + 0.8, DUR + 0.5]
+    for sd in "LR":
         sg = -1 if sd == "L" else 1
-        seq = [LOW, LOW, DOWN, DOWN, THROWN, THROWN, THROWN, HELD, HELD]
+        seq = [LOW, LOW, DOWN, DOWN, DOWN, GUARD, GUARD, WHOA, WHOA]
         for tk, pose in zip(keys, seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
+        for tk, lift in ((0.0, 0), (T_DUCK, 0), (T_DUCK + 0.3, -18), (DUR + 0.5, -18)):          # the shoulders hunch up
+            data._k(f"clav.{sd}", tk, rot=(0, 0, sg * lift))
     data.finish()
     cam = K.camera(tuple(CAM0), tuple(LOOK0), lens=24.0, fstop=11.0)
     print("S1 CAM", tuple(round(v, 2) for v in CAM0), "look", tuple(round(v, 2) for v in LOOK0), "data", tuple(round(v, 2) for v in data.pos()),
-          "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), "turn", round(T_TURN, 2), flush=True)
+          "stills", [round(t, 2) for t in TS], "glow", round(T_GLOW, 2), "burst", round(T_BURST, 2), flush=True)
     def cam_at(t):
-        return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED: the drift moved the houses between stills)
+        return CAM0, LOOK0, data.pos() + Vector((0, 0, 0.5))          # (coordinator, r1za: LOCKED)
     lw_cut(cam, cam_at, cam_at, -1.0, -1.0, 24.0, 24.0)
-    erupt = P["slot"] + [fountain] + flanks + plumes + smoke
     return dict(lanes=[], kiosks=[], place="grindavik_street", light=light, data=data, rest=1, grips=(), cutaway=None,
                 boxes=[],
-                conseq=[("a lava fountain erupts up over the town's roofs", lambda: [fountain] + flanks, T_BURST + 0.35, DUR, {"whole": False}),       # (r1v: with the thin slot it measured 6% of the frame)
-                        ("a huge black ash plume towers over the town", lambda: plumes, T_PLUME, DUR, {"whole": False})])
+                conseq=[("the ridge over the town erupts in a tall lava fountain under a black plume, lava running down its face", lambda: [fountain] + flanks + plumes + streak, T_BURST + 0.35, DUR, {"whole": False})])

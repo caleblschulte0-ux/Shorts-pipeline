@@ -99,14 +99,14 @@
  },
  "ideas": [
   "behind the roofs of an Icelandic street the volcano erupts and grows still by still, a glow, a lava fountain, a towering black ash plume; he looks up, flinches and runs out of the street",
-  "behind a tin house his digger builds a bank of black boulders until it towers far over the roof",
+  "behind a tin house a digger tips bucket after bucket of black boulders onto a bank until it stands taller than the roof; he watches it rise",
   "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and builds up against it; it stops dead against the rock and goes dark, and he punches the air and grins",
   "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
   "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
  ],
  "storyboard": [
   "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils. Cars speed out of town past him.",
-  "2 He waves his digger on as it builds a rock wall behind a house until it towers far over the roof.",
+  "2 He radios a digger as it tips rock onto a wall behind a house until it stands taller than the roof. He turns to us, grinning.",
   "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and builds up against it, steam rising off it. It stops dead against the rock, its crust going dark, and he punches the air and grins at us.",
   "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
   "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
@@ -140,28 +140,29 @@
   },
   {
    "camera": "low",
-   "data": "waves his digger on as the banksman: beckons it up with one arm, waves it higher with both arms, signals hold with one arm out flat, then arms wide, thumbs up",
+   "data": "radios the digger as it builds: the radio at his mouth with a hand on his hip, then a step back with his other hand out as it reaches the roof, the radio lowered to his chest as he leans back, then round to us, grinning, the radio at his side",
    "props": [
     "earth wall",
     "house by the wall",
-    "digger"
+    "digger",
+    "radio"
    ],
    "arc": [
     {
      "at": 0.08,
-     "what": "a knee-high row of boulders behind the house, the digger on it; one arm up, beckoning it on"
+     "what": "a knee-high bank of boulders behind the house; the digger on it tips a bucket of rock over its lip; he radios it, a hand on his hip"
     },
     {
      "at": 0.38,
-     "what": "the wall past the windows; both arms up, waving it higher"
+     "what": "the bank up to the roof, the digger tipping rock at its lip; a step back, he radios it, his other hand out"
     },
     {
      "at": 0.68,
-     "what": "the wall over the eaves, the digger on its crest; one arm straight out flat: hold"
+     "what": "the bank over the roof, rocks falling from the digger's bucket down its face; he leans back, the radio at his chest, looking up"
     },
     {
      "at": 0.98,
-     "what": "the wall towering over the roof; arms wide, thumbs up, a step further back"
+     "what": "the bank stands taller than the roof, the digger still tipping rock at its crest; he turns to us, grinning, the radio at his side"
     }
    ]
   },
