@@ -51,6 +51,9 @@ STORY = os.environ.get("STORY", "checkout")
 STORY_DIR = os.path.join(os.path.dirname(HERE), "stories", STORY)
 SCRIPT = json.load(open(os.path.join(STORY_DIR, "script.json")))
 SHOT = int(os.environ.get("SHOT", "1"))
+DAILY = SCRIPT.get("pipeline") == "daily"   # a daily short (tools/data3d/daily/README.md, 2026-11-28): staged with store/director.py from
+if DAILY: os.environ.setdefault("STAGING", "on")   # real places and scanned props. Every measured check still runs and prints; none of them
+                                            # stops the build, and no plan.json is asked for: the day's video ships (daily/ship.py)
 import boardlint   # the payoff is carried by a big prop or action, never a subtle face or a tiny change (store/boardlint.py)
 for _where, _p in boardlint.problems(SCRIPT):
     print(f"BOARD {STORY} {_where}: {_p}" + ("" if boardlint.held(STORY) else
@@ -93,7 +96,7 @@ import shot_plan    # every shot is PLANNED before it is staged: its prop, where
 _pl = shot_plan.problems(STORY, SCRIPT)
 for _where, _p in _pl + shot_plan.advisory(STORY, SCRIPT):
     print(f"PLAN {STORY} {_where}: {_p}" + ("" if shot_plan.held(STORY) else " (not binding: staged before the plan, see store/shot_plan.py)"), flush=True)
-if _pl:     # in EVERY mode (STAGING=on too): a new story has no build, diagnostic or not, around its plan; PLAN_BEFORE stories return []
+if _pl and not DAILY:     # in EVERY mode (STAGING=on too): a new story has no build, diagnostic or not, around its plan; PLAN_BEFORE stories return []
     raise SystemExit(f"{STORY}: no shot plan, or a plan that breaks the recipe (store/shot_plan.py): plan the shot before staging it")
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "/tmp/shots"
 SPP = int(sys.argv[2]) if len(sys.argv) > 2 else 24
@@ -319,6 +322,7 @@ if S.get("open_roof"):   # the camera is up in the roof: take the deck, joists, 
                         o.hide_render = win[0] <= (f - 1) / FPS < win[1]; o.keyframe_insert("hide_render", frame=f)
 style.follow_key(key, data, 1, NF)
 style.render_settings(sc, SPP, PCT)
+if S.get("after"): S["after"](sc)             # a director shot's last word on the render (its exposure for a photographed place)
 if S.get("no_blur"): sc.render.use_motion_blur = False   # a still camera on swapping lanes: blur only smeared the swaps into ghosts (judge)
 if os.environ.get("TEMPORAL_SAFE", "1") == "1":
     cy = sc.cycles; cy.adaptive_threshold = 0.01; cy.denoising_prefilter = 'ACCURATE'

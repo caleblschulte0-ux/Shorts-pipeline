@@ -1,0 +1,85 @@
+{
+ "slug": "spacejunk",
+ "pipeline": "daily",
+ "title": "Space Station Junk Smashed Through a Florida Family's Roof",
+ "voice": "am_fenrir",
+ "note": "The first DAILY-pipeline 3D short (2026-11-28, tools/data3d/daily/README.md): staged with store/director.py in photographed places with scanned props, shipped by data3d_ship.yml. Topic approved by caaleb 2026-11-23 ('space junk through a roof'). Naples, Florida, 8 March 2024.",
+ "lines": [
+  "A chunk of the space station fell out of the sky and smashed straight through a family's roof in Florida.",
+  "It came from a load of old batteries, heavier than a pickup truck, that NASA tossed overboard three years earlier.",
+  "The whole thing was supposed to burn up on the way down. One piece didn't.",
+  "It tore through the roof and two floors, with their son at home, and it was smaller than a soda can.",
+  "NASA admitted it was theirs. Now the family wants NASA to pay for the house. Should they?"
+ ],
+ "links": [
+  "so",
+  "but",
+  "so",
+  "but"
+ ],
+ "sources": [
+  {
+   "claim": "a piece of International Space Station hardware hit a home in Naples, Florida on 8 March 2024 and went through the roof and two floors",
+   "says": "The object tore through the roof and both floors of his two-story house in Naples, Florida",
+   "url": "https://www.npr.org/2024/04/23/1246609214/nasa-space-debris-florida-home",
+   "publisher": "NPR",
+   "year": 2024
+  },
+  {
+   "claim": "it came from a 5,800 pound pallet of old nickel-hydride batteries released from the station in March 2021, expected to burn up",
+   "says": "NASA ground controllers used the space station's robotic arm to release a cargo pallet containing aging nickel hydride batteries ... The hardware was expected to fully burn up during entry through Earth's atmosphere on March 8, 2024. However, a piece of hardware survived",
+   "url": "https://www.nasa.gov/blogs/spacestation/2024/04/15/nasa-completes-analysis-of-recovered-space-object/",
+   "publisher": "NASA",
+   "year": 2024
+  },
+  {
+   "claim": "the piece is a metal stanchion about 4 inches tall, 1.6 inches wide, 1.6 pounds",
+   "says": "The object is made of the metal alloy Inconel, weighs 1.6 pounds, is 4 inches in height and 1.6 inches in diameter",
+   "url": "https://www.nasa.gov/blogs/spacestation/2024/04/15/nasa-completes-analysis-of-recovered-space-object/",
+   "publisher": "NASA",
+   "year": 2024
+  },
+  {
+   "claim": "the son was home; the family filed a claim against NASA for more than $80,000",
+   "says": "the family's claim ... seeks in excess of $80,000",
+   "url": "https://www.cbsnews.com/news/florida-family-space-junk-iss-nasa-claim/",
+   "publisher": "CBS News",
+   "year": 2024
+  }
+ ],
+ "sets": [
+  "living_room",
+  "back_garden_dusk",
+  "night_sky_yard",
+  "upstairs_room",
+  "front_drive"
+ ],
+ "sets_why": "one family's house on one day: the living room where it lands, the garden under the sky it came from, the yard at night as it burns up, the room upstairs it went through, the drive out front where the bill lands",
+ "world": {
+  "logline": "A man at home in Florida has a piece of the space station come through his roof, finds out where it came from, and wants to know who pays.",
+  "hero": "Data as the homeowner, in his own white coat",
+  "place": "one two-storey house in a Florida suburb and its garden"
+ },
+ "draft_windows": [
+  [
+   0.0,
+   7.673
+  ],
+  [
+   7.673,
+   15.346
+  ],
+  [
+   15.346,
+   21.201
+  ],
+  [
+   21.201,
+   29.237
+  ],
+  [
+   29.237,
+   35.819
+  ]
+ ]
+}
