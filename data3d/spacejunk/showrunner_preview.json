@@ -1,5 +1,5 @@
 {
-  "score": 40,
+  "score": 44,
   "verdict": "block",
   "dimensions": {
     "hook": 2,
@@ -7,39 +7,37 @@
     "mascot": 1,
     "craft": 1,
     "pace": 1,
-    "payoff": 0,
+    "payoff": 1,
     "temporal_craft": 3
   },
   "auto_fails": [
-    "junk_imagery: payoff@-1.8 to payoff@-0.4: a toolbox, wooden chest, lantern-like canister and a cardboard box sit on a street and have nothing to do with NASA or the house; mid1 has a garbled yellow-green slab floating in the sky that does not read as batteries",
-    "decorative_mascot: mid2: Data just stands in a dark field looking up; payoff@-0.4: he stands with his hands clasped beside random props. He never causes anything: he does not drop, carry or catch the debris",
-    "empty_void: mid2: most of the frame is a dark night field and sky with only Data in the lower left; nothing shows the debris burning up",
-    "unreadable: hook@1.5 to mid0: the hook text sits on top of Data's head and glasses, so the lines cross his face, and on a phone the white words fight his teal head; mid3: the caption 'THE ROOF AND' sits over Data's coat"
+    "junk_imagery: mid1: a garbled battery-pack object is sliced off by the top-right frame edge over a stock backyard photo. mid4-payoff@-0.4: a stock European house with a cement bag, crate and ladder stands in for a Florida family home. None of these props tells the story.",
+    "decorative_mascot: mid1, mid2, mid4 and payoff@-0.4: Data stands and gestures beside the action. He never drops, catches or pushes the debris or the can. In mid3/mid4 he only clasps his hands next to the can."
   ],
   "checks": {
     "junk_imagery": {
       "present": true,
-      "evidence": "payoff@-1.8 to payoff@-0.4: a toolbox, wooden chest, lantern-like canister and a cardboard box sit on a street and have nothing to do with NASA or the house; mid1 has a garbled yellow-green slab floating in the sky that does not read as batteries"
+      "evidence": "mid1: a garbled battery-pack object is sliced off by the top-right frame edge over a stock backyard photo. mid4-payoff@-0.4: a stock European house with a cement bag, crate and ladder stands in for a Florida family home. None of these props tells the story."
     },
     "decorative_mascot": {
       "present": true,
-      "evidence": "mid2: Data just stands in a dark field looking up; payoff@-0.4: he stands with his hands clasped beside random props. He never causes anything: he does not drop, carry or catch the debris"
+      "evidence": "mid1, mid2, mid4 and payoff@-0.4: Data stands and gestures beside the action. He never drops, catches or pushes the debris or the can. In mid3/mid4 he only clasps his hands next to the can."
     },
     "bare_number_card": {
       "present": false,
-      "evidence": "No beat is a big number on a plain background; mid3 and mid4 use a red can as a size prop"
+      "evidence": "No beat is just a number on a background. mid3/mid4 show a physical soda can beside the hole."
     },
     "dead_air": {
       "present": false,
-      "evidence": "Measured longest_static_s is 0.0 and Data gestures in every sampled frame, although mid5 to payoff@-0.4 is a near-identical hold on the same props"
+      "evidence": "Measured longest_static_s is 0.0 and max_frozen_run is 4 samples. mid2 shows little happening, but the frame is not frozen."
     },
     "empty_void": {
-      "present": true,
-      "evidence": "mid2: most of the frame is a dark night field and sky with only Data in the lower left; nothing shows the debris burning up"
+      "present": false,
+      "evidence": "Every frame is a full photo backplate. mid2 is dim but filled with field and trees."
     },
     "unreadable": {
-      "present": true,
-      "evidence": "hook@1.5 to mid0: the hook text sits on top of Data's head and glasses, so the lines cross his face, and on a phone the white words fight his teal head; mid3: the caption 'THE ROOF AND' sits over Data's coat"
+      "present": false,
+      "evidence": "Hook and beat captions (hook@0.3, mid1-mid5) are large white text with a black outline and stay readable. The cut-off object in mid1 has no text on it."
     }
   },
   "motion": {
@@ -50,11 +48,11 @@
   },
   "temporal": {
     "sample_fps": 24,
-    "duplicate_ratio": 0.063,
-    "effective_fps": 22.5,
+    "duplicate_ratio": 0.068,
+    "effective_fps": 22.4,
     "max_dup_run": 15,
     "measured": true,
-    "frozen_ratio": 0.008,
+    "frozen_ratio": 0.007,
     "frozen_fps": 23.8,
     "max_frozen_run": 4,
     "judder_ratio": 0.0,
@@ -68,12 +66,53 @@
     "id": "seg1",
     "index": 1,
     "failure_class": "no_demonstration",
-    "visible_evidence": "mid2: Data stands in a dark grass field at dusk and looks up. Nothing re-enters, nothing burns, and no surviving piece is shown",
-    "root_cause": "The scene is a stock photo background with the mascot on top. It has no machine or subject drawing for 'supposed to burn up, one piece didn't'",
-    "repair_goal": "Draw the battery pallet streaking down through the atmosphere and breaking into glowing fragments that burn out one by one. A single piece survives and keeps falling toward a house roof, and Data tracks or points the surviving piece on its way down"
+    "visible_evidence": "mid2: Data stands in a dark field looking up at nothing, under the caption 'THE WHOLE THING'. Nothing burns up on re-entry and no piece survives.",
+    "root_cause": "The beat's claim (the whole pallet should have burned up, but one piece didn't) is said but never drawn. The scene is a stock photo backplate with the mascot parked in it.",
+    "repair_goal": "Draw the re-entry: a pallet-sized battery block streaks across the sky and breaks into glowing fragments that burn out one by one, and one small piece keeps falling. Data should cause or track it, for example by pulling a lever that releases the pallet or by sweeping a spotlight that follows the one surviving piece down."
   },
-  "depictions": null,
-  "one_line": "",
-  "problems": [],
-  "fixes": []
+  "depictions": [
+    {
+      "id": "seg0",
+      "kind": "machine",
+      "bespoke": 1,
+      "proves_claim": 0,
+      "note": "A cropped battery object sits half off-frame. Nothing compares its weight to a pickup truck."
+    },
+    {
+      "id": "seg1",
+      "kind": "machine",
+      "bespoke": 0,
+      "proves_claim": 0,
+      "note": "An empty night field. No re-entry, no burn-up, no surviving piece."
+    },
+    {
+      "id": "seg2",
+      "kind": "bespoke",
+      "bespoke": 2,
+      "proves_claim": 2,
+      "note": "A hole in the floor tile beside a soda can and a small metal cylinder makes the size comparison readable. Data only watches."
+    },
+    {
+      "id": "seg3",
+      "kind": "machine",
+      "bespoke": 0,
+      "proves_claim": 0,
+      "note": "A stock house with a cement bag and ladder. It says nothing about NASA paying."
+    }
+  ],
+  "one_line": "Strong true story, but the video is a mascot standing in front of stock photos: re-entry, burn-up and the weight comparison are never shown, and only the soda-can beat demonstrates anything.",
+  "problems": [
+    "seg0: the battery pack is a garbled object cut off at the top-right edge, and nothing shows 'heavier than a pickup truck'",
+    "seg1: the burn-up beat is an empty night field with Data looking up",
+    "seg3/closing: the cement bag, crate and ladder over a European house are irrelevant props, not the family's damaged home or a NASA bill",
+    "Data never causes anything; he stands and gestures in every beat",
+    "The hook shows debris on a living-room floor but never the chunk punching through the roof"
+  ],
+  "fixes": [
+    "seg0: draw the battery pallet beside a pickup truck on a scale that tips toward the pallet, with Data loading the pallet onto it",
+    "seg1: show the pallet glowing and breaking apart in the sky, all but one fragment burning out, with Data tracking the survivor",
+    "seg2: have Data set the soda can into the hole as a size gauge, and show the path through the roof and two floors",
+    "closing: show the damaged house with the hole in the roof and Data holding a repair bill addressed to NASA; drop the cement bag and ladder",
+    "hook: open on the finished picture of the chunk punching through the roof"
+  ]
 }
