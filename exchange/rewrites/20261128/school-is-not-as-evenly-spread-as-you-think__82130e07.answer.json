@@ -1,0 +1,33 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "school-is-not-as-evenly-spread-as-you-think__82130e07",
+  "slug": "school-is-not-as-evenly-spread-as-you-think",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:20:17.314Z",
+  "title": "School Access Expanded From Both Ends",
+  "hook": "School grew upward and downward while one country packed the middle.",
+  "closing": "School access grew at every level, changing how early learning starts and how far it can go.",
+  "question": "Which school level changed most?",
+  "segments": [
+    {
+      "topic": "School Primary Base",
+      "say": "Primary enrollment reached 780,852,608. The education ladder now starts with a much wider base."
+    },
+    {
+      "topic": "School Secondary Scale",
+      "say": "India has 133,156,038 secondary students. One country now carries an enormous share of the ladder's middle."
+    },
+    {
+      "topic": "School College Reach",
+      "say": "Tertiary enrollment reached 43.6 percent. The school ladder now extends far beyond childhood."
+    },
+    {
+      "topic": "School Literacy Result",
+      "say": "Youth literacy reached 93.1 percent. Wider school access is translating into a near-universal basic skill."
+    },
+    {
+      "topic": "School Preschool Start",
+      "say": "Preprimary enrollment reached 60.9 percent. The ladder is expanding downward as well as upward."
+    }
+  ]
+}
