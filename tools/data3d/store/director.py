@@ -68,7 +68,7 @@ class Shot:
         return t * self.DUR if t < 1.5 else float(t)
 
     # ------------------------------------------------------------------------------------------------ the place
-    def place(self, env, turn=0.0, light=1.0, plate=1.0, floor_shade=1.0):
+    def place(self, env, turn=0.0, light=1.5, plate=1.7, floor_shade=1.0):
         """a REAL place: the environment `env` (fetched by `env <id>` in .github/triggers/data3d_assets). turn (degrees)
         swings the whole place round him, so the lens looks at the part of it the beat is about. The ground he stands
         on is the photograph's own ground, darkened where he and the props stand on it."""
@@ -98,8 +98,8 @@ class Shot:
         gm = mt.nodes.new("ShaderNodeMapping"); gm.inputs["Rotation"].default_value = (0, 0, math.radians(turn)); gm.vector_type = 'POINT'
         mt.links.new(neg.outputs["Vector"], gm.inputs["Vector"])
         ge = mt.nodes.new("ShaderNodeTexEnvironment"); ge.image = e_p.image; mt.links.new(gm.outputs["Vector"], ge.inputs["Vector"])
-        ao = mt.nodes.new("ShaderNodeAmbientOcclusion"); ao.inputs["Distance"].default_value = 0.55; ao.samples = 16
-        pw = mt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 1.6 * floor_shade
+        ao = mt.nodes.new("ShaderNodeAmbientOcclusion"); ao.inputs["Distance"].default_value = 0.7; ao.samples = 16
+        pw = mt.nodes.new("ShaderNodeMath"); pw.operation = 'POWER'; pw.inputs[1].default_value = 2.6 * floor_shade
         mt.links.new(ao.outputs["AO"], pw.inputs[0])
         mul = mt.nodes.new("ShaderNodeMix"); mul.data_type = 'RGBA'; mul.blend_type = 'MULTIPLY'; mul.inputs["Factor"].default_value = 1.0
         mt.links.new(ge.outputs["Color"], mul.inputs["A"]); mt.links.new(pw.outputs[0], mul.inputs["B"])
@@ -159,16 +159,24 @@ class Shot:
         """the point in the air at (u, v) of the frame, `depth` metres along the lens's axis"""
         return self.C + (self.fw + self.rt * ((u - 0.5) * 2 * TANH) + self.up * ((v - 0.5) * 2 * TANV)) * depth
 
+    def spot(self, u, v, z=0.0):
+        """the point of the GROUND (height z) whose picture is at (u, v) of the frame: how a thing is stood in a
+        photographed place. Read (u, v) off the scout sheet (daily/scout.py): a spot on the open floor, in front of the
+        photograph's own walls and furniture (v under about 0.4; the floor ends where the wall starts)"""
+        d = self.fw + self.rt * ((u - 0.5) * 2 * TANH) + self.up * ((v - 0.5) * 2 * TANV)
+        if d.z >= -1e-4: raise SystemExit(f"director: ({u}, {v}) is above the horizon, there is no ground there")
+        return self.C + d * ((z - self.C.z) / d.z)
+
     def see(self, p):
         """(u, v, depth) of a world point"""
         r = Vector(p) - self.C; d = r.dot(self.fw)
         return (0.5 + r.dot(self.rt) / (2 * TANH * d), 0.5 + r.dot(self.up) / (2 * TANV * d), d)
 
     # ------------------------------------------------------------------------------------------------ props
-    def model(self, aid, u=0.7, depth=3.0, yaw=0.0, scale=1.0, z=0.0, name=None, at=None, only=None):
+    def model(self, aid, u=0.7, depth=3.0, yaw=0.0, scale=1.0, z=0.0, name=None, at=None, only=None, v=None):
         """a real scanned prop (Poly Haven model `aid`), standing on the ground at (u, depth). yaw in degrees; scale 1
         is its real size in Data's world."""
-        p = Vector(at) if at is not None else self.at(u, depth, z)
+        p = Vector(at) if at is not None else self.spot(u, v, z) if v is not None else self.at(u, depth, z)
         self._n += 1
         o = FX.ph_model(aid, loc=tuple(p), rot=(0, 0, math.radians(yaw)), scale=U * scale, name=name or f"{aid} {self._n}", only=only)
         self.things[o.name] = o
@@ -227,9 +235,11 @@ class Shot:
             x.hide_render = show; x.keyframe_insert("hide_render", frame=max(1, f - 1))
             x.hide_render = not show; x.keyframe_insert("hide_render", frame=f)
 
-    def dust(self, p, t, w=1.0, h=1.2, dur=1.8, col=(0.72, 0.68, 0.62), dens=5.0, seed=0.0):
+    def dust(self, p, t, w=1.0, h=1.2, dur=1.8, col=(0.72, 0.68, 0.62), dens=1.5, seed=0.0):
         """a puff of dust at p from t (plaster, soil, ash by its colour)"""
-        return FX.dust_puff(tuple(p), w=w, h=h, t0=self.T(t), dur=dur, col=col, dens=dens, seed=seed)
+        d = FX.dust_puff(tuple(p), w=w, h=h, t0=self.T(t), dur=dur, col=col, dens=dens, seed=seed)
+        for o in d["objects"]: o.visible_shadow = False; o.visible_diffuse = False      # its box must not shade the photographed ground
+        return d
 
     def flash(self, p, t, power=400.0, col=(1.0, 0.85, 0.6), dur=0.35, r=0.3, name="flash"):
         """a burst of light at p at t that dies away over dur (an impact, a spark, a bolt)"""
@@ -294,6 +304,7 @@ class Shot:
         for b in sorted(beats, key=lambda b: self.T(b[0])):
             t = self.T(b[0]); what = b[1]; arg = b[2] if len(b) > 2 else None; hold = b[3] if len(b) > 3 else None
             if what == "look":
+                self.sc.frame_set(_F(t)); bpy.context.view_layer.update()       # where the thing IS at that moment
                 p = self.C if isinstance(arg, str) and arg == "lens" else self._point(arg)
                 d.look_at(Vector(p), t, max_yaw=55, max_pitch=45)
             elif what in EMOTES:
@@ -324,7 +335,8 @@ class Shot:
             ps = [x.matrix_world.translation] if x.type == 'EMPTY' and not x.children else None
             if ps is None:
                 import compose as _c
-                cs = [Vector(c) for c in _c.corners(self.parts(x))] if self.parts(x) else [x.matrix_world.translation]
+                cs = [Vector(c) for c in _c.corners(self.parts(x))] if self.parts(x) else []
+                cs = cs or [o.matrix_world.translation.copy() for o in self.parts(x)] or [x.matrix_world.translation.copy()]
                 return sum(cs, Vector()) / len(cs)
             return ps[0]
         return Vector(x)

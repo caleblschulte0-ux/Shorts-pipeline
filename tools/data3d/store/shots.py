@@ -327,60 +327,64 @@ if S.get("no_blur"): sc.render.use_motion_blur = False   # a still camera on swa
 if os.environ.get("TEMPORAL_SAFE", "1") == "1":
     cy = sc.cycles; cy.adaptive_threshold = 0.01; cy.denoising_prefilter = 'ACCURATE'
 
-import staging    # the filmmaker's check: his face to the lens, big enough to read, MEASURED before a frame renders
-if not staging.check(data, sc.camera, NF, name=f"shot {SHOT}", cutaway=S.get("cutaway"), min_h=SCRIPT.get("min_h")) and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails staging: restage it (his back to the lens, or too small to read)")
-if not staging.consequence(sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the consequence check: what Data does is not shown happening")
-if SHOT == NSHOTS and not SCRIPT.get("legacy_ending") and not staging.ending(data, sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") \
-        and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the ending check: the video must end ON its payoff, never a pull-back")
-import compose    # frame-first placement: every declared box (signs, labels, the beat's prop) holds (store/compose.py)
-_sysok = [staging.edges(data, sc.camera, NF, name=f"shot {SHOT}", declared=S.get("texts", ())),   # nothing with words cut by the edge; he ends whole
-          staging.keys(data, sc.camera, NF, name=f"shot {SHOT}"),                                 # the board's four stills are four pictures
-          staging.talking(data, sc.camera, NF, grips=S.get("grips", ()), name=f"shot {SHOT}"),    # not a talking head
-          staging.cause(data, NF, S.get("conseq", []), grips=S.get("grips", ()), name=f"shot {SHOT}"),   # nothing moves on its own
-          compose.check(sc.camera, NF, S.get("boxes", []), name=f"shot {SHOT}")]
-if not all(_sysok) and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails EDGES / KEYS / TALKING / CAUSE / COMPOSE: what the board judge would have caught (2026-11-23)")
-import recipe_check   # THE RECIPE, MEASURED on the board's four stills as they are staged: close, three-quarter, four events, hands on, nothing cut, nothing moving with no cause
-_rb = "" if shot_plan.held(STORY) else " (not binding: staged before the plan)"
-if not recipe_check.check(data, sc.camera, NF, S, plan=shot_plan.shot(STORY, SHOT), name=f"shot {SHOT}" + _rb, out=os.path.join(OUT, "recipe.json"), fps=FPS) \
-        and shot_plan.held(STORY) and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the RECIPE check (store/recipe_check.py): its four stills are not the staging that passes the board")
-import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
-if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
-import clipping   # nothing of him passes through himself or the set (caaleb 2026-11-12: "clipping issues when data moves")
-CLIP_MODE = os.environ.get("CLIPPING", SCRIPT.get("clipping", "strict"))   # strict for every story but the first, which predates the check
-if not clipping.check(data, NF, name=f"shot {SHOT}", grips=S.get("grips", ())) and CLIP_MODE == "strict" \
-        and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the clipping check: part of him passes through something")
-import twitch     # no whip, no pop (caaleb 2026-11-13: "why does data tweak out"): every bone and face control, per frame
-if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the twitch check: a bone whips or the face pops in one frame")
-import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
-if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
-import steady     # ONE real person (caaleb 2026-11-23, lightning: "changing emotions too often ... his head moves really fast
-                  # ... his legs are kind of glitching out of his coat"): faces held, head at a person's speed, coat on the legs
-if not steady.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the steady check: a face flickers, his head whips or never rests, or a leg pokes through his coat")
-import motion     # POP, HOLD and FAR (the lightning rough cut, 2026-11-20: "good not great, clearly there are large scale
-                  # issues"): a teleport between proof frames, a pose held two seconds, the event far from him (store/motion.py)
-_bind = fresh.held(STORY); _nb = "" if _bind else " (not binding: grandfathered)"
-_mo_ok, FAST = motion.check(data, sc.camera, NF, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway"))
-if not _mo_ok and _bind and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the motion check: a move pops between proof frames or glides, or he holds one pose too long")
-_near = [f for _r, f in staging.near_strikes(data, NF, S.get("cutaway"))]   # READ (round 2): his moves big enough to see on
-if not motion.read_check(data, sc.camera, NF, _near, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway")) and _bind \
-        and os.environ.get("STAGING", "strict") == "strict":     # the judge's phone-sized sheet, and every strike moves him
-    raise SystemExit(f"shot {SHOT} fails the READ check: on the judge's sheet he holds still too long, or a strike near him does not visibly move him")
-_st = SCRIPT.get("staging") or []   # the beat's arc moments (fractions of the beat), where FAR measures him
-_arc = [m["at"] for m in (_st[SHOT - 1].get("arc") or []) if isinstance(m, dict) and "at" in m] if len(_st) >= SHOT and isinstance(_st[SHOT - 1], dict) else []
-if not staging.far(data, sc.camera, NF, _arc, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway")) and _bind \
-        and os.environ.get("STAGING", "strict") == "strict":
-    raise SystemExit(f"shot {SHOT} fails the FAR check: at an arc moment he is small, or the event lands far from him, or a fall is seen from the front")
+QUICK = DAILY and bool(os.environ.get("QUICK"))   # a daily shot's look-see: build, render the stills, measure nothing (seconds, not minutes)
+FAST = []; _bind = False; _nb = ""
+import staging, compose
+if not QUICK:
+    import staging    # the filmmaker's check: his face to the lens, big enough to read, MEASURED before a frame renders
+    if not staging.check(data, sc.camera, NF, name=f"shot {SHOT}", cutaway=S.get("cutaway"), min_h=SCRIPT.get("min_h")) and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails staging: restage it (his back to the lens, or too small to read)")
+    if not staging.consequence(sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the consequence check: what Data does is not shown happening")
+    if SHOT == NSHOTS and not SCRIPT.get("legacy_ending") and not staging.ending(data, sc.camera, NF, S.get("conseq", []), name=f"shot {SHOT}") \
+            and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the ending check: the video must end ON its payoff, never a pull-back")
+    import compose    # frame-first placement: every declared box (signs, labels, the beat's prop) holds (store/compose.py)
+    _sysok = [staging.edges(data, sc.camera, NF, name=f"shot {SHOT}", declared=S.get("texts", ())),   # nothing with words cut by the edge; he ends whole
+              staging.keys(data, sc.camera, NF, name=f"shot {SHOT}"),                                 # the board's four stills are four pictures
+              staging.talking(data, sc.camera, NF, grips=S.get("grips", ()), name=f"shot {SHOT}"),    # not a talking head
+              staging.cause(data, NF, S.get("conseq", []), grips=S.get("grips", ()), name=f"shot {SHOT}"),   # nothing moves on its own
+              compose.check(sc.camera, NF, S.get("boxes", []), name=f"shot {SHOT}")]
+    if not all(_sysok) and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails EDGES / KEYS / TALKING / CAUSE / COMPOSE: what the board judge would have caught (2026-11-23)")
+    import recipe_check   # THE RECIPE, MEASURED on the board's four stills as they are staged: close, three-quarter, four events, hands on, nothing cut, nothing moving with no cause
+    _rb = "" if shot_plan.held(STORY) else " (not binding: staged before the plan)"
+    if not recipe_check.check(data, sc.camera, NF, S, plan=shot_plan.shot(STORY, SHOT), name=f"shot {SHOT}" + _rb, out=os.path.join(OUT, "recipe.json"), fps=FPS) \
+            and shot_plan.held(STORY) and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the RECIPE check (store/recipe_check.py): its four stills are not the staging that passes the board")
+    import anatomy    # the body check: no joint outside a body's range on any frame (caaleb 2026-11-12: "bending in inhuman ways")
+    if not anatomy.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the body check: a joint bends the way no body can")
+    import clipping   # nothing of him passes through himself or the set (caaleb 2026-11-12: "clipping issues when data moves")
+    CLIP_MODE = os.environ.get("CLIPPING", SCRIPT.get("clipping", "strict"))   # strict for every story but the first, which predates the check
+    if not clipping.check(data, NF, name=f"shot {SHOT}", grips=S.get("grips", ())) and CLIP_MODE == "strict" \
+            and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the clipping check: part of him passes through something")
+    import twitch     # no whip, no pop (caaleb 2026-11-13: "why does data tweak out"): every bone and face control, per frame
+    if not twitch.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the twitch check: a bone whips or the face pops in one frame")
+    import facelint   # a face that is not a smile never turns into one (2026-11-14, saffron shot 4: "the opposite emotion")
+    if not facelint.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the face lint: a worried / alarmed / sad / wry face smiles inside its own window")
+    import steady     # ONE real person (caaleb 2026-11-23, lightning: "changing emotions too often ... his head moves really fast
+                      # ... his legs are kind of glitching out of his coat"): faces held, head at a person's speed, coat on the legs
+    if not steady.check(data, NF, name=f"shot {SHOT}") and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the steady check: a face flickers, his head whips or never rests, or a leg pokes through his coat")
+    import motion     # POP, HOLD and FAR (the lightning rough cut, 2026-11-20: "good not great, clearly there are large scale
+                      # issues"): a teleport between proof frames, a pose held two seconds, the event far from him (store/motion.py)
+    _bind = fresh.held(STORY); _nb = "" if _bind else " (not binding: grandfathered)"
+    _mo_ok, FAST = motion.check(data, sc.camera, NF, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway"))
+    if not _mo_ok and _bind and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the motion check: a move pops between proof frames or glides, or he holds one pose too long")
+    _near = [f for _r, f in staging.near_strikes(data, NF, S.get("cutaway"))]   # READ (round 2): his moves big enough to see on
+    if not motion.read_check(data, sc.camera, NF, _near, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway")) and _bind \
+            and os.environ.get("STAGING", "strict") == "strict":     # the judge's phone-sized sheet, and every strike moves him
+        raise SystemExit(f"shot {SHOT} fails the READ check: on the judge's sheet he holds still too long, or a strike near him does not visibly move him")
+    _st = SCRIPT.get("staging") or []   # the beat's arc moments (fractions of the beat), where FAR measures him
+    _arc = [m["at"] for m in (_st[SHOT - 1].get("arc") or []) if isinstance(m, dict) and "at" in m] if len(_st) >= SHOT and isinstance(_st[SHOT - 1], dict) else []
+    if not staging.far(data, sc.camera, NF, _arc, name=f"shot {SHOT}" + _nb, cutaway=S.get("cutaway")) and _bind \
+            and os.environ.get("STAGING", "strict") == "strict":
+        raise SystemExit(f"shot {SHOT} fails the FAR check: at an arc moment he is small, or the event lands far from him, or a fall is seen from the front")
 if os.environ.get("KEYS"):   # the storyboard pass: the framing fingerprint, compared across beats (store/variety.py)
     os.makedirs(OUT, exist_ok=True)
     _fr = staging.framing(data, sc.camera, NF); print(f"FRAMING shot {SHOT}: {_fr}", flush=True)
