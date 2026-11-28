@@ -1,0 +1,185 @@
+name: Data 3D board round (every shot's stills and panel side by side; judges only, renders and posts nothing)
+
+# A storyboard round of a 3D short, the round a session runs with tools/data3d/store/board3d.sh, with every shot on
+# its own runner: a few rough key stills of the shot (shots.py KEYS, 8 spp at 30%, every measured pre-check strict)
+# and then the same judge3d.py panel on that shot alone (SHOTS=n, JUDGE3D_BOARD=1, JUDGE3D_REJUDGE=1). In a session
+# that is about 25 minutes a shot, one after another; here five shots cost the wall-clock of the slowest one.
+#
+# The collect job then writes the round where a session's round writes it (tools/data3d/store/board_ci.py):
+# stories/<story>/judge_rounds.md, notes_ledger.json and preflight.json, committed onto the branch as it stands at
+# that moment. The stills, sheets and verdicts are artifacts (board-<shot>, board-verdict), 7 days.
+#
+# This is a JUDGE run and nothing else: it makes no video, it never touches a render trigger, and a pass here opens no
+# gate (data3d_render.yml proofs and judges every shot itself). Nothing here posts anywhere.
+#
+# .github/triggers/data3d_board:  story=<folder>
+#   shots=1 3            only these shots (omit: every shot of the story)
+#   keys=4               stills per shot (board3d.sh's default)
+#   narration_run=<id>   time the shots to that run's voice (omit: the script's draft windows, as in a session)
+#   dry=1                judge and report, write nothing into the story folder
+on:
+  push:
+    branches: ['claude/3d-data', 'claude/data3d-video2']
+    paths: ['.github/triggers/data3d_board']
+
+permissions:
+  contents: write   # the three round records of the story, on the branch that asked
+  actions: read     # the narration artifact of an earlier run
+
+jobs:
+  cfg:
+    # THE PREFLIGHT. The judge is the `claude` CLI on CLAUDE_CODE_OAUTH_TOKEN (the subscription, never the paid API),
+    # exactly as data3d_render.yml's judge job uses it. No token is no judge and no round: it stops here, before a
+    # runner renders a still nobody will look at. The approved look frames (store/look_bible.py REF_DIR) live in the
+    # project files, not on a runner: the panel grades the rulings in words without them, as the render's judge does.
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      story: ${{ steps.c.outputs.story }}
+      shots: ${{ steps.c.outputs.shots }}
+      keys: ${{ steps.c.outputs.keys }}
+      narr_run: ${{ steps.c.outputs.narr_run }}
+      dry: ${{ steps.c.outputs.dry }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1}
+      - id: c
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          cfg=.github/triggers/data3d_board
+          [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ] || { echo "::error::CLAUDE_CODE_OAUTH_TOKEN is not set: no judge, no board round"; exit 1; }
+          story=$(sed -n 's/^story=//p' $cfg | tr -cd 'a-z0-9_')
+          test -n "$story" && test -f tools/data3d/stories/$story/script.json || { echo "::error::story=$story names no story folder with a script.json"; exit 1; }
+          want="$(sed -n 's/^shots=//p' $cfg | tr -cd '0-9 ')"
+          shots=$(WANT="$want" python3 -c "
+          import json, os
+          n = len(json.load(open('tools/data3d/stories/$story/script.json'))['storyboard'])
+          want = sorted({int(x) for x in os.environ['WANT'].split()}) or list(range(1, n + 1))
+          bad = [x for x in want if not 1 <= x <= n]
+          assert not bad, f'shots {bad}: the story has shots 1 to {n}'
+          print(json.dumps(want))")
+          keys=$(sed -n 's/^keys=//p' $cfg | tr -cd '0-9'); dry=$(sed -n 's/^dry=//p' $cfg | tr -cd '0-9')
+          echo "story=$story" >> $GITHUB_OUTPUT
+          echo "shots=$shots" >> $GITHUB_OUTPUT
+          echo "keys=${keys:-4}" >> $GITHUB_OUTPUT
+          echo "narr_run=$(sed -n 's/^narration_run=//p' $cfg | tr -cd '0-9')" >> $GITHUB_OUTPUT
+          echo "dry=${dry:-0}" >> $GITHUB_OUTPUT
+          echo "board round: $story shots $shots, ${keys:-4} stills each${dry:+ (dry=$dry)}"
+
+  shot:
+    needs: cfg
+    name: board s${{ matrix.shot }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    # a newer round of the same shot replaces this one; other shots and other stories are not touched
+    concurrency:
+      group: data3d-board-${{ github.ref_name }}-${{ needs.cfg.outputs.story }}-s${{ matrix.shot }}
+      cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      matrix:
+        shot: ${{ fromJSON(needs.cfg.outputs.shots) }}
+    env:
+      STORY: ${{ needs.cfg.outputs.story }}
+      SHOT: ${{ matrix.shot }}
+      B: ${{ github.workspace }}/board
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        if: needs.cfg.outputs.narr_run != ''
+        with: {name: narration, path: narr, run-id: '${{ needs.cfg.outputs.narr_run }}', github-token: '${{ github.token }}'}
+      - name: Deps (Blender, the CC0 assets, the judge)
+        run: |
+          timeout 240 sudo apt-get install -y -q --no-download libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 \
+            || timeout 300 sudo apt-get install -y -q libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 || true
+          pip install -q bpy==5.0.0 numpy==1.26.4 pillow
+          git fetch -q --depth 1 origin data3d-assets && mkdir -p cache && git archive FETCH_HEAD polyhaven | tar -x -C cache && du -sh cache/polyhaven
+          command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude CLI install failed"
+      - name: Key stills (board3d.sh's own call; every measured pre-check strict, so a shot that fails one renders nothing)
+        id: stills
+        env: {LOOK: NYC, KEYS: '${{ needs.cfg.outputs.keys }}', STAGING: strict}
+        run: |
+          mkdir -p "$B"; cd tools/data3d/store
+          [ -f "$GITHUB_WORKSPACE/narr/narration.json" ] && export NARR="$GITHUB_WORKSPACE/narr/narration.json"
+          ok=1
+          set -o pipefail
+          python -I shots.py "$B/s$SHOT" 8 30 2>&1 | grep -v "^Fra:" | tee "$B/checks.log" || ok=0
+          ls "$B/s$SHOT"/f*.png >/dev/null 2>&1 || ok=0
+          echo "ok=$ok" >> $GITHUB_OUTPUT
+          [ "$ok" = 1 ] || echo "::warning::shot $SHOT: the stills did not render (a measured pre-check failed): it fails the round without a panel"
+      - name: The panel judges this shot's stills (judge3d.py, unchanged)
+        id: judge
+        if: steps.stills.outputs.ok == '1'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SHOTS: ${{ matrix.shot }}
+          JUDGE3D_BOARD: '1'
+          JUDGE3D_REJUDGE: '1'
+          JUDGE3D_LABEL: ci board run ${{ github.run_id }}
+        run: |
+          [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ] || { echo "::error::CLAUDE_CODE_OAUTH_TOKEN is not set: no judge, no board round"; exit 1; }
+          set +e
+          python tools/data3d/store/judge3d.py "$B" "$B/verdict.json" 2>&1 | tee "$B/judge.log"; code=${PIPESTATUS[0]}
+          cp "tools/data3d/stories/$STORY/preflight.json" "$B/preflight.json" 2>/dev/null
+          echo "code=$code" >> $GITHUB_OUTPUT
+          # 0 pass, 2 fail: both are a round's result. 1 is no judge (or a repeated note with no fix written): red, and never a pass
+          [ "$code" = 0 ] || [ "$code" = 2 ]
+      - name: What this shot's job did
+        if: ${{ !cancelled() }}
+        run: |
+          mkdir -p "$B"
+          echo "{\"shot\": $SHOT, \"stills\": $([ '${{ steps.stills.outputs.ok }}' = 1 ] && echo true || echo false), \"judge_exit\": ${{ steps.judge.outputs.code || 'null' }}}" > "$B/status.json"
+          cat "$B/status.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: ${{ !cancelled() }}
+        with:
+          name: board-${{ matrix.shot }}
+          path: board/
+          retention-days: 7
+
+  collect:
+    needs: [cfg, shot]
+    if: ${{ !cancelled() && needs.cfg.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      STORY: ${{ needs.cfg.outputs.story }}
+      BRANCH: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with: {python-version: '3.11'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with: {path: '${{ runner.temp }}/board', pattern: 'board-*'}
+      - name: Write the round into the story's records, on the branch as it is now
+        run: |
+          label="ci board run ${{ github.run_id }}"; ART="$RUNNER_TEMP/board"
+          if [ "${{ needs.cfg.outputs.dry }}" = 1 ]; then
+            python tools/data3d/store/board_ci.py apply "$STORY" "$ART" "$label" --dry | tee -a "$GITHUB_STEP_SUMMARY"; exit ${PIPESTATUS[0]}
+          fi
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          d=tools/data3d/stories/$STORY
+          for i in 1 2 3 4 5 6; do
+            # always from the branch's tip, never from the commit the round started on: a session's pushes are kept,
+            # and a push that lost the race is simply written again on the new tip
+            git fetch -q --depth 1 origin "$BRANCH" && git checkout -q -f -B board-round FETCH_HEAD || { sleep $((i*4)); continue; }
+            python tools/data3d/store/board_ci.py apply "$STORY" "$ART" "$label" > "$RUNNER_TEMP/round.md" || { cat "$RUNNER_TEMP/round.md"; exit 1; }
+            for f in judge_rounds.md notes_ledger.json preflight.json; do [ -f "$d/$f" ] && git add "$d/$f"; done
+            git diff --cached --quiet && { echo "nothing to record"; done=1; break; }
+            git commit -qm "data3d $STORY: board round in CI (run ${{ github.run_id }}): $(cat "$ART/summary.txt")"
+            git push -q origin HEAD:"$BRANCH" && { done=1; break; }
+            echo "the branch moved: writing the round again on its new tip"; sleep $((i*4))
+          done
+          cat "$RUNNER_TEMP/round.md" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "${done:-0}" = 1 ] || { echo "::error::the round could not be pushed to $BRANCH"; exit 1; }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: board-verdict
+          path: ${{ runner.temp }}/board/board_verdict.json
+          retention-days: 7

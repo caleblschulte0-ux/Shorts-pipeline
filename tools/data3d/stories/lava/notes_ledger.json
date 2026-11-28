@@ -1,0 +1,2297 @@
+{
+ "rounds": 18,
+ "shots": {
+  "1": {
+   "BROKEN": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "camera re-solved (lens 30, closer): the gate arm swings up into frame, the post sits low in the corner"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the cutaway wide shows the whole gate, post to arm tip, with the cars going under it; in the main shot the gate stays a foreground edge"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "rebuilt the gate from its real parts (winch housing, crank, hinge) in worn scanned paint and steel, reframed so post and arm sit whole in the main lens"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the siren post is CUT from the main lens (it split the frame four rounds); the lens stands off to the cars' side, solved with compose so he is in the left third; post and arm are whole only in the wide"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the yellow sign plate is cut; the post stays out of the main lens and whole in the wide"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: one fixed wide lens up the daylight street; the fountains are gas volumes standing on the ridge from frame one, the cars are whole cars in a lane, nothing pops or floats"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BROKEN: the gate's red-tipped arm is cut by the left frame edge, and the white post blocks the lower left of every frame. The prop the beat turns on is never whole or readable."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "BROKEN: frames 1-4 \u2013 the gate post and arm are cut by the frame's left and bottom edges for the whole shot."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "BROKEN: frames 1, 2 and 4 \u2013 the gate post is still cut by the bottom edge and the arm by the left edge (by the top-left in frame 4). The gate drives this shot's action, and the main lens never shows it whole. The cutaway in frame 3 shows it whole, but only as a tiny shape behind the cars."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "BROKEN: frames 1, 2 and 4: the gate is still cut by the frame. The black post runs out of the top and bottom edges, and the red winch housing is cut by the top edge. The striped arm, which this shot is about, is not in any main-lens frame. The post also stands in the middle of the frame in front of Data and splits the picture in two."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "BROKEN: frames 1, 2 and 4: a black object is cut by the top-left corner and a black post base is cut by the bottom-left edge. In frame 3, the only frame that shows the gate whole, it is a black pole with a red box on top and no striped arm. The striped arm this shot is about is still not in any frame."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BROKEN: frames 2-4: a black and red round object on a post is still cut by the top-right edge of the frame. It shows up from nowhere after frame 1 and reads as a broken piece of a prop."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "BROKEN: frame 1: two pink-red straight rods stick out of the fountain curtain, one going left and one going right at ridge height (left of x\u224820-60, right toward x\u2248270). They read as a glitched prop or stray geometry and are gone by frame 2, so they pop out between stills."
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the crank (wheel + knob) turns 2.5 revs and the striped arm swings 68 deg up; five cars pour out under it past him and out of frame"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a cut to a high wide behind the cars' exit: the cars stream under the raised gate at the lens"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the main lens now looks down the cars' lane, so the cars racing out pass through it, not only the wide"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: all nine fountains are up in the first second (T_ERUPT 0, one every 0.14 s), so the eruption is the opening"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the storyboard now promises only the baton and the cars leaving: cars with headlights fill the lane beside him in stills 1-2 and the street is empty in stills 3-4"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "the fountains stand on the ridge and he bolts from them down the street: four different stills (stands, bolts, runs nearer, runs past), growing in frame"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "CONSEQUENCE: no crank turns and no striped arm swings up high over the road. The gate is a white post with a flat yellow plank that does not move in any frame (1-4). The cars never pour past toward the lens: one or two parked-looking cars sit behind him (frames 1-3). The empty street and the dark houses under the glow at the end are never seen."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "CONSEQUENCE: the gate goes up (frames 2-4) but nothing comes through it, so its result is never seen. Frames 2-4."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "CONSEQUENCE: frames 1-4: the arm is never seen swinging up, and no car is seen driving under it toward the lens. The cars are a parked line along the left kerb (frames 1-3). Nothing pours out and the street never empties."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "CONSEQUENCE: frames 1-4: the arm is never seen swinging up and no car is seen racing past him toward the lens. The cars are still a parked line along the left kerb: a white car in frame 1, a white car and a blue car in frames 2 and 4, and a queue of cars in frame 3. The street never empties, and a car still sits at the left kerb in frame 4."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "CONSEQUENCE: frames 1-4: no car is ever seen racing past the lens. The same queue of white, blue and red cars sits along the left side and only shifts. The last car never leaves, and the street is never seen emptying."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "CONSEQUENCE: frames 1-2: the 'line of cars driving out past him toward us' reads as cars parked along the left kerb. The red car in 1 and the white car in 2 are cut by the left frame edge, and no car is shown in the lane coming at the lens. The street is empty in 3-4, but a stranger sees parked cars vanish rather than a town fleeing past the driver."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "nine vents on one fissure line burst one after another (0.33 s apart, left to right), all nine in frame; cars stream down the lane past him toward the lens"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "fountains fatter and orange (lower strength, wider columns), all nine in one row in the wide"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "nine fountains are now 4D-noise fire volumes that burst one after another along the ridge, with a grey plume over them"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: fountains nearly twice as wide and tall, hotter orange; the spatter that read as sparklers is cut"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: fountains wider and taller (1.6 m by 6 m of fire), bursting from frame one"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the row of orange fountains with dark smoke stands on the ridge behind the houses in every still, and the line of cars with headlights on is leaving past him: everyone had to run"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "storyboard line rewritten to the four stills on the sheet; open front doors and a car driving away with its tail lights on carry everyone had to run"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT SHOWN: the narration says nine eruptions, but only five orange spikes stand on the ridge (frames 2-4). They appear all at once, not one after another, so the count of nine is never seen. 'Everyone had to run' is not shown either: there is never a stream of cars or an emptied street."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT SHOWN: 'everyone had to run' is never on screen. No cars pour out under the gate, past him and toward the lens in any frame. In frames 1-2 the cars are parked or sitting on the left, and in frames 3-4 they are just gone. The evacuation, which is the point of the line, is missing. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT SHOWN: 'nine lava fountains, orange and huge' and 'everyone had to run' do not read. Frames 2 and 4: the fountains are thin pale-pink glowing spikes in an even row, like neon tubes or candles, not lava. Frame 3 is the only frame with cars streaming out. In frames 1-2 the cars sit parked on the left, and frame 4 shows no empty street to close the evacuation."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT SHOWN: frames 2-4: 'nine lava fountains, orange and huge' are rows of small pale sparkler dots along the ridge. They look like fireworks or snow, not lava, and you cannot count nine fountains. 'Everyone had to run' is not shown: no traffic is leaving."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT SHOWN: frames 1-4: 'everyone had to run' is not shown, because nobody and nothing leaves. The fountains are now orange and tall, which is a real gain, but you see about five in frame 2 and about seven or eight in frames 3-4. Nine separate eruptions cannot be counted."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT SHOWN: frames 1-4: 'erupted nine times' is not shown. Frame 1 has two lava fountains in the middle of the ridge. In frames 2-4 the fountains are pushed against the right edge and mostly hidden by a black smoke column. You never see nine fountains as a curtain of fire across the top of the frame. 'Everyone had to run' only half reads: the cars sit as a jammed queue at the left kerb, and nobody "
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "NOT SHOWN: frames 1-4: 'right beside one Icelandic town' and 'a volcano' are not shown. With no ridge and no recognisably Icelandic houses, the fountains look like house-high bonfire spikes just behind a dirt pile at the end of the street, not an eruption on a ridge above a town. The 'lit baton' is a flat pale-peach stick in every frame and never glows."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "NOT SHOWN: frames 2-4 \u2013 the 'bolts', 'arms pumping' and 'runs out past us' beats are not in the stills. His arms hang straight down at his sides and his stride is a short walk, so he reads as strolling down the street, not fleeing. In frame 4 he is about the same size as in frame 3 and still mid-street, not big in the frame or running out past the lens. 'Everyone had to run' is not shown either: n"
+     }
+    ]
+   },
+   "NOT THE POINT": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE POINT / Data the cause (2026-10-01): the gate arm rises (frames 1-4), but Data's hand rests on a plain yellow box. No crank is seen turning, so he does not read as the one raising it."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "houses rebuilt with corrugated cladding, corner boards, fascia, gutters, downpipes, sills, steps; darker mossy lava rock; grey cloud deck; lava-lit dusk"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "the wide shows the street with houses down both sides running to the ridge, the slope dressed as black lava blocks"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "Icelandic houses on both sides (two storeys or a raised floor, steep red/green/blue corrugated roofs, gutters, chimneys) on real mossy aerial rock, under an industrial sunset sky"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the new lens shows the street and both rows of houses beyond him instead of one house cut by the edge"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the brief's grey BRIGHT afternoon: an overcast Poly Haven sky at strength 0.8 instead of a dim sunset"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: bright day in all four stills, low painted tin houses down both sides of the street, the ridge behind them; the world block was rewritten to this one bright day"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "Grindavik's main street by day: painted tin-clad houses with tin roofs, Icelandic flags, open doors, the rock ridge and a ragged fountain curtain over the roofs"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE WORLD: this does not read as Grindavik. The houses are plain white boxes with faint roofs, there are no red/blue/green tin roofs down both sides, no mossy black rock, no harbour-town feel, and the sky is a clear blue noon instead of a grey afternoon (frames 1-4). It reads as a generic suburban road under a toy volcano."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE WORLD: this is not Grindavik's main street. One beige house is cut by the right edge, and there is no row of red, blue and green tin roofs down both sides. The 'ridge' is a dark hill with evenly spaced green shrub blobs that reads as a toy hillside. The fountains are thin sparkler spikes behind it, not a fissure ripping open. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT THE WORLD: frames 1, 2 and 4 \u2013 the main lens shows one beige house, cut by the right edge. It never shows a street of low houses with red, blue and green tin roofs. Even the wide in frame 3 has white and grey walls with red or white roofs, and no blue or green roofs. The houses are not dark under any orange glow, because the street is lit like a flat overcast day."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT THE WORLD: frames 1-4: the houses are grey-blue clapboard with dark roofs, not low houses with red, blue and green tin roofs. The sky is a dim, moody dusk, not a grey, bright afternoon. The ridge is a brown rubble mound with white blocks in it, and no mossy black lava rock shows."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT THE WORLD: frames 1-4: the houses at the left edge and in the wide are grey-blue clapboard with dark roofs, not low houses with red, blue and green tin roofs. The sky is a dim, moody dusk and the street is underlit, not a grey, bright afternoon. The ridge is still a brown rubble mound scattered with white blocks (frames 2 and 4), not mossy black lava rock."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT THE WORLD: frames 1-4: the only houses are grey clapboard at the left edge. There are no low houses with red, blue or green tin roofs on either side of the street. The 'ridge' at the end of the street is a brown rubble bank with plank-like slabs stuck in it, not a mossy lava ridge with a fissure torn open in it. Without coloured houses it reads as a road by a quarry, not Grindavik's main stree"
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "NOT THE WORLD: frames 1-4: the houses down both sides are grey and beige two- and three-storey clapboard terraces in one dull colour. There are no low painted tin-clad houses and no coloured tin roofs, so it reads as an English or New England street, not Grindavik. There is no black lava rock anywhere. The end of the street is a brown dirt and rubble bank, not black rock, and there is no ridge beh"
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "fountains are emissive cores in a fire VOLUME with ballistic glowing spatter; the plume is a Principled Volume column lit from below; no mesh billows"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the world behind the gate is built: black lava blocks on the ridge slope, a power-pole line, a gravel track; the gate keeps its winch housing and crank"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "smoke and fountains are volumes, not balls or cones; the gate and every prop wear real scanned materials (look bible 2026-11-24)"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the flat sign and post are out of the main lens; every prop wears scanned worn paint, steel and rubber"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the sign plate is cut; ash, cinders and patched cracks on the street"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: the fountains and the plume are procedural fire and smoke volumes, not cones or blobs; real asphalt, painted clad houses with windows, cars with lit headlamps"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "fountains are ragged gas volumes of uneven height with spatter and a lit plume, not smooth cones; orange light on ridge and roofs; one daylight grade"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "OFF THE LOOK: the smoke is a row of lumpy brown dough or potato balls (frames 2-4). The lava fountains are smooth orange pine-cone cones, not fountains. This breaks the rulings 'Kinda real, not clay' (2026-11-05) and 'every object built from its real parts' (2026-11-06). It is nowhere near the approved store's finish."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "OFF THE LOOK (the realer the better; every object built from its real parts): the gate is a white block with a yellow box and a red-and-white bar, with no crank, hinge or housing. It reads as a toy. The hill is a repeated-blob texture, far below the approved store's finish. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "OFF THE LOOK (every object built from its real parts; the realer the better): frames 1, 2 and 4 \u2013 the gate is still a smooth white block with a plain yellow box and a red-and-white bar. No crank, hinge or winch housing can be read, so it still looks like a toy. The ridge is still a brown hill covered in the same round shrub blobs, nothing like black lava blocks. The fountains are pink-white glowin"
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "OFF THE LOOK (every object built from its real parts; one finish across the frame): frames 1, 2 and 4: the gate is a plain black cylinder with a flat yellow sign carrying a grey square. The yellow slab Data holds reads as a toy plank, not a crank. Next to the photo-real sky, these props stand out as flatter and cartoonier."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "OFF THE LOOK (every object built from its real parts; one finish across the frame): frames 1, 2 and 4: the yellow slab Data holds still reads as a flat toy plank, not a gate crank. It is the cleanest, flattest object in the frame and stands out as 'the prop'. Frame 3: the gate is a plain pole with a red box on top."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "OFF THE LOOK (stage for the one camera; Data's face and body must read the emotion): frames 2-4: Data stands square to the lens in the middle of the road, not side-on at the kerb. His arm is out level and stiff. The lit orange marshal's baton is not readable: at most a thin orange sliver in frame 2. The flinch, the turn and the worried run never happen, so it is a pose, not an action."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "OFF THE LOOK (stage for the one camera; Data's face and body must read the emotion): frames 1-4: he faces us square with one arm stiffly out to the side. He does not face the traffic he is directing, so nothing reads as marshalling cars. His face is a flat resting look while a volcano erupts 50 m behind him. In frame 4 the stick drops to his hip and he is just standing."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "OFF THE LOOK (things behave for real; kinda real, one finish): frames 1-4 \u2013 the lava bombs are pale pastel pink-white spheres hanging in a frozen halo around the fountain, like popcorn or bubbles, not glowing ejecta on arcs. The fountain is a soft cartoon flame with no orange light on the roofs, ridge or street, so it looks pasted over the sky rather than lit into the set. This does not match the "
+     }
+    ]
+   },
+   "ONE-SECOND GAG": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "ONE-SECOND GAG: frames 3-4: once the cars are gone, the street is empty and the frame holds the same picture. The only change is the stick's angle. Nothing new happens in the second half; a stranger swipes."
+     },
+     {
+      "at": "2026-11-26 13:24Z",
+      "round": 18,
+      "said": "ONE-SECOND GAG: frames 2-4: after the stand in frame 1, the last three stills are the same run toward the lens, only a little bigger each time, with the same pose, the same street and the same fountain. Nothing new happens after the first second. The promised climax, him running out past us big and wide-eyed, is not in the stills: in frame 4 he is still mid-frame, about half the height of the fram"
+     }
+    ]
+   },
+   "TALKING HEAD": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "he winds a real crank with his whole body rocking over it, then waves the cars on"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the opening frame is the eruption over the street, him in the left third waving the cars out"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: low lens up the street, fountains' curtain of fire from frame one, cars streaming at the lens, Data runs in from the side and waves them through with a lit baton; no crank, no post"
+     },
+     {
+      "at": "2026-11-25 17:04Z",
+      "round": 6,
+      "what": "reset restage: he is three-quarter to the lens at the frame's right, working with both arms: the lit baton swung up in one hand, the other sweeping the cars on, never square to the lens with his arms out"
+     },
+     {
+      "at": "2026-11-26 12:08Z",
+      "round": 17,
+      "what": "he no longer stands centre frame with arms out: he runs the diagonal three-quarter to the lens, stride and pumping arms readable in stills 2-4"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "TALKING HEAD: in all four frames Data is waist-up and centred with the camera parked on him. The gate block covers his body and the eruption is a backdrop strip"
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "TALKING HEAD: frames 1, 2 and 4: the same waist-up framing of Data facing us. Only his arm changes, and the camera stays parked."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "TALKING HEAD: frames 3-4: Data stands centre, facing us, full-body to three-quarter, with the camera parked. Only his arm changes."
+     },
+     {
+      "at": "2026-11-25 22:34Z",
+      "round": 15,
+      "said": "TALKING HEAD: frames 1-4: Data stands dead centre, square to the lens, full figure, with the camera parked on him. The claimed fix (three-quarter at the right of the frame, working with both arms) is not in the stills. Only one arm and the stick change between frames."
+     }
+    ]
+   }
+  },
+  "2": {
+   "BACK TO CAMERA": {
+    "fixes": [
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "the last look is to the lens as the lights blaze; the wide is from the far side of the digger, where his face turns"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "he is three-quarter to the lens in stills 1-3 and in profile in still 4; the measured check fails any head over 100 degrees off the lens"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "shot replaced (r2zk): a locked low lens (0.55 m, tilted up 16 deg) on the town side; he faces the lens in all four stills, face off the lens 1/3/27/27 deg, never three-quarter from behind; the ending pose is a step back toward the lens, face to us"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "BACK TO CAMERA: in frames 2 and 4 Data's head is turned away, and we see the back and side of his head with no face, in half the stills. Frames 2, 4."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BACK TO CAMERA: frames 1-4: Data is seen from behind or three-quarters from behind. In frames 2-3 we see the back of his head, and in frame 4 his face is turned away from the lens. He never grins at us."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BACK TO CAMERA: frame 4: he is turned away from the lens, three-quarter from behind. We see the back of his vest and the side of his head, and his face is hidden behind the glasses' side arm. This is the ending pose, held for the last quarter of the shot, not a quick glance."
+     }
+    ]
+   },
+   "BODY": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BODY: frame 2: the boulder hangs in the air above the hard hat, not resting on it, and neither hand touches it. One hand is cupped at his cheek and the other is at his chest. A rock 'hoisted onto his hard hat' with no hands under it reads as a floating object."
+     }
+    ]
+   },
+   "BROKEN": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "set and lens re-solved offline (compose.Pinhole): digger moved back to (-3,3), wall to y 9, lens 20 low: the whole digger and its arm to the crest stay in frame"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "antennae checked under the hat; the floodlight haze cones that read as white blobs are gone; his feet sit on the works ground"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: his start position keyed on the works ground, not at z 0"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "the digger and the thrown rock are gone; one boulder, on his hands at his chest, resting on his hard hat, set on the crest, under his feet; feet flat on the crest"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "shot replaced (r2zk): no fountain, dust puff or thrown boulder exists in this shot any more; the digger and the house are whole inside the frame in every still, the digger sitting on the rock under its tracks with sky above it (pre-flight answered no broken thing on sheet ec73f91f32a0)"
+     },
+     {
+      "at": "2026-11-28 04:06Z",
+      "round": 18,
+      "what": "r3q: the digger's tracks sit on a lane of loose rubble along the wall's crest, which rises with it; its bucket tips at the lip and the boulders fall under gravity down the face"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BROKEN: the digger is cut by the left frame edge for the whole shot. Only a yellow arm and part of the tracks show, so the machine Data drives is never whole (frames 1-4)."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "BROKEN: frames 1, 3 and 4: Data's antennae poke straight through the hard hat."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "BROKEN: frame 1. Data floats above the ground: his feet hang clear of the gravel, with a gap under them."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "BROKEN: frame 1: Data still floats. His feet hang well clear of the ground, with his shadow on the sand below them."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BROKEN: frames 1-4: most of the frame is pure black. The bottom third is a black void and the digger is a silhouette. Frame 1 has Data's head cut off by the left and bottom edges."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "BROKEN: frames 1-4: the lava fountain is cut by the top and left frame edges in every still. Frame 3: the dust puff is cut by the left edge, and the boulder that lands front-left there is not where he stands in frame 4, so it jumps between stills."
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the arm's full climb to the crest and the tip are inside the frame; he walks the sticks forward and leans back to haul"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the wide along the wall shows the bucket held up over the crest as the rocks tip, with diggers along the face"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the bucket tips its rock over the wall's crest and the rocks tumble down the black face"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "not changed this round: the bucket tip over the crest stays as built; the dust burst carries it"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "one action and one consequence: he sets a boulder into the row along the crest and stands on it, the town's roofs below; the wall no longer jumps in height"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "shot replaced (r2zk): the consequence is the wall itself, seen face-on behind a house, its crest rising still by still 1.2 / 2.9 / 4.1 / 5.4 m with a digger on it building it, ending about twice the house's height; nothing is placed off at the frame edge"
+     },
+     {
+      "at": "2026-11-28 04:06Z",
+      "round": 18,
+      "what": "r3q: a side-on digger with a driver in its cab tips a bucket of boulders over the crest in every still, boulders falling down the face, and the wall climbs from knee height to over the roof; he radios the digger in stills 1-2, a black handset in his hand all four stills"
+     },
+     {
+      "at": "2026-11-28 04:20Z",
+      "round": 18,
+      "what": "r3r: a side-on digger on the crest tips a bucket of boulders over the lip in every still, boulders falling down the face, and the wall climbs from knee height to over the roof; he radios the digger in stills 1-2, a black handset in his hand all four stills"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "CONSEQUENCE: the bucket tipping over the crest is a tiny dark speck at the top of the wall (frames 2-3). The rock bounce reads only in frame 4, as a few brown balls."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "CONSEQUENCE: the bucket never tips over a crest, because no crest is in frame. The rocks just drop beside the machine. Frames 3-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "CONSEQUENCE: frames 3-4 \u2013 the bucket is raised against the sky, but no crest of a wall is visible for it to tip over. The rocks bounce at the digger's tracks and do not tumble down a wall face."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "CONSEQUENCE: frames 3-4: the bucket rises against the sky, but no rock is seen tipping over a crest or tumbling down the face. In frame 4 the rocks lie in a heap at the digger's tracks. Data never ducks from rock bouncing past him."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "CONSEQUENCE: frames 2-4: the bucket rises against the sky (frames 3-4), but no rock is seen tipping over a crest or tumbling down the face. Frame 4 shows two or three round boulders lying behind the digger's tracks. No dust burst shows, and Data never ducks."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "CONSEQUENCE: frames 2-4: the bucket is a black silhouette against the sky at the top edge. No rock is ever seen going over a crest, tumbling down the face or bursting into dust."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "CONSEQUENCE: frame 3: where the boulder lands is pushed to the far left edge. The dust puff is cut off by the frame edge, and the boulder ends up on the ground ahead of him and to the left, not visibly set into the row of crest boulders. Placing it never visibly adds anything to the wall."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the digger is whole and the bucket tips over the crest in frame; other diggers and a truck show the works"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a cut to a low wide along the wall: the face towering, diggers and trucks along it, his bucket over the crest"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the wall is a black lava-rock face towering over him, with far diggers working along it"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the eruption's smoke stands up behind the wall; the wall is black lava rock (Poly Haven)"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "storyboard line rewritten to the four stills on the sheet: heaves to chest, onto his hard hat, set down in a pale puff, stands on it shading his eyes"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "the lens no longer looks along the crest: it looks at the wall's town face from in front of a house, so the wall reads as a face with height and the house beside it is the yardstick (the wall ends about twice the house). The spoken line is now only 'So Iceland built a wall of rock taller than a house'; lava pressing on the wall is NOT in this shot by design, it is shot 3's job"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT SHOWN: there is no sense of three stories, because nothing gives scale against the wall. One digger appears, cropped, not a hundred diggers and trucks. 'Day and night' is not shown: the light is a flat blue-sky day, with no floodlights blazing and no evening (frames 1-4)."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT SHOWN: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. There is one digger, no other diggers along the wall and no dump truck. The 'wall' is a low dirt bank with moss dots, nowhere near three stories, and its crest is never seen. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT SHOWN: frames 1-4 \u2013 'walls of rock three stories tall, with a hundred diggers and trucks' is still not shown. The wall is a gentle brown dirt slope with moss dots, not a black rock face. The wide in frame 2 shows two diggers and no dump truck, so neither the scale nor the numbers are on screen."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is still not shown. The wall is a grey gravel slope with green dots, not a black rock face, and nothing gives its height against a person or a truck. The wide (frame 2) shows two diggers, no dump truck and no line of machines."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. Nothing beside the wall gives its height: no truck, no person, no house. There is one digger, part of a second arm in frame 2, and no dump truck with headlights."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT SHOWN: frames 1-4: 'walls of rock three stories tall, with a hundred diggers and trucks working day and night' is not shown. The wall is a dark slope with no scale beside it, and there are no other diggers and no dump truck. The floodlights are a few white specks, not lit poles along the wall's foot."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT SHOWN: frames 1-4: 'a wall of rock taller than a house' is not on screen. The camera looks along the crest, so the wall reads as a rubbly black path or ridge with no face and no height. The houses sit off in the distance at about the same eye line, so nothing compares the wall to a house. 'To keep the lava out' is not shown either: no lava reaches the wall or presses on its outer side. The onl"
+     }
+    ]
+   },
+   "NOT THE POINT": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT THE POINT: frames 1-4: seen alone, the shot reads as a cartoon worker playing with a rock on a gravel heap. Frame 2, the boulder balanced on his hard hat, reads as a circus gag, not as building a wall. Nothing reads as the town building a barrier against lava."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "blue evening light (low dim sun, sky 0.16), floodlights on from the start and blazing at the end, two built diggers working along the wall, a dump truck rolling its foot"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "floodlights blazing from the first frame"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "floodlights are lit heads with real pools of light; dark rough gravel, rubble, dumped tyres, barriers, cement bags and drums (Poly Haven) under a dusk sky"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: floodlights throw hard pools (area spread 50 deg, more than twice the power); black rock ground; a cloudy evening sky"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "shot along the crest of beat 3's wall: one long black ridge running to the distance, three whole painted tin-roof houses and a flag on the green below it, bare black ground and the far fountains on the outer side"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "NOT FIXED in the sense the note asked: this shot still has no fissure ridge, smoke, steam or lava field in frame, because it is the wall being built on the town side BEFORE the lava comes (the eruption is shot 1, the lava at the wall shot 3). What changed: the fountain that rose out of the wall's end is gone, so the geography is no longer contradicted; town house in front, the wall behind it, the digger building it"
+     },
+     {
+      "at": "2026-11-28 04:06Z",
+      "round": 18,
+      "what": "r3q: the eruption's dark smoke now rolls up over the wall in every still (shot 4's gas column, darker, leaning on the wind), the scanned sky is drained to a cold pale one, and an Icelandic flag flies at the house's corner. Still no fissure or lava in this shot: the wall is being built before the lava arrives"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE WORLD: there are no floodlight poles along the foot, no other diggers, no dump truck with headlights, and no blue evening. It is a single machine against a bare rock backdrop."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE WORLD: the brief asks for a blue evening with floodlights blazing. This is a flat grey daytime sky, and the floodlight heads are white boxes that are switched off. There is no night, so 'day and night' is not shown. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT THE WORLD: frames 1-4 \u2013 the floodlights are still white boxes on poles that cast no light. There are no pools of light, no glare and no blaze. The ground is grey sand, not black lava rock. 'Night is falling and the work goes on' does not read."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT THE WORLD: frames 1-4: the floodlights are still white box heads on poles with a pale streak below each. They cast no pools of light, and the ground is lit evenly grey under a black storm sky. The ground is pale grey sand with grey rocks, not black lava gravel. It reads as a quarry on the moon, not a floodlit night works."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT THE WORLD: frames 1, 3 and 4: the ground is bright white sand with pale grey boulders, not black lava rock. It is lit evenly bright under a black storm sky, so it reads as a quarry or the moon. The floodlights are still white box heads that throw no visible pools of light."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT THE WORLD: frames 1-4: no lit wall works, no black lava rock you can read, no town or work site. It is a dark cab frame against a dusk sky."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "NOT THE WORLD: frames 1-4: none of the world's eruption cues are present. There is no fissure ridge, no dark smoke, no steam where lava meets cold ground, and no bare black lava field on the outer side. The fountain seems to rise straight out of the far end of the wall, so the geography of town, wall and lava cannot be read."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "no billow meshes: the eruption reads as horizon glow; dust is a volume; the other diggers are the real built digger, not boxes"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "digger worn paint, engine grille, exhaust, grab rails, warning stripes"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the digger wears scanned worn paint, steel and rubber tracks; dust is a keyed volume"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: digger in scanned worn paint, steel and rubber track; cab glass and rams are on the model"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "the faceted toy boulders are replaced by a finely cut noise-displaced boulder in the wall's own rock; the flat black backdrop is replaced by the real wall with its boulder row"
+     },
+     {
+      "at": "2026-11-27 23:37Z",
+      "round": 18,
+      "what": "the flame-card fountain is gone; the sky is a real scanned partly-cloudy sky (bright day, broken cloud), not flat grey; the wall is the scanned rock texture, lit by the sun on its face; the house is the town_house kit with a gabled red roof, window frame, door and corner boards, its front to the lens. Not changed: the roof is still a plain red colour, and Data is the stylised character by design"
+     },
+     {
+      "at": "2026-11-28 04:06Z",
+      "round": 18,
+      "what": "r3q: the house is at shot 4's real size with painted tin walls and a red tin roof; the wall's crest is loose rubble, not a slab; the sprite-like ash column is replaced by shot 4's rolling gas column. Data's own look (the rig) is unchanged"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "OFF THE LOOK: the 'wall' is a stack of giant smooth brown clay blobs, like dough boulders (frames 1-4). This breaks the rulings 'not clay' (2026-11-05) and 'every object built from its real parts at real scale' (2026-11-06). A real earth barrier is a graded berm of crushed rock."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "OFF THE LOOK (every object built from its real parts): the digger is a flat yellow box on treads, with a bent bar for an arm, no cab glass, no hydraulic rams and no wear. It reads as a toy. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "OFF THE LOOK (every object built from its real parts): frames 1, 3 and 4 \u2013 the digger has gained stripes and a grille, but it is still a flat yellow box with a bent bar for an arm. It has no cab glass, no hydraulic rams and no wear. The sky is a visibly tiled noise texture."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "OFF THE LOOK (every object built from its real parts; one finish across the frame): frames 1, 3 and 4: the digger is a yellow box with a grille, a flat black box for a cab and a bent yellow bar for an arm. It has no cab glass, no rams and no wear, and it is cartoonier than the rock behind it."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "OFF THE LOOK (every object built from its real parts): frames 1, 3 and 4: the digger still reads as a yellow box with a grille, a dark box cab and a bent bar for an arm. No cab glass or rams show at this size. The remote pack reads as a gold tray."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "OFF THE LOOK (friendly and readable, never dark underlit night; every object built from its real parts): frames 1-4: this is underlit night, close to horror lighting. The digger is a dark roof slab on posts with a flat orange plank for an arm: no cab glass, no rams, no tracks."
+     },
+     {
+      "at": "2026-11-26 11:59Z",
+      "round": 17,
+      "said": "OFF THE LOOK (backgrounds as real as we can make them; one finish across the frame): frames 1-4: the houses are simple boxes with flat, saturated roofs and no gutters, trim or tin ribbing, so they look toy-like next to the detailed black rock. The lava fountain is a flat flame card with no smoke column or glow on the ground. The sky is a flat dull grey, not the story's cold, bright day under broke"
+     }
+    ]
+   },
+   "TALKING HEAD": {
+    "fixes": [
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: Data in the digger's open cab, side-on, under a lens low at the berm's foot tipped up so the wall towers; no glass between; the rock tumbles down the face beside the digger"
+     },
+     {
+      "at": "2026-11-26 11:06Z",
+      "round": 16,
+      "what": "he never addresses the lens: he works the boulder in every still and ends in profile looking out over the black ground"
+     },
+     {
+      "at": "2026-11-28 04:06Z",
+      "round": 18,
+      "what": "r3q: he is turned 57-67 degrees off the lens on stills 1-3, radioing the digger and looking up at the wall; only on still 4 does he turn to us, grinning"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "TALKING HEAD: frames 3-4. Data stands centred, facing us waist-up to full-body, holding a yellow plank, and his pose barely changes while the camera stays parked."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "TALKING HEAD: frames 1, 3 and 4 are the same frame: Data waist-up to full body, centre, facing us, hands on the tray, with the camera parked. The digger work happens behind him, half hidden."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "TALKING HEAD: frames 2-4 are the same framing with the camera parked on Data in the cab, and only his arms shift slightly."
+     }
+    ]
+   },
+   "TINY DATA": {
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "TINY DATA: frame 2: Data is a speck at the far end of the frame."
+     }
+    ]
+   }
+  },
+  "3": {
+   "BACK TO CAMERA": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the lens is out over the lava looking back at him on the crest; he faces it in all four stills and grins at it in the last"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BACK TO CAMERA is not a defect here, but the staging is wrong: the camera is front-on below him, not HIGH over his shoulder looking toward the lava as boarded."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BACK TO CAMERA: frames 1-4: the lens is directly behind Data. All we see is the back of his hard hat and vest the whole shot, and he never turns to us with a thumb up."
+     }
+    ]
+   },
+   "BROKEN": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the cutaway high wide holds the whole lava front in frame, both ends"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the lava front is held whole in the main lens; the released hand drops clear of his coat"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the steam is a bigger column beside him over the front"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: one fixed lens, daylight; the lava front, its crust blocks, the hose jet and the steam are all inside the frame and none of them pops in or floats"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: the lava is no longer a strip at the bottom edge: it fills the lower third of the frame and climbs to the crest's edge; the tongue's position is now actually keyed (it sat still before); steam is one small white column light-linked off the lava lamps so it does not go tan"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: hose, jet, nozzle and hydrant deleted; the steam comes free off the contact line; the river runs from the foreground to the wall in frame"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BROKEN: lava blobs float in mid-air in frame 2, and the lava dome appears from nothing between frames 1 and 2."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "BROKEN: the lava front is cropped by the bottom edge in every frame, so the subject of the shot is never whole. Frames 2-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "BROKEN: frames 2 and 4 \u2013 in the main lens the lava front, the shot's subject, is cut by the bottom edge. Only the cutaway frame holds it whole, and it is small there."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "BROKEN: frame 1: no lava is in the main lens at all, and below Data is a blurred grey band. Frame 4: the lava front is cut by the bottom and right edges. The shot's subject is still never whole in the main lens."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "BROKEN: frame 1: there is no lava in this frame, only a blurred grey band below Data. Frame 4: the lava is cut by the bottom and right edges. The shot's subject is still never whole in the main lens."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BROKEN: frames 2-4: the lava is a strip cut by the left and bottom edges, and in frame 1 there is no lava at all. The shot's subject is never whole in the frame."
+     },
+     {
+      "at": "2026-11-25 19:12Z",
+      "round": 10,
+      "said": "BROKEN: frames 1-4: the shot's subject, the lava front, is cut off by the bottom edge in every still. We never see the front whole or the lava field it came across, only its top crust."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "BROKEN: frames 1-4: the lava still runs off the bottom edge in every still. It now fills the lower third, which is better, but the front is never seen whole, and the lava field it crossed is never seen at all, so the subject is still cut by the frame for the whole shot."
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the front slides 2.2 m along the wall after it rams the face"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the high wide shows the front pressed against the wall's foot and sliding off along it, steam where he sprays"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the steam is a big keyed noise volume that bursts where the jet hits the front"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the steam burst is half again wider and taller and denser"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: still 1 the glowing front rolling in below the crest, still 2 it rammed against the wall's face as the jet hits it, stills 3-4 it stopped there under white steam"
+     },
+     {
+      "at": "2026-11-25 18:40Z",
+      "round": 8,
+      "what": "B1 restage: the front is seen coming in still 1, heaped in broken crust blocks against the foot of the wall's face in stills 2-4, never backing off; the jet and the steam stay on one spot"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: still 1 the glowing tongue is in frame running in over the field; still 2 it has rammed the wall and heaped up the face in buckled crust under his boots; still 3 steam where the jet lands; still 4 its seams have gone dark: heat keyed down on tongue, front and crust blocks. The loose rocks that buried the tongue are cleared from its road in"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: one action, one consequence, no hose: still 1 the river's front comes across the field, still 2 it has slammed into the face and heaped up with steam, still 3 stopped, still 4 its seams gone dark (heat keyed to 7 percent)"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "CONSEQUENCE / NOT SHOWN: 'it hit the wall and turned away from the town' is never seen. The lava appears as a dome in the foreground and never slams into a wall foot or slides off sideways along it. There is no town for it to turn away from."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "CONSEQUENCE: 'hit the wall and turned away from the town' is not seen. The lava appears below the crest (frames 2-4), but we never see it slam into the wall's foot, buckle, or slide off sideways away from the houses. It just sits there being sprayed."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "CONSEQUENCE: frames 2-4: 'a huge cloud of white steam bursts up' is a thin white water line with a few white dots at its tip. Frame 3 shows only a small puff. The lava slamming into the wall's foot, buckling and splitting, is never seen."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "CONSEQUENCE: frames 2-4: the 'huge cloud of white steam' is one thin grey column in the wide (frame 3) and a dotted white water line in frame 4. The front slamming into the wall's foot and its crust buckling into red is never seen. The lava lies on the field short of the wall."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "CONSEQUENCE: frames 2-4: the steam is a grey-black column in frame 3 that reads as smoke from a fire, not a burst of white steam where the water hits. The front slamming into the wall's foot and its crust buckling into red is never seen. In frame 4 the water is still a dotted white line."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "CONSEQUENCE: frames 2-4: the water is a thin white line, and no white steam cloud ever bursts up. The front is never seen slamming into the wall's foot, buckling, or sliding off along the wall."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "CONSEQUENCE: frames 2-4: the front is never seen rammed against the wall's foot. In frames 1, 3 and 4 a band of dark loose boulders separates the crest edge from the lava. Frame 2's crust heap reaches toward the wall, but by frames 3-4 the middle of that heap is gone and the boulders show again. The front looks like it backs off, not stopped dead against the wall."
+     },
+     {
+      "at": "2026-11-25 19:12Z",
+      "round": 10,
+      "said": "CONSEQUENCE: frame 1: the front 'rolling in' is only a glow in the bottom-left corner. In frames 2-4 the lava stays a band along the bottom edge that barely changes from still to still, so the front is never seen ramming the wall's foot and then stopping dead. Nothing in the stills shows it stopped rather than just sitting there."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "CONSEQUENCE: frame 1: the glowing tongue 'running in over the black lava field' is still only an orange glow in the bottom-left corner. Its run-in is never seen. Frames 2-4 do show it heaped at his boots and dimming in frame 4, which is the first real progress on this note, but the arrival that the line and the narration open on is not in any still."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a cut to a high wide over the lava: a long front against the wall's face sliding off along it, the town safe behind"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the front is seen sliding off along the wall away from the houses in the wide"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "not changed this round: the slide along the wall stays as built in the wide"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the lava reaches the wall's face right under his boots and goes no further, the town's painted houses stand untouched behind him in every still: it hit the wall and the wall held"
+     },
+     {
+      "at": "2026-11-25 18:40Z",
+      "round": 8,
+      "what": "B1 restage: the lens is low on the lava side: the wall's face is a tall bank of black boulders across the frame, taller than he is, he stands on its crest, the lava is piled against its foot and the town's roofs show over the crest"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: the wall now reads from both sides: the town's roofs well below the crest behind him, and in front the lava heaped up the rock to his boots and stopped there; the lens is above his head looking back along the crest, as the storyboard line now says"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: the wall is the stopper in the picture: a wide low lens looks at the wall, the lava river runs past him into the foot of the face, heaps up there and stops, the face standing five times his height above it"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT SHOWN: 'it hit the wall and turned away from the town.' No town is visible, and no roofs sit safe behind him (frames 1-4). The lava front does not slide along the wall in a readable direction. It rises up as a dome in front of him and stops."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT SHOWN: 'it hit the wall and turned away from the town' is never seen. The lava sits at the bottom of the frame and does not visibly slam into the wall, buckle or slide sideways. A stranger could not say it turned. Frames 2-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT SHOWN: frames 2-4 \u2013 'it hit the wall and turned away from the town' still does not read. In the high wide (frame 3) the lava is a contained oval pad lying at the wall's foot. It shows no direction of travel, no front sliding off along the wall and no tail heading away from the houses. It reads as a pool that stopped, not a flow that turned."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT SHOWN: frames 2-3: 'it hit the wall and turned away from the town' still does not read. The lava is a pad that spreads sideways. With houses along the whole wall, no direction away from the town shows, and no arrow-like flow runs along the wall."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT SHOWN: frames 2-3: 'it hit the wall and turned away from the town' does not read. The lava is a pad near the crest plus a separate strip running toward the lens. Neither is seen meeting the wall and sliding along it, and houses run the whole length of the wall, so no 'away from the town' direction shows."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT SHOWN: frames 1-4: 'it hit the wall and turned away from the town' does not read. No town roofs are visible on either side, so 'away from the town' has nothing to refer to, and the lava is a flat strip lying beside the crest rather than a front deflected by it."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "NOT SHOWN: frames 1-4: the wall never reads as a wall. From this near-eye-level lens it is a low ledge with a ditch of loose boulders under it. We never see a face taller than a house, so 'it hit the wall, and the wall held' is not on screen. A stranger would say 'a guy hosing lava in front of some houses', not 'the wall stopped the lava'."
+     },
+     {
+      "at": "2026-11-25 19:12Z",
+      "round": 10,
+      "said": "NOT SHOWN: frames 1-4: 'it hit the wall, and the wall held' does not read. With the lava cut off at the bottom and the houses sitting right on the crest, the boulder face reads as the side of a pit with lava at its floor, not a wall taller than a house between the lava and the town. Nothing on screen gives the wall's height against a house."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "NOT SHOWN: frames 1-4: 'it hit the wall, and the wall held' only half reads. Because the roofs sit level with or above the crest, the heap does not read as a wall taller than a house standing between the lava and the town. The town is not visibly protected below and behind it, so 'the wall held' has nothing to protect in the picture. The lava arriving ('when the lava came') is not seen either (see"
+     }
+    ]
+   },
+   "NOT THE POINT": {
+    "closed": 14,
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE POINT: from these stills a stranger would say 'Data hoses a lava blob on a grey ledge', not 'the wall turned the lava'"
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "lens raised 0.45 m so the town roofs read safe behind him over the crest"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "24 houses inside the wall, the field and the wall's face dressed with black blocks, no purple roofs"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "Icelandic houses with windows on real mossy rock below a black crushed-rock wall, under a real sky"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the moss dots on the field are gone (moss 0)"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: bright day, the town's low houses with red, yellow and teal tin roofs fill the top of every still behind the crest, which is heaped black rock with boulders"
+     },
+     {
+      "at": "2026-11-25 18:40Z",
+      "round": 8,
+      "what": "B1 restage: the crest is heaped crushed rock and loose stones (one shared wall asset), the sky is the bright day with the eruption's dark smoke over the roofs, the houses differ in size and stand back from the wall"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: restaged on a diagonal from out over the lava: the crest is a rounded heap of real crushed rock with gravel and boulders, a real hydrant and hose on it; behind and far BELOW the crest stand the town's painted tin roofs on their own ground, so the wall is plainly taller than the houses; a strip of sky above them"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage (coordinator): no houses in frame at all; he stands on the black lava field in front of the wall, whose boulder face fills the frame behind him up to its crest and a real clouded sky"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE WORLD: the background is a flat grey-green mottled plane under a grey band of sky, plus a floating blue rectangle (a tarp?) behind him. There is no lava field and no wall face, just a bare backdrop."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE WORLD: the houses are two flat boxes with purple and blue roofs on a flat grey void, and their roofs are cut by the top edge. There is no town on a slope and no lava field reaching to a glowing front. The palette breaks the story's red, blue and green roofs. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT THE WORLD: frames 1, 2 and 4: the wall's crest is a flat grey slab and its face is a smooth, blurred grey band. It is not crushed black rock. The houses sit on a flat grey plane with nothing between them and the wall. Frame 3: the town floats on a grey void band under a white sky."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT THE WORLD: frames 1 and 4: the crest is a flat grey slab with a house sitting right on it. The wall face below is a smooth blurred grey band, not crushed black rock. Dark smoke columns rise from behind the town (frames 2-3), where there is no lava."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT THE WORLD: frames 1 and 4: a red-roofed house sits directly on the crest behind Data. The wall face is a smooth blurred grey band, not crushed black rock. Frames 2-3: bright green pea-like dots are still on the lava field, although the note claims the moss is gone."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT THE WORLD: frames 1-4: the crest is a smooth grey-brown band like a road, not crushed black rock, and there is no town behind it. A bright, clear, cloud-bank sky with no smoke, glow or steam does not match the eruption seen in shots 1 and 4."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "NOT THE WORLD: frames 1-4: the crest Data stands on is still a smooth, flat, evenly grained dark band, like an asphalt sidewalk or a plinth. It is not heaped, crushed black rock. The only boulders are a few along its back edge. The town behind is rows of identical dollhouse-like houses pressed right against the crest and cut off by the top edge, with no ground, street or gap between. The result is"
+     },
+     {
+      "at": "2026-11-25 19:12Z",
+      "round": 10,
+      "said": "NOT THE WORLD: frames 1-4: this is not Grindavik. The houses are near-identical copies packed shoulder to shoulder, right behind the crest, with no streets, yards, grime or tin cladding. The crest is still a flat dark slab with a thin skin of scattered pebbles, not heaped crushed black rock, so it reads as a ledge or plinth, not an earth wall built by diggers."
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "NOT THE WORLD: frames 1-4: this is not Grindavik behind a wall. The houses are near-identical copies packed roof to roof directly behind the crest, at Data's head height or above it, not 'far below' it. There are no streets, yards, gaps, parked cars or any sign of life. There is no eruption smoke or volcanic haze anywhere in the flat grey-blue sky. It reads as a rubble heap in front of a toy villa"
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "closed": 14,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "no floating blobs: spatter cut to 8 small crusted drops; steam is 14 volume puffs that climb far past the crest"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "a high shot over his shoulder toward the lava is now the cutaway; the main lens stays close for his face"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the lava is an emissive ridged crust, the steam and far plume are volumes, the hose and nozzle wear scanned canvas, rubber and brass"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the lava crust is warped into irregular plates, not an even tile; no green dots"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: one lens high at the wall's end looking back along it: crest with him hosing, black face, the front at its foot sliding off along it, coloured roofs beyond; no cut"
+     },
+     {
+      "at": "2026-11-25 17:09Z",
+      "round": 6,
+      "what": "reset restage: the front is heaped crust blocks with glowing seams over a hot tongue, not a flat tiled sheet; the steam is a white gas volume where the jet lands; the crest is dark crushed rock"
+     },
+     {
+      "at": "2026-11-25 18:40Z",
+      "round": 8,
+      "what": "B1 restage: lava material rebuilt for every shot (real rock crust, mostly black, patchy irregular glowing seams, displaced surface, its own orange light); a real fireman's nozzle; a real hydrant on the crest that the hose runs to"
+     },
+     {
+      "at": "2026-11-25 20:13Z",
+      "round": 12,
+      "what": "B2 fix: shared lava material rebuilt (black broken crust on a real burned-ground texture, sparse uneven seams, glow only where it is fresh), crust blocks are black plates with a seam or two; fire nozzle is a red branch with chrome coupling and bale; hose runs to a Poly Haven hydrant in frame; the houses are far below, each its own size and yaw, on ground"
+     },
+     {
+      "at": "2026-11-25 21:21Z",
+      "round": 13,
+      "what": "B4 restage: toy houses and the water tube are gone from the shot; what is left is the shared rock wall, the real rock ground and the shared lava material that passed in shot 4"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "OFF THE LOOK: the water is a white tube with dozens of white balls around it, like popcorn or snowballs (frames 2-4). The lava is a smooth toy dome with cartoon crack lines, not crusted, steaming lava. This breaks the rulings 'not clay/cel' (2026-11-05) and 'realer the better' (2026-11-06)."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "OFF THE LOOK (stage for the one camera): the brief asks for a high shot over his shoulder toward the lava. This is front-on to Data, with the lava cut off at the bottom of the frame. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "OFF THE LOOK (things behave for real; the realer the better): frames 2-4 \u2013 the 'huge cloud of white steam' is a scatter of white dots like snow around a thin water line. Where the spray hits, frame 3 shows only one small puff. Behind Data, frames 1, 2 and 4 show the town as a row of roof boxes sitting on a flat grey void."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "OFF THE LOOK (the realer the better; things behave for real): frames 2-4: the lava is a uniform tile of Voronoi cells with even orange seams, like a game texture, not cracked crust. Bright green pea-like dots sit on the field. The water is a white line with a few dots."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "OFF THE LOOK (the realer the better): frames 2-4: the lava is warped a little, but it still reads as an even tile of cells with uniform glowing orange seams, like a game texture. Frame 4 shows it big and plainly. The water is a dotted line, not a hose jet."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "OFF THE LOOK (the realer the better): frames 3-4: the lava is still a tiled cell texture with even glowing seams, a game-floor pattern laid flat on the ground. Green pea-like dots are still on the rock field in frames 1-4."
+     },
+     {
+      "at": "2026-11-25 17:34Z",
+      "round": 8,
+      "said": "OFF THE LOOK (the realer the better / one finish across the frame): frames 1-4: every crust block wears the same evenly spaced orange crackle-vein texture, so the lava reads as a procedural game material, not real pahoehoe/aa crust. The houses are clean, flat-painted, repeated toy fronts, a different finish from the rock and lava. Neither matches the approved store's built realism."
+     },
+     {
+      "at": "2026-11-25 19:12Z",
+      "round": 10,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better / approved store is the standard): frames 1-4: the houses are toy houses. The roofs are flat, saturated primary red, yellow and green slabs; the walls are clean and plain; the windows are identical. They read as a game-asset or Playmobil row, nowhere near the store's finish. Data and the hydrant are lit like a product shot against t"
+     },
+     {
+      "at": "2026-11-25 20:19Z",
+      "round": 13,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better / approved store is the standard): frames 1-4: the town behind him is still made of toy houses. The roofs are flat, saturated primary red, yellow, green and blue slabs with clean plain walls, no tin ribbing that reads, no grime or weathering, and a white chimney stub on every one. Against the real-looking rubble crest and lava crust"
+     }
+    ]
+   }
+  },
+  "4": {
+   "BODY": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the leap back after letting go is bigger (0.32 m back, 0.13 m up)"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the leap is over before still 2 and done by still 3; both feet are planted with a contact shadow in all four board stills (hops retimed to land between stills); the arm nearest the flow comes up to shield his face in stills 3-4 and a warm lamp that lights only him puts orange on his lava side"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BODY: his hands are off the barrow handles while it is still moving in frame 3 (arms at his sides), and his hands are hidden in frames 1-2"
+     },
+     {
+      "at": "2026-11-25 19:23Z",
+      "round": 11,
+      "said": "BODY: frame 3: Data hangs in the air with both feet well above the road and no contact shadow under him. After frame 2's leap he should be landing, but he reads as pasted in and floating over the lava-lit road."
+     }
+    ]
+   },
+   "BROKEN": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "lens 80 (was 88) and raised to 1.55 m: the barrow no longer fills the frame and the crack's zig-zag reads across the street"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the barrow's hand keys are re-placed at the tip so his hands stay on the grips; the wide shows the lava spread across the road"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the barrow tips into the crack and rolls toward the kerb; it never hangs in mid-air"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the barrow stays in view: it tips into the crack and sinks less, rolling only part way to the kerb"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the lens rises over the barrow (z 1.75, looking down the street) so he is not a head over a crate"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: one street, one daylight, one fixed lens up the street in all four stills; nothing pops in, the lava stays inside the frame's lower third"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the sandbag is seen in his arms, falling in mid-air as he jumps, and lying on the road beside him to the end; the crack now runs down the middle of the frame, not along its bottom edge"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the tan fume column is deleted; the only steam is a small white wisp standing on the crack itself from the moment it opens; the one dark eruption plume stands behind the wall in every still"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BROKEN: the lava slab appears from nowhere between frames 3 and 4 as a raised block with a hard edge. The tipped barrow in frames 5-6 floats in front of the lava, enlarged, rather than tipping into a crack."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "BROKEN: frame 3 \u2013 the lava rises as a thick rectangular slab block, a box with crust on top, rather than welling and pouring. In frame 4 the barrow hangs in mid-air in front of him with its handles up and no wheel on the ground."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "BROKEN: frame 4 \u2013 the barrow still hangs in mid-air in the foreground. It is tilted with its handles up, no wheel is on any surface, and it is cut by the bottom and right edges. A red shape is also cut at the right edge."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "BROKEN: frame 4: the lava, the shot's result, is cut by the bottom edge and only grazes the frame."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "BROKEN: frame 4: the lava, the shot's result, is still a thin strip cut by the bottom edge. Frame 2: a row of loose paving blocks appears in front of the wheel from nowhere. It reads as dropped cobbles, not a crack tearing through asphalt."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BROKEN: frame 2: a black square pops in at the bottom edge. Frame 4: a fire flicker is cut by the bottom edge, and the shot's result never shows whole. Frames 1, 2 and 4 cut to a different, darker street from frame 3."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "BROKEN: frames 2\u21923: the sandbag he carries in frames 1-2 is gone in frame 3. It is not seen falling and is nowhere on the road, so it just vanishes. In frame 2 the glowing crack runs along the very bottom edge and the frame cuts it, so the moment the road tears is a sliver at the lip of the frame."
+     },
+     {
+      "at": "2026-11-25 19:23Z",
+      "round": 11,
+      "said": "BROKEN: frames 3-4: a large translucent brown/orange column appears at the far end of the street, in front of the earth wall, where frames 1-2 show nothing. It looks like a smoke volume that failed to render, a smeared blob rather than steam or fume, and it shows up from nowhere."
+     }
+    ]
+   },
+   "CONSEQUENCE": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "the lava pours out of the crack and runs up the street toward the red-roofed corner house; he leaps back 0.32 m and up 0.13 m"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the wide shows the lava running across the street from kerb to kerb between both rows of houses"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "lava wells up round the tipped barrow and runs down the street at the lens; it is in the main lens and fills the wide"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the lava tongue runs nearly twice as far down the street at the lens"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: from the higher lens the tongue of lava down the street is in frame in front of him"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the storyboard now promises only crack, lava, jump back; still 2 is the glowing zig-zag crack across the road in front of him, stills 3-4 the lava welling out of it and running at the lens"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the crack runs the length of the street beside him: still 2 it tears open glowing at his feet, still 3 the road has pulled apart and lava is welling out of it, still 4 the lava has spread across the road to the house doors"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "CONSEQUENCE / NOT SHOWN: 'the ground split open and lava poured into the streets' is not seen. No zig-zag crack tears kerb to kerb. Instead a flat slab of lava texture rises in the foreground (frames 3-6) like a wall panel, and no lava runs down the street toward a red-roofed corner house."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "CONSEQUENCE: lava 'pouring out over the road' toward a house is not seen. In frames 3-4 it is a raised cracked block, like a stone slab, not liquid running down the street, and no house is in its path."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "CONSEQUENCE: frames 3-4 \u2013 the crack opens, but its result (the street in front of him filling with orange) is never seen. The road stays grey."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "CONSEQUENCE: frames 3-4: the barrow is never seen tipping into the crack or catching fire; it is simply gone after frame 2. In frame 4, 'the street in front of him filling with orange' is a thin glowing strip along the bottom edge, and the street behind him stays grey."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "CONSEQUENCE: frames 2-4: the barrow is never seen tipping into the crack or catching fire. It is a small dark box beside the pad in frame 3 and gone in frame 4. The street in front of him never fills with orange."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "CONSEQUENCE: frames 1-4: no crack is seen tearing across the asphalt. The barrow is never seen tipping in and catching fire, and the street is never seen filling with orange. Frame 3 shows a lava pad that is already there, and frame 4 shows only a glow at the bottom edge."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "CONSEQUENCE: frames 2-4: the crack is never seen tearing across the road in front of him. Frame 2 shows only a thin orange line at the bottom edge, and by frame 3 a full lava mound already fills the foreground. The road is never seen splitting, and the lava is never seen welling up out of a crack."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "the wide up the street shows the lava pouring out of the crack across the road toward the houses"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the street fills with orange: a liquid tongue pours over the near slab, kerb to kerb, and the barrow burns"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the pour is a long tongue down the street, not a round pad"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the higher lens shows the street floor where the lava pours"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the earth wall closes the far end of the street behind the houses, the crack splits the asphalt in still 2, and the lava is a lumpy flow coming down the street from the crack line, not a ringed pad"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: lava is seen running the length of the street past the house doors; the earth wall is a flat-topped black bank across the end of the street over the roofs with the eruption smoke behind it; houses stand down both sides"
+     },
+     {
+      "at": "2026-11-25 19:23Z",
+      "round": 10,
+      "what": "B2 fix: the earth wall is now a straight, steep, flat-topped black bank right across the end of the street, higher than the roofs, clear of his hat, with the eruption smoke behind it; the arm nearest the flow comes up across his face in the last still and he is lit orange"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT SHOWN: the ground does not 'split open'. There is no zig-zag crack tearing kerb to kerb. A flat lava texture appears under the wheel (frame 3), then a raised orange slab (frames 4-6). The lava 'pouring straight into the streets' never runs down the street toward a house. The red-roofed corner house is never in frame."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT SHOWN: 'lava poured straight into the streets' is not shown. The lava appears as a raised crusted slab beside the barrow and is never seen pouring out and running down the street toward a house. Frames 3-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT SHOWN: frames 3-4 \u2013 'lava poured straight into the streets' is not shown. In the wide it is a thin glowing band lying across the road with two steam puffs, not lava pouring out and running down the street toward the red-roofed corner house. In frame 4 it is a flat cracked crust under the barrow."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT SHOWN: frame 3: 'lava poured straight into the streets' is a crust pad lying in the middle of the road with steam on either side. It does not run down the street, and the red-roofed corner house it should head for is not in any frame."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT SHOWN: frame 3: 'lava poured straight into the streets' is a round crust pad edged with paving blocks in the middle of the road, not a tongue running down the street. The red-roofed corner house it should head for is not in any frame."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT SHOWN: frames 1-4: 'the ground split open inside the wall, and lava poured straight into the streets' does not read. The lava is a round pad ringed with paving blocks, not a tongue running down the street, and there is no wall at the end of the street and no red-roofed corner house it heads for."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "NOT SHOWN: frames 1-4: 'the ground split open inside the wall, and lava poured into the streets' does not read. The far end of the street is a rubbly black hillside, and nothing on screen reads as a man-made earth wall, so 'inside the wall' is not shown. The lava sits as one heaped mound between the lens and Data. It is never seen running down the street; it does not reach his feet, move past the "
+     },
+     {
+      "at": "2026-11-25 18:55Z",
+      "round": 9,
+      "said": "NOT SHOWN: frames 1-4: the 'inside the wall' part of the line is still not on screen. The far end of the street is mostly hidden behind Data's hard hat. What does show past the roofs (frame 1 left, frames 3-4 over the right-hand terrace) is a low, lumpy black slope that reads as a natural hillside. Nothing reads as a man-made, flat-topped earth bank built across the end of the street. With the sou"
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a cut to a high wide up the street: houses both sides, the wall across its end with smoke"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "long lens down a narrow street: house rows both sides, the wall and smoke across its end; real asphalt, kerbs, lamps, rubble and patches"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "not changed this round: the street and its sky stay as built"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "not changed this round: the street and its sky stay as built"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: all four stills are the same daylight street with painted tin houses down both sides and the same cloud sky; the world block now says one bright day"
+     },
+     {
+      "at": "2026-11-25 19:46Z",
+      "round": 11,
+      "what": "B3 fix: the big orange lamps are gone; the heat is seven small lamps a hand above the road along the flow's edges, light-linked off the lava and steam, so the road, kerbs and house fronts keep the same grey daylight grade in all four stills; the wall across the street end is the shared heaped black-rock berm with boulders on its crest and rubble at its foot"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE WORLD: there is no earth wall at the end of the street with smoke over it, the time does not read as mid-afternoon, and no red-roofed corner house appears."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE WORLD: about 80% of each frame is bare grey asphalt. The town houses are slivers cut by the top edge, there is no earth wall or smoke at the end of the street, and no red-roofed corner house. It reads as an empty test road, not a street inside the wall. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT THE WORLD: frames 1, 2 and 4 \u2013 about 70% of each main frame is still bare grey asphalt. The houses are slivers cut by the top edge, and the wall and smoke at the end of the street are not in the main lens. Only the wide in frame 3 places it in the town."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, while frames 1, 2 and 4 have a hazy pale sky. The weather jumps inside one shot. In the main lens the houses are tall dark terraces with no red, blue or green roofs; they read more as a British street than Icelandic low houses."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, while frames 1, 2 and 4 have a hazy pale sky with smoke. The weather jumps inside one shot. In frames 1, 2 and 4 the houses are tall dark terraces with no red, blue or green roofs."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT THE WORLD: frame 3 has a bright blue sky with white cumulus, while frames 1, 2 and 4 have a dark, smoky street with grey terraces and no coloured roofs. The weather and the houses change inside one shot."
+     },
+     {
+      "at": "2026-11-25 19:23Z",
+      "round": 11,
+      "said": "NOT THE WORLD: frames 2\u21923: the whole street changes colour inside the shot. In frames 1-2 the road is dark grey asphalt under cool daylight. In frames 3-4 the road, kerbs and house fronts all turn a flat tan/sepia, so the asphalt reads as sand or dirt, while the sky above stays the same blue with white cloud. Glow from the lava would light the area near the flow, but it would not tint the whole st"
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "closed": 12,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "sandbags are woven hessian pillows with ties; the barrow fire is a fire VOLUME that flickers, not cards"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a galvanised barrow on a red frame with rolled rim and grips; taller flames"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: barrow in scanned galvanised steel, painted frame and rubber tyre; sandbags in woven canvas"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: unchanged from round 5 (scanned worn barrow, canvas sandbags)"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: a high lens off the barrow's side, so nothing stands between us and him"
+     },
+     {
+      "at": "2026-11-25 16:55Z",
+      "round": 6,
+      "what": "reset restage: the lava is a heaped, lumpy crusted flow with glowing seams that grows and spreads, no flat disc, no paving-block ring; the road breaks into its own asphalt slabs"
+     },
+     {
+      "at": "2026-11-25 18:15Z",
+      "round": 8,
+      "what": "B1 restage: the lava material is rebuilt for every shot: black crust plates with irregular seams that glow only in patches; the crack and the flow cast orange light on him, the road and the house fronts, and dark smoke rises off the flow"
+     },
+     {
+      "at": "2026-11-25 19:23Z",
+      "round": 10,
+      "what": "B2 fix: the lava is a mound with thickness welling out of the crack, black crust with bright seams; orange lights on the crack and the flow wash him, the road and the house fronts; the torn road is irregular shards of asphalt; dark fume rises off the flow"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "OFF THE LOOK: the 'wall' at the street's end is a flat grey textured backdrop, a cardboard backdrop (ruling 2026-11-06). The flames on the barrow are flat orange petal or pepper cutouts, and the sandbags are dumpling blobs (frames 5-6). The houses are plain white boxes."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "OFF THE LOOK (the realer the better): frame 4. The lava is a glossy, smooth orange sheet like plastic or caramel. Frame 3's pool is the same tile texture as shot 3."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "OFF THE LOOK (the realer the better): frame 4: the lava is a glossy, smooth pinkish-orange sheet like plastic or caramel."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "OFF THE LOOK (the realer the better): frame 3: the lava pad is a flat disc with an even orange crackle pattern, ringed by toy paving blocks."
+     },
+     {
+      "at": "2026-11-25 17:15Z",
+      "round": 7,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better): frames 3-4: the lava is a tan, rubbery sheet with an even, procedural orange vein pattern. It looks pasted into the real asphalt street. It casts no light: Data, the houses and the road get no orange glow, and there is no heat shimmer, smoke or steam. Against the realistic street it reads as the one CG prop that does not belong."
+     },
+     {
+      "at": "2026-11-25 18:55Z",
+      "round": 9,
+      "said": "OFF THE LOOK (one finish across the frame / the realer the better): frames 3-4: the lava is better than before: black crust plates, glowing seams, real road slabs heaved up. But it still lies flat on the road like a decal. It has no thickness, no welling mound at the crack and no smoke or heat shimmer rising off it. It also still casts almost no light: Data's face, vest and raised hand are lit by "
+     }
+    ]
+   },
+   "TINY DATA": {
+    "closed": 12,
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "TINY DATA: frames 1, 2 and 4: Data and the barrow are not in the frame at all. In frame 3 he is a few pixels high in the middle of the street."
+     }
+    ]
+   }
+  },
+  "5": {
+   "BACK TO CAMERA": {
+    "closed": 16,
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "BACK TO CAMERA (borderline): frames 1-3 \u2013 Data is in profile walking away to the right, with his face barely readable until frame 4."
+     }
+    ]
+   },
+   "BROKEN": {
+    "closed": 16,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "lens 24 re-solved with frame_data so his house is no longer cut at the edge"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "Data reframed through compose.frame_data, whole in frame and facing us; antennae under the hat"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the lantern hangs at hand height (hook raised), not at the foot of the pile"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the hook back at 0.5 m, where his reach and arm clear his head (0.6-0.7 clipped his forearm into his head)"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "feet flat on the road in every still, lantern hangs from the hook on its bail, his hand lets go of it; no floating props; hands and feet inside the frame"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "BROKEN: a shed is cut by the left frame edge for the whole shot, and the 'post' is a bare plank with no hook. The lantern's hanging is not readable."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "BROKEN: frame 1: Data is cut by the left and bottom edges. Frames 1 and 3: his antennae poke through the hard hat."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "BROKEN: frame 1: the lantern hangs at his feet while both his hands are up at his chest; he is not holding it. Frames 3-4: the lantern floats at the post's base with no hook or bracket under it. The shot's beat, hanging the lantern on the hook and seeing it swing, is never shown."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "BROKEN: frame 1: the lantern sits at his feet while both his hands are at his chest; he is not holding it. Frames 3-4: the lantern hangs in the air beside the black pipe with no hook or bracket visible holding it."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "BROKEN: frames 1-2: the lantern hangs in front of his belly, under his hands rather than in them. He is never seen hanging it on a hook. In frames 3-4 the lantern and post are gone."
+     }
+    ]
+   },
+   "NO PAYOFF": {
+    "closed": 16,
+    "fixes": [
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "not changed this round: the windows light across the town as built"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "not changed this round"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "the shot now ends on a picture: his one window lights up warm beside the lantern while every other window in the saved row stays dark and three houses burn above; he looks round to us with open hands"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NO PAYOFF: frames 3-4 \u2013 the end is Data spreading his hands beside a post, a pose. The payoff picture of a few windows lighting across an empty town is a single window."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NO PAYOFF: frame 4. The video ends on Data posing with his arms out beside a lantern on the ground. The payoff picture, a few windows lighting across a dark, saved town, is not visible."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NO PAYOFF: frame 4: the video still ends on Data posing with his arms out beside the post. The windows lighting one by one across a dark, saved town are not visible. The houses that show lit windows are the burning ones."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NO PAYOFF: frames 3-4 are the same still frame of the burning houses. No windows light up one by one across a dark, saved town, so the video ends on a held view."
+     }
+    ]
+   },
+   "NOT SHOWN": {
+    "closed": 16,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "seven windows light one after another across the town; exactly three houses burn"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "the three burning houses in a row across the frame at the lava's edge, the near houses moved off the line"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the earth wall stands in frame with the lava held behind it; the standing town below it; seven windows light across two houses"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the lantern is hung on the hook and swings"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: the lantern is hung on the hook in reach and swings"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "storyboard line rewritten to four stills that are each on the sheet: walks in with the lantern low, hangs it on the hook, the window lights and he looks at it, he looks round to us with open hands; line 5 re-voiced to match (three burned, the rest stand, nobody moved back)"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT SHOWN: 'The wall saved the rest' is not shown because there is no wall in frame. 'Three houses burned' is not a readable count: the flame cones scatter across several roofs. 'Only about a hundred people moved back' gets a single lit window (frames 3-4), and the empty town is not shown."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT SHOWN: 'the wall saved the rest' and 'only about a hundred moved back' are not shown. The only houses in frame are the burning row. No wall, no untouched town beyond it, and only one window lit in frames 3-4. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT SHOWN: frames 1-4 \u2013 'the wall saved the rest' is still not shown. No earth wall is visible in any frame, and no untouched town stands safe behind it. The burning row is the town. 'Only about a hundred moved back' is one lit window in frames 3-4, which reads as one house."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT SHOWN: frames 1-4: 'the wall saved the rest' is still hard to read. In the wide (frame 2) the wall is a low dark band behind the burning houses, and the untouched town reads only as some houses on the left. 'Only about a hundred moved back' does not read: the lit windows are mixed in with fire glow across the burning row, not a few distinct windows across a dark town."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT SHOWN: frames 1-4: 'the wall saved the rest' is hard to read. In the wide (frame 2) the wall is a low brown band behind the burning houses, and the saved houses are a cluster at the left that is not set against the wall. 'Only about a hundred people moved back' is not shown: no handful of windows lighting in a dark town."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT SHOWN: frames 3-4: 'the wall saved the rest' does not read. Only four or five houses are in frame, with no wall curving round the town, and 'only about a hundred people moved back' (a few windows lit among a dark town) is not readable: the one grey house shows all its windows lit."
+     }
+    ]
+   },
+   "NOT THE WORLD": {
+    "closed": 16,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "lens turned toward the water: boats, bollards and the quay edge in frame; a built post (painted, capped, iron arm and hook)"
+     },
+     {
+      "at": "2026-11-24 12:07Z",
+      "round": 2,
+      "what": "a boat basin cut into the quay with four built fishing boats; a cut to a high wide over the harbour: boats, town, wall"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "dawn sky (qwantani sunrise); real fishing boats with hulls, wheelhouses and masts; a concrete quay with bollards and water; a real mooring pile"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: the boats are cut from the high wide, where they read as toys"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: boats stay out of the high wide"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "one dawn street: his own tin-clad house, the saved row of painted tin-roof houses with dark windows, three two-storey gabled houses burning on the black lava slope above, same houses as the town shots"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "NOT THE WORLD: there is no harbour quay, no fishing boats, no curving earth wall and no black lava spread up to the town. Data walks across a mossy field, and the sky is plain daylight blue, not dawn (frames 1-4)."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "NOT THE WORLD: there is no harbour quay, no fishing boats and no dawn. The sky is flat daytime grey. The houses are grey boxes on flat brown ground with no black lava field. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "NOT THE WORLD: frames 1-4 \u2013 it is not dawn: a flat blue-grey daytime sky with a tiled cloud texture. The 'fishing boats' in frame 2 are stacks of white boxes with coloured lids in a dark rectangle, not boats."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "NOT THE WORLD: frames 3-4. The 'post by his door' is a black pipe on a round brass base, like a chimney stack, and there is no door or 'his own town house by the water' beside him. In frame 2 the wall is a low brown band, barely legible as the earth wall that saved the town."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "NOT THE WORLD: frames 3-4: the 'post by his door' is still a black pipe on a round brass base, like a chimney stack or bollard. There is no door and no 'own town house by the water' beside him. Frame 2: no boats at the quay, so it does not read as a harbour; a blue-roofed house is cut by the bottom-right edge and Data is tiny in the corner."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "NOT THE WORLD: frame 2: the mooring post is still a black pipe on a stacked brass base, like a chimney stack. Frames 1-4: no boats and no water's edge can be read, so it does not read as a harbour quay. The earth wall is not visible anywhere."
+     }
+    ]
+   },
+   "OFF THE LOOK": {
+    "closed": 16,
+    "fixes": [
+     {
+      "at": "2026-11-24 08:47Z",
+      "round": 1,
+      "what": "house fires are fire VOLUMES (one blaze and three tongues per house) under grey volume smoke, not cones"
+     },
+     {
+      "at": "2026-11-24 12:09Z",
+      "round": 2,
+      "what": "fire as a volume with a smaller, denser smoke column; built boats in a stone basin; the burning row at the lava's edge"
+     },
+     {
+      "at": "2026-11-25 04:19Z",
+      "round": 3,
+      "what": "the burning houses burn from inside through broken roofs and windows; the lantern is a real scanned model; every prop wears real materials"
+     },
+     {
+      "at": "2026-11-25 06:30Z",
+      "round": 4,
+      "what": "round 5: boats out of the wide; the pile is scanned weathered timber with rusted iron bands"
+     },
+     {
+      "at": "2026-11-25 08:50Z",
+      "round": 5,
+      "what": "round 6: unchanged from round 5"
+     },
+     {
+      "at": "2026-11-25 10:14Z",
+      "round": 5,
+      "what": "round 6 RESTAGE: no wide on his walk; after the lantern the lens goes over his shoulder up to the saved town and ends on its few lit windows, the fires to one side"
+     },
+     {
+      "at": "2026-11-26 09:49Z",
+      "round": 15,
+      "what": "burning houses are the town's own gabled houses with charred cladding, fire-lit window holes and ragged flames (not cones or boxes); the lit window is a warm gradient with curtain folds and spill light, not a flat orange card; real lantern model"
+     }
+    ],
+    "named": [
+     {
+      "at": "2026-11-24 06:50Z",
+      "round": 1,
+      "said": "OFF THE LOOK: the smoke is a smooth brown dough plume and the fire is orange cutout cones (frames 1-4). The ruling is 'not clay' (2026-11-05). The houses are untextured boxes, and Data's own house is a white slab with a dark roof cut by the left edge."
+     },
+     {
+      "at": "2026-11-24 11:10Z",
+      "round": 2,
+      "said": "OFF THE LOOK (the realer the better; the approved store is the standard of finish): the fires are soft orange blobs on the roofs over flat boxes on a void, far below the store's finish. Frames 1-4."
+     },
+     {
+      "at": "2026-11-24 12:11Z",
+      "round": 3,
+      "said": "OFF THE LOOK (every object built from its real parts; the approved store is the standard of finish): the boats are box stacks. The fires are three soft teardrop glows sitting on top of the roofs, and the houses under them are not burning. The quay is a flat grey slab."
+     },
+     {
+      "at": "2026-11-25 06:27Z",
+      "round": 4,
+      "said": "OFF THE LOOK (every object built from its real parts; one finish across the frame): frame 2: the boats are still tiny white blocks with coloured lids in a dark rectangle. They read as toys next to the lit houses. The 'post by his door' is a plain black cylinder on a brass ring, not a lamp post or hook by a house door."
+     },
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "OFF THE LOOK (every object built from its real parts): frames 3-4: the post and its stacked brass base read as a toy prop against the realer houses and fire behind."
+     },
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "OFF THE LOOK (every object built from its real parts; one finish across the frame): frame 2: the post and its stacked brass base read as a toy prop against the realer houses behind them."
+     }
+    ]
+   },
+   "TALKING HEAD": {
+    "closed": 16,
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 10:15Z",
+      "round": 6,
+      "said": "TALKING HEAD: frames 1-2: Data stands centre, facing us, three-quarter body, with the camera parked."
+     }
+    ]
+   },
+   "TINY DATA": {
+    "closed": 16,
+    "fixes": [],
+    "named": [
+     {
+      "at": "2026-11-25 08:49Z",
+      "round": 5,
+      "said": "TINY DATA: frame 2: Data is a speck at the bottom of the wide."
+     }
+    ]
+   }
+  }
+ }
+}

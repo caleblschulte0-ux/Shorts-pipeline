@@ -1,0 +1,805 @@
+{
+ "note": "Written 2026-11-26 from shots 3, 4 and 5 AS THEY PASSED the board (71, 72, 72): the plan they would have started from. Shots 1 and 2 were written 2026-11-26 by the session restaging them (not yet passed).",
+ "shots": [
+  {
+   "prop": "eruption",
+   "props": [
+    {
+     "name": "eruption",
+     "objects": [
+      "ridge smoke",
+      "fissure glow",
+      "lava fountain",
+      "eruption plume"
+     ],
+     "whole": false,
+     "built_as": "the volcano on the ridge over the town: thin smoke rising off it first, then a glowing slot of lava along its top, a lava fountain bursting up out of it, a huge black ash plume over it"
+    },
+    {
+     "name": "houses",
+     "objects": [
+      "town house"
+     ],
+     "whole": false,
+     "built_as": "Grindavik's low painted houses with coloured tin roofs down both sides of the main street"
+    },
+    {
+     "name": "cars",
+     "objects": [
+      "getaway car"
+     ],
+     "whole": true,
+     "built_as": "one small red hatchback parked at the kerb up the main street; its lamps come on at the glow, then it pulls out and speeds down the street toward the lens, past him, dust behind it"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "in front of",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "the ridge behind the town glows orange",
+   "consequence": "the ridge erupts in a tall lava fountain",
+   "says_still": 3,
+   "unseen": [
+    {
+     "word": "keeps",
+     "why": "how"
+    },
+    {
+     "word": "everyone",
+     "why": "how"
+    }
+   ],
+   "stills": [
+    {
+     "event": "before",
+     "shows": "low in the main street of the Icelandic town: painted houses with tin roofs, a car parked at the kerb up the street, the dark ridge over the town smokes; Data stands centred in the street facing us, calm",
+     "hands": "free",
+     "new": [],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "the dark ridge over the town smokes"
+      },
+      {
+       "prop": "houses",
+       "as": "the painted tin-roofed houses of one Icelandic town"
+      },
+      {
+       "prop": "cars",
+       "as": "a car parked at the kerb up the street"
+      },
+      {
+       "prop": "data",
+       "as": "Data in his hard hat in the street, calm"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "the ridge behind the town glows orange along its top; Data's head and shoulders turn toward it, arms down; the parked car's headlights come on",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "lights",
+       "cause": "lava breaks out along the ridge"
+      },
+      {
+       "what": "cars",
+       "how": "lights",
+       "cause": "its driver starts it as the ridge glows"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns his head and shoulders to the glow"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "the ridge glows orange over the roofs"
+      },
+      {
+       "prop": "cars",
+       "as": "the parked car, headlights on"
+      },
+      {
+       "prop": "data",
+       "as": "he turns toward the glow"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the volcano on the ridge erupting right beside the town in a tall lava fountain under a black plume; Data recoils, knees bent, arms up, mouth open, looking round at the car; the car pulls out into the street, dust behind it",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "grows",
+       "cause": "the lava fountain erupts out of the ridge"
+      },
+      {
+       "what": "cars",
+       "how": "moves",
+       "cause": "it speeds out of town away from it"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he recoils from it"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "the volcano erupts right beside the town in a tall lava fountain"
+      },
+      {
+       "prop": "cars",
+       "as": "the car pulls out into the street, dust behind it"
+      },
+      {
+       "prop": "data",
+       "as": "Data recoils, arms up"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "the black plume fills the top of the sky over the town; the car speeds down the street toward us, past him, dust trailing; Data, stumbled sideways out of the car's side of the street, turns to us wide-eyed, hands out",
+     "hands": "free",
+     "new": [
+      {
+       "what": "eruption",
+       "how": "grows",
+       "cause": "the ash plume climbs off the fountain"
+      },
+      {
+       "what": "cars",
+       "how": "moves",
+       "cause": "it speeds out of town"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us wide-eyed"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "eruption",
+       "as": "the lava fountain under a black plume filling the sky"
+      },
+      {
+       "prop": "cars",
+       "as": "everyone had to run: a car speeds out of town past him, dust trailing"
+      },
+      {
+       "prop": "data",
+       "as": "Data, still crouched, wide-eyed at us, hands out"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "wall",
+   "props": [
+    {
+     "name": "wall",
+     "objects": [
+      "earth wall"
+     ],
+     "whole": false,
+     "built_as": "a long bank of heaped black lava boulders, loose rubble along its crest, running the full width behind the house"
+    },
+    {
+     "name": "house",
+     "objects": [
+      "town house by the wall",
+      "iceland flag",
+      "flag pole"
+     ],
+     "whole": true,
+     "built_as": "a painted tin house at the town's real size, red tin roof and chimney, its gable end to us, its back to the wall, Iceland's flag on a short pole at its corner"
+    },
+    {
+     "name": "digger",
+     "objects": [
+      "digger"
+     ],
+     "whole": false,
+     "built_as": "a yellow tracked digger on the wall's crest, riding up with it, tipping a bucket of boulders over the lip onto the wall's face"
+    },
+    {
+     "name": "radio",
+     "objects": [
+      "radio"
+     ],
+     "whole": true,
+     "held": true,
+     "built_as": "a black hand-held radio with a short antenna, matte plastic, in his hand the whole shot"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.36
+   },
+   "action": "his digger tips rock onto a wall behind a house",
+   "consequence": "the rock wall rises taller than the roof",
+   "says_still": 3,
+   "stills": [
+    {
+     "event": "before",
+     "shows": "a painted tin house; behind it a knee-high bank of black boulders, a big digger on it tipping a bucket of rock over its lip; the radio up in his hand, his other hand on his hip",
+     "hands": "radio",
+     "new": [],
+     "visible": [
+      {
+       "prop": "house",
+       "as": "a painted tin house in Iceland, the Icelandic flag flying by it"
+      },
+      {
+       "prop": "wall",
+       "as": "a knee-high bank of black rock boulders behind it"
+      },
+      {
+       "prop": "digger",
+       "as": "a big digger on the bank, its bucket tipping rock at the lip"
+      },
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat, a radio up in his hand, a hand on his hip"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "the digger tips rock onto the wall behind the house; it rises up to the roof; he steps back and radios it, looking up, his other hand out",
+     "hands": "radio",
+     "new": [
+      {
+       "what": "wall",
+       "how": "grows",
+       "cause": "the digger tips boulders onto it"
+      },
+      {
+       "what": "digger",
+       "how": "rises",
+       "cause": "it rides up on the wall it builds"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he steps back and radios it, his other hand out"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "digger",
+       "as": "the digger tips a bucket of rock onto it: Iceland built it"
+      },
+      {
+       "prop": "wall",
+       "as": "the rock wall rises up to the roof"
+      },
+      {
+       "prop": "house",
+       "as": "the house's roof"
+      },
+      {
+       "prop": "data",
+       "as": "he radios it, the radio at his mouth, his other hand out"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the rock wall over the roof, the digger on its crest tipping rock, boulders falling down its face; he leans back, the radio lowered to his chest, a hand on his hip, looking up",
+     "hands": "radio",
+     "new": [
+      {
+       "what": "wall",
+       "how": "grows",
+       "cause": "the digger keeps tipping boulders onto it"
+      },
+      {
+       "what": "digger",
+       "how": "rises",
+       "cause": "it rides up on the crest"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he lowers the radio to his chest, a hand on his hip"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "wall",
+       "as": "the rock wall over the roof, taller and taller: Iceland built it"
+      },
+      {
+       "prop": "house",
+       "as": "the house's roof under it"
+      },
+      {
+       "prop": "digger",
+       "as": "the digger on its crest, rocks falling from its bucket"
+      },
+      {
+       "prop": "data",
+       "as": "the radio lowered to his chest, a hand on his hip, looking up"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "the rock wall stands taller than the house's roof, the digger on its crest still tipping rock, sky above; he turns to us, grinning, the radio at his side, his other hand open",
+     "hands": "radio",
+     "new": [
+      {
+       "what": "digger",
+       "how": "moves",
+       "cause": "it drives along the crest and tips another bucket"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us, grinning, the radio at his side"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "wall",
+       "as": "the wall stands taller than the roof: taller than the house"
+      },
+      {
+       "prop": "digger",
+       "as": "the digger on its crest tipping rock, sky above it"
+      },
+      {
+       "prop": "data",
+       "as": "he turns to us, grinning, the radio at his side, his other hand open"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "prop": "lava river",
+   "props": [
+    {
+     "name": "lava river",
+     "objects": [
+      "lava river",
+      "front crust"
+     ],
+     "whole": false,
+     "built_as": "a river of glowing lava under a broken black crust, crust plates heaping at its front"
+    },
+    {
+     "name": "earth wall",
+     "objects": [
+      "earth wall",
+      "wall face rock"
+     ],
+     "whole": false,
+     "built_as": "a wall of piled black lava boulders, its face of broken rock"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "in front of",
+    "side": "left",
+    "frame_h": 0.35
+   },
+   "action": "a river of glowing lava slams into the foot of the wall beside him",
+   "consequence": "the lava stops dead against the rock, its crust going dark",
+   "says_still": 3,
+   "stills": [
+    {
+     "event": "before",
+     "shows": "he stands braced in front of the wall as a river of glowing lava comes across the black field at it",
+     "hands": "free",
+     "new": [],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat stands braced in front of the wall"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the black boulder face of the wall, rock to its foot"
+      },
+      {
+       "prop": "lava river",
+       "as": "a river of glowing lava comes across the black field"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "the river of glowing lava slams into the foot of the boulder face of the wall beside him and builds up against it, steam rising off it",
+     "hands": "free",
+     "new": [
+      {
+       "what": "lava river",
+       "how": "moves",
+       "cause": "it runs in across the field and hits the wall"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he flinches from the hit"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he flinches beside it"
+      },
+      {
+       "prop": "lava river",
+       "as": "when the lava came it hit the wall: it slams into the foot of the face and builds up against it, steam rising"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the wall it slams against"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the lava stops dead against the rock of the wall, its crust going dark; it hit the wall and the wall held",
+     "hands": "free",
+     "new": [
+      {
+       "what": "lava river",
+       "how": "darkens",
+       "cause": "stopped by the wall, it cools"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he turns to us"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "lava river",
+       "as": "the lava stops dead against the rock, its crust going dark"
+      },
+      {
+       "prop": "earth wall",
+       "as": "the wall held"
+      },
+      {
+       "prop": "data",
+       "as": "he turns to us"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he punches the air and grins at us, the dark crust heaped at the wall behind his shoulder",
+     "hands": "free",
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "both fists up"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he punches the air and grins"
+      },
+      {
+       "prop": "lava river",
+       "as": "the dark crust heaped at the wall"
+      }
+     ]
+    }
+   ],
+   "unseen": []
+  },
+  {
+   "prop": "crack",
+   "props": [
+    {
+     "name": "crack",
+     "objects": [
+      "crack glow",
+      "crack lip"
+     ],
+     "whole": false,
+     "built_as": "a zig-zag tear in the asphalt, broken lips of road tipped up either side, orange light standing in the gap"
+    },
+    {
+     "name": "street lava",
+     "objects": [
+      "street lava"
+     ],
+     "whole": false,
+     "built_as": "glowing lava under a thin dark crust, welling out of the crack and running down the road"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.345
+   },
+   "action": "a zig-zag crack tears open down the middle of the road at his feet",
+   "consequence": "lava wells up out of the crack and runs down the street past the doors of the houses",
+   "says_still": 3,
+   "stills": [
+    {
+     "event": "before",
+     "shows": "the driver in his hard hat walks down the empty street inside the wall",
+     "hands": "free",
+     "new": [],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat walks down the empty street"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "a zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out",
+     "hands": "free",
+     "new": [
+      {
+       "what": "crack",
+       "how": "opens",
+       "cause": "the ground splits under the road"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he staggers back, arms flung out"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "crack",
+       "as": "the ground split open inside the wall: a zig-zag crack tears open down the middle of the road at his feet, glowing orange"
+      },
+      {
+       "prop": "data",
+       "as": "he staggers back, arms flung out"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the ground split open: lava wells up out of the crack and runs down the street past the doors of the houses, poured into the streets",
+     "hands": "free",
+     "new": [
+      {
+       "what": "street lava",
+       "how": "comes",
+       "cause": "it wells up out of the open crack"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "street lava",
+       "as": "lava wells up and poured into the streets: it runs down the street past the doors of the houses"
+      },
+      {
+       "prop": "crack",
+       "as": "the open crack"
+      },
+      {
+       "prop": "data",
+       "as": "he staggers back"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he throws a hand up against the heat as the lava spreads toward us",
+     "hands": "free",
+     "new": [
+      {
+       "what": "street lava",
+       "how": "moves",
+       "cause": "it keeps running down the road"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "one hand thrown up against the heat"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he throws a hand up against the heat"
+      },
+      {
+       "prop": "street lava",
+       "as": "the lava in the street"
+      }
+     ]
+    }
+   ],
+   "unseen": []
+  },
+  {
+   "prop": "lantern",
+   "props": [
+    {
+     "name": "lantern",
+     "objects": [
+      "lantern"
+     ],
+     "whole": true,
+     "held": true,
+     "built_as": "a storm lantern: metal cage, glass, a lit wick, a wire handle"
+    },
+    {
+     "name": "window",
+     "objects": [
+      "his town house window lit pane"
+     ],
+     "whole": false,
+     "built_as": "the dark front window of his tin house, its glass lit warm from inside"
+    },
+    {
+     "name": "burning houses",
+     "objects": [
+      "burning house"
+     ],
+     "whole": false,
+     "built_as": "three tin houses on the lava slope, roofs caved in, flames and black smoke pouring off them"
+    }
+   ],
+   "framing": "close",
+   "data": {
+    "stands": "beside",
+    "side": "left",
+    "frame_h": 0.42
+   },
+   "action": "he hangs a lit lantern on the hook by his own dark window",
+   "consequence": "the window lights up warm",
+   "says_still": 1,
+   "stills": [
+    {
+     "event": "before",
+     "shows": "three houses burn side by side on the slope above the street, black smoke over them, the rest still stand dark; he walks up with a lit lantern",
+     "hands": "lantern",
+     "new": [],
+     "visible": [
+      {
+       "prop": "burning houses",
+       "count": 3,
+       "as": "three houses burn side by side on the slope above the street, black smoke over them: three houses burned"
+      },
+      {
+       "prop": "data",
+       "as": "the driver in his hard hat"
+      }
+     ]
+    },
+    {
+     "event": "action",
+     "shows": "the driver in his hard hat hangs a lit lantern on the hook by his own dark window",
+     "hands": "lantern",
+     "new": [
+      {
+       "what": "lantern",
+       "how": "moves",
+       "cause": "he lifts it onto the hook"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he reaches up to the hook"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "lantern",
+       "as": "he hangs a lit lantern on the hook"
+      },
+      {
+       "prop": "data",
+       "as": "his hand hangs it"
+      }
+     ]
+    },
+    {
+     "event": "result",
+     "shows": "the window lights up warm and he looks round at it",
+     "hands": "free",
+     "new": [
+      {
+       "what": "window",
+       "how": "lights",
+       "cause": "a light comes on inside as the lantern hangs beside it"
+      },
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he looks round at the window"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "window",
+       "as": "his own dark window lights up warm"
+      },
+      {
+       "prop": "lantern",
+       "as": "the lit lantern"
+      },
+      {
+       "prop": "data",
+       "as": "he looks round at it"
+      }
+     ]
+    },
+    {
+     "event": "reaction",
+     "shows": "he looks round to us and opens his hands",
+     "hands": "free",
+     "new": [
+      {
+       "what": "data",
+       "how": "pose",
+       "cause": "he opens his hands to us"
+      }
+     ],
+     "visible": [
+      {
+       "prop": "data",
+       "as": "he looks round to us and opens his hands: would you"
+      },
+      {
+       "prop": "window",
+       "as": "the warm window"
+      }
+     ]
+    }
+   ],
+   "unseen": [
+    {
+     "word": "almost",
+     "why": "how"
+    },
+    {
+     "word": "nobody",
+     "why": "how"
+    },
+    {
+     "word": "moved",
+     "why": "how"
+    },
+    {
+     "word": "back",
+     "why": "how"
+    },
+    {
+     "word": "rest",
+     "why": "how"
+    },
+    {
+     "word": "stand",
+     "why": "how"
+    }
+   ]
+  }
+ ]
+}

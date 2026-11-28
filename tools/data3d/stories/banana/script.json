@@ -1,0 +1,109 @@
+{
+  "slug": "cavendish-banana-clone-3d",
+  "title": "Every Banana You Eat Is a Clone, and It's Dying",
+  "voice": "am_fenrir",
+  "note": "The queued story cavendish-banana-monoculture, made as the second 3D short. One number at most per beat, said in words; the closing says why you care. Every claim is in 'sources' with the source's own wording.",
+  "lines": [
+    "Nearly every banana here is a clone, and a fungus is coming for it.",
+    "They're all Cavendish, copies of one plant grown from its offshoots, with no seeds. So what kills one can kill them all.",
+    "It's happened before. In the 1950s a soil fungus wiped out the banana America ate, the Gros Michel, so growers switched to Cavendish.",
+    "Now a new strain is killing Cavendish. There's no cure, and it can sit in the soil for decades.",
+    "Now it's in Ecuador, the biggest exporter of all, and this time there's no banana to switch to."
+  ],
+  "draft_windows": [
+    [
+      0.0,
+      4.948
+    ],
+    [
+      4.948,
+      11.703
+    ],
+    [
+      11.703,
+      18.944
+    ],
+    [
+      18.944,
+      23.568
+    ],
+    [
+      23.568,
+      28.873
+    ]
+  ],
+  "sources": [
+    {
+      "claim": "Nearly every banana (in a US store / traded) is Cavendish",
+      "says": "Almost all bananas traded worldwide are Cavendish; Cavendish is around half of global supply and almost all of the bananas exported.",
+      "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf",
+      "publisher": "FAO",
+      "year": 2020
+    },
+    {
+      "claim": "They are clones, seedless, grown from offshoots; what kills one can kill them all",
+      "says": "Cavendish bananas lack any diversity ... they too are all clones ... lack seeds ... suckers, the offshoots of adult plants. 'As clones, every single plant is as vulnerable as all its neighbor' (Gert Kema, Wageningen).",
+      "url": "https://www.snexplores.org/article/banana-threat-attack-clones",
+      "publisher": "Science News Explores",
+      "year": 2015
+    },
+    {
+      "claim": "In the 1950s a soil fungus (Panama disease, Race 1) wiped out the Gros Michel and growers switched to Cavendish",
+      "says": "The transition from Gros Michel to Cavendish started in the mid-1900s; by about 1962 the export industry had switched. 30,000 ha were lost in Honduras' Ulua Valley, 1940-1960.",
+      "url": "https://www.apsnet.org/edcenter/apsnetfeatures/Documents/2005/PanamaDisease1.pdf",
+      "publisher": "APS (R. Ploetz)",
+      "year": 2005
+    },
+    {
+      "claim": "A new strain (Tropical Race 4) kills Cavendish and has no cure",
+      "says": "Currently there are no effective cures for TR4. Cavendish is susceptible.",
+      "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf",
+      "publisher": "FAO",
+      "year": 2020
+    },
+    {
+      "claim": "It can stay in the soil for decades",
+      "says": "spores can remain dormant in the soil for decades; can survive for more than 40 years in abandoned fields",
+      "url": "https://assets.ippc.int/static/media/files/publication/en/2025/07/Fusarium_wilt_TR4.pdf",
+      "publisher": "FAO / IPPC",
+      "year": 2025
+    },
+    {
+      "claim": "It is now in Ecuador, the biggest exporter",
+      "says": "Ecuador's plant health agency Agrocalidad confirmed TR4 on 18 December 2025; a second case followed in July 2026. Ecuador is the world's top banana exporter.",
+      "url": "https://www.itfnet.org/v1/2026/01/ecuador-presence-of-fusarium-tr4-confirmed/",
+      "publisher": "ITFNet",
+      "year": 2026
+    },
+    {
+      "claim": "This time there's no banana to switch to",
+      "says": "INFERRED from the sources, said as the story's meaning: there is no Cavendish-scale resistant variety in export production today (the 1950s switch had one ready). Stated as a judgement, not a number.",
+      "url": "https://www.fao.org/3/ca7474en/ca7474en.pdf",
+      "publisher": "FAO",
+      "year": 2020
+    }
+  ],
+  "storyboard": [
+    "1 hook (store): Data holds up ONE banana to us at the produce stand; behind him the empty display fills with copies of it, row by row, until the whole wall is that same banana again and again; Data, small in front of the endless copies, looks back at us, worried.",
+    "2 clones (warehouse): a long row of identical young banana plants in pots stands like dominoes; Data tips the first one with one push and the whole row falls, one knocking down the next, all the way down: what kills one can kill them all.",
+    "3 Gros Michel (plantation): a little rail cart loaded with big old bananas, stenciled GROS MICHEL 1950, sits at a fork in the track, its fruit black and dead; Data hauls a big track-switch lever and a fresh cart stenciled CAVENDISH rolls in on the new branch past him.",
+    "4 TR4 (field): a cut-away of the ground under one banana plant: glowing fungus spores wait in the soil below; Data sprays the plant with a big sprayer and nothing changes, while a calendar beside him flips through the years and the spores are still there.",
+    "5 payoff (dock): an ECUADOR export dock on the same little railway as the 1950 shot; a cart of bright ECUADOR bananas on one branch and a dark fungus stain creeping across the quay to it, its fruit going black; Data hauls the SAME track-switch lever as before and a cart rolls in on the new branch just like the Cavendish one did, but this time its crate is EMPTY: there is no banana to switch to; he turns to us, out of options."
+  ],
+  "narration_run": 43285150605,
+  "sets": [
+    "store",
+    "warehouse",
+    "plantation",
+    "field",
+    "dock"
+  ],
+  "sets_why": "every beat its own place (caaleb 2026-11-12: one aisle behind every beat read as one scene): the hook in the store where you buy them; the clones in a ripening warehouse of identical boxes; 1950 on a Gros Michel plantation; the soil fungus in a banana field; Ecuador on its export dock",
+  "ideas": [
+    "one becomes a whole wall of copies",
+    "dominoes: one push fells the row",
+    "a track switch to a new banana",
+    "spray does nothing, spores wait for years",
+    "the same switch brings an empty cart"
+  ]
+}

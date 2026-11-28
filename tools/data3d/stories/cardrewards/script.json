@@ -1,0 +1,147 @@
+{
+  "slug": "card-rewards-cash-pays-3d",
+  "title": "Paying Cash? You're Funding Someone's Credit Card Rewards",
+  "voice": "am_fenrir",
+  "note": "The sixth 3D short (2026-11-18, caaleb picked 'Card rewards scam'). REBUILT the same night after caaleb refused the first cut as \"lazy as shit\" (one counter, one card, one framing in every beat): every beat now has its own place, camera, machine and act, and Data drives each machine with his body (store/variety.py). One number per beat, every claim in 'sources' with the source's own words.",
+  "lines": [
+    "Every time you pay cash, you're paying for someone else's credit card rewards.",
+    "Stores pay a fee on every card swipe, so they quietly raise prices for everyone, even people paying cash.",
+    "A Federal Reserve study found the average cash-paying household hands about one hundred forty-nine dollars a year to card users.",
+    "And it flows uphill: the richest households collect about seven hundred fifty dollars a year, while the poorest pay in.",
+    "Your cash is quietly funding their points. So which do you use, cash or card?"
+  ],
+  "draft_windows": [
+    [
+      0.0,
+      3.973458
+    ],
+    [
+      3.973458,
+      9.662833
+    ],
+    [
+      9.662833,
+      15.669333
+    ],
+    [
+      15.669333,
+      21.59675
+    ],
+    [
+      21.59675,
+      27.092292
+    ]
+  ],
+  "sources": [
+    {
+      "claim": "Paying cash pays for card users' rewards",
+      "says": "On average, each cash-using household pays $149 to card-using households and each card-using household receives $1,133 from cash users every year.",
+      "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+      "publisher": "Federal Reserve Bank of Boston (Schuh, Shy, Stavins)",
+      "year": 2010
+    },
+    {
+      "claim": "Stores pay a fee on card swipes and raise prices for everyone",
+      "says": "as card use becomes more frequent, merchants have raised their prices to compensate for card-processing charges",
+      "url": "https://www.huffpost.com/entry/credit-cards-transfer-mon_n_660768",
+      "publisher": "HuffPost, on the Boston Fed study",
+      "year": 2010
+    },
+    {
+      "claim": "About $149 a year from each cash-paying household to card users",
+      "says": "each cash-using household pays $149 to card-using households",
+      "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+      "publisher": "Federal Reserve Bank of Boston",
+      "year": 2010
+    },
+    {
+      "claim": "The richest households collect about $750 a year; the poorest pay in",
+      "says": "after accounting for rewards paid to households by banks, the lowest-income household ($20,000 or less annually) pays $21 and the highest-income household ($150,000 or more annually) receives $750 every year",
+      "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+      "publisher": "Federal Reserve Bank of Boston",
+      "year": 2010
+    },
+    {
+      "claim": "It flows from poorer to richer households",
+      "says": "the payment instrument transfer also induces a regressive transfer from low-income to high-income households",
+      "url": "https://www.bostonfed.org/publications/public-policy-discussion-paper/2010/who-gains-and-who-loses-from-credit-card-payments-theory-and-calibrations.aspx",
+      "publisher": "Federal Reserve Bank of Boston",
+      "year": 2010
+    }
+  ],
+  "sets": [
+    "store",
+    "stockroom",
+    "kitchen",
+    "bank",
+    "crossroads"
+  ],
+  "sets_why": "the checkout where you pay cash, the stockroom where the store sets its prices, the family kitchen where the household's money is, the bank where it ends up with the rich, a crossroads where you choose",
+  "ideas": [
+    "he slaps his cash down and a giant gold rewards card swallows the notes off the counter one by one",
+    "he works a floor pump and a red price tag swells like a balloon",
+    "he shovels his family's coin heap into the card users' POINTS sack",
+    "he cranks a conveyor that carries coins from a tin bucket up into a rich VIP vault",
+    "he flips a giant coin, CASH on one face and CARD on the other"
+  ],
+  "storyboard": [
+    "1 hook (checkout, MEDIUM from a little above the counter): Data behind the bagging counter slaps a fat wad of cash down; a giant gold REWARDS card standing on the counter beside it swallows the notes straight off the wad, each one whipping up in an arc and down into the slot on its top edge, the card flashing with every note, until the counter is bare; Data, outraged, glares at us.",
+    "2 the fee (stockroom, PROFILE side-on): Data works a tall red floor pump with both hands on its T-handle; its hose runs to a red price tag made of balloon with a big white $ on it, tied to a stack of cases; with each of three hard strokes the tag swells bigger; a notice on the wall reads CARD FEES ADD 2-3% TO ALL PRICES; on the last stroke Data turns to us, wry.",
+    "3 $149 (family kitchen at night, HIGH lens looking down): a heap of gold coins on the checkered lino with a little flag reading $149 A YEAR; Data digs a long coal shovel into it and swings each scoop over to a fat burlap sack stencilled POINTS, the coins arcing off the blade into it; three scoops, the heap shrinks and the sack bulges; Data looks up at us, sad.",
+    "4 uphill (bank lobby, WIDE): Data turns a big yellow crank wheel; it drives a steep conveyor belt that carries coins one by one out of a dented tin bucket labelled POOREST at the bottom, up the belt and into a steel vault up on a marble plinth marked $750 RICHEST, whose gold fill rises; Data looks at us, sour.",
+    "5 question (country crossroads at golden hour, CLOSE): a signpost behind Data points CASH one way and CARD the other; he holds a giant gold coin, tosses it, it spins up flashing CASH and CARD, he catches it and it keeps turning on its edge between his hands; he looks at us: which one?"
+  ],
+  "narration_run": 44323422788,
+  "staging": [
+    {
+      "camera": "medium",
+      "data": "slaps his cash on the counter and it is sucked away",
+      "props": [
+        "cash wad",
+        "vacuum tube",
+        "giant gold card",
+        "bagging counter"
+      ]
+    },
+    {
+      "camera": "profile",
+      "data": "pumps a floor pump with both hands",
+      "props": [
+        "floor pump",
+        "price-tag balloon",
+        "case stack",
+        "fee notice"
+      ]
+    },
+    {
+      "camera": "high",
+      "data": "shovels the coin heap into the sack",
+      "props": [
+        "coal shovel",
+        "coin heap",
+        "$149 flag",
+        "points sack"
+      ]
+    },
+    {
+      "camera": "wide",
+      "data": "cranks the conveyor wheel",
+      "props": [
+        "crank wheel",
+        "money conveyor",
+        "tin bucket",
+        "vip vault",
+        "vault plinth"
+      ]
+    },
+    {
+      "camera": "close",
+      "data": "flips the giant coin and catches it",
+      "props": [
+        "giant cash/card coin",
+        "crossroads signpost"
+      ]
+    }
+  ],
+  "callbacks": {}
+}

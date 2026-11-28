@@ -1,0 +1,284 @@
+{
+ "slug": "lava",
+ "title": "A Volcano Keeps Erupting Next to This Town. So Iceland Built Walls.",
+ "voice": "am_fenrir",
+ "note": "The ninth 3D short (2026-11-23), picked under the spectacle rule (caaleb 2026-11-23: topics must be visibly appealing and current, an event is not a story, no history). Grindavik, Iceland: a volcano that keeps erupting, the town evacuated, an earth wall taller than a house, the wall holding the lava, then the ground splitting open inside it. Data is one of the digger drivers who builds the wall. Lines rewritten 2026-11-25 so every number and noun can be seen in one still. Line 2 shortened 2026-11-27 (coordinator, after shot 2's pre-flight twice found no lava kept out in a picture of the wall): the purpose clause 'to keep the lava out' moved to line 3's picture, where the lava hits the wall and it holds.",
+ "lines": [
+  "A volcano keeps erupting right beside one Icelandic town, and everyone had to run.",
+  "So Iceland built a wall of rock taller than a house.",
+  "So when the lava came, it hit the wall, and the wall held.",
+  "But then the ground split open inside the wall, and lava poured into the streets.",
+  "Three houses burned. The rest still stand, but almost nobody moved back. Would you?"
+ ],
+ "links": [
+  "so",
+  "so",
+  "but",
+  "but"
+ ],
+ "sources": [
+  {
+   "claim": "the volcano keeps erupting beside Grindavik (nine eruptions since December 2023)",
+   "says": "Nine eruptions have occurred since December 2023, with the most recent taking place in August 2025.",
+   "url": "https://en.wikipedia.org/wiki/2023%E2%80%932025_Sundhn%C3%BAkur_eruptions",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "the whole town was evacuated",
+   "says": "Inhabitants were ordered to evacuate on the evening of 10 November 2023.",
+   "url": "https://en.wikipedia.org/wiki/Grindav%C3%ADk",
+   "publisher": "Wikipedia",
+   "year": 2026
+  },
+  {
+   "claim": "a wall of rock taller than a house (the size of a three-story building)",
+   "says": "Icelanders are working round-the-clock to build dykes the size of three-story buildings ... nearly 100 bulldozers, excavators, and haul trucks have been working nonstop",
+   "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava",
+   "publisher": "Reuters via The Christian Science Monitor",
+   "year": 2024
+  },
+  {
+   "claim": "the lava hit the wall and the wall held (the barrier diverted it away from Grindavik)",
+   "says": "The first barrier proved effective in diverting lava away from Grindavik",
+   "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava",
+   "publisher": "Reuters via The Christian Science Monitor",
+   "year": 2024
+  },
+  {
+   "claim": "the ground split open inside the wall and lava reached the town",
+   "says": "but when fissures opened on the other side of the barrier, lava reached the town and set some houses alight",
+   "url": "https://features.csmonitor.com/Environment/2024/0131/Race-against-time-Icelanders-build-towering-structures-to-stop-lava",
+   "publisher": "Reuters via The Christian Science Monitor",
+   "year": 2024
+  },
+  {
+   "claim": "three houses burned, the barrier saved the rest",
+   "says": "just three houses succumbed to the molten rock, largely thanks to an earth barrier under construction",
+   "url": "https://www.bloomberg.com/news/articles/2024-01-15/iceland-lauds-ramparts-for-sparing-town-damaged-by-lava-flows",
+   "publisher": "Bloomberg",
+   "year": 2024
+  },
+  {
+   "claim": "almost nobody moved back (about 100 of some 3,000 residents live there now)",
+   "says": "~3,000 (until 2023) ~100 (2024-present)",
+   "url": "https://en.wikipedia.org/wiki/Grindav%C3%ADk",
+   "publisher": "Wikipedia",
+   "year": 2026
+  }
+ ],
+ "sets": [
+  "grindavik_street",
+  "wall_works",
+  "wall_crest",
+  "town_crack",
+  "harbour_dawn"
+ ],
+ "sets_why": "one town on one peninsula, walked through one eruption: the main street under the ridge where the fissure opens, the earth wall going up outside the town, the top of that wall when the lava arrives, a street inside the wall where the ground splits, and his own house at the foot of the town's hill at dawn after",
+ "world": {
+  "logline": "A digger driver in a small Icelandic town fights a volcano that keeps erupting on the ridge behind it: he runs from its ash and bombs, builds a wall of rock taller than a house, sees the wall stop the lava, and then the ground opens inside the wall.",
+  "hero": "Data as the town's digger driver: a yellow hard hat and an orange hi-vis vest with silver stripes over his own white coat",
+  "goal": "keep the lava out of his town and get the people back home",
+  "place": "Grindavik on Iceland's Reykjanes peninsula: a small town of low tin-clad houses with painted walls and tin roofs, black lava rock all round it, the volcano's fissure on the ridge behind it, and the earth wall of black rock between the town and the lava",
+  "time": "one bright day, from the eruption to the crack in the street, and then the dawn after",
+  "weather": "cold and bright under broken cloud, dark smoke from the eruption and steam where lava meets cold ground; the last beat is a clear pale dawn",
+  "path": [
+   "grindavik_street",
+   "wall_works",
+   "wall_crest",
+   "town_crack",
+   "harbour_dawn"
+  ],
+  "continuity": {
+   "hard hat": "the hero's yellow hard hat: on his head in every beat, the one thing that says he is the driver",
+   "lava": "the one eruption: the fissure's ash plume and spatter in beat 1, the river against the wall in 3, up through the crack in 4, glowing round the burning houses in 5",
+   "earth wall": "his work: built in beat 2, holding in beat 3, across the end of the street in 4",
+   "town house": "the town he is keeping: the low painted houses he runs between in beat 1, one in front of the wall in 2, the street's houses in 4, his own in 5",
+   "lava rock": "the black rock the whole peninsula is made of: the rock the wall is built from, and what the lava cools into"
+  }
+ },
+ "ideas": [
+  "over the roofs of an Icelandic street the dark ridge smokes, glows, then erupts in a tall lava fountain; he recoils as a car speeds out of town past him",
+  "behind a tin house a digger tips bucket after bucket of black boulders onto a bank until it stands taller than the roof; he watches it rise",
+  "in front of the wall's towering boulder face he braces as a river of lava comes across the black field, slams into the wall's foot beside him and builds up against it; it stops dead against the rock and goes dark, and he punches the air and grins",
+  "walking down an empty street inside the wall, the road cracks open at his feet, glowing orange, and lava wells up out of the crack and runs down the street past the house doors",
+  "three houses burn in a row on the lava slope above his street; he hangs his lit lantern on the hook by his own dark window and the window lights up warm"
+ ],
+ "storyboard": [
+  "The ridge behind the town smokes, glows, then erupts in a tall lava fountain. He recoils as a car speeds out of town past him.",
+  "2 He radios a digger as it tips rock onto a wall behind a house until it stands taller than the roof. He turns to us, grinning.",
+  "3 the wall holds (the lava side of the earth wall: its black boulder face towering across the frame behind him, up to its crest and the sky; low on the black lava field, looking at the wall): the driver in his hard hat stands braced in front of the wall as a river of glowing lava comes across the black field at it. It slams into the foot of the boulder face beside him and builds up against it, steam rising off it. It stops dead against the rock, its crust going dark, and he punches the air and grins at us.",
+  "4 the crack (an empty street of town houses inside the wall, the earth wall across its far end; a little above him, looking up the street): the driver in his hard hat walks down the empty street. A zig-zag crack tears open down the middle of the road at his feet, glowing orange, and he staggers back from it, arms flung out; lava wells up out of the crack and runs down the street past the doors of the houses, and he throws a hand up against the heat.",
+  "5 the payoff (the morning after in his empty street: his own house beside him with its dark window, a row of saved houses up the street, their windows dark, three houses burning on the black lava slope above them; level with him): three houses burn side by side on the slope above the street, black smoke over them. The driver in his hard hat hangs a lit lantern on the hook by his own dark window. The window lights up warm and he looks round at it. He looks round to us and opens his hands."
+ ],
+ "staging": [
+  {
+   "camera": "high",
+   "data": "in the street below a high lens: looks at us, turns his head to the glow on the ridge, recoils on bent knees, arms up, as the fountain bursts and a car speeds past him, then wide-eyed at us, hands out",
+   "props": [
+    "eruption",
+    "town houses"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "the quiet street, the painted houses and the dark ridge over the roofs smoking; he looks at us"
+    },
+    {
+     "at": 0.38,
+     "what": "the ridge glows orange along its top, the parked car's lamps on; he turns his head to it"
+    },
+    {
+     "at": 0.68,
+     "what": "a lava fountain bursts up off the ridge; he recoils, knees bent, arms up, as the car pulls out"
+    },
+    {
+     "at": 0.98,
+     "what": "the fountain under its plume, lava running down the ridge; the car speeds past him; he is wide-eyed at us, hands out"
+    }
+   ]
+  },
+  {
+   "camera": "low",
+   "data": "radios the digger as it builds: the radio at his mouth with a hand on his hip, then a step back with his other hand out as it reaches the roof, the radio lowered to his chest as he leans back, then round to us, grinning, the radio at his side",
+   "props": [
+    "earth wall",
+    "house by the wall",
+    "digger",
+    "radio"
+   ],
+   "arc": [
+    {
+     "at": 0.08,
+     "what": "a knee-high bank of boulders behind the house; the digger on it tips a bucket of rock over its lip; he radios it, a hand on his hip"
+    },
+    {
+     "at": 0.38,
+     "what": "the bank up to the roof, the digger tipping rock at its lip; a step back, he radios it, his other hand out"
+    },
+    {
+     "at": 0.68,
+     "what": "the bank over the roof, rocks falling from the digger's bucket down its face; he leans back, the radio at his chest, looking up"
+    },
+    {
+     "at": 0.98,
+     "what": "the bank stands taller than the roof, the digger still tipping rock at its crest; he turns to us, grinning, the radio at his side"
+    }
+   ]
+  },
+  {
+   "camera": "wide",
+   "data": "braces in front of his wall as the lava slams into its foot and stops, then punches the air and grins",
+   "props": [
+    "lava river",
+    "earth wall"
+   ],
+   "arc": [
+    {
+     "at": 0.05,
+     "what": "he stands braced in front of the wall, the lava river coming across the black field beside him"
+    },
+    {
+     "at": 0.3,
+     "what": "it slams into the foot of the boulder face and builds up against it, steam rising"
+    },
+    {
+     "at": 0.55,
+     "what": "it has stopped dead against the rock and he turns to us"
+    },
+    {
+     "at": 0.68,
+     "what": "its crust goes dark"
+    },
+    {
+     "at": 0.86,
+     "what": "he punches the air and grins at us"
+    }
+   ]
+  },
+  {
+   "camera": "medium",
+   "data": "leaps back from the crack that tears open down the road at his feet",
+   "props": [
+    "crack in the road",
+    "street lava",
+    "house doors",
+    "earth wall"
+   ],
+   "arc": [
+    {
+     "at": 0.05,
+     "what": "he walks down the empty street toward us"
+    },
+    {
+     "at": 0.22,
+     "what": "the road jolts and a zig-zag crack tears open down the middle of it beside him, glowing orange"
+    },
+    {
+     "at": 0.27,
+     "what": "he leaps back from the crack"
+    },
+    {
+     "at": 0.55,
+     "what": "lava wells up out of the gap and runs down the street past the doors of the houses"
+    },
+    {
+     "at": 0.8,
+     "what": "he hops back again and throws a hand up against the heat"
+    }
+   ]
+  },
+  {
+   "camera": "wide",
+   "data": "hangs his lit lantern on the hook by his own window, under the hill where three houses burn",
+   "props": [
+    "lantern",
+    "lantern hook",
+    "his lit window",
+    "three burning houses"
+   ],
+   "arc": [
+    {
+     "at": 0.05,
+     "what": "he walks up to his own house with a lit lantern, three houses burning in a row on the hill behind"
+    },
+    {
+     "at": 0.38,
+     "what": "he rises on his toes and hangs the lantern on the hook by his window"
+    },
+    {
+     "at": 0.68,
+     "what": "the window lights up warm and he starts, looking round at it"
+    },
+    {
+     "at": 0.9,
+     "what": "he shrugs at us, the lantern on its hook and the window lit"
+    }
+   ]
+  }
+ ],
+ "callbacks": {},
+ "draft_windows": [
+  [
+   0.0,
+   4.378
+  ],
+  [
+   4.378,
+   7.863
+  ],
+  [
+   7.863,
+   11.003
+  ],
+  [
+   11.003,
+   14.99
+  ],
+  [
+   14.99,
+   20.098
+  ]
+ ],
+ "narration_run": 46045707731
+}
