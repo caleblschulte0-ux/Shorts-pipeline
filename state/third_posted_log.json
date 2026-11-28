@@ -23119,13 +23119,68 @@
       "director_cut": true
     },
     "clip-20261128-1": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-87ed5e968f0926b1",
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/ZqsMjtjOV4Y",
       "title": "Kaicenat: Kai Cenat's crew can't agree on his tattoo",
       "kind": "story",
-      "ts": "2026-11-28T12:27:05.444583+00:00",
+      "ts": "2026-11-28T12:27:18.400922+00:00",
+      "uploaded_at": "2026-11-28T12:27:18.400939+00:00",
+      "publish_at": "2026-11-28T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261128-kaicenat-kai-cenat-s-crew-can-t-agree-on-his-tat-aa7dd83f",
+        "tiktok": "queued for 2026-11-28T17:00:00Z"
+      },
+      "story_key": "story-87ed5e968f0926b1",
+      "member_keys": [
+        "vodmine://2859079447/28664-28904",
+        "vodmine://2859079447/28664-28904",
+        "vodmine://2859079447/28664-28904",
+        "https://www.twitch.tv/kaicenat/clip/ElatedBigTirePoooound-cMz_kdZbQVqZ4DJm"
+      ],
+      "streamer": "kaicenat",
+      "who": [
+        "kaicenat"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 45.5,
+      "narrative_score": 0,
+      "narrative_summary": "Kai Cenat's tattoo artist and his crew can't agree how his new stencil should sit, and when the group finally says 'stack', he can only apologize.",
+      "revision_count": 1,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "rejected-alertobedientflamingopanicvis-imgr9xpmgvyxe9mn": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AlertObedientFlamingoPanicVis-imGR9XpmGvyXE9mn",
+      "streamer": "ohnepixel",
+      "title": "gta real life",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer talking, chat scrolling, no eve)",
+      "ts": "2026-11-28T12:29:00.969648+00:00"
+    },
+    "rejected-stupidsuperherbsheyguys-eucuprguhtd5gtxs": {
+      "source_url": "https://www.twitch.tv/tminnzy/clip/StupidSuperHerbsHeyGuys-eucUPrGUhTD5GtXs",
+      "streamer": "tminnzy",
+      "title": "Tminnzy Realizes Her Stream Date Can See Everything About Her Past \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas, not the roughly three quarters expected. The r; vision: The streamer facecam is tiny in the corner and the game scene is small. Little reads on a phone and there is no crop tow; vision: The hook card 'tminnzy gets dist",
+      "ts": "2026-11-28T12:32:12.023695+00:00"
+    },
+    "clip-20261128-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/LivelyPopularJayJKanStyle-6l7Ygehf5Ypq7qhX",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Gets Asked To Take A Picture And Then This Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-11-28T13:01:31.176120+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
