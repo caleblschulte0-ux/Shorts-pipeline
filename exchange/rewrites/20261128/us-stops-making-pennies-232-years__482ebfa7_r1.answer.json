@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "us-stops-making-pennies-232-years__482ebfa7_r1",
+  "slug": "us-stops-making-pennies-232-years",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:32:00.098Z",
+  "title": "Coin Costs Ended The Penny And Put The Nickel On Notice",
+  "hook": "Pocket change now costs more to make than its face value.",
+  "closing": "Ending the penny solves one coin loss while exposing the nickel's larger problem.",
+  "question": "Would you miss the penny?",
+  "segments": [
+    {
+      "topic": "Coin Penny Loss",
+      "say": "The penny program lost 86 million dollars yearly. Ending production removes the loss that finally broke the coin's case."
+    },
+    {
+      "topic": "Coin Penny Run",
+      "say": "The penny lasted 232 years. That long history still could not outweigh its recurring cost."
+    },
+    {
+      "topic": "Coin Nickel Cost",
+      "say": "A nickel costs 13.78 cents to make. The penny's exit exposes the next coin already losing value."
+    }
+  ]
+}
