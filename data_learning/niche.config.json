@@ -38336,9 +38336,9 @@
   },
   {
    "slug": "cohabitation-overtakes-marriage",
-   "title": "Living Together Now Spans Young Adults Through Later Life",
-   "hook": "Living together is no longer merely a stop before marriage.",
-   "closing": "Living together now marks a broader change across several stages of adult life.",
+   "title": "Living Together Replaced Marriage At Both Ends Of Adulthood",
+   "hook": "Young adults live with partners more than spouses—and older adults are joining.",
+   "closing": "Living together now spans adulthood, not merely the years before marriage.",
    "question": "Would you live together before marriage?",
    "caption": "Among 18-to-24-year-olds, more now live with an unmarried partner than with a spouse. Fifty years ago that was almost unthinkable. Would you live together before marrying? Let me know.",
    "hashtags": [
@@ -38365,7 +38365,7 @@
      "insight_type": "comparison",
      "role": "1 · THE CROSSOVER",
      "topic": "Living Together Young",
-     "say": "Living with an unmarried partner reaches 9% among the youngest adults. It now exceeds living with a spouse.",
+     "say": "Among young adults, 9 percent live with an unmarried partner. That now exceeds living with a spouse.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _cw_window(cr, x, y, w, h, state, rgb, i, t):\n    # a walk-up window: frame, panes, sill; lit = a couple at home inside\n    dark = (40, 48, 70)\n    col = tuple(int(a + (b - a) * state) for a, b in zip(dark, rgb))\n    cr.rectangle(x, y, w, h)\n    solid(cr, col, rim=False)\n    if state > 0.001:\n        glow(cr, x + w / 2, y + h / 2, w * 0.9, rgb, 0.4 * state)\n        # the two of them at home, side by side, each a little different\n        for j in range(2):\n            px = x + w * (0.34 + 0.32 * j) + 3 * math.sin(t * 0.7 + i + j)\n            hh = h * (0.30 + 0.06 * ((i + j) % 3))\n            cr.rectangle(px - 11, y + h - hh, 22, hh)\n            cr.set_source_rgba(*_c((34, 30, 40), 0.85 * state))\n            cr.fill()\n            cr.arc(px, y + h - hh - 9, 10 + (i + j) % 2, 0, 2 * math.pi)\n            cr.fill()\n    # curtains tied back at the sides\n    for sx in (x + 4, x + w - 16):\n        cr.rectangle(sx, y + 4, 12, h * 0.7)\n        cr.set_source_rgba(*_c((150, 120, 110), 0.7))\n        cr.fill()\n    seams(cr, x, y, x + w, y + h, (90, 60, 50), n=2, axis=\"v\", width=3.0)\n    cr.move_to(x, y + h * 0.5)\n    cr.line_to(x + w, y + h * 0.5)\n    cr.set_source_rgba(*_c((236, 226, 210)))\n    cr.set_line_width(3)\n    cr.stroke()\n    trim(cr, x, y, x + w, y + h, (236, 226, 210), w=6)\n    box(cr, x - 8, y + h + 12, w + 16, 10, (214, 204, 188), depth=6)\n    # a lintel\n    box(cr, x - 6, y - 2, w + 12, 10, (196, 184, 168), depth=4)\n\n\ndef _cw_car(cr, x, y, s):\n    contact_shadow(cr, x + 130 * s, y + 4, 280 * s, a=0.4)\n    box(cr, x, y - 18 * s, 270 * s, 50 * s, (150, 44, 40), depth=30 * s, finish=\"metal\")\n    cr.move_to(x + 50 * s, y - 68 * s)\n    cr.line_to(x + 80 * s, y - 112 * s)\n    cr.line_to(x + 190 * s, y - 112 * s)\n    cr.line_to(x + 225 * s, y - 68 * s)\n    cr.close_path()\n    solid(cr, (130, 38, 36), finish=\"metal\")\n    cr.rectangle(x + 88 * s, y - 104 * s, 44 * s, 32 * s)\n    cr.rectangle(x + 140 * s, y - 104 * s, 44 * s, 32 * s)\n    solid(cr, (120, 150, 176), finish=\"glass\", rim=False)\n    for wx in (x + 60 * s, x + 210 * s):\n        disc(cr, wx, y - 10 * s, 26 * s, (34, 34, 38))\n        disc(cr, wx, y - 10 * s, 11 * s, (170, 170, 176), finish=\"metal\")\n    glow(cr, x + 4 * s, y - 40 * s, 30 * s, (255, 230, 170), 0.7)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a brick walk-up of couples' homes\n    SUBSTANCE: lit apartment windows\n    CAUSE: Data throws each breaker lever down by hand and that floor's couples' homes light up\n    One walk-up at dusk is ALL the youngest adults living with a partner,\n    cut at the true split: 7 parts married (warm lamplight), 9 parts living\n    together unmarried (accent light). At the building's breaker panel Data\n    throws four levers down one after another with his own two hands; the\n    first two light the married homes, the last two light the unmarried\n    ones, and there are more of them. Done by 0.62, then he holds the last\n    lever down while traffic passes on the street.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    un = next((r for r in rows if \"unmarried\" in r[0].lower()), max(rows, key=lambda r: r[1]))\n    sp = next((r for r in rows if r is not un), min(rows, key=lambda r: r[1]))\n    vu, vs = un[1], sp[1]\n    N = 16\n    nm = int(round(N * vs / max(1e-6, vs + vu)))\n    nu = N - nm\n    order = [(i * 7 + 3) % N for i in range(N)]\n    kinds = [\"m\"] * nm + [\"u\"] * nu\n    h1 = (nm + 1) // 2\n    h2 = (nu + 1) // 2\n    trip_of = [0] * h1 + [1] * (nm - h1) + [2] * h2 + [3] * (nu - h2)\n    win_kind, win_trip, win_rank = {}, {}, {}\n    for j, w in enumerate(order):\n        win_kind[w] = kinds[j]\n        win_trip[w] = trip_of[j]\n    for k_ in range(4):\n        ws = [w for w in order if win_trip[w] == k_]\n        for r_, w in enumerate(ws):\n            win_rank[w] = (r_, len(ws))\n\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / 4\n    k = int(clamp((u - a0) / span, 0, 3.999))\n    f = clamp((u - a0 - k * span) / span) if u >= a0 else 0.0\n    if u >= a1:\n        k, f = 3, 1.0\n\n    def pull_of(j):\n        if u < a0 or j > k:\n            return 0.0\n        if j < k:\n            return 1.0\n        return ease(seg(f, 0.25, 0.45))\n\n    def lit(w):\n        if u < a0:\n            return 0.0\n        tk = win_trip[w]\n        if tk < k:\n            return 1.0\n        if tk > k:\n            return 0.0\n        r_, n_ = win_rank[w]\n        g = seg(f, 0.4, 0.75) * n_ - r_\n        return ease(clamp(g))\n\n    ACC = P[\"accent2\"]\n    WARM = (255, 214, 150)\n\n    landscape(cr, t, \"town\", time=\"dusk\", seed=\"brick walk-up\", skyline=True)\n    haze(cr, 600, 1200, (214, 170, 160), a=0.3)\n    # the sidewalk and the street to the camera\n    cr.rectangle(0, 1470, W, 110)\n    solid(cr, (150, 144, 138), edge=False, rim=False)\n    seams(cr, 0, 1470, W, 1580, (150, 144, 138), n=7, axis=\"v\")\n    box(cr, 0, 1590, W, 12, (180, 174, 166), depth=8)\n    cr.rectangle(0, 1590, W, H - 1590)\n    solid(cr, (70, 70, 76), edge=False, rim=False)\n    for i in range(6):\n        cr.rectangle(40 + i * 200, 1760, 110, 10)\n        cr.set_source_rgba(*_c((226, 210, 150), 0.8))\n        cr.fill()\n\n    # the walk-up\n    cast_shadow(cr, 100, 700, 1470, length=320, a=0.3)\n    b = building(cr, 100, 700, 1470, 700, P[\"brick\"], roof=\"flat\", boards=False)\n    seams(cr, b[\"x0\"], b[\"top\"], b[\"x1\"], b[\"base\"], P[\"brick\"], n=22, axis=\"h\", width=1.5, a=0.35)\n    box(cr, b[\"x0\"] - 14, b[\"top\"] + 24, b[\"x1\"] - b[\"x0\"] + 28, 26, (214, 204, 188), depth=20)\n    # water tower on legs, low on the roof\n    for lx in (580, 630):\n        cr.rectangle(lx, b[\"top\"] - 40, 8, 40)\n        solid(cr, (70, 60, 54), rim=False)\n    cylinder(cr, 565, b[\"top\"] - 40, 80, 80, (150, 110, 76))\n    seams(cr, 565, b[\"top\"] - 120, 645, b[\"top\"] - 40, (150, 110, 76), n=5, axis=\"v\")\n\n    cols = [150, 280, 410, 540]\n    rtop = [b[\"top\"] + 60, b[\"top\"] + 200, b[\"top\"] + 340, b[\"top\"] + 480]\n    for w in range(N):\n        r_, c_ = divmod(w, 4)\n        rgb = ACC if win_kind[w] == \"u\" else WARM\n        _cw_window(cr, cols[c_], rtop[r_], 90, 100, lit(w), rgb, w, t)\n    # fire escape on the right bays\n    for r_ in range(3):\n        y = rtop[r_] + 125\n        cr.rectangle(520, y, 150, 8)\n        solid(cr, (40, 40, 46), finish=\"metal\", rim=False)\n        cr.set_source_rgba(*_c((40, 40, 46)))\n        cr.set_line_width(3)\n        for i in range(8):\n            cr.move_to(524 + i * 20, y)\n            cr.line_to(524 + i * 20, y - 34)\n        cr.move_to(520, y - 34)\n        cr.line_to(670, y - 34)\n        cr.stroke()\n    # the front door\n    cr.rectangle(580, 1378, 90, 92)\n    solid(cr, (70, 40, 36))\n    trim(cr, 580, 1378, 670, 1470, (236, 226, 210), w=7)\n    disc(cr, 655, 1425, 6, P[\"brass\"], finish=\"metal\")\n\n    # the breaker panel on the wall, four levers, one per group of homes\n    box(cr, 140, 1462, 410, 80, (120, 124, 130), depth=14, finish=\"metal\")\n    trim(cr, 140, 1382, 550, 1462, (160, 164, 170), w=5)\n    LX = [210, 310, 410, 510]\n    LY = 1428\n    grips = []\n    for j, lx_ in enumerate(LX):\n        on = pull_of(j) > 0.6\n        disc(cr, lx_ + 18, 1450, 6, ACC if (on and j >= 2) else (WARM if on else (60, 60, 64)),\n             finish=\"gloss\")\n        grips.append(lever(cr, lx_, LY, pull_of(j)))\n\n    # traffic on the street keeps the world moving\n    cx = 1300 - ((t * 380) % 2000)\n    _cw_car(cr, cx, 1720, 1.4)\n    # a street lamp right by the camera\n    contact_shadow(cr, 980, 1880, 80, a=0.4)\n    cylinder(cr, 968, 1880, 24, 700, (50, 52, 58), finish=\"metal\")\n    glow(cr, 980, 1170, 120, (255, 220, 160), 0.6)\n    disc(cr, 980, 1170, 26, (255, 232, 180), finish=\"glass\")\n    foreground(cr, \"town\", y0=1820)\n    vignette(cr, a=0.28)\n\n    FY, HH = 1500.0, 300\n    if u < a0:\n        host(\"point\", LX[0] + 90, FY, HH)\n    else:\n        hands = grips[k]\n        walking = k > 0 and f < 0.25 and u < a1\n        if walking:\n            x0 = stand_at(grips[k - 1], FY, HH, LX[k - 1] + 70) or (LX[k - 1] + 70)\n            x1 = stand_at(hands, FY, HH, LX[k] + 70) or (LX[k] + 70)\n            host(\"hold_up\", x0 + (x1 - x0) * ease(f / 0.25), FY, HH, beat=k)\n        else:\n            gx = stand_at(hands, FY, HH, LX[k] + 70)\n            if gx is None:\n                host(\"strain\", LX[k] + 70, FY, HH, beat=k)\n            else:\n                host(\"grip\", gx, FY, HH, hands=hands, lower=\"follow\",\n                     expr=\"strain\" if f < 0.5 and u < a1 else \"happy\")\n\n    show_u = u >= a1 or (k == 3 and f > 0.75)\n    show_s = u >= a0 and (k >= 2 or (k == 1 and f > 0.75))\n    if show_u:\n        fit_readout(cr, f\"{int(round(vu))}%\", \"live with a partner, unmarried\",\n                    80, 520, size=130, rgb=ACC)\n        text(cr, f\"vs {int(round(vs))}% with a spouse\", W - 80, 790, 44, look.INK,\n             anchor=\"right\", alpha=ease(seg(u, a1 - 0.04, a1 + 0.02)))\n    elif show_s:\n        fit_readout(cr, f\"{int(round(vs))}%\", \"live with a spouse\", 80, 520, size=130)\n    else:\n        fit_readout(cr, \"Who's home\", \"the youngest adults and their partners\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -38377,7 +38377,7 @@
      "insight_type": "trend",
      "role": "2 · THE OLDER GROUP",
      "topic": "Living Together Marriage",
-     "say": "Living with a spouse fell to 40% by 2018. Marriage became less dominant for the next age group.",
+     "say": "Spousal living fell to 40 percent among adults aged twenty-five to thirty-four. Marriage lost its former dominance in early adulthood.",
      "scene": {
       "title": true,
       "elements": [
@@ -38397,7 +38397,7 @@
      "insight_type": "trend",
      "role": "3 · EVEN OLDER ADULTS",
      "topic": "Living Together Older",
-     "say": "Cohabiting adults aged fifty-plus reached 4.2 million by 2022. Living together also expanded later in life.",
+     "say": "Cohabiting adults aged fifty-plus reached 4.2 million. Living together now stretches well beyond the young.",
      "scene": {
       "title": true,
       "elements": [
@@ -38411,14 +38411,14 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:31:16Z",
+   "rewritten_at": "2026-11-28T12:29:59Z",
    "hook_was": "9% of young adults live with a partner — not a spouse."
   },
   {
    "slug": "ocean-is-changing-color",
-   "title": "Ocean Color Change Exceeded The Model And Spans More Than Land",
-   "hook": "Satellites found an ocean-wide shift larger than researchers expected.",
-   "closing": "Ocean color change now covers an area larger than all land on Earth.",
+   "title": "Satellites Found Half The Ocean Changing Color",
+   "hook": "The shift covers more ocean than all Earth's land.",
+   "closing": "Ocean color tracks living systems, so a planetary shift demands attention.",
    "question": "What could this shift mean?",
    "caption": "NASA satellites tracked the ocean's color for 20 years — and more than half of it has visibly shifted. A climate model predicted this back in 2019, and now the data backs it up. Have you noticed the ocean looking different? 👇",
    "hashtags": [
@@ -38445,7 +38445,7 @@
      "insight_type": "share",
      "role": "1 · THE SHIFT",
      "topic": "Ocean Color Change",
-     "say": "Ocean color changed across 56% of the surface. The shift is already visible at planetary scale."
+     "say": "Ocean color changed across 56 percent of the surface. The shift is already planetary, not local."
     },
     {
      "source": "offline",
@@ -38455,8 +38455,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE PREDICTION",
-     "topic": "Ocean Color Model",
-     "say": "The model predicted 50% would change color. Satellite observations later exceeded that forecast."
+     "topic": "Ocean Color Forecast",
+     "say": "Models predicted 50 percent would change. Satellites later found the forecast was too small."
     },
     {
      "source": "offline",
@@ -38467,12 +38467,12 @@
      "insight_type": "comparison",
      "role": "3 · THE SCALE",
      "topic": "Ocean Color Area",
-     "say": "Changed ocean color spans 203 million square kilometers. That area is larger than Earth's total land."
+     "say": "Changed ocean spans 203 million square kilometers. That exceeds all Earth's land, making this impossible to dismiss as a patch."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:31:18Z",
+   "rewritten_at": "2026-11-28T12:29:59Z",
    "scorecard": {
     "scores": {
      "premise": 5,
@@ -38647,9 +38647,9 @@
   },
   {
    "slug": "feet-are-getting-bigger",
-   "title": "British Feet Grew Longer, Wider, And Under More Weight",
-   "hook": "Your grandfather's shoes wouldn't fit you, and the reason should worry you.",
-   "closing": "Foot length, width, and body weight all matter when choosing shoes that fit.",
+   "title": "Why Standard Shoes Fit Fewer British Feet",
+   "hook": "Feet grew longer and wider while more bodies carried extra weight.",
+   "closing": "Shoe labels stayed simple while British feet changed in three different ways.",
    "question": "Has your shoe size changed?",
    "caption": "The average British foot has grown two full shoe sizes since the 1970s — and it's not just length, feet are getting wider too. Podiatrists point to one simple cause. What shoe size do you wear? 👇",
    "hashtags": [
@@ -38674,8 +38674,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GROWTH",
-     "topic": "British Feet Length",
-     "say": "Average British men's shoes reached size 10 today. Feet measure two sizes longer than in the 1970s.",
+     "topic": "British Foot Length",
+     "say": "Average British men's shoes reached size 10. Standard sizing now has to fit feet longer than the previous generation's.",
      "illustrated_scene": "# scene standard: 2026-10-28.1\ndef _shoe(cr, hx, base, L, rgb, sole=(38, 30, 26)):\n    dk = tuple(int(c * 0.5) for c in rgb)\n    lw = max(1.5, 0.006 * L)\n    # sole and heel block, a little toe spring\n    cr.move_to(hx, base - 0.07 * L)\n    cr.line_to(hx + 0.9 * L, base - 0.07 * L)\n    cr.curve_to(hx + 1.0 * L, base - 0.07 * L, hx + 1.02 * L, base - 0.025 * L,\n                hx + 0.96 * L, base - 0.02 * L)\n    cr.line_to(hx + 0.26 * L, base - 0.02 * L)\n    cr.line_to(hx + 0.24 * L, base)\n    cr.line_to(hx + 0.01 * L, base)\n    cr.close_path()\n    solid(cr, sole)\n    # the leather upper: heel counter, collar, tongue, vamp, toe\n    cr.move_to(hx + 0.005 * L, base - 0.07 * L)\n    cr.curve_to(hx - 0.02 * L, base - 0.18 * L, hx, base - 0.3 * L, hx + 0.04 * L, base - 0.33 * L)\n    cr.curve_to(hx + 0.14 * L, base - 0.30 * L, hx + 0.26 * L, base - 0.29 * L, hx + 0.36 * L, base - 0.32 * L)\n    cr.line_to(hx + 0.42 * L, base - 0.37 * L)\n    cr.curve_to(hx + 0.5 * L, base - 0.33 * L, hx + 0.62 * L, base - 0.27 * L, hx + 0.76 * L, base - 0.22 * L)\n    cr.curve_to(hx + 0.9 * L, base - 0.17 * L, hx + 1.0 * L, base - 0.14 * L, hx + 0.99 * L, base - 0.07 * L)\n    cr.close_path()\n    solid(cr, rgb, finish=\"gloss\")\n    cr.set_source_rgba(*_c(dk, 0.85))\n    cr.set_line_width(lw)\n    # toe cap seam\n    cr.move_to(hx + 0.74 * L, base - 0.07 * L)\n    cr.curve_to(hx + 0.72 * L, base - 0.14 * L, hx + 0.76 * L, base - 0.2 * L, hx + 0.8 * L, base - 0.205 * L)\n    cr.stroke()\n    # heel counter seam\n    cr.move_to(hx + 0.06 * L, base - 0.07 * L)\n    cr.curve_to(hx + 0.16 * L, base - 0.15 * L, hx + 0.22 * L, base - 0.22 * L, hx + 0.27 * L, base - 0.295 * L)\n    cr.stroke()\n    # collar padding\n    cr.move_to(hx + 0.05 * L, base - 0.31 * L)\n    cr.curve_to(hx + 0.14 * L, base - 0.285 * L, hx + 0.26 * L, base - 0.275 * L, hx + 0.35 * L, base - 0.30 * L)\n    cr.stroke()\n    # eyelet facing and laces\n    cr.move_to(hx + 0.37 * L, base - 0.30 * L)\n    cr.line_to(hx + 0.6 * L, base - 0.25 * L)\n    cr.stroke()\n    cr.set_source_rgba(*_c((236, 226, 206), 0.95))\n    cr.set_line_width(lw * 1.2)\n    for i in range(4):\n        x = hx + (0.4 + 0.05 * i) * L\n        y = base - (0.315 - 0.012 * i) * L\n        cr.move_to(x - 0.02 * L, y - 0.015 * L)\n        cr.line_to(x + 0.02 * L, y + 0.012 * L)\n        cr.move_to(x + 0.02 * L, y - 0.015 * L)\n        cr.line_to(x - 0.02 * L, y + 0.012 * L)\n    cr.stroke()\n    # broguing along the toe cap\n    cr.set_source_rgba(*_c(dk, 0.9))\n    for i in range(10):\n        q = i / 9.0\n        x = hx + (0.715 + 0.07 * q) * L\n        y = base - (0.085 + 0.11 * q) * L\n        cr.arc(x, y, max(1.2, 0.005 * L), 0, 2 * math.pi)\n        cr.fill()\n    # welt stitching\n    cr.set_source_rgba(*_c((214, 196, 160), 0.8))\n    cr.set_line_width(max(1.0, lw * 0.7))\n    for i in range(16):\n        x = hx + (0.04 + 0.055 * i) * L\n        cr.move_to(x, base - 0.055 * L)\n        cr.line_to(x + 0.025 * L, base - 0.055 * L)\n    cr.stroke()\n\n\ndef _bus(cr, bx, base):\n    red = (190, 38, 34)\n    contact_shadow(cr, bx + 280, base, 560, a=0.35)\n    box(cr, bx, base - 14, 560, 250, red, depth=40)\n    for row, y in enumerate((base - 220, base - 110)):\n        for i in range(6):\n            cr.rectangle(bx + 18 + i * 90, y, 72, 62)\n            solid(cr, (60, 70, 86), finish=\"glass\", rim=False)\n            trim(cr, bx + 18 + i * 90, y, bx + 90 + i * 90, y + 62, (214, 200, 180), w=3)\n    cr.rectangle(bx, base - 132, 560, 8)\n    solid(cr, (240, 220, 150), rim=False, edge=False)\n    for wx in (bx + 90, bx + 450):\n        disc(cr, wx, base - 10, 30, (30, 30, 34), finish=\"metal\")\n        disc(cr, wx, base - 10, 12, (150, 150, 156), finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a man's leather shoe on a foot gauge\n    SUBSTANCE: the shoe's leather length\n    CAUSE: Data grips the gauge's slider and drags it out two sizes, the shoe growing to fill it\n    A British shoe shop at dusk, a bus passing in the window. On the counter\n    the shop's foot-measuring gauge holds a man's brogue at the 1970s size;\n    Data takes the sliding toe-stop in both hands and hauls it out one size,\n    then the next, and the shoe grows to meet it. The gauge itself carries\n    the scale: a notch at each size the shoe has reached, the 1970s and\n    today named, so how far it grew reads at a glance. Done by 0.60, held.\n    No painted sign text over the shelves: the readout owns that corner.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    if rows[0][0].strip().lower() in (\"today\", \"now\", \"current\") and len(rows) > 1:\n        rows = rows[::-1]\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    n = max(1, int(round(abs(v1 - v0))))\n    a0, a1 = 0.12, 0.60\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    push = ease(seg(f, 0.1, 0.72))\n    cur = v0 if u < a0 else v0 + (v1 - v0) * (k + push) / n\n    done = u >= a0 and k == n - 1 and push >= 0.999\n\n    HX = 124.0\n    PER = 110.0\n    def toe_x(sz):\n        return HX + 420.0 + (sz - v0) * PER * (1 if v1 >= v0 else -1)\n    TOP, BASE = 1170, 1186\n    sx = toe_x(cur)\n    L = sx - HX\n\n    # the shop: a warm ceiling with pendant lamps\n    vgrad(cr, [(0, (52, 40, 34)), (0.6, (120, 92, 70)), (1, (176, 140, 104))], 0, 1180)\n    for lx in (180, 540, 900):\n        cr.set_source_rgba(*_c((30, 26, 24)))\n        cr.set_line_width(3)\n        cr.move_to(lx, 0)\n        cr.line_to(lx, 150)\n        cr.stroke()\n        glow(cr, lx, 200, 220, (255, 220, 160), 0.45)\n        cr.move_to(lx - 50, 200)\n        cr.line_to(lx - 20, 150)\n        cr.line_to(lx + 20, 150)\n        cr.line_to(lx + 50, 200)\n        cr.close_path()\n        solid(cr, (40, 70, 60))\n        disc(cr, lx, 204, 12, (255, 236, 190))\n\n    # the window onto the high street at dusk\n    WX0, WY0, WX1, WY1 = 580, 300, 1040, 1060\n    cr.save()\n    cr.rectangle(WX0, WY0, WX1 - WX0, WY1 - WY0)\n    cr.clip()\n    vgrad(cr, [(0, (60, 66, 110)), (0.6, (214, 130, 110)), (1, (240, 190, 140))], WY0, 860, WX0, WX1)\n    xs = WX0 - 40\n    for i, (w_, h_) in enumerate(((150, 300), (130, 250), (170, 330), (140, 280))):\n        rowhouse(cr, xs, w_, h_, 880, P[\"brick\"] if i % 2 == 0 else P[\"brick_cool\"],\n                 P[\"brick_shade\"] if i % 2 == 0 else P[\"brick_cool_shade\"], t=t)\n        xs += w_ - 4\n    vgrad(cr, [(0, (120, 116, 112)), (1, (70, 68, 70))], 880, WY1, WX0, WX1)\n    glow(cr, 700, 640, 90, (255, 210, 140), 0.6)\n    haze(cr, WY0, 900, (214, 150, 130), a=0.4)\n    for j in range(2):\n        bx = WX1 + 40 - ((t * 180 + j * 760) % 1520)\n        _bus(cr, bx, 1030)\n    cr.set_source_rgba(1, 1, 1, 0.07)\n    cr.move_to(WX0, WY0 + 300)\n    cr.line_to(WX0 + 220, WY0)\n    cr.line_to(WX0 + 320, WY0)\n    cr.line_to(WX0, WY0 + 440)\n    cr.close_path()\n    cr.fill()\n    cr.restore()\n    trim(cr, WX0, WY0, WX1, WY1, (226, 214, 190), w=16)\n    cr.rectangle(WX0 + (WX1 - WX0) / 2 - 6, WY0, 12, WY1 - WY0)\n    solid(cr, (226, 214, 190))\n\n    # the wall of shoes on the left\n    cols = [(120, 70, 40), (36, 32, 34), (150, 46, 40), (182, 140, 96), (70, 84, 120), (96, 60, 46)]\n    for r_, sy in enumerate((680, 860, 1040)):\n        box(cr, 0, sy + 18, 560, 18, (150, 108, 70), depth=26)\n        x = 20 + (r_ * 23) % 40\n        for c_ in range(3):\n            Ls = 120 + ((r_ * 3 + c_) * 17) % 40\n            contact_shadow(cr, x + Ls / 2, sy, Ls, a=0.3)\n            _shoe(cr, x, sy, Ls, cols[(r_ * 2 + c_) % len(cols)])\n            x += Ls + 40 + ((r_ + c_) * 11) % 30\n\n    # the counter\n    cr.move_to(0, TOP)\n    cr.line_to(W, TOP)\n    cr.line_to(W, 1215)\n    cr.line_to(0, 1215)\n    cr.close_path()\n    solid(cr, (164, 116, 74), edge=False)\n    cr.rectangle(0, 1215, W, 380)\n    solid(cr, (104, 70, 44))\n    seams(cr, 0, 1230, W, 1590, (104, 70, 44), n=6, axis=\"v\")\n    trim(cr, 0, 1213, W, 1232, (180, 136, 90), w=6)\n    # the floor by the camera\n    vgrad(cr, [(0, (120, 86, 58)), (1, (80, 56, 38))], 1590, H)\n    seams(cr, 0, 1600, W, H, (110, 80, 54), n=7, axis=\"h\")\n\n    # the gauge\n    contact_shadow(cr, 540, 1202, 960, a=0.4)\n    box(cr, 70, 1202, 940, 18, (58, 60, 66), depth=40, finish=\"metal\")\n    s_lo = v0 - 2\n    s_hi = v1 + 2\n    hs = s_lo\n    while hs <= s_hi + 1e-6:\n        tx = toe_x(hs)\n        if 80 < tx < 1000:\n            whole = abs(hs - round(hs)) < 1e-6\n            cr.set_source_rgba(*_c((236, 232, 222)))\n            cr.set_line_width(3 if whole else 2)\n            cr.move_to(tx, 1186)\n            cr.line_to(tx, 1196 if not whole else 1200)\n            cr.stroke()\n        hs += 0.5\n    box(cr, 70, 1190, 52, 74, (176, 178, 186), depth=24, finish=\"metal\")\n\n    # the shoe, grown to the slider\n    cast_shadow(cr, HX, sx, BASE, length=200, a=0.22)\n    contact_shadow(cr, (HX + sx) / 2, BASE + 2, L, a=0.4)\n    _shoe(cr, HX, BASE, L, (132, 76, 42))\n    # the slider Data hauls\n    box(cr, sx, BASE + 2, 44, 120, P[\"accent2\"], depth=22, finish=\"metal\")\n    for by in (BASE - 30, BASE - 90):\n        disc(cr, sx + 22, by, 5, (60, 60, 66), finish=\"metal\")\n\n    # THE SCALE on the gauge: a notch at each size the shoe reached\n    reached = [v0] + [v0 + (v1 - v0) * (i + 1) / n for i in range(n)\n                      if u >= a0 and (i < k or (i == k and push >= 0.999))]\n    for j, sz in enumerate(reached):\n        nx = toe_x(sz)\n        cr.set_source_rgba(*_c((244, 238, 226)))\n        cr.set_line_width(6)\n        cr.move_to(nx, 1206)\n        cr.line_to(nx, 1240)\n        cr.stroke()\n    text(cr, l0, toe_x(v0), 1280, 32, look.INK, face=\"bold\", anchor=\"center\")\n    if done:\n        text(cr, l1, toe_x(v1), 1280, 32, look.INK, face=\"bold\", anchor=\"center\")\n\n    # by the camera: an open shoebox and a fitting stool\n    contact_shadow(cr, 230, 1882, 400, a=0.4)\n    box(cr, 40, 1880, 360, 150, (214, 200, 176), depth=80)\n    cr.rectangle(60, 1736, 320, 20)\n    solid(cr, (238, 232, 222), rim=False)\n    seams(cr, 40, 1740, 400, 1880, (214, 200, 176), n=3, axis=\"v\")\n    contact_shadow(cr, 850, 1902, 300, a=0.4)\n    cylinder(cr, 720, 1900, 260, 130, (128, 40, 40))\n    seams(cr, 720, 1790, 980, 1900, (128, 40, 40), n=5, axis=\"v\")\n    vignette(cr, a=0.28)\n\n    # Data: points at the old shoe, crosses to the slider, hauls it out\n    FY, DH = 1205, 300\n    def grip_pose(x_s):\n        hands = [(x_s + 52, BASE - 108), (x_s + 56, BASE - 52)]\n        gx = stand_at(hands, FY, DH, x_s + 130)\n        return hands, gx\n    hands, gx = grip_pose(sx)\n    if u < 0.05:\n        host(\"point\", 950, FY, DH)\n    elif u < a0:\n        _, g0 = grip_pose(toe_x(v0))\n        tx = g0 if g0 is not None else toe_x(v0) + 110\n        host(\"point\", 950 + (tx - 950) * ease(seg(u, 0.05, a0)), FY, DH)\n    elif gx is not None:\n        host(\"grip\", gx, FY, DH, hands=hands, lower=\"follow\",\n             expr=\"happy\" if u > 0.8 else \"strain\")\n    else:\n        host(\"shove\", sx + 100, FY, DH, beat=k)\n\n    if done:\n        fit_readout(cr, f\"Size {int(round(v1))}\", f\"average British man's shoe · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"+{int(round(v1 - v0))} sizes\", W - 80, 690, 90, look.INK,\n             face=\"display\", anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"Size {int(round(v0))}\", f\"average British man's shoe · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -38686,8 +38686,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · NOT JUST LENGTH",
-     "topic": "British Feet Width",
-     "say": "Sixty-seven percent of women report wider feet in adulthood. The change is not limited to length."
+     "topic": "British Foot Width",
+     "say": "Sixty-seven percent of women report wider adult feet. Length alone no longer explains why familiar shoes feel wrong."
     },
     {
      "source": "offline",
@@ -38697,13 +38697,13 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "British Feet Weight",
-     "say": "Sixty-six percent of adults in England are overweight or obese. Body weight adds context to changing feet."
+     "topic": "British Foot Weight",
+     "say": "Sixty-six percent of adults in England are overweight or obese. More body weight adds another fit pressure without proving one cause."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-11-27T12:31:17Z",
+   "rewritten_at": "2026-11-28T12:29:59Z",
    "hook_was": "Your feet are bigger than your grandparents'.",
    "scorecard": {
     "scores": {
@@ -39805,9 +39805,9 @@
   },
   {
    "slug": "china-beats-everyone-on-scientific-and-technical-journal-art",
-   "title": "China Beats Everyone On Scientific and technical journal articles — By 4.1x",
-   "hook": "China publishes more scientific and technical journal articles than anyone.",
-   "closing": "Whoever publishes the most shapes the next big breakthroughs, and that affects your future.",
+   "title": "Research Growth Became A Global Filing Race",
+   "hook": "More researchers created a publishing giant—and a worldwide patent rush.",
+   "closing": "Research scale now shapes who publishes breakthroughs and who races to protect them.",
    "hashtags": [
     "data",
     "facts",
@@ -39815,7 +39815,7 @@
     "shorts",
     "worldbank"
    ],
-   "question": "",
+   "question": "Who wins the research race?",
    "segments": [
     {
      "source": "offline",
@@ -39825,8 +39825,8 @@
      },
      "insight_type": "trend",
      "role": "1 · RESEARCHERS IN R&D",
-     "topic": "Scientific researchers in R&D",
-     "say": "Researchers per million people are up by half, to 1,652. More minds at work means more papers published."
+     "topic": "Research Workforce",
+     "say": "Researchers reached 1,652 per million people. A larger workforce gave scientific output room to accelerate."
     },
     {
      "source": "offline",
@@ -39836,8 +39836,8 @@
      },
      "insight_type": "rank",
      "role": "2 · SCIENTIFIC AND TEC",
-     "topic": "Scientific and technical articles",
-     "say": "China published 932,712 articles, more than double the United States, the next biggest. No one else is close."
+     "topic": "Research Articles",
+     "say": "China published 932,712 scientific articles. That scale made one country the center of the research race."
     },
     {
      "source": "offline",
@@ -39847,13 +39847,13 @@
      },
      "insight_type": "trend",
      "role": "3 · NONRESIDENTS PATEN",
-     "topic": "Technical patent applications",
-     "say": "Patent filings from foreign inventors nearly quadrupled, to over a million. Ideas are now a global race, and everyone is filing."
+     "topic": "Research Patents",
+     "say": "Nonresident patent applications reached 1,022,400. Research output now crosses borders before becoming protected technology."
     }
    ],
-   "words_by": "claude-retell",
+   "words_by": "chatgpt-rewrite",
    "retold": "retell/v4",
-   "rewritten_at": "2026-11-28T09:37:51Z"
+   "rewritten_at": "2026-11-28T12:30:00Z"
   },
   {
    "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
@@ -39968,9 +39968,9 @@
   },
   {
    "slug": "belarus-beats-everyone-on-lifetime-risk-of-maternal-death-by",
-   "title": "Belarus Beats Everyone On Lifetime risk of maternal death — By 1.6x",
-   "hook": "You'd guess Poland leads on lifetime risk of maternal death. It's Belarus — 96,213 to 58,680.",
-   "closing": "The numbers were public the whole time.",
+   "title": "Four Health Measures Tell Different National Stories",
+   "hook": "Some health risks fell worldwide while one country led a different ranking.",
+   "closing": "Health progress depends on the measure; one headline can hide four very different realities.",
    "hashtags": [
     "data",
     "facts",
@@ -39978,7 +39978,7 @@
     "shorts",
     "worldbank"
    ],
-   "question": "",
+   "question": "Which health measure surprised you?",
    "segments": [
     {
      "source": "offline",
@@ -39988,8 +39988,8 @@
      },
      "insight_type": "trend",
      "role": "1 · INCIDENCE OF TUBER",
-     "topic": "Incidence of tuberculosis",
-     "say": "2000: 190 per 100,000 people. 2024: 131 per 100,000 people — down to 69 percent of that."
+     "topic": "Health Tuberculosis",
+     "say": "Tuberculosis incidence fell to 131 per hundred-thousand people. One health burden eased across the world."
     },
     {
      "source": "offline",
@@ -39999,8 +39999,8 @@
      },
      "insight_type": "trend",
      "role": "2 · INFANT MORTALITY R",
-     "topic": "Infant mortality rate",
-     "say": "1990: 64 per 1,000 live births. 2024: 27.7 per 1,000 live births — down to 43 percent of that."
+     "topic": "Health Infant Survival",
+     "say": "Infant mortality fell to 27.7 per thousand births. Health gains continued from infection into early survival."
     },
     {
      "source": "offline",
@@ -40010,8 +40010,8 @@
      },
      "insight_type": "rank",
      "role": "3 · LIFETIME RISK OF M",
-     "topic": "Lifetime risk of maternal death",
-     "say": "Belarus leads at 96,213; Spain is 38,118."
+     "topic": "Health Maternal Risk",
+     "say": "Belarus leads at one in 96,213 for lifetime maternal death risk. National health rankings can reverse the global pattern."
     },
     {
      "source": "offline",
@@ -40021,11 +40021,12 @@
      },
      "insight_type": "trend",
      "role": "4 · PREVALENCE OF CURR",
-     "topic": "Prevalence of current tobacco use",
-     "say": "2000: 34.8 % of adults. 2024: 20.3 % of adults — down to 58 percent of that."
+     "topic": "Health Tobacco Use",
+     "say": "Tobacco use fell to 20.3 percent of adults. Another health risk moved downward, but these gains are not interchangeable."
     }
    ],
-   "words_by": "deterministic"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-11-28T12:29:59Z"
   }
  ]
 }

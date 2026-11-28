@@ -1,0 +1,10 @@
+{
+ "id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e",
+ "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+ "settled": "2026-11-28T12:30:00Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Battle, Toll",
+  "segment 2: new named entity not in the data: Demand"
+ ]
+}

@@ -1,11 +1,21 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-28T12:26:50Z",
+ "updated": "2026-11-28T12:30:00Z",
  "open": [
+  {
+   "id": "fifty-otters-survived-climate-fight__ba5d3132_r2",
+   "slug": "fifty-otters-survived-climate-fight",
+   "filed": "2026-11-28T12:30:00Z",
+   "why": [
+    "premise: brain: The pitch is a flat recovery fun fact: the hook is vague ('a tiny surviving group became the start of a coastal recovery') and names no threat, contradiction or stake, and the carbon angle is only 'measurable potential' with no surprise a viewer can picture."
+   ],
+   "request": "exchange/rewrites/20261128/fifty-otters-survived-climate-fight__ba5d3132_r2.request.json",
+   "answer_path": "exchange/rewrites/20261128/fifty-otters-survived-climate-fight__ba5d3132_r2.answer.json"
+  },
   {
    "id": "school-is-not-as-evenly-spread-as-you-think__82130e07_r1",
    "slug": "school-is-not-as-evenly-spread-as-you-think",
-   "filed": "2026-11-28T12:26:50Z",
+   "filed": "2026-11-28T12:30:00Z",
    "why": [
     "thesis: seg0 ('Pupils primary education') does not continue the story of the headline ('School Is Not As Evenly Spread As You Think') — brain: Discusses total primary enrollment worldwide, not evidence of uneven geographic distribution.",
     "thesis: seg1 ('Pupils secondary education') does not continue the story of the headline ('School Is Not As Evenly Spread As You Think') — brain: While it highlights India's large secondary student count, it doesn't directly follow from the previous primary enrollme",
@@ -15,100 +25,62 @@
    "answer_path": "exchange/rewrites/20261128/school-is-not-as-evenly-spread-as-you-think__82130e07_r1.answer.json"
   },
   {
-   "id": "china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8",
-   "slug": "china-beats-everyone-on-scientific-and-technical-journal-art",
-   "filed": "2026-11-28T09:38:06Z",
+   "id": "secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655_r1",
+   "slug": "secondary-school-enrollment-is-2-0x-higher-than-in-1972",
+   "filed": "2026-11-28T12:30:00Z",
    "why": [
-    "thesis: seg2 ('Technical patent applications') does not continue the story of the headline ('China Beats Everyone On Scientific and technical journal articles — By 4.1x') — brain: Focuses on patent filings, not scientific/technical journal articles, so it doesn't support the same headline claim."
+    "narration: beat 1 reads off 3 numbers: say one, and what it means",
+    "narration: beat 2 reads off 3 numbers: say one, and what it means",
+    "narration: beat 3 reads off 3 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261128/china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8.request.json",
-   "answer_path": "exchange/rewrites/20261128/china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8.answer.json"
+   "request": "exchange/rewrites/20261128/secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655_r1.request.json",
+   "answer_path": "exchange/rewrites/20261128/secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655_r1.answer.json"
   },
   {
-   "id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e",
+   "id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e_r1",
    "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
-   "filed": "2026-11-28T09:38:06Z",
+   "filed": "2026-11-28T12:30:00Z",
    "why": [
     "narration: beat 1 reads off 5 numbers: say one, and what it means",
     "narration: beat 2 reads off 2 numbers: say one, and what it means",
     "narration: beat 3 reads off 2 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e.request.json",
-   "answer_path": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e.answer.json"
+   "request": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e_r1.answer.json"
   },
   {
-   "id": "urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7",
+   "id": "urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7_r1",
    "slug": "urban-people-practicing-open-defecation-fell-87-since-2000",
-   "filed": "2026-11-28T09:38:06Z",
+   "filed": "2026-11-28T12:30:00Z",
    "why": [
     "narration: beat 1 reads off 3 numbers: say one, and what it means",
     "narration: beat 2 reads off 2 numbers: say one, and what it means",
     "narration: beat 3 reads off 3 numbers: say one, and what it means"
    ],
-   "request": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7.request.json",
-   "answer_path": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7.answer.json"
+   "request": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7_r1.request.json",
+   "answer_path": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7_r1.answer.json"
   },
   {
-   "id": "back-to-sleep-campaign-cut-sids__e3d97f64",
+   "id": "back-to-sleep-campaign-cut-sids__e3d97f64_r1",
    "slug": "back-to-sleep-campaign-cut-sids",
-   "filed": "2026-11-28T00:53:08Z",
+   "filed": "2026-11-28T12:29:59Z",
    "why": [
     "thesis: seg1 ('SIDS Sleeping Position') does not continue the story of the headline ('Back Sleeping Halved SIDS, But Thousands Still Die') — brain: Gives the pre-campaign share of cases with stomach-down placement, which is background for the drop rather than a conseq",
     "thesis: seg2 ('SIDS Sleeping Deaths') does not continue the story of the headline ('Back Sleeping Halved SIDS, But Thousands Still Die') — brain: Turning to the 3,400 remaining deaths is a plausible 'but', but the narration only asserts that improvement didn't erase"
    ],
-   "request": "exchange/rewrites/20261128/back-to-sleep-campaign-cut-sids__e3d97f64.request.json",
-   "answer_path": "exchange/rewrites/20261128/back-to-sleep-campaign-cut-sids__e3d97f64.answer.json"
+   "request": "exchange/rewrites/20261128/back-to-sleep-campaign-cut-sids__e3d97f64_r1.request.json",
+   "answer_path": "exchange/rewrites/20261128/back-to-sleep-campaign-cut-sids__e3d97f64_r1.answer.json"
   },
   {
-   "id": "fifty-otters-survived-climate-fight__ba5d3132_r1",
-   "slug": "fifty-otters-survived-climate-fight",
-   "filed": "2026-11-28T00:53:08Z",
-   "why": [
-    "premise: brain: The pitch is a flat recovery fun fact: the hook is vague ('a tiny surviving group became the start of a coastal recovery') and names no threat, contradiction or stake, and the carbon angle is only 'measurable potential' with no surprise a viewer can picture."
-   ],
-   "request": "exchange/rewrites/20261128/fifty-otters-survived-climate-fight__ba5d3132_r1.request.json",
-   "answer_path": "exchange/rewrites/20261128/fifty-otters-survived-climate-fight__ba5d3132_r1.answer.json"
-  },
-  {
-   "id": "cohabitation-overtakes-marriage__a4ac5305",
-   "slug": "cohabitation-overtakes-marriage",
-   "filed": "2026-11-27T14:25:50Z",
-   "why": [
-    "premise: brain: The pitch is a flat, abstract trend statement ('no longer merely a stop before marriage') with no named villain, threat, contradiction or stake a viewer can picture, and the title is a searchable noun-phrase summary."
-   ],
-   "request": "exchange/rewrites/20261127/cohabitation-overtakes-marriage__a4ac5305.request.json",
-   "answer_path": "exchange/rewrites/20261127/cohabitation-overtakes-marriage__a4ac5305.answer.json"
-  },
-  {
-   "id": "feet-are-getting-bigger__ab4c73aa",
-   "slug": "feet-are-getting-bigger",
-   "filed": "2026-11-27T14:25:50Z",
-   "why": [
-    "premise: brain: The hook promises a worrying reason but the beats deliver only a flat string of unrelated stats (size 10, wider feet, overweight rate) with no cause-and-effect or picturable surprise, and the claim that feet grew because of obesity is never established."
-   ],
-   "request": "exchange/rewrites/20261127/feet-are-getting-bigger__ab4c73aa.request.json",
-   "answer_path": "exchange/rewrites/20261127/feet-are-getting-bigger__ab4c73aa.answer.json"
-  },
-  {
-   "id": "ocean-is-changing-color__84b45a11",
-   "slug": "ocean-is-changing-color",
-   "filed": "2026-11-27T14:03:51Z",
-   "why": [
-    "premise: brain: The pitch is a flat fun fact with a clumsy, searchable-noun-style title and a hook that names no concrete subject or personal stake. 'Ocean color changed' gives the viewer no picture of what changed or why it matters to them."
-   ],
-   "request": "exchange/rewrites/20261127/ocean-is-changing-color__84b45a11.request.json",
-   "answer_path": "exchange/rewrites/20261127/ocean-is-changing-color__84b45a11.answer.json"
-  },
-  {
-   "id": "us-stops-making-pennies-232-years__482ebfa7",
+   "id": "us-stops-making-pennies-232-years__482ebfa7_r1",
    "slug": "us-stops-making-pennies-232-years",
-   "filed": "2026-11-27T14:03:51Z",
+   "filed": "2026-11-28T12:29:59Z",
    "why": [
     "thesis: seg1 ('Coin Penny Run') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The penny's 232-year lifespan is background history, not a consequence of the loss in beat 0. It reads as 'and another f",
     "thesis: seg2 ('Coin Nickel Cost') does not continue the story of the headline ('Coin Costs Ended The Penny And Put The Nickel On Notice') — brain: The nickel's cost is a new coin and a new fact. It does not follow from the penny's long run ending. It could support th"
    ],
-   "request": "exchange/rewrites/20261127/us-stops-making-pennies-232-years__482ebfa7.request.json",
-   "answer_path": "exchange/rewrites/20261127/us-stops-making-pennies-232-years__482ebfa7.answer.json"
+   "request": "exchange/rewrites/20261128/us-stops-making-pennies-232-years__482ebfa7_r1.request.json",
+   "answer_path": "exchange/rewrites/20261128/us-stops-making-pennies-232-years__482ebfa7_r1.answer.json"
   },
   {
    "id": "blood-type-rarity__a0ce30e1",
