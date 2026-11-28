@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261127",
-  "generated_at": "2026-11-27T23:30:56Z",
+  "generated_at": "2026-11-28T00:30:58Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 64.76,
+          "days": 64.8,
           "samples": 3,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 63.76,
+          "days": 63.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1590,10 +1590,14 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "3298e96",
-    "commits_since": "2026-11-26",
+    "head": "ff3b276",
+    "commits_since": "2026-11-27",
     "commit_count": 50,
     "commits": [
+      "ff3b276 claim: mailbox verdicts 2026-11-28T00:10Z [skip ci]",
+      "e67deda exchange: phase A bundle for 20261128 [skip ci]",
+      "7b71741 claim: mailbox verdicts 2026-11-27T23:47Z [skip ci]",
+      "e85f032 retro: brief + triage for 20261127 [skip ci]",
       "3298e96 watchdog: chatgpt task verdicts 20261127 [skip ci]",
       "4872597 explainer: update posted log + analytics [skip ci]",
       "9115b6b claim: mailbox verdicts 2026-11-27T22:48Z [skip ci]",
@@ -1629,11 +1633,7 @@
       "50a6ed1 sports: 2026-11-27 posted log + verdicts [skip ci]",
       "216076f watchdog: chatgpt task verdicts 20261127 [skip ci]",
       "98c552e sports: 2026-11-27 posted log + verdicts [skip ci]",
-      "6298dd3 third: analytics [skip ci]",
-      "6120130 third: update posted log + analytics [skip ci]",
-      "ac86689 third: analytics [skip ci]",
-      "422ce26 third: update posted log + analytics [skip ci]",
-      "f821668 third: checkpoint posted log (claim upload slot) [skip ci]"
+      "6298dd3 third: analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
