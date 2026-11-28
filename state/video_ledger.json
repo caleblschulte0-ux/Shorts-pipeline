@@ -8547,6 +8547,66 @@
    "ending_type": "consequence",
    "franchise": "data-explainer",
    "notes": "record-shop divider shoved; streaming tide"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-11-28",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Tattoos used to be a warning sign. Now they're just Tuesday.",
+   "depictions": [
+    "illustrated:tattoo-machine-forearm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing validated scenes"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-11-28",
+   "topic_category": "health",
+   "hook_type": "stake",
+   "hook_text": "Parents were putting babies to bed the wrong way, and it was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "viz:trend",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing validated scenes"
+  },
+  {
+   "slug": "index-funds-own-corporate-america",
+   "directed_at": "2026-11-28",
+   "topic_category": "finance",
+   "hook_type": "inversion",
+   "hook_text": "The biggest owners of corporate America aren't tycoons. They're index funds holding your money.",
+   "depictions": [
+    "illustrated:shareholder-hall",
+    "mechanic:tower-owned-floors",
+    "viz:comparison"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "direction pass: kept existing validated scenes"
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "directed_at": "2026-11-28",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "The format once declared dead now wins inside a much smaller market.",
+   "depictions": [
+    "illustrated:record-wall-divider",
+    "mechanic:crate-records-drop-in",
+    "mechanic:streaming-tide-over-shelf"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "direction pass: kept existing validated scenes"
   }
  ],
  "entries": [
