@@ -6,17 +6,120 @@
  "slots": [
   {
    "sub": "nfl",
-   "who": "Tom Brady",
-   "why": "Brady calmly pushes back on Rodgers over what belongs in a locker room.",
-   "post_title": "[Highlight] Tom Brady Responds To Aaron Rodgers Comments About Mike McCarthy: \u201cThe sanctity of the NFL locker room is, is a very sacred place and we shouldn\u2019t ever lose track of that as players. It\u2019s ",
-   "upvotes": 11588,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers",
-   "title": "Tom Brady Fires Back At Aaron Rodgers Over Mike McCarthy Comments",
-   "hook": "Brady defends the locker room \ud83e\udd40",
+   "who": "Kirk Herbstreit",
+   "why": "Herbstreit compares Rodgers and McCarthy's split to his own divorced parents, a raw personal line anyone feels.",
+   "post_title": "[HIghlight] Kirk Herbstreit directly compares Aaron Rodgers and Mike McCarthy to his own divorced parents",
+   "upvotes": 6791,
+   "url": "https://www.reddit.com/r/nfl/comments/1y75y3f/highlight_kirk_herbstreit_directly_compares_aaron/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y75y3f/highlight_kirk_herbstreit_directly_compares_aaron",
+   "title": "Kirk Herbstreit Compares Aaron Rodgers And Mike McCarthy To His Divorced Parents",
+   "hook": "Herbstreit says it reminds him of his parents' divorce \ud83d\ude33",
    "ledger": {
     "moves": [
-     "whoa@4.0"
+     "zoom@8.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "cameras",
+     "reason": "5 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 5.3,
+       "reason": "the framer: Snap action: the Broncos QB and the line clash, the play itself in columns 2-5.",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 5.3,
+       "t1": 27.97,
+       "reason": "the framer: Two Steelers players, 4-5 and 6-7, talking. The Broncos receiver at the left is too far away to include.",
+       "crop": [
+        540,
+        720,
+        498,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 27.97,
+       "t1": 30.37,
+       "reason": "the framer: Steelers defenders are spread across columns 1-8, so a tall crop would cut people out. Showing the shot uncropped. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 30.37,
+       "t1": 36.47,
+       "reason": "the framer: Close-up of a coach in a yellow beanie and headset seen from behind. The head and headset run from column 3 to 7. (whole frame)",
+       "crop": null
+      },
+      {
+       "mode": "camera",
+       "t0": 36.47,
+       "t1": 39.63,
+       "reason": "the framer: Pre-snap formation: the offense and the defensive line at the ball, columns 2-5.",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.0,
+      0.029,
+      0.0,
+      0.023,
+      0.023
+     ],
+     "n_subjects": 0,
+     "face_bands": []
+    },
+    "outro": null,
+    "cut_in": [
+     "Aaron Rodgers Mike McCarthy@22.6"
+    ],
+    "cut_in_s": 5.0,
+    "shown": [],
+    "music": [],
+    "own_captions": false,
+    "talking": false
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: The Herbstreit divorce quote plays over generic snap footage, and our hook line collides with the TV score bug for most of the video."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The Herbstreit divorce quote plays over generic snap footage, and our hook line collides with the TV score bug for most of the video.",
+    "score": 62
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The Herbstreit divorce quote plays over generic snap footage, and our hook line collides with the TV score bug for most of the video."
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "Brady calmly answers Rodgers about the locker room being sacred, a big name-on-name moment.",
+   "post_title": "[Highlight] Tom Brady Responds To Aaron Rodgers Comments About Mike McCarthy: \u201cThe sanctity of the NFL locker room is, is a very sacred place and we shouldn\u2019t ever lose track of that as players. It\u2019s ",
+   "upvotes": 11705,
+   "url": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y6fshk/highlight_tom_brady_responds_to_aaron_rodgers",
+   "title": "Tom Brady Defends The Sanctity Of The NFL Locker Room After Aaron Rodgers' Mike McCarthy Commen",
+   "hook": "Brady responds to Rodgers on McCarthy",
+   "ledger": {
+    "moves": [
+     "whoa@10.8"
     ],
     "mood": null,
     "shot_plan": {
@@ -49,349 +152,96 @@
     },
     "outro": null,
     "cut_in": [
-     "Tom Brady@4.44",
-     "Tom Brady@13.74"
-    ],
-    "cut_in_s": 5.78,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": true
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: This is a repost of another account's split-screen edit, padded with unrelated game footage and an apparently AI-made Brady image. Brady himself is on screen for only a few seconds.",
-    "score": 45
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: This is a repost of another account's split-screen edit, padded with unrelated game footage and an apparently AI-made Brady image. Brady himself is on screen for only a few seconds."
-  },
-  {
-   "sub": "nba",
-   "who": "Victor Wembanyama",
-   "why": "Wemby fires back at the Shaq comparison with a self-roast about free throws.",
-   "post_title": "Dwayne Wade tries to compare Wemby to Shaq and wemby responds \"i gotta say, Im just like shaq free throw shooting wise right now \"",
-   "upvotes": 1985,
-   "url": "https://streamable.com/shmm0z",
-   "topic": "https://www.reddit.com/r/nba/comments/1y7ej7o/dwayne_wade_tries_to_compare_wemby_to_shaq_and",
-   "title": "Victor Wembanyama Gets Compared To Shaq And Admits What He Shares With Him \ud83d\ude02",
-   "hook": "Wemby gets compared to Shaq \ud83d\ude02",
-   "ledger": {
-    "moves": [
-     "zoom@5.0"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "facecam_gameplay",
-     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible",
-     "shots": [
-      {
-       "mode": "stacked",
-       "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible"
-      }
-     ],
-     "subtitle_spans": [
-      0.511,
-      0.465,
-      0.549,
-      0.509,
-      0.552
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.0,
-       0.292
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [
-     "Shaquille O'Neal@4.94"
+     "Aaron Rodgers Mike McCarthy@2.24"
     ],
     "cut_in_s": 5.0,
     "shown": [],
     "music": [],
-    "own_captions": true,
-    "talking": true
-   },
-   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
-  },
-  {
-   "sub": "nba",
-   "who": "Draymond Green",
-   "why": "Draymond gets heated listing his own r\u00e9sum\u00e9 against the claim that Steph made him.",
-   "post_title": "Draymond mad at fans who claim Steph made him a HOFer: \u201cRemove my chips. Take all 4 cause those are Steph\u2019s that nobody else won\u2026Even without the rings. 4x All Star, 2x All NBA, DPOY, led league in st",
-   "upvotes": 1339,
-   "url": "https://streamable.com/11jr3d",
-   "topic": "https://www.reddit.com/r/nba/comments/1y6znk9/draymond_mad_at_fans_who_claim_steph_made_him_a",
-   "title": "Draymond Green Says Take All 4 Rings Away And Still Feels Great About His Career",
-   "hook": "Draymond tells fans to take his rings \ud83d\udc80",
-   "ledger": {
-    "moves": [
-     "whoa@13.65"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "3 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 5.6,
-       "reason": "the framer: Draymond's face and torso are centered in columns 4-6, with his head at about x=500.",
-       "crop": [
-        398,
-        708,
-        504,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 5.6,
-       "t1": 14.1,
-       "reason": "the framer: Draymond's face is in columns 4-5 with his raised hands beside it, which columns 4-6 keep.",
-       "crop": [
-        398,
-        708,
-        504,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 14.1,
-       "t1": 30.18,
-       "reason": "the framer: Draymond's face is in columns 4-5 and his gesturing hands are in columns 4-6.",
-       "crop": [
-        398,
-        708,
-        504,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 1,
-     "face_bands": [
-      [
-       0.15,
-       0.522
-      ],
-      [
-       0.138,
-       0.506
-      ],
-      [
-       0.147,
-       0.526
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [
-     "Draymond Green Stephen Curry Golden State Warriors@6.71"
-    ],
-    "cut_in_s": 8.5,
-    "shown": [],
-    "music": [],
     "own_captions": false,
     "talking": true
    },
    "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 83
+    "blocked": true,
+    "reason": "showrunner BLOCK: BLOCK: this is a re-upload of another account's stacked-duplicate edit. Brady is half-cropped, then replaced by unrelated game B-roll, and a stranger never learns what Rodgers said.",
+    "score": 45
    },
-   "video_url": "https://youtube.com/shorts/4EGKua9P14Q",
-   "ok": true,
-   "publish_at": "2026-11-28T15:00:00Z",
-   "seconds": 377,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261128-draymond-green-says-take-all-4-rings-away-and-st-d1222efb",
-    "tiktok": "queued for 2026-11-28T15:00:00Z"
-   }
+   "skipped": "showrunner_block: showrunner BLOCK: BLOCK: this is a re-upload of another account's stacked-duplicate edit. Brady is half-cropped, then replaced by unrelated game B-roll, and a stranger never learns what Rodgers said."
   },
   {
-   "sub": "MMA",
-   "who": "Cody Garbrandt",
-   "why": "Garbrandt announces when his UFC career ends.",
-   "post_title": "Cody Garbrandt says his UFC retirement will be on UFC Cleveland in February",
-   "upvotes": 705,
-   "url": "https://streamable.com/dff62s",
-   "topic": "https://www.reddit.com/r/MMA/comments/1y73qdt/cody_garbrandt_says_his_ufc_retirement_will_be_on",
-   "title": "Cody Garbrandt Reveals The Date Of His UFC Farewell Fight",
-   "hook": "Cody Garbrandt sets his UFC farewell \ud83e\udd40",
+   "sub": "nba",
+   "who": "Damian Lillard",
+   "why": "Lillard picks which teammate he'd trust to bring the Thanksgiving dish, a funny, easy answer.",
+   "post_title": "Damian Lillard when asked which teammate he would trust to bring a dish (Thanksgiving): \"I'm gonna go with Ja. Just 'cause that Southern hospitality, I know he got some in him, so I'm gonna go with Ja",
+   "upvotes": 4023,
+   "url": "https://streamable.com/unx5ym",
+   "topic": "https://www.reddit.com/r/nba/comments/1y5x2jb/damian_lillard_when_asked_which_teammate_he_would",
+   "title": "Damian Lillard Picks Ja Morant To Bring The Thanksgiving Dish And Explains Why",
+   "hook": "Dame picks who brings the Thanksgiving dish \ud83e\udd83",
    "ledger": {
     "moves": [],
     "mood": null,
     "shot_plan": {
-     "layout": "two_shot",
-     "reason": "two conversation faces fit one deliberate wide crop (plan refused: containment guard)",
-     "shots": [],
-     "n_subjects": 3
+     "layout": "cameras",
+     "reason": "1 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 23.98,
+       "reason": "the framer: Damian Lillard, the speaker, has his face centered in columns 4-5. His shoulders and the ESPN mic take up columns 3-6.",
+       "crop": [
+        540,
+        720,
+        370,
+        0
+       ]
+      }
+     ],
+     "subtitle_spans": [
+      0.286,
+      0.375,
+      0.375,
+      0.375,
+      0.375
+     ],
+     "n_subjects": 2,
+     "face_bands": []
     },
     "outro": null,
-    "cut_in": [
-     "Cody Garbrandt@6.47"
-    ],
-    "cut_in_s": 1.5,
+    "cut_in": [],
+    "cut_in_s": 0,
     "shown": [],
     "music": [],
     "own_captions": false,
     "talking": true
    },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A restream composite: half of every frame is a reactor's webcam and a still photo, and the clip never visibly lands the February-in-Cleveland farewell date the title promises.",
-    "score": 57
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A restream composite: half of every frame is a reactor's webcam and a still photo, and the clip never visibly lands the February-in-Cleveland farewell date the title promises."
+   "skipped": "talking head: someone talks the whole cut and nothing they talk about is shown"
   },
   {
-   "sub": "MMA",
-   "who": "Josh Hokit",
-   "why": "Hokit drops the villain act and tells what happened with Gane in the hospital.",
-   "post_title": "Josh Hokit breaks character and admits Ciryl Gane is a nice guy and they had an encounter later in the hospital: \"We are both at the hospital till like 6 AM. And he's all talking 'You're gonna be a ch",
-   "upvotes": 802,
-   "url": "https://x.com/Home_of_Fight/status/2125297204399399080?a=Zxf3oUBhkOcOJGeIgPQ&s=19",
-   "topic": "https://www.reddit.com/r/MMA/comments/1y4qtqc/josh_hokit_breaks_character_and_admits_ciryl_gane",
-   "title": "Josh Hokit Admits Ciryl Gane Is A Nice Guy, But Still Wants Revenge",
-   "hook": "Hokit admits Gane is a nice guy \ud83d\ude2d",
+   "sub": "nfl",
+   "who": "Jeffrey Simmons",
+   "why": "Simmons mimics the Lions snap count, gets the center to false start, and the ref steps in to talk to him.",
+   "post_title": "[Highlight] Jeffrey Simmons mimics the Lions snap count on back to back plays and gets Lions center Juice Scruggs to false start. Hochuli talks to Simmons and Goff after the drive",
+   "upvotes": 6796,
+   "url": "https://www.reddit.com/r/nfl/comments/1y699mn/highlight_jeffrey_simmons_mimics_the_lions_snap/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1y699mn/highlight_jeffrey_simmons_mimics_the_lions_snap",
+   "title": "Jeffrey Simmons Barks Out A Fake Snap Count And Gets The Center To Jump",
+   "hook": "Simmons fakes the snap count on back to back plays",
    "ledger": {
     "moves": [
-     "zoom@11.07"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "split",
-     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
-     "shots": [
-      {
-       "mode": "split",
-       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.06,
-      0.059,
-      0.0
-     ],
-     "n_subjects": 2,
-     "face_bands": [
-      [
-       0.021,
-       0.299
-      ],
-      [
-       0.55,
-       0.777
-      ]
-     ]
-    },
-    "outro": null,
-    "cut_in": [
-     "Josh Hokit Ciryl Gane@10.41",
-     "Josh Hokit, Ciryl Gane@28.63"
-    ],
-    "cut_in_s": 4.5,
-    "shown": [],
-    "music": [],
-    "own_captions": true,
-    "talking": true
-   },
-   "repairs": [
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: Broken split-screen crop with panel slivers, our line collides with the UFC graphic, and the hospital/revenge payoff never clearly lands."
-    },
-    {
-     "score": 62,
-     "reason": "showrunner BLOCK: The moment is real and Bisping's laugh sells it, but the crop is a broken mosaic of panel slivers. Gane never appears, so a stranger gets two men laughing over a story they only hear."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A mis-cropped video-call restream where the 'nice guy' admission is talked about, never framed cleanly, and the caption collides with the UFC scorebug.",
-    "score": 62
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A mis-cropped video-call restream where the 'nice guy' admission is talked about, never framed cleanly, and the caption collides with the UFC scorebug."
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "A fan confrontation escalates into a shoving match with Luka.",
-   "post_title": "[Highlight] Luka Don\u010di\u0107 throws item at fan and her husband retaliates:",
-   "upvotes": 13268,
-   "url": "https://streamable.com/xixssu",
-   "topic": "https://www.reddit.com/r/nba/comments/1y7e0k2/highlight_luka_don\u010di\u0107_throws_item_at_fan_and_her",
-   "title": "Luka Doncic Throws An Item At A Fan And Her Husband Fires Back",
-   "hook": "Luka and a fan get into it \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "shake@21.35"
+     "zoom@4.2"
     ],
     "mood": null,
     "shot_plan": {
      "layout": "cameras",
-     "reason": "4 camera shot(s), each framed by a look at it",
+     "reason": "1 camera shot(s), each framed by a look at it",
      "shots": [
       {
        "mode": "camera",
        "t0": 0.0,
-       "t1": 3.03,
-       "reason": "the framer: Luka in #77 Lakers jersey walking away, with the nearby people in cols 5-6",
-       "crop": [
-        202,
-        360,
-        250,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 3.03,
-       "t1": 8.18,
-       "reason": "the framer: Luka in purple leaning toward the older woman in a striped sweater, with the man in white beside him",
-       "crop": [
-        202,
-        360,
-        186,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 8.18,
-       "t1": 21.8,
-       "reason": "the framer: The fan in the striped sweater (col 3-4) held by security, with Luka and the man in white in cols 5-6",
-       "crop": [
-        270,
-        360,
-        184,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 21.8,
-       "t1": 28.62,
-       "reason": "the framer: Luka's face and #77 jersey, held back by a man in white, close up",
-       "crop": [
-        270,
-        360,
-        0,
-        0
-       ]
+       "t1": 15.4,
+       "reason": "the framer: Simmons (#99, back to camera) in cols 3-5 and the Lions player he is facing, helmet and face, in cols 6-7. Together they span about five columns, so the shot is shown uncropped. (whole frame)",
+       "crop": null
       }
      ],
      "subtitle_spans": [
@@ -415,86 +265,88 @@
    "showrunner": {
     "blocked": false,
     "reason": "",
-    "score": 70
+    "score": 83
    },
-   "video_url": "https://youtube.com/shorts/RtqSYBjiXKI",
+   "video_url": "https://youtube.com/shorts/SFYagchU8aI",
    "ok": true,
-   "publish_at": "2026-11-28T18:00:00Z",
-   "seconds": 146,
+   "publish_at": "2026-11-29T00:00:00Z",
+   "seconds": 141,
    "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261128-luka-doncic-throws-an-item-at-a-fan-and-her-husb-84e1e5bd",
-    "tiktok": "queued for 2026-11-28T18:00:00Z"
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261128-jeffrey-simmons-barks-out-a-fake-snap-count-and--86cb1481",
+    "tiktok": "queued for 2026-11-29T00:00:00Z"
    }
   },
   {
-   "sub": "sports",
-   "who": "Tom Brady",
-   "why": "Brady squeals like a fan as the 60-yard kick wins it.",
-   "post_title": "Tom Brady squeals as Jake Elliot's 60 yard FG wins the game for the Eagles",
-   "upvotes": 12669,
-   "url": "https://www.reddit.com/r/sports/comments/1y6hots/tom_brady_squeals_as_jake_elliots_60_yard_fg_wins/",
-   "topic": "https://www.reddit.com/r/sports/comments/1y6hots/tom_brady_squeals_as_jake_elliots_60_yard_fg_wins",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nfl",
-   "who": "Jerry Jones",
-   "why": "Jerry and his family trudge to the locker room after the Cowboys blow a huge lead.",
-   "post_title": "[Highlight] Jerry Jones and his family head to the locker room after the Cowboys blew the largest lead in NFL Thanksgiving history",
-   "upvotes": 15865,
-   "url": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y6i552/highlight_jerry_jones_and_his_family_head_to_the",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nfl",
-   "who": "Pittsburgh Steelers",
-   "why": "The whole stadium chants for ice cream after the win.",
-   "post_title": "[Highlight] Steeler fans cheer \"WE WANT ICE CREAM\" after the Black Friday victory",
-   "upvotes": 11798,
-   "url": "https://www.reddit.com/r/nfl/comments/1y770l9/highlight_steeler_fans_cheer_we_want_ice_cream/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y770l9/highlight_steeler_fans_cheer_we_want_ice_cream",
-   "title": "Pittsburgh Steelers Fans Chant 'We Want Ice Cream' After Black Friday Win \ud83c\udf66",
-   "hook": "Steelers fans want ice cream \ud83c\udf66",
+   "sub": "hockey",
+   "who": "Montreal Canadiens",
+   "why": "Montreal fans chant \"We Got Larkin\" as he takes his first shift in a Habs sweater.",
+   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
+   "upvotes": 3031,
+   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
+   "title": "Montreal Canadiens: Montreal Fans Go Wild Chanting \"We Got Larkin\" As Dylan Larkin Takes His Fi",
+   "hook": "Habs fans welcome Larkin \ud83d\udd25",
    "ledger": {
-    "moves": [],
-    "mood": null,
+    "moves": [
+     "hype@11.4(silent)"
+    ],
+    "mood": "hype",
     "shot_plan": {
-     "layout": "wide",
-     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
-     "shots": [],
+     "layout": "cameras",
+     "reason": "2 camera shot(s), each framed by a look at it",
+     "shots": [
+      {
+       "mode": "camera",
+       "t0": 0.0,
+       "t1": 1.17,
+       "reason": "the framer: Larkin's face in the red helmet, columns 2-5 (about four columns), whole head and face kept; the dark-jersey player at the right edge is excluded.",
+       "crop": [
+        540,
+        720,
+        242,
+        0
+       ]
+      },
+      {
+       "mode": "camera",
+       "t0": 1.17,
+       "t1": 15.0,
+       "reason": "the framer: Wide rink shot where the play is spread across the whole width: players along the boards in columns 2-5, #40 in column 5, and a player at the far right, so it is shown uncropped. (whole frame)",
+       "crop": null
+      }
+     ],
      "subtitle_spans": [
-      0.048,
-      0.365,
-      0.366,
-      0.733,
-      0.733
-     ]
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "n_subjects": 0,
+     "face_bands": []
     },
     "outro": null,
     "cut_in": [],
     "cut_in_s": 0,
     "shown": [],
     "music": [],
-    "own_captions": true,
+    "own_captions": false,
     "talking": false
    },
-   "skipped": "someone else's edit: the footage already carries burned-in captions of what is said"
+   "skipped": "author: the title names 'Canadiens', which the post never does"
   },
   {
-   "sub": "nfl",
-   "who": "Mike Tomlin",
-   "why": "Tomlin's Minecraft city has a nightclub called Concussion.",
-   "post_title": "[Highlight] Mike Tomlin built a nightclub called \u201cConcussion\u201d next to the football stadium in his Minecraft city",
-   "upvotes": 15013,
-   "url": "https://www.reddit.com/r/nfl/comments/1y5rl76/highlight_mike_tomlin_built_a_nightclub_called/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1y5rl76/highlight_mike_tomlin_built_a_nightclub_called",
-   "title": "Mike Tomlin Names His Minecraft Nightclub \"Concussion\" Outside The Football Stadium",
-   "hook": "Tomlin built a club called Concussion \ud83d\udc80",
+   "sub": "sports",
+   "who": "Kevin Durant",
+   "why": "Durant and Dillon Brooks stop an NBA game to chat as a friendly 4v4, a funny human moment.",
+   "post_title": "Kevin Durant and Dillon Brooks turn an NBA game into a 4v4 to stop and have a friendly chat.",
+   "upvotes": 3957,
+   "url": "https://streamable.com/pa6j71",
+   "topic": "https://www.reddit.com/r/sports/comments/1y716vu/kevin_durant_and_dillon_brooks_turn_an_nba_game",
+   "title": "Kevin Durant Gets Separated From Dillon Brooks After The Chirping Gets Out Of Hand",
+   "hook": "Kevin Durant and Dillon Brooks won't stop chirping \ud83d\ude33",
    "ledger": {
-    "moves": [
-     "zoom@23.16"
-    ],
+    "moves": [],
     "mood": null,
     "shot_plan": {
      "layout": "action",
@@ -505,18 +357,11 @@
        "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
       }
      ],
-     "subtitle_spans": [
-      0.0,
-      0.059,
-      0.0,
-      0.038,
-      0.059
-     ],
      "n_subjects": 0,
      "crop": [
-      540,
-      720,
-      348,
+      810,
+      1080,
+      134,
       0
      ]
     },
@@ -531,215 +376,21 @@
    "showrunner": {
     "blocked": false,
     "reason": "",
-    "score": 70
+    "score": 79
    },
-   "video_url": "https://youtube.com/shorts/hNEh_k5X1-Q",
+   "video_url": "https://youtube.com/shorts/81IT44HF5Ds",
    "ok": true,
-   "publish_at": "2026-11-28T21:00:00Z",
-   "seconds": 127,
+   "publish_at": "2026-11-29T03:00:00Z",
+   "seconds": 266,
    "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261128-mike-tomlin-names-his-minecraft-nightclub-concus-1b953158",
-    "tiktok": "queued for 2026-11-28T21:00:00Z"
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261128-kevin-durant-gets-separated-from-dillon-brooks-a-25d1a494",
+    "tiktok": "queued for 2026-11-29T03:00:00Z"
    }
-  },
-  {
-   "sub": "nba",
-   "who": "Stan Van Gundy",
-   "why": "Van Gundy's GTA question lands awkwardly on air and Eagle shuts it down.",
-   "post_title": "Stan Van Gundy: \"Have you been playing GTA?\" Ian Eagle: \"I have not. You?\" Van Gundy: \"No. Not at all. I'm not a gamer though. I figured you were.\" Eagle: \"Well, great discussion though.\"",
-   "upvotes": 2575,
-   "url": "https://streamable.com/qswvyx",
-   "topic": "https://www.reddit.com/r/nba/comments/1y7aufk/stan_van_gundy_have_you_been_playing_gta_ian",
-   "title": "Stan Van Gundy Asks Ian Eagle If He's Been Playing GTA And It Gets Awkward",
-   "hook": "Van Gundy asks Eagle about GTA live \ud83d\udc80",
-   "ledger": {
-    "moves": [
-     "awkward@17.27"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "7 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 3.27,
-       "reason": "the framer: Wide court shot: the players are spread from the Heat player on the left to the Knicks players and the Heat player at the right, so the play runs wider than a crop (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 3.27,
-       "t1": 5.9,
-       "reason": "the framer: Two players with hands on heads, spread across columns 3-8, with the left one's face at 3-5 and the right one's face at 7-9; too wide for a crop (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 5.9,
-       "t1": 7.93,
-       "reason": "the framer: Heat player 7 with his head and face in profile, columns 4-6",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 7.93,
-       "t1": 8.67,
-       "reason": "the framer: Heat player seen from behind, head and shoulders with the name on his jersey, columns 3-6",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 8.67,
-       "t1": 15.7,
-       "reason": "the framer: Close-up of the headbanded Knicks player talking, face at columns 4-6, with the jersey of a teammate beside him",
-       "crop": [
-        540,
-        720,
-        370,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 15.7,
-       "t1": 20.5,
-       "reason": "the framer: Heat player holding the ball at columns 4-6 and Mitchell #2 at columns 7-8, with a Knicks player at the far left; the play is wider than a crop (whole frame)",
-       "crop": null
-      },
-      {
-       "mode": "camera",
-       "t0": 20.5,
-       "t1": 23.2,
-       "reason": "the framer: Wide court view with the players spread from column 3 to column 8; the whole play is needed (whole frame)",
-       "crop": null
-      }
-     ],
-     "subtitle_spans": [
-      0.384,
-      0.022,
-      0.0,
-      0.0,
-      0.02
-     ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [
-     "Grand Theft Auto@11.27"
-    ],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: A funny booth exchange, but the first ~6s is unrelated foul chatter, our line collides with the score bug in the close-ups, and the awkward moment is only heard, never seen."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A funny booth exchange, but the first ~6s is unrelated foul chatter, our line collides with the score bug in the close-ups, and the awkward moment is only heard, never seen.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A funny booth exchange, but the first ~6s is unrelated foul chatter, our line collides with the score bug in the close-ups, and the awkward moment is only heard, never seen."
-  },
-  {
-   "sub": "hockey",
-   "who": "Dylan Larkin",
-   "why": "Montreal fans chant 'We Got Larkin' on his first shift with the Habs.",
-   "post_title": "[LAK - MTL] Montreal fans chant \"We Got Larkin\" as he takes his first shift with the Habs",
-   "upvotes": 3031,
-   "url": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y3zeqc/lak_mtl_montreal_fans_chant_we_got_larkin_as_he",
-   "title": "Montreal Fans Chant 'We Got Larkin' As Dylan Larkin Takes His First Shift",
-   "hook": "Dylan Larkin's first shift with the Habs \ud83d\udd25",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "cameras",
-     "reason": "2 camera shot(s), each framed by a look at it",
-     "shots": [
-      {
-       "mode": "camera",
-       "t0": 0.0,
-       "t1": 1.17,
-       "reason": "the framer: Close-up of the Habs player in the red helmet (#88) and his face, with the whole helmet and face in columns 2-5",
-       "crop": [
-        540,
-        720,
-        242,
-        0
-       ]
-      },
-      {
-       "mode": "camera",
-       "t0": 1.17,
-       "t1": 15.0,
-       "reason": "the framer: The play along the boards: the #14 skater, the #68 skater and the fallen player near the boards, plus the #40 skater in column 5",
-       "crop": [
-        540,
-        720,
-        242,
-        0
-       ]
-      }
-     ],
-     "subtitle_spans": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "n_subjects": 0,
-     "face_bands": []
-    },
-    "outro": null,
-    "cut_in": [],
-    "cut_in_s": 0,
-    "shown": [],
-    "music": [],
-    "own_captions": false,
-    "talking": false
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The title promises a 'We Got Larkin' chant, but the clip shows a wide faceoff and then routine play. The chant is never seen or captioned, and it ends on an LA goalie.",
-    "score": 53
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The title promises a 'We Got Larkin' chant, but the clip shows a wide faceoff and then routine play. The chant is never seen or captioned, and it ends on an LA goalie."
-  },
-  {
-   "sub": "hockey",
-   "who": "Florida Panthers",
-   "why": "A hot mic picks up a wild insult mid-game.",
-   "post_title": "Hot mic in the Panthers-Sens game catches \"your wife's a hooker\"",
-   "upvotes": 1954,
-   "url": "https://www.reddit.com/r/hockey/comments/1y5ppf8/hot_mic_in_the_pantherssens_game_catches_your/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1y5ppf8/hot_mic_in_the_pantherssens_game_catches_your",
-   "skipped": "author: no setup or no payoff in the clip"
   }
  ],
- "already_today": 0,
- "pool": 134,
- "already_posted": 4,
- "refused_before": 11,
- "shipped": 3
+ "already_today": 3,
+ "pool": 135,
+ "already_posted": 10,
+ "refused_before": 16,
+ "shipped": 2
 }
