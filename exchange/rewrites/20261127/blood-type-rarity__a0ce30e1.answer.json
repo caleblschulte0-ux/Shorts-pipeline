@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__a0ce30e1",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:32:00.098Z",
+  "title": "Rare Blood Types Can Vanish From The Shelf",
+  "hook": "A one-percent blood type becomes a crisis when matching donors stay home.",
+  "closing": "Rare blood reaches patients only when the right donors keep showing up.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood Type Distribution",
+      "say": "AB-negative represents 1 percent of people. A matching donor pool can become dangerously small when supply dips."
+    },
+    {
+      "topic": "Rh Blood Type",
+      "say": "Rh-negative covers 15 percent of people. Fewer compatible donors means shortages can hit negative types first."
+    },
+    {
+      "topic": "O-positive By Ethnicity",
+      "say": "Latin American donors are 53 percent O-positive. The blood shelf changes with who shows up to donate."
+    }
+  ]
+}
