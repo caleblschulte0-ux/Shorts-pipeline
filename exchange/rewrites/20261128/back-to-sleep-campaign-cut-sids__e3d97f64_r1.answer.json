@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "back-to-sleep-campaign-cut-sids__e3d97f64_r1",
+  "slug": "back-to-sleep-campaign-cut-sids",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:32:00.098Z",
+  "title": "Back Sleeping Halved SIDS, But Thousands Still Die",
+  "hook": "Parents changed one sleep position—and infant deaths fell sharply.",
+  "closing": "Putting babies on their backs remains a simple step parents can use tonight.",
+  "question": "Do new parents know this rule?",
+  "segments": [
+    {
+      "topic": "SIDS Sleeping Rate",
+      "say": "The SIDS rate fell to 0.64 per thousand births. Back sleeping accompanied a drop of more than half."
+    },
+    {
+      "topic": "SIDS Sleeping Position",
+      "say": "Before the campaign, 85.4 percent of SIDS cases involved stomach-down placement. That explains why sleep position became the prevention target."
+    },
+    {
+      "topic": "SIDS Sleeping Deaths",
+      "say": "About 3,400 sleep-related infant deaths still occur yearly. The campaign's success did not make safe sleep optional."
+    }
+  ]
+}
