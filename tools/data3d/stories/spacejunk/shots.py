@@ -73,8 +73,8 @@ def shot1():
     s.dust(hit, T, w=0.7, h=1.0, dur=2.6, col=(0.86, 0.84, 0.8), dens=1.4)
     s.dust(top + Vector((0, 0, -0.5)), T - 0.02, w=0.6, h=0.9, dur=3.0, col=(0.86, 0.84, 0.8), dens=1.0, seed=2.0)
     s.shake(T, amp=0.035, dur=0.6); s.flash(hit + Vector((0, 0, 0.1)), T, power=120, dur=0.25)
-    s.act([(0.02, "look", "lens"), (0.03, "happy"), (T + 0.01, "alarmed"), (T + 0.05, "whoa"), (0.42, "look", hit), (0.62, "look", top + Vector((0, 0, -0.6))),
-           (0.66, "worried"), (0.86, "look", "lens")])
+    s.act([(0.02, "look", "lens"), (0.03, "happy"), (0.1, "wave"), (T + 0.01, "alarmed"), (T + 0.05, "whoa"), (0.42, "look", hit), (0.62, "look", top + Vector((0, 0, -0.6))),
+           (0.66, "worried"), (0.76, "look", hit), (0.86, "look", "lens"), (0.88, "shrug")])
     s.happens("a piece of metal comes through the ceiling and punches a hole in the floor", [j] + hp, T - 0.04, 0.6, moves=[j] + bits)
     return s.done()
 
@@ -100,7 +100,7 @@ def shot2():
     a, b = s.air(1.25, 0.9, 9.0), s.air(-0.2, 0.72, 9.0)
     pl = pallet(tuple(a), 1.25); pl.rotation_euler = (0.5, 0.2, 0.3)
     s.move(pl, [(0.0, a, (30, 10, 20)), (1.0, b, (160, 70, 110))], ease=False)
-    s.act([(0.02, "look", "lens"), (0.12, "look", pl), (0.3, "surprised"), (0.5, "look", pl), (0.55, "whoa"), (0.75, "look", pl), (0.9, "look", "lens")])
+    s.act([(0.02, "look", "lens"), (0.04, "wave"), (0.14, "look", pl), (0.3, "surprised"), (0.42, "look", pl), (0.55, "whoa"), (0.68, "look", pl), (0.72, "worried"), (0.86, "look", "lens"), (0.88, "shrug")])
     s.happens("a pallet of old batteries drifts across the sky over the garden", [pl], 0.0, 1.0, moves=[pl])
     return s.done()
 
@@ -147,7 +147,7 @@ def shot3():
     last = fireball(s, m, end, 0.40, 0.84, r=0.3, tail=4.5, name="the one that lived", col=(1.0, 0.7, 0.3))
     s.glow(s.air(0.7, 0.8, 5.0), power=260, col=(1.0, 0.6, 0.3), keys=[(0.0, 0.2), (0.4, 1.0), (0.62, 0.35), (0.86, 0.0)], r=1.0)
     s.flash(end, 0.84, power=3000, dur=0.5, r=1.0)
-    s.act([(0.02, "look", main), (0.2, "surprised"), (0.3, "look", m), (0.5, "worried"), (0.6, "look", last), (0.8, "look", end), (0.86, "alarmed"), (0.95, "look", "lens")])
+    s.act([(0.02, "look", main), (0.2, "surprised"), (0.3, "look", m), (0.5, "worried"), (0.6, "look", last), (0.7, "whoa"), (0.8, "look", end), (0.86, "alarmed"), (0.95, "look", "lens")])
     s.happens("a fireball crosses the night sky and breaks up; the pieces burn away but one keeps falling", [main, last] + pieces, 0.0, 0.9, moves=[main, last] + pieces)
     return s.done()
 
@@ -162,7 +162,7 @@ def shot4():
     j.rotation_euler = (0, 0, 0.4)
     s.fall(j, Vector((pj.x, pj.y, 0.9)), Vector((pj.x, pj.y, 0.05 * D.U * 2.0)), 0.3, 0.36, spin=(0, 0, 90), bounce=0.04)
     s.appear(j, 0.29)
-    s.act([(0.02, "look", hp[0]), (0.05, "worried"), (0.36, "look", j), (0.42, "surprised"), (0.62, "look", can), (0.74, "look", j), (0.88, "look", "lens"), (0.9, "wry")])
+    s.act([(0.02, "look", hp[0]), (0.05, "worried"), (0.2, "look", "lens"), (0.22, "shrug"), (0.36, "look", j), (0.42, "surprised"), (0.55, "whoa"), (0.64, "look", can), (0.74, "look", j), (0.86, "look", "lens"), (0.88, "wry")])
     s.happens("the piece that did it lands on the tiles beside a soda can, and it is smaller", [j, can], 0.29, 0.5, moves=[j])
     return s.done()
 
@@ -173,12 +173,12 @@ def shot5():
     s.hero(u=0.32, height=0.46)
     crate = s.model("wooden_crate_01", u=0.72, v=0.2, yaw=20)
     box = s.model("cardboard_box_01", u=0.86, v=0.24, yaw=-15)
-    tool = s.model("metal_toolbox", u=0.6, v=0.12, yaw=35)
+    tool = s.model("metal_toolbox", u=0.52, v=0.09, yaw=35)
     top = D.compose.corners(s.parts(crate)); zt = max(c[2] for c in top); pc = s._point(crate)
     j = junk((pc.x, pc.y, zt + 0.05 * D.U * BIG + 1.2), BIG)
     s.fall(j, Vector((pc.x, pc.y, zt + 1.4)), Vector((pc.x, pc.y, zt + 0.05 * D.U * BIG)), 0.12, 0.2, spin=(0, 0, 120), bounce=0.05)
     s.shake(0.2, amp=0.012, dur=0.3)
-    s.act([(0.02, "look", "lens"), (0.14, "look", j), (0.22, "surprised"), (0.4, "look", "lens"), (0.45, "determined"), (0.7, "look", j), (0.82, "look", "lens"), (0.84, "shrug")])
+    s.act([(0.02, "look", "lens"), (0.14, "look", j), (0.22, "surprised"), (0.36, "look", "lens"), (0.4, "determined"), (0.52, "thumbs_up"), (0.66, "look", j), (0.7, "worried"), (0.8, "look", "lens"), (0.84, "shrug")])
     s.happens("the piece drops onto the crate of repair gear beside him", [j], 0.12, 0.3, moves=[j])
     return s.done()
 
