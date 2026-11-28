@@ -126,9 +126,9 @@ model dustpan 1k
 model shrub_01 1k
 model shrub_02 1k
 model shrub_03 1k
-model jacaranda_tree 1k
+
 model island_tree_01 1k
-model tree_small_02 1k
+
 model grass_medium_01 1k
 model planter_box_01 1k
 model garden_hose_wall_mounted_01 1k
@@ -162,3 +162,4 @@ texture laminate_floor_02 1k
 texture wood_floor 1k
 texture herringbone_parquet 1k
 texture white_plaster_02 1k
+# rev 2026-11-28b

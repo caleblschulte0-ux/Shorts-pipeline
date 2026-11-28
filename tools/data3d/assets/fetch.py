@@ -18,6 +18,7 @@ import json, os, sys, urllib.request
 from pathlib import Path
 
 API = "https://api.polyhaven.com"
+BIG = 60 << 20         # a model heavier than this is left out: the branch has to push, and a session has to unpack it
 UA = {"User-Agent": "shorts-pipeline-data3d-assets"}
 
 
@@ -92,6 +93,11 @@ def main(trigger, out):
             ok += 1
         except Exception as e:  # one bad id never costs the rest
             bad += 1; print(f"FAILED {line}: {e}")
+    for d in sorted((out / "polyhaven").iterdir()):     # GitHub refuses a file over 100 MB, and ONE refused file refuses the
+        big = [f for f in d.rglob("*") if f.is_file() and f.stat().st_size > BIG] if d.is_dir() else []   # whole push (2026-11-28:
+        if big:                                         # a 199 MB tree cost every asset of that run, with the job green)
+            import shutil
+            print(f"TOO BIG, dropped {d.name}: {big[0].name} is {big[0].stat().st_size >> 20} MB (limit {BIG >> 20})"); shutil.rmtree(d)
     print(f"fetched {ok}, failed {bad}")
     return 0 if ok else 1
 

@@ -35,4 +35,5 @@ jobs:
           git add -A
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -qm "data3d assets: $(head -c 200 "$GITHUB_WORKSPACE/.github/triggers/data3d_assets" | tr '\n' ' ')"
-          for i in 1 2 3 4; do git push origin HEAD:refs/heads/data3d-assets && break; sleep $((i*5)); git pull --rebase origin data3d-assets || true; done
+          for i in 1 2 3 4; do git push origin HEAD:refs/heads/data3d-assets && exit 0; sleep $((i*5)); git pull --rebase origin data3d-assets || true; done
+          echo "::error::the assets were fetched and NOT pushed"; exit 1
