@@ -614,6 +614,14 @@ trends / country rankings, and writes datasets with
 honest provenance (publisher, url, access_date, officiality=official). The
 brain writes only the WORDS and the SCENE; every number comes from the
 source. Run by `story_forge.yml` (twice daily) and by every posting run.
+**Only a series that was FETCHED and judged can be unusable** (2026-11-28:
+96 indicators, life expectancy among them, were banked because a timeout
+or a non-JSON page came back as the same `None` as a flat line). A fetch
+with no answer raises `Unreachable`, is said out loud and asked again; no
+country list stops the run before it judges anything; a story the gate
+HOLDS on its words gives its data back with a strike (`held`, retired at
+`HOLD_STRIKES`); data already in a story is `used`.
+`tests/test_a_failed_fetch_is_not_a_dry_well.py`.
 Never refill the queue with LLM-invented numbers — the editorial gate
 refuses them, so a queue full of them still ships nothing.
 

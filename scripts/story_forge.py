@@ -47,6 +47,7 @@ except ImportError:  # run as a script: the repo root is not on the path
 import os
 import re
 import sys
+import time
 import urllib.request
 import urllib.error
 from datetime import date
@@ -94,33 +95,61 @@ OWID_SOURCE = {"publisher": "Our World in Data",
 THEMES = {
     "energy": ["electricity", "energy", "renewable", "solar", "power",
                "fossil", "fuel", "nuclear"],
-    "nature": ["forest", "species", "biodiversity", "land area", "marine",
-               "protected area", "arable", "fish", "threatened"],
-    "climate": ["co2", "emissions", "greenhouse", "methane", "particulate",
-                "air pollution", "temperature"],
     "water": ["water", "freshwater", "sanitation", "drinking"],
     "health": ["life expectancy", "mortality", "immunization", "physicians",
                "hospital", "obesity", "smoking", "health expenditure",
-               "birth rate", "fertility"],
+               "birth rate", "fertility",
+               # 2026-11-28: the body is the doctrine's own list ("the human
+               # body") and the catalogue names it in words the themes never
+               # used — 20 health indicators sat in-family with no theme.
+               "tobacco", "alcohol", "overweight", "undernourish",
+               "tuberculosis", "malaria", "nurses", "anemia", "anaemia",
+               "stunting", "wasting", "birthweight", "maternal", "death rate",
+               "suicide", "diabetes", "survival to", "newborn", "tetanus",
+               "vitamin"],
     "population": ["population", "urban", "rural", "migration", "refugee",
-                   "density", "age dependency"],
+                   "density", "age dependency",
+                   "sex ratio", "birth registration", "asylum", "displaced",
+                   "migrant", "surface area"],
     "tech": ["internet", "mobile", "broadband", "telephone", "research and",
-             "patent", "high-technology", "scientific"],
+             "patent", "high-technology", "scientific",
+             "journal", "trademark", "servers", "researchers"],
     "food": ["cereal", "crop", "food", "agricultur", "livestock", "fertilizer"],
-    "travel": ["tourism", "air transport", "rail", "roads", "passengers"],
+    "travel": ["tourism", "air transport", "rail", "roads", "passengers",
+               "container", "port", "vehicles"],
     "learning": ["school", "literacy", "education", "teachers", "pupil"],
     "work": ["labor force", "unemployment", "employment", "wage", "child labor"],
     # 2026-11-21: the well ran down to THREE candidates (run 44833841540:
     # "themes available: population(3)"). Gender and society indicators had
     # no theme and no family, so a whole World Bank topic was never drawn.
     "society": ["women", "gender", "parliament", "seats held"],
+    # 2026-11-28, measured against the live catalogue (1,695 indicators in
+    # the four databases): the current filters kept 191, of which 90 were
+    # used and 96 banked. The doctrine asks for "whoa" — nature, climate,
+    # scale and superlatives — and these are the catalogue's own words for
+    # it that no theme named: homicides and battle deaths, armies and arms,
+    # heat and drought, tree cover and aquaculture.
+    "nature": ["forest", "species", "biodiversity", "land area", "marine",
+               "protected area", "arable", "fish", "threatened",
+               "mammal", "bird", "plant species", "aquaculture", "tree cover",
+               "coastal", "precipitation"],
+    "climate": ["co2", "emissions", "greenhouse", "methane", "particulate",
+                "air pollution", "temperature",
+                "pm2.5", "cooling degree", "heating degree", "drought",
+                "flood", "disaster", "heat"],
+    "crime": ["homicide", "battle-related", "battle related"],
+    "military": ["military", "armed forces", "arms "],
 }
 # Indicator names carrying these tokens are analyst plumbing, not a story.
 _BORING = re.compile(
     r"\b(gni|ppp|constant|current us\$|balance of payments|deflator|"
     r"official exchange|net oda|dec alt|bop|imf|iso |wb |estimate, |"
     r"modeled ilo|lower bound|upper bound|standard error|broad money|"
-    r"claims on|domestic credit|quasi|lcu|dod|debt service)\b", re.I)
+    r"claims on|domestic credit|quasi|lcu|dod|debt service|"
+    # an index or a score is an analyst's construct, not a thing a scene
+    # can draw: "Liner shipping connectivity index", "Disaster risk
+    # reduction progress score" (2026-11-28, while widening the themes)
+    r"index|score)\b", re.I)
 # Indicator FAMILIES worth a curiosity channel (World Bank topic prefixes):
 # people, health, education, environment, energy, agriculture/land, tech,
 # infrastructure, tourism, labour. Everything monetary/fiscal is excluded on
@@ -129,7 +158,11 @@ _BORING = re.compile(
 # "migration" and "refugee" — a theme whose every indicator the family filter
 # dropped, i.e. a name looked up with a silent default. Added 2026-11-21.
 _FAMILIES = ("SP.", "SH.", "SE.", "EN.", "EG.", "AG.", "ER.", "IT.", "IS.",
-             "ST.", "SL.", "SN.", "EP.", "MS.", "SM.", "SG.")
+             "ST.", "SL.", "SN.", "EP.", "MS.", "SM.", "SG.",
+             # 2026-11-28: crime (homicides, battle deaths) and ideas
+             # (patents, journal articles) — THEMES named "patent" and
+             # "scientific" for years while IP. was dropped here.
+             "VC.", "IP.")
 # A token in capitals is a catalogue code, not a word a voice can say:
 # "Immunization, DPT", "Prevalence of HIV". CO2 has a digit and is spoken.
 _ACRONYM = re.compile(r"\b[A-Z]{2,}\b")
@@ -149,14 +182,41 @@ def _get(url: str, *, timeout: int = 40) -> bytes | None:
         return None
 
 
+class Unreachable(Exception):
+    """The World Bank gave NO ANSWER to judge — a timeout, a refusal, a
+    gateway page that is not JSON. It says nothing about the series.
+
+    Until 2026-11-28 this came back as None, the same None an empty or
+    flat series returns, and the forge wrote the indicator down as
+    UNUSABLE for good. `state/forge_used.json` held 96 of them on 11-28,
+    among them life expectancy at birth, the fertility rate and primary
+    enrollment — world series from 1972 that clear every shape test
+    (fetched live that day: 58.8 -> 73.5 years, 4.55 -> 2.19 births,
+    82 -> 102 percent). One timeout is visible in run 44873077455's log
+    (`[net] TimeoutError ... SL.TLF.0714.ZS`); an HTML page from the
+    edge was not even printed. The on-doctrine pool was 191; 90 used plus
+    96 "unusable" left 6, and the forge printed "forged 0" for a week."""
+
+
+RETRY_PAUSE_S = 2.0
+
+
 def _get_json(url: str, **kw):
+    """The answer as JSON. Raises Unreachable when there is nothing to
+    judge; one retry after RETRY_PAUSE_S because a single dropped
+    connection should not cost a whole run its candidates."""
     raw = _get(url, **kw)
-    if not raw:
-        return None
+    if raw is None:
+        if RETRY_PAUSE_S > 0:
+            time.sleep(RETRY_PAUSE_S)
+        raw = _get(url, **kw)
+    if raw is None:
+        raise Unreachable(url)
     try:
         return json.loads(raw)
     except Exception:  # noqa: BLE001
-        return None
+        print(f"    [net] unreadable answer (not JSON) {url[:90]}")
+        raise Unreachable(url)
 
 
 def _cached(name: str, loader):
@@ -181,7 +241,10 @@ def wb_countries() -> dict:
     def load():
         out = {}
         for page in (1, 2):
-            js = _get_json(f"{WB}/country?format=json&per_page=300&page={page}")
+            try:
+                js = _get_json(f"{WB}/country?format=json&per_page=300&page={page}")
+            except Unreachable:
+                return {}            # no list is not a short list: the run stops
             if not js or len(js) < 2:
                 break
             for c in js[1]:
@@ -201,8 +264,11 @@ def wb_indicators() -> list[dict]:
         for source in WB_SOURCES:
             page = 1
             while page <= 6:
-                js = _get_json(f"{WB}/indicator?source={source}&format=json"
-                               f"&per_page=500&page={page}")
+                try:
+                    js = _get_json(f"{WB}/indicator?source={source}&format=json"
+                                   f"&per_page=500&page={page}")
+                except Unreachable:
+                    break            # this database is skipped this run
                 if not js or len(js) < 2 or not js[1]:
                     break
                 for i in js[1]:
@@ -256,11 +322,22 @@ def _speakable(topic: str) -> str:
     head, tail = (p.strip() for p in topic.split(","))
     if not head or not tail or len(tail.split()) > 2:
         return topic
+    if tail.lower().startswith("by "):
+        # "Cause of death, by injury" would turn round into "by injury
+        # cause of death"; the comma stays and the caller refuses it.
+        return topic
     return f"{tail} {head[:1].lower()}{head[1:]}"
 
 
-def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
-    """Theme -> unused, on-doctrine indicator specs, newest catalogue first."""
+HOLD_STRIKES = 2     # a story held this often on its WORDS retires its data
+
+
+def candidates(used: set[str], limit: int = 90, *,
+               offset: int = 0) -> dict[str, list[dict]]:
+    """Theme -> unused, on-doctrine indicator specs, newest catalogue first.
+
+    `offset` moves the rotation on when nothing was used — a run whose
+    every story was HELD would otherwise redraw the identical set."""
     by_theme: dict[str, list[dict]] = {}
     for ind in wb_indicators():
         iid, name = ind["id"], ind["name"]
@@ -285,7 +362,7 @@ def candidates(used: set[str], limit: int = 90) -> dict[str, list[dict]]:
             {"src": "wb", "id": iid, "topic": topic, "unit": unit,
              "wb_source": int(ind.get("source") or 2)})
     # deterministic rotation so successive runs draw DIFFERENT indicators
-    off = len(used)
+    off = len(used) + offset
     for theme, lst in by_theme.items():
         lst.sort(key=lambda d: d["id"])
         k = off % max(1, len(lst))
@@ -980,15 +1057,26 @@ def _load_used() -> dict:
         got = {}
     got.setdefault("indicators", [])
     got.setdefault("unusable", [])
+    # `held`: indicator -> how many composed stories on it the editorial
+    # gate HELD (words, not data). Its data was fine; after HOLD_STRIKES
+    # the forge stops drawing it. Until 2026-11-28 a held story's
+    # indicators were written down as USED — run 44873077455 composed
+    # four stories, kept one, and the three the premise judge held took
+    # ~12 good series out of the well with them.
+    got.setdefault("held", {})
+    if not isinstance(got["held"], dict):
+        got["held"] = {}
     return got
 
 
-def _save_used(used_inds: set, unusable: set, updated: str) -> None:
+def _save_used(used_inds: set, unusable: set, updated: str,
+               held: dict | None = None) -> None:
     """`updated` is the last day a story was KEPT — the heartbeat
     daily_alarm reads. Remembering an unusable indicator is not a beat."""
     USED.parent.mkdir(parents=True, exist_ok=True)
     USED.write_text(json.dumps(
         {"indicators": sorted(used_inds), "unusable": sorted(unusable),
+         "held": dict(sorted((held or {}).items())),
          "updated": updated}, indent=1))
 
 
@@ -1030,12 +1118,24 @@ def forge(count: int, dry_run: bool = False) -> int:
     used_state = _load_used()
     used_inds = set(used_state.get("indicators", []))
     unusable = set(used_state.get("unusable", []))
+    held: dict[str, int] = {k: int(v) for k, v in
+                            (used_state.get("held") or {}).items()}
+    retired = {k for k, n in held.items() if n >= HOLD_STRIKES}
     last_kept = str(used_state.get("updated") or "")
     used_keys = {seg.get("key") for s in cfg.get("stories", [])
                  for seg in s.get("segments", [])}
     used_slugs = {s["slug"] for s in cfg.get("stories", [])}
     countries = wb_countries()
-    pool = candidates(used_inds | unusable)
+    if not countries:
+        # No country list means the World Bank is not answering. Nothing
+        # fetched now would be a verdict on any series, so nothing is
+        # judged and nothing is remembered — the next run draws it all.
+        print("::warning::[forge] the World Bank did not answer (country "
+              "list) — nothing forged, nothing remembered; the next run "
+              "draws the same candidates")
+        return 0
+    pool = candidates(used_inds | unusable | retired,
+                      offset=sum(held.values()))
     if not pool:
         if wb_indicators():
             print("::warning::[forge] the catalogue is EXHAUSTED: every "
@@ -1047,24 +1147,42 @@ def forge(count: int, dry_run: bool = False) -> int:
         return 0
     print(f"themes available: {', '.join(f'{t}({len(v)})' for t, v in pool.items())}")
 
-    made, leftovers = 0, []
+    made, leftovers, unreachable = 0, [], 0
+
+    def release(dss: list) -> None:
+        """A story that was NOT kept gives its data back: one strike per
+        indicator, retired after HOLD_STRIKES. The numbers were fine;
+        the words were not — different words next time may clear."""
+        for d in dss:
+            iid = d.get("_indicator")
+            if iid:
+                held[iid] = held.get(iid, 0) + 1
 
     def keep(dss: list, label: str) -> bool:
         """Compose + gate + persist one story. Returns True if it was kept."""
         nonlocal made
         story = compose(dss, used_slugs)
         if not story:
+            release(dss)
             return False
         ok, why = _passes_editorial(story)
         if not ok:
             print(f"[{label}] HELD by editorial gate: {why[:2]}")
+            release(dss)
             return False
         if not _builds(story):
+            release(dss)
             return False
         dup = _too_similar(story, cfg)
         if dup:
             print(f"[{label}] duplicate of {dup} — skipped")
+            release(dss)
             return False
+        # KEPT: only now is the data spent.
+        for d in dss:
+            if d.get("_indicator"):
+                used_inds.add(d["_indicator"])
+                held.pop(d["_indicator"], None)
         print(f"[{label}] FORGED {story['slug']}: {story['title']}")
         for d in dss:
             print(f"    {d['key']}  {d['insight_type']}  "
@@ -1078,7 +1196,7 @@ def forge(count: int, dry_run: bool = False) -> int:
             cfg.setdefault("stories", []).append(entry)
             from shared.fsutil import write_json_if_changed
             write_json_if_changed(CONFIG, cfg)
-            _save_used(used_inds, unusable, TODAY)
+            _save_used(used_inds, unusable, TODAY, held)
         used_slugs.add(story["slug"])
         made += 1
         if not dry_run:
@@ -1128,16 +1246,27 @@ def forge(count: int, dry_run: bool = False) -> int:
             fam = ".".join(spec["id"].split(".")[:2])
             if fam in seen_fam:
                 continue
-            ds = (fetch_trend(spec) if tried % 2 else None) \
-                or fetch_rank(spec, countries) or fetch_trend(spec)
+            try:
+                ds = (fetch_trend(spec) if tried % 2 else None) \
+                    or fetch_rank(spec, countries) or fetch_trend(spec)
+            except Unreachable:
+                # No answer is not a verdict. Not used, not unusable:
+                # the next run asks again.
+                unreachable += 1
+                continue
             if not ds:
                 # Neither shape of this series is a story. Remember that,
                 # or the next run draws it again — and the one after.
                 unusable.add(spec["id"])
                 continue
             if ds["key"] in used_keys:
+                # Its data is already in a story — that IS used. Until
+                # 2026-11-28 it was neither used nor unusable, so the same
+                # six indicators were drawn, fetched and dropped by every
+                # run for a week ("themes available: energy(1),
+                # population(3), health(1), work(1)", 0 usable).
+                used_inds.add(spec["id"])
                 continue
-            used_inds.add(spec["id"])
             used_keys.add(ds["key"])
             seen_fam.add(fam)
             dss.append(ds)
@@ -1160,8 +1289,16 @@ def forge(count: int, dry_run: bool = False) -> int:
         leftovers = leftovers[n_mix:]
     print(f"\nforged {made} real-data stor{'y' if made == 1 else 'ies'} "
           f"({'dry run' if dry_run else 'written'})")
-    if not dry_run and unusable - set(used_state.get("unusable", [])):
-        _save_used(used_inds, unusable, TODAY if made else last_kept)
+    if unreachable:
+        print(f"::warning::[forge] {unreachable} fetch(es) got NO ANSWER "
+              "from the World Bank — those indicators were not judged and "
+              "will be drawn again")
+    changed = (unusable != set(used_state.get("unusable", []))
+               or used_inds != set(used_state.get("indicators", []))
+               or held != {k: int(v) for k, v in
+                           (used_state.get("held") or {}).items()})
+    if not dry_run and changed:
+        _save_used(used_inds, unusable, TODAY if made else last_kept, held)
     if not made:
         print("::warning::[forge] wrote NOTHING this run — "
               f"{len(unusable)} indicator(s) are now remembered as unusable "
