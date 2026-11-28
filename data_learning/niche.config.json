@@ -40201,6 +40201,69 @@
     }
    ],
    "words_by": "deterministic"
+  },
+  {
+   "slug": "united-states-beats-everyone-on-military-expenditure-by-5-0x",
+   "title": "United States Beats Everyone On Military expenditure — By 5.0x",
+   "hook": "The United States outspends the Russian Federation five times over on its military.",
+   "closing": "Military budgets compete with classrooms and elder care, and your taxes decide that trade.",
+   "hashtags": [
+    "data",
+    "facts",
+    "statistics",
+    "shorts",
+    "worldbank"
+   ],
+   "question": "",
+   "segments": [
+    {
+     "source": "offline",
+     "key": "se_sec_enrl_up_tc_zs_rank",
+     "params": {
+      "file": "se_sec_enrl_up_tc_zs_rank.json"
+     },
+     "insight_type": "rank",
+     "role": "1 · UPPER SECONDARY PU",
+     "topic": "Military versus classrooms",
+     "say": "Papua New Guinea crams 83.3 pupils onto each upper secondary teacher. That's more than double Nicaragua, so classrooms there are packed."
+    },
+    {
+     "source": "offline",
+     "key": "ms_mil_xpnd_cd_rank",
+     "params": {
+      "file": "ms_mil_xpnd_cd_rank.json"
+     },
+     "insight_type": "rank",
+     "role": "2 · MILITARY EXPENDITU",
+     "topic": "Military expenditure",
+     "say": "The United States spends about 954 billion dollars on its military. That's nearly triple China, the next biggest spender."
+    },
+    {
+     "source": "offline",
+     "key": "sp_dyn_tfrt_in_trend",
+     "params": {
+      "file": "sp_dyn_tfrt_in_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · TOTAL FERTILITY RA",
+     "topic": "Fewer births, military recruits",
+     "say": "The fertility rate has fallen to under half its 1972 level. Fewer babies today means fewer young recruits for the military later."
+    },
+    {
+     "source": "offline",
+     "key": "sp_pop_dpnd_ol_trend",
+     "params": {
+      "file": "sp_pop_dpnd_ol_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "4 · OLD AGE DEPENDENCY",
+     "topic": "Aging nation, military budget",
+     "say": "There are now 1.7 times as many retirees per worker as in 1972. That means a bigger care bill for fewer workers."
+    }
+   ],
+   "words_by": "claude-retell",
+   "retold": "retell/v4",
+   "rewritten_at": "2026-11-28T14:14:12Z"
   }
  ]
 }

@@ -1,0 +1,38 @@
+{
+  "key": "ms_mil_xpnd_cd_rank",
+  "title": "Military expenditure",
+  "unit": "current USD",
+  "geography": "Top 5 countries",
+  "time_coverage": "2025",
+  "insight_type": "rank",
+  "source": {
+    "name": "Military expenditure",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/MS.MIL.XPND.CD",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "United States",
+      "value": 954387000000
+    },
+    {
+      "label": "China",
+      "value": 335524155624
+    },
+    {
+      "label": "Russian Federation",
+      "value": 190416640325
+    },
+    {
+      "label": "Germany",
+      "value": 113585948605
+    },
+    {
+      "label": "India",
+      "value": 92057013588
+    }
+  ]
+}

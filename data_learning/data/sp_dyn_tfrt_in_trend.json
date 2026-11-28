@@ -1,0 +1,48 @@
+{
+  "key": "sp_dyn_tfrt_in_trend",
+  "title": "Total fertility rate",
+  "unit": "births per woman",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "total fertility rate",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.DYN.TFRT.IN",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 4.55,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 3.72,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 2.97,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 2.64,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 2.52,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 2.19,
+      "period": "2024"
+    }
+  ]
+}

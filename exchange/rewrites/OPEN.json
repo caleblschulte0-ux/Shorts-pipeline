@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-28T13:53:27Z",
+ "updated": "2026-11-28T14:14:16Z",
  "open": [
+  {
+   "id": "united-states-beats-everyone-on-military-expenditure-by-5-0x__81714379",
+   "slug": "united-states-beats-everyone-on-military-expenditure-by-5-0x",
+   "filed": "2026-11-28T14:14:16Z",
+   "why": [
+    "premise: brain: The pitch lacks a single concrete, compelling surprise or stake and mixes unrelated beats, making the hook vague and unfocused."
+   ],
+   "request": "exchange/rewrites/20261128/united-states-beats-everyone-on-military-expenditure-by-5-0x__81714379.request.json",
+   "answer_path": "exchange/rewrites/20261128/united-states-beats-everyone-on-military-expenditure-by-5-0x__81714379.answer.json"
+  },
   {
    "id": "congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-__f7c73ee3",
    "slug": "congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-",

@@ -1,0 +1,38 @@
+{
+  "key": "se_sec_enrl_up_tc_zs_rank",
+  "title": "Upper secondary pupil-teacher ratio",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2019",
+  "insight_type": "rank",
+  "source": {
+    "name": "upper secondary pupil-teacher ratio",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.ENRL.UP.TC.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Papua New Guinea",
+      "value": 83.3
+    },
+    {
+      "label": "Ethiopia",
+      "value": 43.7
+    },
+    {
+      "label": "Mozambique",
+      "value": 36.5
+    },
+    {
+      "label": "Malawi",
+      "value": 35.2
+    },
+    {
+      "label": "Nicaragua",
+      "value": 34.7
+    }
+  ]
+}
