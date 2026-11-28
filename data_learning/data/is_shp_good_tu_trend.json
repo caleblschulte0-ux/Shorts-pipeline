@@ -1,0 +1,48 @@
+{
+  "key": "is_shp_good_tu_trend",
+  "title": "Container port traffic",
+  "unit": "TEU: 20 foot equivalent units",
+  "geography": "World",
+  "time_coverage": "2010-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Container port traffic",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IS.SHP.GOOD.TU",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 547127645,
+      "period": "2010"
+    },
+    {
+      "label": "2013",
+      "value": 643970055,
+      "period": "2013"
+    },
+    {
+      "label": "2016",
+      "value": 700903754,
+      "period": "2016"
+    },
+    {
+      "label": "2018",
+      "value": 784294634,
+      "period": "2018"
+    },
+    {
+      "label": "2021",
+      "value": 844570038,
+      "period": "2021"
+    },
+    {
+      "label": "2024",
+      "value": 913279048,
+      "period": "2024"
+    }
+  ]
+}

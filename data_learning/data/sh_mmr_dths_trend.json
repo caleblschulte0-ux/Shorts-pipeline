@@ -1,0 +1,48 @@
+{
+  "key": "sh_mmr_dths_trend",
+  "title": "Number of maternal deaths",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1985-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Number of maternal deaths",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.MMR.DTHS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1985",
+      "value": 625000,
+      "period": "1985"
+    },
+    {
+      "label": "1993",
+      "value": 526000,
+      "period": "1993"
+    },
+    {
+      "label": "2000",
+      "value": 443000,
+      "period": "2000"
+    },
+    {
+      "label": "2008",
+      "value": 374000,
+      "period": "2008"
+    },
+    {
+      "label": "2015",
+      "value": 328000,
+      "period": "2015"
+    },
+    {
+      "label": "2023",
+      "value": 260000,
+      "period": "2023"
+    }
+  ]
+}

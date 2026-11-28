@@ -1,0 +1,48 @@
+{
+  "key": "is_air_psgr_trend",
+  "title": "Passengers carried air transport",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1973-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "passengers carried air transport",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IS.AIR.PSGR",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1973",
+      "value": 401571800,
+      "period": "1973"
+    },
+    {
+      "label": "1983",
+      "value": 685101596,
+      "period": "1983"
+    },
+    {
+      "label": "1993",
+      "value": 1142265216,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 1665309283,
+      "period": "2003"
+    },
+    {
+      "label": "2013",
+      "value": 3100200780,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 4268984474,
+      "period": "2023"
+    }
+  ]
+}

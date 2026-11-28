@@ -1,0 +1,48 @@
+{
+  "key": "sp_dyn_cdrt_in_trend",
+  "title": "Crude death rate",
+  "unit": "per 1,000 people",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "crude death rate",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.DYN.CDRT.IN",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 11.7,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 10.1,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 9.16,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 8.29,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 7.58,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 7.55,
+      "period": "2024"
+    }
+  ]
+}

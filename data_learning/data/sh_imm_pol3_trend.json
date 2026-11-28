@@ -1,0 +1,48 @@
+{
+  "key": "sh_imm_pol3_trend",
+  "title": "Pol3 immunization",
+  "unit": "% of one-year-old children",
+  "geography": "World",
+  "time_coverage": "1980-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Pol3 immunization",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.IMM.POL3",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 18.3,
+      "period": "1980"
+    },
+    {
+      "label": "1989",
+      "value": 70.3,
+      "period": "1989"
+    },
+    {
+      "label": "1998",
+      "value": 73.0,
+      "period": "1998"
+    },
+    {
+      "label": "2006",
+      "value": 79.2,
+      "period": "2006"
+    },
+    {
+      "label": "2015",
+      "value": 85.1,
+      "period": "2015"
+    },
+    {
+      "label": "2024",
+      "value": 84.2,
+      "period": "2024"
+    }
+  ]
+}

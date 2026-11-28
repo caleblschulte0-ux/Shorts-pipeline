@@ -1,0 +1,48 @@
+{
+  "key": "st_int_rcpt_xp_zs_trend",
+  "title": "Receipts international tourism",
+  "unit": "% of total exports",
+  "geography": "World",
+  "time_coverage": "1995-2019",
+  "insight_type": "trend",
+  "source": {
+    "name": "receipts international tourism",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/ST.INT.RCPT.XP.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1995",
+      "value": 8.54,
+      "period": "1995"
+    },
+    {
+      "label": "2000",
+      "value": 7.05,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 6.45,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 6.5,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 6.39,
+      "period": "2014"
+    },
+    {
+      "label": "2019",
+      "value": 7.39,
+      "period": "2019"
+    }
+  ]
+}

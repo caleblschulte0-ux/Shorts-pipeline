@@ -1,0 +1,38 @@
+{
+  "key": "is_rrs_pasg_km_rank",
+  "title": "Passengers carried railways",
+  "unit": "million passenger-km",
+  "geography": "Top 5 countries",
+  "time_coverage": "2021",
+  "insight_type": "rank",
+  "source": {
+    "name": "passengers carried railways",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IS.RRS.PASG.KM",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 946499
+    },
+    {
+      "label": "Japan",
+      "value": 263211
+    },
+    {
+      "label": "India",
+      "value": 231126
+    },
+    {
+      "label": "Russian Federation",
+      "value": 103447
+    },
+    {
+      "label": "Korea, Rep.",
+      "value": 100381
+    }
+  ]
+}
