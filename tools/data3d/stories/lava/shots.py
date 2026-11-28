@@ -1409,19 +1409,19 @@ still: nothing (still 1), an orange glow along the ridge (still 2), a lava fount
 3), the fountain under a towering black ash plume (still 4). Data, in the foreground at the left, three-quarter to us,
 looks at us, turns his head at the glow, flinches at the fountain, and on still 4 runs at the lens, out of the street."""
 
-S1_RIDGE_Y = 30.0                      # the fissure's line on the ridge (coordinator, high lens: the ridge pushed back and lower so the fountain stands whole under the top margin)
+S1_RIDGE_Y = 38.0                      # the fissure's line on the ridge (coordinator, high lens: the ridge pushed back and lower so the fountain stands whole under the top margin)
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_P0 = (0.15, -2.6)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
-S1_CAM = (0.3, -3.9, 1.25)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
+S1_P0 = (0.15, -2.7)                   # where he stands: in the street, centred on the lens (coordinator, r1za: margin all round)
+S1_CAM = (0.3, -3.9, 1.15)             # (coordinator, after VARIETY: a HIGH lens, twice his height, tipped down the street) the one lens
 
 
 def s1_ground_z(x, y):
     """the street flat, the land round the town rolling, and the ridge rising behind it to the fissure"""
     z = -0.07 if abs(x) < 1.1 else 0.0                    # (the road's own deck lies in this shallow bed: the kit's road, never the rock showing through it)
     if abs(x) > 2.4: z += 0.15 * lw_fbm(x * 0.3, y * 0.3, 3) + 0.03 * (abs(x) - 2.4)
-    r = max(0.0, (y - 18.0) / 12.0)
-    z += 5.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 17.5 else 0.0)
+    r = max(0.0, (y - 24.0) / 14.0)
+    z += 5.0 * (r * r * (3 - 2 * r) if r < 1 else 1.0) + (0.5 * lw_fbm(x * 0.15, y * 0.2, 7) if y > 23.5 else 0.0)
     if y > S1_RIDGE_Y: z -= 0.6 * min(1.0, (y - S1_RIDGE_Y) / 2.0)
     return z
 
@@ -1432,7 +1432,7 @@ def place_grindavik_street():
     above it where the fissure opens (its glowing slot built here, hidden until the eruption comes), far blue
     mountains. Nothing else in the street: no cars, flags, poles or trucks (coordinator: two or three props)."""
     rnd = lw_random.Random(5)
-    lw_grid("lava field ground", -40, 40, -14, 40, 140, 110, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
+    lw_grid("lava field ground", -50, 50, -14, 60, 160, 140, s1_ground_z, lw_noise("moss hill ground", "#1E2C15", "#4A6430", scale=1.6, rough=1.0, bump=0.5, detail=12, lo=0.3, hi=0.75))     # (r1w EMPTY 34%: the moss read as one smooth sheet joining sky to street: a tighter, higher-contrast moss)     # (coordinator, p1c: the hill read beige: green moss, darker)
     # (coordinator, p1c: the kit's scanned asphalt read as a CRACKED street before anything happened, stealing shot 4's
     # crack: an intact grey deck, its centre line painted fresh)
     asph = lw_noise("street asphalt", "#28292C", "#4E5054", scale=40.0, rough=0.85, bump=0.35, detail=12, lo=0.38, hi=0.62)     # (r1za pre-flight: "blurry noise": a fine aggregate grain)     # (r1y EMPTY: the near street still one smooth plane at phone size: a coarse aggregate grain)     # (r1w EMPTY: worn patches, still intact)
@@ -1542,7 +1542,7 @@ def shot1():
     # lamps come on at the glow; they pull out into the street and speed down it toward us, past him on either side, dust
     # behind; on still 4 both are whole in the frame at mid-street, nearer than on still 3. Smooth from still 1 to 4.
     cars, dust = [], []
-    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.95, 9.0, -0.4, "#2F5E8C"), (-0.65, -0.95, 7.4, -1.0, "#B8352B"))):
+    for k, (x0, x1, y0, y4, col) in enumerate(((0.65, 0.9, 9.0, 0.6, "#2F5E8C"), (-0.65, -0.9, 7.4, -0.1, "#B8352B"))):
         c = FX.car(name=f"getaway car {k}", loc=(x0, y0, 0.0), yaw=0.0, kind="hatch", col=col, lights=True, seed=4 + k, dirt=0.4, power=30.0)
         t0 = T_CARS + 0.25 * k; T = TS[3] - t0; ra = 0.6
         v = (y0 - y4) / (T - ra / 2)
@@ -1574,7 +1574,7 @@ def shot1():
     # stands calm facing us, turns his head and shoulders to the glow, recoils from the fountain (leaning back, both arms
     # thrown up beside his head, mouth open), and holding the recoil half-turns to the lens side as if to follow the cars.
     data = load_data()
-    CAM0 = Vector(S1_CAM); D = Vector((-0.06, 1.0, -0.158)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
+    CAM0 = Vector(S1_CAM); D = Vector((-0.06, 1.0, -0.194)).normalized(); LOOK0 = CAM0 + D * 5.0      # (r1ze: tilted up so the fountain stands whole in the frame)
     X0, Y0 = S1_P0; Z0 = 0.0
     LENS = yaw_of(CAM0.x - X0, CAM0.y - Y0)
     YAW = LENS + math.radians(10)                              # 1 facing us
@@ -1585,12 +1585,12 @@ def shot1():
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
         p = (Vector((X0, Y0, Z0)) + SIDE * (0.05 * W(t, 0.1, 0.35) - 0.1 * W(t, T_GLOW + 0.15, 0.45))
-             + TO * (0.16 * W(t, T_BURST + 0.08, 0.3) + 0.1 * W(t, T_TURN + 0.25, 0.45)))     # a step to the glow; the recoil's step back; a step toward the lens side
+             + TO * (0.04 * W(t, T_BURST + 0.08, 0.3) - 0.06 * W(t, T_TURN + 0.25, 0.45)))     # a step to the glow; the recoil's step back; a step toward the lens side
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(40) * W(t, T_GLOW, 0.6) - math.radians(10) * W(t, T_BURST + 0.08, 0.3)
                    - math.radians(55) * W(t, T_TURN, 0.6))
         data._plant_feet_here(t, lift=(Z0, Z0))
-    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) + 16 * W(t, T_BURST + 0.08, 0.3) - 6 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
-    lw_layer(data, "chest", lambda t: (6 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "spine", lambda t: (-4 * W(t, T_GLOW + 0.2, 0.5) - 16 * W(t, T_BURST + 0.08, 0.3) + 6 * W(t, T_TURN + 0.2, 0.5), 0, 0), 0, DUR + 0.4)
+    lw_layer(data, "chest", lambda t: (-6 * W(t, T_BURST + 0.08, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
     data.look_at(CAM0 + Vector((0, 0, 0.1)), 0.0, max_yaw=55, max_pitch=20, blend=0.0)                 # 1 at us, calm
     data.look_at(RIDGE, T_GLOW + 0.1, max_yaw=30, max_pitch=25, blend=0.35)                             # 2 round at the glow (FACE)
