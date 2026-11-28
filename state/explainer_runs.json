@@ -1,99 +1,6 @@
 {
   "runs": [
     {
-      "ts": "2026-11-23T17:07:52+00:00",
-      "dry_run": false,
-      "posted": [],
-      "held": {
-        "editorial_hold": [
-          "helium-supply-squeeze",
-          "measles-ninety-five-rule",
-          "divorce-rate-quiet-decline",
-          "volcano-country-ranking",
-          "index-funds-own-corporate-america",
-          "cruise-ship-outbreaks-climbing",
-          "autism-diagnosis-rate-rise",
-          "robotic-surgery-doubled",
-          "people-over-65-outnumber-kids-under-5",
-          "insect-planet",
-          "plastic-in-your-body",
-          "game-industry-layoffs-record",
-          "blood-supply-three-percent",
-          "library-digital-shift",
-          "english-internet-share-decline",
-          "tattoo-mainstream-shift",
-          "back-to-sleep-campaign-cut-sids",
-          "vinyl-beats-cd-sales-again",
-          "flu-season-2024-25-worst-in-years",
-          "right-whale-breeding-females",
-          "frog-fungus-mass-extinction",
-          "hadza-gut-bacteria-vs-americans",
-          "runway-near-misses-climbing",
-          "feet-are-getting-bigger",
-          "chatgpt-fastest-adoption-ever",
-          "blood-type-rarity",
-          "cavendish-banana-monoculture",
-          "astronaut-bone-loss",
-          "gps-einstein-fix",
-          "muscle-loss-after-30",
-          "saffron-red-gold-myth",
-          "ants-outnumber-humans",
-          "chip-transistor-shrink-limit",
-          "frog-freezes-and-revives",
-          "betelgeuse-great-dimming",
-          "chess-online-boom",
-          "eclipse-recurrence-rarity",
-          "gulf-dead-zone-growth",
-          "moon-drifting-away",
-          "seabed-mining-rush",
-          "clear-air-turbulence-increase",
-          "lego-minifigs-outnumber-humans",
-          "human-domesticated-14-animals",
-          "map-distortion-true-size",
-          "north-american-bird-collapse",
-          "us-height-ranking-fall",
-          "black-holes-in-galaxy",
-          "fireflies-losing-their-glow",
-          "metric-system-holdouts",
-          "lab-grown-diamond-price-collapse",
-          "daylight-saving-time-in-decline",
-          "self-storage-outnumbers-starbucks",
-          "cargo-ship-size-growth",
-          "ceo-executive-pay-gap",
-          "cursive-handwriting-comeback",
-          "dating-app-user-exodus",
-          "nuclear-reactors-under-construction",
-          "normal-body-temperature-has-shifted",
-          "volcanoes-erupting-right-now",
-          "fifty-otters-survived-climate-fight",
-          "india-beats-everyone-on-general-pupils-secondary-education-b"
-        ],
-        "story_hold": [
-          "usps-mail-volume-collapse",
-          "womens-college-hoops-out-rates-men",
-          "great-barrier-reef-bleaching-accelerating",
-          "ocean-is-changing-color"
-        ],
-        "not_current": [
-          "landline-death-robocall-boom",
-          "cohabitation-overtakes-marriage",
-          "south-korea-robot-density-record",
-          "us-stops-making-pennies-232-years"
-        ],
-        "duplicate_hold": [
-          "ocean-floor-vs-mars-mapped",
-          "oceanic-shark-collapse",
-          "drug-resistant-infections-2050"
-        ]
-      },
-      "example": {
-        "editorial_hold": "data: seg1 (helium_demand_2024_vs_2035.json): source officiality='illustrative' \u2014 not a real source (needs ['official', 'primary', 'secondary'])",
-        "story_hold": "story: fatal: invented_fact \u2014 fix the words so it is true and pays off what it promises",
-        "not_current": "beat 1 reads off 2 numbers: say one, and what it means"
-      },
-      "faults": []
-    },
-    {
       "ts": "2026-11-23T20:05:25+00:00",
       "dry_run": false,
       "posted": [],
@@ -2716,6 +2623,26 @@
       "example": {
         "editorial_hold": "data: seg1 (helium_demand_2024_vs_2035.json): source officiality='illustrative' \u2014 not a real source (needs ['official', 'primary', 'secondary'])",
         "story_hold": "story: fatal: unrenderable_visual \u2014 fix the words so it is true and pays off what it promises"
+      },
+      "faults": []
+    },
+    {
+      "ts": "2026-11-28T09:38:07+00:00",
+      "dry_run": false,
+      "posted": [],
+      "held": {
+        "editorial_hold": [
+          "china-beats-everyone-on-scientific-and-technical-journal-art",
+          "school-is-not-as-evenly-spread-as-you-think"
+        ],
+        "not_current": [
+          "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+          "urban-people-practicing-open-defecation-fell-87-since-2000"
+        ]
+      },
+      "example": {
+        "editorial_hold": "thesis: seg2 ('Technical patent applications') does not continue the story of the headline ('China Beats Everyone On Scientific and technical journal articles \u2014",
+        "not_current": "beat 1 reads off 5 numbers: say one, and what it means"
       },
       "faults": []
     }

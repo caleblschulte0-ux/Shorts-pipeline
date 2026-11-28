@@ -1,0 +1,190 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8",
+ "filed": "2026-11-28T09:38:06Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "china-beats-everyone-on-scientific-and-technical-journal-art",
+ "current": {
+  "title": "China Beats Everyone On Scientific and technical journal articles — By 4.1x",
+  "hook": "China publishes more scientific and technical journal articles than anyone.",
+  "closing": "Whoever publishes the most shapes the next big breakthroughs, and that affects your future.",
+  "question": "",
+  "segments": [
+   {
+    "topic": "Scientific researchers in R&D",
+    "say": "Researchers per million people are up by half, to 1,652. More minds at work means more papers published."
+   },
+   {
+    "topic": "Scientific and technical articles",
+    "say": "China published 932,712 articles, more than double the United States, the next biggest. No one else is close."
+   },
+   {
+    "topic": "Technical patent applications",
+    "say": "Patent filings from foreign inventors nearly quadrupled, to over a million. Ideas are now a global race, and everyone is filing."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Scientific researchers in R&D",
+   "say": "Researchers per million people are up by half, to 1,652. More minds at work means more papers published.",
+   "role": "1 · RESEARCHERS IN R&D",
+   "data": {
+    "file": "sp_pop_scie_rd_p6_trend.json",
+    "unit": "per million people",
+    "title": "Researchers in R&D",
+    "points": [
+     {
+      "label": "2000",
+      "value": 1081,
+      "period": "2000"
+     },
+     {
+      "label": "2005",
+      "value": 1195,
+      "period": "2005"
+     },
+     {
+      "label": "2010",
+      "value": 1267,
+      "period": "2010"
+     },
+     {
+      "label": "2015",
+      "value": 1381,
+      "period": "2015"
+     },
+     {
+      "label": "2018",
+      "value": 1524,
+      "period": "2018"
+     },
+     {
+      "label": "2020",
+      "value": 1652,
+      "period": "2020"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Scientific and technical articles",
+   "say": "China published 932,712 articles, more than double the United States, the next biggest. No one else is close.",
+   "role": "2 · SCIENTIFIC AND TEC",
+   "data": {
+    "file": "ip_jrn_artc_sc_rank.json",
+    "unit": "",
+    "title": "Scientific and technical journal articles",
+    "points": [
+     {
+      "label": "China",
+      "value": 932712
+     },
+     {
+      "label": "United States",
+      "value": 430843
+     },
+     {
+      "label": "India",
+      "value": 228174
+     },
+     {
+      "label": "Germany",
+      "value": 108782
+     },
+     {
+      "label": "United Kingdom",
+      "value": 97536
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Technical patent applications",
+   "say": "Patent filings from foreign inventors nearly quadrupled, to over a million. Ideas are now a global race, and everyone is filing.",
+   "role": "3 · NONRESIDENTS PATEN",
+   "data": {
+    "file": "ip_pat_nres_trend.json",
+    "unit": "",
+    "title": "Nonresidents patent applications",
+    "points": [
+     {
+      "label": "1985",
+      "value": 270700,
+      "period": "1985"
+     },
+     {
+      "label": "1993",
+      "value": 294100,
+      "period": "1993"
+     },
+     {
+      "label": "2001",
+      "value": 547800,
+      "period": "2001"
+     },
+     {
+      "label": "2008",
+      "value": 774800,
+      "period": "2008"
+     },
+     {
+      "label": "2016",
+      "value": 901900,
+      "period": "2016"
+     },
+     {
+      "label": "2024",
+      "value": 1022400,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "thesis: seg2 ('Technical patent applications') does not continue the story of the headline ('China Beats Everyone On Scientific and technical journal articles — By 4.1x') — brain: Focuses on patent filings, not scientific/technical journal articles, so it doesn't support the same headline claim."
+ ],
+ "reasons": [
+  "thesis: seg2 ('Technical patent applications') does not continue the story of the headline ('China Beats Everyone On Scientific and technical journal articles — By 4.1x') — brain: Focuses on patent filings, not scientific/technical journal articles, so it doesn't support the same headline claim."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261128/china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,38 @@
+{
+  "key": "se_sec_enrl_rank",
+  "title": "Pupils secondary education",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2025",
+  "insight_type": "rank",
+  "source": {
+    "name": "pupils secondary education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.ENRL",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "India",
+      "value": 133156038
+    },
+    {
+      "label": "China",
+      "value": 97983183
+    },
+    {
+      "label": "Indonesia",
+      "value": 27835491
+    },
+    {
+      "label": "United States",
+      "value": 25345304
+    },
+    {
+      "label": "Brazil",
+      "value": 21496056
+    }
+  ]
+}

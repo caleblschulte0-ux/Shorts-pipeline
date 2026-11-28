@@ -1,0 +1,38 @@
+{
+  "key": "ag_srf_totl_k2_rank",
+  "title": "Surface area",
+  "unit": "sq. km",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Surface area",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.SRF.TOTL.K2",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Russian Federation",
+      "value": 17125190
+    },
+    {
+      "label": "Canada",
+      "value": 15634410
+    },
+    {
+      "label": "United States",
+      "value": 9831510
+    },
+    {
+      "label": "China",
+      "value": 9562910
+    },
+    {
+      "label": "Brazil",
+      "value": 8510420
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "key": "sh_sta_odfc_ur_zs_trend",
+  "title": "Urban people practicing open defecation",
+  "unit": "% of urban population",
+  "geography": "World",
+  "time_coverage": "2000-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "urban people practicing open defecation",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.STA.ODFC.UR.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 5.14,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 4.1,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 3.25,
+      "period": "2010"
+    },
+    {
+      "label": "2014",
+      "value": 2.52,
+      "period": "2014"
+    },
+    {
+      "label": "2019",
+      "value": 1.56,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 0.69,
+      "period": "2024"
+    }
+  ]
+}

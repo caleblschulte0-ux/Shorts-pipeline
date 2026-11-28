@@ -1,0 +1,48 @@
+{
+  "key": "vc_ihr_psrc_p5_trend",
+  "title": "Intentional homicides",
+  "unit": "per 100,000 people",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Intentional homicides",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/VC.IHR.PSRC.P5",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 6.85,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 6.29,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 6.07,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 6.1,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 5.7,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 5.2,
+      "period": "2023"
+    }
+  ]
+}

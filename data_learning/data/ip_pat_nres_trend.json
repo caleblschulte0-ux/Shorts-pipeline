@@ -1,0 +1,48 @@
+{
+  "key": "ip_pat_nres_trend",
+  "title": "Nonresidents patent applications",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1985-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "nonresidents patent applications",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IP.PAT.NRES",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1985",
+      "value": 270700,
+      "period": "1985"
+    },
+    {
+      "label": "1993",
+      "value": 294100,
+      "period": "1993"
+    },
+    {
+      "label": "2001",
+      "value": 547800,
+      "period": "2001"
+    },
+    {
+      "label": "2008",
+      "value": 774800,
+      "period": "2008"
+    },
+    {
+      "label": "2016",
+      "value": 901900,
+      "period": "2016"
+    },
+    {
+      "label": "2024",
+      "value": 1022400,
+      "period": "2024"
+    }
+  ]
+}

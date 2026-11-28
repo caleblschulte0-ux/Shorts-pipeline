@@ -1,0 +1,38 @@
+{
+  "key": "ip_jrn_artc_sc_rank",
+  "title": "Scientific and technical journal articles",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Scientific and technical journal articles",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IP.JRN.ARTC.SC",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 932712
+    },
+    {
+      "label": "United States",
+      "value": 430843
+    },
+    {
+      "label": "India",
+      "value": 228174
+    },
+    {
+      "label": "Germany",
+      "value": 108782
+    },
+    {
+      "label": "United Kingdom",
+      "value": 97536
+    }
+  ]
+}

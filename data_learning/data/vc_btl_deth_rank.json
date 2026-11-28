@@ -1,0 +1,38 @@
+{
+  "key": "vc_btl_deth_rank",
+  "title": "Battle-related deaths",
+  "unit": "number of people",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Battle-related deaths",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/VC.BTL.DETH",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Ukraine",
+      "value": 68097
+    },
+    {
+      "label": "Israel",
+      "value": 21440
+    },
+    {
+      "label": "Sri Lanka",
+      "value": 10165
+    },
+    {
+      "label": "Bosnia and Herzegovina",
+      "value": 8855
+    },
+    {
+      "label": "Russian Federation",
+      "value": 7670
+    }
+  ]
+}

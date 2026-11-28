@@ -1,0 +1,48 @@
+{
+  "key": "se_prm_enrl_trend",
+  "title": "Pupils primary education",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "pupils primary education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.PRM.ENRL",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 428375360,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 544451712,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 600854848,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 655175680,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 715029696,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 780852608,
+      "period": "2024"
+    }
+  ]
+}

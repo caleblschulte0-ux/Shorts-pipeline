@@ -1,7 +1,53 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-28T00:53:08Z",
+ "updated": "2026-11-28T09:38:07Z",
  "open": [
+  {
+   "id": "school-is-not-as-evenly-spread-as-you-think__82130e07",
+   "slug": "school-is-not-as-evenly-spread-as-you-think",
+   "filed": "2026-11-28T09:38:07Z",
+   "why": [
+    "thesis: seg0 ('Pupils primary education') does not continue the story of the headline ('School Is Not As Evenly Spread As You Think') — brain: Discusses total primary enrollment worldwide, not evidence of uneven geographic distribution.",
+    "thesis: seg1 ('Pupils secondary education') does not continue the story of the headline ('School Is Not As Evenly Spread As You Think') — brain: While it highlights India's large secondary student count, it doesn't directly follow from the previous primary enrollme",
+    "thesis: seg2 ('Tertiary school enrollment') does not continue the story of the headline ('School Is Not As Evenly Spread As You Think') — brain: Focuses on global tertiary enrollment rates, unrelated to the claim about uneven school distribution."
+   ],
+   "request": "exchange/rewrites/20261128/school-is-not-as-evenly-spread-as-you-think__82130e07.request.json",
+   "answer_path": "exchange/rewrites/20261128/school-is-not-as-evenly-spread-as-you-think__82130e07.answer.json"
+  },
+  {
+   "id": "china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8",
+   "slug": "china-beats-everyone-on-scientific-and-technical-journal-art",
+   "filed": "2026-11-28T09:38:06Z",
+   "why": [
+    "thesis: seg2 ('Technical patent applications') does not continue the story of the headline ('China Beats Everyone On Scientific and technical journal articles — By 4.1x') — brain: Focuses on patent filings, not scientific/technical journal articles, so it doesn't support the same headline claim."
+   ],
+   "request": "exchange/rewrites/20261128/china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8.request.json",
+   "answer_path": "exchange/rewrites/20261128/china-beats-everyone-on-scientific-and-technical-journal-art__a05cdca8.answer.json"
+  },
+  {
+   "id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e",
+   "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+   "filed": "2026-11-28T09:38:06Z",
+   "why": [
+    "narration: beat 1 reads off 5 numbers: say one, and what it means",
+    "narration: beat 2 reads off 2 numbers: say one, and what it means",
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e.request.json",
+   "answer_path": "exchange/rewrites/20261128/ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e.answer.json"
+  },
+  {
+   "id": "urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7",
+   "slug": "urban-people-practicing-open-defecation-fell-87-since-2000",
+   "filed": "2026-11-28T09:38:06Z",
+   "why": [
+    "narration: beat 1 reads off 3 numbers: say one, and what it means",
+    "narration: beat 2 reads off 2 numbers: say one, and what it means",
+    "narration: beat 3 reads off 3 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7.request.json",
+   "answer_path": "exchange/rewrites/20261128/urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7.answer.json"
+  },
   {
    "id": "back-to-sleep-campaign-cut-sids__e3d97f64",
    "slug": "back-to-sleep-campaign-cut-sids",

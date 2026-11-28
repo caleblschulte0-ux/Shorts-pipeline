@@ -1,0 +1,48 @@
+{
+  "key": "sm_pop_fdip_trend",
+  "title": "Forcibly displaced people",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2010-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Forcibly displaced people",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SM.POP.FDIP",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2010",
+      "value": 41057809,
+      "period": "2010"
+    },
+    {
+      "label": "2013",
+      "value": 51232046,
+      "period": "2013"
+    },
+    {
+      "label": "2016",
+      "value": 64153700,
+      "period": "2016"
+    },
+    {
+      "label": "2019",
+      "value": 78346271,
+      "period": "2019"
+    },
+    {
+      "label": "2022",
+      "value": 107166579,
+      "period": "2022"
+    },
+    {
+      "label": "2025",
+      "value": 117276468,
+      "period": "2025"
+    }
+  ]
+}

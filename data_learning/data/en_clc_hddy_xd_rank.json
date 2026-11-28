@@ -1,0 +1,38 @@
+{
+  "key": "en_clc_hddy_xd_rank",
+  "title": "Heating Degree Days",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Heating Degree Days",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.CLC.HDDY.XD",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Greece",
+      "value": 23795
+    },
+    {
+      "label": "Russian Federation",
+      "value": 13726
+    },
+    {
+      "label": "Canada",
+      "value": 13357
+    },
+    {
+      "label": "Tajikistan",
+      "value": 11746
+    },
+    {
+      "label": "Iceland",
+      "value": 11456
+    }
+  ]
+}
