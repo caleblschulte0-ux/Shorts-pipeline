@@ -299,6 +299,24 @@ class TheWellReadsTheDoctrinesThemes(unittest.TestCase):
         self.assertNotIn("EN.CLC.DRSK.XQ", got)
         self.assertNotIn("EN.CLC.HEAT.XD", got, "an index, even a hot one")
 
+    def test_a_word_glued_to_a_digit_is_a_code_unless_it_is_chemistry(self):
+        """Run 46114054959, the first with the widened well, titled a story
+        "Pol3 immunization Is 4.6x Higher Than In 1980"."""
+        cat = [
+            {"id": "SH.IMM.POL3", "name": "Immunization, Pol3 (% of one-year-old children)", "source": 2},
+            {"id": "SH.IMM.HIB3", "name": "Immunization, Hib3 (% of children ages 12-23 months)", "source": 2},
+            {"id": "EN.ATM.CO2E.PC", "name": "CO2 emissions (metric tons per capita)", "source": 2},
+            {"id": "EN.ATM.PM25.MC.M3", "name": "PM2.5 air pollution exposure (micrograms per cubic meter)", "source": 2},
+            {"id": "EN.ATM.METH.KT.CE", "name": "Methane emissions (kt of CO2 equivalent)", "source": 2},
+        ]
+        with mock.patch.object(sf, "wb_indicators", lambda: cat):
+            got = {s["id"] for lst in sf.candidates(set()).values() for s in lst}
+        self.assertNotIn("SH.IMM.POL3", got, "Pol3 is a code")
+        self.assertNotIn("SH.IMM.HIB3", got, "Hib3 is a code")
+        self.assertIn("EN.ATM.CO2E.PC", got, "CO2 is spoken")
+        self.assertIn("EN.ATM.PM25.MC.M3", got, "PM2.5 is spoken")
+        self.assertIn("EN.ATM.METH.KT.CE", got)
+
     def test_a_by_qualifier_keeps_its_comma_and_is_refused(self):
         self.assertEqual(sf._speakable("Cause of death, by injury"),
                          "Cause of death, by injury")

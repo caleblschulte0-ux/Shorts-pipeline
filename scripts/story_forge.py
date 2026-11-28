@@ -165,7 +165,12 @@ _FAMILIES = ("SP.", "SH.", "SE.", "EN.", "EG.", "AG.", "ER.", "IT.", "IS.",
              "VC.", "IP.")
 # A token in capitals is a catalogue code, not a word a voice can say:
 # "Immunization, DPT", "Prevalence of HIV". CO2 has a digit and is spoken.
-_ACRONYM = re.compile(r"\b[A-Z]{2,}\b")
+# So is a word glued to a digit — "Pol3", "Hib3", "HepB3" — which the
+# first run of the widened well put in a TITLE on 2026-11-28 ("Pol3
+# immunization Is 4.6x Higher Than In 1980"); a chemical formula (CO2,
+# PM2.5, N2O, CH4) is the one kind a person says.
+_ACRONYM = re.compile(r"\b[A-Z]{2,}\b|\b(?!(?:CO2|PM2|H2O|N2O|CH4|SO2|NO2|O3)\b)"
+                      r"[A-Za-z]+\d+\b")
 
 _YEAR_MIN = 1972
 
