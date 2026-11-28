@@ -6449,6 +6449,74 @@
         "story-e9e9b98087769c38"
       ],
       "last_updated": "2026-11-27"
+    },
+    "caseoh-bedroom-caseoh-2026w47": {
+      "event_id": "caseoh-bedroom-caseoh-2026w47",
+      "people": [
+        "caseoh"
+      ],
+      "actions": [
+        "bedroom",
+        "caseoh",
+        "charact",
+        "lord"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-28",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2935283335/42782-43022",
+        "https://www.twitch.tv/caseoh_/clip/EntertainingArtisticPuffinJKanStyle-sa4sq_vfsuzt0vZI",
+        "vodmine://2935283335/43048-43288"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-28"
+    },
+    "kaicenat-makeup-shirtles-2026w44": {
+      "event_id": "kaicenat-makeup-shirtles-2026w44",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "makeup",
+        "shirtles",
+        "thumbnail",
+        "werewolf"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-28",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2915383492/708-948",
+        "https://www.twitch.tv/kaicenat/clip/CleanStrongLardWow-ijljc8q0MJOwps0R",
+        "vodmine://2915383492/978-1218"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-11-28"
+    },
+    "kaicenat-artist-cenat-2026w36": {
+      "event_id": "kaicenat-artist-cenat-2026w36",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "artist",
+        "cenat",
+        "mezaaa",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-11-28",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2859079447/28664-28904",
+        "https://www.twitch.tv/kaicenat/clip/ElatedBigTirePoooound-cMz_kdZbQVqZ4DJm",
+        "vodmine://2859079447/28910-29150"
+      ],
+      "published_versions": [
+        "story-87ed5e968f0926b1"
+      ],
+      "last_updated": "2026-11-28"
     }
   }
 }
