@@ -1,44 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261127",
-  "judged_date": "20261126",
+  "date": "20261128",
+  "judged_date": "20261127",
   "alarm": {
-    "date": "20261126",
+    "date": "20261127",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261126 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261126.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "forge_silent",
         "severity": "critical",
-        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (5 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
+        "detail": "the explainer's story forge has KEPT NO STORY since 2026-11-21 (6 days; 90 indicators used, 96 remembered as unusable). Every posting run says 'forged 0' and exits green; the queue only shrinks.",
         "fix": "Read the forge step of the latest explainer AND story_forge runs: 'queue already full' means the top-up is counting stories the posting run holds (it must count POSTABLE ones, shared/queue_supply.py); 'catalogue is EXHAUSTED' means widen WB_SOURCES/THEMES in scripts/story_forge.py; '[net]' lines mean the World Bank API is unreachable from the runner; 'HELD by editorial gate' or 'WEAK PITCH' on every candidate means the words, not the well. The gate stays where it is."
       },
       {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20261126.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "short_slate_third",
-        "severity": "warning",
-        "detail": "third: 4/6 posted for 20261126.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20261127 (registry wants 4). The story forge has kept no story since 2026-11-21 \u2014 see forge_silent above.",
+        "fix": "Check the explainer workflow run for 20261127. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (79 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (80 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
+      "third: 6/6 posted",
       "trending: 5/5 posted"
     ],
     "deferred": false
@@ -225,131 +214,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-11-25T00:49:26+00:00",
-      "slug": "sports_bernie_brewer_howed_out_in",
-      "score": 58,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The cut opens on Bernie waving a flag, then the crop loses him and the clip runs out on crowd shots and the back of someone's head, so the 'takes over the parade' moment never lands and a stranger never learns why it matters.",
-      "auto_fails": [
-        "junk_imagery: The crop keeps losing Bernie. At mid0 he is half out of frame at the right edge and the frame sits on a woman in a yellow jacket. At mid2 he is cut off at the left edge behind a flag. By mid4 and mid5 he is gone, leaving a stranger's arm and the crowd. payoff@-0.4 is the back of a spectator's head."
-      ],
-      "problems": [
-        "At mid0 Bernie is half out of frame at the right edge while a passer-by fills the centre.",
-        "At mid2 Bernie is cut off at the left edge behind the flag.",
-        "From mid4 to payoff@-0.4 Bernie is absent: the frame shows a dancer, the crowd, and finally the back of a spectator's head.",
-        "There is no context for why this is a moment (the Brewers mascot in Chicago with a 'Champions' flag), so a stranger cannot tell what the crowd is reacting to.",
-        "Nothing gets bigger after the hook. It is the same flag wave, then it fades out."
-      ],
-      "fixes": [
-        "Track the crop on Bernie for the whole cut so he is never half out of frame.",
-        "Trim the clip to end on his strongest wave or crowd interaction (around mid1 or mid3), not on the empty tail.",
-        "Add a short second line that gives the rivalry context, so the payoff makes sense to a stranger.",
-        "Punch in on the crowd's reaction while Bernie is still in frame, not after he has left."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 68
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid4",
-        "index": 8,
-        "failure_class": "crop_loses_subject",
-        "visible_evidence": "From mid4 (t=17.06s) to the end the frame shows a dancer's back, a crowd behind barricades and finally the back of a spectator's head. Bernie Brewer, the subject the line promises, is not in frame. At mid0 and mid2 he was already half cut off at the edges.",
-        "root_cause": "This is a shaky phone video from behind spectators, cut to 9:16 with a fixed or poorly tracked crop. The edit keeps the tail of the clip after Bernie has walked out of shot, and nothing in it explains why a Brewers mascot in Chicago with a 'Champions' flag is a moment.",
-        "repair_goal": "Track the crop on Bernie so he stays whole and centred, and end the cut on his best flag wave (around hook@1.5 to mid1) instead of the empty crowd tail. Add a second on-screen line that gives the context a stranger needs (the Brewers mascot waving a flag in Cubs territory). If the source has no sect"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.004,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.002,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.71
-      },
-      "fingerprint": "?|junk_imagery|crop_loses_subject"
-    },
-    {
-      "ts": "2026-11-25T01:05:47+00:00",
-      "slug": "sports_juan_mata_s_retirement",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 5.0,
-        "dark_fraction": 0.015,
-        "sampled": 66
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.919,
-        "effective_fps": 2.0,
-        "max_dup_run": 91,
-        "measured": true,
-        "frozen_ratio": 0.564,
-        "frozen_fps": 10.5,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 20.08,
-        "max_dup_at_s": 16.71,
-        "duration_s": 22.04
-      },
-      "fingerprint": "?|temporal_gate|-"
-    },
     {
       "ts": "2026-11-25T01:08:51+00:00",
       "slug": "sports_tyler_boucher_eer_nhl_goal",
@@ -4280,6 +4144,140 @@
         "duration_s": 15.0
       },
       "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-11-27T20:45:32+00:00",
+      "slug": "sports_aleksander_barkov_d_theft_auto",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment (Barkov joking about playing GTA while injured) is buried: the hook line is vague, half of every interview frame is a TV schedule graphic, and our text runs over the shootout score bar.",
+      "auto_fails": [
+        "unreadable: In mid3 (t=18.34s) and mid4 (t=23.62s) our line 'Barkov on what injury did to him' is printed on top of the broadcast's own SHOOTOUT score bar: 'injury did to him' sits over 'SHOOTOUT RD: 2' and the score boxes."
+      ],
+      "problems": [
+        "Hook line 'Barkov on what injury did to him' is vague and never mentions Grand Theft Auto; the first 2s are a static schedule graphic over a small face.",
+        "The broadcast's 'Upcoming Schedule' panel takes the top ~45% of the frame in hook, mid0-mid2 and mid5.",
+        "Our line overlaps the broadcast SHOOTOUT score bar in mid3 and mid4.",
+        "None of the sampled frames shows the GTA quote landing; the payoff frame is a generic 'to be back' answer, so a stranger may not get the joke."
+      ],
+      "fixes": [
+        "Crop the interview so Barkov fills the vertical frame; remove the schedule graphic.",
+        "Rewrite the hook to promise the bit ('Barkov admits he spent his injury gaming \ud83c\udfae') and start the cut on the GTA line.",
+        "Raise our text line above the scoreboard during the highlight cutaway, or keep it off the TV graphics.",
+        "End on the laugh after the GTA admission rather than on a generic 'happy to be back' answer."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_and_wasted_frame",
+        "visible_evidence": "In hook@0.3 to hook@2.2 the top half of the frame is a static 'Florida Panthers Upcoming Schedule' TV graphic and Barkov is a small face in the lower half. The on-screen line 'Barkov on what injury did to him' is vague and never mentions Grand Theft Auto, and the spoken words are 'Obviously, a big p",
+        "root_cause": "The source is a stacked broadcast layout (schedule graphic over the interview), and the cut keeps both halves instead of cropping to the speaker. The hook line hides the funny part, the GTA admission, instead of leading with it.",
+        "repair_goal": "Crop to Barkov alone so he fills the 9:16 frame, and drop the schedule graphic. Rewrite the line to promise the bit, e.g. 'Barkov admits what he did all injury \ud83c\udfae'. Start the cut on or right before the 'way too much time to play Grand Theft Auto' line. Move our text above the scoreboard during the sh"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.096,
+        "effective_fps": 21.7,
+        "max_dup_run": 7,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.25,
+        "max_dup_at_s": 13.79,
+        "duration_s": 30.92
+      },
+      "fingerprint": "?|unreadable|weak_hook_and_wasted_frame"
+    },
+    {
+      "ts": "2026-11-27T20:48:25+00:00",
+      "slug": "sports_jon_cooper__mini_turkey",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The gag is real and lands on Pang's laugh at ~16s, but the cut switches mid-clip from clean broadcast to a glitch-framed repost and ends on an empty rink.",
+      "auto_fails": [],
+      "problems": [
+        "mid1 onward is a reposter's frame-in-frame edit (glitch border, duplicated TNT scorebug), which looks different from the clean hook footage",
+        "mid5 and payoff@-0.4 end on a wide rink shot after the moment, so the payoff fizzles",
+        "The hook frames (hook@0.3-2.2) show Cooper talking but not the turkey, so the first two seconds rely only on the text line",
+        "The real footage fills only about 40% of frame height; the rest is blur or glitch padding"
+      ],
+      "fixes": [
+        "Trim the clip to end on Pang's laugh with the turkey (\u224816-17s) and drop the rink tail",
+        "Take the whole clip from the clean broadcast or official source, not the glitch-framed repost",
+        "Consider opening on a flash of the turkey plate (mid1/mid2) so the first two seconds show the gift",
+        "Crop tighter on Cooper and Pang to use more of the vertical frame"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 64
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "weak_payoff_ending",
+        "visible_evidence": "mid5 and payoff@-0.4 cut from Pang laughing at the turkey (mid4) to a wide, empty rink shot with a duplicated scorebug inside the reposter's glitch frame. The video ends on nothing.",
+        "root_cause": "The cut runs past the reaction into the source repost's return-to-play shot. The second half was also taken from a reframed repost (frame-in-frame, a second scorebug) rather than the clean broadcast used in the hook.",
+        "repair_goal": "End the cut on Pang's laugh with the turkey plate in frame (around mid4, t\u224816-17s) and trim the rink tail. Where possible, use the clean broadcast feed for the whole clip instead of the glitch-framed repost so the crop matches the hook."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.023,
+        "effective_fps": 23.4,
+        "max_dup_run": 9,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.33,
+        "max_dup_at_s": 20.88,
+        "duration_s": 21.46
+      },
+      "fingerprint": "?|-|weak_payoff_ending"
     }
   ],
   "showrunner_recurrence": {
@@ -4320,13 +4318,6 @@
         "2026-11-27"
       ]
     },
-    "?|temporal_gate|-": {
-      "count": 2,
-      "days": [
-        "2026-11-25",
-        "2026-11-26"
-      ]
-    },
     "?|-|weak_hook": {
       "count": 2,
       "days": [
@@ -4344,12 +4335,6 @@
       "count": 2,
       "days": [
         "2026-11-27"
-      ]
-    },
-    "?|junk_imagery|crop_loses_subject": {
-      "count": 1,
-      "days": [
-        "2026-11-25"
       ]
     },
     "?|empty_void+junk_imagery|payoff_missing": {
@@ -4419,6 +4404,12 @@
       ]
     },
     "?|unreadable|weak_hook_broken_layout": {
+      "count": 1,
+      "days": [
+        "2026-11-26"
+      ]
+    },
+    "?|temporal_gate|-": {
       "count": 1,
       "days": [
         "2026-11-26"
@@ -4543,31 +4534,41 @@
       "days": [
         "2026-11-27"
       ]
+    },
+    "?|unreadable|weak_hook_and_wasted_frame": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
+    },
+    "?|-|weak_payoff_ending": {
+      "count": 1,
+      "days": [
+        "2026-11-27"
+      ]
     }
   },
   "recent_commits": [
-    "98c2b7c 2026-11-27 claim: mailbox verdicts 2026-11-27T14:48Z [skip ci]",
-    "61136ca 2026-11-27 watchdog: chatgpt task verdicts 20261127 [skip ci]"
+    "8829b9d 2026-11-28 claim: mailbox verdicts 2026-11-28T04:47Z [skip ci]",
+    "03bb68a 2026-11-28 claim: mailbox verdicts 2026-11-28T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-11-13": 5,
         "2026-11-14": 5,
         "2026-11-15": 5,
         "2026-11-16": 5,
         "2026-11-17": 4,
         "2026-11-25": 5,
         "2026-11-26": 5,
-        "2026-11-27": 4
+        "2026-11-27": 5
       },
-      "total_posted": 590,
-      "attempted": 590,
+      "total_posted": 591,
+      "attempted": 591,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-11-13": 4,
         "2026-11-14": 5,
         "2026-11-15": 4,
         "2026-11-16": 2,
@@ -4584,7 +4585,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-11-13": 6,
         "2026-11-14": 6,
         "2026-11-15": 3,
         "2026-11-16": 6,
@@ -4599,11 +4599,11 @@
         "2026-11-25": 6,
         "2026-11-26": 4,
         "2026-11-27": 6,
-        "2026-11-28": 1
+        "2026-11-28": 2
       },
-      "total_posted": 615,
-      "attempted": 1600,
-      "rejected_or_pending": 985
+      "total_posted": 616,
+      "attempted": 1603,
+      "rejected_or_pending": 987
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4621,67 +4621,67 @@
       "top_by_vph": [
         {
           "title": "Why America Basically Killed The Landline",
-          "vph": 21.44,
-          "views": 1008
+          "vph": 17.47,
+          "views": 1004
         },
         {
           "title": "Why Grandparents Now Outnumber Toddlers Worldwide",
-          "vph": 19.13,
-          "views": 957
+          "vph": 15.88,
+          "views": 960
         },
         {
           "title": "Why This Is Really The Planet Of The Bugs",
-          "vph": 14.34,
-          "views": 314
+          "vph": 10.42,
+          "views": 337
         },
         {
           "title": "Lightning Hits Earth 100 Times a Second. Would You Survive?",
-          "vph": 10.79,
+          "vph": 9.74,
           "views": 1045
         },
         {
           "title": "Only 0.007 Percent Of Earth's Water Sits In Rivers And Lakes",
-          "vph": 8.68,
+          "vph": 7.96,
           "views": 996
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 140,
+      "videos": 139,
       "top_by_vph": [
         {
           "title": "Alanzoka Reacts To Mandy And Can't Believe What He Just Saw",
-          "vph": 3.58,
-          "views": 636
+          "vph": 3.5,
+          "views": 645
         },
         {
           "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
           "vph": 0.86,
-          "views": 572
+          "views": 577
         },
         {
           "title": "Loltyler1 Gets Muted By Allstars And Can't Believe It",
-          "vph": 0.61,
+          "vph": 0.6,
           "views": 214
         },
         {
           "title": "Jynxzi Plays GTA 6 For The First Time And Crashes Out",
-          "vph": 0.54,
+          "vph": 0.5,
           "views": 46
         },
         {
-          "title": "Kyedae Can't Believe He Said She Was Toxic To Him 3 Years Ago",
-          "vph": 0.51,
-          "views": 105
+          "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
+          "vph": 0.49,
+          "views": 344
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261124/brief.json",
       "retro/20261125/brief.json",
-      "retro/20261126/brief.json"
+      "retro/20261126/brief.json",
+      "retro/20261127/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
