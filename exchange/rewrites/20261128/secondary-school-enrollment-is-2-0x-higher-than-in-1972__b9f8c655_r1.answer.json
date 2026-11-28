@@ -1,0 +1,29 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655_r1",
+  "slug": "secondary-school-enrollment-is-2-0x-higher-than-in-1972",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:32:00.098Z",
+  "title": "Education Enrollment, Literacy, And Pupil-Teacher Ratios Improved",
+  "hook": "The education ladder expanded while pressure per teacher fell.",
+  "closing": "Education expanded at every level without simply packing more pupils behind each teacher.",
+  "question": "Which education change matters most?",
+  "segments": [
+    {
+      "topic": "Secondary School Enrollment",
+      "say": "Secondary enrollment reached 77.3 percent. Education access nearly doubled from the earlier baseline."
+    },
+    {
+      "topic": "Tertiary Education Staff",
+      "say": "Women reached 43.9 percent of tertiary academic staff. Education expansion also changed who teaches at the top."
+    },
+    {
+      "topic": "Adult Female Literacy",
+      "say": "Adult female literacy reached 84.6 percent. Education gains now extend beyond classrooms into lifelong basic skills."
+    },
+    {
+      "topic": "Primary Pupil-Teacher Ratio",
+      "say": "The primary pupil-teacher ratio fell to 23.4. Education expansion did not require classrooms to grow more crowded."
+    }
+  ]
+}
