@@ -455,7 +455,7 @@
       "channel": "explainer",
       "job": "rewrite_words",
       "reason": "these stories were composed with NO brain reachable \u2014 their numbers are real but their title/hook/narration came from a deterministic template",
-      "write": 5,
+      "write": 7,
       "stories": [
         {
           "slug": "cereal-production-is-1-5x-higher-than-in-1972",
@@ -517,6 +517,31 @@
             "China leads at 946,499 million passenger-km; Korea, Rep. is 100,381 million passenger-km.",
             "2010: 547.1 million. 2024: 913.3 million \u2014 1.7 times higher.",
             "1995: 8.54 % of total exports. 2019: 7.39 % of total exports \u2014 down to 87 percent of that."
+          ]
+        },
+        {
+          "slug": "urban-people-practicing-open-defecation-fell-87-since-2000",
+          "current_title": "Urban people practicing open defecation Fell 87% Since 2000",
+          "current_hook": "In 2000 it was 5.14. Now it's 0.69, and almost nobody noticed.",
+          "current_closing": "The numbers were public the whole time.",
+          "current_question": "",
+          "says": [
+            "1972: 2191.8 million. 2025: 5355.5 million \u2014 2.4 times higher.",
+            "Russian Federation leads at 17.1 million sq. km; Brazil is 8.5 million sq. km.",
+            "2000: 5.14 % of urban population. 2024: 0.69 % of urban population \u2014 down to 13 percent of that.",
+            "2010: 41.1 million. 2025: 117.3 million \u2014 2.9 times higher."
+          ]
+        },
+        {
+          "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+          "current_title": "Ukraine Beats Everyone On Battle-related deaths \u2014 By 6.7x",
+          "current_hook": "You'd guess Sri Lanka leads on battle-related deaths. It's Ukraine \u2014 68,097 to 10,165.",
+          "current_closing": "The numbers were public the whole time.",
+          "current_question": "",
+          "says": [
+            "2000: 6.85 per 100,000 people. 2023: 5.2 per 100,000 people \u2014 down to 76 percent of that.",
+            "Ukraine leads at 68,097 number of people; Russian Federation is 7,670 number of people.",
+            "Greece leads at 23,795; Iceland is 11,456."
           ]
         }
       ],
