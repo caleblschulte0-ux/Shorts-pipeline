@@ -331,4 +331,4 @@ def shot2():
     lw_cut(cam, still, still, -1.0, -1.0, 24.0, 24.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("radio",), cutaway=None,
                 boxes=[],
-                conseq=[("his digger tips rock onto a wall behind the house, from its knee to over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])
+                conseq=[("a digger tips rock onto a wall behind the house, from its knee to over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])

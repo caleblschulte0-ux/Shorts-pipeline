@@ -1412,7 +1412,7 @@ looks at us, turns his head at the glow, flinches at the fountain, and on still 
 S1_RIDGE_Y = 20.0                      # the fissure's line on the ridge's crest (coordinator, after p1c: no ridge showed: a dark bare lava ridge right across the end of the street, its crest just over the roofs)
 S1_FX = 1.6                            # the fissure's middle (x)
 S1_HOME_BASE = 0.05
-S1_P0 = (0.2, -3.15)                   # where he stands: in the street, 0.95 m in front of the lens and below it (p1d: at 1.15 m he measured 0.26-0.30) (coordinator, r1za: margin all round)
+S1_P0 = (0.1, -3.15)   # (render 46114914517 TALKING: head at x 0.42: in the left third, the street, car and fountain own the middle)                   # where he stands: in the street, 0.95 m in front of the lens and below it (p1d: at 1.15 m he measured 0.26-0.30) (coordinator, r1za: margin all round)
 S1_CAM = (0.3, -4.07, 1.25)   # (p1e FRAME: feet cut on 3-4 at 1.35 m: 0.43 m over his hat, tipped 22 deg)            # (coordinator, after p1c, option (a): a HIGH lens, 1.35 m over a 0.82 m Data, tipped 16 degrees down the street; higher cannot hold him at a third of the frame) the one lens
 
 
@@ -1595,13 +1595,44 @@ def shot1():
     TO = Vector((CAM0.x - X0, CAM0.y - Y0, 0)).normalized()     # toward the lens
     SIDE = Vector((-TO.y, TO.x, 0))
     T_DUCK = T_BURST + 0.06
+    ST0, STD, STX = T_DUCK + 0.1, 1.1, 0.32     # (local proof POP: in 0.75 s it moved 0.105 of the frame in 4 frames)                   # the stumble: when, how long, how far
+    ANK = __import__("character").SCALE
+    sc.frame_set(1); bpy.context.view_layer.update(); M1 = data.arm.matrix_world
+    ACROSS = (M1 @ data.J["L"]["an"]) - (M1 @ data.J["R"]["an"])
+    # every move of his root is STEPPED (no foot slides): (start, seconds, how far, steps). (local proof READ: 1.37 s
+    # still on screen from the glow to the burst) a step toward the glowing ridge to look, then the recoil: three
+    # stumbling steps back from it and sideways out of the car's side of the street
+    MOVES = [(T_GLOW + 1.05, 0.6, -TO * 0.12, 2), (ST0, STD, SIDE * STX + TO * 0.12, 3)]
+    def foot_frac(lead, n, u):
+        """share of a move a foot has made at u (0..1): its steps eased, with the lift of the one in the air"""
+        if n == 2: steps = [(0.0, 0.5, 0.0, 1.0)] if lead else [(0.5, 1.0, 0.0, 1.0)]
+        else: steps = [(0.0, 1 / 3, 0.0, 0.5), (2 / 3, 1.0, 0.5, 1.0)] if lead else [(1 / 3, 2 / 3, 0.0, 1.0)]
+        off, up = 0.0, 0.0
+        for a, b, x0, x1 in steps:
+            if u >= b: off = x1
+            elif u > a:
+                v = (u - a) / (b - a); off = x0 + (x1 - x0) * (v * v * (3 - 2 * v)); up = 0.035 * math.sin(math.pi * v); break
+            else: break
+        return off, up
+    def body_off(t):
+        return sum((vec * W(t, t0, d) for t0, d, vec, n in MOVES), Vector((0, 0, 0)))
+    def stumble_feet(t):
+        sc.frame_set(F(t)); M = data.arm.matrix_world
+        for sd in ("L", "R"):
+            fo = Vector((0, 0, 0)); up = 0.0
+            for t0, d, vec, n in MOVES:
+                lead = (ACROSS.dot(vec) > 0) == (sd == "L")
+                o, u_ = foot_frac(lead, n, min(1.0, max(0.0, (t - t0) / d))); fo += vec * o; up = max(up, u_)
+            an = M @ data.J[sd]["an"] + fo - body_off(t); an.z = data.J[sd]["an"].z * ANK + Z0 + up
+            data._leg_ik(sd, an, t)
     for f in range(1, NF + 8):
         t = (f - 1) / FPS
         p = (Vector((X0, Y0, Z0)) + SIDE * (0.04 * W(t, 0.1, 0.35) - 0.04 * W(t, T_GLOW + 0.15, 0.45))
-             + TO * (0.03 * W(t, T_DUCK, 0.3)) - Vector((0, 0, 0.07)) * W(t, T_DUCK, 0.3))     # the duck: a half-step away from it and down on bent knees
+             + TO * (0.03 * W(t, T_DUCK, 0.3)) - Vector((0, 0, 0.07)) * W(t, T_DUCK, 0.3)     # the duck: a half-step away from it and down on bent knees
+             + body_off(t))     # (render 46114914517 TALKING: "his feet inside 0.04 m") the recoil is a stumble: three steps sideways, out of the car's side of the street
         data._kobj(t, loc=tuple(p), rot=YAW + math.radians(20) + math.radians(18) * W(t, T_GLOW, 0.6) - math.radians(14) * W(t, T_DUCK, 0.35)
                    - math.radians(24) * W(t, TS[2] + 0.35, 0.5))     # (p1d FACE: square to us with it all behind him on three stills) three-quarter on 1-3, square to us on 4
-        data._plant_feet_here(t, lift=(Z0, Z0))
+        stumble_feet(t)
     lw_layer(data, "spine", lambda t: (-3 * W(t, T_GLOW + 0.2, 0.5) + 2 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)     # hunched forward, away from the ridge behind him (p1d: at 13 his hat hid his face from the high lens)
     lw_layer(data, "chest", lambda t: (0 * W(t, T_DUCK, 0.3), 0, 0), 0, DUR + 0.4)
     RIDGE = Vector((S1_FX, S1_RIDGE_Y, FZ + 3.0))
@@ -1616,10 +1647,13 @@ def shot1():
     DOWN = lambda sg: ((-8, 0, sg * 8), (-28, 0, 0), (-4, 0, 0))                  # 2 still down, a little tense
     GUARD = lambda sg: ((-58, 0, -sg * 12), (-48, 0, -sg * 22), (-10, sg * -12, -sg * 15))     # 3 (p1c, p1d: these read as arms crossed at his belly) shot 4's UP, which its board passed: both arms thrown up beside his head
     WHOA = lambda sg: ((-16, 0, -sg * 18), (-20, 0, -sg * 40), (-10, sg * -12, -sg * 15))         # 4 still crouched, hands out: whoa (shot 4's WHOA)
-    keys = [0.0, 0.4, T_GLOW + 0.2, 1.4, T_DUCK, T_DUCK + 0.3, TS[2] + 0.25, TS[2] + 0.8, DUR + 0.5]
+    FISTS = lambda sg: data.ARMS["fists"](sg)                                       # braced, fists balled, as the glow builds
+    # (local proof HOLD: 1.83 s with only his head turning, from the glow to the burst) a start at the glow, hands up,
+    # then down and braced, a new act inside every 0.8 s
+    keys = [0.0, 0.45, 0.8, 1.25, 1.6, 2.05, T_DUCK, T_DUCK + 0.3, TS[2] + 0.25, TS[2] + 0.8, DUR + 0.5]
     for sd in "LR":
         sg = -1 if sd == "L" else 1
-        seq = [LOW, LOW, DOWN, DOWN, DOWN, GUARD, GUARD, WHOA, WHOA]
+        seq = [LOW, LOW, WHOA, WHOA, DOWN, WHOA, FISTS, GUARD, GUARD, WHOA, WHOA]     # (local proof HOLD 0.90 s at f46-73: the fists were too small a change: hands up again as the glow swells)
         for tk, pose in zip(keys, seq):
             for bn, r in zip((f"arm.{sd}", f"fore.{sd}", f"hand.{sd}"), pose(sg)): data._k(bn, tk, rot=r)
         for tk, lift in ((0.0, 0), (T_DUCK, 0), (T_DUCK + 0.3, -18), (DUR + 0.5, -18)):          # the shoulders hunch up
@@ -1972,7 +2006,7 @@ def shot2():
     lw_cut(cam, still, still, -1.0, -1.0, 24.0, 24.0)
     return dict(lanes=[], kiosks=[], place="wall_works", light=light, data=data, rest=1, grips=("radio",), cutaway=None,
                 boxes=[],
-                conseq=[("his digger tips rock onto a wall behind the house, from its knee to over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])
+                conseq=[("a digger tips rock onto a wall behind the house, from its knee to over its roof", lambda: [wall["body"]], TS[0], TS[3], {"whole": False})])
 
 
 # ====================================================================================================
