@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "feet-are-getting-bigger__ab4c73aa",
+  "slug": "feet-are-getting-bigger",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:20:17.314Z",
+  "title": "Why Standard Shoes Fit Fewer British Feet",
+  "hook": "Feet grew longer and wider while more bodies carried extra weight.",
+  "closing": "Shoe labels stayed simple while British feet changed in three different ways.",
+  "question": "Has your shoe size changed?",
+  "segments": [
+    {
+      "topic": "British Foot Length",
+      "say": "Average British men's shoes reached size 10. Standard sizing now has to fit feet longer than the previous generation's."
+    },
+    {
+      "topic": "British Foot Width",
+      "say": "Sixty-seven percent of women report wider adult feet. Length alone no longer explains why familiar shoes feel wrong."
+    },
+    {
+      "topic": "British Foot Weight",
+      "say": "Sixty-six percent of adults in England are overweight or obese. More body weight adds another fit pressure without proving one cause."
+    }
+  ]
+}
