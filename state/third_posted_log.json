@@ -23356,6 +23356,34 @@
         "end": 7.0
       },
       "director_cut": true
+    },
+    "rejected-artisticwealthygazellechocolaterain-caxqfomd--86xomb": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/ArtisticWealthyGazelleChocolateRain-CAxqFomd--86Xomb",
+      "streamer": "northernlion",
+      "title": "NL shows you how to heighten your senses",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Insider streamer bit, no clear payoff)",
+      "ts": "2026-11-28T13:49:17.130255+00:00"
+    },
+    "rejected-transparentroughwalrusthething-ddbjivkac-xqyipi": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/TransparentRoughWalrusTheThing-ddBJIvKac-xQYipi",
+      "streamer": "ohnepixel",
+      "title": "Ohne Caught in 2k!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Sneaky game, explicit-ish content, littl)",
+      "ts": "2026-11-28T13:50:28.269936+00:00"
+    },
+    "clip-20261128-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/PiercingMotionlessGnatPeanutButterJellyTime-Lgaxg8ItCK9yzJL7",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Dances And Sings Her Heart Out On Stream And Chat Can't Look Away \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-11-28T13:54:38.119791+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
