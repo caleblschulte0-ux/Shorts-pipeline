@@ -1,0 +1,38 @@
+{
+  "key": "sh_sta_malr_rank",
+  "title": "Malaria cases reported",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Malaria cases reported",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.STA.MALR",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Congo, Dem. Rep.",
+      "value": 29436262
+    },
+    {
+      "label": "Nigeria",
+      "value": 21373896
+    },
+    {
+      "label": "Mozambique",
+      "value": 11614258
+    },
+    {
+      "label": "Uganda",
+      "value": 11182616
+    },
+    {
+      "label": "Angola",
+      "value": 10638498
+    }
+  ]
+}

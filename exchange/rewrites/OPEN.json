@@ -1,7 +1,30 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-28T13:03:01Z",
+ "updated": "2026-11-28T13:53:27Z",
  "open": [
+  {
+   "id": "congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-__f7c73ee3",
+   "slug": "congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-",
+   "filed": "2026-11-28T13:53:27Z",
+   "why": [
+    "narration: beat 1 reads off 2 numbers: say one, and what it means",
+    "narration: beat 2 reads off 3 numbers: say one, and what it means",
+    "narration: beat 3 reads off 3 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261128/congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-__f7c73ee3.request.json",
+   "answer_path": "exchange/rewrites/20261128/congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-__f7c73ee3.answer.json"
+  },
+  {
+   "id": "girls-are-still-missing-from-the-world-s-high-schools__b1adfd2f",
+   "slug": "girls-are-still-missing-from-the-world-s-high-schools",
+   "filed": "2026-11-28T13:53:27Z",
+   "why": [
+    "thesis: seg1 ('Adult male literacy rate') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Adult male literacy rate does not directly prove or explain the headline about girls missing from high schools and is no",
+    "thesis: seg2 ('Primary school enrollment') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Primary school enrollment data, while related, does not follow logically from the previous beat about male literacy and "
+   ],
+   "request": "exchange/rewrites/20261128/girls-are-still-missing-from-the-world-s-high-schools__b1adfd2f.request.json",
+   "answer_path": "exchange/rewrites/20261128/girls-are-still-missing-from-the-world-s-high-schools__b1adfd2f.answer.json"
+  },
   {
    "id": "urban-people-practicing-open-defecation-fell-87-since-2000__ffc8d5f7_r2",
    "slug": "urban-people-practicing-open-defecation-fell-87-since-2000",

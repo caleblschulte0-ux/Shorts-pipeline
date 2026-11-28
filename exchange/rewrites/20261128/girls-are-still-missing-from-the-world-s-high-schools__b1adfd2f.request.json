@@ -1,0 +1,202 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "girls-are-still-missing-from-the-world-s-high-schools__b1adfd2f",
+ "filed": "2026-11-28T13:53:27Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "girls-are-still-missing-from-the-world-s-high-schools",
+ "current": {
+  "title": "Girls Are Still Missing From The World's High Schools",
+  "hook": "Fifty years on, girls still don't fill half the world's high school seats.",
+  "closing": "Every girl missing from a classroom is talent a family and an economy never get back.",
+  "question": "",
+  "segments": [
+   {
+    "topic": "General pupils secondary education",
+    "say": "Girls are still just 48.6 percent of the world's high school students, short of a fair half, after nearly fifty years."
+   },
+   {
+    "topic": "Adult male literacy rate",
+    "say": "Meanwhile 90.9 percent of grown men can read. Schooling works. The fight is over who gets through the door."
+   },
+   {
+    "topic": "Primary school enrollment",
+    "say": "Primary school enrollment hit 102.2 percent, more than a full house. Yet girls still thin out by high school."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "General pupils secondary education",
+   "say": "Girls are still just 48.6 percent of the world's high school students, short of a fair half, after nearly fifty years.",
+   "role": "1 · GENERAL PUPILS SEC",
+   "data": {
+    "file": "se_sec_enrl_gc_fe_zs_trend.json",
+    "unit": "% female",
+    "title": "General pupils secondary education",
+    "points": [
+     {
+      "label": "1972",
+      "value": 42.1,
+      "period": "1972"
+     },
+     {
+      "label": "1981",
+      "value": 43.8,
+      "period": "1981"
+     },
+     {
+      "label": "1990",
+      "value": 44.7,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 46.8,
+      "period": "2000"
+     },
+     {
+      "label": "2009",
+      "value": 48.0,
+      "period": "2009"
+     },
+     {
+      "label": "2018",
+      "value": 48.6,
+      "period": "2018"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Adult male literacy rate",
+   "say": "Meanwhile 90.9 percent of grown men can read. Schooling works. The fight is over who gets through the door.",
+   "role": "2 · ADULT MALE LITERAC",
+   "data": {
+    "file": "se_adt_litr_ma_zs_trend.json",
+    "unit": "% of males ages 15 and above",
+    "title": "Adult male literacy rate",
+    "points": [
+     {
+      "label": "1975",
+      "value": 74.4,
+      "period": "1975"
+     },
+     {
+      "label": "1985",
+      "value": 78.4,
+      "period": "1985"
+     },
+     {
+      "label": "1995",
+      "value": 83.2,
+      "period": "1995"
+     },
+     {
+      "label": "2004",
+      "value": 87.6,
+      "period": "2004"
+     },
+     {
+      "label": "2014",
+      "value": 89.4,
+      "period": "2014"
+     },
+     {
+      "label": "2024",
+      "value": 90.9,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Primary school enrollment",
+   "say": "Primary school enrollment hit 102.2 percent, more than a full house. Yet girls still thin out by high school.",
+   "role": "3 · PRIMARY SCHOOL ENR",
+   "data": {
+    "file": "se_prm_enrr_trend.json",
+    "unit": "% gross",
+    "title": "Primary school enrollment",
+    "points": [
+     {
+      "label": "1972",
+      "value": 82.4,
+      "period": "1972"
+     },
+     {
+      "label": "1982",
+      "value": 93.4,
+      "period": "1982"
+     },
+     {
+      "label": "1993",
+      "value": 96.5,
+      "period": "1993"
+     },
+     {
+      "label": "2003",
+      "value": 100.9,
+      "period": "2003"
+     },
+     {
+      "label": "2014",
+      "value": 101.6,
+      "period": "2014"
+     },
+     {
+      "label": "2024",
+      "value": 102.2,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "thesis: seg1 ('Adult male literacy rate') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Adult male literacy rate does not directly prove or explain the headline about girls missing from high schools and is no",
+  "thesis: seg2 ('Primary school enrollment') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Primary school enrollment data, while related, does not follow logically from the previous beat about male literacy and "
+ ],
+ "reasons": [
+  "thesis: seg1 ('Adult male literacy rate') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Adult male literacy rate does not directly prove or explain the headline about girls missing from high schools and is no",
+  "thesis: seg2 ('Primary school enrollment') does not continue the story of the headline (\"Girls Are Still Missing From The World's High Schools\") — brain: Primary school enrollment data, while related, does not follow logically from the previous beat about male literacy and "
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "The PREMISE must be CONCRETE: the TITLE or HOOK names the story's own subject plainly (a word its topics or data are labelled with) and promises a specific surprise, threat or scale the viewer can picture. The video says the number; the hook says what it means.",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "The beats are ONE STORY in order: each one helps prove the headline AND follows from the beat before it (it happens because of it, or turns against it) — never 'and another fact'. A judge reads every beat for that; with no judge answering, each TOPIC (a 2-4 word on-screen label) must share a real word with the TITLE, so name the topics for what they are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261128/girls-are-still-missing-from-the-world-s-high-schools__b1adfd2f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb: the threat or twist, no number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,48 @@
+{
+  "key": "sp_dyn_le00_in_trend",
+  "title": "Total life expectancy at birth",
+  "unit": "years",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "total life expectancy at birth",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.DYN.LE00.IN",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 58.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 62.9,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 65.7,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 68.5,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 71.8,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 73.5,
+      "period": "2024"
+    }
+  ]
+}

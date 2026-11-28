@@ -1,0 +1,48 @@
+{
+  "key": "sh_tbs_cure_zs_trend",
+  "title": "Tuberculosis treatment success rate",
+  "unit": "% of new cases",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Tuberculosis treatment success rate",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.TBS.CURE.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 69.0,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 84.0,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 85.0,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 83.0,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 85.0,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 88.0,
+      "period": "2023"
+    }
+  ]
+}

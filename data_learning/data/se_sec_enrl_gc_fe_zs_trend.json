@@ -1,0 +1,48 @@
+{
+  "key": "se_sec_enrl_gc_fe_zs_trend",
+  "title": "General pupils secondary education",
+  "unit": "% female",
+  "geography": "World",
+  "time_coverage": "1972-2018",
+  "insight_type": "trend",
+  "source": {
+    "name": "general pupils secondary education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.ENRL.GC.FE.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 42.1,
+      "period": "1972"
+    },
+    {
+      "label": "1981",
+      "value": 43.8,
+      "period": "1981"
+    },
+    {
+      "label": "1990",
+      "value": 44.7,
+      "period": "1990"
+    },
+    {
+      "label": "2000",
+      "value": 46.8,
+      "period": "2000"
+    },
+    {
+      "label": "2009",
+      "value": 48.0,
+      "period": "2009"
+    },
+    {
+      "label": "2018",
+      "value": 48.6,
+      "period": "2018"
+    }
+  ]
+}

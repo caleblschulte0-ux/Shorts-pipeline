@@ -40030,6 +40030,177 @@
    ],
    "words_by": "chatgpt-rewrite",
    "rewritten_at": "2026-11-28T12:29:59Z"
+  },
+  {
+   "slug": "girls-are-still-missing-from-the-world-s-high-schools",
+   "title": "Girls Are Still Missing From The World's High Schools",
+   "hook": "Fifty years on, girls still don't fill half the world's high school seats.",
+   "closing": "Every girl missing from a classroom is talent a family and an economy never get back.",
+   "hashtags": [
+    "education",
+    "genderequality",
+    "dataexplained",
+    "shorts"
+   ],
+   "question": "",
+   "segments": [
+    {
+     "source": "offline",
+     "key": "se_sec_enrl_gc_fe_zs_trend",
+     "params": {
+      "file": "se_sec_enrl_gc_fe_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · GENERAL PUPILS SEC",
+     "topic": "General pupils secondary education",
+     "say": "Girls are still just 48.6 percent of the world's high school students, short of a fair half, after nearly fifty years.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "fill_object",
+        "region": "ground-row",
+        "subject": "school backpack",
+        "data": {
+         "value_from": "star"
+        }
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "se_adt_litr_ma_zs_trend",
+     "params": {
+      "file": "se_adt_litr_ma_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · ADULT MALE LITERAC",
+     "topic": "Adult male literacy rate",
+     "say": "Meanwhile 90.9 percent of grown men can read. Schooling works. The fight is over who gets through the door.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "fill_object",
+        "region": "ground-row",
+        "subject": "open book",
+        "data": {
+         "value_from": "star"
+        }
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "se_prm_enrr_trend",
+     "params": {
+      "file": "se_prm_enrr_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · PRIMARY SCHOOL ENR",
+     "topic": "Primary school enrollment",
+     "say": "Primary school enrollment hit 102.2 percent, more than a full house. Yet girls still thin out by high school.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "stack",
+        "region": "ground-row",
+        "subject": "pencil",
+        "data": {
+         "value_from": "star",
+         "per_value": 20.0
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "brief": {
+    "belief": "Most people think that worldwide secondary education is now gender‑balanced and that everyone is in school.",
+    "surprise": "Even after five decades, women still make up less than half of secondary‑school pupils worldwide, and global primary enrolment only just tops 100 % – the gap is far from closed.",
+    "stakes": "Gender gaps in schooling affect future earnings, health, and economic growth; missing half the talent pool costs societies billions and limits families’ upward mobility.",
+    "visual_proof": "A single world‑map heat‑gradient showing countries coloured by the percentage of female secondary pupils – most shades sit below the 50 % line, making the gender gap instantly visible without sound.",
+    "promise": "Is the world really achieving gender parity in education, or are we still far from equal classrooms?",
+    "payoff": "Viewers will realize that despite steady gains, women still represent fewer than half of secondary students globally, highlighting a hidden inequality that still shapes economies and lives.",
+    "hook": "Half the world’s secondary classrooms are still dominated by boys.",
+    "angle": "scale",
+    "hooks": [
+     {
+      "angle": "personal",
+      "line": "I grew up thinking school was equal for boys and girls – it isn’t."
+     },
+     {
+      "angle": "reversal",
+      "line": "What if the biggest education gap isn’t about access, but about gender?"
+     },
+     {
+      "angle": "scale",
+      "line": "Half the world’s secondary classrooms are still dominated by boys."
+     },
+     {
+      "angle": "mystery",
+      "line": "Why do global school numbers look balanced when the reality is skewed?"
+     },
+     {
+      "angle": "consequence",
+      "line": "A hidden gender gap in schools is costing economies billions every year."
+     }
+    ]
+   },
+   "words_by": "brain(attempt 2, judge llm-pass)"
+  },
+  {
+   "slug": "congo-dem-rep-beats-everyone-on-malaria-cases-reported-by-2-",
+   "title": "Congo, Dem. Rep. Beats Everyone On Malaria cases reported — By 2.5x",
+   "hook": "You'd guess Mozambique leads on malaria cases reported. It's Congo, Dem. Rep. — 29.4 million to 11.6 million.",
+   "closing": "The numbers were public the whole time.",
+   "hashtags": [
+    "data",
+    "facts",
+    "statistics",
+    "shorts",
+    "worldbank"
+   ],
+   "question": "",
+   "segments": [
+    {
+     "source": "offline",
+     "key": "sh_sta_malr_rank",
+     "params": {
+      "file": "sh_sta_malr_rank.json"
+     },
+     "insight_type": "rank",
+     "role": "1 · MALARIA CASES REPO",
+     "topic": "Malaria cases reported",
+     "say": "Congo, Dem. Rep. leads at 29.4 million; Angola is 10.6 million."
+    },
+    {
+     "source": "offline",
+     "key": "sh_tbs_cure_zs_trend",
+     "params": {
+      "file": "sh_tbs_cure_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · TUBERCULOSIS TREAT",
+     "topic": "Tuberculosis treatment success rate",
+     "say": "2000: 69 % of new cases. 2023: 88 % of new cases — 1.3 times higher."
+    },
+    {
+     "source": "offline",
+     "key": "sp_dyn_le00_in_trend",
+     "params": {
+      "file": "sp_dyn_le00_in_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · TOTAL LIFE EXPECTA",
+     "topic": "Total life expectancy at birth",
+     "say": "1972: 58.8 years. 2024: 73.5 years — 1.2 times higher."
+    }
+   ],
+   "words_by": "deterministic"
   }
  ]
 }
