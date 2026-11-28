@@ -77,3 +77,88 @@ texture sand_01 1k
 texture coast_sand_01 1k
 texture cliff_side 1k
 texture rock_face 1k
+# the daily pipeline (store/director.py, 2026-11-28): whole real PLACES behind the shot, and real scanned props in it
+env suburban_garden
+env preller_drive
+env lythwood_lounge
+env lebombo
+env small_empty_house
+env twilight_sunset
+env stuttgart_suburbs
+env suburban_parking_area
+env courtyard
+env courtyard_night
+env balcony
+env street_lamp
+env residential_garden
+env rooftop_night
+env pine_attic
+env relax_inn_seaview_suite
+model Sofa_01 1k
+model sofa_02 1k
+model sofa_03 1k
+model CoffeeTable_01 1k
+model modern_coffee_table_01 1k
+model Television_01 1k
+model television_02 1k
+model potted_plant_01 1k
+model potted_plant_02 1k
+model ladder_sectioned_01 1k
+model wooden_picnic_table 1k
+model plastic_monobloc_chair_01 1k
+model garden_gnome 1k
+model ArmChair_01 1k
+model modern_arm_chair_01 1k
+model side_table_01 1k
+model GothicBed_01 1k
+model painted_wooden_nightstand 1k
+model desk_lamp_arm_01 1k
+model cardboard_box_01 1k
+model metal_trash_can 1k
+model wooden_crate_01 1k
+model binoculars 1k
+model vintage_spacecraft_instrument 1k
+model magnifying_glass_01 1k
+model clipboard 1k
+model metal_toolbox 1k
+model plastic_broom 1k
+model dustpan 1k
+model shrub_01 1k
+model shrub_02 1k
+model shrub_03 1k
+model jacaranda_tree 1k
+model island_tree_01 1k
+model tree_small_02 1k
+model grass_medium_01 1k
+model planter_box_01 1k
+model garden_hose_wall_mounted_01 1k
+model exterior_aircon_unit 1k
+model mid_century_lounge_chair 1k
+model wall_clock 1k
+model hanging_picture_frame_01 1k
+model ceiling_fan 1k
+model modern_ceiling_lamp_01 1k
+model wooden_bookshelf_worn 1k
+model boombox 1k
+model football 1k
+texture wood_floor_deck 1k
+texture laminate_floor_02 1k
+texture wood_floor 1k
+texture beige_wall_001 1k
+texture plastered_wall 1k
+texture ceiling_interior 1k
+texture roof_09 1k
+texture red_brick_03 1k
+texture concrete_floor_02 1k
+texture brick_floor 1k
+texture forrest_ground_01 1k
+texture aerial_grass_rock 1k
+texture grass_ground 1k
+texture dirty_carpet 1k
+texture concrete_floor_worn_001 1k
+texture ceramic_roof_01 1k
+texture clay_roof_tiles 1k
+texture laminate_floor_02 1k
+texture wood_floor 1k
+texture herringbone_parquet 1k
+texture white_plaster_02 1k

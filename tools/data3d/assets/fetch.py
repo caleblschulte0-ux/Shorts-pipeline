@@ -10,6 +10,9 @@ Trigger lines:  index            write polyhaven/index.json (every asset: name, 
                 model <id> [res] a model as glTF (default 1k) with its textures
                 hdri <id> [res]  an HDRI sky as .hdr (default 2k)
                 texture <id> [res]  a PBR texture set as glTF-ready maps (default 1k)
+                env <id>         a whole real PLACE (a full-environment HDRI, not a pure sky): the 2k .hdr that lights the
+                                 scene and the 8k tonemapped JPG the lens sees behind it (store/director.py)
+A file already on the branch is not fetched again, so the trigger can keep every line it ever had.
 """
 import json, os, sys, urllib.request
 from pathlib import Path
@@ -24,6 +27,8 @@ def get(url):
 
 
 def save(url, path):
+    if path.exists() and path.stat().st_size > 0:
+        return                      # already on the branch
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(get(url))
     print(f"  {path} {path.stat().st_size // 1024} KB")
@@ -54,6 +59,17 @@ def hdri(out, aid, res):
     save(files[r]["hdr"]["url"], out / "polyhaven" / "hdri" / f"{aid}_{r}.hdr")
 
 
+def env(out, aid):
+    files = json.loads(get(f"{API}/files/{aid}"))
+    hd = files["hdri"]
+    save(hd["2k" if "2k" in hd else sorted(hd, key=lambda s: int(s.rstrip("k")))[0]]["hdr"]["url"], out / "polyhaven" / "hdri" / f"{aid}_2k.hdr")
+    tm = (files.get("tonemapped") or {}).get("url")
+    if tm:
+        save(tm, out / "polyhaven" / "env" / f"{aid}.jpg")
+    elif "4k" in hd:                # no tonemapped plate: the 4k .hdr is what the lens sees
+        save(hd["4k"]["hdr"]["url"], out / "polyhaven" / "hdri" / f"{aid}_4k.hdr")
+
+
 def main(trigger, out):
     out = Path(out); ok = bad = 0
     for line in Path(trigger).read_text().splitlines():
@@ -69,6 +85,8 @@ def main(trigger, out):
                 gltf(out, w[1], w[2] if len(w) > 2 else "1k")
             elif w[0] == "hdri":
                 hdri(out, w[1], w[2] if len(w) > 2 else "2k")
+            elif w[0] == "env":
+                env(out, w[1])
             else:
                 print(f"skip: {line}"); continue
             ok += 1
