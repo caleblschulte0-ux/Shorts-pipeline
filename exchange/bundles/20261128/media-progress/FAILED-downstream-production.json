@@ -1,0 +1,100 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261128",
+  "status": "blocked_downstream",
+  "observed_at": "2026-11-28T12:38:37Z",
+  "bundle_identity": "2c88d11485dd3e01285f7a8e5adb931ed070ee8edcce93f16a5754f94bf664b2",
+  "attempted": [
+    "Committed and validated media-progress/STARTED.json before every other producer write.",
+    "Completed the mandatory mailbox round and two follow-up capped rewrite rounds in the required order: reviews, asks, then rewrites.",
+    "Reused all 56 already-settled ask keys without overwriting answers; committed 22 supported rewrite answers and read them back against their request schemas and identifiers.",
+    "Committed and read back response.json, then committed DONE separately.",
+    "Observed Exchange Phase B apply commit 10492f53a9af93370a94642df63be0f43d96c756: three of seven submitted Explainer rewrites applied and four were rejected by existing gates.",
+    "Observed mailbox claim/apply commit 3f0b45fbf6b681ebd8c3b061804a23b6e5f6bdce apply five rewrites and file seven supported retry requests; answered the capped retry round and left the new claim workflow pending.",
+    "Verified actual accepted upload URLs only from posted logs; did not count DONE, workflow handoff, scheduled publish slots, pending claims, or in-progress render/upload jobs as posted."
+  ],
+  "channels": {
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "verified_urls": [],
+      "detail": "No 2026-11-28 accepted Explainer upload URL exists. Seven source stories were editorially submitted, but the Daily Shorts worker is still queued and no posted-log acceptance exists."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6,
+      "verified_urls": [],
+      "detail": "No accepted Third-channel URL keyed to 20261128 exists. clip-20261128-1 is explicitly pending without a URL; five more required clips have no accepted URL. URLs publishing today from older production dates are not counted."
+    },
+    "trending": {
+      "required": 5,
+      "verified_posted": 1,
+      "pending": 4,
+      "verified_urls": [
+        "https://youtube.com/shorts/4EGKua9P14Q"
+      ],
+      "detail": "One sports moment has an accepted 2026-11-28 posted timestamp and URL. Four more required sports moments remain unverified; the sports worker remains in its make, judge, and post step."
+    }
+  },
+  "mailboxes": {
+    "rounds": 3,
+    "reviews": {
+      "open_observed": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No open review requests in any round."
+    },
+    "asks": {
+      "open_index_keys": 56,
+      "answered_this_run": 0,
+      "remaining_unanswered": 0,
+      "skipped_reason": "All 56 named keys already existed in their authorized answer files and were reused without overwriting settled answers."
+    },
+    "rewrites": {
+      "initial_open_index_requests": 75,
+      "current_open_index_requests": 72,
+      "answered_this_run": 22,
+      "remaining_unanswered": 62,
+      "skipped_reason": "Section 7 caps rewrites at 10 per round. Ten current top requests now have fresh answers awaiting the pending claim workflow; 62 additional open requests remain outside the latest capped round. Eight already-settled answer paths were also reused in the follow-up round."
+    }
+  },
+  "commits": {
+    "started": "c211ea6d28c313062c077dd32b137a33a674f995",
+    "rewrite_round_one": [
+      "ae69fa954f522ed2bdad5f3e1f6367667699f423",
+      "29431d0388afee9f2152538c828470957e2430d9",
+      "76012e117849dc06a3a4072c8bcb08d65404f507",
+      "a81ed1ae2091b545b19faecfa4ac9b0d5c4ef4b2",
+      "4e16ea71314330cc330c6b9e79a0fb640cfca216",
+      "96da679889b1c219c7c6de6e712c44e6b6962bd8",
+      "88f54f77b0fc6f8ab7f2a70e72d4d40fb1d76369",
+      "e91f62640e60e17d1c67fe6b40714257e8d59a1c",
+      "0a844b30613ca938a0105b755206820ec9c86075",
+      "058ae71732ad5dad34622ccd74a9678f3da75c42"
+    ],
+    "rewrite_followup_new": [
+      "71b4cbd9b2da6d18ec144d841ac111080187d832",
+      "102993f7206f51d451b2f8910524a73668cad9dd"
+    ],
+    "rewrite_retry_round": [
+      "718ede84bf3fdf18af0e8d370af86ffb9ea09656",
+      "9b382bf040c0c5183ab96c39e4e98ec006fd877e",
+      "ff1dfd3218b8d35ba4f86d22f1ce3c904a4c4d69",
+      "a3ae16b90a9838e4fa138412c02a578bb03b855e",
+      "5f388f38039323127b7186e3051ec172d5c90207",
+      "77fc16cbf685b0b8ab6edcb124d9b99e7a969b83",
+      "30fe45b98cd5a9776de812ff4bc72c3e04d43eb2",
+      "e29ab663cbfadfe70fa35fee9a639208e688a19b",
+      "34f2b96bde0d071bf9dc4d20906db75cfd112724",
+      "175cf812eec96a70ac5b8f3d4bcc714bf3223135"
+    ],
+    "response": "aa4a7ab23ab36233b83560b6e77d8fc9ea079397",
+    "done": "a047dcc518ffac225ad9b4358386b1caeea48fdc",
+    "phase_b_apply": "10492f53a9af93370a94642df63be0f43d96c756",
+    "mailbox_claim_apply": "3f0b45fbf6b681ebd8c3b061804a23b6e5f6bdce"
+  },
+  "exact_failed_step": "Actual output verification did not reach the frozen contract: Explainer is 0/4, Third is 0/6, and Trending is 1/5 by accepted upload URL. The remaining downstream render, QA, and upload work has not produced accepted URLs; Third contains one explicitly pending upload with no URL, and the latest mailbox claim plus Daily Shorts run remain queued.",
+  "day_closed": false
+}
