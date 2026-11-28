@@ -1,0 +1,60 @@
+{
+ "frames_rendered": 746,
+ "frame_size": [
+  1080,
+  1920
+ ],
+ "native": true,
+ "fps": 30,
+ "video": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "codec": "h264",
+  "frames": 750,
+  "pix_fmt": "yuv420p"
+ },
+ "audio": {
+  "codec": "aac",
+  "sample_rate": "44100"
+ },
+ "duration_s": 25.0,
+ "bytes": 11928046,
+ "last_word_s": 24.098,
+ "tts": {
+  "engine": "gemini",
+  "voice": "gemini Charon",
+  "why_not_elevenlabs": null,
+  "why_not_chatterbox": null,
+  "why_not_gemini": null
+ },
+ "lines": [
+  "A chunk of the space station fell out of the sky and smashed straight through a family's roof in Florida.",
+  "It came from a load of old batteries, heavier than a pickup truck, that NASA tossed overboard three years earlier.",
+  "The whole thing was supposed to burn up on the way down. One piece didn't.",
+  "It tore through the roof and two floors, with their son at home, and it was smaller than a soda can.",
+  "NASA admitted it was theirs. Now the family wants NASA to pay for the house. Should they?"
+ ],
+ "windows": [
+  [
+   0.0,
+   5.163583
+  ],
+  [
+   5.163583,
+   10.417291
+  ],
+  [
+   10.417291,
+   14.032333000000001
+  ],
+  [
+   14.032333000000001,
+   19.25025
+  ],
+  [
+   19.25025,
+   24.234458
+  ]
+ ]
+}
