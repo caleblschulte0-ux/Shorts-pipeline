@@ -34,7 +34,9 @@ Nothing here posts. `data3d_upload.yml` on main posts, on the operator's word, t
 4. **Shots.** `stories/<slug>/shots.py` with `store/director.py`. The grammar that passes (280 verdicts audited
    2026-11-27): the WORLD acts, Data reacts; one locked lens; three props at most; the event beside him, big.
    Look at each: `STORY=<slug> SHOT=n QUICK=1 KEYS=4 python -I store/shots.py /tmp/out 6 30` (four stills, 20 s).
-   Fix what the stills show. Two looks a shot, three at most; a shot that still fails loses its hardest element.
+   The showrunner held the first daily short (spacejunk, 44) mainly as `decorative_mascot`: Data stood beside the
+   event. In every beat HE does the thing or it happens TO him (he catches it, carries it, dodges it), and every prop
+   is the story's own, never set dressing. Fix what the stills show. Two looks a shot, three at most; a shot that still fails loses its hardest element.
 5. **Render.** Push `.github/triggers/data3d_ship` with `story=<slug>` and a new `rev=`. It voices, renders every
    shot, assembles, and puts `data3d_short.mp4` on the `preview-renders` branch under `data3d/<slug>/`.
 6. **Deliver.** Watch the finished video's contact sheet yourself. Bring the operator the finished video in the
