@@ -23330,14 +23330,32 @@
       "ts": "2026-11-28T13:41:44.483261+00:00"
     },
     "clip-20261128-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/ProductiveKathishChimpanzeeTheThing-7N-DcQi8o3v6fffj",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/Bpek-36m6WI",
       "title": "Ohnepixel Can't Believe What Just Happened After Lucia Tripped",
       "kind": "twitch_clip",
-      "ts": "2026-11-28T13:44:29.672610+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-11-28T13:44:38.806223+00:00",
+      "uploaded_at": "2026-11-28T13:44:38.806239+00:00",
+      "publish_at": "2026-11-29T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261128-ohnepixel-can-t-believe-what-just-happened-after-ff097f90",
+        "tiktok": "queued for 2026-11-29T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ProductiveKathishChimpanzeeTheThing-7N-DcQi8o3v6fffj",
+      "streamer": "ohnepixel",
+      "series": "chaos",
+      "hook": "Lucia tripped and ohnepixel lost it \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 5165,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 7.0
+      },
+      "director_cut": true
     }
   }
 }
