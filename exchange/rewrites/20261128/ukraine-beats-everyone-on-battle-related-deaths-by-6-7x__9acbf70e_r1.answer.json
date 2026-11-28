@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x__9acbf70e_r1",
+  "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+  "by": "chatgpt",
+  "written_at": "2026-11-28T12:32:00.098Z",
+  "title": "Homicides, Battle Deaths, And Heating Rank Different Countries",
+  "hook": "One danger shrank, another exploded, and a third changed leaders.",
+  "closing": "The metric you choose can redraw which country appears most at risk.",
+  "question": "Which national risk matters most?",
+  "segments": [
+    {
+      "topic": "Intentional Homicides",
+      "say": "The homicide rate fell to 5.2 per hundred-thousand people. One danger eased while other pressures moved elsewhere."
+    },
+    {
+      "topic": "Battle-related Deaths",
+      "say": "Ukraine recorded 68,097 battle-related deaths. Country rankings look completely different when war replaces ordinary crime."
+    },
+    {
+      "topic": "Heating Degree Days",
+      "say": "Greece led with 23,795 heating degree days. The country ranking shifts again when climate replaces violence."
+    }
+  ]
+}
