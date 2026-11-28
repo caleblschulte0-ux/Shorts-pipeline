@@ -1,0 +1,38 @@
+{
+  "key": "sh_mmr_risk_rank",
+  "title": "Lifetime risk of maternal death",
+  "unit": "1 in: rate varies by country",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Lifetime risk of maternal death",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.MMR.RISK",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Belarus",
+      "value": 96213
+    },
+    {
+      "label": "Norway",
+      "value": 60475
+    },
+    {
+      "label": "Poland",
+      "value": 58680
+    },
+    {
+      "label": "Korea, Rep.",
+      "value": 43501
+    },
+    {
+      "label": "Spain",
+      "value": 38118
+    }
+  ]
+}

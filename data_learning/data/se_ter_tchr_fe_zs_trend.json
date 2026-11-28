@@ -1,0 +1,48 @@
+{
+  "key": "se_ter_tchr_fe_zs_trend",
+  "title": "Academic staff tertiary education",
+  "unit": "% female",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "academic staff tertiary education",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.TER.TCHR.FE.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 31.9,
+      "period": "1972"
+    },
+    {
+      "label": "1983",
+      "value": 32.9,
+      "period": "1983"
+    },
+    {
+      "label": "1993",
+      "value": 33.4,
+      "period": "1993"
+    },
+    {
+      "label": "2004",
+      "value": 39.9,
+      "period": "2004"
+    },
+    {
+      "label": "2014",
+      "value": 42.4,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 43.9,
+      "period": "2024"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "key": "se_adt_litr_fe_zs_trend",
+  "title": "Adult female literacy rate",
+  "unit": "% of females ages 15 and above",
+  "geography": "World",
+  "time_coverage": "1976-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "adult female literacy rate",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.ADT.LITR.FE.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1976",
+      "value": 56.7,
+      "period": "1976"
+    },
+    {
+      "label": "1986",
+      "value": 63.8,
+      "period": "1986"
+    },
+    {
+      "label": "1995",
+      "value": 70.6,
+      "period": "1995"
+    },
+    {
+      "label": "2005",
+      "value": 77.5,
+      "period": "2005"
+    },
+    {
+      "label": "2014",
+      "value": 81.7,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 84.6,
+      "period": "2024"
+    }
+  ]
+}

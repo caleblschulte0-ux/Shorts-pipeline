@@ -1,7 +1,31 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-11-28T09:38:07Z",
+ "updated": "2026-11-28T12:23:48Z",
  "open": [
+  {
+   "id": "belarus-beats-everyone-on-lifetime-risk-of-maternal-death-by__1779a1f4",
+   "slug": "belarus-beats-everyone-on-lifetime-risk-of-maternal-death-by",
+   "filed": "2026-11-28T12:23:48Z",
+   "why": [
+    "narration: beat 1 reads off 5 numbers: say one, and what it means",
+    "narration: beat 2 reads off 5 numbers: say one, and what it means",
+    "narration: beat 3 reads off 2 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261128/belarus-beats-everyone-on-lifetime-risk-of-maternal-death-by__1779a1f4.request.json",
+   "answer_path": "exchange/rewrites/20261128/belarus-beats-everyone-on-lifetime-risk-of-maternal-death-by__1779a1f4.answer.json"
+  },
+  {
+   "id": "secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655",
+   "slug": "secondary-school-enrollment-is-2-0x-higher-than-in-1972",
+   "filed": "2026-11-28T12:23:48Z",
+   "why": [
+    "narration: beat 1 reads off 3 numbers: say one, and what it means",
+    "narration: beat 2 reads off 3 numbers: say one, and what it means",
+    "narration: beat 3 reads off 3 numbers: say one, and what it means"
+   ],
+   "request": "exchange/rewrites/20261128/secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655.request.json",
+   "answer_path": "exchange/rewrites/20261128/secondary-school-enrollment-is-2-0x-higher-than-in-1972__b9f8c655.answer.json"
+  },
   {
    "id": "school-is-not-as-evenly-spread-as-you-think__82130e07",
    "slug": "school-is-not-as-evenly-spread-as-you-think",

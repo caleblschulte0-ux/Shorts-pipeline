@@ -1,0 +1,48 @@
+{
+  "key": "se_prm_enrl_tc_zs_trend",
+  "title": "Primary pupil-teacher ratio",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "1972-2018",
+  "insight_type": "trend",
+  "source": {
+    "name": "primary pupil-teacher ratio",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 27.8,
+      "period": "1972"
+    },
+    {
+      "label": "1981",
+      "value": 28.2,
+      "period": "1981"
+    },
+    {
+      "label": "1990",
+      "value": 26.2,
+      "period": "1990"
+    },
+    {
+      "label": "2000",
+      "value": 26.3,
+      "period": "2000"
+    },
+    {
+      "label": "2009",
+      "value": 24.7,
+      "period": "2009"
+    },
+    {
+      "label": "2018",
+      "value": 23.4,
+      "period": "2018"
+    }
+  ]
+}

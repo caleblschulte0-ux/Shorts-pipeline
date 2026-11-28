@@ -1,0 +1,48 @@
+{
+  "key": "se_sec_enrr_trend",
+  "title": "Secondary school enrollment",
+  "unit": "% gross",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "secondary school enrollment",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.SEC.ENRR",
+    "officiality": "official",
+    "access_date": "2026-11-28"
+  },
+  "notes": "Fetched live from World Bank on 2026-11-28. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 38.6,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 45.1,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 53.7,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 62.4,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 74.9,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 77.3,
+      "period": "2024"
+    }
+  ]
+}
