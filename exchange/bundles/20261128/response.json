@@ -1,0 +1,110 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261128",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "789866e1277169c3ded68fba4686dbdded3b430160a531cadd69229f4ff85b9f",
+    "source_commit": "7b71741197b109bed8283efebed589c7fd3c0fdd",
+    "production_date": "20261128",
+    "bundle_sha256": "2c88d11485dd3e01285f7a8e5adb931ed070ee8edcce93f16a5754f94bf664b2"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Grew 1.5x Since 1972",
+      "hook": "The 1970s food shortage warnings missed how quickly cereal production grew.",
+      "says": [
+        "From 1985 to 2017, progression to secondary school rose from 77.8% to 91.3% — 1.2 times higher.",
+        "From 1972 to 2024, cereal production rose from 1083.7 to 1644.1 million metric tons — 1.5 times higher.",
+        "Farmland spans 5.2 million square kilometers in China, 4.2 in the United States, 3.6 Australia, 2.4 Brazil, and 2.2 Russia."
+      ],
+      "closing": "Food production changed faster than the old shortage warnings expected.",
+      "question": "Which surprised you most: school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Tripled 3.0x Since 1990",
+      "hook": "Since 1990, waste tripled as an energy source—not solar or wind.",
+      "says": [
+        "From 1990 to 2024, combustible renewables and waste rose from 10.2% to 30.1% of energy — 3.0 times higher.",
+        "From 1998 to 2024, electricity access rose from 73.2% to 91.9% of population — 1.3 times higher.",
+        "From 1972 to 2024, methane (CH4) emissions from waste rose from 903.8 to 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "Waste now supplies far more energy, while its methane cost keeps climbing.",
+      "question": "Which surprised you most: fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth slowed while cities kept expanding.",
+      "says": [
+        "From 1972 to 2025, rural population fell from 63.1% to 42.2% of total population — down to 67 percent.",
+        "From 1972 to 2025, the largest city's share shifted from 18.2% to 16.2% of urban population — barely moved.",
+        "From 1972 to 2025, population growth fell from 2 annual % to 0.91 annual % — down to 46 percent."
+      ],
+      "closing": "The population still grows, but the annual pace is now less than half as fast.",
+      "question": "Which surprised you most: rural, city, or growth?"
+    },
+    {
+      "slug": "pol3-immunization-is-4-6x-higher-than-in-1980",
+      "title": "Pol3 Immunization Grew 4.6x Since 1980",
+      "hook": "In 1980 it was 18.3; now it's 84.2, a reversal hiding in plain sight.",
+      "says": [
+        "From 1972 to 2024, the rate fell from 11.7 to 7.55 per 1,000 people — down to 65 percent.",
+        "From 2000 to 2019, it fell from 48.9 to 40.5 — down to 83 percent.",
+        "From 1980 to 2024, Pol3 immunization rose from 18.3 to 84.2 — 4.6 times higher.",
+        "From 1985 to 2023, the count fell from 625,000 to 260,000 — down to 42 percent."
+      ],
+      "closing": "Pol3 immunization rose dramatically while every companion measure moved the other way.",
+      "question": "Which reversal surprised you most?"
+    },
+    {
+      "slug": "passengers-carried-air-transport-is-10-6x-higher-than-in-197",
+      "title": "Air Passengers Grew 10.6x Since 1973",
+      "hook": "In 1973, 401.6 million became 4269.0 million—air travel scaled beyond recognition.",
+      "says": [
+        "From 1973 to 2023, air passengers climbed from 401.6 million to 4269.0 million — 10.6 times higher.",
+        "China leads at 946,499 million passenger-km; Korea, Rep. follows at 100,381 million passenger-km.",
+        "From 2010 to 2024, passenger volume rose from 547.1 million to 913.3 million — 1.7 times higher.",
+        "From 1995 to 2019, the export share fell from 8.54% to 7.39% — down to 87 percent."
+      ],
+      "closing": "Air travel became mass movement, while its economic share did not rise with it.",
+      "question": "Which air-travel number surprised you?"
+    },
+    {
+      "slug": "urban-people-practicing-open-defecation-fell-87-since-2000",
+      "title": "Urban Open Defecation Fell 87% Since 2000",
+      "hook": "Since 2000, 5.14 became 0.69—a quiet sanitation breakthrough.",
+      "says": [
+        "From 1972 to 2025, ages 15-64 grew from 2191.8 million to 5355.5 million — 2.4 times higher.",
+        "Russian Federation spans 17.1 million sq. km; Brazil spans 8.5 million sq. km.",
+        "From 2000 to 2024, urban open defecation fell from 5.14% to 0.69% — down to 13 percent.",
+        "From 2010 to 2025, forcibly displaced people rose from 41.1 million to 117.3 million — 2.9 times higher."
+      ],
+      "closing": "Sanitation advanced sharply, even as displacement shows how uneven human security remains.",
+      "question": "Which human-security shift surprised you?"
+    },
+    {
+      "slug": "ukraine-beats-everyone-on-battle-related-deaths-by-6-7x",
+      "title": "Ukraine's Battle-Death Toll Leads By 6.7x",
+      "hook": "Sri Lanka had 10,165; Ukraine reached 68,097, putting the scale beyond comparison.",
+      "says": [
+        "From 2000 to 2023, homicides fell from 6.85 to 5.2 per 100,000 people — down to 76 percent.",
+        "Ukraine leads at 68,097 battle-related deaths; Russian Federation records 7,670.",
+        "Greece leads at 23,795 heating degree days; Iceland records 11,456."
+      ],
+      "closing": "Battle deaths dwarf the other rankings, showing how war reshapes every national comparison.",
+      "question": "Which comparison changed your perspective?"
+    }
+  ],
+  "notes": [
+    "The frozen bundle contains zero media requests; active formats require no ChatGPT-supplied images.",
+    "All seven source stories in the authorized Explainer authoring request were rewritten without changing segment count or order.",
+    "The frozen daily contract requires 4 Explainers, 6 Third-channel clips, and 5 sports moments; Third and trending accept no response packages or ChatGPT-supplied media.",
+    "Third and trending remain production-supervision responsibilities for downstream registered workers; response.json and DONE are not proof of publication."
+  ]
+}
